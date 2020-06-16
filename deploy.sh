@@ -20,4 +20,4 @@ if [ $# -eq 1 ]
 fi
 git commit -m "$msg"
 
-git push -f git@github.com:syaofox/syaofox.github.io.git hug_blog
+git push 
