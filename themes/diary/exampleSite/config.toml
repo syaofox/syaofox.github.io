@@ -1,11 +1,10 @@
-baseURL = "http://localhost:1313/"
-DefaultContentLanguage = "zh" # Theme's display language, supports: en, fr, zh, zh-hant
-languageCode = "zh-cn"
-title = "霜天晓角"
-copyright = "Syaofox 2020 copyright."
+baseURL = "http://example.org/"
+DefaultContentLanguage = "en" # Theme's display language, supports: en, fr, zh, zh-hant
+languageCode = "en-us"
+title = "A Hugo Site"
+copyright = "This is a customized copyright."
 theme = "diary"
 # googleAnalytics = "UA-123-45"
-
 
 [markup]
   [markup.highlight]
@@ -20,17 +19,14 @@ theme = "diary"
     tabWidth = 4
 
 [params]
-subtitle = "心似白云常自在"
-enableGitalk = false
-enableReadingTime = true
-disableToC=false
-disableAutoCollapse=false
+subtitle = "Themed by Diary."
+enableGitalk = true
 
 # Twitter Card and Open Graph settings
-enableOpenGraph = false
-enableTwitterCards = false
-title = "霜天晓角" # will set 'og:site_name'
-description = "心似白云常自在"  # will set 'og:description'
+enableOpenGraph = true
+enableTwitterCards = true
+title = "My Blog" # will set 'og:site_name'
+description = "My HomePage Description"  # will set 'og:description'
 
 [params.gitalk]
   owner = "user"
@@ -42,20 +38,18 @@ description = "心似白云常自在"  # will set 'og:description'
    category = "categories"
 
 [[menu.main]]
-url = "/posts"
-name = "归档"
-weight = 1
-
-[[menu.main]]
 url = "/categories"
-name = "分类"
+name = "Categories"
 weight = 2
 [[menu.main]]
 url = "/tags"
-name = "标签"
+name = "Tags"
 weight = 3
-
+[[menu.main]]
+url = "/posts"
+name = "Archive"
+weight = 1
 [[menu.main]]
 url = "/index.xml"
-name = "RSS 订阅"
+name = "RSS Feed"
 weight = 4
