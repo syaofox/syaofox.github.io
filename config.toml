@@ -18,6 +18,12 @@ theme = "diary"
     noClasses = true
     style = "perldoc"
     tabWidth = 4
+  # 开启html
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      # hardWraps = false
+      unsafe = true
+      # xHTML = true
 
 [params]
 subtitle = "心似白云常自在"
