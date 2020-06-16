@@ -1,4 +1,4 @@
-baseURL = "http://localhost:1313/"
+baseURL = "https://syaofox.github.io/"
 DefaultContentLanguage = "zh" # Theme's display language, supports: en, fr, zh, zh-hant
 languageCode = "zh-cn"
 title = "霜天晓角"
