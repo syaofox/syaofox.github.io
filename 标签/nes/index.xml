@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NES on 霜天晓角</title>
+    <link>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/nes/</link>
+    <description>Recent content in NES on 霜天晓角</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Syaofox 2020 copyright.</copyright>
+    <lastBuildDate>Tue, 16 Jun 2020 22:35:34 +0800</lastBuildDate>
+    
+	<atom:link href="https://syaofox.github.io/%E6%A0%87%E7%AD%BE/nes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>圣斗士星矢~黄金传说完结篇~攻略~</title>
+      <link>https://syaofox.github.io/acg/%E5%9C%A3%E6%96%97%E5%A3%AB%E6%98%9F%E7%9F%A2-%E9%BB%84%E9%87%91%E4%BC%A0%E8%AF%B4%E5%AE%8C%E7%BB%93%E7%AF%87%E6%94%BB%E7%95%A5/</link>
+      <pubDate>Tue, 16 Jun 2020 22:35:34 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/acg/%E5%9C%A3%E6%96%97%E5%A3%AB%E6%98%9F%E7%9F%A2-%E9%BB%84%E9%87%91%E4%BC%A0%E8%AF%B4%E5%AE%8C%E7%BB%93%E7%AF%87%E6%94%BB%E7%95%A5/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
