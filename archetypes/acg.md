@@ -6,7 +6,7 @@ description: ""
 featured_image: ""
 # images is optional, but needed for showing Twitter Card
 images: []
-分类: 
+分类: ACG
 comment : false
 draft: false 
 author: "syaofox"
