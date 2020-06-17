@@ -2,11 +2,11 @@
 title: "圣斗士星矢~黄金传说完结篇~攻略~"
 date: 2020-06-16T22:35:34+08:00
 description: "一款忠于原著的FC游戏，80后共同的回忆"
-标签: [圣斗士, FC, NES]
+tags: [圣斗士, FC, NES]
 featured_image: "/SaintSeiya-OugonDensetsuKanketsuHen.assets/banner.jpg"
 # images is optional, but needed for showing Twitter Card
 images: []
-分类: ACG
+categories: ACG
 comment : false
 draft: false 
 author: "syaofox"

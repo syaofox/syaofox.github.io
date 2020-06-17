@@ -2,11 +2,11 @@
 title: "迷走都市~完美结局~"
 date: 2020-06-16T21:25:19+08:00
 description: "一款经典的PC98 AVG游戏，是非常优秀的一款启蒙游戏。"
-标签: [TIARE, 迷走都市, HGame,Dos]
+tags: [TIARE, 迷走都市, HGame,Dos]
 featured_image: "/meisou-toshi-happyending/MeisouToshi.jpg"
 # images is optional, but needed for showing Twitter Card
 images: []
-分类: ACG
+categories: ACG
 comment : false
 draft: false 
 author: "syaofox"

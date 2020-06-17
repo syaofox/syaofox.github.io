@@ -44,21 +44,21 @@ description = "心似白云常自在"  # will set 'og:description'
   client_id = "your client id"
   client_secret = "your client secret"
 [taxonomies]
-   tag = "标签"
-   category = "分类"
+   tag = "tags"
+   category = "categories"
    archives = "posts"
 
 [[menu.main]]
-url = "/archive"
+url = "/archives"
 name = "归档"
 weight = 1
 
 [[menu.main]]
-url = "/分类"
+url = "/categories"
 name = "分类"
 weight = 2
 [[menu.main]]
-url = "/标签"
+url = "/tags"
 name = "标签"
 weight = 3
 

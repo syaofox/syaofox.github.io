@@ -1,12 +1,12 @@
 ---
-title: "夏日的回忆-同级生2"
+title: "夏日的回忆~同级生2"
 date: 2020-06-14T16:50:06+08:00
 description: "elf 的 HGame,每次片头音乐响起,仿佛又一次闻到16岁暑假的气息"
-标签: [elf, 同级生, HGame,Dos]
+tags: [elf, 同级生, HGame,Dos]
 featured_image: "/SummerMemories-Doukyuusei2/Doukyuusei2.jpg"
 # images is optional, but needed for showing Twitter Card
 images: []
-分类: ACG
+categories: ACG
 comment : false
 draft: false 
 author: "syaofox"
