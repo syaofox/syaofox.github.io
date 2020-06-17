@@ -1,9 +1,9 @@
 ---
-title: "同级生2~攻略~"
+title: "夏日的回忆-同级生2"
 date: 2020-06-14T16:50:06+08:00
 description: "elf 的 HGame,每次片头音乐响起,仿佛又一次闻到16岁暑假的气息"
 标签: [elf, 同级生, HGame,Dos]
-featured_image: "/同级生2/Doukyuusei2.jpg"
+featured_image: "/SummerMemories-Doukyuusei2/Doukyuusei2.jpg"
 # images is optional, but needed for showing Twitter Card
 images: []
 分类: ACG
@@ -19,15 +19,15 @@ type: post
 
 在某个场合上见了美女，上去搭讪，然后，hehe……估计很多人也只有在游戏里YY的份。但92年《同级生》一代的出现却把这种YY的梦想变成了现实。绝对是H-game史上的一个里程碑，不夸张，一点都不夸张。当时顶级的CG水平，极高的自由度，相当不错的人设，青春的校园背景，尤其是完全创新的游戏方式，一下子让沉浸在电子小说方式的玩家们发现了新大陆。即使到了今天，仍然能够通过卖同级生1周边来赚钱！
 
-<img style="display: block; margin: 0 auto;" src="/同级生2/dgszzang7410_4_garnet17th_1upin.gif" alt="同级生2" />
+<img style="display: block; margin: 0 auto;" src="/SummerMemories-Doukyuusei2/dgszzang7410_4_garnet17th_1upin.gif" alt="同级生2" />
 
-<img style="display: block; margin: 0 auto;" src="/同级生2/eb600044bf0fff381b2.jpg" alt="同级生2" />
+<img style="display: block; margin: 0 auto;" src="/SummerMemories-Doukyuusei2/eb600044bf0fff381b2.jpg" alt="同级生2" />
 
-<img style="display: block; margin: 0 auto;" src="/同级生2/rlacjfrms7_3_1upin.jpg" alt="同级生2" />
+<img style="display: block; margin: 0 auto;" src="/SummerMemories-Doukyuusei2/rlacjfrms7_3_1upin.jpg" alt="同级生2" />
 
-<img style="display: block; margin: 0 auto;" src="/同级生2/sjey4444_1_1upin.jpg" alt="同级生2" />
+<img style="display: block; margin: 0 auto;" src="/SummerMemories-Doukyuusei2/sjey4444_1_1upin.jpg" alt="同级生2" />
 
-<img style="display: block; margin: 0 auto;" src="/同级生2/sjey4444_7_1upin.jpg" alt="同级生2" />
+<img style="display: block; margin: 0 auto;" src="/SummerMemories-Doukyuusei2/sjey4444_7_1upin.jpg" alt="同级生2" />
 
 </style>
 
@@ -55,7 +55,7 @@ type: post
 
 ## 各女孩子的攻略  
 
-<img style="display: block; margin: 0 auto;" src="/同级生2/unnamed.jpg" alt="同级生2" />
+<img style="display: block; margin: 0 auto;" src="/SummerMemories-Doukyuusei2/unnamed.jpg" alt="同级生2" />
 
 ### 1.呜泽美佐子
 | <div style="width: 100pt">时间</div>       | <div style="width: 100pt">地点</div>   | 事件                           |

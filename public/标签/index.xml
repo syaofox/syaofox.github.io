@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Syaofox 2020 copyright.</copyright>
-    <lastBuildDate>Tue, 16 Jun 2020 22:35:34 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jun 2020 22:41:29 +0800</lastBuildDate>
     
 	<atom:link href="https://syaofox.github.io/%E6%A0%87%E7%AD%BE/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Dos</title>
+      <link>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/dos/</link>
+      <pubDate>Tue, 16 Jun 2020 22:41:29 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/dos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HGame</title>
+      <link>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/hgame/</link>
+      <pubDate>Tue, 16 Jun 2020 22:41:29 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/hgame/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>华丽人生2</title>
+      <link>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/%E5%8D%8E%E4%B8%BD%E4%BA%BA%E7%94%9F2/</link>
+      <pubDate>Tue, 16 Jun 2020 22:41:29 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/%E5%8D%8E%E4%B8%BD%E4%BA%BA%E7%94%9F2/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>FC</title>
@@ -36,24 +63,6 @@
       <pubDate>Tue, 16 Jun 2020 22:35:34 +0800</pubDate>
       
       <guid>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/%E5%9C%A3%E6%96%97%E5%A3%AB/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Dos</title>
-      <link>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/dos/</link>
-      <pubDate>Tue, 16 Jun 2020 21:25:19 +0800</pubDate>
-      
-      <guid>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/dos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>HGame</title>
-      <link>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/hgame/</link>
-      <pubDate>Tue, 16 Jun 2020 21:25:19 +0800</pubDate>
-      
-      <guid>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/hgame/</guid>
       <description></description>
     </item>
     
