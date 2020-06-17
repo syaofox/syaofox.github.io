@@ -49,7 +49,7 @@ description = "心似白云常自在"  # will set 'og:description'
    archives = "posts"
 
 [[menu.main]]
-url = "/acg"
+url = "/archive"
 name = "归档"
 weight = 1
 
