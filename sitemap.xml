@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://syaofox.github.io/%E5%88%86%E7%B1%BB/acg/</loc>
+    <loc>https://syaofox.github.io/categories/acg/</loc>
     <lastmod>2020-06-16T22:41:29+08:00</lastmod>
   </url>
   
@@ -13,22 +13,27 @@
   </url>
   
   <url>
-    <loc>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/dos/</loc>
+    <loc>https://syaofox.github.io/categories/</loc>
     <lastmod>2020-06-16T22:41:29+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/hgame/</loc>
+    <loc>https://syaofox.github.io/tags/dos/</loc>
     <lastmod>2020-06-16T22:41:29+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://syaofox.github.io/%E5%88%86%E7%B1%BB/</loc>
+    <loc>https://syaofox.github.io/tags/hgame/</loc>
     <lastmod>2020-06-16T22:41:29+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/%E5%8D%8E%E4%B8%BD%E4%BA%BA%E7%94%9F2/</loc>
+    <loc>https://syaofox.github.io/tags/</loc>
+    <lastmod>2020-06-16T22:41:29+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://syaofox.github.io/tags/%E5%8D%8E%E4%B8%BD%E4%BA%BA%E7%94%9F2/</loc>
     <lastmod>2020-06-16T22:41:29+08:00</lastmod>
   </url>
   
@@ -38,27 +43,22 @@
   </url>
   
   <url>
-    <loc>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/</loc>
-    <lastmod>2020-06-16T22:41:29+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://syaofox.github.io/</loc>
     <lastmod>2020-06-16T22:41:29+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/fc/</loc>
+    <loc>https://syaofox.github.io/tags/fc/</loc>
     <lastmod>2020-06-16T22:35:34+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/nes/</loc>
+    <loc>https://syaofox.github.io/tags/nes/</loc>
     <lastmod>2020-06-16T22:35:34+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/%E5%9C%A3%E6%96%97%E5%A3%AB/</loc>
+    <loc>https://syaofox.github.io/tags/%E5%9C%A3%E6%96%97%E5%A3%AB/</loc>
     <lastmod>2020-06-16T22:35:34+08:00</lastmod>
   </url>
   
@@ -68,12 +68,12 @@
   </url>
   
   <url>
-    <loc>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/tiare/</loc>
+    <loc>https://syaofox.github.io/tags/tiare/</loc>
     <lastmod>2020-06-16T21:25:19+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82/</loc>
+    <loc>https://syaofox.github.io/tags/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82/</loc>
     <lastmod>2020-06-16T21:25:19+08:00</lastmod>
   </url>
   
@@ -88,17 +88,17 @@
   </url>
   
   <url>
-    <loc>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/elf/</loc>
+    <loc>https://syaofox.github.io/tags/elf/</loc>
     <lastmod>2020-06-16T18:53:17+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/%E9%BE%99%E9%AA%91%E5%A3%AB/</loc>
+    <loc>https://syaofox.github.io/tags/%E9%BE%99%E9%AA%91%E5%A3%AB/</loc>
     <lastmod>2020-06-16T18:53:17+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://syaofox.github.io/%E6%A0%87%E7%AD%BE/%E5%90%8C%E7%BA%A7%E7%94%9F/</loc>
+    <loc>https://syaofox.github.io/tags/%E5%90%8C%E7%BA%A7%E7%94%9F/</loc>
     <lastmod>2020-06-14T16:50:06+08:00</lastmod>
   </url>
   
@@ -112,7 +112,7 @@
   </url>
   
   <url>
-    <loc>https://syaofox.github.io/archive/</loc>
+    <loc>https://syaofox.github.io/archives/</loc>
   </url>
   
 </urlset>
