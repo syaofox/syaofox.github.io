@@ -10,5 +10,5 @@ images: []
 comment : false
 draft: false 
 author: "syaofox"
-posts: 归档
+type: post
 ---
