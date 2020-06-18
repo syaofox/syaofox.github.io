@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tips on 霜天晓角</title>
+    <link>https://syaofox.github.io/tips/</link>
+    <description>Recent content in Tips on 霜天晓角</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Syaofox 2020 copyright.</copyright>
+    <lastBuildDate>Thu, 18 Jun 2020 10:09:10 +0800</lastBuildDate>
+    
+	<atom:link href="https://syaofox.github.io/tips/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>群晖中实现 Jellyfin 核心显卡硬解实时转码</title>
+      <link>https://syaofox.github.io/tips/%E7%BE%A4%E6%99%96%E4%B8%AD%E5%AE%9E%E7%8E%B0jellyfin%E6%A0%B8%E5%BF%83%E6%98%BE%E5%8D%A1%E7%A1%AC%E8%A7%A3%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81/</link>
+      <pubDate>Thu, 18 Jun 2020 10:09:10 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tips/%E7%BE%A4%E6%99%96%E4%B8%AD%E5%AE%9E%E7%8E%B0jellyfin%E6%A0%B8%E5%BF%83%E6%98%BE%E5%8D%A1%E7%A1%AC%E8%A7%A3%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81/</guid>
+      <description>实时转码到底是干嘛用的 举个例子哈：大家在手机APP端看爱奇艺、优酷、QQ视频的时候。影片是可以选择清晰度的。一般有流畅、高清、蓝光等等选项。
+当然按照清晰度（分辨率）的不同，相应消耗的流量也不一样。
+一般来说;极速＜流畅＜高清＜超清720P＜1080P蓝光
+其实这些视频播放软件，在服务器中针对同一个视频分别存放了不通分辨率的版本。根据客户端的需求选择播放。来满足不同人群对视频源的需求。
+在我们的群晖中。自带的套件Video Station 就有离线转码的功能。
+DS video 客户端可让您执行离线转码以将视频转换到不同分辨率的 .mp4 格式，这是在移动设备上最兼容的视频格式。 离线转码启动后，Video Station 将开始转码视频以便可离线使用。完成离线转码后，DS video 将自动下载或在线播放转码视频供您欣赏。当然也会在我们的群晖中生成一份转码成功的视频文件。
+Jellyfin 的实时转码 Jellyfin 在客户端，或者网页端播放视频的时候，是支持选择码率的。比方说我们在手机客户端上选择群晖的某个视频进行播放的时候。默认为原始码率播放。若你的原始视频是1080P。则将会以1080P 60Mbps 进行播放。当然，如果你的网络足够流畅。家里的上传宽带足够大的话。原始码率能够带给你最高清晰度的体验。但如果，你是在外面播放家里群晖的视频的话。可能会受到两方面的限制：
+ 家里的上传宽带无法达到原始码率的需求 原始码率播放非常消耗手机流量  这个时候，我们就需要Jellyfin 的实时转码功能啦。比方说我们可以选择 1080P 10Mbps 、或者选择720P 3Mbps来解决刚刚提到的两点问题。
+Jellyfin 实时转码消耗CPU资源 如果我们没有在Jellyfin的后台开启硬解的功能.我们的群晖将会使用CPU 来进行软解进行实时转码。在转码的过程中，CPU将会以接近100%的工作模式来帮助我们进行转码。对于CPU来说如此繁重的“体力劳动”可能会带来发热严重，群晖其他功能受到性能影响等等问题。
+另外，一般我们群晖系统CPU中的核心显卡是没有用武之地的。所以，本教程将教会大家。如何利用CPU 的核心显卡进行硬解实时转码。
+Jellyfin核心显卡硬解实时转码的必要条件  群晖的系统版本需要：DS916+ 或 DS918+ (DS3617xs 、 DS3615xs不支持) CPU 有核心显卡。当然集成的核心显卡越厉害越好 黑群晖、白群晖、全洗白群晖、半洗白群晖均可   [查看系统是否支持显卡硬解转码]
+SSH链接成功后。输入 ls /dev/dri 之后若如下图显示，则说明支持显卡硬解。
+输出 card0 renderD128
+ 教程开始-搭建并运行Jellyfin容器 在《群晖NAS-使用Jellyfin搭建媒体服务器》这篇教程中，已经教大家如何在群晖中搭建Jellyfin媒体服务器啦。
+今天的这篇教程中，我们将利用命令行的方式搭建。因为图形界面的搭建没法指定容器转载核心显卡的文件。
+1. 在群晖的套件中心，安装Docker套件。
+2. Docker安装成功后，我们的file station中即可看到多出来一个Docker文件夹。 我们在此文件夹内建里 jellyfin 文件夹。再进入jellyfin文件夹。分别建里 config文件夹及cache文件夹。</description>
+    </item>
+    
+    <item>
+      <title>如何使用Calibre制作带目录的电子书</title>
+      <link>https://syaofox.github.io/tips/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8calibre%E5%88%B6%E4%BD%9C%E5%B8%A6%E7%9B%AE%E5%BD%95%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/</link>
+      <pubDate>Thu, 18 Jun 2020 10:04:23 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tips/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8calibre%E5%88%B6%E4%BD%9C%E5%B8%A6%E7%9B%AE%E5%BD%95%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/</guid>
+      <description>1. 导言 本文主要讲如何使用Calibre通过txt格式的电子书，制作成带目录的mobi或者epub格式的电子书。
+主要准备工作包括，你需要有Calibre，并且懂得一点正则表达式
+2. 安装Calibre 下载链接
+3. 制作目录 下载一个txt格式的电子书。我以《陆小凤传奇》为例（版权问题就不放下载链接了）。
+使用Atom打开（当然用Sublime和Word也是一样的，大文件别用Atom打开，会炸）。找到替换，然后打开 正则表达式匹配选项（regular expression）。
+首先这本书有五部：
+ 金鹏王朝（又名陆小凤传奇） 绣花大盗 决战前后 银钩赌坊 幽灵山庄  所以先匹配第几部作为目录第一级。目录第一级在文本里用#表示。
+搜寻框填写
+(第 [一二三四五六七八九] 部) 替换框填写
+# $1 原本是
+第 一 部 金鹏王朝 变成了
+# 第 一 部 金鹏王朝 然后就是匹配各个章节，作为目录第二级。目录第二级在文本里用##表示。
+搜寻框填写。因为出现
+第 一 回　有四条眉毛的人 第二回　丹凤公主 两种不同格式，所以需要匹配那个多的空格。超过百回的一样的原理，多一个百。
+(第)[ ]*([一二三四五六七八九][十]*[一二三四五六七八九]*)[ ]*(回) 替换框填写
+## $1$2$3 原本是
+第 一 回　有四条眉毛的人 第二回　丹凤公主 变成了
+## 第一回　有四条眉毛的人 ## 第二回　丹凤公主 因为每本都有一个尾声，再匹配一下尾声就行。</description>
+    </item>
+    
+    <item>
+      <title>H264视频编码推荐的分辨率和码率配置表</title>
+      <link>https://syaofox.github.io/tips/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/</link>
+      <pubDate>Thu, 18 Jun 2020 09:30:43 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tips/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/</guid>
+      <description>在各种视频编码标准中，行业一直在求追“高压缩比（数据量越小越好）”，同时又保证“高视频质量”的算法。鱼和熊掌不可兼得，视频编码是一种折中的游戏。参数“视频码率”的设定，就代表了这种折中的选择。码率越高，数据量越大，视频质量越好，码率越小，数据量越小，视频质量越差。
+但是，码率大到一定阈值之后，码率的提升带来的视频质量改善就会变得微不足道，所以这个码率阈值就显得非常重要。
+网上这篇文章「Video Encoding Settings for H.264 Excellence」，就针对H.264视频编码，测试了不同视频分辨率下的码率阈值。
+其介绍了用于高质量H.264视频编码的一组分辨率，码率设置，以及这些选择背后的推理。这篇文章很好的帮我们解答了：针对H.264视频编码（对其他视频编码格式无效），给定一个视频分辨率，要设置什么视频码率，才能得到“最具性价比”的高质量视频画面。
+针对H.264编码格式，根据不同分辨率，推荐其对应的码率配置关系如下图所示：
+  宽屏
+   Name Resolution Link(Mbps) Bitrate(Mbps) Video(kbps) Audio(kbps)     240p 424x240 1.0 0.64 576 64   360p 640x360 1.5 0.96 896 64   432p 768x432 1.8 1.15 1088 64   480p 848x480 2.0 1.28 1216 64   480p HQ 848x480 2.5 1.60 1536 64   576p 1024x576 3.0 1.</description>
+    </item>
+    
+  </channel>
+</rss>
