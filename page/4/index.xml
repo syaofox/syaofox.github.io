@@ -6,9 +6,24 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Syaofox 2020 copyright.</copyright>
-    <lastBuildDate>Thu, 18 Jun 2020 12:09:42 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jun 2020 20:31:51 +0800</lastBuildDate>
     
         <atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Windows WSL 重启方法</title>
+        <link>https://syaofox.github.io/windows/windows-wsl-%E9%87%8D%E5%90%AF%E6%96%B9%E6%B3%95/</link>
+        <pubDate>Thu, 18 Jun 2020 10:24:18 +0800</pubDate>
+        
+        <guid>https://syaofox.github.io/windows/windows-wsl-%E9%87%8D%E5%90%AF%E6%96%B9%E6%B3%95/</guid>
+        <description>霜天晓角 https://syaofox.github.io/windows/windows-wsl-%E9%87%8D%E5%90%AF%E6%96%B9%E6%B3%95/ -&lt;p&gt;Windows 10 子系统 wsl 的重启方法&lt;/p&gt;
+&lt;p&gt;以管理员权限运行&lt;code&gt;cmd&lt;/code&gt;或者&lt;code&gt;PowerShell&lt;/code&gt;执行以下命令&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;net stop LxssManager	//停止
+net start LxssManager	//启动
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/windows/windows-wsl-%E9%87%8D%E5%90%AF%E6%96%B9%E6%B3%95/ - Syaofox 2020 copyright.</description>
+        </item>
     
     
     
@@ -661,242 +676,6 @@ ffmpeg -i intermediate_all.mpg -qscale:v &lt;span style=&#34;color:#b452cd&#34;&
 &lt;h2 id=&#34;清空元数据&#34;&gt;清空元数据&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ffmpeg -i in.mov -map_metadata -1 -c:v copy -c:a copy out.mov
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/software/ffmpeg-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/ - Syaofox 2020 copyright.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>H264视频编码推荐的分辨率和码率配置表</title>
-        <link>https://syaofox.github.io/tips/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/</link>
-        <pubDate>Thu, 18 Jun 2020 09:30:43 +0800</pubDate>
-        
-        <guid>https://syaofox.github.io/tips/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/</guid>
-        <description>霜天晓角 https://syaofox.github.io/tips/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/ -&lt;p&gt;在各种视频编码标准中，行业一直在求追“高压缩比（数据量越小越好）”，同时又保证“高视频质量”的算法。鱼和熊掌不可兼得，视频编码是一种折中的游戏。参数“视频码率”的设定，就代表了这种折中的选择。码率越高，数据量越大，视频质量越好，码率越小，数据量越小，视频质量越差。&lt;/p&gt;
-&lt;p&gt;但是，码率大到一定阈值之后，码率的提升带来的视频质量改善就会变得微不足道，所以这个码率阈值就显得非常重要。&lt;/p&gt;
-&lt;p&gt;网上这篇文章&lt;a href=&#34;http://www.lighterra.com/papers/videoencodingh264/&#34;&gt;「Video Encoding Settings for H.264 Excellence」&lt;/a&gt;，就针对H.264视频编码，测试了不同视频分辨率下的码率阈值。&lt;/p&gt;
-&lt;p&gt;其介绍了用于高质量H.264视频编码的一组分辨率，码率设置，以及这些选择背后的推理。这篇文章很好的帮我们解答了：针对H.264视频编码（对其他视频编码格式无效），给定一个视频分辨率，要设置什么视频码率，才能得到“最具性价比”的高质量视频画面。&lt;/p&gt;
-&lt;p&gt;针对H.264编码格式，根据不同分辨率，推荐其对应的码率配置关系如下图所示：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;宽屏&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;center&#34;&gt;Name&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Resolution&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Link(Mbps)&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Bitrate(Mbps)&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Video(kbps)&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Audio(kbps)&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;240p&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;424x240&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1.0&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;0.64&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;576&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;360p&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;640x360&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1.5&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;0.96&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;896&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;432p&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;768x432&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1.8&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1.15&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1088&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;480p&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;848x480&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;2.0&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1.28&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1216&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;480p HQ&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;848x480&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;2.5&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1.60&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1536&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;576p&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1024x576&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1.92&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1856&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;576p HQ&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1024x576&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;3.5&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;2.24&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;2176&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;720p&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1280x720&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;4.0&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;2.56&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;2496&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;720p HQ&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1280x720&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;5.0&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;3.20&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;3072&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;128&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;1080p&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1920x1080&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;8.0&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;5.12&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;4992&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;128&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;1080p HQ&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1920x1080&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;12.0&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;7.68&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;7552&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;128&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;1080p Superbit&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1920x1080&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;N/A&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;20.32&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;20000&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;320&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;非宽屏&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;center&#34;&gt;Name&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Resolution&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Link(Mbps)&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Bitrate(Mbps)&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Video(kbps)&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Audio(kbps)&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;240p&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;320x240&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1.0&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;0.64&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;576&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;360p&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;480x360&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1.2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;0.77&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;704&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;480p&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;640x480&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1.5&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;0.96&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;896&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;480p HQ&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;640x480&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;2.0&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1.28&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1216&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;576p&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;768x576&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;2.3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1.47&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1408&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;576p HQ&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;768x576&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;2.5&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1.60&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1536&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;720p&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;960x720&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1.92&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1856&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;720p HQ&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;960x720&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;4.0&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;2.56&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;2432&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;128&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;1080p&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1440x1080&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;6.0&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;3.84&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;3712&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;128&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;1080p HQ&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1440x1080&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;9.0&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;5.76&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;5632&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;128&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;1080p Superbit&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;1440x1080&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;N/A&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;20.32&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;20000&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;320&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-- https://syaofox.github.io/tips/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/ - Syaofox 2020 copyright.</description>
         </item>
     
     

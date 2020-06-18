@@ -6,9 +6,39 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Syaofox 2020 copyright.</copyright>
-    <lastBuildDate>Thu, 18 Jun 2020 12:09:42 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jun 2020 20:31:51 +0800</lastBuildDate>
     
         <atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Ubuntu18 04 修改DNS</title>
+        <link>https://syaofox.github.io/linux/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/</link>
+        <pubDate>Thu, 18 Jun 2020 11:20:07 +0800</pubDate>
+        
+        <guid>https://syaofox.github.io/linux/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/</guid>
+        <description>霜天晓角 https://syaofox.github.io/linux/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/ -&lt;p&gt;最近使用了最新版的ubuntu 18.04运行一些服务，发现服务器经常出现无法解析域名的情况。&lt;/p&gt;
+&lt;p&gt;检查/etc/resolv.conf文件，发现里面nameserver是127.0.0.53，修改以后过了段时间，又被修改回去，查找资料原来18.04版本DNS是由systemd-resolved管理的。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;netstat -tnpl| grep systemd-resolved
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过以上命令查看到这个服务是监听在53号端口上。&lt;/p&gt;
+&lt;p&gt;/etc/systemd/resolved.conf大致内容如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;[Resolve]
+&lt;span style=&#34;color:#00688b&#34;&gt;DNS&lt;/span&gt;=223.5.5.5 8.8.8.8
+&lt;span style=&#34;color:#228b22&#34;&gt;#FallbackDNS=&lt;/span&gt;
+&lt;span style=&#34;color:#228b22&#34;&gt;#Domains=&lt;/span&gt;
+&lt;span style=&#34;color:#00688b&#34;&gt;LLMNR&lt;/span&gt;=no
+&lt;span style=&#34;color:#228b22&#34;&gt;#MulticastDNS=no&lt;/span&gt;
+&lt;span style=&#34;color:#228b22&#34;&gt;#DNSSEC=no&lt;/span&gt;
+&lt;span style=&#34;color:#228b22&#34;&gt;#Cache=yes&lt;/span&gt;
+&lt;span style=&#34;color:#228b22&#34;&gt;#DNSStubListener=yes&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;修改这里面的内容，然后重启systemd-resolved服务即可。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;systemctl restart systemd-resolved.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果想要用/etc/resolve.conf控制，直接将systemd-resolved服务停止并禁用。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;systemctl stop systemd-resolved.service
+systemctl disable systemd-resolved.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样世界就清净了。&lt;/p&gt;- https://syaofox.github.io/linux/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/ - Syaofox 2020 copyright.</description>
+        </item>
     
     
     
@@ -165,12 +195,12 @@ phpVirtualBox 的默认管理员用户名和密码是 &lt;code&gt;admin&lt;/code
         
         <guid>https://syaofox.github.io/linux/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
         <description>霜天晓角 https://syaofox.github.io/linux/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/ -&lt;p&gt;Nas 安装 Ubuntu Server 20.04 LTS 系统，基于 zfs on linux&lt;/p&gt;
-&lt;h1 id=&#34;安装-ubuntu&#34;&gt;安装 Ubuntu&lt;/h1&gt;
+&lt;h2 id=&#34;安装-ubuntu&#34;&gt;安装 Ubuntu&lt;/h2&gt;
 &lt;p&gt;注意选中安装ssh,否则安装完成无法远程连接&lt;/p&gt;
-&lt;h1 id=&#34;更新系统&#34;&gt;更新系统&lt;/h1&gt;
+&lt;h2 id=&#34;更新系统&#34;&gt;更新系统&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt update
 sudo apt upgrade
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;设置时区&#34;&gt;设置时区&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;设置时区&#34;&gt;设置时区&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 查看当前时区&lt;/span&gt;
 timedatectl
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 列出所有时区&lt;/span&gt;
@@ -179,7 +209,7 @@ timedatectl list-timezones
 timedatectl list-timezones | grep Asia
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 设置时区为上海&lt;/span&gt;
 sudo timedatectl set-timezone Asia/Shanghai
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;修改-root-用户登录权限&#34;&gt;修改 root 用户登录权限&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;修改-root-用户登录权限&#34;&gt;修改 root 用户登录权限&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 编辑 &amp;#39;/etc/ssh/sshd_config&amp;#39;&lt;/span&gt;
 sudo sed -i &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;s/#PermitRootLogin prohibit-password/PermitRootLogin yes/&amp;#39;&lt;/span&gt; /etc/ssh/sshd_config
 
@@ -192,9 +222,9 @@ sudo passwd root
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 查看分区情况&lt;/span&gt;
 lsblk
 &lt;span style=&#34;color:#228b22&#34;&gt;# 使用 gdisk 初始化硬盘&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;添加账号&#34;&gt;添加账号&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;添加账号&#34;&gt;添加账号&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;adduser wife 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;使用-zfs-系统&#34;&gt;使用 ZFS 系统&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;使用-zfs-系统&#34;&gt;使用 ZFS 系统&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 安装 zfs&lt;/span&gt;
 apt update
 apt install zfsutils-linux
@@ -221,7 +251,7 @@ chmod -R &lt;span style=&#34;color:#b452cd&#34;&gt;777&lt;/span&gt; /pool/share
 chmod -R &lt;span style=&#34;color:#b452cd&#34;&gt;777&lt;/span&gt; /pool/media
 chmod -R &lt;span style=&#34;color:#b452cd&#34;&gt;777&lt;/span&gt; /pool/work
 chmod -R &lt;span style=&#34;color:#b452cd&#34;&gt;777&lt;/span&gt; /pool/me
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;安装-samba-并设置-samba-共享&#34;&gt;安装 samba 并设置 samba 共享&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;安装-samba-并设置-samba-共享&#34;&gt;安装 samba 并设置 samba 共享&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 安装 samba&lt;/span&gt;
 apt install samba
 
@@ -269,7 +299,7 @@ smbpasswd -a wife
 
 &lt;span style=&#34;color:#228b22&#34;&gt;# 重启 samba 服务&lt;/span&gt;
 service smbd restart
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;安装-docker&#34;&gt;安装 docker&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;安装-docker&#34;&gt;安装 docker&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 安装依赖包&lt;/span&gt;
 apt update
 apt install apt-transport-https ca-certificates curl software-properties-common
@@ -300,6 +330,8 @@ docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /va
 &lt;li&gt;科大 &lt;a href=&#34;https://docker.mirrors.ustc.edu.cn&#34;&gt;https://docker.mirrors.ustc.edu.cn&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;七牛云 &lt;a href=&#34;https://reg-mirror.qiniu.com&#34;&gt;https://reg-mirror.qiniu.com&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id=&#34;安装邮件服务器&#34;&gt;安装邮件服务器&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://syaofox.github.io/linux/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6&#34;&gt;Ubuntu 配置 Postfix 通过 Gmail 发送邮件&lt;/a&gt;&lt;/p&gt;
 - https://syaofox.github.io/linux/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/ - Syaofox 2020 copyright.</description>
         </item>
     
@@ -1036,80 +1068,6 @@ Using 24 MiB of memory for 32 blocks of IO cache.
 &lt;/ul&gt;
 &lt;p&gt;此外，对于需要跨平台协作的用户来说，mergerfs 可以将不同文件系统的分区拼成一个，使 Ext4 与 NTFS 和谐共处，而 ZFS 在可预见的未来没有可用的 Windows 支持。&lt;/p&gt;
 - https://syaofox.github.io/linux/%E4%BD%BF%E7%94%A8-mergerfs-%E5%90%88%E5%B9%B6%E5%A4%9A%E5%9D%97%E7%A1%AC%E7%9B%98%E7%9A%84%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4/ - Syaofox 2020 copyright.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Ubuntu 的 UPS 电源安装</title>
-        <link>https://syaofox.github.io/linux/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/</link>
-        <pubDate>Thu, 18 Jun 2020 11:02:01 +0800</pubDate>
-        
-        <guid>https://syaofox.github.io/linux/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/ -&lt;p&gt;跑程序，网络不是最重要，但是长时间的稳定电源还是非常重要的，所以加一个UPS可以避免一些短时间的断电。&lt;/p&gt;
-&lt;p&gt;首先看看usb有没有成功连接到ups电源,一般会出现下面信息&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ lsusb Bus &lt;span style=&#34;color:#b452cd&#34;&gt;002&lt;/span&gt; Device 004: ID 051d:0002 American Power Conversion Uninterruptible Power Supply
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装很简单，就是一句命令&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt-get -y install apcupsd
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;备份文件&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo cp /etc/apcupsd/apcupsd.conf /etc/apcupsd/apcupsd.conf.bak
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;编辑下面文件&lt;/p&gt;
-&lt;p&gt;sudo nano /etc/apcupsd/apcupsd.conf&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;UPSNAME smartups750
-UPSCABLE usb
-UPSTYPE usb
-DEVICE 
-POLLTIME &lt;span style=&#34;color:#b452cd&#34;&gt;60&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;另外一个文件&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo cp /etc/default/apcupsd /etc/default/apcupsd.bak
-sudo nano /etc/default/apcupsd
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;内容为&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#00688b&#34;&gt;ISCONFIGURED&lt;/span&gt;=yes
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;重启服务&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo systemctl restart apcupsd.service
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后可以运行下面命令看ups电源的状态&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ apcaccess status
-APC      : 001,037,0923
-DATE     : 2017-02-05 04:57:23 +0800  
-HOSTNAME : gtx1080
-VERSION  : 3.14.12 (&lt;span style=&#34;color:#b452cd&#34;&gt;29&lt;/span&gt; March 2014) debian
-UPSNAME  : gtx1080
-CABLE    : USB Cable
-DRIVER   : USB UPS Driver
-UPSMODE  : Stand Alone
-STARTTIME: 2017-02-05 02:45:22 +0800  
-MODEL    : Back-UPS XS 1400U  
-STATUS   : ONLINE 
-LINEV    : 230.0 Volts
-LOADPCT  : 7.0 Percent
-BCHARGE  : 100.0 Percent
-TIMELEFT : 83.1 Minutes
-MBATTCHG : &lt;span style=&#34;color:#b452cd&#34;&gt;5&lt;/span&gt; Percent
-MINTIMEL : &lt;span style=&#34;color:#b452cd&#34;&gt;3&lt;/span&gt; Minutes
-MAXTIME  : &lt;span style=&#34;color:#b452cd&#34;&gt;0&lt;/span&gt; Seconds
-SENSE    : Medium
-LOTRANS  : 155.0 Volts
-HITRANS  : 280.0 Volts
-ALARMDEL : No alarm
-BATTV    : 28.1 Volts
-LASTXFER : Low line voltage
-NUMXFERS : &lt;span style=&#34;color:#b452cd&#34;&gt;1&lt;/span&gt;
-XONBATT  : 2017-02-05 03:09:35 +0800  
-TONBATT  : &lt;span style=&#34;color:#b452cd&#34;&gt;0&lt;/span&gt; Seconds
-CUMONBATT: &lt;span style=&#34;color:#b452cd&#34;&gt;672&lt;/span&gt; Seconds
-XOFFBATT : 2017-02-05 03:20:47 +0800  
-SELFTEST : NO
-STATFLAG : 0x05000008
-SERIALNO : 3B1644X34934  
-BATTDATE : 2016-11-05
-NOMINV   : &lt;span style=&#34;color:#b452cd&#34;&gt;230&lt;/span&gt; Volts
-NOMBATTV : 24.0 Volts
-NOMPOWER : &lt;span style=&#34;color:#b452cd&#34;&gt;700&lt;/span&gt; Watts
-FIRMWARE : 926.T2 .I USB FW:T2
-END APC  : 2017-02-05 04:57:28 +0800 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在空载的情况下可以运行&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;TIMELEFT : 83.1 Minutes
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/linux/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/ - Syaofox 2020 copyright.</description>
         </item>
     
     

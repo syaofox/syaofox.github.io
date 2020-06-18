@@ -7,15 +7,33 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Syaofox 2020 copyright.</copyright>
-    <lastBuildDate>Thu, 18 Jun 2020 12:09:42 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jun 2020 20:31:51 +0800</lastBuildDate>
     
 	<atom:link href="https://syaofox.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Gmail</title>
+      <link>https://syaofox.github.io/tags/gmail/</link>
+      <pubDate>Thu, 18 Jun 2020 20:31:51 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/gmail/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Postfix</title>
+      <link>https://syaofox.github.io/tags/postfix/</link>
+      <pubDate>Thu, 18 Jun 2020 20:31:51 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/postfix/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Ubuntu</title>
       <link>https://syaofox.github.io/tags/ubuntu/</link>
-      <pubDate>Thu, 18 Jun 2020 12:09:42 +0800</pubDate>
+      <pubDate>Thu, 18 Jun 2020 20:31:51 +0800</pubDate>
       
       <guid>https://syaofox.github.io/tags/ubuntu/</guid>
       <description></description>
