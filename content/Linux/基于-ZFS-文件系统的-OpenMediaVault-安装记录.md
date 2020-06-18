@@ -171,3 +171,22 @@ type: post
 
 - 插件名`openmediavault-nut 5.1.0-1`
 
+## 设置邮件通知
+
+- 以GMail为例
+  
+  SMTP 服务器: smtp.gmail.com
+
+  SMTP 端口: 587
+
+  加密模式: 启用TLS
+
+  发送Email: Gmai账号
+
+  需要验证: 打开
+
+  用户名: Gmail账号
+  
+  密码: Gmail密码,开启两步验证的账号请使用应用专用密码
+
+

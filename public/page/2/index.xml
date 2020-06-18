@@ -656,6 +656,19 @@ ps -aux | grep &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;znapzend&amp;#
 &lt;ul&gt;
 &lt;li&gt;插件名&lt;code&gt;openmediavault-nut 5.1.0-1&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id=&#34;设置邮件通知&#34;&gt;设置邮件通知&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;以GMail为例&lt;/p&gt;
+&lt;p&gt;SMTP 服务器: smtp.gmail.com&lt;/p&gt;
+&lt;p&gt;SMTP 端口: 587&lt;/p&gt;
+&lt;p&gt;加密模式: 启用TLS&lt;/p&gt;
+&lt;p&gt;发送Email: Gmai账号&lt;/p&gt;
+&lt;p&gt;需要验证: 打开&lt;/p&gt;
+&lt;p&gt;用户名: Gmail账号&lt;/p&gt;
+&lt;p&gt;密码: Gmail密码,开启两步验证的账号请使用应用专用密码&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 - https://syaofox.github.io/linux/%E5%9F%BA%E4%BA%8E-zfs-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84-openmediavault-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/ - Syaofox 2020 copyright.</description>
         </item>
     
