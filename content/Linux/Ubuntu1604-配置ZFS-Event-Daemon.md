@@ -1,5 +1,5 @@
 ---
-title: "Ubuntu1604 配置 ZFS Event Daemon"
+title: "Ubuntu 配置 ZFS Event Daemon"
 date: 2020-06-18T12:09:42+08:00
 description: ""
 tags: [Ubuntu, ZED]
@@ -13,103 +13,85 @@ author: "syaofox"
 type: post
 ---
 
+## 一、安装软件
 
-## 编辑 ZED 配置文件
+zed是zfs的一个事件服务，需要安装zfs-zed来使用，同时，为了能邮件通知，还需要安装`mailutils msmtp msmtp-mta s-nail`
 
-### 编辑 */etc/zfs/zed.d/zed.rc*
+```c
+apt-get install mailutils msmtp msmtp-mta s-nail zfs-zed
+```
+
+## 二、配置msmtp
+
+修改或新建/etc/msmtprc
+
+```c
+defaults
+auth           login
+#tls_starttls   off
+tls            off
+#tls_trust_file /etc/ssl/certs/ca-certificates.crt
+logfile        ~/.msmtp.log
+
+account alerts
+host smtp.qq.com
+port 25
+from 地址@qq.com
+user 地址@qq.com
+password xxxx       #这里的密码是smtp的验证密码，不是邮箱登录密码
+
+# Set a default account
+account default : alerts
+```
+
+配置完后`echo "test mail" | mail -s "test" 地址@qq.com`测试是否能收到邮件。
+
+## 三、配置zed
 
 ```
-##
-# zed.rc
-#
-# This file should be owned by root and permissioned 0600.
-##
+vi /etc/zfs/zed.d/zed.rc
+```
 
-##
-# Absolute path to the debug output file.
-#
-ZED_DEBUG_LOG="/tmp/zed.debug.log"##
-# Email address of the zpool administrator for receipt of notifications;
-#   multiple addresses can be specified if they are delimited by whitespace.
-# Email will only be sent if ZED_EMAIL_ADDR is defined.
-# Disabled by default; uncomment to enable.
-#
-ZED_EMAIL_ADDR="DESTINATION@EXAMPLE.com"##
-# Name or path of executable responsible for sending notifications via email;
-#   the mail program must be capable of reading a message body from stdin.
-# Email will only be sent if ZED_EMAIL_ADDR is defined.
-#
-ZED_EMAIL_PROG="mail"##
-# Command-line options for ZED_EMAIL_PROG.
-# The string @ADDRESS@ will be replaced with the recipient email address(es).
-# The string @SUBJECT@ will be replaced with the notification subject;
-#   this should be protected with quotes to prevent word-splitting.
-# Email will only be sent if ZED_EMAIL_ADDR is defined.
-#
-ZED_EMAIL_OPTS="-s '@SUBJECT@' @ADDRESS@"##
-# Default directory for zed lock files.
-#
-ZED_LOCKDIR="/var/lock"##
-# Minimum number of seconds between notifications for a similar event.
-#
-ZED_NOTIFY_INTERVAL_SECS=3600##
-# Notification verbosity.
-#   If set to 0, suppress notification if the pool is healthy.
-#   If set to 1, send notification regardless of pool health.
-#
-ZED_NOTIFY_VERBOSE=1##
-# Pushbullet access token.
-# This grants full access to your account -- protect it accordingly!
-#   <https://www.pushbullet.com/get-started>
-#   <https://www.pushbullet.com/account>
-# Disabled by default; uncomment to enable.
-#
-#ZED_PUSHBULLET_ACCESS_TOKEN=""##
-# Pushbullet channel tag for push notification feeds that can be subscribed to.
-#   <https://www.pushbullet.com/my-channel>
-# If not defined, push notifications will instead be sent to all devices
-#   associated with the account specified by the access token.
-# Disabled by default; uncomment to enable.
-#
-#ZED_PUSHBULLET_CHANNEL_TAG=""##
-# Default directory for zed state files.
-#
-#ZED_RUNDIR="/var/run"##
-# Replace a device with a hot spare after N checksum errors are detected.
-# Disabled by default; uncomment to enable.
-#
-#ZED_SPARE_ON_CHECKSUM_ERRORS=10##
-# Replace a device with a hot spare after N I/O errors are detected.
-# Disabled by default; uncomment to enable.
-#
-#ZED_SPARE_ON_IO_ERRORS=1##
-# The syslog priority (e.g., specified as a "facility.level" pair).
-#
-ZED_SYSLOG_PRIORITY="daemon.notice"##
-# The syslog tag for marking zed events.
-#
+```c
+ZED_EMAIL_ADDR="地址@qq.com"
+ZED_EMAIL_PROG="mail"
+ZED_EMAIL_OPTS="-s '@SUBJECT@' @ADDRESS@ -r 地址@qq.com"
+ZED_NOTIFY_INTERVAL_SECS="3600"
+ZED_NOTIFY_VERBOSE=1
+ZED_DEBUG_LOG="/tmp/zed.debug.log"
+ZED_SYSLOG_PRIORITY="daemon.notice"
 ZED_SYSLOG_TAG="zed"
 ```
 
-### 重启 ZED 让新配置生效
+Restart zfs-zed
 
-```
-systemctl restart zed
-```
-
-### 查看服务是否正确开启
-
-```
-systemctl status zed
+```css
+systemctl restart zfs-zed.service
 ```
 
-------
+/etc/aliases file:
 
-## 测试
 
-运行scrub测试一下
+
+```css
+root: brismuth
+brismuth: brismuth@gmail.com
+```
+
+You’ll want to replace “brismuth” with your username and you’ll want to use your own email address at the end. This file tells your computer that all email intended for the “root” user should be sent to the “brismuth” user, and that all email intended for the “brismuth” user should be sent to “[brismuth@gmail.com]
+
+## 四、测试验证
 
 ```
-zpool scrub YOURPOOL
+zpool scrub pool
 ```
-如果配置无误，scrub运行完成后会受到一封邮件
+
+## 五、计划任务
+
+
+
+```ruby
+# zpool scrub every month
+0 2 1 * * /sbin/zpool scrub pool
+0 13 1 * * /sbin/zpool status
+```
