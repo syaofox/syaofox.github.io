@@ -594,7 +594,9 @@ zfs &lt;span style=&#34;color:#658b00&#34;&gt;set&lt;/span&gt; &lt;span style=&#
 &lt;li&gt;
 &lt;p&gt;安装&lt;code&gt;ZnapZend&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 安装必要组件 不想安装perl可以下载二进制文件存到/opt/&lt;/span&gt;
-apt-get install perl unzip
+apt-get update
+apt-get install perl unzip    
+apt-get install  gcc automake autoconf libtool make
     
 wget https://github.com/oetiker/znapzend/releases/download/v0.20.0/znapzend-0.20.0.tar.gz
 tar zxvf znapzend-0.20.0.tar.gz
@@ -616,7 +618,7 @@ znapzendzetup create --tsformat=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#
     
 &lt;span style=&#34;color:#228b22&#34;&gt;# 测试规则&lt;/span&gt;
 znapzendzetup list
-znapzend --noaction --debug --runonce=tank/Backups
+znapzend --noaction --debug --runonce=pool
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;创建&lt;code&gt;znapzend systemctl&lt;/code&gt;服务&lt;/p&gt;

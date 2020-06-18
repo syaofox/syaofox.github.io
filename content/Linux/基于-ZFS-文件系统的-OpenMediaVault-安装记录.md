@@ -110,7 +110,9 @@ type: post
   
     ```bash
     # 安装必要组件 不想安装perl可以下载二进制文件存到/opt/
-    apt-get install perl unzip
+    apt-get update
+    apt-get install perl unzip    
+    apt-get install  gcc automake autoconf libtool make
     
     wget https://github.com/oetiker/znapzend/releases/download/v0.20.0/znapzend-0.20.0.tar.gz
     tar zxvf znapzend-0.20.0.tar.gz
@@ -133,7 +135,7 @@ type: post
     
     # 测试规则
     znapzendzetup list
-    znapzend --noaction --debug --runonce=tank/Backups
+    znapzend --noaction --debug --runonce=pool
     ```
   
     - 创建`znapzend systemctl`服务

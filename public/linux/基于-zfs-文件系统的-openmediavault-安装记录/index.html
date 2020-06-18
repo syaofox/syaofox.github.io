@@ -500,7 +500,7 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                             
                             3 min
                             
-                            31 s.
+                            33 s.
                         
                     </div>
                 </div>
@@ -601,7 +601,9 @@ zfs <span style="color:#658b00">set</span> <span style="color:#00688b">compressi
 <li>
 <p>安装<code>ZnapZend</code></p>
 <div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#228b22"># 安装必要组件 不想安装perl可以下载二进制文件存到/opt/</span>
-apt-get install perl unzip
+apt-get update
+apt-get install perl unzip    
+apt-get install  gcc automake autoconf libtool make
     
 wget https://github.com/oetiker/znapzend/releases/download/v0.20.0/znapzend-0.20.0.tar.gz
 tar zxvf znapzend-0.20.0.tar.gz
@@ -623,7 +625,7 @@ znapzendzetup create --tsformat=<span style="color:#cd5555">&#39;znapzend-%Y-%m-
     
 <span style="color:#228b22"># 测试规则</span>
 znapzendzetup list
-znapzend --noaction --debug --runonce=tank/Backups
+znapzend --noaction --debug --runonce=pool
 </code></pre></div><ul>
 <li>
 <p>创建<code>znapzend systemctl</code>服务</p>
