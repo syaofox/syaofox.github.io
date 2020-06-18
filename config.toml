@@ -38,6 +38,8 @@ enableTwitterCards = false
 title = "霜天晓角" # will set 'og:site_name'
 description = "心似白云常自在"  # will set 'og:description'
 
+googleSearchCode = "013072478173103559948:yidybwltato"
+
 [params.gitalk]
   owner = "user"
   repo = "repo name"
