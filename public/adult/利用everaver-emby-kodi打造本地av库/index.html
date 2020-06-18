@@ -1,0 +1,1889 @@
+<!DOCTYPE html>
+<html><head>
+<title>利用EverAver Emby Kodi打造本地AV库</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="让AV再次伟大!">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="https://syaofox.github.io/scss/journal.min.2725bdf31310513b302e62b01700d09aeff9316f5344e988decd15737cf0b3c5.css" integrity="sha256-JyW98xMQUTswLmKwFwDQmu/5MW9TROmI3s0Vc3zws8U=" media="screen">
+
+
+
+<link rel="stylesheet" href="https://syaofox.github.io/scss/dark-mode.min.e93e28b95f534b47ed30828c25fef57eb3c43aa0270721098b7f9d4f1c40bf1f.css" integrity="sha256-6T4ouV9TS0ftMIKMJf71frPEOqAnByEJi3&#43;dTxxAvx8=" media="screen">
+
+
+<script src="https://syaofox.github.io//js/loadCSS.js"></script>
+<script>
+  loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+
+
+
+  
+    <script src="https://syaofox.github.io//js/toc-collapse.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://syaofox.github.io/">
+    
+        <div class="nav-title">
+            霜天晓角
+        </div>
+        
+        <div class="nav-subtitle">
+            心似白云常自在
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/archives">
+                归档
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/categories">
+                分类
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tags">
+                标签
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/index.xml">
+                RSS 订阅
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+移植自 <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	Syaofox 2020 copyright.
+	
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- 目录 -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%85%83%e6%95%b0%e6%8d%ae--everaver" onclick="collapseOthers(`#元数据--everaver-nav`)" id="元数据--everaver-nav">
+									元数据 / EverAver
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e4%bb%80%e4%b9%88%e6%98%af%e5%85%83%e6%95%b0%e6%8d%ae" onclick="collapseOthers(`#什么是元数据-nav`)" id="什么是元数据-nav">
+									什么是“元数据”
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%85%83%e6%95%b0%e6%8d%ae%e6%9c%89%e5%9b%9b%e7%a7%8d%e6%8a%93%e6%b3%95" onclick="collapseOthers(`#元数据有四种抓法-nav`)" id="元数据有四种抓法-nav">
+									元数据有四种抓法
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%98%8e%e7%a1%ae%e6%96%87%e4%bb%b6%e5%a4%b9%e5%b1%82%e7%ba%a7e6988ee7a1aee69687e4bbb6e5a4b9e5b182e7baa7" onclick="collapseOthers(`#明确文件夹层级e6988ee7a1aee69687e4bbb6e5a4b9e5b182e7baa7-nav`)" id="明确文件夹层级e6988ee7a1aee69687e4bbb6e5a4b9e5b182e7baa7-nav">
+									明确文件夹层级
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%85%8d%e7%bd%aeeveravere9858de7bdaeeveraver" onclick="collapseOthers(`#配置everavere9858de7bdaeeveraver-nav`)" id="配置everavere9858de7bdaeeveraver-nav">
+									配置EverAver
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%bd%bf%e7%94%a8everavere4bdbfe794a8everaver" onclick="collapseOthers(`#使用everavere4bdbfe794a8everaver-nav`)" id="使用everavere4bdbfe794a8everaver-nav">
+									使用EverAver
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%bf%ae%e6%94%b9nfo%e5%90%88%e5%b9%b6%e5%a4%9a%e9%9b%86%e4%bd%9c%e5%93%81e4bfaee694b9nfoe59088e5b9b6e5a49ae99b86e4bd9ce59381" onclick="collapseOthers(`#修改nfo合并多集作品e4bfaee694b9nfoe59088e5b9b6e5a49ae99b86e4bd9ce59381-nav`)" id="修改nfo合并多集作品e4bfaee694b9nfoe59088e5b9b6e5a49ae99b86e4bd9ce59381-nav">
+									修改nfo合并“多集作品”
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+								</ul>
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%9c%8d%e5%8a%a1%e7%ab%af--embye69c8de58aa1e7abaf--emby" onclick="collapseOthers(`#服务端--embye69c8de58aa1e7abaf--emby-nav`)" id="服务端--embye69c8de58aa1e7abaf--emby-nav">
+									服务端 / Emby
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#emby%e4%b8%8eplexembye4b88eplex" onclick="collapseOthers(`#emby与plexembye4b88eplex-nav`)" id="emby与plexembye4b88eplex-nav">
+									Emby与Plex
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ae%89%e8%a3%85emby%e5%b9%b6%e6%b7%bb%e5%8a%a0%e5%aa%92%e4%bd%93%e5%ba%93e5ae89e8a385embye5b9b6e6b7bbe58aa0e5aa92e4bd93e5ba93" onclick="collapseOthers(`#安装emby并添加媒体库e5ae89e8a385embye5b9b6e6b7bbe58aa0e5aa92e4bd93e5ba93-nav`)" id="安装emby并添加媒体库e5ae89e8a385embye5b9b6e6b7bbe58aa0e5aa92e4bd93e5ba93-nav">
+									安装Emby并添加媒体库
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e8%87%aa%e5%ae%9a%e4%b9%89emby%e7%9a%ae%e8%82%a4e887aae5ae9ae4b989embye79aaee882a4" onclick="collapseOthers(`#自定义emby皮肤e887aae5ae9ae4b989embye79aaee882a4-nav`)" id="自定义emby皮肤e887aae5ae9ae4b989embye79aaee882a4-nav">
+									自定义Emby皮肤
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%a4%9a%e7%94%a8%e6%88%b7%e7%ae%a1%e7%90%86%e9%aa%9a%e6%93%8d%e4%bd%9ce5a49ae794a8e688b7e7aea1e79086e9aa9ae6938de4bd9c" onclick="collapseOthers(`#多用户管理骚操作e5a49ae794a8e688b7e7aea1e79086e9aa9ae6938de4bd9c-nav`)" id="多用户管理骚操作e5a49ae794a8e688b7e7aea1e79086e9aa9ae6938de4bd9c-nav">
+									多用户管理&#43;骚操作
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%b8%80%e5%88%87%e5%8a%aa%e5%8a%9b%e9%83%bd%e6%98%af%e5%80%bc%e5%be%97%e7%9a%84e4b880e58887e58aaae58a9be983bde698afe580bce5be97e79a84" onclick="collapseOthers(`#一切努力都是值得的e4b880e58887e58aaae58a9be983bde698afe580bce5be97e79a84-nav`)" id="一切努力都是值得的e4b880e58887e58aaae58a9be983bde698afe580bce5be97e79a84-nav">
+									一切努力都是值得的
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+								</ul>
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%ae%a2%e6%88%b7%e7%ab%af--kodie5aea2e688b7e7abaf--kodi" onclick="collapseOthers(`#客户端--kodie5aea2e688b7e7abaf--kodi-nav`)" id="客户端--kodie5aea2e688b7e7abaf--kodi-nav">
+									客户端 / Kodi
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e8%ae%be%e7%bd%aekodi%e4%b8%ba%e4%b8%ad%e6%96%87e8aebee7bdaekodie4b8bae4b8ade69687" onclick="collapseOthers(`#设置kodi为中文e8aebee7bdaekodie4b8bae4b8ade69687-nav`)" id="设置kodi为中文e8aebee7bdaekodie4b8bae4b8ade69687-nav">
+									设置Kodi为中文
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%b7%bb%e5%8a%a0emby%e5%ae%98%e6%96%b9%e6%ba%90%e5%b9%b6%e5%ae%89%e8%a3%85%e6%8f%92%e4%bb%b6%e5%ba%93e6b7bbe58aa0embye5ae98e696b9e6ba90e5b9b6e5ae89e8a385e68f92e4bbb6e5ba93" onclick="collapseOthers(`#添加emby官方源并安装插件库e6b7bbe58aa0embye5ae98e696b9e6ba90e5b9b6e5ae89e8a385e68f92e4bbb6e5ba93-nav`)" id="添加emby官方源并安装插件库e6b7bbe58aa0embye5ae98e696b9e6ba90e5b9b6e5ae89e8a385e68f92e4bbb6e5ba93-nav">
+									添加Emby官方源并安装插件库
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ae%89%e8%a3%85emby%e8%a7%86%e9%a2%91%e6%8f%92%e4%bb%b6e5ae89e8a385embye8a786e9a291e68f92e4bbb6" onclick="collapseOthers(`#安装emby视频插件e5ae89e8a385embye8a786e9a291e68f92e4bbb6-nav`)" id="安装emby视频插件e5ae89e8a385embye8a786e9a291e68f92e4bbb6-nav">
+									安装Emby视频插件
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e8%b0%83%e6%95%b4kodi%e5%bf%ab%e8%bf%9b%e9%80%9f%e5%ba%a6e8b083e695b4kodie5bfabe8bf9be9809fe5baa6" onclick="collapseOthers(`#调整kodi快进速度e8b083e695b4kodie5bfabe8bf9be9809fe5baa6-nav`)" id="调整kodi快进速度e8b083e695b4kodie5bfabe8bf9be9809fe5baa6-nav">
+									调整Kodi快进速度
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%8d%a2%e4%b8%8aembuary%e7%9a%ae%e8%82%a4e68da2e4b88aembuarye79aaee882a4" onclick="collapseOthers(`#换上embuary皮肤e68da2e4b88aembuarye79aaee882a4-nav`)" id="换上embuary皮肤e68da2e4b88aembuarye79aaee882a4-nav">
+									换上Embuary皮肤
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%80%89%e8%a3%85embycon%e8%a7%86%e9%a2%91%e6%8f%92%e4%bb%b6e98089e8a385embycone8a786e9a291e68f92e4bbb6" onclick="collapseOthers(`#选装embycon视频插件e98089e8a385embycone8a786e9a291e68f92e4bbb6-nav`)" id="选装embycon视频插件e98089e8a385embycone8a786e9a291e68f92e4bbb6-nav">
+									选装EmbyCon视频插件
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e8%bf%9e%e6%8e%a5kore%e9%81%a5%e6%8e%a7%e5%99%a8" onclick="collapseOthers(`#连接kore遥控器-nav`)" id="连接kore遥控器-nav">
+									连接Kore遥控器
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%88%ab%e5%bf%98%e4%ba%86%e8%ae%be%e7%bd%aekodi%e5%af%86%e7%a0%81" onclick="collapseOthers(`#别忘了设置kodi密码-nav`)" id="别忘了设置kodi密码-nav">
+									别忘了设置Kodi密码！
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+								</ul>
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%b0%be%e5%b7%b4" onclick="collapseOthers(`#尾巴-nav`)" id="尾巴-nav">
+									尾巴
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a class="pagination-action" v-on:click="toggleDarkMode">
+            <i class="material-icons pagination-action-icon" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons pagination-action-icon" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </a>
+        
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/archives">
+                    归档
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/categories">
+                    分类
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tags">
+                    标签
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/index.xml">
+                    RSS 订阅
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- 目录 -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%85%83%e6%95%b0%e6%8d%ae--everaver" onclick="collapseOthers(`#元数据--everaver-nav`)" id="元数据--everaver-nav">
+									元数据 / EverAver
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e4%bb%80%e4%b9%88%e6%98%af%e5%85%83%e6%95%b0%e6%8d%ae" onclick="collapseOthers(`#什么是元数据-nav`)" id="什么是元数据-nav">
+									什么是“元数据”
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%85%83%e6%95%b0%e6%8d%ae%e6%9c%89%e5%9b%9b%e7%a7%8d%e6%8a%93%e6%b3%95" onclick="collapseOthers(`#元数据有四种抓法-nav`)" id="元数据有四种抓法-nav">
+									元数据有四种抓法
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%98%8e%e7%a1%ae%e6%96%87%e4%bb%b6%e5%a4%b9%e5%b1%82%e7%ba%a7e6988ee7a1aee69687e4bbb6e5a4b9e5b182e7baa7" onclick="collapseOthers(`#明确文件夹层级e6988ee7a1aee69687e4bbb6e5a4b9e5b182e7baa7-nav`)" id="明确文件夹层级e6988ee7a1aee69687e4bbb6e5a4b9e5b182e7baa7-nav">
+									明确文件夹层级
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%85%8d%e7%bd%aeeveravere9858de7bdaeeveraver" onclick="collapseOthers(`#配置everavere9858de7bdaeeveraver-nav`)" id="配置everavere9858de7bdaeeveraver-nav">
+									配置EverAver
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%bd%bf%e7%94%a8everavere4bdbfe794a8everaver" onclick="collapseOthers(`#使用everavere4bdbfe794a8everaver-nav`)" id="使用everavere4bdbfe794a8everaver-nav">
+									使用EverAver
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%bf%ae%e6%94%b9nfo%e5%90%88%e5%b9%b6%e5%a4%9a%e9%9b%86%e4%bd%9c%e5%93%81e4bfaee694b9nfoe59088e5b9b6e5a49ae99b86e4bd9ce59381" onclick="collapseOthers(`#修改nfo合并多集作品e4bfaee694b9nfoe59088e5b9b6e5a49ae99b86e4bd9ce59381-nav`)" id="修改nfo合并多集作品e4bfaee694b9nfoe59088e5b9b6e5a49ae99b86e4bd9ce59381-nav">
+									修改nfo合并“多集作品”
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+								</ul>
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%9c%8d%e5%8a%a1%e7%ab%af--embye69c8de58aa1e7abaf--emby" onclick="collapseOthers(`#服务端--embye69c8de58aa1e7abaf--emby-nav`)" id="服务端--embye69c8de58aa1e7abaf--emby-nav">
+									服务端 / Emby
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#emby%e4%b8%8eplexembye4b88eplex" onclick="collapseOthers(`#emby与plexembye4b88eplex-nav`)" id="emby与plexembye4b88eplex-nav">
+									Emby与Plex
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ae%89%e8%a3%85emby%e5%b9%b6%e6%b7%bb%e5%8a%a0%e5%aa%92%e4%bd%93%e5%ba%93e5ae89e8a385embye5b9b6e6b7bbe58aa0e5aa92e4bd93e5ba93" onclick="collapseOthers(`#安装emby并添加媒体库e5ae89e8a385embye5b9b6e6b7bbe58aa0e5aa92e4bd93e5ba93-nav`)" id="安装emby并添加媒体库e5ae89e8a385embye5b9b6e6b7bbe58aa0e5aa92e4bd93e5ba93-nav">
+									安装Emby并添加媒体库
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e8%87%aa%e5%ae%9a%e4%b9%89emby%e7%9a%ae%e8%82%a4e887aae5ae9ae4b989embye79aaee882a4" onclick="collapseOthers(`#自定义emby皮肤e887aae5ae9ae4b989embye79aaee882a4-nav`)" id="自定义emby皮肤e887aae5ae9ae4b989embye79aaee882a4-nav">
+									自定义Emby皮肤
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%a4%9a%e7%94%a8%e6%88%b7%e7%ae%a1%e7%90%86%e9%aa%9a%e6%93%8d%e4%bd%9ce5a49ae794a8e688b7e7aea1e79086e9aa9ae6938de4bd9c" onclick="collapseOthers(`#多用户管理骚操作e5a49ae794a8e688b7e7aea1e79086e9aa9ae6938de4bd9c-nav`)" id="多用户管理骚操作e5a49ae794a8e688b7e7aea1e79086e9aa9ae6938de4bd9c-nav">
+									多用户管理&#43;骚操作
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%b8%80%e5%88%87%e5%8a%aa%e5%8a%9b%e9%83%bd%e6%98%af%e5%80%bc%e5%be%97%e7%9a%84e4b880e58887e58aaae58a9be983bde698afe580bce5be97e79a84" onclick="collapseOthers(`#一切努力都是值得的e4b880e58887e58aaae58a9be983bde698afe580bce5be97e79a84-nav`)" id="一切努力都是值得的e4b880e58887e58aaae58a9be983bde698afe580bce5be97e79a84-nav">
+									一切努力都是值得的
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+								</ul>
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%ae%a2%e6%88%b7%e7%ab%af--kodie5aea2e688b7e7abaf--kodi" onclick="collapseOthers(`#客户端--kodie5aea2e688b7e7abaf--kodi-nav`)" id="客户端--kodie5aea2e688b7e7abaf--kodi-nav">
+									客户端 / Kodi
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e8%ae%be%e7%bd%aekodi%e4%b8%ba%e4%b8%ad%e6%96%87e8aebee7bdaekodie4b8bae4b8ade69687" onclick="collapseOthers(`#设置kodi为中文e8aebee7bdaekodie4b8bae4b8ade69687-nav`)" id="设置kodi为中文e8aebee7bdaekodie4b8bae4b8ade69687-nav">
+									设置Kodi为中文
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%b7%bb%e5%8a%a0emby%e5%ae%98%e6%96%b9%e6%ba%90%e5%b9%b6%e5%ae%89%e8%a3%85%e6%8f%92%e4%bb%b6%e5%ba%93e6b7bbe58aa0embye5ae98e696b9e6ba90e5b9b6e5ae89e8a385e68f92e4bbb6e5ba93" onclick="collapseOthers(`#添加emby官方源并安装插件库e6b7bbe58aa0embye5ae98e696b9e6ba90e5b9b6e5ae89e8a385e68f92e4bbb6e5ba93-nav`)" id="添加emby官方源并安装插件库e6b7bbe58aa0embye5ae98e696b9e6ba90e5b9b6e5ae89e8a385e68f92e4bbb6e5ba93-nav">
+									添加Emby官方源并安装插件库
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ae%89%e8%a3%85emby%e8%a7%86%e9%a2%91%e6%8f%92%e4%bb%b6e5ae89e8a385embye8a786e9a291e68f92e4bbb6" onclick="collapseOthers(`#安装emby视频插件e5ae89e8a385embye8a786e9a291e68f92e4bbb6-nav`)" id="安装emby视频插件e5ae89e8a385embye8a786e9a291e68f92e4bbb6-nav">
+									安装Emby视频插件
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e8%b0%83%e6%95%b4kodi%e5%bf%ab%e8%bf%9b%e9%80%9f%e5%ba%a6e8b083e695b4kodie5bfabe8bf9be9809fe5baa6" onclick="collapseOthers(`#调整kodi快进速度e8b083e695b4kodie5bfabe8bf9be9809fe5baa6-nav`)" id="调整kodi快进速度e8b083e695b4kodie5bfabe8bf9be9809fe5baa6-nav">
+									调整Kodi快进速度
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%8d%a2%e4%b8%8aembuary%e7%9a%ae%e8%82%a4e68da2e4b88aembuarye79aaee882a4" onclick="collapseOthers(`#换上embuary皮肤e68da2e4b88aembuarye79aaee882a4-nav`)" id="换上embuary皮肤e68da2e4b88aembuarye79aaee882a4-nav">
+									换上Embuary皮肤
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%80%89%e8%a3%85embycon%e8%a7%86%e9%a2%91%e6%8f%92%e4%bb%b6e98089e8a385embycone8a786e9a291e68f92e4bbb6" onclick="collapseOthers(`#选装embycon视频插件e98089e8a385embycone8a786e9a291e68f92e4bbb6-nav`)" id="选装embycon视频插件e98089e8a385embycone8a786e9a291e68f92e4bbb6-nav">
+									选装EmbyCon视频插件
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e8%bf%9e%e6%8e%a5kore%e9%81%a5%e6%8e%a7%e5%99%a8" onclick="collapseOthers(`#连接kore遥控器-nav`)" id="连接kore遥控器-nav">
+									连接Kore遥控器
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%88%ab%e5%bf%98%e4%ba%86%e8%ae%be%e7%bd%aekodi%e5%af%86%e7%a0%81" onclick="collapseOthers(`#别忘了设置kodi密码-nav`)" id="别忘了设置kodi密码-nav">
+									别忘了设置Kodi密码！
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+								</ul>
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%b0%be%e5%b7%b4" onclick="collapseOthers(`#尾巴-nav`)" id="尾巴-nav">
+									尾巴
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://syaofox.github.io/">
+            霜天晓角
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" v-on:click="toggleDarkMode">
+            <i class="material-icons" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://syaofox.github.io/">
+        <div class="single-column-header-title">霜天晓角</div>
+        
+        <div class="single-column-header-subtitle">心似白云常自在</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+                
+            
+
+            <div class="post-head-wrapper"
+                
+                    
+                    
+                    style="background-image: url('https://syaofox.github.io/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/banner.jpg')"
+                    
+                
+            >
+                <div class="post-title">
+                    利用EverAver Emby Kodi打造本地AV库
+                    
+                    <div class="post-subtitle">
+                        让AV再次伟大!
+                    </div>
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2020-06-18 08:19
+                        </time>
+                        
+
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/adult">Adult</a>
+                                &nbsp;
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/software">Software</a>
+                                &nbsp;
+                            
+                                <a href="/tags/emby">Emby</a>
+                                &nbsp;
+                            
+                                <a href="/tags/kodi">Kodi</a>
+                                &nbsp;
+                            
+                        
+                        
+                            <i class="material-icons" style="">schedule</i>
+                            
+
+                            
+                            
+
+                            
+                            32 min
+                            
+                            52 s.
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <p><strong>W A R N I N G ！</strong></p>
+<ul>
+<li><strong>※阅读正文前请保持房间明亮，并年满18岁。</strong></li>
+</ul>
+<p><strong>~——只为给伟大的日本劳动女性献上赞歌。~</strong></p>
+<p>本文将深入浅出，从无到有，以日本“成人视频”为例。</p>
+<p><strong>——由影片元数据抓取（EverAver）开始，到服务端软件选择（Emby），再到客户端配置（Kodi），做出完整的教程指南。</strong></p>
+<p>无论您是搭建本地媒体库，还是影片归类管理，相信都能在文中找到合适工具。</p>
+<p>请善用文章右侧的<code>CATALOG</code>快速跳转至您需要的教程。</p>
+<h1 id="元数据--everaver">元数据 / EverAver</h1>
+<h4 id="什么是元数据">什么是“元数据”</h4>
+<p><code>元数据（metadata）</code>即影片信息：如影片封面 / 影片标题 / 发行时间 / 影片简介 / 制作公司 / 演员表 / Staff表。</p>
+<p>越是完善的<code>元数据</code>，导入plex/emby等本地媒体库后就越是美观便利。</p>
+<p>就像这样：</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-b049bd90757cc523b2df38256ec2e572.jpg" alt=""></p>
+<p>而我们平时下片 ~发电~ 显然不会保留这些信息。</p>
+<p>所以搭建本地片库的第一步，便是补全影片<code>元数据</code>。</p>
+<h4 id="元数据有四种抓法">元数据有四种抓法</h4>
+<p>就像~<a href="https://raw.githubusercontent.com/Pockies/pic/master/741f9461ly1g1e0o5njpoj20f80fjdix.jpg">Android App的网络访问方式有四种</a>~，元数据抓取也有的是招：</p>
+<ul>
+<li><strong>Plex / Emby自带“刮削器”</strong></li>
+</ul>
+<p>普通电影/日本动画使用自带tmdb/anidb等<code>刮削器（metadata agents）</code>便能实现<code>元数据</code>自动抓取。</p>
+<p>成人类视频的<code>刮削器</code>则在plex/emby的社区论坛内提供，作为扩展插件安装即可。</p>
+<p>但<code>刮削器</code>对文件名要求极高，<strong>视频文件名必须需包含影片英文名（普通视频）或番号（成人视频）</strong>。</p>
+<p>而我们下载的AV却普遍如下画风</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-0775dd344ead03da5622e481036c5884.jpg" alt=""></p>
+<p>自动工具根本无法应对<strong>如此复杂且混乱</strong>的命名方式。</p>
+<p>要么识别错误，要么无法识别，而一旦识别错误，改起来更是蛋疼无比，因为你甚至不知道哪部错了。</p>
+<p><strong>——日本爱情动作片对不懂爱的“自动程序”而言，显然是超纲了。</strong></p>
+<ul>
+<li><strong><a href="https://javhelper.blogspot.com/">JavHelper</a></strong></li>
+</ul>
+<p>一款由台湾人开发的AV<code>元数据</code>抓取工具。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-02ae6546024c4251bd13f5d53d1336ff.jpg" alt=""></p>
+<p><strong>集自动重命名 / 元数据抓取 / 大批量操作于一身。</strong></p>
+<p>弊端与plex/emby的<code>刮削器</code>相同，基于程序识别的“自动批量”终有极限，虽识别精度高于<code>刮削器</code>，但依然不是可用级别。</p>
+<p>并且该软件抓取的<code>元数据</code>相对简陋，只有单张封面和简单信息，无法满足搭建“媒体库”的需求。</p>
+<p><strong>——仅适用于轻度粗略的文件管理。</strong></p>
+<ul>
+<li><strong><a href="https://everaver.blogspot.com/?zx=2aeb97a65a8c97a9">EverAver</a></strong></li>
+</ul>
+<p>又一款台湾人开发的AV<code>元数据</code>抓取工具。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-07e92c56115af1243db8f14847af0ca7.jpg" alt=""></p>
+<p>功能强大：</p>
+<ol>
+<li>自动识别番号并抓取<code>元数据</code>，无法识别的影片能立刻通过手动输入查询，<strong>彻底杜绝“识别错误”</strong>。</li>
+<li><code>元数据</code>信息非常完善，并提供多个版本供人选择；</li>
+<li>支持自动重命名；</li>
+<li>支持自动建立文件夹并归类（如按“女优名字”建立分类文件夹），给媒体库的本地管理提供了巨大便利；</li>
+<li>几乎所有影片都能正确抓取<code>元数据</code>，本次搭建媒体库合计扫描800+部作品，只有24部没有找到；</li>
+<li>没找到<code>元数据</code>的作品，支持手动添加补全信息。</li>
+</ol>
+<p>缺点则是：</p>
+<ol>
+<li>不支持批量，需要一部一部抓取；</li>
+<li>对存在<strong>多个分集</strong>的作品支持不好，需手动修改<code>nfo</code>文件进行合并（将在后文详述）；</li>
+<li>为了速度，推荐挂日本代理使用。</li>
+</ol>
+<p><strong>由于<a href="https://everaver.blogspot.com/?zx=2aeb97a65a8c97a9">EverAver</a>功能强大且没有致命缺陷，自然成为本次媒体库搭建的主力工具。</strong></p>
+<p><strong>——为毛片 / 里番管理而生！</strong></p>
+<ul>
+<li><strong>手动编辑nfo</strong></li>
+</ul>
+<p><strong>原始但有效。</strong></p>
+<p>以EverAver生成的数据为例，影片<code>元数据</code>通常以<code>nfo</code>文件+封面/封底图片的形式，储存于影片同目录。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-a516867a343d8e6b9b4f9590f17562ae.jpg" alt=""></p>
+<p>用文本文档 / 编辑器打开<code>nfo</code>文件便能看到整个<code>元数据</code>的结构与编写规则。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-02a9b51a1f1446887f89bc7e92fc8d63.jpg" alt=""></p>
+<p>规则非常简单，看tag英文便能明白需要填入什么，比如：</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#8b008b;font-weight:bold">movie</span>&gt;
+  &lt;<span style="color:#8b008b;font-weight:bold">title</span>&gt;影片标题&lt;/<span style="color:#8b008b;font-weight:bold">title</span>&gt;
+  &lt;<span style="color:#8b008b;font-weight:bold">studio</span>&gt;制作组&lt;/<span style="color:#8b008b;font-weight:bold">studio</span>&gt;
+  &lt;<span style="color:#8b008b;font-weight:bold">year</span>&gt;发行年份&lt;/<span style="color:#8b008b;font-weight:bold">year</span>&gt;
+  &lt;<span style="color:#8b008b;font-weight:bold">premiered</span>&gt;具体发行时间&lt;/<span style="color:#8b008b;font-weight:bold">premiered</span>&gt;
+  &lt;<span style="color:#8b008b;font-weight:bold">outline</span>&gt;影片大纲&lt;/<span style="color:#8b008b;font-weight:bold">outline</span>&gt;
+  &lt;<span style="color:#8b008b;font-weight:bold">plot</span>&gt;内容简介&lt;/<span style="color:#8b008b;font-weight:bold">plot</span>&gt;
+  &lt;<span style="color:#8b008b;font-weight:bold">runtime</span>&gt;影片时长&lt;/<span style="color:#8b008b;font-weight:bold">runtime</span>&gt;
+  &lt;<span style="color:#8b008b;font-weight:bold">director</span>&gt;导演&lt;/<span style="color:#8b008b;font-weight:bold">director</span>&gt;
+  &lt;<span style="color:#8b008b;font-weight:bold">actor</span>&gt;
+    &lt;<span style="color:#8b008b;font-weight:bold">name</span>&gt;演员&lt;/<span style="color:#8b008b;font-weight:bold">name</span>&gt;
+  &lt;/<span style="color:#8b008b;font-weight:bold">actor</span>&gt;
+&lt;/<span style="color:#8b008b;font-weight:bold">movie</span>&gt;
+</code></pre></div><p>更多的<code>nfo</code>编写规则请参阅wiki：<a href="https://kodi.wiki/view/NFO_files">NFO files</a>。</p>
+<p><strong>优缺点不言自明，纯人工是最准确的方案，也是最费事的方案。</strong></p>
+<p>而当我们无法通过软件找到影片<code>元数据</code>时，也只能参考日本通贩网站上的信息（如<a href="http://www.dmm.co.jp/digital/">DMM</a>），手动编写<code>nfo</code>了。</p>
+<p><strong>~——软件搞不定问题的话，用人力搞定不就行了？~</strong></p>
+<h4 id="明确文件夹层级e6988ee7a1aee69687e4bbb6e5a4b9e5b182e7baa7">明确文件夹层级<a href="#%E6%98%8E%E7%A1%AE%E6%96%87%E4%BB%B6%E5%A4%B9%E5%B1%82%E7%BA%A7"></a></h4>
+<p>比起通过plex/emby的媒体库页面管理影片，在windows资源管理器添加<code>网络位置</code>映射NAS上的硬盘，通过<code>smb</code>管理文件显然更加便利。</p>
+<p><strong>所以我们在动工之前，最好明确影片存放层级，利用文件夹归类。</strong></p>
+<p>我的目录层级如下：</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">硬盘根目录/顶层文件夹
+——演员实用度/等级（第一层子文件夹）
+————演员名字（第二层子文件夹）
+–——————演员所有影片
+</code></pre></div><p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-0fa576214251e47e2557e84cdcaf7f03.jpg" alt=""></p>
+<p>~为了方便理解，我特地把原本N/R/SR/SSR/UR的沙雕抽卡等级改成了“星级”。~</p>
+<p>毕竟出演AV的老师实在太多，不划分层级并归类，直接全扔一起会完全不知道谁是谁。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-13e01cec63239696371b313ec5a0def6.jpg" alt=""></p>
+<p><strong>当然——</strong></p>
+<p><strong>~——您也能按个人性癖归类（比如裤袜 / 屁股 / 熟女 / JK）。~</strong></p>
+<p>这里我只提供一种归类思路，而明确想要的文件夹层级后，才能配置EverAver做到搭配使用。</p>
+<p>换做普通电影 / 日本动画，做一层“星级目录”也能当作一种豆瓣式的“评分”筛选，最后在Emby的媒体库能更方便的找到喜爱作品。</p>
+<p>不得不说Emby的“评分系统”只有“喜欢/不喜欢”，实在残废。</p>
+<h4 id="配置everavere9858de7bdaeeveraver">配置EverAver<a href="#%E9%85%8D%E7%BD%AEeveraver"></a></h4>
+<p>EverAver的默认规则会建立复杂的文件名+繁琐的文件夹层级，<strong>使用前请按需修改配置。</strong></p>
+<p>点击右上角<code>设定</code>：</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-8f8f622f6853a9a3762cb7c748ce04e4.jpg" alt=""></p>
+<ul>
+<li>第一页<code>操作设定</code>勾选如下：</li>
+</ul>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-35e8d9dd7cffd26b04f9d830ee76529d.jpg" alt=""></p>
+<ul>
+<li>第二页<code>搜寻设定</code>勾选如下：</li>
+</ul>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-3a3b08625be51b5605c57bedd59b6c88.jpg" alt=""></p>
+<p>需要填写的部分保持默认，<code>排除特定文字</code>的规则可按需增加（用来过滤文件名中的垃圾信息以识别番号）。</p>
+<ul>
+<li>第三页<code>命名设定</code>勾选如下：</li>
+</ul>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-7b95034796fcb12adef2c66334149a0e.jpg" alt=""></p>
+<p><code>格式设定</code>中的<code>命名格式</code>修改为：</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">%actor% - [%year%] %title% [%num%]
+
+显示效果如下：
+女优名字 - [作品年份] 作品标题 [作品番号].mp4
+</code></pre></div><p><code>建立层级目录</code>修改为：</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">#%actor%
+</code></pre></div><p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-b078bac313823940314da7d8318969dc.jpg" alt=""></p>
+<p>务必加一个符号在<code>%actor%</code>前面（如“#”号），否则导入时Emby会将演员目录下的所有片子错误识别成“同一作品”。</p>
+<p><code>更名设定</code>的第一项建议修改为：</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">NULL
+</code></pre></div><p>EverAver配置完毕。</p>
+<h4 id="使用everavere4bdbfe794a8everaver">使用EverAver<a href="#%E4%BD%BF%E7%94%A8everaver"></a></h4>
+<p>使用前请在<code>搜寻品番</code>的文本框内右键，选择你的影片类型。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-3d99f19bf80c863569b9c41a65bfa3ef.jpg" alt=""></p>
+<p>将一部AV拖入软件，EverAver会自动提取出番号，并填写在<code>搜寻品番</code>的文本框内。</p>
+<p>偶尔番号会提取不干净 / 错误，请手动修改，不用在意大小写。</p>
+<p>点<code>开始搜寻</code>便开始抓取<code>元数据</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-687f488ef28a0835d0436da509e81ee5.jpg" alt=""></p>
+<ul>
+<li>
+<p>抓取到多个版本的<code>元数据</code>时，点击封面右下角进行切换，选择最完善的一个；</p>
+</li>
+<li>
+<p>第一个版本的<code>元数据</code>封面尺寸偶尔会<strong>偏扁</strong>，请切换<code>元数据</code>版本解决；</p>
+<p><strong>（偏扁的封面会被Emby拉伸，非常难看）</strong></p>
+</li>
+<li>
+<p><code>品番</code>一栏便是番号，有时会出现<code>R</code>/<code>TK</code>之类的无用前缀，推荐删除；</p>
+</li>
+<li>
+<p><code>片名</code>一栏也不时出现<code>【数量限定】</code>的无用前缀，为保持Emby的媒体库排序整洁，务必删除。</p>
+</li>
+</ul>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-db42be21889bd7973fd50ec0333b55e1.jpg" alt=""></p>
+<p><code>元数据</code>确认无误后，点右下角<code>重新命名</code>便会按我们配置的规则，自动生成目录+移动文件+添加封面与<code>nfo</code>文件+重命名。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-6c8d36989467cf16d0fa36c9a40ccbdb.jpg" alt=""></p>
+<p>一部AV影片的<code>元数据</code>便抓取完成。</p>
+<h4 id="修改nfo合并多集作品e4bfaee694b9nfoe59088e5b9b6e5a49ae99b86e4bd9ce59381">修改nfo合并“多集作品”<a href="#%E4%BF%AE%E6%94%B9nfo%E5%90%88%E5%B9%B6%E5%A4%9A%E9%9B%86%E4%BD%9C%E5%93%81"></a></h4>
+<p>上文提到，EverAver不支持<strong>具有多个分集</strong>的“大型”作品，比如这部。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-c62e2534fab6568880e4b53ab18bd57d.jpg" alt=""></p>
+<p>解决方法很简单：</p>
+<ol>
+<li>
+<p>用EverAver抓取并<code>重新命名</code>其中一集，获得封面与<code>nfo</code>文件。</p>
+</li>
+<li>
+<p>用编辑器打开并编辑<code>nfo</code>文件。</p>
+<p>在<code>&lt;title&gt;</code> <code>&lt;poster&gt;</code> <code>&lt;thumb&gt;</code> <code>&lt;fanart&gt;</code>四个tag的文件名末尾，添加数字代表集数，我用的是CD1 / CD2 / CD3。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-1dd7ed0bc1b1f33dfbab8e3261a9cadc.jpg" alt=""></p>
+</li>
+<li>
+<p><strong>重命名硬盘里的图片 / 视频 / nfo文件，让它们与<code>&lt;poster&gt;</code> <code>&lt;thumb&gt;</code> <code>&lt;fanart&gt;</code>指定的文件名保持一致。</strong></p>
+</li>
+<li>
+<p>重复上述操作，直到<strong>每集都修改完毕</strong>，最后以<code>影片名字</code>新建一层文件夹，将影片全部拖入即可：</p>
+</li>
+</ol>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-d8ec166dbfd74ac25fb016f1a3a90282.jpg" alt=""></p>
+<p>在Emby中，其它集数将作为“附加内容”展示。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-a2eed5f6990d1e67d51a970d4bdef97e.jpg" alt=""></p>
+<hr>
+<p><code>元数据</code>部分的教程至此结束。</p>
+<p>现在让我们泡壶红茶，放段评书，<strong>重复以上操作，直到片库整理完毕。</strong></p>
+<p>最终完成效果如图（右键查看大图）：</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-ccf8a7b8b3bf2fe1977e250037bb6456.jpg" alt=""></p>
+<h1 id="服务端--embye69c8de58aa1e7abaf--emby">服务端 / Emby<a href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF--emby"></a></h1>
+<h4 id="emby与plexembye4b88eplex">Emby与Plex<a href="#emby%E4%B8%8Eplex"></a></h4>
+<p>市面上成熟的本地媒体库工具，无外乎<a href="https://emby.media/index.html">Emby</a>与<a href="https://www.plex.tv/">Plex</a>。</p>
+<ul>
+<li><strong>在搭建AV / 里番的媒体库上：</strong></li>
+</ul>
+<p>Plex根本<strong>无法正确读取</strong>我们手动抓取创建的<code>nfo</code>文件与封面，直接出局。</p>
+<ul>
+<li><strong>在搭建普通电影 / 动画的媒体库上：</strong></li>
+</ul>
+<p>Emby的<code>刮削器（metadata agents）</code>更加强大，并且集成官方插件库，非常方便。</p>
+<ul>
+<li><strong>在移动客户端上：</strong></li>
+</ul>
+<p>Plex除网页与桌面客户端外的<strong>所有移动客户端</strong>均需要购入会员解锁使用。</p>
+<p>Emby类似，但Android客户端能<strong>免费使用</strong>。</p>
+<ul>
+<li><strong>在TV客户端 / Kodi插件上：</strong></li>
+</ul>
+<p>两者的官方TV客户端都是废品，Plex不支持本地硬解（现在似乎支持了），Emby则无法识别有线网络连接，<strong>并且都收费。</strong></p>
+<p>作为TV客户端的免费替代，Plex的Kodi插件非常简陋。</p>
+<p>Emby则官方提供emby与embycon两套插件，前者能拉取媒体库，后者能浏览媒体库的本地目录，并提供一套风骚的Kodi皮肤。</p>
+<ul>
+<li><strong>在服务迁移上：</strong></li>
+</ul>
+<p><strong>Emby有一个开源分支替代，Plex则相对封闭。</strong></p>
+<p>此前因不满Emby的闭源决定，由用户社区独立出的<a href="https://jellyfin.github.io/">Jellyfin</a>在功能乃至界面上与Emby无异，并且自由免费。</p>
+<p>如果未来Emby官方出现作死问题，在数据上可以完全无痛的迁移到<a href="https://jellyfin.github.io/">Jellyfin</a>。</p>
+<p><em>（※<a href="https://jellyfin.github.io/">Jellyfin</a>的客户端目前问题不少，不推荐需要稳定体验的普通用户使用。）</em></p>
+<h4 id="安装emby并添加媒体库e5ae89e8a385embye5b9b6e6b7bbe58aa0e5aa92e4bd93e5ba93">安装Emby并添加媒体库<a href="#%E5%AE%89%E8%A3%85emby%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%AA%92%E4%BD%93%E5%BA%93"></a></h4>
+<p>打开<a href="https://emby.media/download.html">Emby官网</a>，按照您的NAS系统下载安装对应的<code>Emby服务端软件</code>：</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-2c56009b0e487f4864c70877f882eca6.jpg" alt=""></p>
+<p>安装完成会弹出设置引导，选择您的语言，然后<code>下一步</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-58881ab067b774784ad2d4833b3f15eb.jpg" alt=""></p>
+<p><code>添加媒体库</code>推荐跳过，直接<code>下一步</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-e70c660dfd73080f34b5cbb0b8a5704a.jpg" alt=""></p>
+<p>首选<code>元数据（metadata）</code>的语言/国家，选择“日本”并<code>下一步</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-ebc9e93e7d4e15b6820c722fe816b9fc.jpg" alt=""></p>
+<p>剩下几页保持默认，一直<code>下一步</code>直到完成引导。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-58948c445cdba637e84529048d4dba76.jpg" alt=""></p>
+<p>如果您在引导开头将语言设置为<code>简体中文</code>，请重启<code>Emby服务端软件</code>以生效。</p>
+<p>在浏览器输入网址 <code>您的Emby服务端本地IP:8096</code> 进入Emby主页面；</p>
+<p>点击左上角“汉堡菜单”→<code>管理服务器</code>进入控制台。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-ff38894fe9af6053268355e927fb01ba.jpg" alt=""></p>
+<p>左侧每个项目都可以进去看看，按需开启/关闭功能，比如开机启动 / 转码方式 / 定制通知之类，不做赘述。</p>
+<p>我个人关闭了DLNA，并删除了完全用不上的自带<code>刮削器</code>插件，只保留了两个。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-0dc7647bbe51249f85ac7ce6aca87eb4.jpg" alt=""></p>
+<p>最后选择<code>媒体库</code>→<code>添加媒体库</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-f6a113b9080647129092198223271f4c.jpg" alt=""></p>
+<p><code>内容类型</code>内选择<code>电影</code>，勾选右上<code>显示高级设置</code>，点击“+号”添加我们此前整理的AV文件夹。</p>
+<p><code>媒体库设置</code>则按图勾选（实时监控自行选择是否开启）：</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-b932faf5cbeb5695a32b908c258ab993.jpg" alt=""></p>
+<p>其它保持默认，<code>确定</code>后回到控制台，点击<code>扫描所有媒体库</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-3e8199700d0d467cdafb7b6009a88944.jpg" alt=""></p>
+<h4 id="自定义emby皮肤e887aae5ae9ae4b989embye79aaee882a4">自定义Emby皮肤<a href="#%E8%87%AA%E5%AE%9A%E4%B9%89emby%E7%9A%AE%E8%82%A4"></a></h4>
+<p>Emby原生支持自定义css，<a href="https://emby.media/community/index.php?/forum/144-web-app-css/">官方论坛</a>中有很多样式。</p>
+<p>我选择了一个简单的<a href="https://benzuser.github.io/Emby-Web-Dark-Themes-CSS/">暗色主题</a>，只需进入<a href="https://benzuser.github.io/Emby-Web-Dark-Themes-CSS/">网站</a> 点击你喜欢的颜色，css代码便复制到了剪贴板。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-9a4d6d362c705188e27a3e7cc047c8f1.jpg" alt=""></p>
+<p>回到Emby控制台，进入<code>设置</code>，将代码粘贴至<code>自定义css</code>，<code>保存</code>并刷新网页即可。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-02c5cf93f12e54598ab58effa8fa3668.jpg" alt=""></p>
+<h4 id="多用户管理骚操作e5a49ae794a8e688b7e7aea1e79086e9aa9ae6938de4bd9c">多用户管理+骚操作<a href="#%E5%A4%9A%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E9%AA%9A%E6%93%8D%E4%BD%9C"></a></h4>
+<p>Emby有非常强大的“多用户管理”功能。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-9cb4874c17c5f7faa73ed832411c5bd1.jpg" alt=""></p>
+<p>可以额外添加多个“用户”，并指定用户的媒体库编辑/访问权限，做到每个账户都能拥有“专属”的媒体库，如：</p>
+<ul>
+<li>“电影”给老爸；</li>
+<li>“韩剧”给老妈；</li>
+<li>“卡通”给小鬼；</li>
+<li>“毛片”给弟兄。</li>
+</ul>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-c85ed4e8a2beb81ffb3511f215aae20b.jpg" alt=""></p>
+<p>这里我们重点注意<code>删除</code>权限的管理。</p>
+<p><strong>——任何账户都最好关闭<code>删除媒体</code>的权限，以防悲剧。</strong></p>
+<p><strong>（emby的“删除视频”是彻底删除，没有挽回余地）</strong></p>
+<p>而当你的弟兄们正通过Emby客户端访问媒体库，并开始看片儿时。</p>
+<p>你不仅能通过网页<code>控制台</code>暂停 / 播放 / 停止客户端正在播放的视频，还能直接拖动的它的进度条。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-09033b009b221c3f27cbe335b3280ed8.jpg" alt=""></p>
+<p>你甚至能向客户端发送消息文本：</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-820942045bd2548851978c22475c0fc4.jpg" alt=""></p>
+<p>将在客户端左下角弹窗显示：</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-60b21dfe1c7b58c4ab877346d76c2a17.jpg" alt=""></p>
+<p>~可以用来恶作剧，比如发一整段的<a href="https://zh.wikipedia.org/wiki/%E8%88%AC%E8%8B%A5%E6%B3%A2%E7%BE%85%E8%9C%9C%E5%A4%9A%E5%BF%83%E7%B6%93">《般若心经》</a>在对方性致昂然时盖住对方屏幕。~</p>
+<ul>
+<li><strong>~※本操作引发的一切后果请自行承担。~</strong></li>
+</ul>
+<h4 id="一切努力都是值得的e4b880e58887e58aaae58a9be983bde698afe580bce5be97e79a84">一切努力都是值得的<a href="#%E4%B8%80%E5%88%87%E5%8A%AA%E5%8A%9B%E9%83%BD%E6%98%AF%E5%80%BC%E5%BE%97%E7%9A%84"></a></h4>
+<p>由于我们已经用EverAver抓完<code>元数据</code>并做好分类，Emby导入媒体库的过程其实飞快。</p>
+<p>当媒体库扫描完成后，让我们重返Emby首页。</p>
+<p><strong>——本地AV媒体库已经完全成型：</strong></p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-c4ab77f79f4c2e64d3a2d71413e6abda.jpg" alt=""></p>
+<p>点击<code>我的媒体</code>下的<code>电影</code>即可进入完整列表，浏览 / 筛选 / 搜索影片：</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-9456d8866704b8c1294daa68cf59ad46.jpg" alt=""></p>
+<p>点进一部影片，我们抓取的所有<code>元数据</code>都正常显示，Emby还会向您贴心推荐“更多类似”：</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-da16297f44c39da509cc6e85de1f47eb.jpg" alt=""></p>
+<p>由于都是些“俩人就能演完的小电影儿”。</p>
+<p>Emby这套为普通电影 / 动画 / 电视剧设计的布局，在只有一个“女演员”时会显得很空。</p>
+<p>让我们点击老师名字，她的参演作品也将完整呈现：</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-dc07aef227a8b2696162993924ff1da4.jpg" alt=""></p>
+<p>进入<code>文件夹</code>，此前我们按“星级”归类的文件夹，同样可以通过Emby网页/客户端直接浏览。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-dd90eb7a5a0f0deee11ae5fe4020785f.jpg" alt=""></p>
+<p>这时的浏览逻辑已经与windows资源管理器无异，点进一个文件夹就能看见我们之前按<code>#演员名字</code>命名的目录。</p>
+<p>还有作品封面作为文件夹预览，从此不怕忘记老师是谁！</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-952a9547083594641b13eae0e1384ba0.jpg" alt=""></p>
+<blockquote>
+<p>是啊，我们一直以来累积的东西并没有白费。</p>
+<p>今后也是，只要我们不停下脚步，道路就会不断延伸——</p>
+</blockquote>
+<p><strong>所以，所以啊！</strong></p>
+<p><strong>——不要停下来啊！（指丰富本地毛片库）</strong></p>
+<p><code>服务端</code>部分的教程至此结束。</p>
+<h1 id="客户端--kodie5aea2e688b7e7abaf--kodi">客户端 / Kodi<a href="#%E5%AE%A2%E6%88%B7%E7%AB%AF--kodi"></a></h1>
+<p>上文<code>服务端</code>部分已经在开头提到，Emby/Plex的TV端不仅废品还收费。</p>
+<p>所以推荐使用<a href="https://play.google.com/store/apps/details?id=org.xbmc.kodi">Kodi</a>+插件作为TV端，来做到0成本的本地解码播放。</p>
+<ul>
+<li><strong>※鉴于Kodi的操作逻辑异常反人类，本部分将以详细图文的形式写教程。</strong></li>
+</ul>
+<h4 id="设置kodi为中文e8aebee7bdaekodie4b8bae4b8ade69687">设置Kodi为中文<a href="#%E8%AE%BE%E7%BD%AEkodi%E4%B8%BA%E4%B8%AD%E6%96%87"></a></h4>
+<p>打开Kodi，进入<code>系统</code>设置。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-2c6464a98b375f8065ddfef7bc2c92cb.jpg" alt=""></p>
+<p>进入<code>Interface</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-c744d68f5a746ecb34f18866c8f02894.jpg" alt=""></p>
+<p>将<code>Fonts</code>修改为<code>Arial based</code>。</p>
+<p><strong>（无论语言为何都必须修改字体，默认字体将无法显示AV媒体库中的日文。）</strong></p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-c2388a985b9a2410e42b96d724ce6bd0.jpg" alt=""></p>
+<p>进入<code>Regional</code>，修改语言为<code>中文</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-70a14291841d9df02d570645d86e4209.jpg" alt=""></p>
+<h4 id="添加emby官方源并安装插件库e6b7bbe58aa0embye5ae98e696b9e6ba90e5b9b6e5ae89e8a385e68f92e4bbb6e5ba93">添加Emby官方源并安装插件库<a href="#%E6%B7%BB%E5%8A%A0emby%E5%AE%98%E6%96%B9%E6%BA%90%E5%B9%B6%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6%E5%BA%93"></a></h4>
+<p>回到<code>系统</code>设置，进入<code>文件管理</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-5eff573e694c9ca805ed6c46c650fb03.jpg" alt=""></p>
+<p>点击<code>添加源</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-df7d4d075635af4534ec93793be52f67.jpg" alt=""></p>
+<p>输入路径<code>http://kodi.emby.media</code>，命名为<code>emby</code>后确定。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-7d1001e7f99e18e02ed4a8d69248070b.jpg" alt=""></p>
+<p>回到<code>系统</code>设置，进入<code>系统</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-88f7dff50f082f87e99e6b8fc3256b2d.jpg" alt=""></p>
+<p>选择<code>插件</code>，将<code>未知来源</code>打开。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-0686e4fc3eb2d7fce2c3e63ab7597915.jpg" alt=""></p>
+<p>回到<code>系统</code>设置，进入<code>插件</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-a5599e63b9b19020a83f67c7a69201b6.jpg" alt=""></p>
+<p>点击<code>从zip文件安装</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-ca1af5da4cef3eb12d9c4f1209710d25.jpg" alt=""></p>
+<p>进入我们刚刚添加的<code>emby</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-74b7942a389365c39e684af6794f16e1.jpg" alt=""></p>
+<p>点击<code>repository.emby.kodi-1.0.4.zip</code>以安装插件库。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-7a356c15b012961b22f18facfe534ece.jpg" alt=""></p>
+<h4 id="安装emby视频插件e5ae89e8a385embye8a786e9a291e68f92e4bbb6">安装Emby视频插件<a href="#%E5%AE%89%E8%A3%85emby%E8%A7%86%E9%A2%91%E6%8F%92%E4%BB%B6"></a></h4>
+<p>插件库安装完毕后，点击<code>从库安装</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-5c37750f0fa9f6d3e375511753cc12f0.jpg" alt=""></p>
+<p>按目录进入<code>Kodi Emby Addons</code>→<code>视频插件</code>→<code>Emby</code>。</p>
+<p>点击<code>安装</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-6f3d4ffe5ab9cfd68b53f1e1db6a971f.jpg" alt=""></p>
+<p>安装完毕会弹出配置对话框。</p>
+<p>一般会自动扫描到服务端，比如我的NAS。</p>
+<p>如果没有，则点击<code>Manually add server</code>手动输入您的服务端ip与端口。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-8d679eeaf33f65b37181f6a364b1cd7a.jpg" alt=""></p>
+<p>连接服务端后点击用户头像登录。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-4fe1c2e57f6bb5b79f5717de878a010f.jpg" alt=""></p>
+<p>随后会弹出一系列对话框，如：</p>
+<ol>
+<li>选择图片缓存方式；</li>
+<li>是否同步empty（没用选“否”）；</li>
+<li>是否同步烂番茄评分（更没用同样选“否”）之类。</li>
+</ol>
+<p>请按需选择。</p>
+<p>最后会让您选择需要同步到Kodi的媒体库，点击<code>Proceed</code>继续。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-0ceedb8d0c75cba4a42700bf2fa87fb0.jpg" alt=""></p>
+<p>选择您想同步的媒体库名称（如我的AV媒体库就叫“电影”）后<code>确定</code>便开始同步。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-e14ad945aeeaae202c16eb75b68f819c.jpg" alt=""></p>
+<p>同步会很快完成。</p>
+<p>返回Kodi主页，能看到Emby里的“小电影”已经全部出现在Kodi中。</p>
+<p>如果没有进阶需求，此时就可以完成Kodi配置并投入使用了。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-c72cd49628d73fdb0c6b5846da38d8b4.jpg" alt=""></p>
+<h4 id="调整kodi快进速度e8b083e695b4kodie5bfabe8bf9be9809fe5baa6">调整Kodi快进速度<a href="#%E8%B0%83%E6%95%B4kodi%E5%BF%AB%E8%BF%9B%E9%80%9F%E5%BA%A6"></a></h4>
+<p>Kodi默认快进/快退速度非常反人类，推荐调整。</p>
+<p>打开<code>系统</code>设置，进入<code>播放器</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-7ff6ccfedbf88ebf06997665baf9b64c.jpg" alt=""></p>
+<p>将<code>跳过步骤</code>改为如下设置即可。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-323a986f38dc6f7564e9c9b1769bc9e3.jpg" alt=""></p>
+<h4 id="换上embuary皮肤e68da2e4b88aembuarye79aaee882a4">换上Embuary皮肤<a href="#%E6%8D%A2%E4%B8%8Aembuary%E7%9A%AE%E8%82%A4"></a></h4>
+<p>Kodi的默认皮肤长得过于“避孕”，好在emby官方提供了一套风骚的Kodi皮肤——Embuary。</p>
+<p>打开<code>系统</code>设置，进入<code>插件</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-721aa3bb49c35e2db6c67e3cb4a5ebfd.jpg" alt=""></p>
+<p>按目录进入<code>从库安装</code>→<code>Kodi Emby Addons</code>→<code>界面外观</code>→<code>皮肤</code>。</p>
+<p>选择对应Kodi版本的皮肤并安装。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-3177e0365acc07553fca1df167c19428.jpg" alt=""></p>
+<p><strong>安装完毕不要立即切换，会乱码。</strong></p>
+<p>打开<code>系统</code>设置，进入<code>界面</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-d2e1e48edd9fa0f579cd00f7aefee440.jpg" alt=""></p>
+<p>切换皮肤到<code>Embuary</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-82e39404d7c6db785834c7e751fa8ef9.jpg" alt=""></p>
+<p>然后顶着乱码点<strong>左侧的“按钮”</strong>，以确认切换皮肤。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-2006548defb44ae0d218f9cffa58ad0b.jpg" alt=""></p>
+<p>再顶着乱码把字体改为<code>Arial</code>，随后字体显示恢复正常。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-e66261414f635c8beda1adf20195abeb.jpg" alt=""></p>
+<p>回到Kodi首页会弹出提示，选择<code>OK，do it for me</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-49100166ed071f59d1791913742d076b.jpg" alt=""></p>
+<p>Emby皮肤安装完毕。</p>
+<p>~从此，Kodi无论主页还是播放控件都成了Emby的形状：~</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-f8a638bb64dff7ab287664711df8d13c.jpg" alt=""></p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-ab285a20dd7f9c44e028457dbb9892a6.jpg" alt=""></p>
+<p>此前提到的“多集作品”，同样可以正常播放。</p>
+<p>点击播放控件的“列表按钮”便能选择集数。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-d881511c4c8b058d4d2825b0c8971782.jpg" alt=""></p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-f37f7683095f3b992f2de54d2c4b7005.jpg" alt=""></p>
+<p>除此之外，这套皮肤还有丰富的界面自定义功能。</p>
+<p>打开<code>系统</code>设置，进入<code>皮肤设置</code>就能自定义首页控件。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-29435ce1611d75ef6310f7aa196e372b.jpg" alt=""></p>
+<p>这部分写起来过于繁琐，推荐修改的项目已用红框框出，请自行研究。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-8f963b158dae639b48552dd376dc582e.jpg" alt=""></p>
+<p>我个人将<code>标题</code> / <code>年份</code> / <code>演员</code> / <code>制作公司</code>几个项目添加到主页<code>menu</code>方便快速筛选，并移除了<code>游戏</code> / <code>插件</code> / <code>android应用</code>等无用项目。</p>
+<p><code>widget</code>同样移除一堆无用项目，修改皮肤配色后的最终成品如图：</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-ff4df3806de5c74547bce20707082f6d.jpg" alt=""></p>
+<h4 id="选装embycon视频插件e98089e8a385embycone8a786e9a291e68f92e4bbb6">选装EmbyCon视频插件<a href="#%E9%80%89%E8%A3%85embycon%E8%A7%86%E9%A2%91%E6%8F%92%E4%BB%B6"></a></h4>
+<p>EmbyCon的用处只有一个，就是配合Embuary皮肤使用时，能快速访问我们此前在NAS上按“星级”归类的本地文件夹。</p>
+<p>无此需求不用安装。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-094737014f8874cc651c9daef676ed9b.jpg" alt=""></p>
+<p>打开<code>系统</code>设置，进入<code>插件</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-d895500a3f5d5fc54e413431bf2f2348.jpg" alt=""></p>
+<p>按目录进入<code>从库安装</code>→<code>Kodi Emby Addons</code>→<code>视频插件</code>→<code>EmbyCon</code>。</p>
+<p>选择版本号高的安装。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-15fa1ff8a3290235966a8bde9f48743c.jpg" alt=""></p>
+<p>按提示填入你的Emby服务端ip与端口，选择账户并登录。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-e492fb3b5b2dd66f0c518cc538e487c2.jpg" alt=""></p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-b457b1412bcb66f4dc2bca9801dcf254.jpg" alt=""></p>
+<p>如果你已经装好Embuary皮肤，此时会发现首页多了个“入口”控件。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-570b6d77f65f7fd72bf109129016d63f.jpg" alt=""></p>
+<p>进入后就能看见本地文件夹了。</p>
+<h4 id="连接kore遥控器">连接Kore遥控器</h4>
+<p>由于Kodi“太重”，各项操作都不跟手，于是决定用手机遥控器提升体验。</p>
+<p>遥控器用的<a href="https://play.google.com/store/apps/details?id=org.xbmc.kore">Kore</a>，干净免费功能强大。</p>
+<p>配置虽然有<a href="http://syncedsynapse.com/kore/kore-faq/">官方教程</a>，但已经过时，所以这里将重新总结：</p>
+<p>打开<code>系统</code>设置，进入<code>服务</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-e808d14105bd34c75e2cb272f39ccc60.jpg" alt=""></p>
+<p>开启红框内的项目即可。</p>
+<p>（端口为避免冲突，改为<code>8083</code>之类就好。）</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-f474ce550da6db12f708670edf55e8b6.jpg" alt=""></p>
+<p>掏出手机，打开Kore，马上就能扫描到你的Kodi，点击添加。</p>
+<p>没有就按照提示，手动输入电视盒子ip与刚刚修改的Kodi端口添加。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-ad98609e3a2c33ea05683bb4c1dcf133.jpg" alt=""></p>
+<p>添加成功后能通过手机浏览媒体库，控制视频播放，快速关闭Kodi，etc.</p>
+<p>最实用的莫过于可以在手机上“拖拽”控制Kodi进度条。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-c11eba84704846c2a4ce89dfed821416.jpg" alt=""></p>
+<h4 id="别忘了设置kodi密码">别忘了设置Kodi密码！</h4>
+<p><strong>——无数前人用<a href="https://raw.githubusercontent.com/Pockies/pic/master/741f9461ly1g1faqmvg43j20eg0lx76n.jpg">血的教训</a>告诉我们：做事要锁门。</strong></p>
+<p>打开<code>系统</code>设置，进入<code>用户配置</code>，开启<code>启动时显示登录界面</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-e869e83de576fd223a37906835909c5e.jpg" alt=""></p>
+<p>进入左侧的另一个<code>用户配置</code>，点击<code>Master user</code>。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-e359f7578fc36ed34b2e8c28bc823fc2.jpg" alt=""></p>
+<p>进入<code>锁定偏好设置</code>，在<code>管理员锁定</code>一栏添加密码并<code>确定</code>。</p>
+<p>其它项目保持默认即可。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-f69514ca6fe598e7c5a2e8ea54d3cd2f.jpg" alt=""></p>
+<p>重启Kodi，此时就会要求密码登录了。</p>
+<p><img src="/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-8f52b3e166b4f5fdb5ffa9dbb694f65a.jpg" alt=""></p>
+<p><code>客户端</code>部分的教程至此结束。</p>
+<hr>
+<p><strong>全部教程也至此完结。</strong></p>
+<p><strong>若您能从本篇指南中获得一点参考，将是我最大的荣幸。</strong></p>
+<h1 id="尾巴">尾巴</h1>
+<p>做完片库，写完文章，我坐在电视机前，优雅的褪去裤子。</p>
+<p>左手端着红茶，右手握着法杖——</p>
+<p>——屏幕中<code>1920*1080</code>的日本工作女性正以<code>29.96 fps</code>的稳定帧率朝我微笑。</p>
+<p>——她婀娜着身姿，透过喇叭传出<code>48kHz 16bit</code>的撩人娇声。</p>
+<hr>
+<p>曾几何时，拥有自搭AV片库是我的一大梦想。</p>
+<p><strong>当梦想实现之时，一切竟索然无味。</strong></p>
+<p>本次片库的完整搭建耗时不过一周，搭建完成后却没再使用，以至于拖到月底才整理成文。</p>
+<p><strong>一点一点搭建出片库的折腾过程，其乐趣早已凌驾于影片本身。</strong></p>
+<hr>
+<p>关闭电视，掏出手机。</p>
+<p>点开由<a href="https://twitter.com/tanave_">田辺京</a>老师绘制的儿童色情漫画——</p>
+<p><strong>~——“还是纸片人适合老子。”~</strong></p>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">最后修改于 2020-06-18</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts">
+			下回<br>已经到头啦。
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://syaofox.github.io/adult/%E6%AC%A7%E7%BE%8Eporn-star%E6%94%B6%E5%BD%95/">
+			上回<br>欧美 Porn Star 收录
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+                <p style="opacity: 0.6" align="center">
+                    <small>此篇文章的评论功能已经停用。</small>
+                </p>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+移植自 <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	Syaofox 2020 copyright.
+	
+</div>
+            </div>
+    <script>
+let app;
+
+app = new Vue({
+    el: '#app',
+    data: {
+        scrollY: 0,
+        navOpacity: 0,
+        isDrawerOpen: false,
+        mounted: false,
+        isDarkMode: false
+    },
+    methods: {
+            sgn(t, x) {
+                let k = 1. / (1. - 2 * t);
+                if (x <= t) return 0;
+                else if (x >= 1 - t) return 1;
+                else {
+                    return k * (x - t);
+                }
+            },
+            handleScroll() {
+                this.scrollY = window.scrollY;
+                this.navOpacity = this.sgn(.0, Math.min(1, Math.max(0, window.scrollY / (this.pageHeadHeight() - this.navBarHeight() * 0.8))));
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+
+                if (this.navOpacity >= 1) {
+                    navBackground.style.opacity = 1;
+                    navTitle.style.opacity = 1;
+                } else {
+                    navBackground.style.opacity = 0;
+                    navTitle.style.opacity = 0;
+                }
+            },
+            handleResize() {
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+                extraContainer.style.left = (streamContainer.offsetWidth - extraContainer.offsetWidth) + 'px';
+            },
+            navBarHeight() {
+                return this.$refs.navBar.offsetHeight;
+            },
+            pageHeadHeight() {
+                return this.$refs.pageHead.offsetHeight;
+            },
+            toggleDrawer() {
+                this.isDrawerOpen = !this.isDrawerOpen;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            closeDrawer() {
+                this.isDrawerOpen = false;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            toggleDarkMode() {
+                this.isDarkMode = !this.isDarkMode;
+                if (this.isDarkMode==true){
+                    document.cookie = "night=1;path=/";
+                    document.body.classList.add("night");
+                } else {
+                    document.cookie = "night=0;path=/";
+                    document.body.classList.remove("night");
+                }
+            }
+    },
+    created() {
+        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('resize', this.handleResize);
+        window._nonDesktop = function () {
+            let check = false;
+            (function (a) {
+                if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+            })(navigator.userAgent || navigator.vendor || window.opera);
+            return check;
+        };
+        
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (night==""){
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                
+            }
+        }else{
+            
+            if (night=="1") {
+                this.toggleDarkMode();
+            }
+        }
+    },
+    mounted() {
+        this.handleScroll();
+        this.handleResize();
+        this.mounted = true;
+
+        
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.handleResize);
+    }
+});
+</script>
+
+<script src="https://syaofox.github.io//js/journal.js"></script>
+    </body>
+</html>

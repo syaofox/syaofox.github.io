@@ -1,9 +1,9 @@
 ---
 title: "欧美 Porn Star 收录"
 date: 2020-06-17T21:41:33+08:00
-description: ""
+description: "收录本人认为颜值身材在线的欧美AV演员"
 tags: [Porn Star, WAV]
-featured_image: ""
+featured_image: "/欧美Porn-Star收录/banner.jpg"
 # images is optional, but needed for showing Twitter Card
 images: []
 categories: Adult
