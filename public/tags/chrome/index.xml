@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chrome on 霜天晓角</title>
+    <link>https://syaofox.github.io/tags/chrome/</link>
+    <description>Recent content in Chrome on 霜天晓角</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Syaofox 2020 copyright.</copyright>
+    <lastBuildDate>Thu, 18 Jun 2020 09:50:44 +0800</lastBuildDate>
+    
+	<atom:link href="https://syaofox.github.io/tags/chrome/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Chrome 小技巧</title>
+      <link>https://syaofox.github.io/software/chrome-%E5%B0%8F%E6%8A%80%E5%B7%A7/</link>
+      <pubDate>Thu, 18 Jun 2020 09:50:44 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/software/chrome-%E5%B0%8F%E6%8A%80%E5%B7%A7/</guid>
+      <description>清除特定网站的 cache 有时候我们需要单独清空某个网站的缓存，但是chrome并没有提供单独删除某个站缓存的功能，这里有个小技巧
+打开开发者工具（F12），选择 Network——Disable cache 即可。需要清除某网站缓存时 F12 打开开发者工具就会自动清除这个网站的缓存，而不必清除所有网站的缓存了。
+ 另存为单一页面(mhtm) 升级到75、76版本后谷歌浏览器Chrome V75.0.3770.142 V76.0.3809.87新版，发现无法另存为/保存网页为MHTML了。
+原来chrome搞了个&amp;quot;Chrome Flag Ownership&amp;quot;的项目，目的是清理未使用的和过时的flags，现在save-page-as-mhtml仅作为开发者测试使用。就是说现在save-page-as-mhtml作为switch存在。
+解决方案是，右键chrome快捷方式，选择快捷方式一栏，在目标输入框chrome.exe后加入空格和--save-page-as-mhtml，再重新打开chrome就可以了。</description>
+    </item>
+    
+  </channel>
+</rss>

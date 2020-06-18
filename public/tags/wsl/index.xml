@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WSL on 霜天晓角</title>
+    <link>https://syaofox.github.io/tags/wsl/</link>
+    <description>Recent content in WSL on 霜天晓角</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Syaofox 2020 copyright.</copyright>
+    <lastBuildDate>Thu, 18 Jun 2020 10:24:18 +0800</lastBuildDate>
+    
+	<atom:link href="https://syaofox.github.io/tags/wsl/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Windows WSL 重启方法</title>
+      <link>https://syaofox.github.io/windows/windows-wsl-%E9%87%8D%E5%90%AF%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Thu, 18 Jun 2020 10:24:18 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/windows/windows-wsl-%E9%87%8D%E5%90%AF%E6%96%B9%E6%B3%95/</guid>
+      <description>Windows 10 子系统 wsl 的重启方法
+以管理员权限运行cmd或者PowerShell执行以下命令
+net stop LxssManager	//停止 net start LxssManager	//启动 </description>
+    </item>
+    
+  </channel>
+</rss>

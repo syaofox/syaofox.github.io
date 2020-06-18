@@ -1,0 +1,1206 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>霜天晓角</title>
+    <link>https://syaofox.github.io/</link>
+    <description>Recent content on 霜天晓角</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Syaofox 2020 copyright.</copyright>
+    <lastBuildDate>Thu, 18 Jun 2020 10:50:46 +0800</lastBuildDate>
+    
+        <atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Windows7 高级搜索</title>
+        <link>https://syaofox.github.io/windows/windows7-%E9%AB%98%E7%BA%A7%E6%90%9C%E7%B4%A2/</link>
+        <pubDate>Thu, 18 Jun 2020 10:12:43 +0800</pubDate>
+        
+        <guid>https://syaofox.github.io/windows/windows7-%E9%AB%98%E7%BA%A7%E6%90%9C%E7%B4%A2/</guid>
+        <description>霜天晓角 https://syaofox.github.io/windows/windows7-%E9%AB%98%E7%BA%A7%E6%90%9C%E7%B4%A2/ -&lt;p&gt;在 Windows 7 中进行搜索可以简单到只需在搜索框中键入几个字母，但也有一些高级搜索技术以供使用。在搜索文件时，您不一定得了解这些技巧，但这些技巧确实能提供一些帮助，具体取决于搜索的位置和搜索的对象。&lt;/p&gt;
+&lt;h1 id=&#34;一般搜索&#34;&gt;一般搜索&lt;/h1&gt;
+&lt;p&gt;如果知道文件类型，则可以在搜索框中仅输入文件扩展名（例如，“JPG”）。&lt;/p&gt;
+&lt;h1 id=&#34;添加运算符&#34;&gt;添加运算符&lt;/h1&gt;
+&lt;p&gt;细化搜索的一种方法是使用运算符 AND、OR 和 NOT。当您使用这些运算符时，需要以全大写字母键入。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;AND
+tropical AND island
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;查找同时包含“tropical”和“island”这两个单词（即使这两个单词位于文件中的不同位置）的文件。如果只进行简单的文本搜索，这种方式与键入“tropical island”所得到的结果相同。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NOT
+tropical NOT island
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;查找包含“tropical”但不包含“island”单词的文件。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;OR
+tropical OR island
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;查找包含“tropical”或“island”单词的文件。&lt;/p&gt;
+&lt;h1 id=&#34;使用关键字细化搜索&#34;&gt;使用关键字细化搜索&lt;/h1&gt;
+&lt;p&gt;更多用法参考
+微软官方文档 &lt;a href=&#34;https://docs.microsoft.com/zh-cn/windows/win32/lwef/-search-2x-wds-aqsreference?redirectedfrom=MSDN&#34;&gt;Advanced Query Syntax&lt;/a&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;关键字&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;用途&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;System.FileName:~&amp;lt;&amp;quot;notes&amp;rdquo;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;名称以“notes”开头的文件。~&amp;lt; 表示“开头”。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;System.FileName:=&amp;quot;quarterly report&amp;rdquo;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;名为“quarterly report”的文件。= 表示“完全匹配”。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;System.FileName:~=&amp;quot;pro&amp;rdquo;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;文件名包含单词“pro”或包含作为其他单词（例如“process”或“procedure”）一部分的字符 pro。~= 表示“包含”。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;System.Kind:&amp;lt;&amp;gt;picture&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;不是图片的文件。&amp;lt;&amp;gt; 表示“不是”。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;System.DateModified:05/25/2010&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;在该日期修改的文件。您也可以键入“System.DateModified:2010”以查找在这一年中任何时间更改的文件。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;System.Author:~!&amp;ldquo;herb&amp;rdquo;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;创建者的名字中不含“herb”的文件。~! 表示“不包含”。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;System.Keywords:&amp;ldquo;sunset&amp;rdquo;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;标记了“sunset”一词的文件。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;System.Size:&amp;lt;1mb&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;小于 1 MB 大小的文件。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;可以使用问号 (?) 作为单个字符的通配符，并使用星号 (*) 作为任意数量的字符的通配符。
+还可以使用运算符 AND、OR 和 NOT 合并搜索关键字。（注意如何使用括号改变搜索词的效果。）&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;关键字&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;用途&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;System.Author:Charlie AND Herb&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;创建者为 Charlie 的文件以及文件名或任何文件属性中包括 Herb 的任何文件。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;System.Author:Charlie AND System.DateModified:&amp;gt;2009&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;仅查找 Charlie 在 2009 年以后创建的文件。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;System.Author:(Charl* AND Herb)&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;将 Charles 和 Herb 或 Charlie 和 Herb 列为创建者的文件。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;System.Author:&amp;ldquo;Charlie Herb&amp;rdquo;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;创建者名字与此名字完全相同的文件。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+- https://syaofox.github.io/windows/windows7-%E9%AB%98%E7%BA%A7%E6%90%9C%E7%B4%A2/ - Syaofox 2020 copyright.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>群晖中实现 Jellyfin 核心显卡硬解实时转码</title>
+        <link>https://syaofox.github.io/tips/%E7%BE%A4%E6%99%96%E4%B8%AD%E5%AE%9E%E7%8E%B0jellyfin%E6%A0%B8%E5%BF%83%E6%98%BE%E5%8D%A1%E7%A1%AC%E8%A7%A3%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81/</link>
+        <pubDate>Thu, 18 Jun 2020 10:09:10 +0800</pubDate>
+        
+        <guid>https://syaofox.github.io/tips/%E7%BE%A4%E6%99%96%E4%B8%AD%E5%AE%9E%E7%8E%B0jellyfin%E6%A0%B8%E5%BF%83%E6%98%BE%E5%8D%A1%E7%A1%AC%E8%A7%A3%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81/</guid>
+        <description>霜天晓角 https://syaofox.github.io/tips/%E7%BE%A4%E6%99%96%E4%B8%AD%E5%AE%9E%E7%8E%B0jellyfin%E6%A0%B8%E5%BF%83%E6%98%BE%E5%8D%A1%E7%A1%AC%E8%A7%A3%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81/ -&lt;h2 id=&#34;实时转码到底是干嘛用的&#34;&gt;实时转码到底是干嘛用的&lt;/h2&gt;
+&lt;p&gt;举个例子哈：大家在手机APP端看爱奇艺、优酷、QQ视频的时候。影片是可以选择清晰度的。一般有流畅、高清、蓝光等等选项。&lt;br&gt;
+当然按照清晰度（分辨率）的不同，相应消耗的流量也不一样。&lt;/p&gt;
+&lt;p&gt;一般来说;极速＜流畅＜高清＜超清720P＜1080P蓝光&lt;/p&gt;
+&lt;p&gt;其实这些视频播放软件，在服务器中针对同一个视频分别存放了不通分辨率的版本。根据客户端的需求选择播放。来满足不同人群对视频源的需求。&lt;/p&gt;
+&lt;p&gt;在我们的群晖中。自带的套件Video Station 就有离线转码的功能。&lt;/p&gt;
+&lt;p&gt;DS video 客户端可让您执行离线转码以将视频转换到不同分辨率的 .mp4 格式，这是在移动设备上最兼容的视频格式。 离线转码启动后，Video Station 将开始转码视频以便可离线使用。完成离线转码后，DS video 将自动下载或在线播放转码视频供您欣赏。当然也会在我们的群晖中生成一份转码成功的视频文件。&lt;/p&gt;
+&lt;h2 id=&#34;jellyfin-的实时转码&#34;&gt;Jellyfin 的实时转码&lt;/h2&gt;
+&lt;p&gt;Jellyfin 在客户端，或者网页端播放视频的时候，是支持选择码率的。比方说我们在手机客户端上选择群晖的某个视频进行播放的时候。默认为原始码率播放。若你的原始视频是1080P。则将会以1080P 60Mbps 进行播放。当然，如果你的网络足够流畅。家里的上传宽带足够大的话。原始码率能够带给你最高清晰度的体验。但如果，你是在外面播放家里群晖的视频的话。可能会受到两方面的限制：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;家里的上传宽带无法达到原始码率的需求&lt;/li&gt;
+&lt;li&gt;原始码率播放非常消耗手机流量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这个时候，我们就需要Jellyfin 的实时转码功能啦。比方说我们可以选择 1080P 10Mbps 、或者选择720P 3Mbps来解决刚刚提到的两点问题。&lt;/p&gt;
+&lt;h2 id=&#34;jellyfin-实时转码消耗cpu资源&#34;&gt;Jellyfin 实时转码消耗CPU资源&lt;/h2&gt;
+&lt;p&gt;如果我们没有在Jellyfin的后台开启硬解的功能.我们的群晖将会使用CPU 来进行软解进行实时转码。在转码的过程中，CPU将会以接近100%的工作模式来帮助我们进行转码。对于CPU来说如此繁重的“体力劳动”可能会带来发热严重，群晖其他功能受到性能影响等等问题。&lt;/p&gt;
+&lt;p&gt;另外，一般我们群晖系统CPU中的核心显卡是没有用武之地的。所以，本教程将教会大家。如何利用CPU 的核心显卡进行硬解实时转码。&lt;/p&gt;
+&lt;h2 id=&#34;jellyfin核心显卡硬解实时转码的必要条件&#34;&gt;Jellyfin核心显卡硬解实时转码的必要条件&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;群晖的系统版本需要：DS916+ 或 DS918+ (DS3617xs 、 DS3615xs不支持)&lt;/li&gt;
+&lt;li&gt;CPU 有核心显卡。当然集成的核心显卡越厉害越好&lt;/li&gt;
+&lt;li&gt;黑群晖、白群晖、全洗白群晖、半洗白群晖均可&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[查看系统是否支持显卡硬解转码]&lt;/p&gt;
+&lt;p&gt;SSH链接成功后。输入 ls /dev/dri 之后若如下图显示，则说明支持显卡硬解。&lt;br&gt;
+输出 card0 renderD128&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E7%BE%A4%E6%99%96%E4%B8%AD%E5%AE%9E%E7%8E%B0Jellyfin%E6%A0%B8%E5%BF%83%E6%98%BE%E5%8D%A1%E7%A1%AC%E8%A7%A3%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81/1570004742-0c37741280c6962d0c6b5c026d74280f.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;教程开始-搭建并运行jellyfin容器&#34;&gt;教程开始-搭建并运行Jellyfin容器&lt;/h2&gt;
+&lt;p&gt;在&lt;a href=&#34;https://www.izcv.com/2231.html&#34;&gt;《群晖NAS-使用Jellyfin搭建媒体服务器》&lt;/a&gt;这篇教程中，已经教大家如何在群晖中搭建Jellyfin媒体服务器啦。&lt;br&gt;
+今天的这篇教程中，我们将利用命令行的方式搭建。因为图形界面的搭建没法指定容器转载核心显卡的文件。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. 在群晖的套件中心，安装Docker套件。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E7%BE%A4%E6%99%96%E4%B8%AD%E5%AE%9E%E7%8E%B0Jellyfin%E6%A0%B8%E5%BF%83%E6%98%BE%E5%8D%A1%E7%A1%AC%E8%A7%A3%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81/1570004742-8e5ab1d8702568f32149802496834098.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. Docker安装成功后，我们的file station中即可看到多出来一个Docker文件夹。 我们在此文件夹内建里 jellyfin 文件夹。再进入jellyfin文件夹。分别建里 config文件夹及cache文件夹。&lt;br&gt;
+（分别为以后jellyfin的配置文件和缓存文件准备目录）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E7%BE%A4%E6%99%96%E4%B8%AD%E5%AE%9E%E7%8E%B0Jellyfin%E6%A0%B8%E5%BF%83%E6%98%BE%E5%8D%A1%E7%A1%AC%E8%A7%A3%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81/1570004742-83a22b03b17428144a3efffca855a7c3.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. 群晖系统中打开SSH功能 (控制面板-&amp;gt;终端机和SNMP-&amp;gt;启动SSH功能-&amp;gt;应用)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E7%BE%A4%E6%99%96%E4%B8%AD%E5%AE%9E%E7%8E%B0Jellyfin%E6%A0%B8%E5%BF%83%E6%98%BE%E5%8D%A1%E7%A1%AC%E8%A7%A3%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81/1570004742-93baa32fbdc09acbf1755803ebd169de.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4. 利用我们的管理员账号、密码通过ssh客户端登陆群晖系统。 通过 sudo su – 命令切换为root用户&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E7%BE%A4%E6%99%96%E4%B8%AD%E5%AE%9E%E7%8E%B0Jellyfin%E6%A0%B8%E5%BF%83%E6%98%BE%E5%8D%A1%E7%A1%AC%E8%A7%A3%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81/1570004742-507807c91878bb2c7ea663209aead984.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;5. 运行以下命令：以管理员身份在Docker中下载jellyfin镜像&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;sudo docker pull jellyfin/jellyfin
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;6. 运行以下命令：根据指定参数运行Jellyfin容器&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;sudo docker run -d --name jellyfin \
+-v /volume1/docker/jellyfin/config:/config \
+-v /volume1/docker/jellyfin/cache:/cache \
+-v /volume1/video:/video \
+-p 8096:8096 \
+-p 8920:8920 \
+--device=/dev/dri/renderD128 \
+--restart unless-stopped \
+jellyfin/jellyfin
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;-v 参数表示装载文件夹。所以第2-4行请根据实际情况更改。&lt;/p&gt;
+&lt;p&gt;第2-3行指定卷1的两个文件夹分别作为配置文件和缓存文件地址&lt;br&gt;
+第4行指定卷1下video文件夹为Jellyfin的媒体文件夹&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;7. 测试容器是否已经成功挂载device 下的驱动文件&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;运行如下代码查看运行容器（Jellyfin）的ID：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;docker ps
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E7%BE%A4%E6%99%96%E4%B8%AD%E5%AE%9E%E7%8E%B0Jellyfin%E6%A0%B8%E5%BF%83%E6%98%BE%E5%8D%A1%E7%A1%AC%E8%A7%A3%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81/1570004742-d0d227f767bc73f2fe275637939ebb47.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;检查输出结果，若发现有如下图所示的字段则说明已经挂载成功。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E7%BE%A4%E6%99%96%E4%B8%AD%E5%AE%9E%E7%8E%B0Jellyfin%E6%A0%B8%E5%BF%83%E6%98%BE%E5%8D%A1%E7%A1%AC%E8%A7%A3%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81/1570004742-84149eba561930d6f7d27a9847c3990e.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;教程继续-配置jellyfin设置&#34;&gt;教程继续-配置Jellyfin设置&lt;/h2&gt;
+&lt;p&gt;访问 http://你的内网ip:8096 即可初始化配置Jellyfin。配置媒体库等。&lt;/p&gt;
+&lt;p&gt;具体请参照 &lt;a href=&#34;https://www.izcv.com/2231.html&#34;&gt;《群晖NAS-使用Jellyfin搭建媒体服务器》&lt;/a&gt;这篇教程中的：【&lt;strong&gt;二、Jellyfin配置部分】&lt;/strong&gt;，这里不再赘述&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Jellyfin 后台启用硬件转码功能 [ 硬件加速选择：Video Acceleration API (VA API)(experimental) ，并勾选“启用硬件解码” ]&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E7%BE%A4%E6%99%96%E4%B8%AD%E5%AE%9E%E7%8E%B0Jellyfin%E6%A0%B8%E5%BF%83%E6%98%BE%E5%8D%A1%E7%A1%AC%E8%A7%A3%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81/1570004742-d33ff81f025ea5a4d406fbff7fcda1ef.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;至此，搭建和配置结束。我们的手机端电脑端，可以实现实时硬解转码啦！&lt;/p&gt;
+&lt;h2 id=&#34;测试实时转码cpu占用率&#34;&gt;&lt;strong&gt;测试实时转码CPU占用率&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;首先，我们测试一部1080P 电影。影片参数如下图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E7%BE%A4%E6%99%96%E4%B8%AD%E5%AE%9E%E7%8E%B0Jellyfin%E6%A0%B8%E5%BF%83%E6%98%BE%E5%8D%A1%E7%A1%AC%E8%A7%A3%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81/1570004742-bfe6aea28731aad6aff1faeea3038d5d.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;开启硬件加速&#34;&gt;&lt;strong&gt;开启硬件加速：&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;后台按照我们刚刚的设置。然后播放该视频，并选择转码为 1080P 10Mbps&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E7%BE%A4%E6%99%96%E4%B8%AD%E5%AE%9E%E7%8E%B0Jellyfin%E6%A0%B8%E5%BF%83%E6%98%BE%E5%8D%A1%E7%A1%AC%E8%A7%A3%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81/1570004742-71e8809b1fe19052f8e8e2bc3bc7d552.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;打开群晖分别查看 Docker容器，以及系统的CPU占用。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E7%BE%A4%E6%99%96%E4%B8%AD%E5%AE%9E%E7%8E%B0Jellyfin%E6%A0%B8%E5%BF%83%E6%98%BE%E5%8D%A1%E7%A1%AC%E8%A7%A3%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81/1570004742-bc359f2605be43de41b5ba20df9fdda4.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;同时，我们链接群晖的SSH 通过 top 命令查看解码过程是否调用了显卡驱动：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E7%BE%A4%E6%99%96%E4%B8%AD%E5%AE%9E%E7%8E%B0Jellyfin%E6%A0%B8%E5%BF%83%E6%98%BE%E5%8D%A1%E7%A1%AC%E8%A7%A3%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81/1570004742-34d6d316da12144ac8ef77ed6b67b52f.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;关闭后台硬件加速功能硬件加速选择没有&#34;&gt;关闭后台硬件加速功能。（硬件加速选择“没有”）&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E7%BE%A4%E6%99%96%E4%B8%AD%E5%AE%9E%E7%8E%B0Jellyfin%E6%A0%B8%E5%BF%83%E6%98%BE%E5%8D%A1%E7%A1%AC%E8%A7%A3%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81/1570004742-1f5bb3c8f032e22f4e5a86aa58e3b59e.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以明显看出，关闭硬件加速后。转码会非常消耗CPU资源。&lt;/p&gt;
+- https://syaofox.github.io/tips/%E7%BE%A4%E6%99%96%E4%B8%AD%E5%AE%9E%E7%8E%B0jellyfin%E6%A0%B8%E5%BF%83%E6%98%BE%E5%8D%A1%E7%A1%AC%E8%A7%A3%E5%AE%9E%E6%97%B6%E8%BD%AC%E7%A0%81/ - Syaofox 2020 copyright.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>如何使用Calibre制作带目录的电子书</title>
+        <link>https://syaofox.github.io/tips/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8calibre%E5%88%B6%E4%BD%9C%E5%B8%A6%E7%9B%AE%E5%BD%95%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/</link>
+        <pubDate>Thu, 18 Jun 2020 10:04:23 +0800</pubDate>
+        
+        <guid>https://syaofox.github.io/tips/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8calibre%E5%88%B6%E4%BD%9C%E5%B8%A6%E7%9B%AE%E5%BD%95%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/</guid>
+        <description>霜天晓角 https://syaofox.github.io/tips/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8calibre%E5%88%B6%E4%BD%9C%E5%B8%A6%E7%9B%AE%E5%BD%95%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/ -&lt;h2 id=&#34;1-导言&#34;&gt;1. 导言&lt;/h2&gt;
+&lt;p&gt;本文主要讲如何使用&lt;code&gt;Calibre&lt;/code&gt;通过&lt;code&gt;txt&lt;/code&gt;格式的电子书，制作成带目录的&lt;code&gt;mobi&lt;/code&gt;或者&lt;code&gt;epub&lt;/code&gt;格式的电子书。&lt;/p&gt;
+&lt;p&gt;主要准备工作包括，你需要有&lt;code&gt;Calibre&lt;/code&gt;，并且懂得一点正则表达式&lt;/p&gt;
+&lt;h2 id=&#34;2-安装calibre&#34;&gt;2. 安装Calibre&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://calibre-ebook.com/download&#34;&gt;下载链接&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;3-制作目录&#34;&gt;3. 制作目录&lt;/h2&gt;
+&lt;p&gt;下载一个&lt;code&gt;txt&lt;/code&gt;格式的电子书。我以《陆小凤传奇》为例（版权问题就不放下载链接了）。&lt;/p&gt;
+&lt;p&gt;使用&lt;code&gt;Atom&lt;/code&gt;打开（当然用&lt;code&gt;Sublime&lt;/code&gt;和&lt;code&gt;Word&lt;/code&gt;也是一样的，大文件别用Atom打开，会炸）。找到替换，然后打开 正则表达式匹配选项（regular expression）。&lt;/p&gt;
+&lt;p&gt;首先这本书有五部：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;金鹏王朝（又名陆小凤传奇）&lt;/li&gt;
+&lt;li&gt;绣花大盗&lt;/li&gt;
+&lt;li&gt;决战前后&lt;/li&gt;
+&lt;li&gt;银钩赌坊&lt;/li&gt;
+&lt;li&gt;幽灵山庄&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;所以先匹配第几部作为目录第一级。目录第一级在文本里用&lt;code&gt;#&lt;/code&gt;表示。&lt;/p&gt;
+&lt;p&gt;搜寻框填写&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;(第 [一二三四五六七八九] 部)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;替换框填写&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;# $1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;原本是&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;第 一 部 金鹏王朝
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;变成了&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;# 第 一 部 金鹏王朝
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后就是匹配各个章节，作为目录第二级。目录第二级在文本里用&lt;code&gt;##&lt;/code&gt;表示。&lt;/p&gt;
+&lt;p&gt;搜寻框填写。因为出现&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;第 一 回　有四条眉毛的人
+第二回　丹凤公主
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;两种不同格式，所以需要匹配那个多的空格。超过百回的一样的原理，多一个百。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;(第)[ ]*([一二三四五六七八九][十]*[一二三四五六七八九]*)[ ]*(回)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;替换框填写&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;## $1$2$3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;原本是&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;第 一 回　有四条眉毛的人
+第二回　丹凤公主
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;变成了&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;## 第一回　有四条眉毛的人
+## 第二回　丹凤公主
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;因为每本都有一个尾声，再匹配一下尾声就行。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;尾　声
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;替换为&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;## 尾　声
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样就已经完成制作电子书目录的工作，后面就是转换书籍格式。把修改好的电子书拖进&lt;code&gt;Calibre&lt;/code&gt;书库里面。&lt;/p&gt;
+&lt;h2 id=&#34;4转换格式&#34;&gt;4.转换格式&lt;/h2&gt;
+&lt;p&gt;原本在&lt;code&gt;Calibre&lt;/code&gt;里是我们修改好的&lt;code&gt;txt&lt;/code&gt;电子书，现在我们需要把电子书转换成&lt;code&gt;mobi&lt;/code&gt;格式。&lt;code&gt;epub&lt;/code&gt;等其他格式后面用&lt;code&gt;mobi&lt;/code&gt;可以直接进行转换。&lt;/p&gt;
+&lt;p&gt;选择这本书，然后按选项栏里的&lt;code&gt;转换书籍&lt;/code&gt;。可以看到最左边是书籍本身格式&lt;code&gt;txt&lt;/code&gt;,把右边格式输出格式改成&lt;code&gt;mobi&lt;/code&gt;。当然你可以修改图书基本属性，以及封面等。如图所示：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Calibre%E5%88%B6%E4%BD%9C%E5%B8%A6%E7%9B%AE%E5%BD%95%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/1569155404-2fa5ac5b0b662b43639852ed7d5200b9.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;然后选择&lt;code&gt;内容目录&lt;/code&gt;，调整为如图所示。主要是一级目录和二级目录表达式：&lt;code&gt;//h:h1&lt;/code&gt;。这也是为了对应之前我们所说的&lt;code&gt;#&lt;/code&gt;和&lt;code&gt;##&lt;/code&gt;。注意上面的最大章节数可能需要修改。完成后点击确定。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Calibre%E5%88%B6%E4%BD%9C%E5%B8%A6%E7%9B%AE%E5%BD%95%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/1569155404-209096141c665a24e4863baf34632884.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;5成书&#34;&gt;5.成书&lt;/h2&gt;
+&lt;p&gt;现在就可以打开书籍，发现目录已经生成。&lt;br&gt;
+&lt;img src=&#34;https://syaofox.github.io/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Calibre%E5%88%B6%E4%BD%9C%E5%B8%A6%E7%9B%AE%E5%BD%95%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/1569155404-5360e1915994c1c151d38c79c1040b2f.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;hr&gt;
+- https://syaofox.github.io/tips/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8calibre%E5%88%B6%E4%BD%9C%E5%B8%A6%E7%9B%AE%E5%BD%95%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/ - Syaofox 2020 copyright.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>图片 EXIF 信息查看与 Exiftool 使用</title>
+        <link>https://syaofox.github.io/software/exiftools-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</link>
+        <pubDate>Thu, 18 Jun 2020 09:55:26 +0800</pubDate>
+        
+        <guid>https://syaofox.github.io/software/exiftools-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
+        <description>霜天晓角 https://syaofox.github.io/software/exiftools-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/ -&lt;h2 id=&#34;一什么是exif&#34;&gt;一、什么是EXIF&lt;/h2&gt;
+&lt;p&gt;​     可交换图像文件格式常被简称为Exif（Exchangeable image file format），是专门为数码相机的照片设定的，可以记录数码照片的属性信息和拍摄数据。Exif 可以被附加在 JPEG、TIFF、RIFF 等文件之中，为其增加有关数码相机拍摄信息的内容和缩略图或图像处理软件的一些版本信息。&lt;/p&gt;
+&lt;p&gt;了解更多：&lt;a href=&#34;https://link.jianshu.com?t=https%3A%2F%2Fzh.wikipedia.org%2Fwiki%2FEXIF&#34;&gt;维基百科&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;二exiftool使用&#34;&gt;二、Exiftool使用&lt;/h2&gt;
+&lt;h3 id=&#34;一为什么使用exiftool&#34;&gt;一）为什么使用Exiftool&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;exiftool&lt;/code&gt;是经过测试发现对图片EXIF信息解析支持是最好的（如果有更好的请补充）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;exiftool&lt;/code&gt;支持图片EXIF信息查询，修改及批量操作，还支持其它文件的EXIF操作。&lt;/li&gt;
+&lt;li&gt;安全隐私问题，因为经常有网上暴露图片隐私问题，使用在线需要上传到服务器。采用&lt;code&gt;exiftool&lt;/code&gt;保证了图片的安全和隐私，显然是最适合的。
+​   我们知道文件后缀名并不能代表文件的类型格式，比如上图webp格式后缀名是jpg，换言之一张jpg后缀名图片可能不是jpg图片，可能是&lt;code&gt;web&lt;/code&gt;，&lt;code&gt;png&lt;/code&gt;，&lt;code&gt;text&lt;/code&gt;或其它类型文件。那么怎么快速了解它是哪种类型文件并获取它的一些其它信息呢，这时&lt;code&gt;exiftool&lt;/code&gt;就派上用场了，试了下其它几个Exif工具，也用Mac/iOS原生代码测试了下，发现不能有效的读取jpg后缀的webp图片，而exiftool能很好支持。注意并非每一张图片都包含 exif 信息，像微信朋友圈如果发表的不是原图就没有。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;二exiftool安装与使用&#34;&gt;二）Exiftool安装与使用&lt;/h3&gt;
+&lt;h4 id=&#34;1exiftool安装&#34;&gt;1、exiftool安装&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ brew install exiftool
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;或直接下载：&lt;a href=&#34;https://link.jianshu.com?t=https%3A%2F%2Fsno.phy.queensu.ca%2F~phil%2Fexiftool%2F&#34;&gt;https://sno.phy.queensu.ca/~phil/exiftool/&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;2查看exif信息&#34;&gt;2、查看EXIF信息&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ exiftool photo.jpg  &lt;span style=&#34;color:#228b22&#34;&gt;#默认显示所有的信息 exiftool+图片路径/图片名.jpg&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;输出信息如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;#$ ExifTool /Users/apple/Desktop/photo.jpg&lt;/span&gt;
+ExifTool Version Number         : 10.80
+File Name                       : photo.jpg
+Directory                       : /Users/pconline/Desktop
+File Size                       : &lt;span style=&#34;color:#b452cd&#34;&gt;18&lt;/span&gt; kB
+File Modification Date/Time     : 2018:03:02 10:22:03+08:00
+File Access Date/Time           : 2018:03:02 11:47:58+08:00
+File Inode Change Date/Time     : 2018:03:02 11:47:57+08:00
+File Permissions                : rw-r--r--
+File Type                       : WEBP
+File Type Extension             : webp
+MIME Type                       : image/webp
+VP8 Version                     : &lt;span style=&#34;color:#b452cd&#34;&gt;0&lt;/span&gt; (bicubic reconstruction, normal loop)
+Image Width                     : &lt;span style=&#34;color:#b452cd&#34;&gt;640&lt;/span&gt;
+Horizontal Scale                : &lt;span style=&#34;color:#b452cd&#34;&gt;0&lt;/span&gt;
+Image Height                    : &lt;span style=&#34;color:#b452cd&#34;&gt;400&lt;/span&gt;
+Vertical Scale                  : &lt;span style=&#34;color:#b452cd&#34;&gt;0&lt;/span&gt;
+Image Size                      : 640x400
+Megapixels                      : 0.256
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;从打印信息我们可以看到&lt;/span&gt;&lt;span style=&#34;color:#a61717;background-color:#e3d2d2&#34;&gt;，&lt;/span&gt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;图片photo&lt;/span&gt;.&lt;span style=&#34;color:#008b45;font-weight:bold&#34;&gt;jpg虽然后缀名是jpg&lt;/span&gt;&lt;span style=&#34;color:#a61717;background-color:#e3d2d2&#34;&gt;，&lt;/span&gt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;但File&lt;/span&gt; &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;Type则是WEBP&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;3exiftool常用命令示例&#34;&gt;3、Exiftool常用命令示例&lt;/h4&gt;
+&lt;p&gt;终端输入&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ exiftool -h &lt;span style=&#34;color:#228b22&#34;&gt;#查看使用详细列表&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;使用帮助，可看到所有命令帮助，也可看到exiftool的支持文件类型和文件元信息如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;File Types
+----------------------+----------------------+---------------------
+3G2   r/w   | DVB   r/w   | JPEG  r/w   | ODT   r     | RIFF  r
+....
+Meta Information
+----------------------+----------------------+---------------------
+EXIF           r/w/c  |  CIFF           r/w  |  Ricoh RMETA    r
+GPS            r/w/c  |  AFCP           r/w  |  Picture Info   r
+IPTC           r/w/c  |  Kodak Meta     r/w  |  Adobe APP14    r
+XMP            r/w/c  |  FotoStation    r/w  |  MPF            r
+MakerNotes     r/w/c  |  PhotoMechanic  r/w  |  Stim           r
+Photoshop IRB  r/w/c  |  JPEG &lt;span style=&#34;color:#b452cd&#34;&gt;2000&lt;/span&gt;      r    |  DPX            r
+ICC Profile    r/w/c  |  DICOM          r    |  APE            r
+MIE            r/w/c  |  Flash          r    |  Vorbis         r
+JFIF           r/w/c  |  FlashPix       r    |  SPIFF          r
+Ducky APP12    r/w/c  |  QuickTime      r    |  DjVu           r
+PDF            r/w/c  |  Matroska       r    |  M2TS           r
+PNG            r/w/c  |  MXF            r    |  PE/COFF        r
+Canon VRD      r/w/c  |  PrintIM        r    |  AVCHD          r
+Nikon Capture  r/w/c  |  FLAC           r    |  ZIP            r
+GeoTIFF        r/w/c  |  ID3            r    |  (and more)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;4查询相关命令&#34;&gt;4、查询相关命令&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#00688b&#34;&gt;$cd&lt;/span&gt; /Users/apple/Desktop
+exiftool photo.jpg &lt;span style=&#34;color:#228b22&#34;&gt;#查看所有信息&lt;/span&gt;
+exiftool -a -u -g1 photo.jpg &lt;span style=&#34;color:#228b22&#34;&gt;#查看所有元信息，包括重复和未知标签，并按小组排列&lt;/span&gt;
+exiftool -s -ImageSize -ExposureTime photo.jpg &lt;span style=&#34;color:#228b22&#34;&gt;#查看图片尺寸&lt;/span&gt;
+exiftool -common dir  &lt;span style=&#34;color:#228b22&#34;&gt;#查看dir目录文件信息（不仅仅是图片）&lt;/span&gt;
+exiftool -l  c.jpg d.jpg  &lt;span style=&#34;color:#228b22&#34;&gt;#从两个图像文件打印所有信息。&lt;/span&gt;
+exiftool -l -canon c.jpg d.jpg  &lt;span style=&#34;color:#228b22&#34;&gt;#从两个图像文件打印标准的佳能信息。&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;5写入编辑命令&#34;&gt;5、写入编辑命令&lt;/h4&gt;
+&lt;p&gt;更改创建和修改时间&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ exiftool -gps:all= photo.jpg  &lt;span style=&#34;color:#228b22&#34;&gt;#有些相机会记录拍照时的GPS定位信息。如果你不希望别人看到使用该命令删除gps信息&lt;/span&gt;
+$ exiftool -all= photo.jpg  &lt;span style=&#34;color:#228b22&#34;&gt;#删除所有信息&lt;/span&gt;
+$ exiftool -all= --exif:all photo.jpg  &lt;span style=&#34;color:#228b22&#34;&gt;#删除EXIF以外的所有信息&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;写入标签&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ exiftool -artist=标签名称 photo.jpg            &lt;span style=&#34;color:#228b22&#34;&gt;#写入艺术家标签&lt;/span&gt;
+$ exiftool -artist=标签名称 a.jpg b.jpg c.jpg   &lt;span style=&#34;color:#228b22&#34;&gt;#写多个文件&lt;/span&gt;
+$ exiftool -artist=标签名称  /exiftoolTest      &lt;span style=&#34;color:#228b22&#34;&gt;#写在一个目录的所有文件 exiftoolTest为文件夹&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;其它：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;exiftool -Comment =&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;这是一个新的评论&amp;#39;&lt;/span&gt;dst.jpg
+    向JPG图片写入新评论（取代任何现有评论）。
+exiftool -comment = -o newdir -ext jpg。
+    删除当前目录中所有JPG图像的评论，
+    将修改后的图像写入新目录。
+exiftool -keywords = EXIF -keywords =编辑器dst.jpg
+    用两个新的关键字（“EXIF”和。）替换现有的关键字列表
+    “编辑”）。
+exiftool -Keywords + =单词-o newfile.jpg src.jpg
+    将源图像复制到新文件，然后添加关键字（“单词”）
+    当前关键字列表。            
+exiftool -credit- = xxx dir
+    从一个目录中的所有文件中删除信用信息，信用值是“xxx”。
+exiftool -all = dst.jpg
+    从图像中删除所有元信息。注意：你不应该
+    对RAW图像（DNG除外）进行处理，因为它是专有的RAW图像
+    格式通常包含制造注释中的信息
+    转换图像所必需的。
+exiftool -all = -comment =&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;寂寞&amp;#39;&lt;/span&gt;dst.jpg
+    删除图像中的所有元信息并添加评论
+    （注意顺序很重要：“-comment =&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;lonely&amp;#39;&lt;/span&gt;-all =”
+    也会删除新评论。）
+exiftool -all = --jfif：全部dst.jpg
+    从图像中删除除JFIF组以外的所有元信息。
+exiftool -Photoshop：全部= dst.jpg
+    从图像中删除Photoshop元信息（注意
+    Photoshop信息还包括IPTC）。
+exiftool -r -XMP-crss：all = DIR
+    递归删除a中的图像中的所有XMP-crss信息
+    目录。
+exiftool&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;-ThumbnailImage &amp;lt;= thumb.jpg&amp;#39;&lt;/span&gt;dst.jpg
+    从指定的文件中设置缩略图（注意：引号是
+    以防止外壳重定向）。
+exiftool&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;-JpgFromRaw &amp;lt;=％d％f_JFR.JPG&amp;#39;&lt;/span&gt;-ext NEF -r。
+    递归地写入以“_JFR.JPG”结尾的文件名的JPEG图像
+    添加到扩展名为“.NEF”的类似文件的JpgFromRaw标记中
+    当前目录。 （这是“-JpgFromRaw”的倒数
+    上面的“READING EXAMPLES”部分的命令）。
+exiftool -DateTimeOriginal - =&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;0：0：0 1：30：0&amp;#39;&lt;/span&gt;dir
+    调整目录“dir”中所有图像的原始日期/时间
+    减去1小时30分钟。 （这相当于
+    “-DateTimeOriginal- = 1.5”。请参阅Image :: ExifTool :: Shift.pl
+    细节。）
+exiftool -createdate + = &lt;span style=&#34;color:#b452cd&#34;&gt;3&lt;/span&gt; -modifydate + = &lt;span style=&#34;color:#b452cd&#34;&gt;3&lt;/span&gt; a.jpg b.jpg
+    向两个CreateDate和ModifyDate时间戳添加3个小时
+    图片。
+exiftool -AllDates + = 1：30 -if&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;$ make eq“Canon”&amp;#39;&lt;/span&gt;dir
+    移动DateTimeOriginal，CreateDate和ModifyDate的值
+    将所有佳能影像转换1小时30分钟
+    目录。 （AllDates标签作为这些的快捷方式提供
+    三个标签，允许他们通过一个标签访问。）
+exiftool -xmp：city = Kingston image1.jpg image2.nef
+    将标签写入两个图像的XMP组。 （没有“xmp：”
+    自从“City”存在以后，该标签将被写入IPTC组
+    在这两种情况下，IPTC默认是首选。）
+exiftool -LightSource - =&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;未知（0）&amp;#39;&lt;/span&gt;dst.tiff
+    只有在值为0时才删除“LightSource”标签。
+exiftool -whitebalance- = auto -WhiteBalance = tung dst.jpg
+    只有之前为“自动”时，才将“WhiteBalance”设置为“Tungsten”。
+exiftool -comment- = -comment =&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;新评论&amp;#39;&lt;/span&gt;a.jpg
+    只有当图片还没有时才写新评论。
+exiftool -o％d％f.xmp目录
+    为“dir”中的所有图像创建XMP元信息数据文件。
+exiftool -o test.xmp -owner = Phil -title =&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;XMP File&amp;#39;&lt;/span&gt;
+    仅从命令中定义的标签创建XMP数据文件
+    线。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;更多命令查看&lt;code&gt;exiftool -h&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&#34;6使用exiftool批量处理exif信息&#34;&gt;6、使用ExifTool批量处理EXIF信息&lt;/h4&gt;
+&lt;p&gt;如果要处理的文件太多，一张一张处理效率太低，ExifTool支持批量操作：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ exiftool -artist=标签名称  /dirName    &lt;span style=&#34;color:#228b22&#34;&gt;#批量写入dirName目录艺术家标签&lt;/span&gt;
+$ exiftool -r -all= /dirName      &lt;span style=&#34;color:#228b22&#34;&gt;#批量删除dirName及其子目录所有文件EXIF信息，-r表示递归处理子目录&lt;/span&gt;
+$ exiftool -gps:all= /dirName     &lt;span style=&#34;color:#228b22&#34;&gt;#批量删除dirName及其子目录所有文件gps信息&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;其它相关：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ mdls  photo.jpg &lt;span style=&#34;color:#228b22&#34;&gt;#这个命令显示指定文件的metadata的属性,当不能准确的获取exif信息&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;三常用指令&#34;&gt;三）常用指令&lt;/h3&gt;
+&lt;h4 id=&#34;批量修改文件名&#34;&gt;批量修改文件名&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;exiftool -d %Y-%m-%d_%H-%M-%S%%-c.%%e &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;-filename&amp;lt;MediaCreateDate&amp;#34;&lt;/span&gt; .&lt;span style=&#34;color:#cd5555&#34;&gt;\1&lt;/span&gt;.mp4
+exiftool -d %Y-%m-%d_%H-%M-%S%%-c.%%e &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;-filename&amp;lt;DateTimeOriginal&amp;#34;&lt;/span&gt; .&lt;span style=&#34;color:#cd5555&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;&lt;/span&gt;exiftool -d %Y-%m-%d_%H-%M-%S%%-c.%%e &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;-filename&amp;lt;FileModifyDate&amp;#34;&lt;/span&gt; .&lt;span style=&#34;color:#cd5555&#34;&gt;\
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;通过修改时间写入拍摄日期&#34;&gt;通过修改时间写入拍摄日期&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;exiftool &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;-DateTimeOriginal&amp;lt;FileModifyDate&amp;#34;&lt;/span&gt; -r -overwrite_original .&lt;span style=&#34;color:#cd5555&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;&lt;/span&gt;exiftool &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;-FileModifyDate&amp;lt;DateTimeOriginal&amp;#34;&lt;/span&gt; -r -overwrite_original .&lt;span style=&#34;color:#cd5555&#34;&gt;\
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;写入指定时间&#34;&gt;写入指定时间&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;exiftool &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;-DateTimeOriginal=&amp;#39;2008-05-01_08:00:00&amp;#39;&amp;#34;&lt;/span&gt; -r -overwrite_original .&lt;span style=&#34;color:#cd5555&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;&lt;/span&gt;exiftool &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;-FileModifyDate=&amp;#39;2008-05-01_08:00:00&amp;#39;&amp;#34;&lt;/span&gt; -r -overwrite_original .&lt;span style=&#34;color:#cd5555&#34;&gt;\
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;写入视频媒体创作时间&#34;&gt;写入视频媒体创作时间&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;exiftool  &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;-FileModifyDate&amp;lt;filename&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;-CreateDate&amp;lt;filename&amp;#34;&lt;/span&gt;   &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;-MediaModifyDate&amp;lt;filename&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;-MediaCreateDate&amp;lt;filename&amp;#34;&lt;/span&gt; -api &lt;span style=&#34;color:#00688b&#34;&gt;quicktimeutc&lt;/span&gt;=&lt;span style=&#34;color:#b452cd&#34;&gt;1&lt;/span&gt; -quicktime:createdate&amp;lt;filename -overwrite_original *.mp4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/software/exiftools-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/ - Syaofox 2020 copyright.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Chrome 小技巧</title>
+        <link>https://syaofox.github.io/software/chrome-%E5%B0%8F%E6%8A%80%E5%B7%A7/</link>
+        <pubDate>Thu, 18 Jun 2020 09:50:44 +0800</pubDate>
+        
+        <guid>https://syaofox.github.io/software/chrome-%E5%B0%8F%E6%8A%80%E5%B7%A7/</guid>
+        <description>霜天晓角 https://syaofox.github.io/software/chrome-%E5%B0%8F%E6%8A%80%E5%B7%A7/ -&lt;h2 id=&#34;清除特定网站的-cache&#34;&gt;清除特定网站的 cache&lt;/h2&gt;
+&lt;p&gt;有时候我们需要单独清空某个网站的缓存，但是chrome并没有提供单独删除某个站缓存的功能，这里有个小技巧&lt;/p&gt;
+&lt;p&gt;打开开发者工具（F12），选择 Network——Disable cache 即可。需要清除某网站缓存时 F12 打开开发者工具就会自动清除这个网站的缓存，而不必清除所有网站的缓存了。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;另存为单一页面mhtm&#34;&gt;另存为单一页面(mhtm)&lt;/h2&gt;
+&lt;p&gt;升级到75、76版本后谷歌浏览器&lt;code&gt;Chrome V75.0.3770.142 V76.0.3809.87&lt;/code&gt;新版，发现无法另存为/保存网页为&lt;code&gt;MHTML&lt;/code&gt;了。&lt;/p&gt;
+&lt;p&gt;原来chrome搞了个&amp;quot;Chrome Flag Ownership&amp;quot;的项目，目的是清理未使用的和过时的flags，现在&lt;code&gt;save-page-as-mhtml&lt;/code&gt;仅作为开发者测试使用。就是说现在&lt;code&gt;save-page-as-mhtml&lt;/code&gt;作为switch存在。&lt;/p&gt;
+&lt;p&gt;解决方案是，右键chrome快捷方式，选择快捷方式一栏，在目标输入框chrome.exe后加入空格和&lt;code&gt;--save-page-as-mhtml&lt;/code&gt;，再重新打开chrome就可以了。&lt;/p&gt;
+- https://syaofox.github.io/software/chrome-%E5%B0%8F%E6%8A%80%E5%B7%A7/ - Syaofox 2020 copyright.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Youtube-dl 常用操作</title>
+        <link>https://syaofox.github.io/software/youtube-dl-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</link>
+        <pubDate>Thu, 18 Jun 2020 09:41:34 +0800</pubDate>
+        
+        <guid>https://syaofox.github.io/software/youtube-dl-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
+        <description>霜天晓角 https://syaofox.github.io/software/youtube-dl-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/ -&lt;h2 id=&#34;调用外部下载工具下载列表&#34;&gt;调用外部下载工具下载列表&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;youtube-dl  &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;https://www.youtube.com/playlist?list=PL7enJ2-v6SPnQe5bqB0xupPSRpynhzH_E&amp;#34;&lt;/span&gt; --external-downloader aria2c --external-downloader-args &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;-x 16 -k 1M&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;下载最好质量视频并指定格式&#34;&gt;下载最好质量视频并指定格式&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;youtube-dl --format &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;bestvideo+bestaudio[ext=m4a]/bestvideo+bestaudio/best&amp;#34;&lt;/span&gt; --merge-output-format mp4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;范例:下载最佳mp4和字幕&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;youtube-dl --write-sub --sub-lang zh-CN,zh-TW --sub-format srt  --format &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;bestvideo+bestaudio[ext=m4a]/bestvideo+bestaudio/best&amp;#34;&lt;/span&gt; --merge-output-format mp4 &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;https://www.youtube.com/playlist?list=PL7enJ2-v6SPlgDsNHXJ1K2RpkZY2b_pm7&amp;#34;&lt;/span&gt;  --external-downloader aria2c --external-downloader-args &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;-x 16 -k 1M&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/software/youtube-dl-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/ - Syaofox 2020 copyright.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>FFMPEG 常用操作</title>
+        <link>https://syaofox.github.io/software/ffmpeg-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</link>
+        <pubDate>Thu, 18 Jun 2020 09:37:05 +0800</pubDate>
+        
+        <guid>https://syaofox.github.io/software/ffmpeg-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
+        <description>霜天晓角 https://syaofox.github.io/software/ffmpeg-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/ -&lt;h2 id=&#34;转码&#34;&gt;转码&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ffmpeg -i out.ogv -vcodec h264 out.mp4
+ffmpeg -i out.ogv -vcodec mpeg4 out.mp4
+ffmpeg -i out.ogv -vcodec libxvid out.mp4
+ffmpeg -i out.mp4 -vcodec wmv1 out.wmv
+ffmpeg -i out.mp4 -vcodec wmv2 out.wmv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;-i 后面是输入文件名。-vcodec 后面是编码格式，h264 最佳，但 Windows 系统默认不安装。如果是要插入 ppt 的视频，选择 wmv1 或 wmv2 基本上万无一失。&lt;/p&gt;
+&lt;p&gt;附加选项：-r 指定帧率，-s 指定分辨率，-b 指定比特率；于此同时可以对声道进行转码，-acodec 指定音频编码，-ab 指定音频比特率，-ac 指定声道数，例如&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ffmpeg -i out.ogv -s 640x480 -b 500k -vcodec h264 -r 29.97 -acodec libfaac -ab 48k -ac &lt;span style=&#34;color:#b452cd&#34;&gt;2&lt;/span&gt; out.mp4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;截取&#34;&gt;截取&lt;/h2&gt;
+&lt;p&gt;用 -ss 和 -t 选项， 从第 30 秒开始，向后截取 10 秒的视频，并保存：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ffmpeg -i input.wmv -ss 00:00:30.0 -c copy -t 00:00:10.0 output.wmv
+ffmpeg -i input.wmv -ss &lt;span style=&#34;color:#b452cd&#34;&gt;30&lt;/span&gt; -c copy -t &lt;span style=&#34;color:#b452cd&#34;&gt;10&lt;/span&gt; output.wmv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;达成相同效果，也可以用 -ss 和 -to 选项， 从第 30 秒截取到第 40 秒:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ffmpeg -i input.wmv -ss &lt;span style=&#34;color:#b452cd&#34;&gt;30&lt;/span&gt; -c copy -to &lt;span style=&#34;color:#b452cd&#34;&gt;40&lt;/span&gt; output.wmv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;值得注意的是，ffmpeg 为了加速，会使用关键帧技术， 所以有时剪切出来的结果在起止时间上未必准确。 通常来说，把 -ss 选项放在 -i 之前，会使用关键帧技术； 把 -ss 选项放在 -i 之后，则不使用关键帧技术。 如果要使用关键帧技术又要保留时间戳，可以加上 -copyts 选项：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ffmpeg -ss 00:01:00 -i video.mp4 -to 00:02:00 -c copy -copyts cut.mp4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;合并&#34;&gt;合并&lt;/h2&gt;
+&lt;p&gt;把两个视频文件合并成一个。&lt;/p&gt;
+&lt;h3 id=&#34;方法一&#34;&gt;方法一&lt;/h3&gt;
+&lt;p&gt;简单地使用 concat demuxer，示例：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cat mylist.txt
+file &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;/path/to/file1&amp;#39;&lt;/span&gt;
+file &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;/path/to/file2&amp;#39;&lt;/span&gt;
+file &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;/path/to/file3&amp;#39;&lt;/span&gt;
+
+$ ffmpeg -f concat -i mylist.txt -c copy output
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;更多时候，由于输入文件的多样性，需要转成中间格式再合成：&lt;/p&gt;
+&lt;h3 id=&#34;方法二&#34;&gt;方法二&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;ffmpeg -i input1.avi -qscale:v &lt;span style=&#34;color:#b452cd&#34;&gt;1&lt;/span&gt; intermediate1.mpg
+ffmpeg -i input2.avi -qscale:v &lt;span style=&#34;color:#b452cd&#34;&gt;1&lt;/span&gt; intermediate2.mpg
+cat intermediate1.mpg intermediate2.mpg &amp;gt; intermediate_all.mpg
+ffmpeg -i intermediate_all.mpg -qscale:v &lt;span style=&#34;color:#b452cd&#34;&gt;2&lt;/span&gt; output.avi
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;调速&#34;&gt;调速&lt;/h2&gt;
+&lt;h3 id=&#34;加速四倍&#34;&gt;加速四倍：&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ffmpeg -i TheOrigin.mp4 -vf  &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;setpts=0.25*PTS&amp;#34;&lt;/span&gt; UpTheOrigin.mp4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;四倍慢速&#34;&gt;四倍慢速：&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ffmpeg -i TheOrigin.mp4 -vf  &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;setpts=4*PTS&amp;#34;&lt;/span&gt; DownTheOrigin.mp4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;提取&#34;&gt;提取&lt;/h2&gt;
+&lt;h3 id=&#34;增加字幕&#34;&gt;增加字幕&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ffmpeg -i video.avi -i sub.ass -map 0:0 -map 0:1 -map &lt;span style=&#34;color:#b452cd&#34;&gt;1&lt;/span&gt; -c:a copy -c:v copy -c:s copy video.mkv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;提取字幕&#34;&gt;提取字幕&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ffmpeg -i input.mp4 -map 0:3 output.srt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;提取视频&#34;&gt;提取视频&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ffmpeg -i Life.of.Pi.has.subtitles.mkv -vcodec copy –an  videoNoAudioSubtitle.mp4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;提取音频&#34;&gt;提取音频&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ffmpeg -i Life.of.Pi.has.subtitles.mkv -vn -acodec copy audio.ac3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;修改默认的音频轨道&#34;&gt;修改默认的音频轨道&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ffmpeg -i input.mkv -map 0:0 -map 0:1 -map 0:2  -c copy -disposition:a:0 default -y output.mp4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;输入文件包含一个视频轨道，两个音频轨道&lt;/p&gt;
+&lt;p&gt;0:0 表示视频轨道
+0:1 表示第一个音频轨道
+0:2 表示第二个音频轨道&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-c copy&lt;/code&gt; 复制编码，也即是编码不变&lt;/p&gt;
+&lt;p&gt;最关键的，&lt;code&gt;-disposition:a:0 default&lt;/code&gt;
+设置音频轨道的第一个为默认值&lt;/p&gt;
+&lt;h2 id=&#34;设置音轨名称&#34;&gt;设置音轨名称&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ffmpeg -i in.mp4 -map 0:0 -map 0:1  -map 0:2 -map_metadata -1  -metadata:s:a:0  &lt;span style=&#34;color:#00688b&#34;&gt;language&lt;/span&gt;=jpn -metadata:s:a:0 &lt;span style=&#34;color:#00688b&#34;&gt;title&lt;/span&gt;=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;日语&amp;#34;&lt;/span&gt; -metadata:s:a:1 &lt;span style=&#34;color:#00688b&#34;&gt;language&lt;/span&gt;=zho -metadata:s:a:1 &lt;span style=&#34;color:#00688b&#34;&gt;title&lt;/span&gt;=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;国语&amp;#34;&lt;/span&gt;  -c copy -disposition:a:0 default out.mp4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;https://zh.wikipedia.org/wiki/ISO_639-2%E4%BB%A3%E7%A0%81%E8%A1%A8&#34;&gt;轨道编码参考链接&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;设定音轨名称是按照音轨顺序0,1类推,不是按照所有轨道顺序&lt;/p&gt;
+&lt;h2 id=&#34;清空元数据&#34;&gt;清空元数据&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ffmpeg -i in.mov -map_metadata -1 -c:v copy -c:a copy out.mov
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/software/ffmpeg-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/ - Syaofox 2020 copyright.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>H264视频编码推荐的分辨率和码率配置表</title>
+        <link>https://syaofox.github.io/tips/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/</link>
+        <pubDate>Thu, 18 Jun 2020 09:30:43 +0800</pubDate>
+        
+        <guid>https://syaofox.github.io/tips/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/</guid>
+        <description>霜天晓角 https://syaofox.github.io/tips/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/ -&lt;p&gt;在各种视频编码标准中，行业一直在求追“高压缩比（数据量越小越好）”，同时又保证“高视频质量”的算法。鱼和熊掌不可兼得，视频编码是一种折中的游戏。参数“视频码率”的设定，就代表了这种折中的选择。码率越高，数据量越大，视频质量越好，码率越小，数据量越小，视频质量越差。&lt;/p&gt;
+&lt;p&gt;但是，码率大到一定阈值之后，码率的提升带来的视频质量改善就会变得微不足道，所以这个码率阈值就显得非常重要。&lt;/p&gt;
+&lt;p&gt;网上这篇文章&lt;a href=&#34;http://www.lighterra.com/papers/videoencodingh264/&#34;&gt;「Video Encoding Settings for H.264 Excellence」&lt;/a&gt;，就针对H.264视频编码，测试了不同视频分辨率下的码率阈值。&lt;/p&gt;
+&lt;p&gt;其介绍了用于高质量H.264视频编码的一组分辨率，码率设置，以及这些选择背后的推理。这篇文章很好的帮我们解答了：针对H.264视频编码（对其他视频编码格式无效），给定一个视频分辨率，要设置什么视频码率，才能得到“最具性价比”的高质量视频画面。&lt;/p&gt;
+&lt;p&gt;针对H.264编码格式，根据不同分辨率，推荐其对应的码率配置关系如下图所示：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;宽屏&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;center&#34;&gt;Name&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Resolution&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Link(Mbps)&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Bitrate(Mbps)&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Video(kbps)&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Audio(kbps)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;240p&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;424x240&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.64&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;576&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;360p&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;640x360&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.96&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;896&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;432p&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;768x432&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.8&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.15&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1088&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;480p&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;848x480&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.28&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1216&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;480p HQ&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;848x480&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2.5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.60&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1536&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;576p&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1024x576&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.92&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1856&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;576p HQ&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1024x576&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2.24&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2176&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;720p&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1280x720&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;4.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2.56&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2496&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;720p HQ&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1280x720&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;5.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.20&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3072&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;128&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;1080p&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1920x1080&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;8.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;5.12&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;4992&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;128&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;1080p HQ&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1920x1080&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;12.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;7.68&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;7552&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;128&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;1080p Superbit&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1920x1080&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;N/A&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;20.32&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;20000&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;320&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;非宽屏&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;center&#34;&gt;Name&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Resolution&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Link(Mbps)&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Bitrate(Mbps)&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Video(kbps)&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Audio(kbps)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;240p&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;320x240&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.64&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;576&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;360p&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;480x360&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.77&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;704&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;480p&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;640x480&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.96&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;896&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;480p HQ&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;640x480&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.28&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1216&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;576p&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;768x576&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2.3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.47&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1408&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;576p HQ&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;768x576&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2.5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.60&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1536&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;720p&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;960x720&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.92&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1856&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;720p HQ&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;960x720&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;4.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2.56&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2432&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;128&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;1080p&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1440x1080&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;6.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.84&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3712&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;128&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;1080p HQ&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1440x1080&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;9.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;5.76&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;5632&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;128&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;1080p Superbit&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1440x1080&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;N/A&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;20.32&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;20000&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;320&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+- https://syaofox.github.io/tips/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/ - Syaofox 2020 copyright.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Git Submodule 子模块的管理和使用</title>
+        <link>https://syaofox.github.io/coding/git-submodule-%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9A%84%E7%AE%A1%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8/</link>
+        <pubDate>Thu, 18 Jun 2020 09:22:48 +0800</pubDate>
+        
+        <guid>https://syaofox.github.io/coding/git-submodule-%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9A%84%E7%AE%A1%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8/</guid>
+        <description>霜天晓角 https://syaofox.github.io/coding/git-submodule-%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9A%84%E7%AE%A1%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8/ -&lt;h2 id=&#34;使用前提&#34;&gt;使用前提&lt;/h2&gt;
+&lt;p&gt;经常碰到这种情况：当你在一个Git 项目上工作时，你需要在其中使用另外一个Git 项目。也许它是一个第三方开发的Git 库或者是你独立开发和并在多个父项目中使用的。这个情况下一个常见的问题产生了：你想将两个项目单独处理但是又需要在其中一个中使用另外一个。&lt;/p&gt;
+&lt;p&gt;在Git 中你可以用子模块&lt;code&gt;submodule&lt;/code&gt;来管理这些项目，&lt;code&gt;submodule&lt;/code&gt;允许你将一个Git 仓库当作另外一个Git 仓库的子目录。这允许你克隆另外一个仓库到你的项目中并且保持你的提交相对独立。&lt;/p&gt;
+&lt;h2 id=&#34;添加子模块&#34;&gt;添加子模块&lt;/h2&gt;
+&lt;p&gt;此文中统一将远程项目&lt;code&gt;https://github.com/maonx/vimwiki-assets.git&lt;/code&gt;克隆到本地&lt;code&gt;assets&lt;/code&gt;文件夹。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git submodule add https://github.com/maonx/vimwiki-assets.git assets
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;添加子模块后运行&lt;code&gt;git status&lt;/code&gt;, 可以看到目录有增加1个文件&lt;code&gt;.gitmodules&lt;/code&gt;, 这个文件用来保存子模块的信息。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;git rm --cached &amp;lt;file&amp;gt;...&amp;#34;&lt;/span&gt; to unstage)
+
+    new file:   .gitmodules
+    new file:   assets
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;查看子模块&#34;&gt;查看子模块&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git submodule
+ e33f854d3f51f5ebd771a68da05ad0371a3c0570 assets (heads/master)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;更新子模块&#34;&gt;更新子模块&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;更新项目内子模块到最新版本&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git submodule update
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;更新子模块为远程项目的最新版本&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git submodule update --remote
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;克隆包含子模块的项目&#34;&gt;克隆包含子模块的项目&lt;/h2&gt;
+&lt;p&gt;克隆包含子模块的项目有二种方法：一种是先克隆父项目，再更新子模块；另一种是直接递归克隆整个项目。&lt;/p&gt;
+&lt;h3 id=&#34;克隆父项目再更新子模块&#34;&gt;克隆父项目，再更新子模块&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;克隆父项目&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git clone https://github.com/maonx/vimwiki-assets.git assets
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;查看子模块&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git submodule
+ -e33f854d3f51f5ebd771a68da05ad0371a3c0570 assets
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;子模块前面有一个&lt;code&gt;-&lt;/code&gt;，说明子模块文件还未检入（空文件夹）。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;初始化子模块&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git submodule init
+Submodule &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;assets&amp;#39;&lt;/span&gt; (https://github.com/maonx/vimwiki-assets.git) registered &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;for&lt;/span&gt; path &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;assets&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;初始化模块只需在克隆父项目后运行一次。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;更新子模块&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git submodule update
+Cloning into &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;assets&amp;#39;&lt;/span&gt;...
+remote: Counting objects: 151, &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;done&lt;/span&gt;.
+remote: Compressing objects: 100% (80/80), &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;done&lt;/span&gt;.
+remote: Total &lt;span style=&#34;color:#b452cd&#34;&gt;151&lt;/span&gt; (delta 18), reused &lt;span style=&#34;color:#b452cd&#34;&gt;0&lt;/span&gt; (delta 0), pack-reused &lt;span style=&#34;color:#b452cd&#34;&gt;70&lt;/span&gt;
+Receiving objects: 100% (151/151), 1.34 MiB | 569.00 KiB/s, &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;done&lt;/span&gt;.
+Resolving deltas: 100% (36/36), &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;done&lt;/span&gt;.
+Checking connectivity... &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;done&lt;/span&gt;.
+Submodule path &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;assets&amp;#39;&lt;/span&gt;: checked out &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;e33f854d3f51f5ebd771a68da05ad0371a3c0570&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;递归克隆整个项目&#34;&gt;递归克隆整个项目&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;git clone https://github.com/maonx/vimwiki-assets.git assets --recursive 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;递归克隆整个项目，子模块已经同时更新了，一步到位。&lt;/p&gt;
+&lt;h2 id=&#34;修改子模块&#34;&gt;修改子模块&lt;/h2&gt;
+&lt;p&gt;在子模块中修改文件后，直接提交到远程项目分支。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git add .
+$ git ci -m &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;commit&amp;#34;&lt;/span&gt;
+$ git push origin HEAD:master
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;删除子模块&#34;&gt;删除子模块&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;删除子模块比较麻烦，需要手动删除相关的文件，否则在添加子模块时有可能出现错误&lt;/strong&gt;
+同样以删除&lt;code&gt;assets&lt;/code&gt;文件夹为例&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;删除子模块文件夹&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git rm --cached assets
+$ rm -rf assets
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;删除&lt;code&gt;.gitmodules&lt;/code&gt;文件中相关子模块信息&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;[submodule &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;assets&amp;#34;&lt;/span&gt;]
+  &lt;span style=&#34;color:#00688b&#34;&gt;path&lt;/span&gt; = assets
+  &lt;span style=&#34;color:#00688b&#34;&gt;url&lt;/span&gt; = https://github.com/maonx/vimwiki-assets.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;删除&lt;code&gt;.git/config&lt;/code&gt;中的相关子模块信息&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;[submodule &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;assets&amp;#34;&lt;/span&gt;]
+  &lt;span style=&#34;color:#00688b&#34;&gt;url&lt;/span&gt; = https://github.com/maonx/vimwiki-assets.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;删除&lt;code&gt;.git&lt;/code&gt;文件夹中的相关子模块文件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ rm -rf .git/modules/assets
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/coding/git-submodule-%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9A%84%E7%AE%A1%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8/ - Syaofox 2020 copyright.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>使用GitHub（二）：配置并使用Git创建版本库</title>
+        <link>https://syaofox.github.io/coding/%E4%BD%BF%E7%94%A8github%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/</link>
+        <pubDate>Thu, 18 Jun 2020 09:12:27 +0800</pubDate>
+        
+        <guid>https://syaofox.github.io/coding/%E4%BD%BF%E7%94%A8github%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/</guid>
+        <description>霜天晓角 https://syaofox.github.io/coding/%E4%BD%BF%E7%94%A8github%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/ -&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;本文简单介绍使用GitHub对代码进行版本控制，包括&lt;strong&gt;添加SSHkey&lt;/strong&gt;、&lt;strong&gt;配置Git&lt;/strong&gt;、&lt;strong&gt;使用Git创建版本库&lt;/strong&gt;并在GitHub上进行管理，主要目的是对学习内容进行总结以及方便日后查阅。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;配置git&#34;&gt;配置Git&lt;/h2&gt;
+&lt;hr&gt;
+&lt;pre&gt;&lt;code&gt;    git config --global user.name 你的英文名
+    git config --global user.email 你的邮箱
+    git config --global push.default matching
+    git config --global core.quotepath false
+    git config --global core.editor &amp;quot;vim&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;五句话，依次运行。&lt;/p&gt;
+&lt;h2 id=&#34;使用git创建版本库&#34;&gt;使用Git创建版本库&lt;/h2&gt;
+&lt;hr&gt;
+&lt;p&gt;使用 git 有三种方式，请按照需求选择。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;只在本地使用&lt;/li&gt;
+&lt;li&gt;将本地仓库上传到 GitHub&lt;/li&gt;
+&lt;li&gt;下载 GitHub 上的仓库&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;其中1+2的最终效果=3&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;1只在本地使用&#34;&gt;1只在本地使用&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;11-初始化&#34;&gt;1.1 初始化&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;创建目录作为我们的项目目录：&lt;code&gt;mkdir git-demo-1&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;进入目录 &lt;code&gt;cd git-demo-1&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;git init&lt;/code&gt;，这句命令会在 &lt;code&gt;git-demo-1&lt;/code&gt; 里创建一个 &lt;code&gt;.git&lt;/code&gt; 目录&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;ls -la&lt;/code&gt; 你就会看到 &lt;code&gt;.git&lt;/code&gt;目录，它就是一个「仓库」，不要进去看。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在 &lt;code&gt;git-demo-1&lt;/code&gt;目录里面添加任意文件，假设我们添加了两个文件，分别是 &lt;code&gt;index.html&lt;/code&gt; 和 &lt;code&gt;css/style.css&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;touch index.html
+mkdir css
+touch css/style.css
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;运行 &lt;code&gt;git status -sb&lt;/code&gt; 可以看到文件前面有 &lt;code&gt;??&lt;/code&gt; 号&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    touch index.html
+    mkdir css
+    touch css/style.css
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这个 &lt;code&gt;??&lt;/code&gt; 表示 git不知道你要怎么对待这些变动。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;code&gt;git add&lt;/code&gt; 将文件添加到「暂存区」&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;你可以一个一个地 add&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    git add index.html
+    git add css/style.css
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;你也可以一次性 add&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git add .
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;意思是把当前目录（.表示当前目录）里面的变动都加到「暂存区」&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;再次运行 &lt;code&gt;git status -sb&lt;/code&gt;，可以看到 &lt;code&gt;??&lt;/code&gt; 变成了 A&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;## Initial commit on master
+A  css/style.css
+A  index.html
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;A 的意思就是添加，也就是说你告诉 git，这些文件我要加到仓库里&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使用 &lt;code&gt;git commit -m &amp;quot;信息&amp;quot;&lt;/code&gt; 将你 add过的内容「正式提交」到本地仓库（&lt;code&gt;.git&lt;/code&gt;就是本地仓库），并添加一些注释信息，方便日后查阅&lt;/li&gt;
+&lt;li&gt;你可以一个一个地 commit&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;git add index.html
+git add css/style.css
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;你也可以一次性 commit&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git commit . -m &amp;quot;添加了几个文件&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;再再次运行 &lt;code&gt;git status -sb&lt;/code&gt;，发现没有文件变动了，这是因为文件的变动已经记录在仓库里了。&lt;/li&gt;
+&lt;li&gt;这时你使用 &lt;code&gt;git log&lt;/code&gt; 就可以看到历史上的变动：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;commit f0d95058cd32a332b98967f6c0a701c64a00810a
+ Author: frankfang &amp;lt;frankfang1990@gmail.com&amp;gt;
+ Date:   Thu Sep 28 22:30:43 2017 +0800
+
+添加几个文件
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;以上就是 &lt;code&gt;git add&lt;/code&gt; / &lt;code&gt;git commit&lt;/code&gt; 的一次完整过程。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;12-文件变动&#34;&gt;1.2 文件变动&lt;/h4&gt;
+&lt;p&gt;如果我想继续改文件，应该怎么做呢？&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;start css/style.css&lt;/code&gt; 会使用默认的编辑器打开 &lt;code&gt;css/style.css&lt;/code&gt;（macOS 上对应的命令是 &lt;code&gt;open css/style.css&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;然后我们在 &lt;code&gt;css/style.css&lt;/code&gt; 里写入 &lt;code&gt;body {background: red}&lt;/code&gt;，保存退出&lt;/li&gt;
+&lt;li&gt;运行 &lt;code&gt;git status -sb&lt;/code&gt; 发现提示中有一个 &lt;code&gt;M&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;## master
+M css/style.css
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这个 &lt;code&gt;M&lt;/code&gt; 的意思就是 Modified，表示这个文件被修改了&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;此时你如果想让改动保存到仓库里，你需要先 &lt;code&gt;git add css/style.css&lt;/code&gt; 或者也可以 &lt;code&gt;git add .&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意&lt;/p&gt;
+&lt;p&gt;：由于这个&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;css/style.css
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以前被我们 add 过，你往文章上面看，我们是 add 过&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;css/style.css
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;的，所以此处的 git add操作可以省略，但我建议你使用 git 的前一个月，不要省略 git add。&lt;/p&gt;
+&lt;p&gt;换句话说，每一次改动，都要经过 &lt;code&gt;git add&lt;/code&gt; 和 &lt;code&gt;git commit&lt;/code&gt; 两个命令，才能被添加到 .git 本地仓库里。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;再次运行 &lt;code&gt;git status -sb&lt;/code&gt; 发现 M 有红色变成了绿色。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;运行 git commit -m` &amp;ldquo;更新 css/style.css&amp;rdquo;，这个改动就被提交到 .git 本地仓库了。再说一次，不要去 .git 目录里面。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;再再次运行 &lt;code&gt;git status -sb&lt;/code&gt;，会发现没有变更了，这说明所有变动都被本地仓库记录在案了。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;git status -sb&lt;/code&gt; 是什么意思：&lt;/strong&gt;
+&lt;code&gt;git status&lt;/code&gt; 是用来显示当前的文件状态的，哪个文件变动了，方便你进行 &lt;code&gt;git add&lt;/code&gt; 操作。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-s&lt;/code&gt; 的意思是显示总结（summary）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-b&lt;/code&gt; 的意思是显示分支（branch）&lt;/li&gt;
+&lt;li&gt;所以 &lt;code&gt;-sb&lt;/code&gt; 的意思是显示总结和分支。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;13-总结&#34;&gt;1.3 总结&lt;/h4&gt;
+&lt;p&gt;至此，我们来总结一下用到的命令&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;git init&lt;/code&gt;，初始化本地仓库 &lt;code&gt;.git&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;git status -sb&lt;/code&gt;，显示当前所有文件的状态&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;git add 文件路径&lt;/code&gt;，用来将变动加到暂存区&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;git commit -m &amp;quot;信息&amp;quot;&lt;/code&gt;，用来正式提交变动，提交至 &lt;code&gt;.git&lt;/code&gt; 仓库&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果有新的变动，我们只需要依次执行 &lt;code&gt;git add xxx&lt;/code&gt; 和 &lt;code&gt;git commit -m &#39;xxx&#39;&lt;/code&gt; 两个命令即可。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;别看本教程废话那么多，其实就这一句有用！先 add 再 commit，行了，你学会 git 了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;git log&lt;/code&gt; 查看变更历史&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;2-将本地仓库上传到-github&#34;&gt;2 将本地仓库上传到 GitHub&lt;/h3&gt;
+&lt;hr&gt;
+&lt;p&gt;如何将我们这个 git-demo-1 上传到 GitHub 呢？&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;在 GitHub 上新建一个空仓库，名称随意，一般可以跟本地目录名一致，也叫做&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git-demo-1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E4%BD%BF%E7%94%A8GitHub%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8Git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/1460000013760572.jpg&#34; alt=&#34;建立空仓库&#34;&gt;&lt;/p&gt;
+&lt;p&gt;按照截图所示，除了仓库名，&lt;strong&gt;其他的什么都别改&lt;/strong&gt;，这样你才能创建一个&lt;strong&gt;空仓库&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;点击创建按钮之后，GitHub 就会把后续的操作全告诉你，如图&lt;/p&gt;
+&lt;p&gt;请点击一下 ssh&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E4%BD%BF%E7%94%A8GitHub%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8Git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/1460000014076777.jpg&#34; alt=&#34;点击SSH&#34;&gt;
+&lt;img src=&#34;https://syaofox.github.io/%E4%BD%BF%E7%94%A8GitHub%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8Git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/1460000014076778.jpg&#34; alt=&#34;点击SSH2&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;点击一下 ssh&lt;/strong&gt;，你就会使用默认的 HTTPS 地址。但是千万不要使用 HTTPS 地址，因为 HTTPS地址使用起来特别麻烦，每次都要输入密码，而 SSH 不用输入用户名密码。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;为什么 SSH 不用密码呢，因为你已经上传了 SSH public key。详情请看上一篇博文使用GitHub（一）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;由于我们已经有本地仓库了，所以图中&lt;strong&gt;下面半部分&lt;/strong&gt;就是你需要的命令，我们一行一行拷贝过来执行&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;再次点击 SSH 按钮&lt;/li&gt;
+&lt;li&gt;命令 &lt;code&gt;git remote add origin git@github.com:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/git-demo-1.git&lt;/code&gt;，复制并运行它&lt;/li&gt;
+&lt;li&gt;复制第二行 &lt;code&gt;git push -u origin master&lt;/code&gt;，运行它&lt;/li&gt;
+&lt;li&gt;刷新当前页面，你的仓库就上传到 GitHub 了.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在建立空库的情况下，以上两步在本地建一个Git仓库和将Git仓库上传到GitHub上加起来就等同于下面的第3条。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;3-直接在-github-创建一个仓库然后下载到本地&#34;&gt;3 直接在 GitHub 创建一个仓库，然后下载到本地&lt;/h3&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;上面两步讲了&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在本地创建仓库&lt;/li&gt;
+&lt;li&gt;将本地仓库上传到 GitHub&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这里讲第三种用法，那就是直接在 GitHub 创建一个仓库，然后下载到本地&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;在GitHub 上新建一个仓库&lt;code&gt;git-demo-2&lt;/code&gt;，这次就不创建空仓库了，而是自带 &lt;code&gt;README&lt;/code&gt; 和 &lt;code&gt;Lisence&lt;/code&gt; 的仓库，创建截图如下：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E4%BD%BF%E7%94%A8GitHub%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8Git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/1460000013760573.jpg&#34; alt=&#34;创建新的仓库&#34;&gt;
+然后点击创建按钮。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;这样一来，这个仓库就会自动拥有三个文件：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E4%BD%BF%E7%94%A8GitHub%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8Git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/1460000013760574.jpg&#34; alt=&#34;仓库文件&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使用 &lt;code&gt;git clone&lt;/code&gt; 命令下载到本地&lt;/li&gt;
+&lt;li&gt;点击页面中唯一的绿色按钮「clone or download」，会看到一个弹出层&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E4%BD%BF%E7%94%A8GitHub%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8Git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/1460000013760575.jpg&#34; alt=&#34;clone&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; 请确保弹出层里的地址是 SSH 地址，也就是 git@github.com 开头的地址，如果不是，就点击 Use SSH 按钮，就**点击
+&amp;gt; Use SSH 按钮**。然后复制这个地址。
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;打开 Git Bash，找一个安全的目录，比如 &lt;code&gt;~/Desktop&lt;/code&gt; 。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;运行 &lt;code&gt;git clone 你刚才得到的以git@github.com开头的地址&lt;/code&gt;，运行完了你就会发现，桌面上多出一个 &lt;code&gt;git-demo-2&lt;/code&gt;。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;cd git-demo-2&lt;/code&gt;进入这个目录。&lt;/li&gt;
+&lt;li&gt;运行 ls -la 你会看到，远程目录的所有文件都在这里出现了，另外你还看到了 &lt;code&gt;.git&lt;/code&gt; 本地仓库。这时你就可以添加文件，git add，然后 git commit 了。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;三种方式都说完了，它们分别是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在本地创建仓库&lt;/li&gt;
+&lt;li&gt;将本地仓库上传到 GitHub&lt;/li&gt;
+&lt;li&gt;下载 GitHub 上的仓库到本地&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其实呢，还有很多种不同的方式，但是，记住这几种就行了，够用了。我们并不想要了解 git 的所有高级用法，我们的目的很明确：能通过 Git
+命令使用 GitHub 就行&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;总结：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;回顾一遍已经学到的命令：（这次只多了一个 git clone 命令）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;git clone git@github.com:xxxx&lt;/code&gt;，下载仓库&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;git init&lt;/code&gt;，初始化本地仓库 .git&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;git status -sb&lt;/code&gt;，显示当前所有文件的状态&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;git add 文件路径&lt;/code&gt;，用来将变动加到暂存区&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;git commit -m &amp;quot;信息&amp;quot;&lt;/code&gt;，用来正式提交变动，提交至 .git 仓库&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果有新的变动，我们只需要依次执行 &lt;code&gt;git add xxx&lt;/code&gt; 和 &lt;code&gt;git commit -m &#39;xxx&#39;&lt;/code&gt; 两个命令即可。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;别看本教程废话那么多，其实就这一句有用！先 add 再 commit，行了，学会 git 了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;git log&lt;/code&gt; 查看变更历史&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;如何上传更新&#34;&gt;如何上传更新&lt;/h2&gt;
+&lt;p&gt;你在本地目录有任何变动，只需按照以下顺序就能上传：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git add 文件路径
+git commit -m &amp;quot;信息&amp;quot;
+git pull  （一定不要忘记这一个命令）
+git push
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;为何要push之前要pull？
+&lt;strong&gt;push是推送&lt;/strong&gt;，&lt;strong&gt;pull是拉取&lt;/strong&gt;的意思。假如你在远端修改了文件，然后本地并没有同步更新，这时候你push的时候就会出现错误，因为两端不同步了。多人合作的时候这种问题就会出现的更多，所以现在养成push之前要pull的习惯。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;下面是例子&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd git-demo-1
+touch index2.html
+git add index2.html
+git commit -m &amp;quot;新建 index2.html&amp;quot;
+git pull
+git push
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后去 &lt;code&gt;git-demo-1&lt;/code&gt; 的 GitHub 页面，就能看到 &lt;code&gt;index2.html&lt;/code&gt; 出现在里面了。&lt;/p&gt;
+- https://syaofox.github.io/coding/%E4%BD%BF%E7%94%A8github%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/ - Syaofox 2020 copyright.</description>
+        </item>
+    
+    
+  </channel>
+</rss> 

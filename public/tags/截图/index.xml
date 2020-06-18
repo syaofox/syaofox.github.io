@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>截图 on 霜天晓角</title>
+    <link>https://syaofox.github.io/tags/%E6%88%AA%E5%9B%BE/</link>
+    <description>Recent content in 截图 on 霜天晓角</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Syaofox 2020 copyright.</copyright>
+    <lastBuildDate>Thu, 18 Jun 2020 10:45:18 +0800</lastBuildDate>
+    
+	<atom:link href="https://syaofox.github.io/tags/%E6%88%AA%E5%9B%BE/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>截图时如何截取右键菜单？</title>
+      <link>https://syaofox.github.io/windows/%E6%88%AA%E5%9B%BE%E6%97%B6%E5%A6%82%E4%BD%95%E6%88%AA%E4%BD%8F%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/</link>
+      <pubDate>Thu, 18 Jun 2020 10:45:18 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/windows/%E6%88%AA%E5%9B%BE%E6%97%B6%E5%A6%82%E4%BD%95%E6%88%AA%E4%BD%8F%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/</guid>
+      <description>博主昨天在写博客时，想要将右键菜单的图给截下来保存。于是乎，截图快捷键走起来。
+Ctrl + Alt + A
+但是却发现利用QQ的截图快捷键竟然做不到，一按快捷键右键菜单就收起来了。多次尝试不果，所以就百度一下解决方案，当然很快就找到了答案。于是也写下来做下记录，希望能给还不知道的同学一点点帮助^_^。
+方法就是：
+右键呼出菜单，然后鼠标移动到某选项上，按住鼠标左键不动，然后再按截图的快捷键，这样就可以截到右键菜单了。
+快试一下吧！！！</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>搜索 on 霜天晓角</title>
+    <link>https://syaofox.github.io/tags/%E6%90%9C%E7%B4%A2/</link>
+    <description>Recent content in 搜索 on 霜天晓角</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Syaofox 2020 copyright.</copyright>
+    <lastBuildDate>Thu, 18 Jun 2020 10:12:43 +0800</lastBuildDate>
+    
+	<atom:link href="https://syaofox.github.io/tags/%E6%90%9C%E7%B4%A2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Windows7 高级搜索</title>
+      <link>https://syaofox.github.io/windows/windows7-%E9%AB%98%E7%BA%A7%E6%90%9C%E7%B4%A2/</link>
+      <pubDate>Thu, 18 Jun 2020 10:12:43 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/windows/windows7-%E9%AB%98%E7%BA%A7%E6%90%9C%E7%B4%A2/</guid>
+      <description>在 Windows 7 中进行搜索可以简单到只需在搜索框中键入几个字母，但也有一些高级搜索技术以供使用。在搜索文件时，您不一定得了解这些技巧，但这些技巧确实能提供一些帮助，具体取决于搜索的位置和搜索的对象。
+一般搜索 如果知道文件类型，则可以在搜索框中仅输入文件扩展名（例如，“JPG”）。
+添加运算符 细化搜索的一种方法是使用运算符 AND、OR 和 NOT。当您使用这些运算符时，需要以全大写字母键入。
+AND tropical AND island 查找同时包含“tropical”和“island”这两个单词（即使这两个单词位于文件中的不同位置）的文件。如果只进行简单的文本搜索，这种方式与键入“tropical island”所得到的结果相同。
+NOT tropical NOT island 查找包含“tropical”但不包含“island”单词的文件。
+OR tropical OR island 查找包含“tropical”或“island”单词的文件。
+使用关键字细化搜索 更多用法参考 微软官方文档 Advanced Query Syntax
+   关键字 用途     System.FileName:~&amp;lt;&amp;quot;notes&amp;rdquo; 名称以“notes”开头的文件。~&amp;lt; 表示“开头”。   System.FileName:=&amp;quot;quarterly report&amp;rdquo; 名为“quarterly report”的文件。= 表示“完全匹配”。   System.FileName:~=&amp;quot;pro&amp;rdquo; 文件名包含单词“pro”或包含作为其他单词（例如“process”或“procedure”）一部分的字符 pro。~= 表示“包含”。   System.Kind:&amp;lt;&amp;gt;picture 不是图片的文件。&amp;lt;&amp;gt; 表示“不是”。   System.DateModified:05/25/2010 在该日期修改的文件。您也可以键入“System.DateModified:2010”以查找在这一年中任何时间更改的文件。   System.Author:~!&amp;ldquo;herb&amp;rdquo; 创建者的名字中不含“herb”的文件。~!</description>
+    </item>
+    
+  </channel>
+</rss>
