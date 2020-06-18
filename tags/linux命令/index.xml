@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux命令 on 霜天晓角</title>
+    <link>https://syaofox.github.io/tags/linux%E5%91%BD%E4%BB%A4/</link>
+    <description>Recent content in Linux命令 on 霜天晓角</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Syaofox 2020 copyright.</copyright>
+    <lastBuildDate>Thu, 18 Jun 2020 12:03:25 +0800</lastBuildDate>
+    
+	<atom:link href="https://syaofox.github.io/tags/linux%E5%91%BD%E4%BB%A4/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Linux命令行帮助解析</title>
+      <link>https://syaofox.github.io/linux/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B8%AE%E5%8A%A9%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Thu, 18 Jun 2020 12:03:25 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B8%AE%E5%8A%A9%E8%A7%A3%E6%9E%90/</guid>
+      <description>&lt;p&gt;作为Linux小菜，使用Linux终端命令时总是不知到如何使用相关的参数，如-p ，-r ，使用-和不使用-，一个-和两个&amp;ndash;，有时能够在网上查询别人的使用方法，可是使用一次，第二次又忘记了，所以自己还是得掌握查看帮助文档的方法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rsync 命令比对文件及增量同步</title>
+      <link>https://syaofox.github.io/linux/rsync%E5%91%BD%E4%BB%A4%E6%AF%94%E5%AF%B9%E6%96%87%E4%BB%B6%E5%8F%8A%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5/</link>
+      <pubDate>Thu, 18 Jun 2020 11:56:31 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/rsync%E5%91%BD%E4%BB%A4%E6%AF%94%E5%AF%B9%E6%96%87%E4%BB%B6%E5%8F%8A%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5/</guid>
+      <description>rsync基于ssh协议实现高效率远程或本地文件复制，传输速度比scp快。复制文件时会比对本地文件与远程主机的文件，仅复制有差异的文件。
+常用选项： -q,--quiet：suppress non-error messages 静默模式 -v,--verbose：increase verbosity -a,--archive：archive mode; equals -rlptgoD (no -H,-A,-X) 归档模式，相当于-rlptgoD,不包括(no -H,-A,-X);最常用的参数 -H,--hard-links：preserve hard links 保留硬链接 -A,--acls：preserve ACLs (implies --perms) 保留ACL权限 -X,--xattrs：preserve extended attributes 保留扩展属性 -c, --checksum：skip based on checksum, not mod-time &amp;amp; size -r,--recursive：recurse into directories 递归 -l,--links：copy symlinks as symlinks 保留软链接,而不跟踪原文件 -p,--perms：preserve permissions 保留权限 -t,--times：preserve modification times 保留mtime -g,--group：preserve group 保留属组 -o,--owner：preserve owner (super-user only) 保留属主 -D：same as --devices,--specials 保留设备文件和特殊文件 --devices：preserve device files (super-user only) --specials：preserve special files -z,--compress：compress file data during the transfer 输过程中压缩文件数据 -n, --dry-run：perform a trial run with no changes made 干跑测试 -u,--update：skip files that are newer on the receiver 增量同步，跳过比本地较新的文件 --delete：delete extraneous files from destination dirs 删除目标目录多余文件 --progress：show progress during transfer 显示传输进度 本地复制 rsync -av ansible_auto/public/uy-s-192-v01.</description>
+    </item>
+    
+    <item>
+      <title>使用screen来实现多任务不断线操作命令</title>
+      <link>https://syaofox.github.io/linux/%E4%BD%BF%E7%94%A8screen%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8D%E6%96%AD%E7%BA%BF%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Thu, 18 Jun 2020 10:59:04 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/%E4%BD%BF%E7%94%A8screen%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8D%E6%96%AD%E7%BA%BF%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</guid>
+      <description>前言 我们用VPS执行一个系统安装，就输入命令然后在那一直等。如果出现掉线或者断网死机的情况，我们还得重新安装。如果能使用上screen命令可以实现无人值守的效果。我们可以同时操作多个任务，也可以关机操作。所以说很方便。
+方法 1、安装方法：
+yum install screen #CentOS apt-get install screen #Debian或者Ubuntu 2、创建一个screen会话：
+screen -S xx #xx为创建会话的名称 3、隐藏并保留当前会话窗口：
+按Ctrl+A，再按&amp;#34;D&amp;#34;键 如果怕中途掉线或者要离开的话，可以使用。
+4、恢复会话窗口：
+screen -r xx #恢复名字为xx的会话 如果在恢复会话的时候忘记了或者没有设定会话名称我们就要执行：
+screen -ls 他会列出你所有的会话列表，然后使用：
+screen -r 会话名称 来恢复会话窗口。
+5、关闭会话窗口：
+exit screen的好处就是不会因为远程的操作因网络问题中断掉。</description>
+    </item>
+    
+  </channel>
+</rss>

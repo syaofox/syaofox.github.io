@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linuxes on 霜天晓角</title>
+    <link>https://syaofox.github.io/linux/</link>
+    <description>Recent content in Linuxes on 霜天晓角</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Syaofox 2020 copyright.</copyright>
+    <lastBuildDate>Thu, 18 Jun 2020 12:09:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://syaofox.github.io/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ubuntu1604 配置 ZFS Event Daemon</title>
+      <link>https://syaofox.github.io/linux/ubuntu1604-%E9%85%8D%E7%BD%AEzfs-event-daemon/</link>
+      <pubDate>Thu, 18 Jun 2020 12:09:42 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/ubuntu1604-%E9%85%8D%E7%BD%AEzfs-event-daemon/</guid>
+      <description>编辑 ZED 配置文件 编辑 /etc/zfs/zed.d/zed.rc ## # zed.rc # # This file should be owned by root and permissioned 0600. ## ## # Absolute path to the debug output file. # ZED_DEBUG_LOG=&amp;quot;/tmp/zed.debug.log&amp;quot;## # Email address of the zpool administrator for receipt of notifications; # multiple addresses can be specified if they are delimited by whitespace. # Email will only be sent if ZED_EMAIL_ADDR is defined. # Disabled by default; uncomment to enable.</description>
+    </item>
+    
+    <item>
+      <title>Crontab 脚本错误日志和正确的输出写入到文件</title>
+      <link>https://syaofox.github.io/linux/crontab-%E8%84%9A%E6%9C%AC%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97%E5%92%8C%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%BE%93%E5%87%BA%E5%86%99%E5%85%A5%E5%88%B0%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Thu, 18 Jun 2020 12:08:17 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/crontab-%E8%84%9A%E6%9C%AC%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97%E5%92%8C%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%BE%93%E5%87%BA%E5%86%99%E5%85%A5%E5%88%B0%E6%96%87%E4%BB%B6/</guid>
+      <description>crontab 脚本运行时,需要把运行日志写入到日志中方便查阅,本文介绍一下如果控制输出内容
+ 如果crontab不重定向输出，并且crontab所执行的命令有输出内容的话，是一件非常危险的事情。因为该输出内容会以邮件的形式发送给用户，内容存储在邮件文件  /var/spool/mail/$user  如果命令执行比较频繁（如每分钟一次），或者命令输出内容较多，会使这个邮件文件不断追加内容，文件越来越大。而邮件文件一般存放在根分区，根分区一般相对较小，所以会造成根分区写满而无法登录服务器。
+  不输出内容  */5 * * * * /root/XXXX.sh &amp;amp;&amp;gt;/dev/null 2&amp;gt;&amp;amp;1  将正确和错误日志都输出到 /tmp/load.log  */1 * * * * /root/XXXX.sh &amp;gt; /tmp/load.log 2&amp;gt;&amp;amp;1 &amp;amp;  只输出正确日志到 /tmp/load.log  */1 * * * * /root/XXXX.sh &amp;gt; /tmp/load.log &amp;amp; 等同于 */1 * * * * /root/XXXX.sh 1&amp;gt;/tmp/load.log &amp;amp;  只输出错误日志到 /tmp/load.log  */1 * * * * /root/XXXX.sh 2&amp;gt; /tmp/load.log &amp;amp;  名词解释</description>
+    </item>
+    
+    <item>
+      <title>Docker Hub 镜像加速器</title>
+      <link>https://syaofox.github.io/linux/docker-hub-%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8/</link>
+      <pubDate>Thu, 18 Jun 2020 12:06:21 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/docker-hub-%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8/</guid>
+      <description>&lt;p&gt;国内从 Docker Hub 拉取镜像有时会遇到困难，此时可以配置镜像加速器。Docker 官方和国内很多云服务商都提供了国内加速器服务。*&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Docker 容器使用宿主机同网段IP</title>
+      <link>https://syaofox.github.io/linux/docker-%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%90%8C%E7%BD%91%E6%AE%B5ip/</link>
+      <pubDate>Thu, 18 Jun 2020 12:05:03 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/docker-%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%90%8C%E7%BD%91%E6%AE%B5ip/</guid>
+      <description>工作需要临时启动一个 gitlab,无奈 gitlab 需要 ssh 的 22 端口;而使用传统网桥方式映射端口则 clone 等都需要输入端口号,很麻烦;22 端口宿主机又有 sshd 监听;研究了下 docker 网络,记录一下如何分配宿主机网段 IP*
+创建 macvlan 网络 关于 Docker 网络模式这里不再细说;由于默认的网桥方式无法满足需要,所以需要创建一个 macvlan 网络
+docker network create -d macvlan --subnet=172.16.0.0/19 --gateway=172.16.0.1 -o parent=eth0 gitlab-net  --subnet: 指定网段(宿主机) --gateway: 指定网关(宿主机) parent: 注定父网卡(宿主机)  创建以后可以使用 docker network ls 查看
+➜ ~ docker network ls NETWORK ID NAME DRIVER SCOPE a4a2980c9165 agent_default bridge local a0f29102b413 bridge bridge local 2f46dc70b763 gitlab-net macvlan local 51bd6222530f host host local 7a14a09c3cfc none null local 创建使用容器[] 接下来创建容器指定网络即可</description>
+    </item>
+    
+    <item>
+      <title>Linux命令行帮助解析</title>
+      <link>https://syaofox.github.io/linux/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B8%AE%E5%8A%A9%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Thu, 18 Jun 2020 12:03:25 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B8%AE%E5%8A%A9%E8%A7%A3%E6%9E%90/</guid>
+      <description>&lt;p&gt;作为Linux小菜，使用Linux终端命令时总是不知到如何使用相关的参数，如-p ，-r ，使用-和不使用-，一个-和两个&amp;ndash;，有时能够在网上查询别人的使用方法，可是使用一次，第二次又忘记了，所以自己还是得掌握查看帮助文档的方法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux上面碰到鬼畜逆天级的软件依赖关系大家都是怎么解决的</title>
+      <link>https://syaofox.github.io/linux/linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/</link>
+      <pubDate>Thu, 18 Jun 2020 11:59:08 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/</guid>
+      <description>硬刚Linux软件安装依赖问题的办法有很多，我给他分为两大类！
+一类合法，另一类暴力。
+先说合法的解决方案 也是所有人都知道的解决方案：
+sudo apt-get install xxxxx 一般情况下，它会连带软件的依赖一起安装。如果这个过程中依赖安装失败，就执行
+sudo apt-get -f install 一次不行两次，只要源里有，只要能保证依赖关系是顺畅的，再多的依赖多执行几次都能装完。
+如果有依赖源里找不到。这个坑就踩不过去了，解决办法是：找到缺失的库的安装包手动下载下来。然后通过
+sudo dpkg -i xxxx.deb 安装。需要手动下载安装包的寻找主要有两个途径：
+ 百度找，直接搜包名+版本号并带上关键字deb 通过源。  百度直接找库就不多说了，额外说一下通过源怎么找。
+你在网上搜ubuntu国内源。会找到很多类似这样的写法：
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse 这其实即是给apt-get工具配置的源地址，也是个实际的网址，你可以直接从浏览器里访问到，比如上面这个
+https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse 它其实代表的是： https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/xenial/ 这个路径下的main，restricted，universe，multiverse 这几个目录：
+apt-get工具会在这四个的目录下自动检索对应的软件包下载并安装。
+在一些特殊情况，比如机器网络受限，但浏览器开了代理可以访问外网的情况下。apt-get无法从源里获取软件，你可以从这里手动找到对应的软件包下载下来然后使用dpkg安装。
+比如这里，手动找到mysql的安装包路径，再点击就可以直接下载：
+刚才说道apt-get install无法修复依赖，通过手动下载然后把这些缺失的安装包装上之后，就可以通过apt把刚才装不上的包装上。
+这是非常合理合法的解决方案。
+再补充一种合法技巧：可以尝试用apt-get install安装本地软件。
+这是因为：
+ 依赖检测和软件安装不是apt做的，而是dpkg做的。 依赖不满足自动修复依赖才是apt做的。  所以，如果你下载了一个deb的安装包通过dpkg 安装，但依赖不满足的话，他只会提示你依赖缺失，但他不会自动寻找并安装依赖，虽然你仍然可以去下载安装缺失的依赖，但他如果缺失十个八个的，你再手动下载然后dpkg安装也不现实了。
+举个例子：我这里下载了一个搜狗输入法的安装包，dpkg -i无法安装但是可以通过apt-get install 装上
+要注意：通过apt-get安装本地软件一定要写路径，相对绝对都可以，但不能只写包名。不然它会去源里面找不会装本地的。
+上面的方案几乎可以解决80%的安装依赖问题。总结一下：
+ 安装软件就用：sudo apt-get install xxxx 遇到依赖问题 ：sudo apt-get -f install  如果有缺失无法安装，就去网上下，缺什么下什么，下载下来后sudo apt-get install .</description>
+    </item>
+    
+    <item>
+      <title>Rsync 命令比对文件及增量同步</title>
+      <link>https://syaofox.github.io/linux/rsync%E5%91%BD%E4%BB%A4%E6%AF%94%E5%AF%B9%E6%96%87%E4%BB%B6%E5%8F%8A%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5/</link>
+      <pubDate>Thu, 18 Jun 2020 11:56:31 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/rsync%E5%91%BD%E4%BB%A4%E6%AF%94%E5%AF%B9%E6%96%87%E4%BB%B6%E5%8F%8A%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5/</guid>
+      <description>rsync基于ssh协议实现高效率远程或本地文件复制，传输速度比scp快。复制文件时会比对本地文件与远程主机的文件，仅复制有差异的文件。
+常用选项： -q,--quiet：suppress non-error messages 静默模式 -v,--verbose：increase verbosity -a,--archive：archive mode; equals -rlptgoD (no -H,-A,-X) 归档模式，相当于-rlptgoD,不包括(no -H,-A,-X);最常用的参数 -H,--hard-links：preserve hard links 保留硬链接 -A,--acls：preserve ACLs (implies --perms) 保留ACL权限 -X,--xattrs：preserve extended attributes 保留扩展属性 -c, --checksum：skip based on checksum, not mod-time &amp;amp; size -r,--recursive：recurse into directories 递归 -l,--links：copy symlinks as symlinks 保留软链接,而不跟踪原文件 -p,--perms：preserve permissions 保留权限 -t,--times：preserve modification times 保留mtime -g,--group：preserve group 保留属组 -o,--owner：preserve owner (super-user only) 保留属主 -D：same as --devices,--specials 保留设备文件和特殊文件 --devices：preserve device files (super-user only) --specials：preserve special files -z,--compress：compress file data during the transfer 输过程中压缩文件数据 -n, --dry-run：perform a trial run with no changes made 干跑测试 -u,--update：skip files that are newer on the receiver 增量同步，跳过比本地较新的文件 --delete：delete extraneous files from destination dirs 删除目标目录多余文件 --progress：show progress during transfer 显示传输进度 本地复制 rsync -av ansible_auto/public/uy-s-192-v01.</description>
+    </item>
+    
+    <item>
+      <title>Intel NUC 冥王峡谷（NUC8i7HVK）安装 Ubuntu18 AMD 显卡的驱动方法</title>
+      <link>https://syaofox.github.io/linux/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Thu, 18 Jun 2020 11:23:52 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/</guid>
+      <description>升级 BIOS  从 这里 下载BIOS文件 按照 说明 更新 BIOS  安装 Ubuntu  BIOS内关闭安全启动  更新内核 AMD GPU的驱动程序随Linux 4.17一起提供，根据测试，只有4.18才提供正式支持，所以必须升级内核。
+手动升级
+wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-headers-4.18.0-041800rc5_4.18.0-041800rc5.201807152130_all.deb wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-headers-4.18.0-041800rc5-generic_4.18.0-041800rc5.201807152130_amd64.deb wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-image-unsigned-4.18.0-041800rc5-generic_4.18.0-041800rc5.201807152130_amd64.deb wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-modules-4.18.0-041800rc5-generic_4.18.0-041800rc5.201807152130_amd64.deb sudo dpkg -i linux-*.deb 或者
+sudo add-apt-repository ppa:teejee2008/ppa sudo apt update sudo apt install ukuu 从GUI运行UKUU，选择Linux Kernel 4.18.3，重新启动。
+ 注意：确保BIOS内安全启动已经关闭
+ 重启后查看内核
+uname -a 添加并更新 Mesa sudo add-apt-repository ppa:ubuntu-x-swat/updates sudo apt dist-upgrade 获得AMD Vega M Linux驱动程序并将其放在适当的目录中 wget -m -np https://people.freedesktop.org/~agd5f/radeon_ucode/vegam/ sudo cp people.</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu 18.04 LTS 更换国内源——解决终端下载速度慢的问题</title>
+      <link>https://syaofox.github.io/linux/ubuntu18-04%E6%8D%A2%E6%BA%90/</link>
+      <pubDate>Thu, 18 Jun 2020 11:22:36 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/ubuntu18-04%E6%8D%A2%E6%BA%90/</guid>
+      <description>&lt;p&gt;最近装了ubuntu18.04 LTS，下载软件有点慢，换国内源&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu18 04 修改DNS</title>
+      <link>https://syaofox.github.io/linux/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/</link>
+      <pubDate>Thu, 18 Jun 2020 11:20:07 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/</guid>
+      <description>&lt;p&gt;最近使用了最新版的ubuntu 18.04运行一些服务，发现服务器经常出现无法解析域名的情况。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu 18 4 HDMI声音有杂音的修复方法</title>
+      <link>https://syaofox.github.io/linux/ubuntu-18-4-hdmi%E5%A3%B0%E9%9F%B3%E6%9C%89%E6%9D%82%E9%9F%B3%E7%9A%84%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Thu, 18 Jun 2020 11:19:25 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/ubuntu-18-4-hdmi%E5%A3%B0%E9%9F%B3%E6%9C%89%E6%9D%82%E9%9F%B3%E7%9A%84%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/</guid>
+      <description>&lt;p&gt;显示器自带音箱，通过hdmi连接电脑，安装完ubuntu 18后声音出现比较大的杂音&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu Server 18 04 LTS 上安装Virtual Box 并配置 PhpVirtualbox</title>
+      <link>https://syaofox.github.io/linux/ubuntu-server-18-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85virtual-box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpvirtualbox/</link>
+      <pubDate>Thu, 18 Jun 2020 11:17:22 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/ubuntu-server-18-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85virtual-box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpvirtualbox/</guid>
+      <description>&lt;p&gt;本教程将指导你在 Ubuntu 18.04 LTS 无头服务器上，一步一步地安装 Oracle VirtualBox。同时，本教程也将介绍如何使用 phpVirtualBox 去管理安装在无头服务器上的 VirtualBox 实例。phpVirtualBox 是 VirtualBox 的一个基于 Web 的前端工具。这个教程也可以工作在 Debian 和其它 Ubuntu 衍生版本上，如 Linux Mint。现在，我们开始。
+原文地址:&lt;a href=&#34;https://www.ostechnix.com/install-oracle-virtualbox-ubuntu-16-04-headless-server/&#34;&gt;https://www.ostechnix.com/install-oracle-virtualbox-ubuntu-16-04-headless-server/&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu Server 20.04 LTS NAS 安装记录</title>
+      <link>https://syaofox.github.io/linux/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Thu, 18 Jun 2020 11:15:54 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
+      <description>Nas 安装 Ubuntu Server 20.04 LTS 系统，基于 zfs on linux
+安装 Ubuntu 注意选中安装ssh,否则安装完成无法远程连接
+更新系统 sudo apt update sudo apt upgrade 设置时区 # 查看当前时区 timedatectl # 列出所有时区 timedatectl list-timezones # 显示亚洲时区 timedatectl list-timezones | grep Asia # 设置时区为上海 sudo timedatectl set-timezone Asia/Shanghai 修改 root 用户登录权限 # 编辑 &amp;#39;/etc/ssh/sshd_config&amp;#39; sudo sed -i &amp;#39;s/#PermitRootLogin prohibit-password/PermitRootLogin yes/&amp;#39; /etc/ssh/sshd_config # 重启SSH服务 sudo systemctl restart ssh # 设置root账号密码 sudo passwd root 初始化硬盘 # 查看分区情况 lsblk # 使用 gdisk 初始化硬盘 添加账号 adduser wife 使用 ZFS 系统 # 安装 zfs apt update apt install zfsutils-linux # 重启 # 创建 RAIDZ2 存储池 /dev/disk/by-id zpool create pool raidz2 /dev/sdb /dev/sdc /dev/sdd /dev/sde # 查看存储池状态 zpool status -v # 查看存储池空间 df -h | grep pool # 创建数据集并设置开启lz4压缩 zfs create -o compression=lz4 pool/share zfs create -o compression=lz4 pool/media zfs create -o compression=lz4 pool/work zfs create -o compression=lz4 pool/me # 修改各数据集挂载点权限 chmod -R 777 /pool/share chmod -R 777 /pool/media chmod -R 777 /pool/work chmod -R 777 /pool/me 安装 samba 并设置 samba 共享 # 安装 samba apt install samba # 备份配置文件 cp /etc/samba/smb.</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu 20.04 LTS 上安装 Docker 与 Docker-Compose</title>
+      <link>https://syaofox.github.io/linux/ubuntu-20-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85-docker-%E4%B8%8E-docker-compose/</link>
+      <pubDate>Thu, 18 Jun 2020 11:14:43 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/ubuntu-20-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85-docker-%E4%B8%8E-docker-compose/</guid>
+      <description>记录 docker 与 docker-compose 安装过程 基于 Ubuntu 20.04 LTS
+安装docker 更新包列表 sudo apt update 安装必备软件包 sudo apt install apt-transport-https ca-certificates curl software-properties-common 将官方Docker存储库的GPG密钥添加到系统 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - 将Docker存储库添加到APT源 sudo add-apt-repository &amp;#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable&amp;#34; 再次更新包列表 sudo apt update 查看缓存apt，确保从Docker repo而不是默认的Ubuntu 16.04 repo安装 apt-cache policy docker-ce 最后，安装Docker sudo apt install docker-ce 安装Docker Compose 下载 sudo curl -L https://github.com/docker/compose/releases/download/1.26.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose 设置权限 sudo chmod +x /usr/local/bin/docker-compose 验证 docker-compose --version </description>
+    </item>
+    
+    <item>
+      <title>ZFS on Linux 使用</title>
+      <link>https://syaofox.github.io/linux/zfs-on-linux-%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Thu, 18 Jun 2020 11:13:29 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/zfs-on-linux-%E4%BD%BF%E7%94%A8/</guid>
+      <description>&lt;p&gt;Linux上的ZFS项目是OpenZFS的实现，旨在在Linux环境中工作。OpenZFS是一个出色的存储平台，它包含传统文件系统，卷管理器等的功能，并且在所有发行版中均具有一致的可靠性，功能和性能。有关OpenZFS的其他信息，请参见&lt;a href=&#34;https://en.wikipedia.org/wiki/OpenZFS&#34;&gt;OpenZFS维基百科文章&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;本文以 Ubuntu 下使用 ZFS 为例&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>基于 ZFS 文件系统的 OpenMediaVault 安装记录</title>
+      <link>https://syaofox.github.io/linux/%E5%9F%BA%E4%BA%8E-zfs-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84-openmediavault-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Thu, 18 Jun 2020 11:12:00 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/%E5%9F%BA%E4%BA%8E-zfs-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84-openmediavault-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
+      <description>记录安装基于 ZFS 文件系统的 OpenMediaVault 安装过程。本篇不是教程，部分步骤略过不表
+安装系统 注意事项：
+  镜像选清华镜像 mirrors.tuna.tsinghua.edu.cn
+  修改引导防止挂载路径变化后无法引导
+获得磁盘UUID
+blkid /dev/sda1: UUID=&amp;#34;8305-3011&amp;#34; TYPE=&amp;#34;vfat&amp;#34; PARTUUID=&amp;#34;2b972aa5-f2fd-475a-8353-77594dc8a1e1&amp;#34; /dev/sda2: UUID=&amp;#34;f4add2f3-efd0-42df-b23d-e453ab285aa3&amp;#34; TYPE=&amp;#34;ext4&amp;#34; PARTUUID=&amp;#34;f120845a-5b97-4eb3-884d-43fb45b41720&amp;#34; /dev/sda3: UUID=&amp;#34;9fcacfa0-cb8d-45be-9efc-3f8d8222f03e&amp;#34; TYPE=&amp;#34;swap&amp;#34; PARTUUID=&amp;#34;acf58c24-4829-41b5-b326-6d295e3d720a&amp;#34; 修改引导文件/boot/grub/grub.cfg
+把boot=/dev/sda2 改成 boot=UUID=f4add2f3-efd0-42df-b23d-e453ab285aa3
+重启测试
+update-grub   修改时区
+  修改密码
+  修改后台登出时间
+  修改网络DHCP -&amp;gt; 静态IP
+  更新系统
+  安装OMV-EXTRAS
+wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/master/install | bash   安装并配置 ZFS 文件系统   更换Proxmox内核
+  重启</description>
+    </item>
+    
+    <item>
+      <title>如何在 Ubuntu 安装 Samba 实现文件夹共享</title>
+      <link>https://syaofox.github.io/linux/%E5%A6%82%E4%BD%95%E5%9C%A8-ubuntu-%E5%AE%89%E8%A3%85-samba-%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%85%B1%E4%BA%AB/</link>
+      <pubDate>Thu, 18 Jun 2020 11:05:14 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/%E5%A6%82%E4%BD%95%E5%9C%A8-ubuntu-%E5%AE%89%E8%A3%85-samba-%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%85%B1%E4%BA%AB/</guid>
+      <description>samba的优点在于可以在WindowsLinuxAndriod之间实现文件夹共享传输文件，适用的范围更广，更推荐大家选择这种方式_
+一、安装samba # 获取最新的版本信息 sudo apt update # 安装samba sudo apt-get install samba # 安装samba客户端（可选） sudo apt-get install smbclient 二、创建samba配置文件 # 创建共享目录 sudo mkdir -p /share # 对目录进行赋权 sudo chmod 777 /share # 对配置文件进行备份 sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak # 修改配置文件 sudo nano /etc/samba/smb.conf # 在配置文件的末尾添加下面的代码： [share] path = /share browseable = yes writable = yes comment = smb share test public = yes # 配置文件的名称解释： [share] # 该共享的共享名 comment = smb share test # 该共享的备注 path = /home/share # 共享路径 allow hosts = host(subnet) # 设置该Samba服务器允许的工作组或者域 deny hosts = host(subnet) # 设置该Samba服务器拒绝的工作组或者域 available = yes|no # 设置该共享目录是否可用 browseable = yes|no # 设置该共享目录是否可显示 writable = yes|no # 指定了这个目录缺省是否可写，也可以用readonly = no来设置可写 public = yes|no # 指明该共享资源是否能给游客帐号访问，guest ok = yes其实和public = yes是一样的 user = user, @group # user设置所有可能使用该共享资源的用户，也可以用@group代表group这个组的所有成员，不同的项目之间用空格或者逗号隔开 valid users = user, @group # 指定能够使用该共享资源的用户和组 invalid users = user, @group # 指定不能够使用该共享资源的用户和组 read list = user, @group # 指定只能读取该共享资源的用户和组 write list = user, @group # 指定能读取和写该共享资源的用户和组 admin list = user, @group # 指定能管理该共享资源（包括读写和权限赋予等）的用户和组 hide dot files = yes|no # 指明是否像UNIX那样隐藏以“.</description>
+    </item>
+    
+    <item>
+      <title>目录级别的冗余存储 SnapRAID</title>
+      <link>https://syaofox.github.io/linux/%E7%9B%AE%E5%BD%95%E7%BA%A7%E5%88%AB%E7%9A%84%E5%86%97%E4%BD%99%E5%AD%98%E5%82%A8-snapraid/</link>
+      <pubDate>Thu, 18 Jun 2020 11:04:17 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/%E7%9B%AE%E5%BD%95%E7%BA%A7%E5%88%AB%E7%9A%84%E5%86%97%E4%BD%99%E5%AD%98%E5%82%A8-snapraid/</guid>
+      <description>在数据存储领域，「备份」和「冗余」是两种常见的数据保护策略。两种策略各有不同的使用场景，对于重要数据，两者一起使用自然是最好了。本文介绍使用 SnapRAID 实现灵活的数据冗余存储。_
+原文地址： https://wzyboy.im/post/1186.html
+一、神奇的奇偶校验 小时候一直觉得 WinRAR 的「恢复卷」功能非常神奇。比如有一个 100 MiB 的压缩文件分成 10 个分卷，每个 10 MiB，创建者又创建了 3 个恢复卷，每个也是 10 MiB。当复制、分发这些卷的时候，如果因为数据传输、磁盘存储等各种原因，导致 10 个数据卷中有部分文件损坏或丢失，只要损坏或丢失的数据卷的数量小于等于恢复卷的数量，就可以用对应数量的恢复卷来修复压缩包。
+小时候不理解为什么丢失一部分数据之后可以用现有的数据重新算出来，现在明白了，最简单的实现便是奇偶校验。
+奇偶校验常见于数据传输中。比如 1 个字节（byte）由 8 个比特（bit）组成，但双方约定：只用 7 bit 来存储数据，剩下 1 bit 作为校验位（parity bit）。校验规则是：如果前面 7 bit 里 1 的数量为奇数（1, 3, 5, 7），则 parity bit 为 1；如果前面 7 bit 里 1 的数量为偶数（0, 2, 4, 6），则 parity bit 为 0。这样最终这个 byte 里 1 的数量一定是偶数，如果接收方发现 1 的数量不是偶数，那就说明出错了，一定是在传输过程中发生了比特翻转（bit flip），即本来是 0 的变成了 1，或本来是 1 的变成了 0。当然，如果这个 byte 在传输过程中发生了偶数个 bit flip，那校验倒也恰好能通过，但由于同一 byte 里有大于一个 bit flip 的概率非常低，所以奇偶校验在实际应用中还是非常简单有效的。</description>
+    </item>
+    
+    <item>
+      <title>使用 Mergerfs 合并多块硬盘的剩余空间</title>
+      <link>https://syaofox.github.io/linux/%E4%BD%BF%E7%94%A8-mergerfs-%E5%90%88%E5%B9%B6%E5%A4%9A%E5%9D%97%E7%A1%AC%E7%9B%98%E7%9A%84%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4/</link>
+      <pubDate>Thu, 18 Jun 2020 11:03:08 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/%E4%BD%BF%E7%94%A8-mergerfs-%E5%90%88%E5%B9%B6%E5%A4%9A%E5%9D%97%E7%A1%AC%E7%9B%98%E7%9A%84%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4/</guid>
+      <description>两年前，我买了一台 HP Gen8 微型服务器，其功能之一是作为网络存储。当时它只接了一块 SSD 作为系统盘和一块 2 TB HDD 作为存储盘。随着存储文件的增多，我又先后增加了两块 4 TB HDD，现在它已经接了共计 10 TB 的存储空间。我觉得有必要分享一下我用来将这些硬盘的空间合并在一起的工具——mergerfs。
+原文出处:https://wzyboy.im/post/1148.html
+一、网络存储之硬盘困境 在讲工具之前，我有必要先说明一下我目前的存储方案。
+我的 Gen8 没有直接装通用操作系统，而是先通过 ESXi 实现了虚拟化，再将存储盘通过 RDM 的方式完整地映射给其中的一台虚拟机（Arch Linux）。在 Arch Linux 里运行了 Samba, NFS, aria2 RPC, Transmission daemon, BorgBackup 等服务，供局域网电脑存取文件、远程下载，以及备份。
+我在存储盘里的东西分为两类：一类是多份备份中的一份BorgBackup；另一类是从互联网上下载的可再生资源。前者本身有冗余，后者丢了不心疼。出于以上考虑，为了硬盘空间利用率的最大化，我并没有采用 RAID 1 或 RAID 5 之类的冗余存储的方案，而是采用了 JBOD 方案——Just Bunch of Disks。
+不使用 RAID 做冗余还有一个原因：我希望这些硬盘从 Gen8 上拔下来之后接到别的电脑上我能直接读取它们。
+当我的第一块存储盘快要装满的时候，我买了第二块盘，这时候就面临了一个问题：如何把两块硬盘的空间合并？考虑到我已经在运行的那些服务，我自然不想再增加一个额外的挂载点。我曾考虑过三个硬盘空间合并方案：
+ RAID 0。与 RAID 1 或 RAID 5 不同，RAID 0 是对多块相同容量的硬盘进行平行读写，从而提升性能，其额外效果就是硬盘空间也被合并了。但这种方案非常危险：多块硬盘中的任意一块挂了，所有的数据都将无法读取。这个方案不行。 LVM。相比 RAID 0 的原理，LVM 只是将空间连接起来了，而没有平行读写，所以多块硬盘中的一块挂了，也只是丢了那一块的数据。但创建过 LVM PV 的硬盘，在别的机器上读取起来比较麻烦，所以这个方案我也不喜欢。 MooseFS。相对前两种方案，由于它在 FUSE 层面实现，所以更灵活一些，甚至可以通过网络，把没有挂在 Gen8 上的硬盘也纳入存储空间。但这个方案和 LVM 一样，协作性不强，硬盘在别的机器上只能看到一堆数据碎块文件，因此也被我否决了。  以上三种方案还有一个问题：我需要把硬盘里现有的数据全部倒出来再倒进去……我需要的是能将文件分散存储到多块硬盘，同时又不改变文件形态的方案。</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu 的 UPS 电源安装</title>
+      <link>https://syaofox.github.io/linux/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Thu, 18 Jun 2020 11:02:01 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/</guid>
+      <description>跑程序，网络不是最重要，但是长时间的稳定电源还是非常重要的，所以加一个UPS可以避免一些短时间的断电。
+首先看看usb有没有成功连接到ups电源,一般会出现下面信息
+$ lsusb Bus 002 Device 004: ID 051d:0002 American Power Conversion Uninterruptible Power Supply 安装很简单，就是一句命令
+sudo apt-get -y install apcupsd 备份文件
+sudo cp /etc/apcupsd/apcupsd.conf /etc/apcupsd/apcupsd.conf.bak 编辑下面文件
+sudo nano /etc/apcupsd/apcupsd.conf
+UPSNAME smartups750 UPSCABLE usb UPSTYPE usb DEVICE POLLTIME 60 另外一个文件
+sudo cp /etc/default/apcupsd /etc/default/apcupsd.bak sudo nano /etc/default/apcupsd 内容为
+ISCONFIGURED=yes 重启服务
+sudo systemctl restart apcupsd.service 然后可以运行下面命令看ups电源的状态
+$ apcaccess status APC : 001,037,0923 DATE : 2017-02-05 04:57:23 +0800 HOSTNAME : gtx1080 VERSION : 3.</description>
+    </item>
+    
+    <item>
+      <title>UPS 通过 ping 实现 NAS 断电自动关机</title>
+      <link>https://syaofox.github.io/linux/ups%E9%80%9A%E8%BF%87ping%E5%AE%9E%E7%8E%B0nas%E6%96%AD%E7%94%B5%E8%87%AA%E5%8A%A8%E5%85%B3%E6%9C%BA/</link>
+      <pubDate>Thu, 18 Jun 2020 11:00:48 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/ups%E9%80%9A%E8%BF%87ping%E5%AE%9E%E7%8E%B0nas%E6%96%AD%E7%94%B5%E8%87%AA%E5%8A%A8%E5%85%B3%E6%9C%BA/</guid>
+      <description>没有数据通讯的UPS，只有电源接口，无法判断断电后自动关机,保护数据安全,这里通过ping简单实现
+思路，ups只接NAS，路由接市电，通过每隔一定时间通过NAS ping路由IP地址来确认是否停电，如果ping没有问题，就是有电，如果突然断电，ping不通了，就认为断电，执行关机命令。
+TG500-1.sh脚本如下:
+#!/bin/sh  ping -c 1 192.168.1.1 &amp;gt; /dev/null ret=$? if [ $ret -eq 0 ] then echo &amp;#39; AC Power OK ! &amp;#39; else echo &amp;#39; AC Power maybe off, checking again after 4 minutes ! &amp;#39; sleep 240 /usr/sbin/TG500-2.sh fi TG500-2.sh脚本如下:
+#!/bin/sh  ping -c 1 192.168.1.1 &amp;gt; /dev/null ret=$? if [ $ret -eq 0 ] then echo &amp;#39; AC Power OK ! &amp;#39; else echo &amp;#39; AC Power off, shut down NAS !</description>
+    </item>
+    
+    <item>
+      <title>使用screen来实现多任务不断线操作命令</title>
+      <link>https://syaofox.github.io/linux/%E4%BD%BF%E7%94%A8screen%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8D%E6%96%AD%E7%BA%BF%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Thu, 18 Jun 2020 10:59:04 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/%E4%BD%BF%E7%94%A8screen%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8D%E6%96%AD%E7%BA%BF%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</guid>
+      <description>前言 我们用VPS执行一个系统安装，就输入命令然后在那一直等。如果出现掉线或者断网死机的情况，我们还得重新安装。如果能使用上screen命令可以实现无人值守的效果。我们可以同时操作多个任务，也可以关机操作。所以说很方便。
+方法 1、安装方法：
+yum install screen #CentOS apt-get install screen #Debian或者Ubuntu 2、创建一个screen会话：
+screen -S xx #xx为创建会话的名称 3、隐藏并保留当前会话窗口：
+按Ctrl+A，再按&amp;#34;D&amp;#34;键 如果怕中途掉线或者要离开的话，可以使用。
+4、恢复会话窗口：
+screen -r xx #恢复名字为xx的会话 如果在恢复会话的时候忘记了或者没有设定会话名称我们就要执行：
+screen -ls 他会列出你所有的会话列表，然后使用：
+screen -r 会话名称 来恢复会话窗口。
+5、关闭会话窗口：
+exit screen的好处就是不会因为远程的操作因网络问题中断掉。</description>
+    </item>
+    
+  </channel>
+</rss>

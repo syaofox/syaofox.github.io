@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on 霜天晓角</title>
+    <link>https://syaofox.github.io/tags/linux/</link>
+    <description>Recent content in Linux on 霜天晓角</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Syaofox 2020 copyright.</copyright>
+    <lastBuildDate>Thu, 18 Jun 2020 12:08:17 +0800</lastBuildDate>
+    
+	<atom:link href="https://syaofox.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Crontab 脚本错误日志和正确的输出写入到文件</title>
+      <link>https://syaofox.github.io/linux/crontab-%E8%84%9A%E6%9C%AC%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97%E5%92%8C%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%BE%93%E5%87%BA%E5%86%99%E5%85%A5%E5%88%B0%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Thu, 18 Jun 2020 12:08:17 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/crontab-%E8%84%9A%E6%9C%AC%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97%E5%92%8C%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%BE%93%E5%87%BA%E5%86%99%E5%85%A5%E5%88%B0%E6%96%87%E4%BB%B6/</guid>
+      <description>crontab 脚本运行时,需要把运行日志写入到日志中方便查阅,本文介绍一下如果控制输出内容
+ 如果crontab不重定向输出，并且crontab所执行的命令有输出内容的话，是一件非常危险的事情。因为该输出内容会以邮件的形式发送给用户，内容存储在邮件文件  /var/spool/mail/$user  如果命令执行比较频繁（如每分钟一次），或者命令输出内容较多，会使这个邮件文件不断追加内容，文件越来越大。而邮件文件一般存放在根分区，根分区一般相对较小，所以会造成根分区写满而无法登录服务器。
+  不输出内容  */5 * * * * /root/XXXX.sh &amp;amp;&amp;gt;/dev/null 2&amp;gt;&amp;amp;1  将正确和错误日志都输出到 /tmp/load.log  */1 * * * * /root/XXXX.sh &amp;gt; /tmp/load.log 2&amp;gt;&amp;amp;1 &amp;amp;  只输出正确日志到 /tmp/load.log  */1 * * * * /root/XXXX.sh &amp;gt; /tmp/load.log &amp;amp; 等同于 */1 * * * * /root/XXXX.sh 1&amp;gt;/tmp/load.log &amp;amp;  只输出错误日志到 /tmp/load.log  */1 * * * * /root/XXXX.sh 2&amp;gt; /tmp/load.log &amp;amp;  名词解释</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>screen on 霜天晓角</title>
+    <link>https://syaofox.github.io/tags/screen/</link>
+    <description>Recent content in screen on 霜天晓角</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Syaofox 2020 copyright.</copyright>
+    <lastBuildDate>Thu, 18 Jun 2020 10:59:04 +0800</lastBuildDate>
+    
+	<atom:link href="https://syaofox.github.io/tags/screen/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用screen来实现多任务不断线操作命令</title>
+      <link>https://syaofox.github.io/linux/%E4%BD%BF%E7%94%A8screen%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8D%E6%96%AD%E7%BA%BF%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Thu, 18 Jun 2020 10:59:04 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/%E4%BD%BF%E7%94%A8screen%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8D%E6%96%AD%E7%BA%BF%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</guid>
+      <description>前言 我们用VPS执行一个系统安装，就输入命令然后在那一直等。如果出现掉线或者断网死机的情况，我们还得重新安装。如果能使用上screen命令可以实现无人值守的效果。我们可以同时操作多个任务，也可以关机操作。所以说很方便。
+方法 1、安装方法：
+yum install screen #CentOS apt-get install screen #Debian或者Ubuntu 2、创建一个screen会话：
+screen -S xx #xx为创建会话的名称 3、隐藏并保留当前会话窗口：
+按Ctrl+A，再按&amp;#34;D&amp;#34;键 如果怕中途掉线或者要离开的话，可以使用。
+4、恢复会话窗口：
+screen -r xx #恢复名字为xx的会话 如果在恢复会话的时候忘记了或者没有设定会话名称我们就要执行：
+screen -ls 他会列出你所有的会话列表，然后使用：
+screen -r 会话名称 来恢复会话窗口。
+5、关闭会话窗口：
+exit screen的好处就是不会因为远程的操作因网络问题中断掉。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SMB on 霜天晓角</title>
+    <link>https://syaofox.github.io/tags/smb/</link>
+    <description>Recent content in SMB on 霜天晓角</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Syaofox 2020 copyright.</copyright>
+    <lastBuildDate>Thu, 18 Jun 2020 11:05:14 +0800</lastBuildDate>
+    
+	<atom:link href="https://syaofox.github.io/tags/smb/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>如何在 Ubuntu 安装 Samba 实现文件夹共享</title>
+      <link>https://syaofox.github.io/linux/%E5%A6%82%E4%BD%95%E5%9C%A8-ubuntu-%E5%AE%89%E8%A3%85-samba-%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%85%B1%E4%BA%AB/</link>
+      <pubDate>Thu, 18 Jun 2020 11:05:14 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/%E5%A6%82%E4%BD%95%E5%9C%A8-ubuntu-%E5%AE%89%E8%A3%85-samba-%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%85%B1%E4%BA%AB/</guid>
+      <description>samba的优点在于可以在WindowsLinuxAndriod之间实现文件夹共享传输文件，适用的范围更广，更推荐大家选择这种方式_
+一、安装samba # 获取最新的版本信息 sudo apt update # 安装samba sudo apt-get install samba # 安装samba客户端（可选） sudo apt-get install smbclient 二、创建samba配置文件 # 创建共享目录 sudo mkdir -p /share # 对目录进行赋权 sudo chmod 777 /share # 对配置文件进行备份 sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak # 修改配置文件 sudo nano /etc/samba/smb.conf # 在配置文件的末尾添加下面的代码： [share] path = /share browseable = yes writable = yes comment = smb share test public = yes # 配置文件的名称解释： [share] # 该共享的共享名 comment = smb share test # 该共享的备注 path = /home/share # 共享路径 allow hosts = host(subnet) # 设置该Samba服务器允许的工作组或者域 deny hosts = host(subnet) # 设置该Samba服务器拒绝的工作组或者域 available = yes|no # 设置该共享目录是否可用 browseable = yes|no # 设置该共享目录是否可显示 writable = yes|no # 指定了这个目录缺省是否可写，也可以用readonly = no来设置可写 public = yes|no # 指明该共享资源是否能给游客帐号访问，guest ok = yes其实和public = yes是一样的 user = user, @group # user设置所有可能使用该共享资源的用户，也可以用@group代表group这个组的所有成员，不同的项目之间用空格或者逗号隔开 valid users = user, @group # 指定能够使用该共享资源的用户和组 invalid users = user, @group # 指定不能够使用该共享资源的用户和组 read list = user, @group # 指定只能读取该共享资源的用户和组 write list = user, @group # 指定能读取和写该共享资源的用户和组 admin list = user, @group # 指定能管理该共享资源（包括读写和权限赋予等）的用户和组 hide dot files = yes|no # 指明是否像UNIX那样隐藏以“.</description>
+    </item>
+    
+  </channel>
+</rss>

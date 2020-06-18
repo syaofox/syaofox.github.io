@@ -6,402 +6,771 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Syaofox 2020 copyright.</copyright>
-    <lastBuildDate>Thu, 18 Jun 2020 10:50:46 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jun 2020 12:09:42 +0800</lastBuildDate>
     
         <atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     
         <item>
-        <title>重新安装windows无法选择版本的问题</title>
-        <link>https://syaofox.github.io/windows/%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85windows%E6%97%A0%E6%B3%95%E9%80%89%E6%8B%A9%E7%89%88%E6%9C%AC%E7%9A%84%E9%97%AE%E9%A2%98/</link>
-        <pubDate>Thu, 18 Jun 2020 10:50:46 +0800</pubDate>
+        <title>Ubuntu1604 配置 ZFS Event Daemon</title>
+        <link>https://syaofox.github.io/linux/ubuntu1604-%E9%85%8D%E7%BD%AEzfs-event-daemon/</link>
+        <pubDate>Thu, 18 Jun 2020 12:09:42 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/windows/%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85windows%E6%97%A0%E6%B3%95%E9%80%89%E6%8B%A9%E7%89%88%E6%9C%AC%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
-        <description>霜天晓角 https://syaofox.github.io/windows/%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85windows%E6%97%A0%E6%B3%95%E9%80%89%E6%8B%A9%E7%89%88%E6%9C%AC%E7%9A%84%E9%97%AE%E9%A2%98/ -&lt;p&gt;有些品牌机在重新安装系统时无法选择windows版本，默认安装家庭版，解决这个问题很简单&lt;/p&gt;
-&lt;p&gt;新建txt文档，复制粘贴下面几行字符，保存，修改文件名为ei.cfg(连同后缀名一块修改)。然后将这个文件添加到镜像中的sources文件夹内即可。如果想保存为ISO镜像，需要使用ISO编辑软件添加此文件。如果是通过U盘，硬盘安装，在制作好U盘启动盘或者解压后添加即可。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;[EditionID]&lt;/span&gt;
-&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;[Channel]&lt;/span&gt;
-&lt;span style=&#34;color:#658b00&#34;&gt;Retail&lt;/span&gt;
-&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;[VL]&lt;/span&gt;
-&lt;span style=&#34;color:#658b00&#34;&gt;0&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/windows/%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85windows%E6%97%A0%E6%B3%95%E9%80%89%E6%8B%A9%E7%89%88%E6%9C%AC%E7%9A%84%E9%97%AE%E9%A2%98/ - Syaofox 2020 copyright.</description>
+        <guid>https://syaofox.github.io/linux/ubuntu1604-%E9%85%8D%E7%BD%AEzfs-event-daemon/</guid>
+        <description>霜天晓角 https://syaofox.github.io/linux/ubuntu1604-%E9%85%8D%E7%BD%AEzfs-event-daemon/ -&lt;h2 id=&#34;编辑-zed-配置文件&#34;&gt;编辑 ZED 配置文件&lt;/h2&gt;
+&lt;h3 id=&#34;编辑-etczfszeddzedrc&#34;&gt;编辑 &lt;em&gt;/etc/zfs/zed.d/zed.rc&lt;/em&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;##
+# zed.rc
+#
+# This file should be owned by root and permissioned 0600.
+##
+
+##
+# Absolute path to the debug output file.
+#
+ZED_DEBUG_LOG=&amp;quot;/tmp/zed.debug.log&amp;quot;##
+# Email address of the zpool administrator for receipt of notifications;
+#   multiple addresses can be specified if they are delimited by whitespace.
+# Email will only be sent if ZED_EMAIL_ADDR is defined.
+# Disabled by default; uncomment to enable.
+#
+ZED_EMAIL_ADDR=&amp;quot;DESTINATION@EXAMPLE.com&amp;quot;##
+# Name or path of executable responsible for sending notifications via email;
+#   the mail program must be capable of reading a message body from stdin.
+# Email will only be sent if ZED_EMAIL_ADDR is defined.
+#
+ZED_EMAIL_PROG=&amp;quot;mail&amp;quot;##
+# Command-line options for ZED_EMAIL_PROG.
+# The string @ADDRESS@ will be replaced with the recipient email address(es).
+# The string @SUBJECT@ will be replaced with the notification subject;
+#   this should be protected with quotes to prevent word-splitting.
+# Email will only be sent if ZED_EMAIL_ADDR is defined.
+#
+ZED_EMAIL_OPTS=&amp;quot;-s &#39;@SUBJECT@&#39; @ADDRESS@&amp;quot;##
+# Default directory for zed lock files.
+#
+ZED_LOCKDIR=&amp;quot;/var/lock&amp;quot;##
+# Minimum number of seconds between notifications for a similar event.
+#
+ZED_NOTIFY_INTERVAL_SECS=3600##
+# Notification verbosity.
+#   If set to 0, suppress notification if the pool is healthy.
+#   If set to 1, send notification regardless of pool health.
+#
+ZED_NOTIFY_VERBOSE=1##
+# Pushbullet access token.
+# This grants full access to your account -- protect it accordingly!
+#   &amp;lt;https://www.pushbullet.com/get-started&amp;gt;
+#   &amp;lt;https://www.pushbullet.com/account&amp;gt;
+# Disabled by default; uncomment to enable.
+#
+#ZED_PUSHBULLET_ACCESS_TOKEN=&amp;quot;&amp;quot;##
+# Pushbullet channel tag for push notification feeds that can be subscribed to.
+#   &amp;lt;https://www.pushbullet.com/my-channel&amp;gt;
+# If not defined, push notifications will instead be sent to all devices
+#   associated with the account specified by the access token.
+# Disabled by default; uncomment to enable.
+#
+#ZED_PUSHBULLET_CHANNEL_TAG=&amp;quot;&amp;quot;##
+# Default directory for zed state files.
+#
+#ZED_RUNDIR=&amp;quot;/var/run&amp;quot;##
+# Replace a device with a hot spare after N checksum errors are detected.
+# Disabled by default; uncomment to enable.
+#
+#ZED_SPARE_ON_CHECKSUM_ERRORS=10##
+# Replace a device with a hot spare after N I/O errors are detected.
+# Disabled by default; uncomment to enable.
+#
+#ZED_SPARE_ON_IO_ERRORS=1##
+# The syslog priority (e.g., specified as a &amp;quot;facility.level&amp;quot; pair).
+#
+ZED_SYSLOG_PRIORITY=&amp;quot;daemon.notice&amp;quot;##
+# The syslog tag for marking zed events.
+#
+ZED_SYSLOG_TAG=&amp;quot;zed&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;重启-zed-让新配置生效&#34;&gt;重启 ZED 让新配置生效&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;systemctl restart zed
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;查看服务是否正确开启&#34;&gt;查看服务是否正确开启&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;systemctl status zed
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&#34;测试&#34;&gt;测试&lt;/h2&gt;
+&lt;p&gt;运行scrub测试一下&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;zpool scrub YOURPOOL
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果配置无误，scrub运行完成后会受到一封邮件&lt;/p&gt;
+- https://syaofox.github.io/linux/ubuntu1604-%E9%85%8D%E7%BD%AEzfs-event-daemon/ - Syaofox 2020 copyright.</description>
         </item>
     
     
     
         <item>
-        <title>一次永久解决cmd窗口汉字显示乱码</title>
-        <link>https://syaofox.github.io/windows/%E4%B8%80%E6%AC%A1%E6%B0%B8%E4%B9%85%E8%A7%A3%E5%86%B3cmd%E7%AA%97%E5%8F%A3%E6%B1%89%E5%AD%97%E6%98%BE%E7%A4%BA%E4%B9%B1%E7%A0%81/</link>
-        <pubDate>Thu, 18 Jun 2020 10:49:36 +0800</pubDate>
+        <title>Crontab 脚本错误日志和正确的输出写入到文件</title>
+        <link>https://syaofox.github.io/linux/crontab-%E8%84%9A%E6%9C%AC%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97%E5%92%8C%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%BE%93%E5%87%BA%E5%86%99%E5%85%A5%E5%88%B0%E6%96%87%E4%BB%B6/</link>
+        <pubDate>Thu, 18 Jun 2020 12:08:17 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/windows/%E4%B8%80%E6%AC%A1%E6%B0%B8%E4%B9%85%E8%A7%A3%E5%86%B3cmd%E7%AA%97%E5%8F%A3%E6%B1%89%E5%AD%97%E6%98%BE%E7%A4%BA%E4%B9%B1%E7%A0%81/</guid>
-        <description>霜天晓角 https://syaofox.github.io/windows/%E4%B8%80%E6%AC%A1%E6%B0%B8%E4%B9%85%E8%A7%A3%E5%86%B3cmd%E7%AA%97%E5%8F%A3%E6%B1%89%E5%AD%97%E6%98%BE%E7%A4%BA%E4%B9%B1%E7%A0%81/ -&lt;p&gt;对于编译出的程序，在 &lt;code&gt;cmd&lt;/code&gt; 和 &lt;code&gt;power shell&lt;/code&gt; 运行时都不能正确显示汉字。
-网上查，可以在命令窗口修改：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;打开&lt;code&gt;CMD.exe&lt;/code&gt;命令行窗口&lt;/li&gt;
-&lt;li&gt;通过 &lt;code&gt;chcp&lt;/code&gt;命令改变代码页，&lt;code&gt;UTF-8&lt;/code&gt;的代码页为&lt;code&gt;65001 &lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;chcp &lt;span style=&#34;color:#b452cd&#34;&gt;65001&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;执行该操作后，代码页就被变成&lt;code&gt;UTF-8&lt;/code&gt;了。
-在当前窗口的确可以解决问题，但是&lt;strong&gt;重新打开的&lt;code&gt;cmd&lt;/code&gt;窗口或者&lt;code&gt;power shell&lt;/code&gt; 窗口仍然不能正确显示汉字&lt;/strong&gt;。
-最终发现，&lt;code&gt;cmd&lt;/code&gt;的属性设置可以在注册表中修改，实现一次修改永远有效:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;win+R 输入&lt;code&gt;regedit&lt;/code&gt; 进入注册表&lt;/li&gt;
-&lt;li&gt;找到 &lt;code&gt;HKEY\_CURRENT\_USER\\Console\\%SystemRoot%\_system32\_cmd.exe&lt;/code&gt; 如果 该项下已存在&lt;code&gt;CodePage&lt;/code&gt;项，则把值改为十进制&lt;code&gt;65001&lt;/code&gt;；如果不存在，在该项下新建一个 &lt;code&gt;DWORD&lt;/code&gt;（32位值），命名为&lt;code&gt;CodePage&lt;/code&gt;，值设为&lt;code&gt;65001&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;重启cmd后生效&lt;/li&gt;
-&lt;li&gt;对于&lt;code&gt;Power shell&lt;/code&gt;修改同样，只需在第2步修改 &lt;code&gt;%SystemRoot%\_system32\_WindowsPowerShell\_v1.0\_powershell.exe&lt;/code&gt; 下的项。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;p&gt;附录：&lt;/p&gt;
-&lt;p&gt;MS-DOS为以下国家和语言提供字符集：&lt;/p&gt;
+        <guid>https://syaofox.github.io/linux/crontab-%E8%84%9A%E6%9C%AC%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97%E5%92%8C%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%BE%93%E5%87%BA%E5%86%99%E5%85%A5%E5%88%B0%E6%96%87%E4%BB%B6/</guid>
+        <description>霜天晓角 https://syaofox.github.io/linux/crontab-%E8%84%9A%E6%9C%AC%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97%E5%92%8C%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%BE%93%E5%87%BA%E5%86%99%E5%85%A5%E5%88%B0%E6%96%87%E4%BB%B6/ -&lt;p&gt;crontab 脚本运行时,需要把运行日志写入到日志中方便查阅,本文介绍一下如果控制输出内容&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果crontab不重定向输出，并且crontab所执行的命令有输出内容的话，是一件非常危险的事情。因为该输出内容会以邮件的形式发送给用户，内容存储在邮件文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;/var/spool/mail/&lt;span style=&#34;color:#00688b&#34;&gt;$user&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;如果命令执行比较频繁（如每分钟一次），或者命令输出内容较多，会使这个邮件文件不断追加内容，文件越来越大。而邮件文件一般存放在根分区，根分区一般相对较小，所以会造成根分区写满而无法登录服务器。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;不输出内容&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;*/5 * * * * /root/XXXX.sh &amp;amp;&amp;gt;/dev/null 2&amp;gt;&amp;amp;&lt;span style=&#34;color:#b452cd&#34;&gt;1&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;将正确和错误日志都输出到 /tmp/load.log&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;*/1 * * * * /root/XXXX.sh &amp;gt; /tmp/load.log 2&amp;gt;&amp;amp;&lt;span style=&#34;color:#b452cd&#34;&gt;1&lt;/span&gt; &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;只输出正确日志到 /tmp/load.log&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;*/1 * * * * /root/XXXX.sh &amp;gt; /tmp/load.log &amp;amp;  等同于   */1 * * * * /root/XXXX.sh 1&amp;gt;/tmp/load.log &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;只输出错误日志到 /tmp/load.log&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;*/1 * * * * /root/XXXX.sh 2&amp;gt; /tmp/load.log &amp;amp; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;名词解释&lt;/p&gt;
+&lt;p&gt;在shell中，每个进程都和三个系统文件相关联：标准输入stdin，标准输出stdout和标准错误stderr，三个系统文件的文件描述符分别为0，1和2。所以这里2&amp;gt;&amp;amp;1的意思就是将标准错误也输出到标准输出当中。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;gt; 就相当于 1&amp;gt; 也就是重定向标准输出，不包括标准错误。通过2&amp;gt;&amp;amp;1，就将标准错误重定向到标准输出了（stderr已作为stdout的副本），那么再使用&amp;gt;重定向就会将标准输出和标准错误信息一同重定向了。如果只想重定向标准错误到文件中，则可以使用2&amp;gt; file。&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://syaofox.github.io/linux/crontab-%E8%84%9A%E6%9C%AC%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97%E5%92%8C%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%BE%93%E5%87%BA%E5%86%99%E5%85%A5%E5%88%B0%E6%96%87%E4%BB%B6/ - Syaofox 2020 copyright.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Docker Hub 镜像加速器</title>
+        <link>https://syaofox.github.io/linux/docker-hub-%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8/</link>
+        <pubDate>Thu, 18 Jun 2020 12:06:21 +0800</pubDate>
+        
+        <guid>https://syaofox.github.io/linux/docker-hub-%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8/</guid>
+        <description>霜天晓角 https://syaofox.github.io/linux/docker-hub-%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8/ -&lt;p&gt;国内从 Docker Hub 拉取镜像有时会遇到困难，此时可以配置镜像加速器。Docker 官方和国内很多云服务商都提供了国内加速器服务。*&lt;/p&gt;
+&lt;h2 id=&#34;配置加速地址&#34;&gt;配置加速地址&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Ubuntu 16.04+、Debian 8+、CentOS 7+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;创建或修改 &lt;code&gt;/etc/docker/daemon.json&lt;/code&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;lt;&amp;lt;-&amp;#39;EOF&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;{
+&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;    &amp;#34;registry-mirrors&amp;#34;: [
+&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;        &amp;#34;https://1nj0zren.mirror.aliyuncs.com&amp;#34;,
+&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;        &amp;#34;https://docker.mirrors.ustc.edu.cn&amp;#34;,
+&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;        &amp;#34;http://f1361db2.m.daocloud.io&amp;#34;,
+&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;        &amp;#34;https://registry.docker-cn.com&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;    ]
+&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;}
+&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;EOF&lt;/span&gt;
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;docker-hub-镜像加速器列表&#34;&gt;Docker Hub 镜像加速器列表&lt;/h2&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th align=&#34;center&#34;&gt;代码&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;描述&lt;/th&gt;
+&lt;th&gt;镜像加速器&lt;/th&gt;
+&lt;th&gt;镜像加速器地址&lt;/th&gt;
+&lt;th&gt;专属加速器&lt;a href=&#34;#&#34; title=&#34;需登录后获取平台分配的专属加速器&#34;&gt;？&lt;/a&gt;&lt;/th&gt;
+&lt;th&gt;其它加速&lt;a href=&#34;#&#34; title=&#34;支持哪些镜像来源的镜像加速&#34;&gt;？&lt;/a&gt;&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;1258&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;越南语&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://link.juejin.im/?target=https%3A%2F%2Fdocker-cn.com%2Fregistry-mirror&#34;&gt;Docker 中国官方镜像&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;https://registry.docker-cn.com&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Docker Hub&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;1257&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;波罗的语&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://link.juejin.im/?target=https%3A%2F%2Fdaocloud.io%2Fmirror&#34;&gt;DaoCloud 镜像站&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;http://f1361db2.m.daocloud.io&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;可登录，系统分配&lt;/td&gt;
+&lt;td&gt;Docker Hub&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;1256&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;阿拉伯语&lt;/td&gt;
+&lt;td&gt;&lt;del&gt;&lt;a href=&#34;https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2FAzure%2Fcontainer-service-for-azure-china%2Fblob%2Fmaster%2Faks%2FREADME.md%2322-container-registry-proxy&#34;&gt;Azure 中国镜像&lt;/a&gt;&lt;/del&gt;&lt;/td&gt;
+&lt;td&gt;&lt;del&gt;&lt;code&gt;https://dockerhub.azk8s.cn&lt;/code&gt;&lt;/del&gt;&lt;/td&gt;
+&lt;td&gt;已失效&lt;/td&gt;
+&lt;td&gt;Docker Hub、GCR、Quay&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;1255&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;希伯来语&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://link.juejin.im/?target=https%3A%2F%2Fmirrors.ustc.edu.cn%2Fhelp%2Fdockerhub.html&#34;&gt;科大镜像站&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;https://docker.mirrors.ustc.edu.cn&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Docker Hub、&lt;a href=&#34;https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fustclug%2Fmirrorrequest%2Fissues%2F91&#34;&gt;GCR&lt;/a&gt;、&lt;a href=&#34;https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fustclug%2Fmirrorrequest%2Fissues%2F135&#34;&gt;Quay&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;1254&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;土耳其语&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://link.juejin.im/?target=https%3A%2F%2Fcr.console.aliyun.com&#34;&gt;阿里云&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;https://&amp;lt;your_code&amp;gt;.mirror.aliyuncs.com&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;需登录，系统分配&lt;/td&gt;
+&lt;td&gt;Docker Hub&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;1253&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;希腊语&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://link.juejin.im/?target=https%3A%2F%2Fkirk-enterprise.github.io%2Fhub-docs%2F%23%2Fuser-guide%2Fmirror&#34;&gt;七牛云&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;https://reg-mirror.qiniu.com&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Docker Hub、GCR、Quay&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;1252&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;拉丁 1 字符 (ANSI)&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://link.juejin.im/?target=https%3A%2F%2Fc.163yun.com%2Fhub&#34;&gt;网易云&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;https://hub-mirror.c.163.com&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Docker Hub&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;1251&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;西里尔语&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;1250&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;中欧语言&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;950&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;繁体中文&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;949&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;朝鲜语&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;936&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;简体中文（默认）&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;932&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;日语&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;874&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;泰国语&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;850&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;多语种 (MS-DOS Latin1)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;437&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;MS-DOS 美国英语&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://link.juejin.im/?target=https%3A%2F%2Fcloud.tencent.com%2Fdocument%2Fproduct%2F457%2F9113&#34;&gt;腾讯云&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;https://mirror.ccs.tencentyun.com&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Docker Hub&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-- https://syaofox.github.io/windows/%E4%B8%80%E6%AC%A1%E6%B0%B8%E4%B9%85%E8%A7%A3%E5%86%B3cmd%E7%AA%97%E5%8F%A3%E6%B1%89%E5%AD%97%E6%98%BE%E7%A4%BA%E4%B9%B1%E7%A0%81/ - Syaofox 2020 copyright.</description>
+&lt;h2 id=&#34;检查加速器是否生效&#34;&gt;检查加速器是否生效&lt;/h2&gt;
+&lt;p&gt;命令行执行 &lt;code&gt;docker info&lt;/code&gt;，如果从结果中看到了如下内容，说明配置成功。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;Registry Mirrors:
+ [...]
+ https://registry.docker-cn.com/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;docker-hub-镜像测速&#34;&gt;Docker Hub 镜像测速&lt;/h2&gt;
+&lt;p&gt;使用镜像前后，可使用 &lt;code&gt;time&lt;/code&gt; 统计所花费的总时间。测速前先移除本地的镜像！&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ docker rmi node:latest
+$ &lt;span style=&#34;color:#658b00&#34;&gt;time&lt;/span&gt; docker pull node:latest
+Pulling repository node
+[...]
+
+real   1m14.078s
+user   0m0.176s
+sys    0m0.120s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;- https://syaofox.github.io/linux/docker-hub-%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8/ - Syaofox 2020 copyright.</description>
         </item>
     
     
     
         <item>
-        <title>微软拼音增加输入当前时间</title>
-        <link>https://syaofox.github.io/windows/%E5%BE%AE%E8%BD%AF%E6%8B%BC%E9%9F%B3%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/</link>
-        <pubDate>Thu, 18 Jun 2020 10:47:55 +0800</pubDate>
+        <title>Docker 容器使用宿主机同网段IP</title>
+        <link>https://syaofox.github.io/linux/docker-%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%90%8C%E7%BD%91%E6%AE%B5ip/</link>
+        <pubDate>Thu, 18 Jun 2020 12:05:03 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/windows/%E5%BE%AE%E8%BD%AF%E6%8B%BC%E9%9F%B3%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/</guid>
-        <description>霜天晓角 https://syaofox.github.io/windows/%E5%BE%AE%E8%BD%AF%E6%8B%BC%E9%9F%B3%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/ -&lt;p&gt;Windows10 自带的微软拼音输入法已经非常好用了，不过缺少了一个比较实用的功能：输入当前时间。&lt;/p&gt;
-&lt;p&gt;这里介绍添加输入当前时间的方法。&lt;/p&gt;
-&lt;p&gt;win10&amp;mdash;&amp;gt;设置&amp;mdash;&amp;gt;日期和语言&amp;mdash;&amp;gt;语言&amp;mdash;中文&amp;mdash;选项&amp;mdash;微软拼音&amp;mdash;选项&amp;mdash;词库和自学习&amp;mdash;添加或编辑自定义短语&lt;/p&gt;
-&lt;p&gt;按格式&lt;code&gt;%yyyy%-%MM%-%dd% %HH%:%mm%:%ss%&lt;/code&gt;添加&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E5%BE%AE%E8%BD%AF%E6%8B%BC%E9%9F%B3%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200612224358.jpg&#34; alt=&#34;设置自定义短语&#34;&gt;&lt;/p&gt;
-&lt;p&gt;这时候输入now，搞定！&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E5%BE%AE%E8%BD%AF%E6%8B%BC%E9%9F%B3%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200612224423.jpg&#34; alt=&#34;输入now&#34;&gt;&lt;/p&gt;
-- https://syaofox.github.io/windows/%E5%BE%AE%E8%BD%AF%E6%8B%BC%E9%9F%B3%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/ - Syaofox 2020 copyright.</description>
+        <guid>https://syaofox.github.io/linux/docker-%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%90%8C%E7%BD%91%E6%AE%B5ip/</guid>
+        <description>霜天晓角 https://syaofox.github.io/linux/docker-%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%90%8C%E7%BD%91%E6%AE%B5ip/ -&lt;p&gt;工作需要临时启动一个 gitlab,无奈 gitlab 需要 ssh 的 22 端口;而使用传统网桥方式映射端口则 clone 等都需要输入端口号,很麻烦;22 端口宿主机又有 sshd 监听;研究了下 docker 网络,记录一下如何分配宿主机网段 IP*&lt;/p&gt;
+&lt;h3 id=&#34;创建-macvlan-网络&#34;&gt;创建 macvlan 网络&lt;/h3&gt;
+&lt;p&gt;关于 Docker 网络模式这里不再细说;由于默认的网桥方式无法满足需要,所以需要创建一个 macvlan 网络&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;docker network create -d macvlan  --subnet=172.16.0.0/19 --gateway=172.16.0.1 -o &lt;span style=&#34;color:#00688b&#34;&gt;parent&lt;/span&gt;=eth0 gitlab-net
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;--subnet&lt;/code&gt;: 指定网段(宿主机)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--gateway&lt;/code&gt;: 指定网关(宿主机)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;parent&lt;/code&gt;: 注定父网卡(宿主机)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;创建以后可以使用 &lt;code&gt;docker network ls&lt;/code&gt; 查看&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;➜  ~  docker network ls
+NETWORK ID          NAME                    DRIVER              SCOPE
+a4a2980c9165        agent_default           bridge              &lt;span style=&#34;color:#658b00&#34;&gt;local&lt;/span&gt;               
+a0f29102b413        bridge                  bridge              &lt;span style=&#34;color:#658b00&#34;&gt;local&lt;/span&gt;               
+2f46dc70b763        gitlab-net              macvlan             &lt;span style=&#34;color:#658b00&#34;&gt;local&lt;/span&gt;               
+51bd6222530f        host                    host                &lt;span style=&#34;color:#658b00&#34;&gt;local&lt;/span&gt;               
+7a14a09c3cfc        none                    null                &lt;span style=&#34;color:#658b00&#34;&gt;local&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;创建使用容器&#34;&gt;创建使用容器[]&lt;/h3&gt;
+&lt;p&gt;接下来创建容器指定网络即可&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;docker run --net=gitlab-net --ip=172.16.0.170  -dt --name &lt;span style=&#34;color:#658b00&#34;&gt;test&lt;/span&gt; centos:7
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;&lt;code&gt;--net&lt;/code&gt; 指定使用的网络,&lt;code&gt;--ip&lt;/code&gt; 用于指定网段内 IP&lt;/strong&gt;;启动后只需要在容器内启动程序测试即可&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 启动一个 nginx&lt;/span&gt;
+yum install nginx
+nginx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;启动后在局域网内能直接通过 IP:80 访问,而且宿主机 80 不受影响&lt;/p&gt;
+&lt;h3 id=&#34;docker-compose-测试&#34;&gt;docker-compose 测试&lt;/h3&gt;
+&lt;p&gt;docker-compose 示例如下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;version: &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;2&amp;#39;&lt;/span&gt;
+services:
+  centos:
+    image: centos:7
+    restart: always
+    command: /bin/bash -c &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;sleep 999999&amp;#34;&lt;/span&gt;
+    networks:
+      app_net:
+        ipv4_address: 10.10.1.34
+networks:
+  app_net:
+    driver: macvlan
+    driver_opts:
+      parent: enp3s0
+    ipam:
+      config:
+      - subnet: 10.10.1.0/24
+        gateway: 10.10.1.2
+&lt;span style=&#34;color:#228b22&#34;&gt;#        ip_range: 10.25.87.32/28&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/linux/docker-%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%90%8C%E7%BD%91%E6%AE%B5ip/ - Syaofox 2020 copyright.</description>
         </item>
     
     
     
         <item>
-        <title>截图时如何截取右键菜单？</title>
-        <link>https://syaofox.github.io/windows/%E6%88%AA%E5%9B%BE%E6%97%B6%E5%A6%82%E4%BD%95%E6%88%AA%E4%BD%8F%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/</link>
-        <pubDate>Thu, 18 Jun 2020 10:45:18 +0800</pubDate>
+        <title>Linux命令行帮助解析</title>
+        <link>https://syaofox.github.io/linux/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B8%AE%E5%8A%A9%E8%A7%A3%E6%9E%90/</link>
+        <pubDate>Thu, 18 Jun 2020 12:03:25 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/windows/%E6%88%AA%E5%9B%BE%E6%97%B6%E5%A6%82%E4%BD%95%E6%88%AA%E4%BD%8F%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/</guid>
-        <description>霜天晓角 https://syaofox.github.io/windows/%E6%88%AA%E5%9B%BE%E6%97%B6%E5%A6%82%E4%BD%95%E6%88%AA%E4%BD%8F%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/ -&lt;p&gt;博主昨天在写博客时，想要将右键菜单的图给截下来保存。于是乎，截图快捷键走起来。&lt;/p&gt;
-&lt;p&gt;Ctrl + Alt + A&lt;/p&gt;
-&lt;p&gt;但是却发现利用QQ的截图快捷键竟然做不到，一按快捷键右键菜单就收起来了。多次尝试不果，所以就百度一下解决方案，当然很快就找到了答案。于是也写下来做下记录，希望能给还不知道的同学一点点帮助^_^。&lt;/p&gt;
-&lt;p&gt;方法就是：&lt;/p&gt;
-&lt;p&gt;右键呼出菜单，然后鼠标移动到某选项上，按住鼠标左键不动，然后再按截图的快捷键，这样就可以截到右键菜单了。&lt;/p&gt;
-&lt;p&gt;快试一下吧！！！&lt;/p&gt;
-- https://syaofox.github.io/windows/%E6%88%AA%E5%9B%BE%E6%97%B6%E5%A6%82%E4%BD%95%E6%88%AA%E4%BD%8F%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/ - Syaofox 2020 copyright.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>利用 Windows 自带的资源监视器查看文件占用</title>
-        <link>https://syaofox.github.io/windows/%E5%88%A9%E7%94%A8windows%E8%87%AA%E5%B8%A6%E7%9A%84%E8%B5%84%E6%BA%90%E7%9B%91%E8%A7%86%E5%99%A8%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%8D%A0%E7%94%A8/</link>
-        <pubDate>Thu, 18 Jun 2020 10:35:52 +0800</pubDate>
-        
-        <guid>https://syaofox.github.io/windows/%E5%88%A9%E7%94%A8windows%E8%87%AA%E5%B8%A6%E7%9A%84%E8%B5%84%E6%BA%90%E7%9B%91%E8%A7%86%E5%99%A8%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%8D%A0%E7%94%A8/</guid>
-        <description>霜天晓角 https://syaofox.github.io/windows/%E5%88%A9%E7%94%A8windows%E8%87%AA%E5%B8%A6%E7%9A%84%E8%B5%84%E6%BA%90%E7%9B%91%E8%A7%86%E5%99%A8%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%8D%A0%E7%94%A8/ -&lt;p&gt;经常当我们删除文件时，有时会提示【操作无法完成，因为文件已在另一个程序中打开，请关闭该文件并重试】，到底是哪些程序呢？&lt;/p&gt;
-&lt;p&gt;有时候一个一个找真不是办法，已经被这个问题折磨很久了，今天下决心要把它解决，找到办法了。如果系统是win7以上，可以这么做：&lt;/p&gt;
-&lt;p&gt;在开始菜单中的搜索框内输入“资源监视器”，回车，打开“资源监视器”。&lt;/p&gt;
-&lt;p&gt;看下图，在“资源监视器”界面中，点击第二个选项卡“CPU”。在“关联的句柄”右侧搜索框内输入文件名称，点击右侧下拉箭头，就可以查看该文件被那几个程序占用了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E5%88%A9%E7%94%A8windows%E8%87%AA%E5%B8%A6%E7%9A%84%E8%B5%84%E6%BA%90%E7%9B%91%E8%A7%86%E5%99%A8%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%8D%A0%E7%94%A8/20200618103858.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;选中程序，右击选择结束进程。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E5%88%A9%E7%94%A8windows%E8%87%AA%E5%B8%A6%E7%9A%84%E8%B5%84%E6%BA%90%E7%9B%91%E8%A7%86%E5%99%A8%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%8D%A0%E7%94%A8/20200618104345.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-- https://syaofox.github.io/windows/%E5%88%A9%E7%94%A8windows%E8%87%AA%E5%B8%A6%E7%9A%84%E8%B5%84%E6%BA%90%E7%9B%91%E8%A7%86%E5%99%A8%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%8D%A0%E7%94%A8/ - Syaofox 2020 copyright.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>禁止 windows 生成 thumbs.db</title>
-        <link>https://syaofox.github.io/windows/%E7%A6%81%E6%AD%A2windows%E7%94%9F%E6%88%90thumbs-db/</link>
-        <pubDate>Thu, 18 Jun 2020 10:31:40 +0800</pubDate>
-        
-        <guid>https://syaofox.github.io/windows/%E7%A6%81%E6%AD%A2windows%E7%94%9F%E6%88%90thumbs-db/</guid>
-        <description>霜天晓角 https://syaofox.github.io/windows/%E7%A6%81%E6%AD%A2windows%E7%94%9F%E6%88%90thumbs-db/ -&lt;ol&gt;
+        <guid>https://syaofox.github.io/linux/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B8%AE%E5%8A%A9%E8%A7%A3%E6%9E%90/</guid>
+        <description>霜天晓角 https://syaofox.github.io/linux/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B8%AE%E5%8A%A9%E8%A7%A3%E6%9E%90/ -&lt;p&gt;作为Linux小菜，使用Linux终端命令时总是不知到如何使用相关的参数，如-p ，-r ，使用-和不使用-，一个-和两个&amp;ndash;，有时能够在网上查询别人的使用方法，可是使用一次，第二次又忘记了，所以自己还是得掌握查看帮助文档的方法。&lt;/p&gt;
+&lt;h2 id=&#34;常用帮助命令&#34;&gt;常用帮助命令：&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;--help&lt;/code&gt; 显示使用摘要和参数列表(可以查看大多数命令的用法)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;man&lt;/code&gt; 查看命令描述或手册页(Manual)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/&lt;/code&gt;  查找关键字&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;n/N&lt;/code&gt;  下一个/上一个&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;q&lt;/code&gt;  离开&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;whatis&lt;/code&gt; 显示简短功能描述&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;info&lt;/code&gt; 查看命令详细的说明文件
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;arrows.pageUp.pageDown&lt;/code&gt; 切换&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Tab&lt;/code&gt; 跳往下一个链接(有*的地方)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Enter&lt;/code&gt; 进入链接&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;n/p/u&lt;/code&gt; 跳往下一个(上一个)小节,上一层章节&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;s[]&lt;/code&gt; 查找关键字&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;q&lt;/code&gt; 离开&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;阅读帮助信息&#34;&gt;阅读帮助信息&lt;/h2&gt;
+&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;按下 Win+R 打开“运行”，输入：gpedit.msc 回车;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E7%A6%81%E6%AD%A2windows%E7%94%9F%E6%88%90thumbs-db/1569154295281.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;帮助中尖括号&lt;code&gt;&amp;lt;&amp;gt;&lt;/code&gt;和方括号&lt;code&gt;[]&lt;/code&gt;以及省略号&lt;code&gt;...&lt;/code&gt;的含义：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;[]&lt;/code&gt;表示是可选的&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;&amp;gt;&lt;/code&gt; 表示是可变化的&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;x|y|z&lt;/code&gt; 表示只能选择一个&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-abc&lt;/code&gt; 表示三个参数(或任何二个)的混合使用&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;在打开的组策略窗口中，依次点开：&lt;/p&gt;
-&lt;p&gt;用户配置&amp;gt;管理模版&amp;gt;Windows 组件&lt;/p&gt;
-&lt;p&gt;找到右侧的“文件资料管理器”，双击打开;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E7%A6%81%E6%AD%A2windows%E7%94%9F%E6%88%90thumbs-db/1569154318392.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在方括号内的表达式(“[” 和 “]”之间的字符)是可选的（写命令时要去掉括号）。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;找到并双击打开“关闭隐藏的thumbs.db文件中的缩略图缓存”;&lt;/p&gt;
+&lt;p&gt;在尖括号内的表达式(“&amp;lt;” 和 “&amp;gt;”之间的字符)是必须替换的表达式(而且要去掉括号)。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;勾选“已启用”并“应用”设置，下次开机之后thumbs.db就不见了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E7%A6%81%E6%AD%A2windows%E7%94%9F%E6%88%90thumbs-db/1569154337114.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;省略号表示该选项可以单个或多个&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;
-- https://syaofox.github.io/windows/%E7%A6%81%E6%AD%A2windows%E7%94%9F%E6%88%90thumbs-db/ - Syaofox 2020 copyright.</description>
+&lt;/ul&gt;- https://syaofox.github.io/linux/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B8%AE%E5%8A%A9%E8%A7%A3%E6%9E%90/ - Syaofox 2020 copyright.</description>
         </item>
     
     
     
         <item>
-        <title>Windows CPL文件</title>
-        <link>https://syaofox.github.io/windows/windows-cpl%E6%96%87%E4%BB%B6/</link>
-        <pubDate>Thu, 18 Jun 2020 10:26:56 +0800</pubDate>
+        <title>Linux上面碰到鬼畜逆天级的软件依赖关系大家都是怎么解决的</title>
+        <link>https://syaofox.github.io/linux/linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/</link>
+        <pubDate>Thu, 18 Jun 2020 11:59:08 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/windows/windows-cpl%E6%96%87%E4%BB%B6/</guid>
-        <description>霜天晓角 https://syaofox.github.io/windows/windows-cpl%E6%96%87%E4%BB%B6/ -&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;CPL文件，又叫控制面板项（Control Panel Item），多保存于系统安装目录的 system32 文件夹下，它们分别对应着控制面板中的项目，普通用户的访问受到限制。它可由shell32.dll、control.exe打开。此外，你也可以直接在资源管理器中双击调用Open命令打开（实质上调用了shell32.dll）。&lt;/p&gt;
-&lt;p&gt;CPL文件本质是Windows可执行性文件，但不属于可以直接独立运行的文件，通常由shell32.dll打开。&lt;/p&gt;
-&lt;p&gt;system32目录里绝大多数cpl文件是Windows系统文件，具有“存档”文件属性，Windows操作系统的文件保护功能保护它们不被篡改。&lt;/p&gt;
-&lt;h2 id=&#34;打开方式&#34;&gt;打开方式&lt;/h2&gt;
-&lt;p&gt;1、在开始-&amp;gt;运行中直接输入文件名来启动相应的项目&lt;/p&gt;
-&lt;p&gt;例：输入main.cpl并点击确定&lt;/p&gt;
-&lt;p&gt;2、打开命令提示符，输入rundll32 shell32.dll,Control_RunDLL &amp;lt;文件名&amp;gt;&lt;/p&gt;
-&lt;p&gt;例：输入rundll32 shell32.dll,Control_RunDLL main.cpl并按下Enter&lt;/p&gt;
-&lt;p&gt;3、打开命名提示符，输入control &amp;lt;文件名&amp;gt;&lt;/p&gt;
-&lt;p&gt;例：输入control main.cpl并按下Enter&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;注意：所有rundll32 shell32.dll,Control_RunDLL的命令均可用control替代，control.exe实质调用了rundll32.exe。打开后找不到control.exe进程，只能找到rundll32.exe。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;例1：下列命令：&lt;/p&gt;
-&lt;p&gt;rundll32.exe shell32.dll,Control_RunDLL main.cpl,,3&lt;/p&gt;
-&lt;p&gt;可以被替代：&lt;/p&gt;
-&lt;p&gt;control.exe main.cpl,,3&lt;/p&gt;
-&lt;p&gt;例2：下列命令&lt;/p&gt;
-&lt;p&gt;rundll32.exe shell32.dll,Control_RunDLL&lt;/p&gt;
-&lt;p&gt;可以被替代：&lt;/p&gt;
-&lt;p&gt;control.exe&lt;/p&gt;
-&lt;p&gt;例3：下列命令&lt;/p&gt;
-&lt;p&gt;rundll32.exe shell32.dll,Control_RunDLL main.cpl&lt;/p&gt;
-&lt;p&gt;可以被替代：&lt;/p&gt;
-&lt;p&gt;control.exe main.cpl&lt;/p&gt;
-&lt;h2 id=&#34;文件及作用&#34;&gt;文件及作用&lt;/h2&gt;
-&lt;p&gt;inetcpl.cpl，IE设置&lt;/p&gt;
-&lt;p&gt;joy.cpl，游戏控制器设置&lt;/p&gt;
-&lt;p&gt;mmsys.cpl 声音与音频设置&lt;/p&gt;
-&lt;p&gt;intl.cpl，区域与语言设置&lt;/p&gt;
-&lt;p&gt;ncpa.cpl，网络连接&lt;/p&gt;
-&lt;p&gt;netsetup.cpl，网络安装向导&lt;/p&gt;
-&lt;p&gt;lusrmgr.cpl，用户帐户&lt;/p&gt;
-&lt;p&gt;odbccp32.cpl，ODBC数据源管理器&lt;/p&gt;
-&lt;p&gt;wscui.cpl，Windows安全中心&lt;/p&gt;
-&lt;p&gt;wuaucpl.cpl，自动更新配置&lt;/p&gt;
-&lt;p&gt;igfxcpl.cpl，Intel集成显卡设置&lt;/p&gt;
-&lt;p&gt;nvcpl.cpl，nVidia显卡设置(NVIDIA控制面板)&lt;/p&gt;
-&lt;p&gt;access.cpl，辅助功能选项&lt;/p&gt;
-&lt;p&gt;appwiz.cpl，添加或删除程序&lt;/p&gt;
-&lt;p&gt;desk.cpl，显示属性&lt;/p&gt;
-&lt;p&gt;firewall.cpl，防火墙设置&lt;/p&gt;
-&lt;p&gt;hdwwiz.cpl，添加硬件向导&lt;/p&gt;
-&lt;p&gt;sysdm.cpl 我的电脑右键属性&lt;/p&gt;
-&lt;h2 id=&#34;常见问题解决&#34;&gt;常见问题解决&lt;/h2&gt;
-&lt;p&gt;1、有时，因系统问题，无法正常使用控制面板相关功能，或功能不全，可以在命令行的模式下操作，但仅仅输入上述有时可能无效，输入后提示：选择程序来打开该文件，解决方法：引起原因，该文件的默认打开程序被更改，需要重新指向：Control.exe 该程序文件在c:\windows\system32\目录下.更改后即可.&lt;/p&gt;
-&lt;p&gt;2、要在 Windows 中运行“控制面板”工具，请在“打开”对话框或命令提示符下键入适当的命令&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;注意: 如果希望从命令提示符运行命令，必须在 Windows 文件夹下进行操作。同时，请注意您的计算机可能并没有本文中所列的所有工具，因为您的 Windows 安装可能没有包括所有这些组件。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;注意: “扫描仪与数字相机”程序 (sticpl.cpl) 无法在 Windows Millenium 中运行。该程序已经被“扫描仪与数字相机”文件夹取代，其功能与如“打印机”文件夹和“拨号网络”文件夹之类的文件夹类似。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;3、运行“控制面板”中的“用户”工具，请键入 control Ncpa.cpl users，然后按 ENTER 键。&lt;/p&gt;
-&lt;p&gt;4、运行 Windows 95/98/ME 的“用户”工具，请键入“control inetcpl.cpl users”（不键入引号），然后按 ENTER 键。&lt;/p&gt;
-- https://syaofox.github.io/windows/windows-cpl%E6%96%87%E4%BB%B6/ - Syaofox 2020 copyright.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Windows WSL 重启方法</title>
-        <link>https://syaofox.github.io/windows/windows-wsl-%E9%87%8D%E5%90%AF%E6%96%B9%E6%B3%95/</link>
-        <pubDate>Thu, 18 Jun 2020 10:24:18 +0800</pubDate>
-        
-        <guid>https://syaofox.github.io/windows/windows-wsl-%E9%87%8D%E5%90%AF%E6%96%B9%E6%B3%95/</guid>
-        <description>霜天晓角 https://syaofox.github.io/windows/windows-wsl-%E9%87%8D%E5%90%AF%E6%96%B9%E6%B3%95/ -&lt;p&gt;Windows 10 子系统 wsl 的重启方法&lt;/p&gt;
-&lt;p&gt;以管理员权限运行&lt;code&gt;cmd&lt;/code&gt;或者&lt;code&gt;PowerShell&lt;/code&gt;执行以下命令&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;net stop LxssManager	//停止
-net start LxssManager	//启动
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/windows/windows-wsl-%E9%87%8D%E5%90%AF%E6%96%B9%E6%B3%95/ - Syaofox 2020 copyright.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Windows10 局域网共享问题及解决</title>
-        <link>https://syaofox.github.io/windows/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/</link>
-        <pubDate>Thu, 18 Jun 2020 10:21:34 +0800</pubDate>
-        
-        <guid>https://syaofox.github.io/windows/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/</guid>
-        <description>霜天晓角 https://syaofox.github.io/windows/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/ -&lt;p&gt;Win10 出现不能匿名访问局域网共享，同时本机的共享也无法被其它机器匿名访问。 本文给出了设置方法来解决此问题。&lt;/p&gt;
-&lt;h2 id=&#34;1-前言&#34;&gt;1. 前言&lt;/h2&gt;
-&lt;p&gt;  Win10的安全性设置越来越严格，与此同时，也带来了易用性的缺失。新手往往会陷入很多功能不能使用的窘境中，从而导致了对Win10的排斥。局域网共享就是一个很典型的例子。&lt;/p&gt;
-&lt;p&gt;  对很多中小企业而言， 无密码的局域网共享是非常方便和实用的功能，对于提升生产力而言，安全性是次要考虑的因素。 但是Win10 对无密码的局域网共享是深恶痛绝的，默认设置根本就不能使用。 尤其是局域网中同时还存在WinXP, Win7等共享的情况下。&lt;/p&gt;
-&lt;p&gt;下面我们来一步步设置，使得Win10支持浏览和访问局域网中的共享。&lt;/p&gt;
-&lt;h2 id=&#34;2-设置步骤&#34;&gt;2. 设置步骤&lt;/h2&gt;
-&lt;h3 id=&#34;21-设置文件和打印机共享&#34;&gt;2.1 设置文件和打印机共享&lt;/h3&gt;
-&lt;p&gt;依次打开“&lt;strong&gt;控制面板\网络和 Internet\网络和共享中心\高级共享设置&lt;/strong&gt;”， 然后对&amp;quot;专用&amp;rdquo;, &amp;ldquo;来宾&amp;rdquo;, “所有网络”网络分别设置。&lt;/p&gt;
-&lt;p&gt;注意：“所有网络”要设置“&lt;strong&gt;关闭密码保护共享&lt;/strong&gt;”。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-7f8fdd5e139442d4478caaa8ba2d4be9.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;22-开启相应服务&#34;&gt;2.2 开启相应服务&lt;/h3&gt;
-&lt;p&gt;依次打开“&lt;strong&gt;控制面板\管理工具\服务&lt;/strong&gt;”， 找到“Function DiscoveryResource Publication”服务， 将其设置为“自动启动”。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-0c7231f1f98f1588c8045b9143125914.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;23-启用不安全来宾访问&#34;&gt;2.3 启用不安全来宾访问&lt;/h3&gt;
-&lt;p&gt;Win10默认移除了对匿名网络的不安全访问，我们需要开启它。一共2步设置，分别在&lt;strong&gt;注册表设置&lt;/strong&gt;和组策略中设置。&lt;/p&gt;
+        <guid>https://syaofox.github.io/linux/linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/</guid>
+        <description>霜天晓角 https://syaofox.github.io/linux/linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/ -&lt;p&gt;硬刚Linux软件安装依赖问题的办法有很多，我给他分为两大类！&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;一类合法，另一类暴力。&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;先说合法的解决方案&#34;&gt;先说合法的解决方案&lt;/h2&gt;
+&lt;p&gt;也是所有人都知道的解决方案：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt-get install xxxxx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;一般情况下，它会连带软件的依赖一起安装。如果这个过程中依赖安装失败，就执行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt-get -f install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;一次不行两次，只要源里有，只要能保证依赖关系是顺畅的，再多的依赖多执行几次都能装完。&lt;/p&gt;
+&lt;p&gt;如果有依赖源里找不到。这个坑就踩不过去了，解决办法是：找到缺失的库的安装包手动下载下来。然后通过&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo dpkg -i xxxx.deb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装。需要手动下载安装包的寻找主要有两个途径：&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;注册表设置&lt;/li&gt;
+&lt;li&gt;百度找，直接搜包名+版本号并带上关键字&lt;code&gt;deb&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;通过源。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;按下 win+R 组合键，呼出“运行”对话框，输入： regedit  。依次找到如下键值&lt;strong&gt;AllowInsecureGuestAuth&lt;/strong&gt;，(类型为DWORD)并设置为“&lt;strong&gt;1&lt;/strong&gt;”。&lt;/p&gt;
-&lt;p&gt;[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters]&lt;/p&gt;
-&lt;p&gt;&amp;ldquo;AllowInsecureGuestAuth&amp;quot;=dword:00000001&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-494eb1983acc161b0b4c89fd44d62d62.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;组策略设置&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;按下 win+R 组合键，呼出“运行”对话框，输入： gpedit.msc, 打开&amp;quot;组策略设置&amp;rdquo;。&lt;/p&gt;
-&lt;p&gt;依次展开“计算机配置&amp;ndash;管理模板&amp;ndash;网络&amp;ndash;Lanman 工作站”，设置“启用不安全的来宾登录”为启用，并点击【应用】-【保存】设置。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-a04d1ef446b67264f32022eeef6915bb.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;24-启用smb10功能&#34;&gt;2.4 启用SMB1.0功能&lt;/h3&gt;
-&lt;p&gt;依次打开“&lt;strong&gt;控制面板\程序\程序和功能&lt;/strong&gt;”， 点击“&lt;strong&gt;启用或关闭Windows功能&lt;/strong&gt;”&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-ef149610b58b896486359a914b2dd20d.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;25-重新启动windows系统&#34;&gt;2.5 重新启动Windows系统&lt;/h3&gt;
-&lt;p&gt;重启系统后，网络邻居里面应该就能看见局域网中的所有共享用户，并能访问其共享资源。&lt;/p&gt;
-&lt;h2 id=&#34;3-本机共享设置&#34;&gt;3. 本机共享设置&lt;/h2&gt;
-&lt;p&gt;在需要设置共享的驱动器/目录上，点击右键，属性，共享，高级共享，权限，添加Everyone用户，在设置相应权限即可。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-a158d4343b1f181714d3148788e672f7.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;4-faq&#34;&gt;4. FAQ&lt;/h2&gt;
+&lt;p&gt;百度直接找库就不多说了，额外说一下通过源怎么找。&lt;/p&gt;
+&lt;p&gt;你在网上搜ubuntu国内源。会找到很多类似这样的写法：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这其实即是给&lt;code&gt;apt-get&lt;/code&gt;工具配置的源地址，也是个实际的网址，你可以直接从浏览器里访问到，比如上面这个&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;它其实代表的是： &lt;code&gt;https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/xenial/&lt;/code&gt; 这个路径下的&lt;code&gt;main&lt;/code&gt;，&lt;code&gt;restricted&lt;/code&gt;，&lt;code&gt;universe&lt;/code&gt;，&lt;code&gt;multiverse&lt;/code&gt; 这几个目录：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/v2-d6f7bafb479d38d0d840a11c36e91952_b.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;apt-get&lt;/code&gt;工具会在这四个的目录下自动检索对应的软件包下载并安装。&lt;/p&gt;
+&lt;p&gt;在一些特殊情况，比如机器网络受限，但浏览器开了代理可以访问外网的情况下。&lt;code&gt;apt-get&lt;/code&gt;无法从源里获取软件，你可以从这里手动找到对应的软件包下载下来然后使用&lt;code&gt;dpkg&lt;/code&gt;安装。&lt;/p&gt;
+&lt;p&gt;比如这里，手动找到mysql的安装包路径，再点击就可以直接下载：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/v2-d5ded9f494a4ff1b5b7f93b01b4d7356_b.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;刚才说道&lt;code&gt;apt-get install&lt;/code&gt;无法修复依赖，通过手动下载然后把这些缺失的安装包装上之后，就可以通过&lt;code&gt;apt&lt;/code&gt;把刚才装不上的包装上。&lt;/p&gt;
+&lt;p&gt;这是非常合理合法的解决方案。&lt;/p&gt;
+&lt;p&gt;再补充一种合法技巧：&lt;strong&gt;可以尝试用&lt;code&gt;apt-get install&lt;/code&gt;安装本地软件&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;这是因为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;依赖检测&lt;/strong&gt;和&lt;strong&gt;软件安装&lt;/strong&gt;不是apt做的，而&lt;strong&gt;是dpkg做的&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;依赖不满足&lt;strong&gt;自动修复依赖&lt;/strong&gt;才是apt做的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以，如果你下载了一个deb的安装包通过&lt;code&gt;dpkg&lt;/code&gt; 安装，但依赖不满足的话，他只会提示你依赖缺失，但他不会自动寻找并安装依赖，虽然你仍然可以去下载安装缺失的依赖，但他如果缺失十个八个的，你再手动下载然后&lt;code&gt;dpkg&lt;/code&gt;安装也不现实了。&lt;/p&gt;
+&lt;p&gt;举个例子：我这里下载了一个搜狗输入法的安装包，&lt;code&gt;dpkg -i&lt;/code&gt;无法安装但是可以通过&lt;code&gt;apt-get install&lt;/code&gt; 装上&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/v2-8c0ba377a29e8f3247bd3085b28df666_b.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/v2-9f834987c9ad371fa95b1e7aafc38ea5_b.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/v2-85e680c94d618a61ec67b030c3645b1a_b.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;要注意：通过apt-get安装本地软件一定要写路径，相对绝对都可以，但不能只写包名。不然它会去源里面找不会装本地的。&lt;/p&gt;
+&lt;p&gt;上面的方案几乎可以解决80%的安装依赖问题。总结一下：&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;如果只是一两台服务器共享无法访问，可以直接使用“&lt;strong&gt;凭据管理&lt;/strong&gt;”功能添加凭据即可。&lt;strong&gt;上述的所有设置(1,2,3步)都可以不用&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;安装软件就用：&lt;code&gt;sudo apt-get install xxxx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;遇到依赖问题 ：&lt;code&gt;sudo apt-get -f install &lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;如果有缺失无法安装，就去网上下，缺什么下什么，下载下来后&lt;code&gt;sudo apt-get install ./xxxx &lt;/code&gt;把缺的包安装上，再装原来的包。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;方法如下：&lt;/p&gt;
-&lt;p&gt;依次打开“&lt;strong&gt;控制面板\用户帐户\凭据管理器&lt;/strong&gt;”，依次点击“windows凭据”，“添加windows凭据”，输入被共享的服务器用户名和密码即可。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-4c1c39fbb2cb5c4113a8f88920873912.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-- https://syaofox.github.io/windows/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/ - Syaofox 2020 copyright.</description>
+&lt;hr&gt;
+&lt;h2 id=&#34;接下来说说暴力的解决方案&#34;&gt;接下来说说暴力的解决方案：&lt;/h2&gt;
+&lt;p&gt;之所以说暴力，是因为刚才的方式，已经是在我的认知里，工具和系统提供的自动化程序能做到的极限。&lt;/p&gt;
+&lt;p&gt;如果还是出现了依赖无法满足的问题，比如什么即将安装xxxx但是现在的系统内的版本高于xxxx。一般这种情况，系统已经不建议你再搞了，你如果非要硬来，很可能会破坏现有的程序依赖结构。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;运气好或者你手高，硬装上一点问题没有。&lt;/li&gt;
+&lt;li&gt;影响小一点，你装了这个软件，另一个软件不能用或者会崩。&lt;/li&gt;
+&lt;li&gt;影响大一点，有些系统令子不好使了，界面卡死了，资源管理器崩了等等。&lt;/li&gt;
+&lt;li&gt;影响更大一点，装完用着啥毛病没有，重启后卡在加载过程，再也进不了系统。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以上这些情况，我全部都遇到过！&lt;/p&gt;
+&lt;p&gt;所以下面的搞法，你就当学习知识或看我装逼都行，自己实操，还是要谨慎地折腾。&lt;/p&gt;
+&lt;p&gt;至少，别在客户机器和生产环境的服务器上硬来。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;暴力的解决方案有：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&amp;ndash;ignore-depends，忽略依赖直接装。&lt;/li&gt;
+&lt;li&gt;解压安装包，删掉依赖字段重新打包&lt;/li&gt;
+&lt;li&gt;修改系统中记录的status软件&lt;/li&gt;
+&lt;li&gt;无视安装失败，直接运行。&lt;/li&gt;
+&lt;li&gt;直接拿到根目录，就地解压。&lt;/li&gt;
+&lt;li&gt;改掉dpkg源码，直接不检测依赖。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;一个一个说：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1、&amp;ndash;ignore-depends&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这是所有暴力方案里技术门槛最低的一个，你可以通过&lt;code&gt;dpkg --help &lt;/code&gt;查看&lt;code&gt;--ignore-depends&lt;/code&gt;选项：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;选项：
+......其它选项
+  --ignore-depends=&amp;lt;软件包&amp;gt;,...
+                             忽略关于 &amp;lt;软件包&amp;gt; 的所有依赖关系。
+  --force-...                忽视遇到的问题(参见 --force-help)。
+......其它选项
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个选项可以指定要忽略的依赖包。所以安装的时候如果依赖不满足，你直接加上这个参数把依赖忽略的就完了：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/v2-b549bd9ba2f7c4f3726c6c0f9dee5245_b.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;当然，安装不会有任何问题，但是能不能用就看要造化了。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;并不是依赖不满足，装上就一定完全不能用&lt;/strong&gt;。有时候只是功能不全而已。&lt;/p&gt;
+&lt;p&gt;比如你装了一个QQ，它依赖ffmpeg，你忽略了它后直接安装使用很可能没问题，但是一点击视频通话，程序立马就崩掉了。（这是个假设，QQ用啥不用啥我也不知道）&lt;/p&gt;
+&lt;p&gt;这个方案虽然门槛低，有个致命的缺陷就是太麻烦，我这里缺两个，写两个ignore。安装过程中经常遇到那种一下子缺十个八个的，要写十个八个这样的参数属实费劲。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2、解压安装包，删掉依赖字段重新打包&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这个方案可以直接大刀阔斧地把软件包的依赖全干掉，不过稍微需要点技术底子：&lt;/p&gt;
+&lt;p&gt;首先你得会解压安装包，其次你得会制作安装包。&lt;/p&gt;
+&lt;p&gt;dpkg -X 只会解压出安装包的文件，无法解压出安装包带的脚本和控制信息。&lt;/p&gt;
+&lt;p&gt;右键提取到此处，解压出来的control和data分开两个压缩包，也不是打包前完美的状态。&lt;/p&gt;
+&lt;p&gt;这里要用的是&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;dpkg-deb -R sogoupinyin_xxxx.deb ./sogou
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样解压出来的就是deb在被打包前完完整整的样子，我解压了一个搜狗输入法的安装包为例：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/v2-84fcb04a202435f0cfa16e0466de827f_b.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;其他的我们都不用管，直接打开control文件：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/v2-2b55f2764b33a675f2be68ca53c4a428_b.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;看到红框的部分了吧，直接把这行全部干掉。然后再把拆出来的文件重新打回一个安装包：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;fakeroot dpkg-deb --build ./sogou mysogou.deb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个自己打的&lt;code&gt;mysogou&lt;/code&gt;安装包，和搜狗原生安装包唯一的区别就是没有依赖&lt;/p&gt;
+&lt;p&gt;这下就可以一路畅通无阻，直接装完。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3、修改系统中记录的status文件&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;和刚才那个方案思路差不多，只不过换了一个突破点，比刚才要更方便一点。&lt;/p&gt;
+&lt;p&gt;刚才我们突破的思路是：安装包里记录有对软件依赖，全部干掉就没有依赖了。&lt;/p&gt;
+&lt;p&gt;那么这个方案的思路则是：如果检测依赖发现系统不满足，我们给他伪造一个满足的依赖环境不就完了！&lt;/p&gt;
+&lt;p&gt;刚才我们说的control文件，所有的deb都有，安装&lt;strong&gt;过程中（不是安装后也不是前）&lt;/strong&gt;，他就被记录在了系统里的：&lt;code&gt;/var/lib/dpkg/status&lt;/code&gt;文件里。&lt;/p&gt;
+&lt;p&gt;这个文件里的内容，也是&lt;code&gt;dpkg -l&lt;/code&gt; 命令显示内容的信息来源。&lt;/p&gt;
+&lt;p&gt;也是我们上面说的，依赖检测时检索系统内是否满足依赖的信息来源。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果软件通过dpkg -r卸载，这个status文件里的信息不会删除，只会把Status字段改为：deinstall ok config-files。通过dpkg -P或者dpkg &amp;ndash;purge 才会把信息完全抹除。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;所以，依赖不满足的时候，你可以直接打开这个文件，仿照其他软件的写法，照抄一段加上，把文件名改为缺失的依赖包的名字就可以！dpkg就会认为，系统里有安装这个包，从而解决依赖导致的无法安装的问题。&lt;/p&gt;
+&lt;p&gt;同样，如果出现依赖的包需要的版本不满足的情况，你也可以直接找到文件里对应的包的信息，改掉&lt;code&gt;Version&lt;/code&gt;字段到一个满足需求的版本就可以。&lt;/p&gt;
+&lt;p&gt;当然，实际上系统里是没有安装这些库的，我们只是骗过了dpkg。&lt;/p&gt;
+&lt;p&gt;系统里的软件信息一般都写得特别多，这里简单提供个样例，实在不会抄系统的就抄这个：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;Package: mtest  
+Priority: optional
+Section: editors
+Maintainer: Threedog Team &amp;lt;qiugeyafang@gmail.com&amp;gt;
+Architecture: all 
+Version: 1.0.0
+Homepage: http://www.threedog.top
+Description: test
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;只要把Package换成缺失的依赖包的名字，加到status文件里就可以了。记得和其他软件信息之间要有空行。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4、无视安装失败，直接运行。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这个方案之所以可行，是dpkg对软件安装过程的执行机制决定的。dpkg对依赖的处理时机是：&lt;strong&gt;先释放文件，再检测依赖，然后再完成最终配置。&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;其实control里还可以写一个字段叫做预依赖：Pre-Depends这个字段的检测级别和时机与“架构Architecture”字段相当。 写在这个字段里面的依赖，如果检测不满足，安装会直接中断，不会释放文件，status中不会记录，系统中也不会留下任何痕迹。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;所以，当dpkg爆出依赖不满足的问题的时候，其实包里的文件已经释放到系统里了，只不过没有做后续的配置。比如：桌面图标配置、字体配置、文件关联设置、启动触发设置、等等等等。&lt;/p&gt;
+&lt;p&gt;但这并不妨碍你直接找到他的可执行程序文件直接执行。&lt;/p&gt;
+&lt;p&gt;如果你不知道他往系统里释放了哪些文件，第一可以解压看下目录结构，第二，可以通过&lt;code&gt;dpkg --contents xxxx.deb&lt;/code&gt;查看包里包含哪些文件。&lt;/p&gt;
+&lt;p&gt;也可以用&lt;code&gt;dpkg -S +软件名&lt;/code&gt;查看已经安装的软件在系统里装了哪些东西。&lt;/p&gt;
+&lt;p&gt;然后找到二进制可执行文件，一般都会往&lt;code&gt;/usr/bin/&lt;/code&gt;下面放一个，运气好的话直接执行有可能能跑起来。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;5、暴力解压&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这个方案属实有点过于暴力并且不合理。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;直接把安装包移动到根目录下，然后直接&lt;code&gt;dpkg -X &lt;/code&gt;解压到当前。然后像刚才一样找二进制可执行程序调用。&lt;/p&gt;
+&lt;p&gt;前提是你知道这软件包里有什么并且明确它不会影响什么的话。&lt;/p&gt;
+&lt;p&gt;不然如果解压出的文件破坏了系统的重要文件，那直接就是不可逆的毁降维打击。&lt;/p&gt;
+&lt;p&gt;而且这么搞完，如何卸载也是一个问题&amp;hellip;&amp;hellip;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;6、改dpkg源码&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这是技术上最硬核的解决方案。&lt;/p&gt;
+&lt;p&gt;主要操作方法如下：&lt;/p&gt;
+&lt;p&gt;从这个地址：&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//git.dpkg.org/git/dpkg/dpkg.git&#34;&gt;https://git.dpkg.org/git/dpkg/dpkg.git&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;clone下来dpkg源码，在源码里的&lt;code&gt;packages.c&lt;/code&gt;里面找到这个&lt;code&gt;dependencies_ok&lt;/code&gt;函数。甭管他里面写了多少东西，直接在最开头给他&lt;code&gt;return DEP_CHECK_OK;&lt;/code&gt; 或者&lt;code&gt;return 2;&lt;/code&gt; 反正就是个枚举。&lt;/p&gt;
+&lt;p&gt;然后把项目编译一下生成自己的dpkg用就可以。&lt;/p&gt;
+&lt;p&gt;我这里自己编译的dpkg多加了一行输出，效果明显一点：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/v2-26044361ad6270a5a45e648949970a28_b.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这个函数改的是对&lt;code&gt;Depends&lt;/code&gt;字段的依赖检测&lt;/p&gt;
+&lt;p&gt;如果是预依赖，&lt;code&gt;Pre-Depends:&lt;/code&gt;字段，要改的是另一个名为&lt;code&gt;depisok&lt;/code&gt;的函数。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;关于dpkg项目源码的编译，用的是Linux c项目automake那一套。C/C++老炮闭着眼就编过去了，没入门的萌新连怎么下手都不知道。像我这种刚入门的菜鸡，就得每走一步拿小本本记一下一点，也想这样玩一下的小伙伴可以参考：&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//blog.csdn.net/Three_dog/article/details/103418141&#34;&gt;Ubuntu 16.04 下编译dpkg和rpm&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;有了这个自己编译的dpkg，所有软件都可以无阻碍安装&lt;/p&gt;
+&lt;p&gt;不过至于装完能不能用，会不会有啥问题，恐怕就得看造化了。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;dpkg的解决方案全部讲完，说说rpm。&lt;/p&gt;
+&lt;p&gt;之所以对rpm只字未提有两个原因：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一是我对它的熟悉程度，远没有dpkg这么深入。&lt;/li&gt;
+&lt;li&gt;二是它真的，相比dpkg，难用的令人抓狂。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在合法的解决方案上，rpm和dpkg没有太大区别。你只需要把上面的对照方案，dpkg+apt-get换成rpm+yum就可以。我们不多赘述了。&lt;/p&gt;
+&lt;p&gt;主要说说非法方案：&lt;/p&gt;
+&lt;p&gt;rpm的机制，几乎导致我所有的非法方案完全不可用！&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;方案一&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;可用的只有这一个：忽略依赖，这是在rpm上唯一可以对标的非法解决方案，只需要把&lt;code&gt;--ignore-depends&lt;/code&gt; 换成&lt;code&gt;--nodeps&lt;/code&gt;就可以。&lt;/p&gt;
+&lt;p&gt;其他的，几乎都不行：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;方案二&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;rpm打包的时候，配置信息写在一个&lt;code&gt;.spec&lt;/code&gt;文件里，对标上面的&lt;code&gt;control&lt;/code&gt;文件，这个文件的写法规范恶心程度就不说了，重要的是它无法从打好的rpm安装包里逆向解压出来。&lt;/p&gt;
+&lt;p&gt;你只能用&lt;code&gt;rpm --scripts -qa xxxx.rpm&lt;/code&gt;来查看，而且看到的和它原来真正的写法有很大不同，你甚至可以理解成用objdump看可执行程序的感觉。&lt;/p&gt;
+&lt;p&gt;这个机制，导致了上面的方案2（解压安装包，删掉依赖字段重新打包）被毙掉。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;方案三&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;rpm 安装到系统中的软件，也有一个文件统一管理，但是！它丫的天杀的居然用的是一个数据库管理的：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/v2-3219908cacc28094149c4cbe7fcbe489_b.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这是编译rpm时候configure参数，这三种数据库编译时可选，安装版一般是&lt;code&gt;Berkeley DB&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;用数据库管理，就存成二进制数据文件了！就不像我们刚才的status直接修改文本了，而恶心就恶心在（我水平太次也是一方面），这三种数据库我折腾了半天也没找下工具能对他们增删改查！&lt;/p&gt;
+&lt;p&gt;换句话说这个数据库内容的操作，只有rpm可以，不面向用户。&lt;/p&gt;
+&lt;p&gt;因此，上面的方案3（修改系统中记录的status软件）也被毙掉了&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;方案四&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;rpm的安装只有一种依赖检查的时机，就是在释放文件前。&lt;/p&gt;
+&lt;p&gt;所以如果出现依赖问题，包里面的文件一滴也不会漏到系统上来，上面的方案4（无视安装失败，直接运行）也被毙掉了。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;方案五&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;方案5，直接暴力解压是可以的。不过上面也说了，这实在是下下下下下下策。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;方案六&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;最后一个，改rpm的源码。&lt;/p&gt;
+&lt;p&gt;以我的水平，说实话还没有权利对一个成熟的开源项目源码评头论足，但一个不争的事实是：我想像上面那种改dpkg的改法改rpm的源码。折腾了一圈子确实没找到咋改。&lt;/p&gt;
+&lt;p&gt;所以方案6（修改项目源码）也基本宣告流产。&lt;/p&gt;
+&lt;p&gt;我想这也是很多人认为dpkg比rpm好用太多的原因之一。rpm把数据全部用数据库管理起来，看似增强了安全性，但是对于酷爱折腾的Linuxer来说，这种可操控性上带来的降维打击简直无法忍受。&lt;/p&gt;
+&lt;p&gt;除此之外，它还有非常难用的命令组合；令人沮丧的软件源配置方法；以及地狱难度的打包规规范；打包还不留原文件等等让人觉得它难用的特性在里面！（打包规范真的是折磨人！一不小心打错了，连原文件都没得咯！一个都没得咯！！）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;以上，就是以我现有的水平，可以提供的所有针对Linux鬼畜逆天级的软件依赖关系的解决方案。可以看得出来，有些方案是吃一点儿技术底子的。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;很多技术问题都是这样，当你对准某一方向钻研到一定深度的时候，很多在常人看来不可能实现的操作，在你手里就可以为所欲为！（我妻善逸：集中一点，登峰造极）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;而且我相信，肯定还有我没想到的好办法可以解决这些问题，有可以提供方案或者思路的大佬请一定赐教！&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;最后再纠正一个很多人的认知误区&#34;&gt;&lt;strong&gt;最后，再纠正一个很多人的认知误区：&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;直到现在，有几乎80%的科普性文章在介绍rpm和deb的时候，把他们与redhat和debian死死的绑定在一起。以至于很多人潜意识里认为，debian系只能用dpkg，红帽系只能用rpm。&lt;/p&gt;
+&lt;p&gt;其实完全不是。他们的关系，是系统和软件的关系，仅仅是debian自带dpkg和apt，红帽自带rpm和yum而已。&lt;/p&gt;
+&lt;p&gt;ubuntu完全可以通过 &lt;strong&gt;&lt;code&gt;sudo apt-get install rpm&lt;/code&gt;&lt;/strong&gt; 安装一个rpm，然后通过rpm安装各种rpm格式的安装包。&lt;/p&gt;
+&lt;p&gt;而centos，也完全可以通过&lt;strong&gt;编译安装&lt;/strong&gt;（因为yum源里没有dpkg  噗~） 一个dpkg，然后安装各种deb格式的安装包。&lt;/p&gt;
+&lt;p&gt;只要安装的软件所释放出文件没有冲突，两者在系统上的相处模式，甚至可以用举案齐眉、相敬如宾来形容。&lt;/p&gt;
+&lt;p&gt;根本不像大多数人认为的那样老死不相往来：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/v2-ee4834413b7925e2346b3eca6c507a76_b.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/v2-03d1541d94d33e53d6c1cda5b6ccee1a_b.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+- https://syaofox.github.io/linux/linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/ - Syaofox 2020 copyright.</description>
         </item>
     
     
     
         <item>
-        <title>Windows10 配置 FTP</title>
-        <link>https://syaofox.github.io/windows/windows10-%E9%85%8D%E7%BD%AE-ftp/</link>
-        <pubDate>Thu, 18 Jun 2020 10:14:12 +0800</pubDate>
+        <title>Rsync 命令比对文件及增量同步</title>
+        <link>https://syaofox.github.io/linux/rsync%E5%91%BD%E4%BB%A4%E6%AF%94%E5%AF%B9%E6%96%87%E4%BB%B6%E5%8F%8A%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5/</link>
+        <pubDate>Thu, 18 Jun 2020 11:56:31 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/windows/windows10-%E9%85%8D%E7%BD%AE-ftp/</guid>
-        <description>霜天晓角 https://syaofox.github.io/windows/windows10-%E9%85%8D%E7%BD%AE-ftp/ -&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;控制面板 &amp;gt; 程序 &amp;gt; 启用或关闭 Windows 功能 &amp;gt; …&lt;/p&gt;
-&lt;p&gt;控制面板可在 桌面右键&amp;gt;个性化&amp;gt;主题&amp;gt;桌面图标设置&amp;gt;勾选控制面板&amp;gt;确定&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Win10%E5%BC%80%E5%90%AFFTP%E4%B8%8E%E9%85%8D%E7%BD%AE/1589731070-291b7fa89ad00c04312aec5ba5d85429.jpg&#34; alt=&#34;Windows10 配置 FTP&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;小娜搜索 IIS 打开 IIS&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Win10%E5%BC%80%E5%90%AFFTP%E4%B8%8E%E9%85%8D%E7%BD%AE/1589731070-ed7c5087487e1757f8158d40dda91050.jpg&#34; alt=&#34;小娜搜索IIS打开IIS&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;右击网站添加 FTP 站点&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Win10%E5%BC%80%E5%90%AFFTP%E4%B8%8E%E9%85%8D%E7%BD%AE/1589731070-7154999f157a09336c95a865ed16f9c1.jpg&#34; alt=&#34;Windows10 配置 FTP&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;输入站点名称和作为 FTP 的目录&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Win10%E5%BC%80%E5%90%AFFTP%E4%B8%8E%E9%85%8D%E7%BD%AE/1589731070-284d6c123085fa7f00043ee4aebae493.jpg&#34; alt=&#34;Windows10 配置 FTP&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;IP 地址填 FTP 本机 IP，选择无 SSL&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Win10%E5%BC%80%E5%90%AFFTP%E4%B8%8E%E9%85%8D%E7%BD%AE/1589731070-c65e09198d0ef1ebb0b6ce4c9ece61f1.jpg&#34; alt=&#34;Windows10 配置 FTP&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;根据需要选择身份验证，授权与权限&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Win10%E5%BC%80%E5%90%AFFTP%E4%B8%8E%E9%85%8D%E7%BD%AE/1589731070-179f3cd66c8fd595fc45c884ba71eb5d.jpg&#34; alt=&#34;Windows10 配置 FTP&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;控制面板 &amp;gt; 系统和安全 &amp;gt; 防火墙 &amp;gt; 允许应用或功能通过 Window 防火墙 &amp;gt; …&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Win10%E5%BC%80%E5%90%AFFTP%E4%B8%8E%E9%85%8D%E7%BD%AE/1589731070-a295876d3ec467758ea7fa887df8f822.jpg&#34; alt=&#34;Windows10 配置 FTP&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;点击更改设置，勾选 FTP 服务器&amp;amp;专用&amp;amp;公用&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Win10%E5%BC%80%E5%90%AFFTP%E4%B8%8E%E9%85%8D%E7%BD%AE/1589731070-299e3449b292a1059153f33442a17041.jpg&#34; alt=&#34;Windows10 配置 FTP&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;点击允许其它应用,选择C:\Windows\System32\svchost.exe然后添加，最后确定。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Win10%E5%BC%80%E5%90%AFFTP%E4%B8%8E%E9%85%8D%E7%BD%AE/1589731070-e68a243e5e4106efd3bbe261726b8830.jpg&#34; alt=&#34;Windows10 配置 FTP&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;资源处理器访问ftp:// IP 试试吧！&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-- https://syaofox.github.io/windows/windows10-%E9%85%8D%E7%BD%AE-ftp/ - Syaofox 2020 copyright.</description>
+        <guid>https://syaofox.github.io/linux/rsync%E5%91%BD%E4%BB%A4%E6%AF%94%E5%AF%B9%E6%96%87%E4%BB%B6%E5%8F%8A%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5/</guid>
+        <description>霜天晓角 https://syaofox.github.io/linux/rsync%E5%91%BD%E4%BB%A4%E6%AF%94%E5%AF%B9%E6%96%87%E4%BB%B6%E5%8F%8A%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5/ -&lt;p&gt;rsync基于ssh协议实现高效率远程或本地文件复制，传输速度比scp快。复制文件时会比对本地文件与远程主机的文件，仅复制有差异的文件。&lt;/p&gt;
+&lt;h2 id=&#34;常用选项&#34;&gt;常用选项：&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;-q,--quiet：suppress non-error messages 静默模式
+-v,--verbose：increase verbosity
+-a,--archive：archive mode; equals -rlptgoD (no -H,-A,-X) 归档模式，相当于-rlptgoD,不包括(no -H,-A,-X);最常用的参数
+-H,--hard-links：preserve hard links 保留硬链接
+-A,--acls：preserve ACLs (implies --perms) 保留ACL权限
+-X,--xattrs：preserve extended attributes 保留扩展属性
+-c, --checksum：skip based on checksum, not mod-time &amp;amp; size
+-r,--recursive：recurse into directories 递归
+-l,--links：copy symlinks as symlinks 保留软链接,而不跟踪原文件
+-p,--perms：preserve permissions 保留权限
+-t,--times：preserve modification &lt;span style=&#34;color:#658b00&#34;&gt;times&lt;/span&gt; 保留mtime
+-g,--group：preserve group 保留属组
+-o,--owner：preserve owner (super-user only) 保留属主
+-D：same as --devices,--specials 保留设备文件和特殊文件
+--devices：preserve device files (super-user only)
+--specials：preserve special files
+
+-z,--compress：compress file data during the transfer 输过程中压缩文件数据
+-n, --dry-run：perform a trial run with no changes made 干跑测试
+-u,--update：skip files that are newer on the receiver 增量同步，跳过比本地较新的文件
+--delete：delete extraneous files from destination &lt;span style=&#34;color:#658b00&#34;&gt;dirs&lt;/span&gt; 删除目标目录多余文件
+--progress：show progress during transfer 显示传输进度
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;本地复制&#34;&gt;本地复制&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;rsync -av ansible_auto/public/uy-s-192-v01.cfg objects/ansible_auto/public/uy-s-192-v01.cfg
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;比对文件&#34;&gt;比对文件&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#658b00&#34;&gt;cd&lt;/span&gt; /usr/local/nagios/etc/
+rsync -acvn ansible_auto/ objects/ansible_auto/ &amp;gt; diff
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;增量同步合并目录文件最终与目标目录一致&#34;&gt;增量同步（合并目录文件，最终与目标目录一致）&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;rsync -avzu --progress /opt/* devops@11.0.10.8:/opt/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;删除同步删除目标目录多余文件最终与源目录一致&#34;&gt;删除同步（删除目标目录多余文件，最终与源目录一致）&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;rsync -avzu --delete --progress /opt/* devops@11.0.10.8:/opt/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;另外可以设置计划任务实时同步和备份文件&#34;&gt;另外，可以设置计划任务实时同步和备份文件&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;crontab -e
+*/1 * * * * rsync -avzu /opt/media/* 192.168.201.123:/opt/media
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/linux/rsync%E5%91%BD%E4%BB%A4%E6%AF%94%E5%AF%B9%E6%96%87%E4%BB%B6%E5%8F%8A%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5/ - Syaofox 2020 copyright.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Intel NUC 冥王峡谷（NUC8i7HVK）安装 Ubuntu18 AMD 显卡的驱动方法</title>
+        <link>https://syaofox.github.io/linux/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/</link>
+        <pubDate>Thu, 18 Jun 2020 11:23:52 +0800</pubDate>
+        
+        <guid>https://syaofox.github.io/linux/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/</guid>
+        <description>霜天晓角 https://syaofox.github.io/linux/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/ -&lt;h2 id=&#34;升级-bios&#34;&gt;升级 BIOS&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;从 &lt;a href=&#34;https://downloadcenter.intel.com/download/28073/BIOS-Update-HNKBLi70-86A-&#34;&gt;这里&lt;/a&gt; 下载BIOS文件&lt;/li&gt;
+&lt;li&gt;按照 &lt;a href=&#34;https://www.intel.com/content/www/us/en/support/articles/000005850/mini-pcs.html&#34;&gt;说明&lt;/a&gt; 更新 BIOS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;安装-ubuntu&#34;&gt;安装 Ubuntu&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;BIOS内关闭安全启动&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;更新内核&#34;&gt;更新内核&lt;/h2&gt;
+&lt;p&gt;AMD GPU的驱动程序随Linux 4.17一起提供，根据测试，只有4.18才提供正式支持，所以必须升级内核。&lt;/p&gt;
+&lt;p&gt;手动升级&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-headers-4.18.0-041800rc5_4.18.0-041800rc5.201807152130_all.deb
+wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-headers-4.18.0-041800rc5-generic_4.18.0-041800rc5.201807152130_amd64.deb
+wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-image-unsigned-4.18.0-041800rc5-generic_4.18.0-041800rc5.201807152130_amd64.deb
+wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-modules-4.18.0-041800rc5-generic_4.18.0-041800rc5.201807152130_amd64.deb
+sudo dpkg -i linux-*.deb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;或者&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo add-apt-repository ppa:teejee2008/ppa
+sudo apt update
+sudo apt install ukuu
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;从GUI运行UKUU，选择Linux Kernel 4.18.3，重新启动。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：确保BIOS内安全启动已经关闭&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;重启后查看内核&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;uname -a
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;添加并更新-mesa&#34;&gt;添加并更新 Mesa&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo add-apt-repository ppa:ubuntu-x-swat/updates
+sudo apt dist-upgrade
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;获得amd-vega-m-linux驱动程序并将其放在适当的目录中&#34;&gt;获得AMD Vega M Linux驱动程序并将其放在适当的目录中&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;wget -m -np https://people.freedesktop.org/~agd5f/radeon_ucode/vegam/
+sudo cp people.freedesktop.org/~agd5f/radeon_ucode/vegam/*.bin /lib/firmware/amdgpu
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后更新Ramdisk以识别/选择正确的内核:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo /usr/sbin/update-initramfs -u -k all
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;关闭-nomodeset-选项&#34;&gt;关闭 nomodeset 选项&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;修改引导文件 &lt;code&gt;/etc/default/grub&lt;/code&gt; 设置&lt;code&gt;GRUB_CMDLINE_LINUX_DEFAULT=&amp;quot;&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;运行 &lt;code&gt;sudo update-grub2&lt;/code&gt; 更新引导并重新启动&lt;/li&gt;
+&lt;/ul&gt;
+- https://syaofox.github.io/linux/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/ - Syaofox 2020 copyright.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Ubuntu 18.04 LTS 更换国内源——解决终端下载速度慢的问题</title>
+        <link>https://syaofox.github.io/linux/ubuntu18-04%E6%8D%A2%E6%BA%90/</link>
+        <pubDate>Thu, 18 Jun 2020 11:22:36 +0800</pubDate>
+        
+        <guid>https://syaofox.github.io/linux/ubuntu18-04%E6%8D%A2%E6%BA%90/</guid>
+        <description>霜天晓角 https://syaofox.github.io/linux/ubuntu18-04%E6%8D%A2%E6%BA%90/ -&lt;p&gt;最近装了ubuntu18.04 LTS，下载软件有点慢，换国内源&lt;/p&gt;
+&lt;h2 id=&#34;更换etcaptsourceslist文件里的源&#34;&gt;更换**/etc/apt/sources.list**文件里的源&lt;/h2&gt;
+&lt;h3 id=&#34;1-备份源列表&#34;&gt;1. 备份源列表&lt;/h3&gt;
+&lt;p&gt;Ubuntu配置的默认源并不是国内的服务器，下载更新软件都比较慢。首先备份源列表文件&lt;strong&gt;sources.list&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 首先备份源列表&lt;/span&gt;
+sudo cp /etc/apt/sources.list /etc/apt/sources.list_backup
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2-打开sourceslist文件修改&#34;&gt;2. 打开sources.list文件修改&lt;/h3&gt;
+&lt;p&gt;选择合适的源，替换原文件的内容，保存编辑好的文件, 以阿里云更新服务器为例（可以分别测试阿里云、清华、中科大、163源的速度，选择最快的）：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 打开sources.list文件&lt;/span&gt;
+sudo gedit /etc/apt/sources.list
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;编辑**/etc/apt/sources.list**文件, 在文件最前面添加阿里云镜像源：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;#  阿里源&lt;/span&gt;
+deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;3-刷新列表&#34;&gt;3. 刷新列表&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install build-essential
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;下载速度瞬间就起飞了。&lt;/p&gt;
+&lt;h3 id=&#34;4-其他源&#34;&gt;4. 其他源&lt;/h3&gt;
+&lt;p&gt;中科大源：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;#  中科大源&lt;/span&gt;
+deb https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse
+deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
+deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
+deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
+deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;163源：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 163源&lt;/span&gt;
+deb http://mirrors.163.com/ubuntu/ bionic main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ bionic-security main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ bionic-proposed main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ bionic-backports main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ bionic main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ bionic-security main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ bionic-proposed main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ bionic-backports main restricted universe multiverse
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;清华源：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 清华源&lt;/span&gt;
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
+deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
+deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
+deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
+deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/linux/ubuntu18-04%E6%8D%A2%E6%BA%90/ - Syaofox 2020 copyright.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Ubuntu18 04 修改DNS</title>
+        <link>https://syaofox.github.io/linux/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/</link>
+        <pubDate>Thu, 18 Jun 2020 11:20:07 +0800</pubDate>
+        
+        <guid>https://syaofox.github.io/linux/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/</guid>
+        <description>霜天晓角 https://syaofox.github.io/linux/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/ -&lt;p&gt;最近使用了最新版的ubuntu 18.04运行一些服务，发现服务器经常出现无法解析域名的情况。&lt;/p&gt;
+&lt;p&gt;检查/etc/resolv.conf文件，发现里面nameserver是127.0.0.53，修改以后过了段时间，又被修改回去，查找资料原来18.04版本DNS是由systemd-resolved管理的。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;netstat -tnpl| grep systemd-resolved
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过以上命令查看到这个服务是监听在53号端口上。&lt;/p&gt;
+&lt;p&gt;/etc/systemd/resolved.conf大致内容如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;[Resolve]
+&lt;span style=&#34;color:#00688b&#34;&gt;DNS&lt;/span&gt;=223.5.5.5 8.8.8.8
+&lt;span style=&#34;color:#228b22&#34;&gt;#FallbackDNS=&lt;/span&gt;
+&lt;span style=&#34;color:#228b22&#34;&gt;#Domains=&lt;/span&gt;
+&lt;span style=&#34;color:#00688b&#34;&gt;LLMNR&lt;/span&gt;=no
+&lt;span style=&#34;color:#228b22&#34;&gt;#MulticastDNS=no&lt;/span&gt;
+&lt;span style=&#34;color:#228b22&#34;&gt;#DNSSEC=no&lt;/span&gt;
+&lt;span style=&#34;color:#228b22&#34;&gt;#Cache=yes&lt;/span&gt;
+&lt;span style=&#34;color:#228b22&#34;&gt;#DNSStubListener=yes&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;修改这里面的内容，然后重启systemd-resolved服务即可。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;systemctl restart systemd-resolved.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果想要用/etc/resolve.conf控制，直接将systemd-resolved服务停止并禁用。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;systemctl stop systemd-resolved.service
+systemctl disable systemd-resolved.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样世界就清净了。&lt;/p&gt;- https://syaofox.github.io/linux/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/ - Syaofox 2020 copyright.</description>
         </item>
     
     

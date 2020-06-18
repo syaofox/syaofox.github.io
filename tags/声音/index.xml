@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>声音 on 霜天晓角</title>
+    <link>https://syaofox.github.io/tags/%E5%A3%B0%E9%9F%B3/</link>
+    <description>Recent content in 声音 on 霜天晓角</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Syaofox 2020 copyright.</copyright>
+    <lastBuildDate>Thu, 18 Jun 2020 11:19:25 +0800</lastBuildDate>
+    
+	<atom:link href="https://syaofox.github.io/tags/%E5%A3%B0%E9%9F%B3/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ubuntu 18 4 HDMI声音有杂音的修复方法</title>
+      <link>https://syaofox.github.io/linux/ubuntu-18-4-hdmi%E5%A3%B0%E9%9F%B3%E6%9C%89%E6%9D%82%E9%9F%B3%E7%9A%84%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Thu, 18 Jun 2020 11:19:25 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/ubuntu-18-4-hdmi%E5%A3%B0%E9%9F%B3%E6%9C%89%E6%9D%82%E9%9F%B3%E7%9A%84%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/</guid>
+      <description>&lt;p&gt;显示器自带音箱，通过hdmi连接电脑，安装完ubuntu 18后声音出现比较大的杂音&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
