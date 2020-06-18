@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html><head>
+<title>Ubuntu Server 18 04 LTS 上安装Virtual Box 并配置 PhpVirtualbox</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="https://syaofox.github.io/scss/journal.min.2725bdf31310513b302e62b01700d09aeff9316f5344e988decd15737cf0b3c5.css" integrity="sha256-JyW98xMQUTswLmKwFwDQmu/5MW9TROmI3s0Vc3zws8U=" media="screen">
+
+
+
+<link rel="stylesheet" href="https://syaofox.github.io/scss/dark-mode.min.e93e28b95f534b47ed30828c25fef57eb3c43aa0270721098b7f9d4f1c40bf1f.css" integrity="sha256-6T4ouV9TS0ftMIKMJf71frPEOqAnByEJi3&#43;dTxxAvx8=" media="screen">
+
+
+<script src="https://syaofox.github.io//js/loadCSS.js"></script>
+<script>
+  loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+
+
+
+  
+    <script src="https://syaofox.github.io//js/toc-collapse.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://syaofox.github.io/">
+    
+        <div class="nav-title">
+            霜天晓角
+        </div>
+        
+        <div class="nav-subtitle">
+            心似白云常自在
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/archives">
+                归档
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/categories">
+                分类
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tags">
+                标签
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/index.xml">
+                RSS 订阅
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+移植自 <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	Syaofox 2020 copyright.
+	
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- 目录 -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%89%8d%e6%8f%90%e6%9d%a1%e4%bb%b6" onclick="collapseOthers(`#前提条件-nav`)" id="前提条件-nav">
+									前提条件
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ae%89%e8%a3%85-virtualbox" onclick="collapseOthers(`#安装-virtualbox-nav`)" id="安装-virtualbox-nav">
+									安装 VirtualBox
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%85%b3%e4%ba%8e-phpvirtualbox" onclick="collapseOthers(`#关于-phpvirtualbox-nav`)" id="关于-phpvirtualbox-nav">
+									关于 phpVirtualBox
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%9c%a8-ubuntu-1804-lts-%e4%b8%8a%e5%ae%89%e8%a3%85-phpvirtualbox" onclick="collapseOthers(`#在-ubuntu-1804-lts-上安装-phpvirtualbox-nav`)" id="在-ubuntu-1804-lts-上安装-phpvirtualbox-nav">
+									在 Ubuntu 18.04 LTS 上安装 phpVirtualBox
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a class="pagination-action" v-on:click="toggleDarkMode">
+            <i class="material-icons pagination-action-icon" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons pagination-action-icon" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </a>
+        
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/archives">
+                    归档
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/categories">
+                    分类
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tags">
+                    标签
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/index.xml">
+                    RSS 订阅
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- 目录 -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%89%8d%e6%8f%90%e6%9d%a1%e4%bb%b6" onclick="collapseOthers(`#前提条件-nav`)" id="前提条件-nav">
+									前提条件
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ae%89%e8%a3%85-virtualbox" onclick="collapseOthers(`#安装-virtualbox-nav`)" id="安装-virtualbox-nav">
+									安装 VirtualBox
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%85%b3%e4%ba%8e-phpvirtualbox" onclick="collapseOthers(`#关于-phpvirtualbox-nav`)" id="关于-phpvirtualbox-nav">
+									关于 phpVirtualBox
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%9c%a8-ubuntu-1804-lts-%e4%b8%8a%e5%ae%89%e8%a3%85-phpvirtualbox" onclick="collapseOthers(`#在-ubuntu-1804-lts-上安装-phpvirtualbox-nav`)" id="在-ubuntu-1804-lts-上安装-phpvirtualbox-nav">
+									在 Ubuntu 18.04 LTS 上安装 phpVirtualBox
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://syaofox.github.io/">
+            霜天晓角
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" v-on:click="toggleDarkMode">
+            <i class="material-icons" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://syaofox.github.io/">
+        <div class="single-column-header-title">霜天晓角</div>
+        
+        <div class="single-column-header-subtitle">心似白云常自在</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    Ubuntu Server 18 04 LTS 上安装Virtual Box 并配置 PhpVirtualbox
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2020-06-18 11:17
+                        </time>
+                        
+
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/linux">Linux</a>
+                                &nbsp;
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/ubuntu">Ubuntu</a>
+                                &nbsp;
+                            
+                                <a href="/tags/virtualbox">VirtualBox</a>
+                                &nbsp;
+                            
+                        
+                        
+                            <i class="material-icons" style="">schedule</i>
+                            
+
+                            
+                            
+
+                            
+                            10 min
+                            
+                            1 second.
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <p>本教程将指导你在 Ubuntu 18.04 LTS 无头服务器上，一步一步地安装 Oracle VirtualBox。同时，本教程也将介绍如何使用 phpVirtualBox 去管理安装在无头服务器上的 VirtualBox 实例。phpVirtualBox 是 VirtualBox 的一个基于 Web 的前端工具。这个教程也可以工作在 Debian 和其它 Ubuntu 衍生版本上，如 Linux Mint。现在，我们开始。
+原文地址:<a href="https://www.ostechnix.com/install-oracle-virtualbox-ubuntu-16-04-headless-server/">https://www.ostechnix.com/install-oracle-virtualbox-ubuntu-16-04-headless-server/</a></p>
+<h1 id="前提条件">前提条件</h1>
+<p>在安装 Oracle VirtualBox 之前，我们的 Ubuntu 18.04 LTS 服务器上需要满足如下的前提条件。
+首先，逐个运行如下的命令来更新 Ubuntu 服务器。</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt update
+sudo apt upgrade
+sudo apt dist-upgrade
+</code></pre></div><p>接下来，安装如下的必需的包</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt install build-essential dkms unzip wget
+</code></pre></div><p>安装完成所有的更新和必需的包之后，重启动 Ubuntu 服务器。</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo reboot
+</code></pre></div><h1 id="安装-virtualbox">安装 VirtualBox</h1>
+<p>添加 Oracle VirtualBox 官方仓库。为此你需要去编辑 <code>/etc/apt/sources.list</code> 文件：</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo nano /etc/apt/sources.list
+</code></pre></div><p>添加下列的行</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">deb http://download.virtualbox.org/virtualbox/debian bionic contrib
+</code></pre></div><p><img src="/Ubuntu-Server-18-04-LTS-%E4%B8%8A%E5%AE%89%E8%A3%85Virtual-Box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpVirtualbox/1569939778-f01981db6c2a7a8ebd570be6bd8c9cd4.jpg" alt="">
+然后，运行下列的命令去添加 Oracle 公钥：</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bas" data-lang="bas">wget<span style="color:#bbb">  </span>-q<span style="color:#bbb"> </span>https://www.virtualbox.org/download/oracle_vbox_2016.asc<span style="color:#bbb"> </span>-O-<span style="color:#bbb"> </span>|<span style="color:#bbb"> </span>sudo<span style="color:#bbb"> </span>apt-key<span style="color:#bbb"> </span>add<span style="color:#bbb"> </span>-
+</code></pre></div><p>接下来，使用如下的命令去更新软件源</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt update
+</code></pre></div><p>最后，使用如下的命令去安装最新版本的 Oracle VirtualBox</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt install virtualbox-5.2
+</code></pre></div><p>添加用户到 VirtualBox 组</p>
+<p>我们需要去创建并添加我们的系统用户到 <code>vboxusers</code> 组中。你也可以单独创建用户，然后将它分配到 <code>vboxusers</code> 组中，也可以使用已有的用户。我不想去创建新用户，因此，我添加已存在的用户到这个组中。请注意，如果你为 virtualbox 使用一个单独的用户，那么你必须注销当前用户，并使用那个特定的用户去登入，来完成剩余的步骤。</p>
+<p>我使用的是我的用户名 <code>sk</code>，因此，我运行如下的命令将它添加到 <code>vboxusers</code> 组中。</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo usermod -aG vboxusers sk
+</code></pre></div><p>现在，运行如下的命令去检查 virtualbox 内核模块是否已加载。</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo  systemctl status vboxdrv
+</code></pre></div><p><img src="/Ubuntu-Server-18-04-LTS-%E4%B8%8A%E5%AE%89%E8%A3%85Virtual-Box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpVirtualbox/1569939778-5b04cc0622b3f4fb4baeb57ae8b58d5c.jpg" alt=""></p>
+<p>如果 virtualbox 模块没有启动，运行如下的命令去启动它。</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo /etc/init.d/vboxdrv setup
+</code></pre></div><p>很好！我们已经成功安装了 VirtualBox 并启动了 virtualbox 模块。现在，我们继续来安装 Oracle VirtualBox 的扩展包。</p>
+<p>安装 VirtualBox 扩展包</p>
+<p>VirtualBox 扩展包为 VirtualBox 访客系统提供了如下的功能。</p>
+<ul>
+<li>虚拟的 USB 2.0 (EHCI) 驱动</li>
+<li>VirtualBox 远程桌面协议（VRDP）支持</li>
+<li>宿主机网络摄像头直通</li>
+<li>Intel PXE 引导 ROM</li>
+<li>对 Linux 宿主机上的 PCI 直通提供支持</li>
+</ul>
+<p>从<a href="https://www.virtualbox.org/wiki/Download_Old_Builds_5_2">这里</a>为 VirtualBox 5.2.x 下载最新版的扩展包。</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget https://download.virtualbox.org/virtualbox/5.2.14/Oracle_VM_VirtualBox_Extension_Pack-5.2.14.vbox-extpack
+</code></pre></div><p>使用如下的命令去安装扩展包：</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo  VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-5.2.14.vbox-extpack
+</code></pre></div><p>恭喜！我们已经成功地在 Ubuntu 18.04 LTS 服务器上安装了 Oracle VirtualBox 的扩展包。现在已经可以去部署虚拟机了。参考 <a href="http://www.virtualbox.org/manual/ch08.html">virtualbox 官方指南</a>，在命令行中开始创建和管理虚拟机。</p>
+<p>然而，并不是每个人都擅长使用命令行。有些人可能希望在图形界面中去创建和使用虚拟机。不用担心！下面我们为你带来非常好用的 phpVirtualBox 工具！</p>
+<h1 id="关于-phpvirtualbox">关于 phpVirtualBox</h1>
+<p>phpVirtualBox 是一个免费的、基于 web 的 Oracle VirtualBox 后端。它是使用 PHP 开发的。用 phpVirtualBox 我们可以通过 web 浏览器从网络上的任意一个系统上，很轻松地创建、删除、管理、和执行虚拟机。</p>
+<h1 id="在-ubuntu-1804-lts-上安装-phpvirtualbox">在 Ubuntu 18.04 LTS 上安装 phpVirtualBox</h1>
+<p>由于它是基于 web 的工具，我们需要安装 Apache web 服务器、PHP 和一些 php 模块。</p>
+<p>为此，运行如下命令：</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt install apache2 php php-mysql libapache2-mod-php php-soap php-xml
+</code></pre></div><p>然后，从 <a href="https://github.com/phpvirtualbox/phpvirtualbox/releases">下载页面</a> 上下载 phpVirtualBox 5.2.x 版。请注意，由于我们已经安装了 VirtualBox 5.2 版，因此，同样的我们必须去安装 phpVirtualBox 的 5.2 版本。</p>
+<p>运行如下的命令去下载它：</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget https://github.com/phpvirtualbox/phpvirtualbox/archive/5.2-0.zip
+</code></pre></div><p>使用如下命令解压下载的安装包：</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">unzip 5.2-0.zip
+</code></pre></div><p>这个命令将解压 5.2.0.zip 文件的内容到一个名为 <code>phpvirtualbox-5.2-0</code> 的文件夹中。现在，复制或移动这个文件夹的内容到你的 apache web 服务器的根文件夹中。</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo  mv phpvirtualbox-5.2-0/ /var/www/html/phpvirtualbox
+</code></pre></div><p>给 phpvirtualbox 文件夹分配适当的权限。</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo  chmod  <span style="color:#b452cd">777</span>  /var/www/html/phpvirtualbox/
+</code></pre></div><p>接下来，我们开始配置 phpVirtualBox。</p>
+<p>像下面这样复制示例配置文件。</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo  cp  /var/www/html/phpvirtualbox/config.php-example /var/www/html/phpvirtualbox/config.php
+</code></pre></div><p>编辑 phpVirtualBox 的 <code>config.php</code> 文件：</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo  nano  /var/www/html/phpvirtualbox/config.php
+</code></pre></div><p>找到下列行，并且用你的系统用户名和密码去替换它（就是前面的“添加用户到 VirtualBox 组中”节中使用的用户名）。</p>
+<p>在我的案例中，我的 Ubuntu 系统用户名是 <code>sk</code> ，它的密码是 <code>ubuntu</code>。</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">var <span style="color:#00688b">$username</span> =  <span style="color:#cd5555">&#39;sk&#39;</span>;
+var <span style="color:#00688b">$password</span> =  <span style="color:#cd5555">&#39;ubuntu&#39;</span>;
+</code></pre></div><p><img src="/Ubuntu-Server-18-04-LTS-%E4%B8%8A%E5%AE%89%E8%A3%85Virtual-Box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpVirtualbox/1569939778-3ce8a883400e9fcd3f6fa384ef7e3e31.jpg" alt=""></p>
+<p>保存并关闭这个文件。
+接下来，创建一个名为 <code>/etc/default/virtualbox</code> 的新文件：</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo  nano  /etc/default/virtualbox
+</code></pre></div><p>添加下列行。用你自己的系统用户替换 <code>sk</code>。</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#00688b">VBOXWEB_USER</span>=sk
+</code></pre></div><p>最后，重引导你的系统或重启下列服务去完成整个配置工作。</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo  systemctl restart vboxweb-service
+sudo  systemctl restart vboxdrv
+sudo  systemctl restart apache2
+</code></pre></div><p>调整防火墙允许连接 Apache web 服务器</p>
+<p>如果你在 Ubuntu 18.04 LTS 上启用了 UFW，那么在默认情况下，apache web 服务器是不能被任何远程系统访问的。你必须通过下列的步骤让 http 和 https 流量允许通过 UFW。</p>
+<p>首先，我们使用如下的命令来查看在策略中已经安装了哪些应用：</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo ufw app list
+Available applications:
+Apache
+Apache  Full
+Apache  Secure
+OpenSSH
+</code></pre></div><p>正如你所见，Apache 和 OpenSSH 应该已经在 UFW 的策略文件中安装了。</p>
+<p>如果你在策略中看到的是 <code>Apache Full</code>，说明它允许流量到达 80 和 443 端口：</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo ufw app info  <span style="color:#cd5555">&#34;Apache Full
+</span><span style="color:#cd5555">Profile:  Apache  Full
+</span><span style="color:#cd5555">Title:  Web  Server  (HTTP,HTTPS)
+</span><span style="color:#cd5555">Description:  Apache v2 is the next generation of the omnipresent Apache web
+</span><span style="color:#cd5555">server.
+</span><span style="color:#cd5555">Ports:
+</span><span style="color:#cd5555">80,443/tcp
+</span></code></pre></div><p>现在，运行如下的命令去启用这个策略中的 HTTP 和 HTTPS 的入站流量：</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo ufw allow in  <span style="color:#cd5555">&#34;Apache Full&#34;</span>
+Rules updated
+Rules updated (v6)
+</code></pre></div><p>如果你希望允许 https 流量，但是仅是 http (80) 的流量，运行如下的命令：</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo ufw app info  <span style="color:#cd5555">&#34;Apache
+</span></code></pre></div><p>访问 phpVirtualBox 的 Web 控制台</p>
+<p>现在，用任意一台远程系统的 web 浏览器来访问。
+在地址栏中，输入：<code>http://IP-address-of-virtualbox-headless-server/phpvirtualbox</code>。
+在我的案例中，我导航到这个链接 – <code>http://192.168.225.22/phpvirtualbox</code>。
+你将看到如下的屏幕输出。输入 phpVirtualBox 管理员用户凭据。
+phpVirtualBox 的默认管理员用户名和密码是 <code>admin</code> / <code>admin</code>。</p>
+<p><img src="/Ubuntu-Server-18-04-LTS-%E4%B8%8A%E5%AE%89%E8%A3%85Virtual-Box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpVirtualbox/1569939778-c62af7eb570debbf041cfbf6d49a2024.jpg" alt=""></p>
+<p>恭喜！你现在已经进入了 phpVirtualBox 管理面板了。</p>
+<p><img src="/Ubuntu-Server-18-04-LTS-%E4%B8%8A%E5%AE%89%E8%A3%85Virtual-Box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpVirtualbox/1569939778-7486525747b84f6a739e24057931d1fd.jpg" alt=""></p>
+<p>现在，你可以从 phpvirtualbox 的管理面板上，开始去创建你的 VM 了。正如我在前面提到的，你可以从同一网络上的任意一台系统上访问 phpVirtualBox 了，而所需要的仅仅是一个 web 浏览器和 phpVirtualBox 的用户名和密码。</p>
+<p>如果在你的宿主机系统（不是访客机）的 BIOS 中没有启用虚拟化支持，phpVirtualBox 将只允许你去创建 32 位的访客系统。要安装 64 位的访客系统，你必须在你的宿主机的 BIOS 中启用虚拟化支持。在你的宿主机的 BIOS 中你可以找到一些类似于 “virtualization” 或 “hypervisor” 字眼的选项，然后确保它是启用的。</p>
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">最后修改于 2020-06-18</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://syaofox.github.io/linux/ubuntu-18-4-hdmi%E5%A3%B0%E9%9F%B3%E6%9C%89%E6%9D%82%E9%9F%B3%E7%9A%84%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/">
+			下回<br>Ubuntu 18 4 HDMI声音有杂音的修复方法
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://syaofox.github.io/linux/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/">
+			上回<br>Ubuntu Server 20.04 LTS NAS 安装记录
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+                <p style="opacity: 0.6" align="center">
+                    <small>此篇文章的评论功能已经停用。</small>
+                </p>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+移植自 <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	Syaofox 2020 copyright.
+	
+</div>
+            </div>
+    <script>
+let app;
+
+app = new Vue({
+    el: '#app',
+    data: {
+        scrollY: 0,
+        navOpacity: 0,
+        isDrawerOpen: false,
+        mounted: false,
+        isDarkMode: false
+    },
+    methods: {
+            sgn(t, x) {
+                let k = 1. / (1. - 2 * t);
+                if (x <= t) return 0;
+                else if (x >= 1 - t) return 1;
+                else {
+                    return k * (x - t);
+                }
+            },
+            handleScroll() {
+                this.scrollY = window.scrollY;
+                this.navOpacity = this.sgn(.0, Math.min(1, Math.max(0, window.scrollY / (this.pageHeadHeight() - this.navBarHeight() * 0.8))));
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+
+                if (this.navOpacity >= 1) {
+                    navBackground.style.opacity = 1;
+                    navTitle.style.opacity = 1;
+                } else {
+                    navBackground.style.opacity = 0;
+                    navTitle.style.opacity = 0;
+                }
+            },
+            handleResize() {
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+                extraContainer.style.left = (streamContainer.offsetWidth - extraContainer.offsetWidth) + 'px';
+            },
+            navBarHeight() {
+                return this.$refs.navBar.offsetHeight;
+            },
+            pageHeadHeight() {
+                return this.$refs.pageHead.offsetHeight;
+            },
+            toggleDrawer() {
+                this.isDrawerOpen = !this.isDrawerOpen;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            closeDrawer() {
+                this.isDrawerOpen = false;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            toggleDarkMode() {
+                this.isDarkMode = !this.isDarkMode;
+                if (this.isDarkMode==true){
+                    document.cookie = "night=1;path=/";
+                    document.body.classList.add("night");
+                } else {
+                    document.cookie = "night=0;path=/";
+                    document.body.classList.remove("night");
+                }
+            }
+    },
+    created() {
+        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('resize', this.handleResize);
+        window._nonDesktop = function () {
+            let check = false;
+            (function (a) {
+                if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+            })(navigator.userAgent || navigator.vendor || window.opera);
+            return check;
+        };
+        
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (night==""){
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                
+            }
+        }else{
+            
+            if (night=="1") {
+                this.toggleDarkMode();
+            }
+        }
+    },
+    mounted() {
+        this.handleScroll();
+        this.handleResize();
+        this.mounted = true;
+
+        
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.handleResize);
+    }
+});
+</script>
+
+<script src="https://syaofox.github.io//js/journal.js"></script>
+    </body>
+</html>

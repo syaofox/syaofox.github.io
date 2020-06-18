@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rsync on 霜天晓角</title>
+    <link>https://syaofox.github.io/tags/rsync/</link>
+    <description>Recent content in Rsync on 霜天晓角</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Syaofox 2020 copyright.</copyright>
+    <lastBuildDate>Thu, 18 Jun 2020 11:56:31 +0800</lastBuildDate>
+    
+	<atom:link href="https://syaofox.github.io/tags/rsync/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Rsync 命令比对文件及增量同步</title>
+      <link>https://syaofox.github.io/linux/rsync%E5%91%BD%E4%BB%A4%E6%AF%94%E5%AF%B9%E6%96%87%E4%BB%B6%E5%8F%8A%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5/</link>
+      <pubDate>Thu, 18 Jun 2020 11:56:31 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/rsync%E5%91%BD%E4%BB%A4%E6%AF%94%E5%AF%B9%E6%96%87%E4%BB%B6%E5%8F%8A%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5/</guid>
+      <description>rsync基于ssh协议实现高效率远程或本地文件复制，传输速度比scp快。复制文件时会比对本地文件与远程主机的文件，仅复制有差异的文件。
+常用选项： -q,--quiet：suppress non-error messages 静默模式 -v,--verbose：increase verbosity -a,--archive：archive mode; equals -rlptgoD (no -H,-A,-X) 归档模式，相当于-rlptgoD,不包括(no -H,-A,-X);最常用的参数 -H,--hard-links：preserve hard links 保留硬链接 -A,--acls：preserve ACLs (implies --perms) 保留ACL权限 -X,--xattrs：preserve extended attributes 保留扩展属性 -c, --checksum：skip based on checksum, not mod-time &amp;amp; size -r,--recursive：recurse into directories 递归 -l,--links：copy symlinks as symlinks 保留软链接,而不跟踪原文件 -p,--perms：preserve permissions 保留权限 -t,--times：preserve modification times 保留mtime -g,--group：preserve group 保留属组 -o,--owner：preserve owner (super-user only) 保留属主 -D：same as --devices,--specials 保留设备文件和特殊文件 --devices：preserve device files (super-user only) --specials：preserve special files -z,--compress：compress file data during the transfer 输过程中压缩文件数据 -n, --dry-run：perform a trial run with no changes made 干跑测试 -u,--update：skip files that are newer on the receiver 增量同步，跳过比本地较新的文件 --delete：delete extraneous files from destination dirs 删除目标目录多余文件 --progress：show progress during transfer 显示传输进度 本地复制 rsync -av ansible_auto/public/uy-s-192-v01.</description>
+    </item>
+    
+  </channel>
+</rss>

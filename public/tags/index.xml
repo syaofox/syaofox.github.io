@@ -7,10 +7,208 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Syaofox 2020 copyright.</copyright>
-    <lastBuildDate>Thu, 18 Jun 2020 10:50:46 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jun 2020 12:09:42 +0800</lastBuildDate>
     
 	<atom:link href="https://syaofox.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Ubuntu</title>
+      <link>https://syaofox.github.io/tags/ubuntu/</link>
+      <pubDate>Thu, 18 Jun 2020 12:09:42 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ZED</title>
+      <link>https://syaofox.github.io/tags/zed/</link>
+      <pubDate>Thu, 18 Jun 2020 12:09:42 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/zed/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Crontab</title>
+      <link>https://syaofox.github.io/tags/crontab/</link>
+      <pubDate>Thu, 18 Jun 2020 12:08:17 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/crontab/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://syaofox.github.io/tags/linux/</link>
+      <pubDate>Thu, 18 Jun 2020 12:08:17 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://syaofox.github.io/tags/docker/</link>
+      <pubDate>Thu, 18 Jun 2020 12:06:21 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DockerHub</title>
+      <link>https://syaofox.github.io/tags/dockerhub/</link>
+      <pubDate>Thu, 18 Jun 2020 12:06:21 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/dockerhub/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux命令</title>
+      <link>https://syaofox.github.io/tags/linux%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Thu, 18 Jun 2020 12:03:25 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/linux%E5%91%BD%E4%BB%A4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>System</title>
+      <link>https://syaofox.github.io/tags/system/</link>
+      <pubDate>Thu, 18 Jun 2020 11:59:08 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/system/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rsync</title>
+      <link>https://syaofox.github.io/tags/rsync/</link>
+      <pubDate>Thu, 18 Jun 2020 11:56:31 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/rsync/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NUC</title>
+      <link>https://syaofox.github.io/tags/nuc/</link>
+      <pubDate>Thu, 18 Jun 2020 11:23:52 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/nuc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>显卡</title>
+      <link>https://syaofox.github.io/tags/%E6%98%BE%E5%8D%A1/</link>
+      <pubDate>Thu, 18 Jun 2020 11:23:52 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/%E6%98%BE%E5%8D%A1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>声音</title>
+      <link>https://syaofox.github.io/tags/%E5%A3%B0%E9%9F%B3/</link>
+      <pubDate>Thu, 18 Jun 2020 11:19:25 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/%E5%A3%B0%E9%9F%B3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VirtualBox</title>
+      <link>https://syaofox.github.io/tags/virtualbox/</link>
+      <pubDate>Thu, 18 Jun 2020 11:17:22 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/virtualbox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nas</title>
+      <link>https://syaofox.github.io/tags/nas/</link>
+      <pubDate>Thu, 18 Jun 2020 11:15:54 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/nas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ubunt</title>
+      <link>https://syaofox.github.io/tags/ubunt/</link>
+      <pubDate>Thu, 18 Jun 2020 11:14:43 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/ubunt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OMV</title>
+      <link>https://syaofox.github.io/tags/omv/</link>
+      <pubDate>Thu, 18 Jun 2020 11:12:00 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/omv/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OpenMediaVault</title>
+      <link>https://syaofox.github.io/tags/openmediavault/</link>
+      <pubDate>Thu, 18 Jun 2020 11:12:00 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/openmediavault/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ZFS</title>
+      <link>https://syaofox.github.io/tags/zfs/</link>
+      <pubDate>Thu, 18 Jun 2020 11:12:00 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/zfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SMB</title>
+      <link>https://syaofox.github.io/tags/smb/</link>
+      <pubDate>Thu, 18 Jun 2020 11:05:14 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/smb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mergerfs</title>
+      <link>https://syaofox.github.io/tags/mergerfs/</link>
+      <pubDate>Thu, 18 Jun 2020 11:03:08 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/mergerfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>UPS</title>
+      <link>https://syaofox.github.io/tags/ups/</link>
+      <pubDate>Thu, 18 Jun 2020 11:02:01 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/ups/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>screen</title>
+      <link>https://syaofox.github.io/tags/screen/</link>
+      <pubDate>Thu, 18 Jun 2020 10:59:04 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/tags/screen/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>安装系统</title>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on 霜天晓角</title>
+    <link>https://syaofox.github.io/tags/docker/</link>
+    <description>Recent content in Docker on 霜天晓角</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Syaofox 2020 copyright.</copyright>
+    <lastBuildDate>Thu, 18 Jun 2020 12:06:21 +0800</lastBuildDate>
+    
+	<atom:link href="https://syaofox.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker Hub 镜像加速器</title>
+      <link>https://syaofox.github.io/linux/docker-hub-%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8/</link>
+      <pubDate>Thu, 18 Jun 2020 12:06:21 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/docker-hub-%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8/</guid>
+      <description>&lt;p&gt;国内从 Docker Hub 拉取镜像有时会遇到困难，此时可以配置镜像加速器。Docker 官方和国内很多云服务商都提供了国内加速器服务。*&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Docker 容器使用宿主机同网段IP</title>
+      <link>https://syaofox.github.io/linux/docker-%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%90%8C%E7%BD%91%E6%AE%B5ip/</link>
+      <pubDate>Thu, 18 Jun 2020 12:05:03 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/docker-%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%90%8C%E7%BD%91%E6%AE%B5ip/</guid>
+      <description>工作需要临时启动一个 gitlab,无奈 gitlab 需要 ssh 的 22 端口;而使用传统网桥方式映射端口则 clone 等都需要输入端口号,很麻烦;22 端口宿主机又有 sshd 监听;研究了下 docker 网络,记录一下如何分配宿主机网段 IP*
+创建 macvlan 网络 关于 Docker 网络模式这里不再细说;由于默认的网桥方式无法满足需要,所以需要创建一个 macvlan 网络
+docker network create -d macvlan --subnet=172.16.0.0/19 --gateway=172.16.0.1 -o parent=eth0 gitlab-net  --subnet: 指定网段(宿主机) --gateway: 指定网关(宿主机) parent: 注定父网卡(宿主机)  创建以后可以使用 docker network ls 查看
+➜ ~ docker network ls NETWORK ID NAME DRIVER SCOPE a4a2980c9165 agent_default bridge local a0f29102b413 bridge bridge local 2f46dc70b763 gitlab-net macvlan local 51bd6222530f host host local 7a14a09c3cfc none null local 创建使用容器[] 接下来创建容器指定网络即可</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu 20.04 LTS 上安装 Docker 与 Docker-Compose</title>
+      <link>https://syaofox.github.io/linux/ubuntu-20-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85-docker-%E4%B8%8E-docker-compose/</link>
+      <pubDate>Thu, 18 Jun 2020 11:14:43 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/ubuntu-20-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85-docker-%E4%B8%8E-docker-compose/</guid>
+      <description>记录 docker 与 docker-compose 安装过程 基于 Ubuntu 20.04 LTS
+安装docker 更新包列表 sudo apt update 安装必备软件包 sudo apt install apt-transport-https ca-certificates curl software-properties-common 将官方Docker存储库的GPG密钥添加到系统 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - 将Docker存储库添加到APT源 sudo add-apt-repository &amp;#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable&amp;#34; 再次更新包列表 sudo apt update 查看缓存apt，确保从Docker repo而不是默认的Ubuntu 16.04 repo安装 apt-cache policy docker-ce 最后，安装Docker sudo apt install docker-ce 安装Docker Compose 下载 sudo curl -L https://github.com/docker/compose/releases/download/1.26.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose 设置权限 sudo chmod +x /usr/local/bin/docker-compose 验证 docker-compose --version </description>
+    </item>
+    
+  </channel>
+</rss>

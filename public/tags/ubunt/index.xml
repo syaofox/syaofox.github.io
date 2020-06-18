@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ubunt on 霜天晓角</title>
+    <link>https://syaofox.github.io/tags/ubunt/</link>
+    <description>Recent content in Ubunt on 霜天晓角</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Syaofox 2020 copyright.</copyright>
+    <lastBuildDate>Thu, 18 Jun 2020 11:14:43 +0800</lastBuildDate>
+    
+	<atom:link href="https://syaofox.github.io/tags/ubunt/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ubuntu 20.04 LTS 上安装 Docker 与 Docker-Compose</title>
+      <link>https://syaofox.github.io/linux/ubuntu-20-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85-docker-%E4%B8%8E-docker-compose/</link>
+      <pubDate>Thu, 18 Jun 2020 11:14:43 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/ubuntu-20-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85-docker-%E4%B8%8E-docker-compose/</guid>
+      <description>记录 docker 与 docker-compose 安装过程 基于 Ubuntu 20.04 LTS
+安装docker 更新包列表 sudo apt update 安装必备软件包 sudo apt install apt-transport-https ca-certificates curl software-properties-common 将官方Docker存储库的GPG密钥添加到系统 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - 将Docker存储库添加到APT源 sudo add-apt-repository &amp;#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable&amp;#34; 再次更新包列表 sudo apt update 查看缓存apt，确保从Docker repo而不是默认的Ubuntu 16.04 repo安装 apt-cache policy docker-ce 最后，安装Docker sudo apt install docker-ce 安装Docker Compose 下载 sudo curl -L https://github.com/docker/compose/releases/download/1.26.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose 设置权限 sudo chmod +x /usr/local/bin/docker-compose 验证 docker-compose --version </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ZED on 霜天晓角</title>
+    <link>https://syaofox.github.io/tags/zed/</link>
+    <description>Recent content in ZED on 霜天晓角</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Syaofox 2020 copyright.</copyright>
+    <lastBuildDate>Thu, 18 Jun 2020 12:09:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://syaofox.github.io/tags/zed/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ubuntu1604 配置 ZFS Event Daemon</title>
+      <link>https://syaofox.github.io/linux/ubuntu1604-%E9%85%8D%E7%BD%AEzfs-event-daemon/</link>
+      <pubDate>Thu, 18 Jun 2020 12:09:42 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/ubuntu1604-%E9%85%8D%E7%BD%AEzfs-event-daemon/</guid>
+      <description>编辑 ZED 配置文件 编辑 /etc/zfs/zed.d/zed.rc ## # zed.rc # # This file should be owned by root and permissioned 0600. ## ## # Absolute path to the debug output file. # ZED_DEBUG_LOG=&amp;quot;/tmp/zed.debug.log&amp;quot;## # Email address of the zpool administrator for receipt of notifications; # multiple addresses can be specified if they are delimited by whitespace. # Email will only be sent if ZED_EMAIL_ADDR is defined. # Disabled by default; uncomment to enable.</description>
+    </item>
+    
+  </channel>
+</rss>

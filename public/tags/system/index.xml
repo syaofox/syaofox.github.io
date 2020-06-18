@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>System on 霜天晓角</title>
+    <link>https://syaofox.github.io/tags/system/</link>
+    <description>Recent content in System on 霜天晓角</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Syaofox 2020 copyright.</copyright>
+    <lastBuildDate>Thu, 18 Jun 2020 11:59:08 +0800</lastBuildDate>
+    
+	<atom:link href="https://syaofox.github.io/tags/system/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Linux上面碰到鬼畜逆天级的软件依赖关系大家都是怎么解决的</title>
+      <link>https://syaofox.github.io/linux/linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/</link>
+      <pubDate>Thu, 18 Jun 2020 11:59:08 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/</guid>
+      <description>硬刚Linux软件安装依赖问题的办法有很多，我给他分为两大类！
+一类合法，另一类暴力。
+先说合法的解决方案 也是所有人都知道的解决方案：
+sudo apt-get install xxxxx 一般情况下，它会连带软件的依赖一起安装。如果这个过程中依赖安装失败，就执行
+sudo apt-get -f install 一次不行两次，只要源里有，只要能保证依赖关系是顺畅的，再多的依赖多执行几次都能装完。
+如果有依赖源里找不到。这个坑就踩不过去了，解决办法是：找到缺失的库的安装包手动下载下来。然后通过
+sudo dpkg -i xxxx.deb 安装。需要手动下载安装包的寻找主要有两个途径：
+ 百度找，直接搜包名+版本号并带上关键字deb 通过源。  百度直接找库就不多说了，额外说一下通过源怎么找。
+你在网上搜ubuntu国内源。会找到很多类似这样的写法：
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse 这其实即是给apt-get工具配置的源地址，也是个实际的网址，你可以直接从浏览器里访问到，比如上面这个
+https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse 它其实代表的是： https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/xenial/ 这个路径下的main，restricted，universe，multiverse 这几个目录：
+apt-get工具会在这四个的目录下自动检索对应的软件包下载并安装。
+在一些特殊情况，比如机器网络受限，但浏览器开了代理可以访问外网的情况下。apt-get无法从源里获取软件，你可以从这里手动找到对应的软件包下载下来然后使用dpkg安装。
+比如这里，手动找到mysql的安装包路径，再点击就可以直接下载：
+刚才说道apt-get install无法修复依赖，通过手动下载然后把这些缺失的安装包装上之后，就可以通过apt把刚才装不上的包装上。
+这是非常合理合法的解决方案。
+再补充一种合法技巧：可以尝试用apt-get install安装本地软件。
+这是因为：
+ 依赖检测和软件安装不是apt做的，而是dpkg做的。 依赖不满足自动修复依赖才是apt做的。  所以，如果你下载了一个deb的安装包通过dpkg 安装，但依赖不满足的话，他只会提示你依赖缺失，但他不会自动寻找并安装依赖，虽然你仍然可以去下载安装缺失的依赖，但他如果缺失十个八个的，你再手动下载然后dpkg安装也不现实了。
+举个例子：我这里下载了一个搜狗输入法的安装包，dpkg -i无法安装但是可以通过apt-get install 装上
+要注意：通过apt-get安装本地软件一定要写路径，相对绝对都可以，但不能只写包名。不然它会去源里面找不会装本地的。
+上面的方案几乎可以解决80%的安装依赖问题。总结一下：
+ 安装软件就用：sudo apt-get install xxxx 遇到依赖问题 ：sudo apt-get -f install  如果有缺失无法安装，就去网上下，缺什么下什么，下载下来后sudo apt-get install .</description>
+    </item>
+    
+  </channel>
+</rss>
