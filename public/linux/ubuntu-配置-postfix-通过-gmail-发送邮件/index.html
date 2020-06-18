@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>Ubuntu Server 20.04 LTS NAS 安装记录</title>
+<title>Ubuntu 配置 Postfix 通过 Gmail 发送邮件</title>
 
 
 
@@ -188,8 +188,30 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
-								<a href="#%e5%ae%89%e8%a3%85-ubuntu" onclick="collapseOthers(`#安装-ubuntu-nav`)" id="安装-ubuntu-nav">
-									安装 Ubuntu
+								<a href="#%e4%bf%ae%e6%94%b9-ubuntu-%e6%9c%ac%e6%9c%ba-hostname" onclick="collapseOthers(`#修改-ubuntu-本机-hostname-nav`)" id="修改-ubuntu-本机-hostname-nav">
+									修改 Ubuntu 本机 Hostname
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e6%9f%a5%e7%9c%8b%e5%bd%93%e5%89%8d-hostname" onclick="collapseOthers(`#查看当前-hostname-nav`)" id="查看当前-hostname-nav">
+									查看当前 hostname
 								</a>
 							</li>
 						
@@ -206,8 +228,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
-								<a href="#%e6%9b%b4%e6%96%b0%e7%b3%bb%e7%bb%9f" onclick="collapseOthers(`#更新系统-nav`)" id="更新系统-nav">
-									更新系统
+								<a href="#%e4%bf%ae%e6%94%b9%e5%bd%93%e5%89%8d-hostname" onclick="collapseOthers(`#修改当前-hostname-nav`)" id="修改当前-hostname-nav">
+									修改当前 hostname
 								</a>
 							</li>
 						
@@ -224,8 +246,30 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
-								<a href="#%e8%ae%be%e7%bd%ae%e6%97%b6%e5%8c%ba" onclick="collapseOthers(`#设置时区-nav`)" id="设置时区-nav">
-									设置时区
+								<a href="#%e4%bf%ae%e6%94%b9-hosts" onclick="collapseOthers(`#修改-hosts-nav`)" id="修改-hosts-nav">
+									修改 hosts
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%ae%89%e8%a3%85-postfix" onclick="collapseOthers(`#安装-postfix-nav`)" id="安装-postfix-nav">
+									安装 Postfix
 								</a>
 							</li>
 						
@@ -242,8 +286,30 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
-								<a href="#%e4%bf%ae%e6%94%b9-root-%e7%94%a8%e6%88%b7%e7%99%bb%e5%bd%95%e6%9d%83%e9%99%90" onclick="collapseOthers(`#修改-root-用户登录权限-nav`)" id="修改-root-用户登录权限-nav">
-									修改 root 用户登录权限
+								<a href="#%e4%bd%bf%e7%94%a8gmail-smtp-%e9%85%8d%e7%bd%ae-postfix" onclick="collapseOthers(`#使用gmail-smtp-配置-postfix-nav`)" id="使用gmail-smtp-配置-postfix-nav">
+									使用Gmail SMTP 配置 Postfix
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e4%bf%ae%e6%94%b9%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6" onclick="collapseOthers(`#修改配置文件-nav`)" id="修改配置文件-nav">
+									修改配置文件
 								</a>
 							</li>
 						
@@ -260,8 +326,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
-								<a href="#%e6%b7%bb%e5%8a%a0%e8%b4%a6%e5%8f%b7" onclick="collapseOthers(`#添加账号-nav`)" id="添加账号-nav">
-									添加账号
+								<a href="#%e6%b7%bb%e5%8a%a0smtp%e8%bf%9e%e6%8e%a5%e4%bf%a1%e6%81%af%e6%96%87%e4%bb%b6" onclick="collapseOthers(`#添加smtp连接信息文件-nav`)" id="添加smtp连接信息文件-nav">
+									添加SMTP连接信息文件
 								</a>
 							</li>
 						
@@ -278,8 +344,30 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
-								<a href="#%e4%bd%bf%e7%94%a8-zfs-%e7%b3%bb%e7%bb%9f" onclick="collapseOthers(`#使用-zfs-系统-nav`)" id="使用-zfs-系统-nav">
-									使用 ZFS 系统
+								<a href="#%e9%87%8d%e5%90%af-postfix-%e6%9c%8d%e5%8a%a1" onclick="collapseOthers(`#重启-postfix-服务-nav`)" id="重启-postfix-服务-nav">
+									重启 Postfix 服务
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%91%e9%80%81%e6%b5%8b%e8%af%95%e9%82%ae%e4%bb%b6" onclick="collapseOthers(`#发送测试邮件-nav`)" id="发送测试邮件-nav">
+									发送测试邮件
 								</a>
 							</li>
 						
@@ -294,46 +382,14 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 						
-						
-							<li>
-								<a href="#%e5%ae%89%e8%a3%85-samba-%e5%b9%b6%e8%ae%be%e7%bd%ae-samba-%e5%85%b1%e4%ba%ab" onclick="collapseOthers(`#安装-samba-并设置-samba-共享-nav`)" id="安装-samba-并设置-samba-共享-nav">
-									安装 samba 并设置 samba 共享
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
 						
 						
 							<li>
-								<a href="#%e5%ae%89%e8%a3%85-docker" onclick="collapseOthers(`#安装-docker-nav`)" id="安装-docker-nav">
-									安装 docker
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-						
-						
-							<li>
-								<a href="#%e5%ae%89%e8%a3%85%e9%82%ae%e4%bb%b6%e6%9c%8d%e5%8a%a1%e5%99%a8" onclick="collapseOthers(`#安装邮件服务器-nav`)" id="安装邮件服务器-nav">
-									安装邮件服务器
+								<a href="#%e4%bf%ae%e6%94%b9%e9%82%ae%e4%bb%b6%e5%8f%91%e4%bb%b6%e4%ba%ba%e6%98%be%e7%a4%ba%e5%90%8d" onclick="collapseOthers(`#修改邮件发件人显示名-nav`)" id="修改邮件发件人显示名-nav">
+									修改邮件发件人显示名
 								</a>
 							</li>
 						
@@ -438,8 +494,30 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
-								<a href="#%e5%ae%89%e8%a3%85-ubuntu" onclick="collapseOthers(`#安装-ubuntu-nav`)" id="安装-ubuntu-nav">
-									安装 Ubuntu
+								<a href="#%e4%bf%ae%e6%94%b9-ubuntu-%e6%9c%ac%e6%9c%ba-hostname" onclick="collapseOthers(`#修改-ubuntu-本机-hostname-nav`)" id="修改-ubuntu-本机-hostname-nav">
+									修改 Ubuntu 本机 Hostname
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e6%9f%a5%e7%9c%8b%e5%bd%93%e5%89%8d-hostname" onclick="collapseOthers(`#查看当前-hostname-nav`)" id="查看当前-hostname-nav">
+									查看当前 hostname
 								</a>
 							</li>
 						
@@ -456,8 +534,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
-								<a href="#%e6%9b%b4%e6%96%b0%e7%b3%bb%e7%bb%9f" onclick="collapseOthers(`#更新系统-nav`)" id="更新系统-nav">
-									更新系统
+								<a href="#%e4%bf%ae%e6%94%b9%e5%bd%93%e5%89%8d-hostname" onclick="collapseOthers(`#修改当前-hostname-nav`)" id="修改当前-hostname-nav">
+									修改当前 hostname
 								</a>
 							</li>
 						
@@ -474,8 +552,30 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
-								<a href="#%e8%ae%be%e7%bd%ae%e6%97%b6%e5%8c%ba" onclick="collapseOthers(`#设置时区-nav`)" id="设置时区-nav">
-									设置时区
+								<a href="#%e4%bf%ae%e6%94%b9-hosts" onclick="collapseOthers(`#修改-hosts-nav`)" id="修改-hosts-nav">
+									修改 hosts
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%ae%89%e8%a3%85-postfix" onclick="collapseOthers(`#安装-postfix-nav`)" id="安装-postfix-nav">
+									安装 Postfix
 								</a>
 							</li>
 						
@@ -492,8 +592,30 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
-								<a href="#%e4%bf%ae%e6%94%b9-root-%e7%94%a8%e6%88%b7%e7%99%bb%e5%bd%95%e6%9d%83%e9%99%90" onclick="collapseOthers(`#修改-root-用户登录权限-nav`)" id="修改-root-用户登录权限-nav">
-									修改 root 用户登录权限
+								<a href="#%e4%bd%bf%e7%94%a8gmail-smtp-%e9%85%8d%e7%bd%ae-postfix" onclick="collapseOthers(`#使用gmail-smtp-配置-postfix-nav`)" id="使用gmail-smtp-配置-postfix-nav">
+									使用Gmail SMTP 配置 Postfix
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e4%bf%ae%e6%94%b9%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6" onclick="collapseOthers(`#修改配置文件-nav`)" id="修改配置文件-nav">
+									修改配置文件
 								</a>
 							</li>
 						
@@ -510,8 +632,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
-								<a href="#%e6%b7%bb%e5%8a%a0%e8%b4%a6%e5%8f%b7" onclick="collapseOthers(`#添加账号-nav`)" id="添加账号-nav">
-									添加账号
+								<a href="#%e6%b7%bb%e5%8a%a0smtp%e8%bf%9e%e6%8e%a5%e4%bf%a1%e6%81%af%e6%96%87%e4%bb%b6" onclick="collapseOthers(`#添加smtp连接信息文件-nav`)" id="添加smtp连接信息文件-nav">
+									添加SMTP连接信息文件
 								</a>
 							</li>
 						
@@ -528,8 +650,30 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 							<li>
-								<a href="#%e4%bd%bf%e7%94%a8-zfs-%e7%b3%bb%e7%bb%9f" onclick="collapseOthers(`#使用-zfs-系统-nav`)" id="使用-zfs-系统-nav">
-									使用 ZFS 系统
+								<a href="#%e9%87%8d%e5%90%af-postfix-%e6%9c%8d%e5%8a%a1" onclick="collapseOthers(`#重启-postfix-服务-nav`)" id="重启-postfix-服务-nav">
+									重启 Postfix 服务
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%91%e9%80%81%e6%b5%8b%e8%af%95%e9%82%ae%e4%bb%b6" onclick="collapseOthers(`#发送测试邮件-nav`)" id="发送测试邮件-nav">
+									发送测试邮件
 								</a>
 							</li>
 						
@@ -544,46 +688,14 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 						
 						
 						
-						
-							<li>
-								<a href="#%e5%ae%89%e8%a3%85-samba-%e5%b9%b6%e8%ae%be%e7%bd%ae-samba-%e5%85%b1%e4%ba%ab" onclick="collapseOthers(`#安装-samba-并设置-samba-共享-nav`)" id="安装-samba-并设置-samba-共享-nav">
-									安装 samba 并设置 samba 共享
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
 						
 						
 							<li>
-								<a href="#%e5%ae%89%e8%a3%85-docker" onclick="collapseOthers(`#安装-docker-nav`)" id="安装-docker-nav">
-									安装 docker
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-						
-						
-							<li>
-								<a href="#%e5%ae%89%e8%a3%85%e9%82%ae%e4%bb%b6%e6%9c%8d%e5%8a%a1%e5%99%a8" onclick="collapseOthers(`#安装邮件服务器-nav`)" id="安装邮件服务器-nav">
-									安装邮件服务器
+								<a href="#%e4%bf%ae%e6%94%b9%e9%82%ae%e4%bb%b6%e5%8f%91%e4%bb%b6%e4%ba%ba%e6%98%be%e7%a4%ba%e5%90%8d" onclick="collapseOthers(`#修改邮件发件人显示名-nav`)" id="修改邮件发件人显示名-nav">
+									修改邮件发件人显示名
 								</a>
 							</li>
 						
@@ -647,12 +759,12 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 
             >
                 <div class="post-title">
-                    Ubuntu Server 20.04 LTS NAS 安装记录
+                    Ubuntu 配置 Postfix 通过 Gmail 发送邮件
                     
                     <div class="post-meta">
                         
                         <time itemprop="datePublished">
-                            2020-06-18 11:15
+                            2020-06-18 20:31
                         </time>
                         
 
@@ -668,7 +780,10 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                                 <a href="/tags/ubuntu">Ubuntu</a>
                                 &nbsp;
                             
-                                <a href="/tags/nas">Nas</a>
+                                <a href="/tags/gmail">Gmail</a>
+                                &nbsp;
+                            
+                                <a href="/tags/postfix">Postfix</a>
                                 &nbsp;
                             
                         
@@ -680,9 +795,9 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                             
 
                             
-                            3 min
+                            2 min
                             
-                            0 s.
+                            18 s.
                         
                     </div>
                 </div>
@@ -692,145 +807,90 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 
                 <div class="post-body" v-pre>
                 
-                    <p>Nas 安装 Ubuntu Server 20.04 LTS 系统，基于 zfs on linux</p>
-<h2 id="安装-ubuntu">安装 Ubuntu</h2>
-<p>注意选中安装ssh,否则安装完成无法远程连接</p>
-<h2 id="更新系统">更新系统</h2>
+                    <h2 id="修改-ubuntu-本机-hostname">修改 Ubuntu 本机 Hostname</h2>
+<h3 id="查看当前-hostname">查看当前 hostname</h3>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hostname -f
+</code></pre></div><h3 id="修改当前-hostname">修改当前 hostname</h3>
+<p>可以通过命令修改 hostname</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#658b00">hostname syaofox.com</span>
+</code></pre></div><p>但是这样修改只是临时的,系统重启后失效,必须修改配置文件才能永久生效</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo nano /etc/hostname
+</code></pre></div><p>修改为</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#658b00">syaofox.com</span>
+</code></pre></div><h3 id="修改-hosts">修改 hosts</h3>
+<p>修改 hosts 文件</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo nano /etc/hosts
+</code></pre></div><p>修改 127.0.1.1 解析为刚才修改的 hostname</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#658b00">127.0.1.1 syaofox.com</span>
+</code></pre></div><p>重启</p>
+<h2 id="安装-postfix">安装 Postfix</h2>
 <div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt update
-sudo apt upgrade
-</code></pre></div><h2 id="设置时区">设置时区</h2>
-<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#228b22"># 查看当前时区</span>
-timedatectl
-</code></pre></div><div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#228b22"># 列出所有时区</span>
-timedatectl list-timezones
-<span style="color:#228b22"># 显示亚洲时区</span>
-timedatectl list-timezones | grep Asia
-</code></pre></div><div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#228b22"># 设置时区为上海</span>
-sudo timedatectl set-timezone Asia/Shanghai
-</code></pre></div><h2 id="修改-root-用户登录权限">修改 root 用户登录权限</h2>
-<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#228b22"># 编辑 &#39;/etc/ssh/sshd_config&#39;</span>
-sudo sed -i <span style="color:#cd5555">&#39;s/#PermitRootLogin prohibit-password/PermitRootLogin yes/&#39;</span> /etc/ssh/sshd_config
 
-<span style="color:#228b22"># 重启SSH服务</span>
-sudo systemctl restart ssh
+sudo apt install mailutils
+</code></pre></div><p>选择 Internet Site</p>
+<p><img src="/linuxubuntu-%E9%85%8D%E7%BD%AE-Postfix-%E9%80%9A%E8%BF%87-Gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/Configure_Postfix_Installation.png" alt=""></p>
+<p>下一步填入hostname</p>
+<p><img src="/linuxubuntu-%E9%85%8D%E7%BD%AE-Postfix-%E9%80%9A%E8%BF%87-Gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/Configure_Postfix_with_FQDN_hostname.png" alt=""></p>
+<blockquote>
+<p>以后可以通过输入以下命令修改配置</p>
+</blockquote>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dpkg-reconfigure postfix
+</code></pre></div><h2 id="使用gmail-smtp-配置-postfix">使用Gmail SMTP 配置 Postfix</h2>
+<h3 id="修改配置文件">修改配置文件</h3>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo nano /etc/postfix/main.cf
+</code></pre></div><p>找到 relayhost= 这行,修改</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini">
+<span style="color:#658b00">myhostname</span> = <span style="color:#cd5555">syaofox.com</span>
 
-<span style="color:#228b22"># 设置root账号密码</span>
-sudo passwd root
-初始化硬盘
-</code></pre></div><div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#228b22"># 查看分区情况</span>
-lsblk
-<span style="color:#228b22"># 使用 gdisk 初始化硬盘</span>
-</code></pre></div><h2 id="添加账号">添加账号</h2>
-<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">adduser wife 
-</code></pre></div><h2 id="使用-zfs-系统">使用 ZFS 系统</h2>
-<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#228b22"># 安装 zfs</span>
-apt update
-apt install zfsutils-linux
+<span style="color:#658b00">relayhost</span> = <span style="color:#cd5555">[smtp.gmail.com]:587</span>
 
-<span style="color:#228b22"># 重启</span>
+<span style="color:#658b00">mydestination</span> = <span style="color:#cd5555">localhost.syaofox.com, , localhost</span>
+</code></pre></div><p>配置文件末尾添加</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#228b22"># Enables SASL authentication for postfix</span>
+<span style="color:#658b00">smtp_sasl_auth_enable</span> = <span style="color:#cd5555">yes</span>
+<span style="color:#228b22"># Disallow methods that allow anonymous authentication</span>
+<span style="color:#658b00">smtp_sasl_security_options</span> = <span style="color:#cd5555">noanonymous</span>
+<span style="color:#228b22"># Location of sasl_passwd we saved</span>
+<span style="color:#658b00">smtp_sasl_password_maps</span> = <span style="color:#cd5555">hash:/etc/postfix/sasl/sasl_passwd</span>
+<span style="color:#228b22"># Enable STARTTLS encryption for SMTP</span>
+<span style="color:#658b00">smtp_tls_security_level</span> = <span style="color:#cd5555">encrypt</span>
+<span style="color:#228b22"># Location of CA certificates for TLS</span>
+<span style="color:#658b00">smtp_tls_CAfile</span> = <span style="color:#cd5555">/etc/ssl/certs/ca-certificates.crt</span>
+</code></pre></div><h3 id="添加smtp连接信息文件">添加SMTP连接信息文件</h3>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo nano /etc/postfix/sasl/sasl_passwd
+</code></pre></div><p>里面添加</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#658b00">[smtp.gmail.com]:587 syaofox@gmail.com:密码  #你的Gmail地址和密码,开启两步验证的请使用应用专用密码</span>
 
-<span style="color:#228b22"># 创建 RAIDZ2 存储池 /dev/disk/by-id</span>
-zpool create pool raidz2 /dev/sdb /dev/sdc /dev/sdd /dev/sde 
+</code></pre></div><p>转换配置文件</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo postmap /etc/postfix/sasl/sasl_passwd
+</code></pre></div><p>修改配置文件权限</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">chown root:root /etc/postfix/sasl/sasl_passwd
+chmod <span style="color:#b452cd">600</span> /etc/postfix/sasl/sasl_passwd
 
-<span style="color:#228b22"># 查看存储池状态</span>
-zpool status -v
+</code></pre></div><h3 id="重启-postfix-服务">重启 Postfix 服务</h3>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo service postfix restart
 
-<span style="color:#228b22"># 查看存储池空间</span>
-df -h | grep pool
+</code></pre></div><h2 id="发送测试邮件">发送测试邮件</h2>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#658b00">echo</span> <span style="color:#cd5555">&#34;这是邮件正文&#34;</span> | mail -s <span style="color:#cd5555">&#34;这是邮件标题&#34;</span> syaofox@gmail.com
 
-<span style="color:#228b22"># 创建数据集并设置开启lz4压缩</span>
-zfs create -o <span style="color:#00688b">compression</span>=lz4 pool/share
-zfs create -o <span style="color:#00688b">compression</span>=lz4 pool/media
-zfs create -o <span style="color:#00688b">compression</span>=lz4 pool/work 
-zfs create -o <span style="color:#00688b">compression</span>=lz4 pool/me
+<span style="color:#228b22"># 发送带附件的邮件</span>
 
-<span style="color:#228b22"># 修改各数据集挂载点权限</span>
-chmod -R <span style="color:#b452cd">777</span> /pool/share
-chmod -R <span style="color:#b452cd">777</span> /pool/media
-chmod -R <span style="color:#b452cd">777</span> /pool/work
-chmod -R <span style="color:#b452cd">777</span> /pool/me
-</code></pre></div><h2 id="安装-samba-并设置-samba-共享">安装 samba 并设置 samba 共享</h2>
-<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#228b22"># 安装 samba</span>
-apt install samba
+<span style="color:#658b00">echo</span> <span style="color:#cd5555">&#34;这是邮件正文&#34;</span> | mail -s <span style="color:#cd5555">&#34;这是邮件标题&#34;</span> -A ~/test.txt syaofox@gmail.com
 
-<span style="color:#228b22"># 备份配置文件</span>
-cp /etc/samba/smb.conf /etc/samba/smb.conf.bak 
+</code></pre></div><h3 id="修改邮件发件人显示名">修改邮件发件人显示名</h3>
+<p>默认邮件发送人显示root,可以通过下面命令修改</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#228b22"># 查看当期邮件发送人</span>
+getent passwd <span style="color:#00688b">$USER</span> | cut -d <span style="color:#cd5555">&#39;:&#39;</span> -f <span style="color:#b452cd">5</span> | cut -d <span style="color:#cd5555">&#39;,&#39;</span> -f <span style="color:#b452cd">1</span>
 
-<span style="color:#228b22"># 修改配置文件 添加共享文件夹配置</span>
-nano /etc/samba/smb.conf
+<span style="color:#228b22"># 显示</span>
+root
 
-<span style="color:#228b22"># 所有人可以访问</span>
-[share]
- <span style="color:#00688b">path</span> = /pool/share
- <span style="color:#00688b">browseable</span> = yes
- <span style="color:#658b00">read</span> <span style="color:#00688b">only</span> = no
- <span style="color:#00688b">public</span> = yes
+<span style="color:#228b22"># 修改root的显示名</span>
 
-<span style="color:#228b22"># syaofox 可读写 wife 可读</span>
-[media]
- <span style="color:#00688b">path</span> = /pool/media
- <span style="color:#00688b">browseable</span> = yes
- <span style="color:#658b00">read</span> <span style="color:#00688b">only</span> = no
- valid <span style="color:#00688b">users</span> = syaofox wife
- <span style="color:#658b00">read</span> <span style="color:#00688b">list</span> = syaofox wife
- write <span style="color:#00688b">list</span> = syaofox
+sudo chfn -f <span style="color:#cd5555">&#34;FirstName LastName&#34;</span> root
 
-<span style="color:#228b22"># syaofox 可读写 wife 可读</span>
-[work]
- <span style="color:#00688b">path</span> = /pool/work
- <span style="color:#00688b">browseable</span> = yes
- <span style="color:#658b00">read</span> <span style="color:#00688b">only</span> = no
- valid <span style="color:#00688b">users</span> = syaofox wife
- <span style="color:#658b00">read</span> <span style="color:#00688b">list</span> = syaofox wife
- write <span style="color:#00688b">list</span> = syaofox
 
-<span style="color:#228b22"># syaofox可读写</span>
-[me]
- <span style="color:#00688b">path</span> = /pool/me
- <span style="color:#00688b">browseable</span> = yes
- <span style="color:#658b00">read</span> <span style="color:#00688b">only</span> = no
- valid <span style="color:#00688b">users</span> = syaofox
-
-<span style="color:#228b22"># 创建 samba 用户</span>
-smbpasswd -a syaofox
-smbpasswd -a wife
-
-<span style="color:#228b22"># 重启 samba 服务</span>
-service smbd restart
-</code></pre></div><h2 id="安装-docker">安装 docker</h2>
-<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#228b22"># 安装依赖包</span>
-apt update
-apt install apt-transport-https ca-certificates curl software-properties-common
-
-<span style="color:#228b22"># 添加GPG</span>
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
-<span style="color:#228b22"># 添加源,注意版本 这里对应20.04 focal</span>
-add-apt-repository <span style="color:#cd5555">&#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable&#34;</span>
-apt update
-
-<span style="color:#228b22"># 查看 apt 缓存,确保源生效</span>
-apt-cache policy docker-ce
-
-<span style="color:#228b22"># 安装 docker</span>
-apt install docker-ce
-
-<span style="color:#228b22"># 安装 Docker Compose 注意更新版本</span>
-curl -L <span style="color:#cd5555">&#34;https://github.com/docker/compose/releases/download/1.26.0/docker-compose-</span><span style="color:#8b008b;font-weight:bold">$(</span>uname -s<span style="color:#8b008b;font-weight:bold">)</span><span style="color:#cd5555">-</span><span style="color:#8b008b;font-weight:bold">$(</span>uname -m<span style="color:#8b008b;font-weight:bold">)</span><span style="color:#cd5555">&#34;</span> -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-
-<span style="color:#228b22"># 安装 portainer</span>
-docker volume create portainer_data
-docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
-</code></pre></div><p>通过服务器<code>ip:9000</code>访问<code>portainer</code>后台</p>
-<p>添加国内镜像加快docker镜像拉取速度</p>
-<ul>
-<li>科大 <a href="https://docker.mirrors.ustc.edu.cn">https://docker.mirrors.ustc.edu.cn</a></li>
-<li>七牛云 <a href="https://reg-mirror.qiniu.com">https://reg-mirror.qiniu.com</a></li>
-</ul>
-<h2 id="安装邮件服务器">安装邮件服务器</h2>
-<p><a href="/linux/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6">Ubuntu 配置 Postfix 通过 Gmail 发送邮件</a></p>
-
+</code></pre></div>
                     
                     <HR width="100%" id="EOF">
 		    <p style="color:#777;">最后修改于 2020-06-18</p>
@@ -842,14 +902,14 @@ docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /va
             <nav class="post-pagination">
 
                 
-                <a class="newer-posts" href="https://syaofox.github.io/linux/ubuntu-server-18-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85virtual-box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpvirtualbox/">
-			下回<br>Ubuntu Server 18 04 LTS 上安装Virtual Box 并配置 PhpVirtualbox
+                <a class="newer-posts">
+			下回<br>已经到头啦。
                 </a>
                 
                 
                 
-                <a class="older-posts" href="https://syaofox.github.io/linux/ubuntu-20-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85-docker-%E4%B8%8E-docker-compose/">
-			上回<br>Ubuntu 20.04 LTS 上安装 Docker 与 Docker-Compose
+                <a class="older-posts" href="https://syaofox.github.io/linux/ubuntu1604-%E9%85%8D%E7%BD%AEzfs-event-daemon/">
+			上回<br>Ubuntu 配置 ZFS Event Daemon
                 </a>
                 
             </nav>

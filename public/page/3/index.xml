@@ -6,9 +6,83 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Syaofox 2020 copyright.</copyright>
-    <lastBuildDate>Thu, 18 Jun 2020 12:09:42 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jun 2020 20:31:51 +0800</lastBuildDate>
     
         <atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Ubuntu 的 UPS 电源安装</title>
+        <link>https://syaofox.github.io/linux/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/</link>
+        <pubDate>Thu, 18 Jun 2020 11:02:01 +0800</pubDate>
+        
+        <guid>https://syaofox.github.io/linux/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/</guid>
+        <description>霜天晓角 https://syaofox.github.io/linux/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/ -&lt;p&gt;跑程序，网络不是最重要，但是长时间的稳定电源还是非常重要的，所以加一个UPS可以避免一些短时间的断电。&lt;/p&gt;
+&lt;p&gt;首先看看usb有没有成功连接到ups电源,一般会出现下面信息&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ lsusb Bus &lt;span style=&#34;color:#b452cd&#34;&gt;002&lt;/span&gt; Device 004: ID 051d:0002 American Power Conversion Uninterruptible Power Supply
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装很简单，就是一句命令&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt-get -y install apcupsd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;备份文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo cp /etc/apcupsd/apcupsd.conf /etc/apcupsd/apcupsd.conf.bak
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;编辑下面文件&lt;/p&gt;
+&lt;p&gt;sudo nano /etc/apcupsd/apcupsd.conf&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;UPSNAME smartups750
+UPSCABLE usb
+UPSTYPE usb
+DEVICE 
+POLLTIME &lt;span style=&#34;color:#b452cd&#34;&gt;60&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;另外一个文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo cp /etc/default/apcupsd /etc/default/apcupsd.bak
+sudo nano /etc/default/apcupsd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;内容为&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#00688b&#34;&gt;ISCONFIGURED&lt;/span&gt;=yes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;重启服务&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo systemctl restart apcupsd.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后可以运行下面命令看ups电源的状态&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ apcaccess status
+APC      : 001,037,0923
+DATE     : 2017-02-05 04:57:23 +0800  
+HOSTNAME : gtx1080
+VERSION  : 3.14.12 (&lt;span style=&#34;color:#b452cd&#34;&gt;29&lt;/span&gt; March 2014) debian
+UPSNAME  : gtx1080
+CABLE    : USB Cable
+DRIVER   : USB UPS Driver
+UPSMODE  : Stand Alone
+STARTTIME: 2017-02-05 02:45:22 +0800  
+MODEL    : Back-UPS XS 1400U  
+STATUS   : ONLINE 
+LINEV    : 230.0 Volts
+LOADPCT  : 7.0 Percent
+BCHARGE  : 100.0 Percent
+TIMELEFT : 83.1 Minutes
+MBATTCHG : &lt;span style=&#34;color:#b452cd&#34;&gt;5&lt;/span&gt; Percent
+MINTIMEL : &lt;span style=&#34;color:#b452cd&#34;&gt;3&lt;/span&gt; Minutes
+MAXTIME  : &lt;span style=&#34;color:#b452cd&#34;&gt;0&lt;/span&gt; Seconds
+SENSE    : Medium
+LOTRANS  : 155.0 Volts
+HITRANS  : 280.0 Volts
+ALARMDEL : No alarm
+BATTV    : 28.1 Volts
+LASTXFER : Low line voltage
+NUMXFERS : &lt;span style=&#34;color:#b452cd&#34;&gt;1&lt;/span&gt;
+XONBATT  : 2017-02-05 03:09:35 +0800  
+TONBATT  : &lt;span style=&#34;color:#b452cd&#34;&gt;0&lt;/span&gt; Seconds
+CUMONBATT: &lt;span style=&#34;color:#b452cd&#34;&gt;672&lt;/span&gt; Seconds
+XOFFBATT : 2017-02-05 03:20:47 +0800  
+SELFTEST : NO
+STATFLAG : 0x05000008
+SERIALNO : 3B1644X34934  
+BATTDATE : 2016-11-05
+NOMINV   : &lt;span style=&#34;color:#b452cd&#34;&gt;230&lt;/span&gt; Volts
+NOMBATTV : 24.0 Volts
+NOMPOWER : &lt;span style=&#34;color:#b452cd&#34;&gt;700&lt;/span&gt; Watts
+FIRMWARE : 926.T2 .I USB FW:T2
+END APC  : 2017-02-05 04:57:28 +0800 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在空载的情况下可以运行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;TIMELEFT : 83.1 Minutes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/linux/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/ - Syaofox 2020 copyright.</description>
+        </item>
     
     
     
@@ -353,21 +427,6 @@ apt-get install screen  &lt;span style=&#34;color:#228b22&#34;&gt;#Debian或者U
 &lt;p&gt;3、运行“控制面板”中的“用户”工具，请键入 control Ncpa.cpl users，然后按 ENTER 键。&lt;/p&gt;
 &lt;p&gt;4、运行 Windows 95/98/ME 的“用户”工具，请键入“control inetcpl.cpl users”（不键入引号），然后按 ENTER 键。&lt;/p&gt;
 - https://syaofox.github.io/windows/windows-cpl%E6%96%87%E4%BB%B6/ - Syaofox 2020 copyright.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Windows WSL 重启方法</title>
-        <link>https://syaofox.github.io/windows/windows-wsl-%E9%87%8D%E5%90%AF%E6%96%B9%E6%B3%95/</link>
-        <pubDate>Thu, 18 Jun 2020 10:24:18 +0800</pubDate>
-        
-        <guid>https://syaofox.github.io/windows/windows-wsl-%E9%87%8D%E5%90%AF%E6%96%B9%E6%B3%95/</guid>
-        <description>霜天晓角 https://syaofox.github.io/windows/windows-wsl-%E9%87%8D%E5%90%AF%E6%96%B9%E6%B3%95/ -&lt;p&gt;Windows 10 子系统 wsl 的重启方法&lt;/p&gt;
-&lt;p&gt;以管理员权限运行&lt;code&gt;cmd&lt;/code&gt;或者&lt;code&gt;PowerShell&lt;/code&gt;执行以下命令&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;net stop LxssManager	//停止
-net start LxssManager	//启动
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/windows/windows-wsl-%E9%87%8D%E5%90%AF%E6%96%B9%E6%B3%95/ - Syaofox 2020 copyright.</description>
         </item>
     
     

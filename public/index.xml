@@ -6,9 +6,103 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Syaofox 2020 copyright.</copyright>
-    <lastBuildDate>Thu, 18 Jun 2020 12:09:42 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jun 2020 20:31:51 +0800</lastBuildDate>
     
         <atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Ubuntu 配置 Postfix 通过 Gmail 发送邮件</title>
+        <link>https://syaofox.github.io/linux/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/</link>
+        <pubDate>Thu, 18 Jun 2020 20:31:51 +0800</pubDate>
+        
+        <guid>https://syaofox.github.io/linux/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/</guid>
+        <description>霜天晓角 https://syaofox.github.io/linux/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/ -&lt;h2 id=&#34;修改-ubuntu-本机-hostname&#34;&gt;修改 Ubuntu 本机 Hostname&lt;/h2&gt;
+&lt;h3 id=&#34;查看当前-hostname&#34;&gt;查看当前 hostname&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;hostname -f
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;修改当前-hostname&#34;&gt;修改当前 hostname&lt;/h3&gt;
+&lt;p&gt;可以通过命令修改 hostname&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span style=&#34;color:#658b00&#34;&gt;hostname syaofox.com&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;但是这样修改只是临时的,系统重启后失效,必须修改配置文件才能永久生效&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo nano /etc/hostname
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;修改为&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span style=&#34;color:#658b00&#34;&gt;syaofox.com&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;修改-hosts&#34;&gt;修改 hosts&lt;/h3&gt;
+&lt;p&gt;修改 hosts 文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo nano /etc/hosts
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;修改 127.0.1.1 解析为刚才修改的 hostname&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span style=&#34;color:#658b00&#34;&gt;127.0.1.1 syaofox.com&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;重启&lt;/p&gt;
+&lt;h2 id=&#34;安装-postfix&#34;&gt;安装 Postfix&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt update
+
+sudo apt install mailutils
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;选择 Internet Site&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/linuxubuntu-%E9%85%8D%E7%BD%AE-Postfix-%E9%80%9A%E8%BF%87-Gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/Configure_Postfix_Installation.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;下一步填入hostname&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/linuxubuntu-%E9%85%8D%E7%BD%AE-Postfix-%E9%80%9A%E8%BF%87-Gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/Configure_Postfix_with_FQDN_hostname.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;以后可以通过输入以下命令修改配置&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;dpkg-reconfigure postfix
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;使用gmail-smtp-配置-postfix&#34;&gt;使用Gmail SMTP 配置 Postfix&lt;/h2&gt;
+&lt;h3 id=&#34;修改配置文件&#34;&gt;修改配置文件&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo nano /etc/postfix/main.cf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;找到 relayhost= 这行,修改&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;
+&lt;span style=&#34;color:#658b00&#34;&gt;myhostname&lt;/span&gt; = &lt;span style=&#34;color:#cd5555&#34;&gt;syaofox.com&lt;/span&gt;
+
+&lt;span style=&#34;color:#658b00&#34;&gt;relayhost&lt;/span&gt; = &lt;span style=&#34;color:#cd5555&#34;&gt;[smtp.gmail.com]:587&lt;/span&gt;
+
+&lt;span style=&#34;color:#658b00&#34;&gt;mydestination&lt;/span&gt; = &lt;span style=&#34;color:#cd5555&#34;&gt;localhost.syaofox.com, , localhost&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;配置文件末尾添加&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# Enables SASL authentication for postfix&lt;/span&gt;
+&lt;span style=&#34;color:#658b00&#34;&gt;smtp_sasl_auth_enable&lt;/span&gt; = &lt;span style=&#34;color:#cd5555&#34;&gt;yes&lt;/span&gt;
+&lt;span style=&#34;color:#228b22&#34;&gt;# Disallow methods that allow anonymous authentication&lt;/span&gt;
+&lt;span style=&#34;color:#658b00&#34;&gt;smtp_sasl_security_options&lt;/span&gt; = &lt;span style=&#34;color:#cd5555&#34;&gt;noanonymous&lt;/span&gt;
+&lt;span style=&#34;color:#228b22&#34;&gt;# Location of sasl_passwd we saved&lt;/span&gt;
+&lt;span style=&#34;color:#658b00&#34;&gt;smtp_sasl_password_maps&lt;/span&gt; = &lt;span style=&#34;color:#cd5555&#34;&gt;hash:/etc/postfix/sasl/sasl_passwd&lt;/span&gt;
+&lt;span style=&#34;color:#228b22&#34;&gt;# Enable STARTTLS encryption for SMTP&lt;/span&gt;
+&lt;span style=&#34;color:#658b00&#34;&gt;smtp_tls_security_level&lt;/span&gt; = &lt;span style=&#34;color:#cd5555&#34;&gt;encrypt&lt;/span&gt;
+&lt;span style=&#34;color:#228b22&#34;&gt;# Location of CA certificates for TLS&lt;/span&gt;
+&lt;span style=&#34;color:#658b00&#34;&gt;smtp_tls_CAfile&lt;/span&gt; = &lt;span style=&#34;color:#cd5555&#34;&gt;/etc/ssl/certs/ca-certificates.crt&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;添加smtp连接信息文件&#34;&gt;添加SMTP连接信息文件&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo nano /etc/postfix/sasl/sasl_passwd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;里面添加&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span style=&#34;color:#658b00&#34;&gt;[smtp.gmail.com]:587 syaofox@gmail.com:密码  #你的Gmail地址和密码,开启两步验证的请使用应用专用密码&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;转换配置文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo postmap /etc/postfix/sasl/sasl_passwd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;修改配置文件权限&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;chown root:root /etc/postfix/sasl/sasl_passwd
+chmod &lt;span style=&#34;color:#b452cd&#34;&gt;600&lt;/span&gt; /etc/postfix/sasl/sasl_passwd
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;重启-postfix-服务&#34;&gt;重启 Postfix 服务&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo service postfix restart
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;发送测试邮件&#34;&gt;发送测试邮件&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#658b00&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;这是邮件正文&amp;#34;&lt;/span&gt; | mail -s &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;这是邮件标题&amp;#34;&lt;/span&gt; syaofox@gmail.com
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 发送带附件的邮件&lt;/span&gt;
+
+&lt;span style=&#34;color:#658b00&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;这是邮件正文&amp;#34;&lt;/span&gt; | mail -s &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;这是邮件标题&amp;#34;&lt;/span&gt; -A ~/test.txt syaofox@gmail.com
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;修改邮件发件人显示名&#34;&gt;修改邮件发件人显示名&lt;/h3&gt;
+&lt;p&gt;默认邮件发送人显示root,可以通过下面命令修改&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 查看当期邮件发送人&lt;/span&gt;
+getent passwd &lt;span style=&#34;color:#00688b&#34;&gt;$USER&lt;/span&gt; | cut -d &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;:&amp;#39;&lt;/span&gt; -f &lt;span style=&#34;color:#b452cd&#34;&gt;5&lt;/span&gt; | cut -d &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;,&amp;#39;&lt;/span&gt; -f &lt;span style=&#34;color:#b452cd&#34;&gt;1&lt;/span&gt;
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 显示&lt;/span&gt;
+root
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 修改root的显示名&lt;/span&gt;
+
+sudo chfn -f &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;FirstName LastName&amp;#34;&lt;/span&gt; root
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/linux/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/ - Syaofox 2020 copyright.</description>
+        </item>
     
     
     
@@ -704,36 +798,6 @@ deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restri
 deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
 deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/linux/ubuntu18-04%E6%8D%A2%E6%BA%90/ - Syaofox 2020 copyright.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Ubuntu18 04 修改DNS</title>
-        <link>https://syaofox.github.io/linux/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/</link>
-        <pubDate>Thu, 18 Jun 2020 11:20:07 +0800</pubDate>
-        
-        <guid>https://syaofox.github.io/linux/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/ -&lt;p&gt;最近使用了最新版的ubuntu 18.04运行一些服务，发现服务器经常出现无法解析域名的情况。&lt;/p&gt;
-&lt;p&gt;检查/etc/resolv.conf文件，发现里面nameserver是127.0.0.53，修改以后过了段时间，又被修改回去，查找资料原来18.04版本DNS是由systemd-resolved管理的。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;netstat -tnpl| grep systemd-resolved
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过以上命令查看到这个服务是监听在53号端口上。&lt;/p&gt;
-&lt;p&gt;/etc/systemd/resolved.conf大致内容如下：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;[Resolve]
-&lt;span style=&#34;color:#00688b&#34;&gt;DNS&lt;/span&gt;=223.5.5.5 8.8.8.8
-&lt;span style=&#34;color:#228b22&#34;&gt;#FallbackDNS=&lt;/span&gt;
-&lt;span style=&#34;color:#228b22&#34;&gt;#Domains=&lt;/span&gt;
-&lt;span style=&#34;color:#00688b&#34;&gt;LLMNR&lt;/span&gt;=no
-&lt;span style=&#34;color:#228b22&#34;&gt;#MulticastDNS=no&lt;/span&gt;
-&lt;span style=&#34;color:#228b22&#34;&gt;#DNSSEC=no&lt;/span&gt;
-&lt;span style=&#34;color:#228b22&#34;&gt;#Cache=yes&lt;/span&gt;
-&lt;span style=&#34;color:#228b22&#34;&gt;#DNSStubListener=yes&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;修改这里面的内容，然后重启systemd-resolved服务即可。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;systemctl restart systemd-resolved.service
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果想要用/etc/resolve.conf控制，直接将systemd-resolved服务停止并禁用。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;systemctl stop systemd-resolved.service
-systemctl disable systemd-resolved.service
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样世界就清净了。&lt;/p&gt;- https://syaofox.github.io/linux/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/ - Syaofox 2020 copyright.</description>
         </item>
     
     

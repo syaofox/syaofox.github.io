@@ -3,27 +3,47 @@ xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
 <url>
     <loc>https://syaofox.github.io/categories/</loc>
-    <lastmod>2020-06-18T12:09:42+08:00</lastmod>
+    <lastmod>2020-06-18T20:31:51+08:00</lastmod>
+</url>
+
+<url>
+    <loc>https://syaofox.github.io/tags/gmail/</loc>
+    <lastmod>2020-06-18T20:31:51+08:00</lastmod>
 </url>
 
 <url>
     <loc>https://syaofox.github.io/categories/linux/</loc>
-    <lastmod>2020-06-18T12:09:42+08:00</lastmod>
+    <lastmod>2020-06-18T20:31:51+08:00</lastmod>
 </url>
 
 <url>
     <loc>https://syaofox.github.io/linux/</loc>
-    <lastmod>2020-06-18T12:09:42+08:00</lastmod>
+    <lastmod>2020-06-18T20:31:51+08:00</lastmod>
+</url>
+
+<url>
+    <loc>https://syaofox.github.io/tags/postfix/</loc>
+    <lastmod>2020-06-18T20:31:51+08:00</lastmod>
 </url>
 
 <url>
     <loc>https://syaofox.github.io/tags/</loc>
-    <lastmod>2020-06-18T12:09:42+08:00</lastmod>
+    <lastmod>2020-06-18T20:31:51+08:00</lastmod>
 </url>
 
 <url>
     <loc>https://syaofox.github.io/tags/ubuntu/</loc>
-    <lastmod>2020-06-18T12:09:42+08:00</lastmod>
+    <lastmod>2020-06-18T20:31:51+08:00</lastmod>
+</url>
+
+<url>
+    <loc>https://syaofox.github.io/linux/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/</loc>
+    <lastmod>2020-06-18T20:31:51+08:00</lastmod>
+</url>
+
+<url>
+    <loc>https://syaofox.github.io/</loc>
+    <lastmod>2020-06-18T20:31:51+08:00</lastmod>
 </url>
 
 <url>
@@ -33,11 +53,6 @@ xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
 <url>
     <loc>https://syaofox.github.io/tags/zed/</loc>
-    <lastmod>2020-06-18T12:09:42+08:00</lastmod>
-</url>
-
-<url>
-    <loc>https://syaofox.github.io/</loc>
     <lastmod>2020-06-18T12:09:42+08:00</lastmod>
 </url>
 

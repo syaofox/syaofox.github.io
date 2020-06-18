@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gmail on 霜天晓角</title>
+    <link>https://syaofox.github.io/tags/gmail/</link>
+    <description>Recent content in Gmail on 霜天晓角</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Syaofox 2020 copyright.</copyright>
+    <lastBuildDate>Thu, 18 Jun 2020 20:31:51 +0800</lastBuildDate>
+    
+	<atom:link href="https://syaofox.github.io/tags/gmail/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ubuntu 配置 Postfix 通过 Gmail 发送邮件</title>
+      <link>https://syaofox.github.io/linux/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/</link>
+      <pubDate>Thu, 18 Jun 2020 20:31:51 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/linux/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/</guid>
+      <description>修改 Ubuntu 本机 Hostname 查看当前 hostname hostname -f 修改当前 hostname 可以通过命令修改 hostname
+hostname syaofox.com 但是这样修改只是临时的,系统重启后失效,必须修改配置文件才能永久生效
+sudo nano /etc/hostname 修改为
+syaofox.com 修改 hosts 修改 hosts 文件
+sudo nano /etc/hosts 修改 127.0.1.1 解析为刚才修改的 hostname
+127.0.1.1 syaofox.com 重启
+安装 Postfix sudo apt update sudo apt install mailutils 选择 Internet Site
+下一步填入hostname
+ 以后可以通过输入以下命令修改配置
+ dpkg-reconfigure postfix 使用Gmail SMTP 配置 Postfix 修改配置文件 sudo nano /etc/postfix/main.cf 找到 relayhost= 这行,修改
+myhostname = syaofox.com relayhost = [smtp.gmail.com]:587 mydestination = localhost.</description>
+    </item>
+    
+  </channel>
+</rss>

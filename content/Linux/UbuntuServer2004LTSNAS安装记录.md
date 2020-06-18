@@ -16,18 +16,18 @@ type: post
 Nas 安装 Ubuntu Server 20.04 LTS 系统，基于 zfs on linux
 
 
-# 安装 Ubuntu
+## 安装 Ubuntu
 
 注意选中安装ssh,否则安装完成无法远程连接
 
-# 更新系统
+## 更新系统
 
 ```bash
 sudo apt update
 sudo apt upgrade
 ```
 
-# 设置时区
+## 设置时区
 
 ```bash
 # 查看当前时区
@@ -46,7 +46,7 @@ timedatectl list-timezones | grep Asia
 sudo timedatectl set-timezone Asia/Shanghai
 ```
 
-# 修改 root 用户登录权限
+## 修改 root 用户登录权限
 
 ```bash
 # 编辑 '/etc/ssh/sshd_config'
@@ -66,13 +66,13 @@ lsblk
 # 使用 gdisk 初始化硬盘
 ```
 
-# 添加账号
+## 添加账号
 
 ```bash
 adduser wife 
 ```
 
-# 使用 ZFS 系统
+## 使用 ZFS 系统
 
 ```bash
 # 安装 zfs
@@ -103,7 +103,7 @@ chmod -R 777 /pool/work
 chmod -R 777 /pool/me
 ```
 
-# 安装 samba 并设置 samba 共享
+## 安装 samba 并设置 samba 共享
 
 ```bash
 # 安装 samba
@@ -155,7 +155,7 @@ smbpasswd -a wife
 service smbd restart
 ```
 
-# 安装 docker
+## 安装 docker
 
 ```bash
 # 安装依赖包
@@ -190,3 +190,7 @@ docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /va
 
 - 科大 https://docker.mirrors.ustc.edu.cn
 - 七牛云 https://reg-mirror.qiniu.com
+
+## 安装邮件服务器
+
+[Ubuntu 配置 Postfix 通过 Gmail 发送邮件](/linux/ubuntu-配置-postfix-通过-gmail-发送邮件)
