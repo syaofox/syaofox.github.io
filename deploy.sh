@@ -7,7 +7,8 @@ echo '删除打包文件夹'
 rm -rf public
 
 echo '打包。diray主题'
-hugo -t diary
+# hugo -t diary
+hugo
 
 echo 'push网站源码'
 git init

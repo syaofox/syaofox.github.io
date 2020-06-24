@@ -1,321 +1,521 @@
 <!DOCTYPE html>
-<html><head>
-<title>Kodi</title>
+<html lang="zh-hans">
 
-
-
-
-<meta charset="utf-8">
-<meta name="X-UA-Compatible" content="IE=edge">
-<meta name="google-site-verification" content="">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-<meta content="telephone=no" name="format-detection">
-<meta name="description" content="">
-<meta name="renderer" content="webkit">
-<meta name="theme-color" content="#ffffff">
-<meta name="google-site-verification" content="oogV8o8B0_GmgleXKYHSkWxodG-N4Nz9mIlHqljGd-0" />
-
-
-
-
-
-
-
-
-
-
-
-<script src="/vendor/js/jquery.min.js" ></script>
-<script src="/vendor/js/popper.min.js" ></script>
-<script src="/vendor/js/bootstrap.min.js" ></script>
-<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
-<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
-<script src="/vendor/js/vue.min.js" ></script>
-
-
-
-
-
-
-<link rel="stylesheet" href="https://syaofox.github.io/scss/journal.min.2725bdf31310513b302e62b01700d09aeff9316f5344e988decd15737cf0b3c5.css" integrity="sha256-JyW98xMQUTswLmKwFwDQmu/5MW9TROmI3s0Vc3zws8U=" media="screen">
-
-
-
-<link rel="stylesheet" href="https://syaofox.github.io/scss/dark-mode.min.e93e28b95f534b47ed30828c25fef57eb3c43aa0270721098b7f9d4f1c40bf1f.css" integrity="sha256-6T4ouV9TS0ftMIKMJf71frPEOqAnByEJi3&#43;dTxxAvx8=" media="screen">
-
-
-<script src="https://syaofox.github.io/js/loadCSS.js"></script>
-<script>
-  loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-</head><body>
-    	<div id="app"><div ref="sideContainer" class="side-container">
+<head>
     
-    <a class="a-block nav-head false" href="https://syaofox.github.io">
-    
-        <div class="nav-title">
-            云流
-        </div>
-        
-        <div class="nav-subtitle">
-            心似白云常自在 意如流水任东西
-        </div>
-        
-    </a>
-
-    <div class="nav-link-list">
-        
-        
-    </div>
-
-    
-
-    <div class="nav-footer">
-        
- <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>  <a href="https://amazingrise.net">Rise</a>
-<br>
- <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
-<br>
-
-&copy;
-	
-	2020 云流
-	
-
-    </div>
-    
-</div><div ref="extraContainer" class="extra-container">
-    
-    
-    <div class="pagination">
-        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
-            <i class="material-icons pagination-action-icon">
-                keyboard_arrow_up
-            </i>
-        </a>
-        
-        <a class="pagination-action" v-on:click="toggleDarkMode">
-            <i class="material-icons pagination-action-icon" v-if="isDarkMode">
-                brightness_4
-            </i>
-            <i class="material-icons pagination-action-icon" v-else="isDarkMode">
-                brightness_7
-            </i>
-        </a>
-        
-        
-        
-        
-    </div>
-</div><div class="single-column-drawer-container" ref="drawer"
-     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
-    <div class="drawer-content">
-        <div class="drawer-menu">
-            
-            
-            
-            
-        </div>
-    </div>
-</div>
-<transition name="fade">
-    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
-</transition>
-<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
-    <div ref="navBackground" class="nav-background"></div>
-    <div class="container container-narrow nav-content">
-        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
-            <i class="material-icons">
-                menu
-            </i>
-        </button>
-        <a ref="navTitle" class="navbar-brand" href="https://syaofox.github.io">
-            云流
-        </a>
-        
-        <button type="button" class="nav-darkmode-toggle" v-on:click="toggleDarkMode">
-            <i class="material-icons" v-if="isDarkMode">
-                brightness_4
-            </i>
-            <i class="material-icons" v-else="isDarkMode">
-                brightness_7
-            </i>
-        </button>
-        
-    </div>
-</nav>
-<div class="single-column-header-container" ref="pageHead"
-     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
-    <a href="https://syaofox.github.io">
-        <div class="single-column-header-title">云流</div>
-        
-        <div class="single-column-header-subtitle">心似白云常自在 意如流水任东西</div>
-        
-
-    </a>
-</div>
-            <div id="content">
-<div ref="streamContainer" class="stream-container">
-    <div class="post-list-container post-list-container-shadow">
-        <div class="post-item-wrapper post-item-wrapper-no-hover">
-            <div class="post-item post-item-no-gaps">
-                <div class="post-item-info-wrapper">
-                    <div class="post-item-title  post-item-title-small">
-                        <a href="https://syaofox.github.io/">云流</a> / Kodi
-                    </div>
-                </div>
-            </div>
-        </div><a href="/post/%E5%88%A9%E7%94%A8everaver-emby-kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0av%E5%BA%93/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            利用EverAver Emby Kodi打造本地AV库
-                        </div>
-                        <div class="post-item-meta">
-    
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
-
-                    </div>
-                </div>
-            </div>
-        </a></div>
-</div>
-
-            </div>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="generator" content="Hugo 0.73.0" />
 
 
-<div id="single-column-footer">
- <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>  <a href="https://amazingrise.net">Rise</a>
-<br>
- <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
-<br>
 
-&copy;
-	
-	2020 云流
-	
-</div>
-            </div>
-    <script>
-let app;
 
-app = new Vue({
-    el: '#app',
-    data: {
-        scrollY: 0,
-        navOpacity: 0,
-        isDrawerOpen: false,
-        mounted: false,
-        isDarkMode: false
-    },
-    methods: {
-            sgn(t, x) {
-                let k = 1. / (1. - 2 * t);
-                if (x <= t) return 0;
-                else if (x >= 1 - t) return 1;
-                else {
-                    return k * (x - t);
-                }
-            },
-            handleScroll() {
-                this.scrollY = window.scrollY;
-                this.navOpacity = this.sgn(.0, Math.min(1, Math.max(0, window.scrollY / (this.pageHeadHeight() - this.navBarHeight() * 0.8))));
-                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/syaofox/syaofox.github.io/favicon.ico" />
 
-                if (this.navOpacity >= 1) {
-                    navBackground.style.opacity = 1;
-                    navTitle.style.opacity = 1;
-                } else {
-                    navBackground.style.opacity = 0;
-                    navTitle.style.opacity = 0;
-                }
-            },
-            handleResize() {
-                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
-                extraContainer.style.left = (streamContainer.offsetWidth - extraContainer.offsetWidth) + 'px';
-            },
-            navBarHeight() {
-                return this.$refs.navBar.offsetHeight;
-            },
-            pageHeadHeight() {
-                return this.$refs.pageHead.offsetHeight;
-            },
-            toggleDrawer() {
-                this.isDrawerOpen = !this.isDrawerOpen;
-                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
-            },
-            closeDrawer() {
-                this.isDrawerOpen = false;
-                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
-            },
-            toggleDarkMode() {
-                this.isDarkMode = !this.isDarkMode;
-                if (this.isDarkMode==true){
-                    document.cookie = "night=1;path=/";
-                    document.body.classList.add("night");
-                } else {
-                    document.cookie = "night=0;path=/";
-                    document.body.classList.remove("night");
-                }
-            }
-    },
-    created() {
-        window.addEventListener('scroll', this.handleScroll);
-        window.addEventListener('resize', this.handleResize);
-        window._nonDesktop = function () {
-            let check = false;
-            (function (a) {
-                if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
-            })(navigator.userAgent || navigator.vendor || window.opera);
-            return check;
-        };
-        
-        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-        if (night==""){
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                
-            }
-        }else{
-            
-            if (night=="1") {
-                this.toggleDarkMode();
-            }
+
+
+<title>Kodi - 云流</title>
+
+
+<meta name="author" content="syaofox" />
+
+
+<meta name="description" content="心似白云常自在 意如流水任东西" />
+
+
+<meta property="og:title" content="Kodi" />
+<meta property="og:description" content="心似白云常自在 意如流水任东西" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://syaofox.github.io/tags/kodi/" />
+<meta property="og:image" content="https://syaofox.github.io/img/og.png"/>
+<meta property="og:updated_time" content="2020-06-18T08:19:45+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://syaofox.github.io/img/og.png"/>
+
+<meta name="twitter:title" content="Kodi"/>
+<meta name="twitter:description" content="心似白云常自在 意如流水任东西"/>
+
+
+
+<style>
+    @media (prefers-color-scheme: dark) {
+        body[data-theme='auto'] img {
+            filter: brightness(60%);
         }
-    },
-    mounted() {
-        this.handleScroll();
-        this.handleResize();
-        this.mounted = true;
-
-        
-    },
-    destroyed() {
-        window.removeEventListener('scroll', this.handleScroll);
-        window.removeEventListener('resize', this.handleResize);
     }
-});
-</script>
 
-<script src="https://syaofox.github.io/js/journal.js"></script>
-    </body>
+    body[data-theme='dark'] img {
+        filter: brightness(60%);
+    }
+</style>
+
+
+
+
+<link rel="stylesheet" href="https://syaofox.github.io/assets/css/fuji-custom.min.css" />
+
+
+
+
+
+
+</head>
+
+<body data-theme="auto">
+    <script data-cfasync="false">
+    
+    var fujiThemeData = localStorage.getItem('fuji_data-theme');
+    
+    if (!fujiThemeData) {
+        localStorage.setItem('fuji_data-theme', 'auto');
+    } else {
+        
+        if (fujiThemeData !== 'auto') {
+            document.body.setAttribute('data-theme', fujiThemeData === 'dark' ? 'dark' : 'light');
+        }
+    }
+</script>
+<script data-cfasync="false">
+    
+    function browserDetection(ua) {
+        if (ua.indexOf('MSIE ') > 0 || ua.indexOf('Trident/') > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    var ua = window.navigator.userAgent;
+    if (browserDetection(ua)) {
+        window.location.href('https:\/\/syaofox.github.io\/ie\/');
+    }
+</script>
+    <header>
+    <div class="container-lg clearfix">
+        <div class="col-12 header">
+            <a class="title-main" href="https://syaofox.github.io">云流</a>
+            
+            <span class="title-sub">心似白云常自在 意如流水任东西</span>
+            
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container-lg clearfix">
+            
+            <div class="col-12 col-md-9 float-left content">
+                
+
+<div class="page-info">
+    <span>拥有标签 Kodi 的文章：</span>
+</div>
+
+
+
+<div class="post">
+    <h2 class="post-item post-title">
+        <a href="https://syaofox.github.io/post/%E5%88%A9%E7%94%A8everaver-emby-kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0av%E5%BA%93/">利用EverAver Emby Kodi打造本地AV库</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><ion-icon name="today"></ion-icon>&nbsp;2020-06-18</span><span><ion-icon name="file-tray"></ion-icon>&nbsp;7233 字</span><span><ion-icon name="pricetags"></ion-icon>&nbsp;<a href="/tags/software">Software</a>&nbsp;<a href="/tags/emby">Emby</a>&nbsp;<a href="/tags/kodi">Kodi</a>&nbsp;</span>
+    </div>
+    <div class="post-item post-summary markdown-body">
+        W A R N I N G ！ ※阅读正文前请保持房间明亮，并年满18岁。 ~——只为给伟大的日本劳动女性献上赞歌。~ 本文将深入浅出，从无到有，以日本“成人视频”为例。 ——由影片元数据抓取（EverAver）开始，到服
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+            </div>
+            <aside class="col-12 col-md-3 float-left sidebar">
+    
+    
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>页面</h3>
+        <ul>
+            
+            <li>
+                <a href="/">首页</a>
+            </li>
+            
+            <li>
+                <a href="/archives/">归档</a>
+            </li>
+            
+            <li>
+                <a href="/about/">关于</a>
+            </li>
+            
+            <li>
+                <a href="/search/">搜索</a>
+            </li>
+            
+            <li>
+                <a href="/index.xml">RSS</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>标签</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/calibre/">Calibre</a>
+            </span>
+            
+            <span>
+                <a href="/tags/chrome/">Chrome</a>
+            </span>
+            
+            <span>
+                <a href="/tags/cmd/">cmd</a>
+            </span>
+            
+            <span>
+                <a href="/tags/cpl/">CPL</a>
+            </span>
+            
+            <span>
+                <a href="/tags/crontab/">Crontab</a>
+            </span>
+            
+            <span>
+                <a href="/tags/docker/">Docker</a>
+            </span>
+            
+            <span>
+                <a href="/tags/dockerhub/">DockerHub</a>
+            </span>
+            
+            <span>
+                <a href="/tags/dos/">Dos</a>
+            </span>
+            
+            <span>
+                <a href="/tags/elf/">elf</a>
+            </span>
+            
+            <span>
+                <a href="/tags/emby/">Emby</a>
+            </span>
+            
+            <span>
+                <a href="/tags/exif/">Exif</a>
+            </span>
+            
+            <span>
+                <a href="/tags/exiftool/">Exiftool</a>
+            </span>
+            
+            <span>
+                <a href="/tags/fc/">FC</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ffmpeg/">FFMPEG</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ftp/">FTP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/git/">Git</a>
+            </span>
+            
+            <span>
+                <a href="/tags/gmail/">Gmail</a>
+            </span>
+            
+            <span>
+                <a href="/tags/h264/">H264</a>
+            </span>
+            
+            <span>
+                <a href="/tags/hgame/">HGame</a>
+            </span>
+            
+            <span>
+                <a href="/tags/jav/">JAV</a>
+            </span>
+            
+            <span>
+                <a href="/tags/jellyfin/">Jellyfin</a>
+            </span>
+            
+            <span>
+                <a href="/tags/kodi/">Kodi</a>
+            </span>
+            
+            <span>
+                <a href="/tags/linux/">Linux</a>
+            </span>
+            
+            <span>
+                <a href="/tags/linux%E5%91%BD%E4%BB%A4/">Linux命令</a>
+            </span>
+            
+            <span>
+                <a href="/tags/mergerfs/">Mergerfs</a>
+            </span>
+            
+            <span>
+                <a href="/tags/nas/">Nas</a>
+            </span>
+            
+            <span>
+                <a href="/tags/nes/">NES</a>
+            </span>
+            
+            <span>
+                <a href="/tags/nuc/">NUC</a>
+            </span>
+            
+            <span>
+                <a href="/tags/omv/">OMV</a>
+            </span>
+            
+            <span>
+                <a href="/tags/openmediavault/">OpenMediaVault</a>
+            </span>
+            
+            <span>
+                <a href="/tags/porn-star/">Porn Star</a>
+            </span>
+            
+            <span>
+                <a href="/tags/postfix/">Postfix</a>
+            </span>
+            
+            <span>
+                <a href="/tags/regexp/">RegExp</a>
+            </span>
+            
+            <span>
+                <a href="/tags/rsync/">Rsync</a>
+            </span>
+            
+            <span>
+                <a href="/tags/screen/">screen</a>
+            </span>
+            
+            <span>
+                <a href="/tags/smb/">SMB</a>
+            </span>
+            
+            <span>
+                <a href="/tags/software/">Software</a>
+            </span>
+            
+            <span>
+                <a href="/tags/system/">System</a>
+            </span>
+            
+            <span>
+                <a href="/tags/thumbs/">thumbs</a>
+            </span>
+            
+            <span>
+                <a href="/tags/tiare/">TIARE</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ubunt/">Ubunt</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ubuntu/">Ubuntu</a>
+            </span>
+            
+            <span>
+                <a href="/tags/ups/">UPS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/virtualbox/">VirtualBox</a>
+            </span>
+            
+            <span>
+                <a href="/tags/wav/">WAV</a>
+            </span>
+            
+            <span>
+                <a href="/tags/windows10/">Windows10</a>
+            </span>
+            
+            <span>
+                <a href="/tags/windows7/">Windows7</a>
+            </span>
+            
+            <span>
+                <a href="/tags/wsl/">WSL</a>
+            </span>
+            
+            <span>
+                <a href="/tags/youtube-dl/">Youtube-dl</a>
+            </span>
+            
+            <span>
+                <a href="/tags/zed/">ZED</a>
+            </span>
+            
+            <span>
+                <a href="/tags/zfs/">ZFS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E4%B9%B1%E7%A0%81/">乱码</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%85%B1%E4%BA%AB/">共享</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%8D%8E%E4%B8%BD%E4%BA%BA%E7%94%9F2/">华丽人生2</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%90%8C%E7%BA%A7%E7%94%9F/">同级生</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%9C%A3%E6%96%97%E5%A3%AB/">圣斗士</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%A3%B0%E9%9F%B3/">声音</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F/">安装系统</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%BE%AE%E8%BD%AF%E6%8B%BC%E9%9F%B3/">微软拼音</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%88%AA%E5%9B%BE/">截图</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%90%9C%E7%B4%A2/">搜索</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%98%BE%E5%8D%A1/">显卡</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E7%A1%AC%E8%A7%A3/">硬解</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E7%BC%96%E7%A0%81/">编码</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E7%BC%A9%E7%95%A5%E5%9B%BE/">缩略图</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E7%BE%A4%E6%99%96/">群晖</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E8%B5%84%E6%BA%90%E7%9B%91%E8%A7%86%E5%99%A8/">资源监视器</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E8%BE%93%E5%85%A5%E6%B3%95/">输入法</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82/">迷走都市</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E9%BE%99%E9%AA%91%E5%A3%AB/">龙骑士</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>链接</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/syaofox" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://twitter.com/syaofox" target="_blank"><span>Twitter</span></a>
+            </li>
+            
+            <li>
+                <a href="https://space.bilibili.com/1643024" target="_blank"><span>bilibili</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+</aside>
+        </div>
+        <div class="btn">
+    <div class="btn-toggle-mode">
+        <ion-icon name="contrast"></ion-icon>
+    </div>
+    <div class="btn-scroll-top">
+        <ion-icon name="chevron-up"></ion-icon>
+    </div>
+</div>
+    </main>
+
+    <footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            <span>&copy; 2020 <a href="https://syaofox.github.io">syaofox</a> |
+                基于 <a href="https://github.com/amzrk2/hugo-theme-fuji/"
+                   target="_blank">Fuji-v2</a> & <a href="https://gohugo.io/"
+                   target="_blank">Hugo</a> 构建</span>
+        </div>
+    </div>
+</footer>
+    
+    <script async type="module" src="https://cdn.jsdelivr.net/npm/ionicons@5.0.1/dist/ionicons/ionicons.esm.js"></script>
+<script async nomodule src="https://cdn.jsdelivr.net/npm/ionicons@5.0.1/dist/ionicons/ionicons.js"></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.20.0/components/prism-core.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script>
+
+<script defer src="/assets/js/fuji.min.js"></script>
+
+</body>
+
 </html>
