@@ -1,11 +1,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>霜天晓角</title>
+    <title>云流</title>
     <link>https://syaofox.github.io/</link>
-    <description>Recent content on 霜天晓角</description>
+    <description>Recent content on 云流</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>Syaofox 2020 copyright.</copyright>
     <lastBuildDate>Thu, 18 Jun 2020 20:31:51 +0800</lastBuildDate>
     
         <atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml" />
@@ -14,92 +13,110 @@
     
         <item>
         <title>Ubuntu18 04 修改DNS</title>
-        <link>https://syaofox.github.io/linux/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/</link>
+        <link>https://syaofox.github.io/post/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/</link>
         <pubDate>Thu, 18 Jun 2020 11:20:07 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/ -&lt;p&gt;最近使用了最新版的ubuntu 18.04运行一些服务，发现服务器经常出现无法解析域名的情况。&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/</guid>
+        <description>云流 https://syaofox.github.io/post/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/ -&lt;p&gt;最近使用了最新版的ubuntu 18.04运行一些服务，发现服务器经常出现无法解析域名的情况。&lt;/p&gt;
 &lt;p&gt;检查/etc/resolv.conf文件，发现里面nameserver是127.0.0.53，修改以后过了段时间，又被修改回去，查找资料原来18.04版本DNS是由systemd-resolved管理的。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;netstat -tnpl| grep systemd-resolved
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过以上命令查看到这个服务是监听在53号端口上。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;netstat -tnpl| grep systemd-resolved
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;通过以上命令查看到这个服务是监听在53号端口上。&lt;/p&gt;
 &lt;p&gt;/etc/systemd/resolved.conf大致内容如下：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;[Resolve]
-&lt;span style=&#34;color:#00688b&#34;&gt;DNS&lt;/span&gt;=223.5.5.5 8.8.8.8
-&lt;span style=&#34;color:#228b22&#34;&gt;#FallbackDNS=&lt;/span&gt;
-&lt;span style=&#34;color:#228b22&#34;&gt;#Domains=&lt;/span&gt;
-&lt;span style=&#34;color:#00688b&#34;&gt;LLMNR&lt;/span&gt;=no
-&lt;span style=&#34;color:#228b22&#34;&gt;#MulticastDNS=no&lt;/span&gt;
-&lt;span style=&#34;color:#228b22&#34;&gt;#DNSSEC=no&lt;/span&gt;
-&lt;span style=&#34;color:#228b22&#34;&gt;#Cache=yes&lt;/span&gt;
-&lt;span style=&#34;color:#228b22&#34;&gt;#DNSStubListener=yes&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;修改这里面的内容，然后重启systemd-resolved服务即可。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;systemctl restart systemd-resolved.service
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果想要用/etc/resolve.conf控制，直接将systemd-resolved服务停止并禁用。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;systemctl stop systemd-resolved.service
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;[Resolve]
+DNS=223.5.5.5 8.8.8.8
+#FallbackDNS=
+#Domains=
+LLMNR=no
+#MulticastDNS=no
+#DNSSEC=no
+#Cache=yes
+#DNSStubListener=yes
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;修改这里面的内容，然后重启systemd-resolved服务即可。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;systemctl restart systemd-resolved.service
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果想要用/etc/resolve.conf控制，直接将systemd-resolved服务停止并禁用。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;systemctl stop systemd-resolved.service
 systemctl disable systemd-resolved.service
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样世界就清净了。&lt;/p&gt;- https://syaofox.github.io/linux/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/ - Syaofox 2020 copyright.</description>
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这样世界就清净了。&lt;/p&gt;- https://syaofox.github.io/post/ubuntu18-04-%E4%BF%AE%E6%94%B9dns/ - </description>
         </item>
     
     
     
         <item>
         <title>Ubuntu 18 4 HDMI声音有杂音的修复方法</title>
-        <link>https://syaofox.github.io/linux/ubuntu-18-4-hdmi%E5%A3%B0%E9%9F%B3%E6%9C%89%E6%9D%82%E9%9F%B3%E7%9A%84%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/</link>
+        <link>https://syaofox.github.io/post/ubuntu-18-4-hdmi%E5%A3%B0%E9%9F%B3%E6%9C%89%E6%9D%82%E9%9F%B3%E7%9A%84%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/</link>
         <pubDate>Thu, 18 Jun 2020 11:19:25 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/ubuntu-18-4-hdmi%E5%A3%B0%E9%9F%B3%E6%9C%89%E6%9D%82%E9%9F%B3%E7%9A%84%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/ubuntu-18-4-hdmi%E5%A3%B0%E9%9F%B3%E6%9C%89%E6%9D%82%E9%9F%B3%E7%9A%84%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/ -&lt;p&gt;显示器自带音箱，通过hdmi连接电脑，安装完ubuntu 18后声音出现比较大的杂音&amp;hellip;&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/ubuntu-18-4-hdmi%E5%A3%B0%E9%9F%B3%E6%9C%89%E6%9D%82%E9%9F%B3%E7%9A%84%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/</guid>
+        <description>云流 https://syaofox.github.io/post/ubuntu-18-4-hdmi%E5%A3%B0%E9%9F%B3%E6%9C%89%E6%9D%82%E9%9F%B3%E7%9A%84%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/ -&lt;p&gt;显示器自带音箱，通过hdmi连接电脑，安装完ubuntu 18后声音出现比较大的杂音&amp;hellip;&lt;/p&gt;
 &lt;p&gt;google找到以下方法，亲测完美解决&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;sudo pico /etc/pulse/default.pa
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在弹出的文本内查找以下字眼&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;load-module module-udev-detect
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在后面添加&lt;code&gt;tsched=0&lt;/code&gt; 完成后像这样&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;load-module module-udev-detect &lt;span style=&#34;color:#00688b&#34;&gt;tsched&lt;/span&gt;=&lt;span style=&#34;color:#b452cd&#34;&gt;0&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;重启后世界清静了～～&lt;/p&gt;- https://syaofox.github.io/linux/ubuntu-18-4-hdmi%E5%A3%B0%E9%9F%B3%E6%9C%89%E6%9D%82%E9%9F%B3%E7%9A%84%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/ - Syaofox 2020 copyright.</description>
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;sudo pico /etc/pulse/default.pa
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在弹出的文本内查找以下字眼&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;load-module module-udev-detect
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在后面添加&lt;code&gt;tsched=0&lt;/code&gt; 完成后像这样&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;load-module module-udev-detect tsched=0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;重启后世界清静了～～&lt;/p&gt;- https://syaofox.github.io/post/ubuntu-18-4-hdmi%E5%A3%B0%E9%9F%B3%E6%9C%89%E6%9D%82%E9%9F%B3%E7%9A%84%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/ - </description>
         </item>
     
     
     
         <item>
         <title>Ubuntu Server 18 04 LTS 上安装Virtual Box 并配置 PhpVirtualbox</title>
-        <link>https://syaofox.github.io/linux/ubuntu-server-18-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85virtual-box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpvirtualbox/</link>
+        <link>https://syaofox.github.io/post/ubuntu-server-18-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85virtual-box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpvirtualbox/</link>
         <pubDate>Thu, 18 Jun 2020 11:17:22 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/ubuntu-server-18-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85virtual-box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpvirtualbox/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/ubuntu-server-18-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85virtual-box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpvirtualbox/ -&lt;p&gt;本教程将指导你在 Ubuntu 18.04 LTS 无头服务器上，一步一步地安装 Oracle VirtualBox。同时，本教程也将介绍如何使用 phpVirtualBox 去管理安装在无头服务器上的 VirtualBox 实例。phpVirtualBox 是 VirtualBox 的一个基于 Web 的前端工具。这个教程也可以工作在 Debian 和其它 Ubuntu 衍生版本上，如 Linux Mint。现在，我们开始。
+        <guid>https://syaofox.github.io/post/ubuntu-server-18-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85virtual-box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpvirtualbox/</guid>
+        <description>云流 https://syaofox.github.io/post/ubuntu-server-18-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85virtual-box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpvirtualbox/ -&lt;p&gt;本教程将指导你在 Ubuntu 18.04 LTS 无头服务器上，一步一步地安装 Oracle VirtualBox。同时，本教程也将介绍如何使用 phpVirtualBox 去管理安装在无头服务器上的 VirtualBox 实例。phpVirtualBox 是 VirtualBox 的一个基于 Web 的前端工具。这个教程也可以工作在 Debian 和其它 Ubuntu 衍生版本上，如 Linux Mint。现在，我们开始。
 原文地址:&lt;a href=&#34;https://www.ostechnix.com/install-oracle-virtualbox-ubuntu-16-04-headless-server/&#34;&gt;https://www.ostechnix.com/install-oracle-virtualbox-ubuntu-16-04-headless-server/&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id=&#34;前提条件&#34;&gt;前提条件&lt;/h1&gt;
 &lt;p&gt;在安装 Oracle VirtualBox 之前，我们的 Ubuntu 18.04 LTS 服务器上需要满足如下的前提条件。
 首先，逐个运行如下的命令来更新 Ubuntu 服务器。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt update
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt update
 sudo apt upgrade
 sudo apt dist-upgrade
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;接下来，安装如下的必需的包&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install build-essential dkms unzip wget
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装完成所有的更新和必需的包之后，重启动 Ubuntu 服务器。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo reboot
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;安装-virtualbox&#34;&gt;安装 VirtualBox&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;接下来，安装如下的必需的包&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt install build-essential dkms unzip wget
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;安装完成所有的更新和必需的包之后，重启动 Ubuntu 服务器。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo reboot
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;安装-virtualbox&#34;&gt;安装 VirtualBox&lt;/h1&gt;
 &lt;p&gt;添加 Oracle VirtualBox 官方仓库。为此你需要去编辑 &lt;code&gt;/etc/apt/sources.list&lt;/code&gt; 文件：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo nano /etc/apt/sources.list
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;添加下列的行&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;deb http://download.virtualbox.org/virtualbox/debian bionic contrib
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Ubuntu-Server-18-04-LTS-%E4%B8%8A%E5%AE%89%E8%A3%85Virtual-Box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpVirtualbox/1569939778-f01981db6c2a7a8ebd570be6bd8c9cd4.jpg&#34; alt=&#34;&#34;&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo nano /etc/apt/sources.list
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;添加下列的行&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;deb http://download.virtualbox.org/virtualbox/debian bionic contrib
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Ubuntu-Server-18-04-LTS-%E4%B8%8A%E5%AE%89%E8%A3%85Virtual-Box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpVirtualbox/1569939778-f01981db6c2a7a8ebd570be6bd8c9cd4.jpg&#34; alt=&#34;&#34;&gt;
 然后，运行下列的命令去添加 Oracle 公钥：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bas&#34; data-lang=&#34;bas&#34;&gt;wget&lt;span style=&#34;color:#bbb&#34;&gt;  &lt;/span&gt;-q&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;https://www.virtualbox.org/download/oracle_vbox_2016.asc&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;-O-&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;sudo&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;apt-key&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;add&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;接下来，使用如下的命令去更新软件源&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt update
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;最后，使用如下的命令去安装最新版本的 Oracle VirtualBox&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install virtualbox-5.2
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;添加用户到 VirtualBox 组&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bas&#34;&gt;wget  -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;接下来，使用如下的命令去更新软件源&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt update
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;最后，使用如下的命令去安装最新版本的 Oracle VirtualBox&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt install virtualbox-5.2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;添加用户到 VirtualBox 组&lt;/p&gt;
 &lt;p&gt;我们需要去创建并添加我们的系统用户到 &lt;code&gt;vboxusers&lt;/code&gt; 组中。你也可以单独创建用户，然后将它分配到 &lt;code&gt;vboxusers&lt;/code&gt; 组中，也可以使用已有的用户。我不想去创建新用户，因此，我添加已存在的用户到这个组中。请注意，如果你为 virtualbox 使用一个单独的用户，那么你必须注销当前用户，并使用那个特定的用户去登入，来完成剩余的步骤。&lt;/p&gt;
 &lt;p&gt;我使用的是我的用户名 &lt;code&gt;sk&lt;/code&gt;，因此，我运行如下的命令将它添加到 &lt;code&gt;vboxusers&lt;/code&gt; 组中。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo usermod -aG vboxusers sk
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;现在，运行如下的命令去检查 virtualbox 内核模块是否已加载。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo  systemctl status vboxdrv
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Ubuntu-Server-18-04-LTS-%E4%B8%8A%E5%AE%89%E8%A3%85Virtual-Box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpVirtualbox/1569939778-5b04cc0622b3f4fb4baeb57ae8b58d5c.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo usermod -aG vboxusers sk
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;现在，运行如下的命令去检查 virtualbox 内核模块是否已加载。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo  systemctl status vboxdrv
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Ubuntu-Server-18-04-LTS-%E4%B8%8A%E5%AE%89%E8%A3%85Virtual-Box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpVirtualbox/1569939778-5b04cc0622b3f4fb4baeb57ae8b58d5c.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;如果 virtualbox 模块没有启动，运行如下的命令去启动它。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo /etc/init.d/vboxdrv setup
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;很好！我们已经成功安装了 VirtualBox 并启动了 virtualbox 模块。现在，我们继续来安装 Oracle VirtualBox 的扩展包。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo /etc/init.d/vboxdrv setup
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;很好！我们已经成功安装了 VirtualBox 并启动了 virtualbox 模块。现在，我们继续来安装 Oracle VirtualBox 的扩展包。&lt;/p&gt;
 &lt;p&gt;安装 VirtualBox 扩展包&lt;/p&gt;
 &lt;p&gt;VirtualBox 扩展包为 VirtualBox 访客系统提供了如下的功能。&lt;/p&gt;
 &lt;ul&gt;
@@ -110,70 +127,87 @@ sudo apt dist-upgrade
 &lt;li&gt;对 Linux 宿主机上的 PCI 直通提供支持&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;从&lt;a href=&#34;https://www.virtualbox.org/wiki/Download_Old_Builds_5_2&#34;&gt;这里&lt;/a&gt;为 VirtualBox 5.2.x 下载最新版的扩展包。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;wget https://download.virtualbox.org/virtualbox/5.2.14/Oracle_VM_VirtualBox_Extension_Pack-5.2.14.vbox-extpack
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;使用如下的命令去安装扩展包：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo  VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-5.2.14.vbox-extpack
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;恭喜！我们已经成功地在 Ubuntu 18.04 LTS 服务器上安装了 Oracle VirtualBox 的扩展包。现在已经可以去部署虚拟机了。参考 &lt;a href=&#34;http://www.virtualbox.org/manual/ch08.html&#34;&gt;virtualbox 官方指南&lt;/a&gt;，在命令行中开始创建和管理虚拟机。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget https://download.virtualbox.org/virtualbox/5.2.14/Oracle_VM_VirtualBox_Extension_Pack-5.2.14.vbox-extpack
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;使用如下的命令去安装扩展包：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo  VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-5.2.14.vbox-extpack
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;恭喜！我们已经成功地在 Ubuntu 18.04 LTS 服务器上安装了 Oracle VirtualBox 的扩展包。现在已经可以去部署虚拟机了。参考 &lt;a href=&#34;http://www.virtualbox.org/manual/ch08.html&#34;&gt;virtualbox 官方指南&lt;/a&gt;，在命令行中开始创建和管理虚拟机。&lt;/p&gt;
 &lt;p&gt;然而，并不是每个人都擅长使用命令行。有些人可能希望在图形界面中去创建和使用虚拟机。不用担心！下面我们为你带来非常好用的 phpVirtualBox 工具！&lt;/p&gt;
 &lt;h1 id=&#34;关于-phpvirtualbox&#34;&gt;关于 phpVirtualBox&lt;/h1&gt;
 &lt;p&gt;phpVirtualBox 是一个免费的、基于 web 的 Oracle VirtualBox 后端。它是使用 PHP 开发的。用 phpVirtualBox 我们可以通过 web 浏览器从网络上的任意一个系统上，很轻松地创建、删除、管理、和执行虚拟机。&lt;/p&gt;
 &lt;h1 id=&#34;在-ubuntu-1804-lts-上安装-phpvirtualbox&#34;&gt;在 Ubuntu 18.04 LTS 上安装 phpVirtualBox&lt;/h1&gt;
 &lt;p&gt;由于它是基于 web 的工具，我们需要安装 Apache web 服务器、PHP 和一些 php 模块。&lt;/p&gt;
 &lt;p&gt;为此，运行如下命令：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install apache2 php php-mysql libapache2-mod-php php-soap php-xml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后，从 &lt;a href=&#34;https://github.com/phpvirtualbox/phpvirtualbox/releases&#34;&gt;下载页面&lt;/a&gt; 上下载 phpVirtualBox 5.2.x 版。请注意，由于我们已经安装了 VirtualBox 5.2 版，因此，同样的我们必须去安装 phpVirtualBox 的 5.2 版本。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt install apache2 php php-mysql libapache2-mod-php php-soap php-xml
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后，从 &lt;a href=&#34;https://github.com/phpvirtualbox/phpvirtualbox/releases&#34;&gt;下载页面&lt;/a&gt; 上下载 phpVirtualBox 5.2.x 版。请注意，由于我们已经安装了 VirtualBox 5.2 版，因此，同样的我们必须去安装 phpVirtualBox 的 5.2 版本。&lt;/p&gt;
 &lt;p&gt;运行如下的命令去下载它：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;wget https://github.com/phpvirtualbox/phpvirtualbox/archive/5.2-0.zip
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;使用如下命令解压下载的安装包：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;unzip 5.2-0.zip
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个命令将解压 5.2.0.zip 文件的内容到一个名为 &lt;code&gt;phpvirtualbox-5.2-0&lt;/code&gt; 的文件夹中。现在，复制或移动这个文件夹的内容到你的 apache web 服务器的根文件夹中。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo  mv phpvirtualbox-5.2-0/ /var/www/html/phpvirtualbox
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;给 phpvirtualbox 文件夹分配适当的权限。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo  chmod  &lt;span style=&#34;color:#b452cd&#34;&gt;777&lt;/span&gt;  /var/www/html/phpvirtualbox/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;接下来，我们开始配置 phpVirtualBox。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget https://github.com/phpvirtualbox/phpvirtualbox/archive/5.2-0.zip
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;使用如下命令解压下载的安装包：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;unzip 5.2-0.zip
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这个命令将解压 5.2.0.zip 文件的内容到一个名为 &lt;code&gt;phpvirtualbox-5.2-0&lt;/code&gt; 的文件夹中。现在，复制或移动这个文件夹的内容到你的 apache web 服务器的根文件夹中。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo  mv phpvirtualbox-5.2-0/ /var/www/html/phpvirtualbox
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;给 phpvirtualbox 文件夹分配适当的权限。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo  chmod  777  /var/www/html/phpvirtualbox/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;接下来，我们开始配置 phpVirtualBox。&lt;/p&gt;
 &lt;p&gt;像下面这样复制示例配置文件。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo  cp  /var/www/html/phpvirtualbox/config.php-example /var/www/html/phpvirtualbox/config.php
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;编辑 phpVirtualBox 的 &lt;code&gt;config.php&lt;/code&gt; 文件：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo  nano  /var/www/html/phpvirtualbox/config.php
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;找到下列行，并且用你的系统用户名和密码去替换它（就是前面的“添加用户到 VirtualBox 组中”节中使用的用户名）。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo  cp  /var/www/html/phpvirtualbox/config.php-example /var/www/html/phpvirtualbox/config.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;编辑 phpVirtualBox 的 &lt;code&gt;config.php&lt;/code&gt; 文件：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo  nano  /var/www/html/phpvirtualbox/config.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;找到下列行，并且用你的系统用户名和密码去替换它（就是前面的“添加用户到 VirtualBox 组中”节中使用的用户名）。&lt;/p&gt;
 &lt;p&gt;在我的案例中，我的 Ubuntu 系统用户名是 &lt;code&gt;sk&lt;/code&gt; ，它的密码是 &lt;code&gt;ubuntu&lt;/code&gt;。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;var &lt;span style=&#34;color:#00688b&#34;&gt;$username&lt;/span&gt; =  &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;sk&amp;#39;&lt;/span&gt;;
-var &lt;span style=&#34;color:#00688b&#34;&gt;$password&lt;/span&gt; =  &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;ubuntu&amp;#39;&lt;/span&gt;;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Ubuntu-Server-18-04-LTS-%E4%B8%8A%E5%AE%89%E8%A3%85Virtual-Box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpVirtualbox/1569939778-3ce8a883400e9fcd3f6fa384ef7e3e31.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;var $username =  &#39;sk&#39;;
+var $password =  &#39;ubuntu&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Ubuntu-Server-18-04-LTS-%E4%B8%8A%E5%AE%89%E8%A3%85Virtual-Box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpVirtualbox/1569939778-3ce8a883400e9fcd3f6fa384ef7e3e31.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;保存并关闭这个文件。
 接下来，创建一个名为 &lt;code&gt;/etc/default/virtualbox&lt;/code&gt; 的新文件：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo  nano  /etc/default/virtualbox
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;添加下列行。用你自己的系统用户替换 &lt;code&gt;sk&lt;/code&gt;。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#00688b&#34;&gt;VBOXWEB_USER&lt;/span&gt;=sk
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;最后，重引导你的系统或重启下列服务去完成整个配置工作。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo  systemctl restart vboxweb-service
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo  nano  /etc/default/virtualbox
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;添加下列行。用你自己的系统用户替换 &lt;code&gt;sk&lt;/code&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;VBOXWEB_USER=sk
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;最后，重引导你的系统或重启下列服务去完成整个配置工作。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo  systemctl restart vboxweb-service
 sudo  systemctl restart vboxdrv
 sudo  systemctl restart apache2
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;调整防火墙允许连接 Apache web 服务器&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;调整防火墙允许连接 Apache web 服务器&lt;/p&gt;
 &lt;p&gt;如果你在 Ubuntu 18.04 LTS 上启用了 UFW，那么在默认情况下，apache web 服务器是不能被任何远程系统访问的。你必须通过下列的步骤让 http 和 https 流量允许通过 UFW。&lt;/p&gt;
 &lt;p&gt;首先，我们使用如下的命令来查看在策略中已经安装了哪些应用：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo ufw app list
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo ufw app list
 Available applications:
 Apache
 Apache  Full
 Apache  Secure
 OpenSSH
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;正如你所见，Apache 和 OpenSSH 应该已经在 UFW 的策略文件中安装了。&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;正如你所见，Apache 和 OpenSSH 应该已经在 UFW 的策略文件中安装了。&lt;/p&gt;
 &lt;p&gt;如果你在策略中看到的是 &lt;code&gt;Apache Full&lt;/code&gt;，说明它允许流量到达 80 和 443 端口：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo ufw app info  &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;Apache Full
-&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;Profile:  Apache  Full
-&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;Title:  Web  Server  (HTTP,HTTPS)
-&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;Description:  Apache v2 is the next generation of the omnipresent Apache web
-&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;server.
-&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;Ports:
-&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;80,443/tcp
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;现在，运行如下的命令去启用这个策略中的 HTTP 和 HTTPS 的入站流量：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo ufw allow in  &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;Apache Full&amp;#34;&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo ufw app info  &amp;quot;Apache Full
+Profile:  Apache  Full
+Title:  Web  Server  (HTTP,HTTPS)
+Description:  Apache v2 is the next generation of the omnipresent Apache web
+server.
+Ports:
+80,443/tcp
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;现在，运行如下的命令去启用这个策略中的 HTTP 和 HTTPS 的入站流量：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo ufw allow in  &amp;quot;Apache Full&amp;quot;
 Rules updated
 Rules updated (v6)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果你希望允许 https 流量，但是仅是 http (80) 的流量，运行如下的命令：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo ufw app info  &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;Apache
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;访问 phpVirtualBox 的 Web 控制台&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果你希望允许 https 流量，但是仅是 http (80) 的流量，运行如下的命令：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo ufw app info  &amp;quot;Apache
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;访问 phpVirtualBox 的 Web 控制台&lt;/p&gt;
 &lt;p&gt;现在，用任意一台远程系统的 web 浏览器来访问。
 在地址栏中，输入：&lt;code&gt;http://IP-address-of-virtualbox-headless-server/phpvirtualbox&lt;/code&gt;。
 在我的案例中，我导航到这个链接 – &lt;code&gt;http://192.168.225.22/phpvirtualbox&lt;/code&gt;。
@@ -183,148 +217,158 @@ phpVirtualBox 的默认管理员用户名和密码是 &lt;code&gt;admin&lt;/code
 &lt;p&gt;恭喜！你现在已经进入了 phpVirtualBox 管理面板了。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Ubuntu-Server-18-04-LTS-%E4%B8%8A%E5%AE%89%E8%A3%85Virtual-Box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpVirtualbox/1569939778-7486525747b84f6a739e24057931d1fd.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;现在，你可以从 phpvirtualbox 的管理面板上，开始去创建你的 VM 了。正如我在前面提到的，你可以从同一网络上的任意一台系统上访问 phpVirtualBox 了，而所需要的仅仅是一个 web 浏览器和 phpVirtualBox 的用户名和密码。&lt;/p&gt;
-&lt;p&gt;如果在你的宿主机系统（不是访客机）的 BIOS 中没有启用虚拟化支持，phpVirtualBox 将只允许你去创建 32 位的访客系统。要安装 64 位的访客系统，你必须在你的宿主机的 BIOS 中启用虚拟化支持。在你的宿主机的 BIOS 中你可以找到一些类似于 “virtualization” 或 “hypervisor” 字眼的选项，然后确保它是启用的。&lt;/p&gt;- https://syaofox.github.io/linux/ubuntu-server-18-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85virtual-box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpvirtualbox/ - Syaofox 2020 copyright.</description>
+&lt;p&gt;如果在你的宿主机系统（不是访客机）的 BIOS 中没有启用虚拟化支持，phpVirtualBox 将只允许你去创建 32 位的访客系统。要安装 64 位的访客系统，你必须在你的宿主机的 BIOS 中启用虚拟化支持。在你的宿主机的 BIOS 中你可以找到一些类似于 “virtualization” 或 “hypervisor” 字眼的选项，然后确保它是启用的。&lt;/p&gt;- https://syaofox.github.io/post/ubuntu-server-18-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85virtual-box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpvirtualbox/ - </description>
         </item>
     
     
     
         <item>
         <title>Ubuntu Server 20.04 LTS NAS 安装记录</title>
-        <link>https://syaofox.github.io/linux/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
+        <link>https://syaofox.github.io/post/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
         <pubDate>Thu, 18 Jun 2020 11:15:54 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/ -&lt;p&gt;Nas 安装 Ubuntu Server 20.04 LTS 系统，基于 zfs on linux&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
+        <description>云流 https://syaofox.github.io/post/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/ -&lt;p&gt;Nas 安装 Ubuntu Server 20.04 LTS 系统，基于 zfs on linux&lt;/p&gt;
 &lt;h2 id=&#34;安装-ubuntu&#34;&gt;安装 Ubuntu&lt;/h2&gt;
 &lt;p&gt;注意选中安装ssh,否则安装完成无法远程连接&lt;/p&gt;
 &lt;h2 id=&#34;更新系统&#34;&gt;更新系统&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt update
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt update
 sudo apt upgrade
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;设置时区&#34;&gt;设置时区&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 查看当前时区&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;设置时区&#34;&gt;设置时区&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 查看当前时区
 timedatectl
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 列出所有时区&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 列出所有时区
 timedatectl list-timezones
-&lt;span style=&#34;color:#228b22&#34;&gt;# 显示亚洲时区&lt;/span&gt;
+# 显示亚洲时区
 timedatectl list-timezones | grep Asia
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 设置时区为上海&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 设置时区为上海
 sudo timedatectl set-timezone Asia/Shanghai
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;修改-root-用户登录权限&#34;&gt;修改 root 用户登录权限&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 编辑 &amp;#39;/etc/ssh/sshd_config&amp;#39;&lt;/span&gt;
-sudo sed -i &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;s/#PermitRootLogin prohibit-password/PermitRootLogin yes/&amp;#39;&lt;/span&gt; /etc/ssh/sshd_config
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;修改-root-用户登录权限&#34;&gt;修改 root 用户登录权限&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 编辑 &#39;/etc/ssh/sshd_config&#39;
+sudo sed -i &#39;s/#PermitRootLogin prohibit-password/PermitRootLogin yes/&#39; /etc/ssh/sshd_config
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 重启SSH服务&lt;/span&gt;
+# 重启SSH服务
 sudo systemctl restart ssh
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 设置root账号密码&lt;/span&gt;
+# 设置root账号密码
 sudo passwd root
 初始化硬盘
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 查看分区情况&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 查看分区情况
 lsblk
-&lt;span style=&#34;color:#228b22&#34;&gt;# 使用 gdisk 初始化硬盘&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;添加账号&#34;&gt;添加账号&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;adduser wife 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;使用-zfs-系统&#34;&gt;使用 ZFS 系统&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 安装 zfs&lt;/span&gt;
+# 使用 gdisk 初始化硬盘
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;添加账号&#34;&gt;添加账号&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;adduser wife 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;使用-zfs-系统&#34;&gt;使用 ZFS 系统&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 安装 zfs
 apt update
 apt install zfsutils-linux
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 重启&lt;/span&gt;
+# 重启
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 创建 RAIDZ2 存储池 /dev/disk/by-id&lt;/span&gt;
+# 创建 RAIDZ2 存储池 /dev/disk/by-id
 zpool create pool raidz2 /dev/sdb /dev/sdc /dev/sdd /dev/sde 
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 查看存储池状态&lt;/span&gt;
+# 查看存储池状态
 zpool status -v
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 查看存储池空间&lt;/span&gt;
+# 查看存储池空间
 df -h | grep pool
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 创建数据集并设置开启lz4压缩&lt;/span&gt;
-zfs create -o &lt;span style=&#34;color:#00688b&#34;&gt;compression&lt;/span&gt;=lz4 pool/share
-zfs create -o &lt;span style=&#34;color:#00688b&#34;&gt;compression&lt;/span&gt;=lz4 pool/media
-zfs create -o &lt;span style=&#34;color:#00688b&#34;&gt;compression&lt;/span&gt;=lz4 pool/work 
-zfs create -o &lt;span style=&#34;color:#00688b&#34;&gt;compression&lt;/span&gt;=lz4 pool/me
+# 创建数据集并设置开启lz4压缩
+zfs create -o compression=lz4 pool/share
+zfs create -o compression=lz4 pool/media
+zfs create -o compression=lz4 pool/work 
+zfs create -o compression=lz4 pool/me
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 修改各数据集挂载点权限&lt;/span&gt;
-chmod -R &lt;span style=&#34;color:#b452cd&#34;&gt;777&lt;/span&gt; /pool/share
-chmod -R &lt;span style=&#34;color:#b452cd&#34;&gt;777&lt;/span&gt; /pool/media
-chmod -R &lt;span style=&#34;color:#b452cd&#34;&gt;777&lt;/span&gt; /pool/work
-chmod -R &lt;span style=&#34;color:#b452cd&#34;&gt;777&lt;/span&gt; /pool/me
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;安装-samba-并设置-samba-共享&#34;&gt;安装 samba 并设置 samba 共享&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 安装 samba&lt;/span&gt;
+# 修改各数据集挂载点权限
+chmod -R 777 /pool/share
+chmod -R 777 /pool/media
+chmod -R 777 /pool/work
+chmod -R 777 /pool/me
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;安装-samba-并设置-samba-共享&#34;&gt;安装 samba 并设置 samba 共享&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 安装 samba
 apt install samba
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 备份配置文件&lt;/span&gt;
+# 备份配置文件
 cp /etc/samba/smb.conf /etc/samba/smb.conf.bak 
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 修改配置文件 添加共享文件夹配置&lt;/span&gt;
+# 修改配置文件 添加共享文件夹配置
 nano /etc/samba/smb.conf
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 所有人可以访问&lt;/span&gt;
+# 所有人可以访问
 [share]
- &lt;span style=&#34;color:#00688b&#34;&gt;path&lt;/span&gt; = /pool/share
- &lt;span style=&#34;color:#00688b&#34;&gt;browseable&lt;/span&gt; = yes
- &lt;span style=&#34;color:#658b00&#34;&gt;read&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;only&lt;/span&gt; = no
- &lt;span style=&#34;color:#00688b&#34;&gt;public&lt;/span&gt; = yes
+ path = /pool/share
+ browseable = yes
+ read only = no
+ public = yes
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# syaofox 可读写 wife 可读&lt;/span&gt;
+# syaofox 可读写 wife 可读
 [media]
- &lt;span style=&#34;color:#00688b&#34;&gt;path&lt;/span&gt; = /pool/media
- &lt;span style=&#34;color:#00688b&#34;&gt;browseable&lt;/span&gt; = yes
- &lt;span style=&#34;color:#658b00&#34;&gt;read&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;only&lt;/span&gt; = no
- valid &lt;span style=&#34;color:#00688b&#34;&gt;users&lt;/span&gt; = syaofox wife
- &lt;span style=&#34;color:#658b00&#34;&gt;read&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;list&lt;/span&gt; = syaofox wife
- write &lt;span style=&#34;color:#00688b&#34;&gt;list&lt;/span&gt; = syaofox
+ path = /pool/media
+ browseable = yes
+ read only = no
+ valid users = syaofox wife
+ read list = syaofox wife
+ write list = syaofox
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# syaofox 可读写 wife 可读&lt;/span&gt;
+# syaofox 可读写 wife 可读
 [work]
- &lt;span style=&#34;color:#00688b&#34;&gt;path&lt;/span&gt; = /pool/work
- &lt;span style=&#34;color:#00688b&#34;&gt;browseable&lt;/span&gt; = yes
- &lt;span style=&#34;color:#658b00&#34;&gt;read&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;only&lt;/span&gt; = no
- valid &lt;span style=&#34;color:#00688b&#34;&gt;users&lt;/span&gt; = syaofox wife
- &lt;span style=&#34;color:#658b00&#34;&gt;read&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;list&lt;/span&gt; = syaofox wife
- write &lt;span style=&#34;color:#00688b&#34;&gt;list&lt;/span&gt; = syaofox
+ path = /pool/work
+ browseable = yes
+ read only = no
+ valid users = syaofox wife
+ read list = syaofox wife
+ write list = syaofox
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# syaofox可读写&lt;/span&gt;
+# syaofox可读写
 [me]
- &lt;span style=&#34;color:#00688b&#34;&gt;path&lt;/span&gt; = /pool/me
- &lt;span style=&#34;color:#00688b&#34;&gt;browseable&lt;/span&gt; = yes
- &lt;span style=&#34;color:#658b00&#34;&gt;read&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;only&lt;/span&gt; = no
- valid &lt;span style=&#34;color:#00688b&#34;&gt;users&lt;/span&gt; = syaofox
+ path = /pool/me
+ browseable = yes
+ read only = no
+ valid users = syaofox
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 创建 samba 用户&lt;/span&gt;
+# 创建 samba 用户
 smbpasswd -a syaofox
 smbpasswd -a wife
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 重启 samba 服务&lt;/span&gt;
+# 重启 samba 服务
 service smbd restart
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;安装-docker&#34;&gt;安装 docker&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 安装依赖包&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;安装-docker&#34;&gt;安装 docker&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 安装依赖包
 apt update
 apt install apt-transport-https ca-certificates curl software-properties-common
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 添加GPG&lt;/span&gt;
+# 添加GPG
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 添加源,注意版本 这里对应20.04 focal&lt;/span&gt;
-add-apt-repository &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable&amp;#34;&lt;/span&gt;
+# 添加源,注意版本 这里对应20.04 focal
+add-apt-repository &amp;quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable&amp;quot;
 apt update
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 查看 apt 缓存,确保源生效&lt;/span&gt;
+# 查看 apt 缓存,确保源生效
 apt-cache policy docker-ce
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 安装 docker&lt;/span&gt;
+# 安装 docker
 apt install docker-ce
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 安装 Docker Compose 注意更新版本&lt;/span&gt;
-curl -L &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;https://github.com/docker/compose/releases/download/1.26.0/docker-compose-&lt;/span&gt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;$(&lt;/span&gt;uname -s&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;$(&lt;/span&gt;uname -m&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;&lt;/span&gt; -o /usr/local/bin/docker-compose
+# 安装 Docker Compose 注意更新版本
+curl -L &amp;quot;https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)&amp;quot; -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 安装 portainer&lt;/span&gt;
+# 安装 portainer
 docker volume create portainer_data
 docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过服务器&lt;code&gt;ip:9000&lt;/code&gt;访问&lt;code&gt;portainer&lt;/code&gt;后台&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;通过服务器&lt;code&gt;ip:9000&lt;/code&gt;访问&lt;code&gt;portainer&lt;/code&gt;后台&lt;/p&gt;
 &lt;p&gt;添加国内镜像加快docker镜像拉取速度&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;科大 &lt;a href=&#34;https://docker.mirrors.ustc.edu.cn&#34;&gt;https://docker.mirrors.ustc.edu.cn&lt;/a&gt;&lt;/li&gt;
@@ -332,52 +376,62 @@ docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /va
 &lt;/ul&gt;
 &lt;h2 id=&#34;安装邮件服务器&#34;&gt;安装邮件服务器&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://syaofox.github.io/linux/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6&#34;&gt;Ubuntu 配置 Postfix 通过 Gmail 发送邮件&lt;/a&gt;&lt;/p&gt;
-- https://syaofox.github.io/linux/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/ - Syaofox 2020 copyright.</description>
+- https://syaofox.github.io/post/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/ - </description>
         </item>
     
     
     
         <item>
         <title>Ubuntu 20.04 LTS 上安装 Docker 与 Docker-Compose</title>
-        <link>https://syaofox.github.io/linux/ubuntu-20-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85-docker-%E4%B8%8E-docker-compose/</link>
+        <link>https://syaofox.github.io/post/ubuntu-20-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85-docker-%E4%B8%8E-docker-compose/</link>
         <pubDate>Thu, 18 Jun 2020 11:14:43 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/ubuntu-20-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85-docker-%E4%B8%8E-docker-compose/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/ubuntu-20-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85-docker-%E4%B8%8E-docker-compose/ -&lt;p&gt;记录 docker 与 docker-compose 安装过程 基于 Ubuntu 20.04 LTS&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/ubuntu-20-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85-docker-%E4%B8%8E-docker-compose/</guid>
+        <description>云流 https://syaofox.github.io/post/ubuntu-20-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85-docker-%E4%B8%8E-docker-compose/ -&lt;p&gt;记录 docker 与 docker-compose 安装过程 基于 Ubuntu 20.04 LTS&lt;/p&gt;
 &lt;h1 id=&#34;安装docker&#34;&gt;安装docker&lt;/h1&gt;
 &lt;h3 id=&#34;更新包列表&#34;&gt;更新包列表&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt update
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;安装必备软件包&#34;&gt;安装必备软件包&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install apt-transport-https ca-certificates curl software-properties-common
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;将官方docker存储库的gpg密钥添加到系统&#34;&gt;将官方Docker存储库的GPG密钥添加到系统&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;将docker存储库添加到apt源&#34;&gt;将Docker存储库添加到APT源&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo add-apt-repository &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;再次更新包列表&#34;&gt;再次更新包列表&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt update
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;查看缓存apt确保从docker-repo而不是默认的ubuntu-1604-repo安装&#34;&gt;查看缓存apt，确保从Docker repo而不是默认的Ubuntu 16.04 repo安装&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;apt-cache policy docker-ce
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;最后安装docker&#34;&gt;最后，安装Docker&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install docker-ce
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;安装docker-compose&#34;&gt;安装Docker Compose&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt update
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;安装必备软件包&#34;&gt;安装必备软件包&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt install apt-transport-https ca-certificates curl software-properties-common
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;将官方docker存储库的gpg密钥添加到系统&#34;&gt;将官方Docker存储库的GPG密钥添加到系统&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;将docker存储库添加到apt源&#34;&gt;将Docker存储库添加到APT源&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo add-apt-repository &amp;quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;再次更新包列表&#34;&gt;再次更新包列表&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt update
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;查看缓存apt确保从docker-repo而不是默认的ubuntu-1604-repo安装&#34;&gt;查看缓存apt，确保从Docker repo而不是默认的Ubuntu 16.04 repo安装&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;apt-cache policy docker-ce
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;最后安装docker&#34;&gt;最后，安装Docker&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt install docker-ce
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;安装docker-compose&#34;&gt;安装Docker Compose&lt;/h1&gt;
 &lt;h3 id=&#34;下载&#34;&gt;下载&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo curl -L https://github.com/docker/compose/releases/download/1.26.0/docker-compose-&lt;span style=&#34;color:#cd5555&#34;&gt;`&lt;/span&gt;uname -s&lt;span style=&#34;color:#cd5555&#34;&gt;`&lt;/span&gt;-&lt;span style=&#34;color:#cd5555&#34;&gt;`&lt;/span&gt;uname -m&lt;span style=&#34;color:#cd5555&#34;&gt;`&lt;/span&gt; -o /usr/local/bin/docker-compose
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;设置权限&#34;&gt;设置权限&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo chmod +x /usr/local/bin/docker-compose
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;验证&#34;&gt;验证&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker-compose --version
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/linux/ubuntu-20-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85-docker-%E4%B8%8E-docker-compose/ - Syaofox 2020 copyright.</description>
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo curl -L https://github.com/docker/compose/releases/download/1.26.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;设置权限&#34;&gt;设置权限&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo chmod +x /usr/local/bin/docker-compose
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;验证&#34;&gt;验证&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker-compose --version
+&lt;/code&gt;&lt;/pre&gt;
+- https://syaofox.github.io/post/ubuntu-20-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85-docker-%E4%B8%8E-docker-compose/ - </description>
         </item>
     
     
     
         <item>
         <title>ZFS on Linux 使用</title>
-        <link>https://syaofox.github.io/linux/zfs-on-linux-%E4%BD%BF%E7%94%A8/</link>
+        <link>https://syaofox.github.io/post/zfs-on-linux-%E4%BD%BF%E7%94%A8/</link>
         <pubDate>Thu, 18 Jun 2020 11:13:29 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/zfs-on-linux-%E4%BD%BF%E7%94%A8/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/zfs-on-linux-%E4%BD%BF%E7%94%A8/ -&lt;p&gt;Linux上的ZFS项目是OpenZFS的实现，旨在在Linux环境中工作。OpenZFS是一个出色的存储平台，它包含传统文件系统，卷管理器等的功能，并且在所有发行版中均具有一致的可靠性，功能和性能。有关OpenZFS的其他信息，请参见&lt;a href=&#34;https://en.wikipedia.org/wiki/OpenZFS&#34;&gt;OpenZFS维基百科文章&lt;/a&gt;。&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/zfs-on-linux-%E4%BD%BF%E7%94%A8/</guid>
+        <description>云流 https://syaofox.github.io/post/zfs-on-linux-%E4%BD%BF%E7%94%A8/ -&lt;p&gt;Linux上的ZFS项目是OpenZFS的实现，旨在在Linux环境中工作。OpenZFS是一个出色的存储平台，它包含传统文件系统，卷管理器等的功能，并且在所有发行版中均具有一致的可靠性，功能和性能。有关OpenZFS的其他信息，请参见&lt;a href=&#34;https://en.wikipedia.org/wiki/OpenZFS&#34;&gt;OpenZFS维基百科文章&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;本文以 Ubuntu 下使用 ZFS 为例&lt;/p&gt;
 &lt;h2 id=&#34;硬件需求&#34;&gt;硬件需求&lt;/h2&gt;
 &lt;ul&gt;
@@ -385,25 +439,30 @@ docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /va
 &lt;li&gt;8GB +的内存以获得最佳性能。也完全可以用2GB或更少的内存来运行,前提是禁用数据去重。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install zfsutils
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;创建存储池&#34;&gt;创建存储池&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt install zfsutils
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;创建存储池&#34;&gt;创建存储池&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;RAID0 条带式，速度提升，没有冗余盘，单盘数据损坏全部数据丢失&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;zpool create your-pool /dev/sdc /dev/sdd
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;zpool create your-pool /dev/sdc /dev/sdd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;RAID1 镜像，一对一冗余，空间损失1半，任意单盘数据损坏可以无痛还原&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;zpool create your-pool mirror /dev/sdc /dev/sdd
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;zpool create your-pool mirror /dev/sdc /dev/sdd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;RAIDZ1 单盘奇偶校验，至少需要3盘，可用空间=单盘*（盘-1），允许算坏一盘不丢失数据&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;zpool create your-pool raidz1 /dev/sdc /dev/sdd /dev/sde
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;zpool create your-pool raidz1 /dev/sdc /dev/sdd /dev/sde
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;RAIDZ2/RAIDZ3 同RAIDZ1，增加了校验盘数量&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;zpool create your-pool raidz2 /dev/sdc /dev/sdd /dev/sde /dev/sdf
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;zpool create your-pool raidz2 /dev/sdc /dev/sdd /dev/sde /dev/sdf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;创建池时选择设备名&#34;&gt;创建池时选择设备名&lt;/h2&gt;
 &lt;p&gt;创建ZFS池时，可以使用不同的设备名。每个选项都有优缺点，取决于现实需求。&lt;/p&gt;
@@ -436,70 +495,82 @@ docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /va
 &lt;/ul&gt;
 &lt;h2 id=&#34;更改现有池的设备名&#34;&gt;更改现有池的设备名&lt;/h2&gt;
 &lt;p&gt;通过导出现有池,然后在导入时指定设备名即可&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;zpool &lt;span style=&#34;color:#658b00&#34;&gt;export&lt;/span&gt; tank
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;zpool export tank
 zpool import -d /dev/disk/by-id tank
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;etczfszpoolcache文件&#34;&gt;/etc/zfs/zpool.cache文件&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;etczfszpoolcache文件&#34;&gt;/etc/zfs/zpool.cache文件&lt;/h2&gt;
 &lt;p&gt;缓存文件记录池配置信息,记录了池的状态和设备名,缓存异常时使用以下命令检测并导入该池&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;/etc/zfs/zpool.cache file
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/etc/zfs/zpool.cache file
 zpool import
 zpool import -d /dev/disk/by-id
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;生成一个新的etczfszpoolcache文件&#34;&gt;生成一个新的/etc/zfs/zpool.cache文件&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;生成一个新的etczfszpoolcache文件&#34;&gt;生成一个新的/etc/zfs/zpool.cache文件&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;/etc/zfs/zpool.cache&lt;/code&gt;更改池配置后，该文件将自动更新。更新异常可使用&lt;code&gt;/etc/zfs/zpool.cache&lt;/code&gt;命令在池中设置cachefile属性来强制生成新缓存文件。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;zpool &lt;span style=&#34;color:#658b00&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;cachefile&lt;/span&gt;=/etc/zfs/zpool.cache tank
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;相反，可以禁用缓存文件。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;zpool &lt;span style=&#34;color:#658b00&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;cachefile&lt;/span&gt;=none tank
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;池的操作&#34;&gt;池的操作&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;zpool set cachefile=/etc/zfs/zpool.cache tank
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;相反，可以禁用缓存文件。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;zpool set cachefile=none tank
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;池的操作&#34;&gt;池的操作&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;查看池的状态&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;zpool status
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;zpool status
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;重新插回硬盘后,有时候会自动识别,有时候不会,可以手动通知zpool&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;zpool online pool 设备名
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;zpool online pool 设备名
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;更换损坏的硬盘&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 模拟sdb损坏&lt;/span&gt;
-dd &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;if&lt;/span&gt;=/dev/zero &lt;span style=&#34;color:#00688b&#34;&gt;of&lt;/span&gt;=/dev/sdb
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 模拟sdb损坏
+dd if=/dev/zero of=/dev/sdb
   
-&lt;span style=&#34;color:#228b22&#34;&gt;# 扫描池提示sdb掉线&lt;/span&gt;
+# 扫描池提示sdb掉线
 zpool scrub 
   
-&lt;span style=&#34;color:#228b22&#34;&gt;#更换设备&lt;/span&gt;
+#更换设备
 zpool replace pool 坏盘 新盘
   
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;导出池&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;zpool &lt;span style=&#34;color:#658b00&#34;&gt;export&lt;/span&gt; tank
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;导入池&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# -f 代表强制导入&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;zpool export tank
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;导入池&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# -f 代表强制导入
 zpool import -f dozer 
   
-&lt;span style=&#34;color:#228b22&#34;&gt;# 池中存在名称冲突时先查看池的数字id&lt;/span&gt;
+# 池中存在名称冲突时先查看池的数字id
 zpool import 
 zpool import 数字id
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;池数据清理&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;zpool scrub your-pool &lt;span style=&#34;color:#228b22&#34;&gt;#数据清理&lt;/span&gt;
-zpool status -v your-pool &lt;span style=&#34;color:#228b22&#34;&gt;#显示清理状态&lt;/span&gt;
-zpool scrub -s your-pool &lt;span style=&#34;color:#228b22&#34;&gt;#停止清理&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;zpool scrub your-pool #数据清理
+zpool status -v your-pool #显示清理状态
+zpool scrub -s your-pool #停止清理
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;zfs配置&#34;&gt;ZFS配置&lt;/h2&gt;
 &lt;p&gt;查看 zfs 属性&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;查看zfs文件系统信息&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;zfs list
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;zfs list
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;查询属性&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;zfs get &lt;span style=&#34;color:#228b22&#34;&gt;#列出所有属性&lt;/span&gt;
-zfs get version &lt;span style=&#34;color:#228b22&#34;&gt;#查询指定属性&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;zfs get #列出所有属性
+zfs get version #查询指定属性
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;CEPH文件存储后端严重依赖于xattrs，为获得最佳性能，所有CEPH工作负载将受益于以下ZFS数据集参数&lt;/p&gt;
 &lt;ul&gt;
@@ -508,34 +579,38 @@ zfs get version &lt;span style=&#34;color:#228b22&#34;&gt;#查询指定属性&lt
 &lt;/ul&gt;
 &lt;h2 id=&#34;4k对齐&#34;&gt;4k对齐&lt;/h2&gt;
 &lt;p&gt;要强制池在池创建时使用4,096字节扇区，可以运行：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;zpool create -o &lt;span style=&#34;color:#00688b&#34;&gt;ashift&lt;/span&gt;=&lt;span style=&#34;color:#b452cd&#34;&gt;12&lt;/span&gt; tank mirror sda sdb
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;要在将vdev添加到池中时强制池使用4,096字节扇区，可以运行：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;zpool add -o &lt;span style=&#34;color:#00688b&#34;&gt;ashift&lt;/span&gt;=&lt;span style=&#34;color:#b452cd&#34;&gt;12&lt;/span&gt; tank mirror sdc sdd
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;开启压缩&#34;&gt;开启压缩&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;zpool create -o ashift=12 tank mirror sda sdb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;要在将vdev添加到池中时强制池使用4,096字节扇区，可以运行：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;zpool add -o ashift=12 tank mirror sdc sdd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;开启压缩&#34;&gt;开启压缩&lt;/h2&gt;
 &lt;p&gt;默认不开启压缩，建议开启&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;zfs create -o &lt;span style=&#34;color:#00688b&#34;&gt;compression&lt;/span&gt;=lz4
-&lt;span style=&#34;color:#228b22&#34;&gt;# 查看是否开启数据压缩&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;zfs create -o compression=lz4
+# 查看是否开启数据压缩
 zfs get compression
-&lt;span style=&#34;color:#228b22&#34;&gt;# 查看压缩倍率&lt;/span&gt;
+# 查看压缩倍率
 zfs get compressratio
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;创建-回滚和销毁-zfs-快照&#34;&gt;创建 回滚和销毁 ZFS 快照&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;zfs snapshot -r your-pool/downloads@ss1 &lt;span style=&#34;color:#228b22&#34;&gt;#为downloads数据集创建了名位ss1快照&lt;/span&gt;
-zfs rollback -r your-pool/downloads@ss1 &lt;span style=&#34;color:#228b22&#34;&gt;#将downloads数据回滚到ss1快照&lt;/span&gt;
-zfs destroy -r your-pool/downloads@ss1 &lt;span style=&#34;color:#228b22&#34;&gt;#将ss1快照销毁&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;显示和访问-zfs-快照&#34;&gt;显示和访问 ZFS 快照&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;创建-回滚和销毁-zfs-快照&#34;&gt;创建 回滚和销毁 ZFS 快照&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;zfs snapshot -r your-pool/downloads@ss1 #为downloads数据集创建了名位ss1快照
+zfs rollback -r your-pool/downloads@ss1 #将downloads数据回滚到ss1快照
+zfs destroy -r your-pool/downloads@ss1 #将ss1快照销毁
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;显示和访问-zfs-快照&#34;&gt;显示和访问 ZFS 快照&lt;/h2&gt;
 &lt;p&gt;可以通过 &lt;code&gt;listsnapshots&lt;/code&gt; 池属性启用或禁用 &lt;code&gt;zfs list&lt;/code&gt; 输出中的快照列表显示。缺省情况下，此属性处于启用状态。&lt;/p&gt;
-&lt;p&gt;如果禁用了此属性,则可以使用 &lt;code&gt;zfs list&lt;/code&gt; &lt;code&gt;-t snapshot&lt;/code&gt; 命令来显示快照信息。&lt;/p&gt;- https://syaofox.github.io/linux/zfs-on-linux-%E4%BD%BF%E7%94%A8/ - Syaofox 2020 copyright.</description>
+&lt;p&gt;如果禁用了此属性,则可以使用 &lt;code&gt;zfs list&lt;/code&gt; &lt;code&gt;-t snapshot&lt;/code&gt; 命令来显示快照信息。&lt;/p&gt;- https://syaofox.github.io/post/zfs-on-linux-%E4%BD%BF%E7%94%A8/ - </description>
         </item>
     
     
     
         <item>
         <title>基于 ZFS 文件系统的 OpenMediaVault 安装记录</title>
-        <link>https://syaofox.github.io/linux/%E5%9F%BA%E4%BA%8E-zfs-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84-openmediavault-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
+        <link>https://syaofox.github.io/post/%E5%9F%BA%E4%BA%8E-zfs-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84-openmediavault-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
         <pubDate>Thu, 18 Jun 2020 11:12:00 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/%E5%9F%BA%E4%BA%8E-zfs-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84-openmediavault-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/%E5%9F%BA%E4%BA%8E-zfs-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84-openmediavault-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/ -&lt;p&gt;记录安装基于 ZFS 文件系统的 OpenMediaVault 安装过程。本篇不是教程，部分步骤略过不表&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/%E5%9F%BA%E4%BA%8E-zfs-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84-openmediavault-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
+        <description>云流 https://syaofox.github.io/post/%E5%9F%BA%E4%BA%8E-zfs-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84-openmediavault-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/ -&lt;p&gt;记录安装基于 ZFS 文件系统的 OpenMediaVault 安装过程。本篇不是教程，部分步骤略过不表&lt;/p&gt;
 &lt;h1 id=&#34;安装系统&#34;&gt;安装系统&lt;/h1&gt;
 &lt;p&gt;注意事项：&lt;/p&gt;
 &lt;ul&gt;
@@ -545,16 +620,18 @@ zfs destroy -r your-pool/downloads@ss1 &lt;span style=&#34;color:#228b22&#34;&gt
 &lt;li&gt;
 &lt;p&gt;修改引导防止挂载路径变化后无法引导&lt;/p&gt;
 &lt;p&gt;获得磁盘UUID&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;blkid
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;blkid
   
-/dev/sda1: &lt;span style=&#34;color:#00688b&#34;&gt;UUID&lt;/span&gt;=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;8305-3011&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;TYPE&lt;/span&gt;=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;vfat&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;PARTUUID&lt;/span&gt;=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;2b972aa5-f2fd-475a-8353-77594dc8a1e1&amp;#34;&lt;/span&gt;
-/dev/sda2: &lt;span style=&#34;color:#00688b&#34;&gt;UUID&lt;/span&gt;=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;f4add2f3-efd0-42df-b23d-e453ab285aa3&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;TYPE&lt;/span&gt;=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;ext4&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;PARTUUID&lt;/span&gt;=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;f120845a-5b97-4eb3-884d-43fb45b41720&amp;#34;&lt;/span&gt;
-/dev/sda3: &lt;span style=&#34;color:#00688b&#34;&gt;UUID&lt;/span&gt;=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;9fcacfa0-cb8d-45be-9efc-3f8d8222f03e&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;TYPE&lt;/span&gt;=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;swap&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;PARTUUID&lt;/span&gt;=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;acf58c24-4829-41b5-b326-6d295e3d720a&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;修改引导文件&lt;code&gt;/boot/grub/grub.cfg&lt;/code&gt;&lt;/p&gt;
+/dev/sda1: UUID=&amp;quot;8305-3011&amp;quot; TYPE=&amp;quot;vfat&amp;quot; PARTUUID=&amp;quot;2b972aa5-f2fd-475a-8353-77594dc8a1e1&amp;quot;
+/dev/sda2: UUID=&amp;quot;f4add2f3-efd0-42df-b23d-e453ab285aa3&amp;quot; TYPE=&amp;quot;ext4&amp;quot; PARTUUID=&amp;quot;f120845a-5b97-4eb3-884d-43fb45b41720&amp;quot;
+/dev/sda3: UUID=&amp;quot;9fcacfa0-cb8d-45be-9efc-3f8d8222f03e&amp;quot; TYPE=&amp;quot;swap&amp;quot; PARTUUID=&amp;quot;acf58c24-4829-41b5-b326-6d295e3d720a&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;修改引导文件&lt;code&gt;/boot/grub/grub.cfg&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;把&lt;code&gt;boot=/dev/sda2&lt;/code&gt; 改成 &lt;code&gt;boot=UUID=f4add2f3-efd0-42df-b23d-e453ab285aa3&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;重启测试&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;update-grub
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;update-grub
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;修改时区&lt;/p&gt;
 &lt;/li&gt;
@@ -572,8 +649,9 @@ zfs destroy -r your-pool/downloads@ss1 &lt;span style=&#34;color:#228b22&#34;&gt
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;安装&lt;code&gt;OMV-EXTRAS&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/master/install | bash
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/master/install | bash
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;安装并配置-zfs-文件系统&#34;&gt;安装并配置 ZFS 文件系统&lt;/h1&gt;
 &lt;ul&gt;
@@ -605,53 +683,58 @@ zfs destroy -r your-pool/downloads@ss1 &lt;span style=&#34;color:#228b22&#34;&gt
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;设置池属性&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 设置继承&lt;/span&gt;
-zfs &lt;span style=&#34;color:#658b00&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;aclinherit&lt;/span&gt;=passthrough pool  
-&lt;span style=&#34;color:#228b22&#34;&gt;# 设置扩展属性,一开始就必须设置,改变设置只会对新文件生效&lt;/span&gt;
-zfs &lt;span style=&#34;color:#658b00&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;acltype&lt;/span&gt;=posixacl pool
-zfs &lt;span style=&#34;color:#658b00&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;acltype&lt;/span&gt;=posixacl pool
-&lt;span style=&#34;color:#228b22&#34;&gt;# 开启压缩,lz4占用资源很少,速度很快&lt;/span&gt;
-zfs &lt;span style=&#34;color:#658b00&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;compression&lt;/span&gt;=lz4 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 设置继承
+zfs set aclinherit=passthrough pool  
+# 设置扩展属性,一开始就必须设置,改变设置只会对新文件生效
+zfs set acltype=posixacl pool
+zfs set acltype=posixacl pool
+# 开启压缩,lz4占用资源很少,速度很快
+zfs set compression=lz4 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;**可选 **限制zfs最大内存使用为4G（物理内存的一半），理论上在不影响其他服务的情况下，默认管理即可（默认4G内存以上使用最大内存-1G）&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#658b00&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;options zfs zfs_arc_max=4294967296&amp;#34;&lt;/span&gt; | sudo tee -a /etc/modprobe.d/zfs.conf
-&lt;span style=&#34;color:#658b00&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#b452cd&#34;&gt;4294967296&lt;/span&gt; &amp;gt; /sys/module/zfs/parameters/zfs_arc_max
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;重启后查看&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cat /proc/spl/kstat/zfs/arcstats | grep c_max
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;echo &amp;quot;options zfs zfs_arc_max=4294967296&amp;quot; | sudo tee -a /etc/modprobe.d/zfs.conf
+echo 4294967296 &amp;gt; /sys/module/zfs/parameters/zfs_arc_max
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;重启后查看&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cat /proc/spl/kstat/zfs/arcstats | grep c_max
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;设置自动创建快照&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;安装&lt;code&gt;ZnapZend&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 安装必要组件 不想安装perl可以下载二进制文件存到/opt/&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 安装必要组件 不想安装perl可以下载二进制文件存到/opt/
 apt-get update
 apt-get install perl unzip    
 apt-get install  gcc automake autoconf libtool make
     
 wget https://github.com/oetiker/znapzend/releases/download/v0.20.0/znapzend-0.20.0.tar.gz
 tar zxvf znapzend-0.20.0.tar.gz
-&lt;span style=&#34;color:#658b00&#34;&gt;cd&lt;/span&gt; znapzend-0.20.0
+cd znapzend-0.20.0
 ./configure --prefix=/opt/znapzend-0.20.0
 make
 make install
     
-&lt;span style=&#34;color:#228b22&#34;&gt;# 设置环境变量 可选&lt;/span&gt;
-&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;for&lt;/span&gt; x in /opt/znapzend-0.20.0/bin/*; &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;do&lt;/span&gt; ln -s &lt;span style=&#34;color:#00688b&#34;&gt;$x&lt;/span&gt; /usr/local/bin; &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;done&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+# 设置环境变量 可选
+for x in /opt/znapzend-0.20.0/bin/*; do ln -s $x /usr/local/bin; done
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;设置&lt;code&gt;ZnapZend&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;创建规则&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# pool 备份规则代表 1小时备份1次保留最新的2周,1天备份一次保留最新的3个月,1星期备份一次保留最新的10年&lt;/span&gt;
-znapzendzetup create --tsformat=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;znapzend-%Y-%m-%d-%H%M%S&amp;#39;&lt;/span&gt; SRC &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;2w=&amp;gt;1h,3m=&amp;gt;1d,10y=&amp;gt;1w&amp;#39;&lt;/span&gt; pool 
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# pool 备份规则代表 1小时备份1次保留最新的2周,1天备份一次保留最新的3个月,1星期备份一次保留最新的10年
+znapzendzetup create --tsformat=&#39;znapzend-%Y-%m-%d-%H%M%S&#39; SRC &#39;2w=&amp;gt;1h,3m=&amp;gt;1d,10y=&amp;gt;1w&#39; pool 
     
-&lt;span style=&#34;color:#228b22&#34;&gt;# 测试规则&lt;/span&gt;
+# 测试规则
 znapzendzetup list
 znapzend --noaction --debug --runonce=pool
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;创建&lt;code&gt;znapzend systemctl&lt;/code&gt;服务&lt;/p&gt;
 &lt;ul&gt;
@@ -660,19 +743,21 @@ znapzend --noaction --debug --runonce=pool
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;启动并设置开启自动启动&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 重载系统服务&lt;/span&gt;
-&lt;span style=&#34;color:#228b22&#34;&gt;#systemctl daemon-reload&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 重载系统服务
+#systemctl daemon-reload
         
-&lt;span style=&#34;color:#228b22&#34;&gt;# 设置开机启动&lt;/span&gt;
-systemctl &lt;span style=&#34;color:#658b00&#34;&gt;enable&lt;/span&gt; znapzend.service
-&lt;span style=&#34;color:#228b22&#34;&gt;# 启动服务&lt;/span&gt;
+# 设置开机启动
+systemctl enable znapzend.service
+# 启动服务
 systemctl start znapzend.service
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;重启后查看是否自动启动&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;systemctl status znapzend.service
-ps -aux | grep &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;znapzend&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;systemctl status znapzend.service
+ps -aux | grep &amp;quot;znapzend&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -701,114 +786,120 @@ ps -aux | grep &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;znapzend&amp;#
 &lt;p&gt;密码: Gmail密码,开启两步验证的账号请使用应用专用密码&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-- https://syaofox.github.io/linux/%E5%9F%BA%E4%BA%8E-zfs-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84-openmediavault-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/ - Syaofox 2020 copyright.</description>
+- https://syaofox.github.io/post/%E5%9F%BA%E4%BA%8E-zfs-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84-openmediavault-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/ - </description>
         </item>
     
     
     
         <item>
         <title>如何在 Ubuntu 安装 Samba 实现文件夹共享</title>
-        <link>https://syaofox.github.io/linux/%E5%A6%82%E4%BD%95%E5%9C%A8-ubuntu-%E5%AE%89%E8%A3%85-samba-%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%85%B1%E4%BA%AB/</link>
+        <link>https://syaofox.github.io/post/%E5%A6%82%E4%BD%95%E5%9C%A8-ubuntu-%E5%AE%89%E8%A3%85-samba-%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%85%B1%E4%BA%AB/</link>
         <pubDate>Thu, 18 Jun 2020 11:05:14 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/%E5%A6%82%E4%BD%95%E5%9C%A8-ubuntu-%E5%AE%89%E8%A3%85-samba-%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%85%B1%E4%BA%AB/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/%E5%A6%82%E4%BD%95%E5%9C%A8-ubuntu-%E5%AE%89%E8%A3%85-samba-%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%85%B1%E4%BA%AB/ -&lt;p&gt;samba的优点在于可以在WindowsLinuxAndriod之间实现文件夹共享传输文件，适用的范围更广，更推荐大家选择这种方式_&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/%E5%A6%82%E4%BD%95%E5%9C%A8-ubuntu-%E5%AE%89%E8%A3%85-samba-%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%85%B1%E4%BA%AB/</guid>
+        <description>云流 https://syaofox.github.io/post/%E5%A6%82%E4%BD%95%E5%9C%A8-ubuntu-%E5%AE%89%E8%A3%85-samba-%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%85%B1%E4%BA%AB/ -&lt;p&gt;samba的优点在于可以在WindowsLinuxAndriod之间实现文件夹共享传输文件，适用的范围更广，更推荐大家选择这种方式_&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;h2 id=&#34;一安装samba&#34;&gt;一、安装samba&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 获取最新的版本信息&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# 获取最新的版本信息
 sudo apt update
-&lt;span style=&#34;color:#228b22&#34;&gt;# 安装samba&lt;/span&gt;
+# 安装samba
 sudo apt-get install samba
-&lt;span style=&#34;color:#228b22&#34;&gt;# 安装samba客户端（可选）&lt;/span&gt;
+# 安装samba客户端（可选）
 sudo apt-get install smbclient 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;二创建samba配置文件&#34;&gt;二、创建samba配置文件&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 创建共享目录&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;二创建samba配置文件&#34;&gt;二、创建samba配置文件&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# 创建共享目录
 sudo mkdir -p /share
-&lt;span style=&#34;color:#228b22&#34;&gt;# 对目录进行赋权&lt;/span&gt;
-sudo chmod &lt;span style=&#34;color:#b452cd&#34;&gt;777&lt;/span&gt; /share
-&lt;span style=&#34;color:#228b22&#34;&gt;# 对配置文件进行备份&lt;/span&gt;
+# 对目录进行赋权
+sudo chmod 777 /share
+# 对配置文件进行备份
 sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
-&lt;span style=&#34;color:#228b22&#34;&gt;# 修改配置文件&lt;/span&gt;
+# 修改配置文件
 sudo nano /etc/samba/smb.conf
-&lt;span style=&#34;color:#228b22&#34;&gt;# 在配置文件的末尾添加下面的代码：&lt;/span&gt;
+# 在配置文件的末尾添加下面的代码：
 [share]
 
-        &lt;span style=&#34;color:#00688b&#34;&gt;path&lt;/span&gt; = /share
+        path = /share
 
-        &lt;span style=&#34;color:#00688b&#34;&gt;browseable&lt;/span&gt; = yes
+        browseable = yes
 
-        &lt;span style=&#34;color:#00688b&#34;&gt;writable&lt;/span&gt; = yes
+        writable = yes
 
-        &lt;span style=&#34;color:#00688b&#34;&gt;comment&lt;/span&gt; = smb share &lt;span style=&#34;color:#658b00&#34;&gt;test&lt;/span&gt;
+        comment = smb share test
 
-        &lt;span style=&#34;color:#00688b&#34;&gt;public&lt;/span&gt; = yes
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-perl&#34; data-lang=&#34;perl&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 配置文件的名称解释：&lt;/span&gt;
+        public = yes
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-perl&#34;&gt;# 配置文件的名称解释：
 
-        [share] &lt;span style=&#34;color:#228b22&#34;&gt;# 该共享的共享名&lt;/span&gt;
+        [share] # 该共享的共享名
 
-        comment = smb share test &lt;span style=&#34;color:#228b22&#34;&gt;# 该共享的备注&lt;/span&gt;
+        comment = smb share test # 该共享的备注
 
-        path = &lt;span style=&#34;color:#1c7e71&#34;&gt;/home/s&lt;/span&gt;hare &lt;span style=&#34;color:#228b22&#34;&gt;# 共享路径&lt;/span&gt;
+        path = /home/share # 共享路径
 
-        allow hosts = host(subnet) &lt;span style=&#34;color:#228b22&#34;&gt;# 设置该Samba服务器允许的工作组或者域&lt;/span&gt;
+        allow hosts = host(subnet) # 设置该Samba服务器允许的工作组或者域
 
-        deny hosts = host(subnet) &lt;span style=&#34;color:#228b22&#34;&gt;# 设置该Samba服务器拒绝的工作组或者域&lt;/span&gt;
+        deny hosts = host(subnet) # 设置该Samba服务器拒绝的工作组或者域
 
-        available = yes|&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;no&lt;/span&gt; &lt;span style=&#34;color:#228b22&#34;&gt;# 设置该共享目录是否可用&lt;/span&gt;
+        available = yes|no # 设置该共享目录是否可用
 
-        browseable = yes|&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;no&lt;/span&gt; &lt;span style=&#34;color:#228b22&#34;&gt;# 设置该共享目录是否可显示&lt;/span&gt;
+        browseable = yes|no # 设置该共享目录是否可显示
 
-        writable = yes|&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;no&lt;/span&gt; &lt;span style=&#34;color:#228b22&#34;&gt;# 指定了这个目录缺省是否可写，也可以用readonly = no来设置可写&lt;/span&gt;
+        writable = yes|no # 指定了这个目录缺省是否可写，也可以用readonly = no来设置可写
 
-        public = yes|&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;no&lt;/span&gt; &lt;span style=&#34;color:#228b22&#34;&gt;# 指明该共享资源是否能给游客帐号访问，guest ok = yes其实和public = yes是一样的&lt;/span&gt;
+        public = yes|no # 指明该共享资源是否能给游客帐号访问，guest ok = yes其实和public = yes是一样的
 
-        user = user, &lt;span style=&#34;color:#00688b&#34;&gt;@group&lt;/span&gt; &lt;span style=&#34;color:#228b22&#34;&gt;# user设置所有可能使用该共享资源的用户，也可以用@group代表group这个组的所有成员，不同的项目之间用空格或者逗号隔开&lt;/span&gt;
+        user = user, @group # user设置所有可能使用该共享资源的用户，也可以用@group代表group这个组的所有成员，不同的项目之间用空格或者逗号隔开
 
-        valid users = user, &lt;span style=&#34;color:#00688b&#34;&gt;@group&lt;/span&gt; &lt;span style=&#34;color:#228b22&#34;&gt;# 指定能够使用该共享资源的用户和组&lt;/span&gt;
+        valid users = user, @group # 指定能够使用该共享资源的用户和组
 
-        invalid users = user, &lt;span style=&#34;color:#00688b&#34;&gt;@group&lt;/span&gt; &lt;span style=&#34;color:#228b22&#34;&gt;# 指定不能够使用该共享资源的用户和组&lt;/span&gt;
+        invalid users = user, @group # 指定不能够使用该共享资源的用户和组
 
-        &lt;span style=&#34;color:#658b00&#34;&gt;read&lt;/span&gt; list = user, &lt;span style=&#34;color:#00688b&#34;&gt;@group&lt;/span&gt; &lt;span style=&#34;color:#228b22&#34;&gt;# 指定只能读取该共享资源的用户和组&lt;/span&gt;
+        read list = user, @group # 指定只能读取该共享资源的用户和组
 
-        &lt;span style=&#34;color:#658b00&#34;&gt;write&lt;/span&gt; list = user, &lt;span style=&#34;color:#00688b&#34;&gt;@group&lt;/span&gt; &lt;span style=&#34;color:#228b22&#34;&gt;# 指定能读取和写该共享资源的用户和组&lt;/span&gt;
+        write list = user, @group # 指定能读取和写该共享资源的用户和组
 
-        admin list = user, &lt;span style=&#34;color:#00688b&#34;&gt;@group&lt;/span&gt; &lt;span style=&#34;color:#228b22&#34;&gt;# 指定能管理该共享资源（包括读写和权限赋予等）的用户和组&lt;/span&gt;
+        admin list = user, @group # 指定能管理该共享资源（包括读写和权限赋予等）的用户和组
 
-        hide dot files = yes|&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;no&lt;/span&gt; &lt;span style=&#34;color:#228b22&#34;&gt;# 指明是否像UNIX那样隐藏以“.”号开头的文件&lt;/span&gt;
+        hide dot files = yes|no # 指明是否像UNIX那样隐藏以“.”号开头的文件
 
-        create mode = &lt;span style=&#34;color:#b452cd&#34;&gt;0755&lt;/span&gt; &lt;span style=&#34;color:#228b22&#34;&gt;# 指明新建立的文件的属性，一般是0755&lt;/span&gt;
+        create mode = 0755 # 指明新建立的文件的属性，一般是0755
 
-        directory mode = &lt;span style=&#34;color:#b452cd&#34;&gt;0755&lt;/span&gt; &lt;span style=&#34;color:#228b22&#34;&gt;# 指明新建立的目录的属性，一般是0755&lt;/span&gt;
+        directory mode = 0755 # 指明新建立的目录的属性，一般是0755
 
-        sync always = yes|&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;no&lt;/span&gt; &lt;span style=&#34;color:#228b22&#34;&gt;# 指明对该共享资源进行写操作后是否进行同步操作&lt;/span&gt;
+        sync always = yes|no # 指明对该共享资源进行写操作后是否进行同步操作
 
-        short preserve &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;case&lt;/span&gt; = yes|&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;no&lt;/span&gt; &lt;span style=&#34;color:#228b22&#34;&gt;# 指明是否区分文件名大小写&lt;/span&gt;
+        short preserve case = yes|no # 指明是否区分文件名大小写
 
-        preserve &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;case&lt;/span&gt; = yes|&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;no&lt;/span&gt; &lt;span style=&#34;color:#228b22&#34;&gt;# 指明是否保持大小写&lt;/span&gt;
+        preserve case = yes|no # 指明是否保持大小写
 
-        &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;case&lt;/span&gt; sensitive = yes|&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;no&lt;/span&gt; &lt;span style=&#34;color:#228b22&#34;&gt;# 指明是否对大小写敏感，一般选no，不然可能引起错误&lt;/span&gt;
+        case sensitive = yes|no # 指明是否对大小写敏感，一般选no，不然可能引起错误
 
-        mangle &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;case&lt;/span&gt; = yes|&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;no&lt;/span&gt; &lt;span style=&#34;color:#228b22&#34;&gt;# 指明混合大小写&lt;/span&gt;
+        mangle case = yes|no # 指明混合大小写
 
-        default &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;case&lt;/span&gt; = upper|lower &lt;span style=&#34;color:#228b22&#34;&gt;# 指明缺省的文件名是全部大写还是小写&lt;/span&gt;
+        default case = upper|lower # 指明缺省的文件名是全部大写还是小写
 
-        force user = testuser &lt;span style=&#34;color:#228b22&#34;&gt;# 强制把建立文件的属主是谁。如果我有一个目录，让guest可以写，那么guest就可以删除，如果我用force user= testuser强制建立文件的属主是testuser，同时限制create mask = 0755，这样guest就不能删除了&lt;/span&gt;
+        force user = testuser # 强制把建立文件的属主是谁。如果我有一个目录，让guest可以写，那么guest就可以删除，如果我用force user= testuser强制建立文件的属主是testuser，同时限制create mask = 0755，这样guest就不能删除了
 
-        wide links = yes|&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;no&lt;/span&gt; &lt;span style=&#34;color:#228b22&#34;&gt;# 指明是否允许共享外符号连接，比如共享资源里面有个连接指向非共享资源里面的文件或者目录，如果设置wide links = no将使该连接不可用&lt;/span&gt;
+        wide links = yes|no # 指明是否允许共享外符号连接，比如共享资源里面有个连接指向非共享资源里面的文件或者目录，如果设置wide links = no将使该连接不可用
 
-        max connections = &lt;span style=&#34;color:#b452cd&#34;&gt;100&lt;/span&gt; &lt;span style=&#34;color:#228b22&#34;&gt;# 设定最大同时连接数&lt;/span&gt;
+        max connections = 100 # 设定最大同时连接数
 
-        &lt;span style=&#34;color:#658b00&#34;&gt;delete&lt;/span&gt; readonly = yes|&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;no&lt;/span&gt; &lt;span style=&#34;color:#228b22&#34;&gt;# 指明能否删除共享资源里面已经被定义为只读的文件&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;三创建samba用户&#34;&gt;三、创建samba用户&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;# 创建samba用户（注意，创建samba用户之前，必须先确保有一个同名的Linux用户，否则samba用户会创建失败。）
+        delete readonly = yes|no # 指明能否删除共享资源里面已经被定义为只读的文件
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;三创建samba用户&#34;&gt;三、创建samba用户&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-plain&#34;&gt;# 创建samba用户（注意，创建samba用户之前，必须先确保有一个同名的Linux用户，否则samba用户会创建失败。）
 sudo smbpasswd -a smbuser
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;四重启samba服务&#34;&gt;四、重启samba服务&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;# 重启samba服务
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;四重启samba服务&#34;&gt;四、重启samba服务&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-plain&#34;&gt;# 重启samba服务
 sudo service smbd restart
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;五客户端访问测试&#34;&gt;五、客户端访问测试&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;五客户端访问测试&#34;&gt;五、客户端访问测试&lt;/h2&gt;
 &lt;h3 id=&#34;1linux客户端&#34;&gt;1.Linux客户端&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;smbclient -L //localhost/share
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2windows客户端&#34;&gt;2.Windows客户端&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-plain&#34;&gt;smbclient -L //localhost/share
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;2windows客户端&#34;&gt;2.Windows客户端&lt;/h3&gt;
 &lt;p&gt;主机：Ubuntu18.04&lt;/p&gt;
 &lt;p&gt;客机：Windows10&lt;/p&gt;
 &lt;p&gt;①查询主机在局域网的ip&lt;/p&gt;
@@ -825,26 +916,30 @@ sudo service smbd restart
 &lt;p&gt;打开”ES文件浏览器“，选择”局域网“，添加网络，输入&lt;code&gt;\\主机的IP\share&lt;/code&gt;进行访问，具体的操作步骤这里就不一一解释了。&lt;/p&gt;
 &lt;h2 id=&#34;六挂载-samba-共享&#34;&gt;六、挂载 Samba 共享&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;安装CIFS Utils pkg&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;sudo apt-get install cifs-utils
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;创建一个挂载点&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;sudo mkdir /mnt/local_share
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;步骤3：挂载&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;sudo mount -t cifs //&amp;lt;vpsa_ip_address&amp;gt;/&amp;lt;export_share&amp;gt; /mnt/&amp;lt;local_share&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;开机自动挂载&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;sudo apt-get install cifs-utils
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;创建一个挂载点&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;sudo mkdir /mnt/local_share
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;步骤3：挂载&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;sudo mount -t cifs //&amp;lt;vpsa_ip_address&amp;gt;/&amp;lt;export_share&amp;gt; /mnt/&amp;lt;local_share&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;开机自动挂载&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;/etc/fstab 文件里添加：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&amp;lt;vpsa_ip_address&amp;gt;/&amp;lt;export_share&amp;gt; cifs &lt;span style=&#34;color:#00688b&#34;&gt;user&lt;/span&gt;=&amp;lt;user on VPSA&amp;gt;,pass=&amp;lt;passwd on VPSA&amp;gt; &lt;span style=&#34;color:#b452cd&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#b452cd&#34;&gt;0&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/linux/%E5%A6%82%E4%BD%95%E5%9C%A8-ubuntu-%E5%AE%89%E8%A3%85-samba-%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%85%B1%E4%BA%AB/ - Syaofox 2020 copyright.</description>
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;&amp;lt;vpsa_ip_address&amp;gt;/&amp;lt;export_share&amp;gt; cifs user=&amp;lt;user on VPSA&amp;gt;,pass=&amp;lt;passwd on VPSA&amp;gt; 0 0
+&lt;/code&gt;&lt;/pre&gt;
+- https://syaofox.github.io/post/%E5%A6%82%E4%BD%95%E5%9C%A8-ubuntu-%E5%AE%89%E8%A3%85-samba-%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%85%B1%E4%BA%AB/ - </description>
         </item>
     
     
     
         <item>
         <title>目录级别的冗余存储 SnapRAID</title>
-        <link>https://syaofox.github.io/linux/%E7%9B%AE%E5%BD%95%E7%BA%A7%E5%88%AB%E7%9A%84%E5%86%97%E4%BD%99%E5%AD%98%E5%82%A8-snapraid/</link>
+        <link>https://syaofox.github.io/post/%E7%9B%AE%E5%BD%95%E7%BA%A7%E5%88%AB%E7%9A%84%E5%86%97%E4%BD%99%E5%AD%98%E5%82%A8-snapraid/</link>
         <pubDate>Thu, 18 Jun 2020 11:04:17 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/%E7%9B%AE%E5%BD%95%E7%BA%A7%E5%88%AB%E7%9A%84%E5%86%97%E4%BD%99%E5%AD%98%E5%82%A8-snapraid/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/%E7%9B%AE%E5%BD%95%E7%BA%A7%E5%88%AB%E7%9A%84%E5%86%97%E4%BD%99%E5%AD%98%E5%82%A8-snapraid/ -&lt;p&gt;在数据存储领域，「备份」和「冗余」是两种常见的数据保护策略。两种策略各有不同的使用场景，对于重要数据，两者一起使用自然是最好了。本文介绍使用 &lt;a href=&#34;https://www.snapraid.it/&#34;&gt;SnapRAID&lt;/a&gt; 实现灵活的数据冗余存储。_&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/%E7%9B%AE%E5%BD%95%E7%BA%A7%E5%88%AB%E7%9A%84%E5%86%97%E4%BD%99%E5%AD%98%E5%82%A8-snapraid/</guid>
+        <description>云流 https://syaofox.github.io/post/%E7%9B%AE%E5%BD%95%E7%BA%A7%E5%88%AB%E7%9A%84%E5%86%97%E4%BD%99%E5%AD%98%E5%82%A8-snapraid/ -&lt;p&gt;在数据存储领域，「备份」和「冗余」是两种常见的数据保护策略。两种策略各有不同的使用场景，对于重要数据，两者一起使用自然是最好了。本文介绍使用 &lt;a href=&#34;https://www.snapraid.it/&#34;&gt;SnapRAID&lt;/a&gt; 实现灵活的数据冗余存储。_&lt;/p&gt;
 &lt;p&gt;原文地址： &lt;a href=&#34;https://wzyboy.im/post/1186.html&#34;&gt;https://wzyboy.im/post/1186.html&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;一神奇的奇偶校验&#34;&gt;一、神奇的奇偶校验&lt;/h2&gt;
 &lt;p&gt;小时候一直觉得 WinRAR 的「恢复卷」功能非常神奇。比如有一个 100 MiB 的压缩文件分成 10 个分卷，每个 10 MiB，创建者又创建了 3 个恢复卷，每个也是 10 MiB。当复制、分发这些卷的时候，如果因为数据传输、磁盘存储等各种原因，导致 10 个数据卷中有部分文件损坏或丢失，只要损坏或丢失的数据卷的数量小于等于恢复卷的数量，就可以用对应数量的恢复卷来修复压缩包。&lt;/p&gt;
@@ -880,7 +975,7 @@ sudo service smbd restart
 &lt;h2 id=&#34;五snapraid-的配置与使用&#34;&gt;五、SnapRAID 的配置与使用&lt;/h2&gt;
 &lt;p&gt;SnapRAID 提供了 Windows 版本的&lt;a href=&#34;https://www.snapraid.it/download&#34;&gt;二进制文件下载&lt;/a&gt;；GNU/Linux、macOS，以及各种 Unix-like 可以从源码编译或从软件仓库中安装。SnapRAID 的&lt;a href=&#34;https://github.com/amadvance/snapraid/blob/master/snapraid.conf.example&#34;&gt;配置文件&lt;/a&gt;简洁且注释详尽，读注释就能明白怎么配了。&lt;/p&gt;
 &lt;p&gt;目前我的 Gen8 里有三块 SATA 磁盘，容量分别是 2 TB, 4 TB, 4 TB。前两块服役多年，几乎满了，第三块是新买的，还是空的，我想把第三块磁盘作为校验盘。我的相关配置是这样的：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;# 校验文件的位置
+&lt;pre&gt;&lt;code class=&#34;language-plain&#34;&gt;# 校验文件的位置
 # 显然，校验文件不能放在数据盘上，否则就没有意义了
 parity /media/disk3/snapraid.parity
 
@@ -919,8 +1014,9 @@ exclude /lost+found/
 
 # 生成校验数据时，每处理 10 GiB 数据自动保存一次，方便断点继续
 autosave 10
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;写好配置文件之后，使用 &lt;code&gt;snapraid sync&lt;/code&gt; 进行首次同步，也就是根据数据盘的内容生成校验盘的内容。我的第一次同步花了 24 小时：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;Scanning disk d1...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;写好配置文件之后，使用 &lt;code&gt;snapraid sync&lt;/code&gt; 进行首次同步，也就是根据数据盘的内容生成校验盘的内容。我的第一次同步花了 24 小时：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-plain&#34;&gt;Scanning disk d1...
 Scanning disk d2...
 Using 221 MiB of memory for the FileSystem.
 Initializing...
@@ -936,7 +1032,8 @@ Verifying /media/disk3/snapraid.content...
 Syncing...
 Using 24 MiB of memory for 32 blocks of IO cache.
 0%, 959 MB, 40 MB/s, CPU 1%, 24:08 ETA
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;常用的 SnapRAID 命令：&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;常用的 SnapRAID 命令：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;snapraid sync&lt;/code&gt;：根据数据盘生成校验盘；&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;snapraid diff&lt;/code&gt;：查看有哪些数据需要 sync；&lt;/li&gt;
@@ -965,18 +1062,18 @@ Using 24 MiB of memory for 32 blocks of IO cache.
 &lt;p&gt;SnapRAID 提供了类似 RAID 的冗余功能，但是 RAID 还能将磁盘阵列里的磁盘合并成一个大磁盘。SnapRAID 本身并不提供合并磁盘的功能，但是 mergerfs 可以达成这个目的：《&lt;a href=&#34;https://wzyboy.im/post/1148.html&#34;&gt;使用 mergerfs 合并多块硬盘的剩余空间&lt;/a&gt;》。&lt;/p&gt;
 &lt;h2 id=&#34;七致谢&#34;&gt;七、致谢&lt;/h2&gt;
 &lt;p&gt;感谢 &lt;a href=&#34;https://jimmyxu.org/&#34;&gt;Jimmy Xu&lt;/a&gt; 在本文发表前，对本文奇偶校验算法相关的内容进行技术评测，并提出了宝贵的修改意见。&lt;/p&gt;
-- https://syaofox.github.io/linux/%E7%9B%AE%E5%BD%95%E7%BA%A7%E5%88%AB%E7%9A%84%E5%86%97%E4%BD%99%E5%AD%98%E5%82%A8-snapraid/ - Syaofox 2020 copyright.</description>
+- https://syaofox.github.io/post/%E7%9B%AE%E5%BD%95%E7%BA%A7%E5%88%AB%E7%9A%84%E5%86%97%E4%BD%99%E5%AD%98%E5%82%A8-snapraid/ - </description>
         </item>
     
     
     
         <item>
         <title>使用 Mergerfs 合并多块硬盘的剩余空间</title>
-        <link>https://syaofox.github.io/linux/%E4%BD%BF%E7%94%A8-mergerfs-%E5%90%88%E5%B9%B6%E5%A4%9A%E5%9D%97%E7%A1%AC%E7%9B%98%E7%9A%84%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4/</link>
+        <link>https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8-mergerfs-%E5%90%88%E5%B9%B6%E5%A4%9A%E5%9D%97%E7%A1%AC%E7%9B%98%E7%9A%84%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4/</link>
         <pubDate>Thu, 18 Jun 2020 11:03:08 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/%E4%BD%BF%E7%94%A8-mergerfs-%E5%90%88%E5%B9%B6%E5%A4%9A%E5%9D%97%E7%A1%AC%E7%9B%98%E7%9A%84%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/%E4%BD%BF%E7%94%A8-mergerfs-%E5%90%88%E5%B9%B6%E5%A4%9A%E5%9D%97%E7%A1%AC%E7%9B%98%E7%9A%84%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4/ -&lt;p&gt;两年前，我买了一台 HP Gen8 微型服务器，其功能之一是作为网络存储。当时它只接了一块 SSD 作为系统盘和一块 2 TB HDD 作为存储盘。随着存储文件的增多，我又先后增加了两块 4 TB HDD，现在它已经接了共计 10 TB 的存储空间。我觉得有必要分享一下我用来将这些硬盘的空间合并在一起的工具——mergerfs。&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8-mergerfs-%E5%90%88%E5%B9%B6%E5%A4%9A%E5%9D%97%E7%A1%AC%E7%9B%98%E7%9A%84%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4/</guid>
+        <description>云流 https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8-mergerfs-%E5%90%88%E5%B9%B6%E5%A4%9A%E5%9D%97%E7%A1%AC%E7%9B%98%E7%9A%84%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4/ -&lt;p&gt;两年前，我买了一台 HP Gen8 微型服务器，其功能之一是作为网络存储。当时它只接了一块 SSD 作为系统盘和一块 2 TB HDD 作为存储盘。随着存储文件的增多，我又先后增加了两块 4 TB HDD，现在它已经接了共计 10 TB 的存储空间。我觉得有必要分享一下我用来将这些硬盘的空间合并在一起的工具——mergerfs。&lt;/p&gt;
 &lt;p&gt;原文出处:&lt;a href=&#34;https://wzyboy.im/post/1148.html&#34;&gt;https://wzyboy.im/post/1148.html&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;一网络存储之硬盘困境&#34;&gt;一、网络存储之硬盘困境&lt;/h2&gt;
 &lt;p&gt;在讲工具之前，我有必要先说明一下我目前的存储方案。&lt;/p&gt;
@@ -994,7 +1091,7 @@ Using 24 MiB of memory for 32 blocks of IO cache.
 &lt;p&gt;早有人遇到过像我一样的困境，于是他开发了 &lt;a href=&#34;https://romanrm.net/mhddfs&#34;&gt;mhddfs&lt;/a&gt;。在用了它一段时间之后，我又发现了一个更好的实现 &lt;a href=&#34;https://github.com/trapexit/mergerfs&#34;&gt;mergerfs&lt;/a&gt;。两者的思路类似，但后者比前者功能更丰富、更安全、更稳定。本文以后者为例说明。&lt;/p&gt;
 &lt;p&gt;mergerfs 的思路是用 FUSE 实现一个新的文件系统，它的下层存储并不是直接的块设备，而是别的已经挂载的文件系统。mergerfs 接收到读写请求时，它会根据约定好的策略，从下层文件系统中读取文件，或是将数据写入下层文件系统。mergerfs 所呈现的文件系统，容量是所有下层文件系统之和，而内容则是所有下层文件系统的合并。&lt;/p&gt;
 &lt;p&gt;引用 mergerfs README 里的 ASCII art：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;A         +      B        =       C
+&lt;pre&gt;&lt;code class=&#34;language-plain&#34;&gt;A         +      B        =       C
 /disk1           /disk2           /merged
 |                |                |
 +-- /dir1        +-- /dir1        +-- /dir1
@@ -1012,16 +1109,18 @@ Using 24 MiB of memory for 32 blocks of IO cache.
                                   |   +-- file5
                                   |
                                   +-- file6
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如图所示，&lt;code&gt;/merged&lt;/code&gt; 是 mergerfs 的挂载点，其下层两个文件系统的挂载点是 &lt;code&gt;/disk1&lt;/code&gt; 和 &lt;code&gt;/disk2&lt;/code&gt;。&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如图所示，&lt;code&gt;/merged&lt;/code&gt; 是 mergerfs 的挂载点，其下层两个文件系统的挂载点是 &lt;code&gt;/disk1&lt;/code&gt; 和 &lt;code&gt;/disk2&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;这样一个文件系统完全符合我的需求：读写文件时能获得合并空间的优势，而当硬盘损坏或是想要直接读取硬盘里的数据的时候又可以单独把硬盘拆出来读取。而且我不用把现有的数据倒腾来倒腾去了，无痛迁移！&lt;/p&gt;
 &lt;h2 id=&#34;三mergerfs-的安装与配置&#34;&gt;三、mergerfs 的安装与配置&lt;/h2&gt;
 &lt;p&gt;mergerfs 的作者非常勤奋，每个版本都会为 RHEL / CentOS, Fedora, Debian, Ubuntu 不同发行版的不同版本、不同架构组合打包 30 多个 &lt;a href=&#34;https://github.com/trapexit/mergerfs/releases&#34;&gt;rpm 和 deb 安装包&lt;/a&gt;，其中包括了 ARM 甚至 PowerPC 架构，方便使用 Raspberry Pi 或是老 Mac 作为网络存储设备的用户。Arch Linux 用户则可以通过 AUR 安装。&lt;/p&gt;
 &lt;p&gt;安装之后通过编辑 &lt;code&gt;/etc/fstab&lt;/code&gt; 来挂载 mergerfs。我使用的 fstab 如下：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;/dev/sdb1               /media/disk1    ext4            defaults,noauto                 0 0
+&lt;pre&gt;&lt;code class=&#34;language-plain&#34;&gt;/dev/sdb1               /media/disk1    ext4            defaults,noauto                 0 0
 /dev/sdc1               /media/disk2    ext4            defaults,noauto                 0 0
 /dev/sdd1               /media/disk3    ext4            defaults,noauto                 0 0
 /media/disk1:/media/disk2:/media/disk3  /media/vdisk    fuse.mergerfs   defaults,noauto,allow_other,use_ino,minfreespace=100G,ignorepponrename=true 0 0
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;前三行是三块存储盘的普通挂载，第四行是 mergerfs 的条目，它的挂载源是前三块盘的的挂载点，用冒号分隔。最后一列的参数说明：&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;前三行是三块存储盘的普通挂载，第四行是 mergerfs 的条目，它的挂载源是前三块盘的的挂载点，用冒号分隔。最后一列的参数说明：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;defaults&lt;/code&gt;: 开启以下 FUSE 参数以提升性能：atomic_o_trunc, auto_cache, big_writes, default_permissions, splice_move, splice_read, splice_write；&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;noauto&lt;/code&gt;: 禁止开机自动挂载。意外关机重启之后我可能需要手动检查文件系统后再挂载，所以我不希望它自动挂载；&lt;/li&gt;
@@ -1031,14 +1130,16 @@ Using 24 MiB of memory for 32 blocks of IO cache.
 &lt;li&gt;&lt;code&gt;ignorepponrename=true&lt;/code&gt;: 重命名文件时，不再遵守路径保留原则，见下一节详解。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;写完 fstab 之后就可以让 mergerfs 跑起来了：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;mount /media/disk1 &amp;amp;&amp;amp; mount /media/disk2 &amp;amp;&amp;amp; mount /media/disk3 &amp;amp;&amp;amp; mount /media/vdisk
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;效果：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;Filesystem      Size  Used Avail Use% Mounted on
+&lt;pre&gt;&lt;code class=&#34;language-plain&#34;&gt;mount /media/disk1 &amp;amp;&amp;amp; mount /media/disk2 &amp;amp;&amp;amp; mount /media/disk3 &amp;amp;&amp;amp; mount /media/vdisk
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;效果：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-plain&#34;&gt;Filesystem      Size  Used Avail Use% Mounted on
 /dev/sdb1       1.8T  1.7T  179G  91% /media/disk1
 /dev/sdc1       3.6T  3.4T  215G  95% /media/disk2
 /dev/sdd1       3.6T   89M  3.4T   1% /media/disk3
 1:2:3           9.0T  5.0T  3.8T  57% /media/vdisk
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;disk3 是我今天刚装上的，所以它还是空的。&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;disk3 是我今天刚装上的，所以它还是空的。&lt;/p&gt;
 &lt;h2 id=&#34;四mergerfs-的读写策略&#34;&gt;四、mergerfs 的读写策略&lt;/h2&gt;
 &lt;p&gt;如果多块硬盘里同名的目录或文件，从哪儿读？往哪儿写？如果多块硬盘都有足够的剩余空间，在哪块硬盘创建新文件？mergerfs 对 FUSE 的不同操作有着不同的读写策略。默认的策略是：&lt;/p&gt;
 &lt;ul&gt;
@@ -1067,7 +1168,7 @@ Using 24 MiB of memory for 32 blocks of IO cache.
 &lt;li&gt;相比 Ubuntu，目前 Arch Linux 对 ZFS on Linux 的支持不够完善，使用和维护成本较高，与 ZFS 的 zero administration 理念相违背。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;此外，对于需要跨平台协作的用户来说，mergerfs 可以将不同文件系统的分区拼成一个，使 Ext4 与 NTFS 和谐共处，而 ZFS 在可预见的未来没有可用的 Windows 支持。&lt;/p&gt;
-- https://syaofox.github.io/linux/%E4%BD%BF%E7%94%A8-mergerfs-%E5%90%88%E5%B9%B6%E5%A4%9A%E5%9D%97%E7%A1%AC%E7%9B%98%E7%9A%84%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4/ - Syaofox 2020 copyright.</description>
+- https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8-mergerfs-%E5%90%88%E5%B9%B6%E5%A4%9A%E5%9D%97%E7%A1%AC%E7%9B%98%E7%9A%84%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4/ - </description>
         </item>
     
     

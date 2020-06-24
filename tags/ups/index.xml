@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>UPS on 霜天晓角</title>
+    <title>UPS on 云流</title>
     <link>https://syaofox.github.io/tags/ups/</link>
-    <description>Recent content in UPS on 霜天晓角</description>
+    <description>Recent content in UPS on 云流</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>Syaofox 2020 copyright.</copyright>
     <lastBuildDate>Thu, 18 Jun 2020 11:02:01 +0800</lastBuildDate>
     
 	<atom:link href="https://syaofox.github.io/tags/ups/index.xml" rel="self" type="application/rss+xml" />
@@ -14,34 +13,20 @@
     
     <item>
       <title>Ubuntu 的 UPS 电源安装</title>
-      <link>https://syaofox.github.io/linux/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/</link>
+      <link>https://syaofox.github.io/post/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/</link>
       <pubDate>Thu, 18 Jun 2020 11:02:01 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/linux/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/</guid>
-      <description>跑程序，网络不是最重要，但是长时间的稳定电源还是非常重要的，所以加一个UPS可以避免一些短时间的断电。
-首先看看usb有没有成功连接到ups电源,一般会出现下面信息
-$ lsusb Bus 002 Device 004: ID 051d:0002 American Power Conversion Uninterruptible Power Supply 安装很简单，就是一句命令
-sudo apt-get -y install apcupsd 备份文件
-sudo cp /etc/apcupsd/apcupsd.conf /etc/apcupsd/apcupsd.conf.bak 编辑下面文件
-sudo nano /etc/apcupsd/apcupsd.conf
-UPSNAME smartups750 UPSCABLE usb UPSTYPE usb DEVICE POLLTIME 60 另外一个文件
-sudo cp /etc/default/apcupsd /etc/default/apcupsd.bak sudo nano /etc/default/apcupsd 内容为
-ISCONFIGURED=yes 重启服务
-sudo systemctl restart apcupsd.service 然后可以运行下面命令看ups电源的状态
-$ apcaccess status APC : 001,037,0923 DATE : 2017-02-05 04:57:23 +0800 HOSTNAME : gtx1080 VERSION : 3.</description>
+      <guid>https://syaofox.github.io/post/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/</guid>
+      <description>跑程序，网络不是最重要，但是长时间的稳定电源还是非常重要的，所以加一个UPS可以避免一些短时间的断电。 首先看看usb有没有成功连接到ups电源,一般会出现下面信息 $ lsusb Bus 002 Device 004: ID 051d:0002 American Power Conversion Uninterruptible Power Supply 安装很简单</description>
     </item>
     
     <item>
       <title>UPS 通过 ping 实现 NAS 断电自动关机</title>
-      <link>https://syaofox.github.io/linux/ups%E9%80%9A%E8%BF%87ping%E5%AE%9E%E7%8E%B0nas%E6%96%AD%E7%94%B5%E8%87%AA%E5%8A%A8%E5%85%B3%E6%9C%BA/</link>
+      <link>https://syaofox.github.io/post/ups%E9%80%9A%E8%BF%87ping%E5%AE%9E%E7%8E%B0nas%E6%96%AD%E7%94%B5%E8%87%AA%E5%8A%A8%E5%85%B3%E6%9C%BA/</link>
       <pubDate>Thu, 18 Jun 2020 11:00:48 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/linux/ups%E9%80%9A%E8%BF%87ping%E5%AE%9E%E7%8E%B0nas%E6%96%AD%E7%94%B5%E8%87%AA%E5%8A%A8%E5%85%B3%E6%9C%BA/</guid>
-      <description>没有数据通讯的UPS，只有电源接口，无法判断断电后自动关机,保护数据安全,这里通过ping简单实现
-思路，ups只接NAS，路由接市电，通过每隔一定时间通过NAS ping路由IP地址来确认是否停电，如果ping没有问题，就是有电，如果突然断电，ping不通了，就认为断电，执行关机命令。
-TG500-1.sh脚本如下:
-#!/bin/sh  ping -c 1 192.168.1.1 &amp;gt; /dev/null ret=$? if [ $ret -eq 0 ] then echo &amp;#39; AC Power OK ! &amp;#39; else echo &amp;#39; AC Power maybe off, checking again after 4 minutes ! &amp;#39; sleep 240 /usr/sbin/TG500-2.sh fi TG500-2.sh脚本如下:
-#!/bin/sh  ping -c 1 192.168.1.1 &amp;gt; /dev/null ret=$? if [ $ret -eq 0 ] then echo &amp;#39; AC Power OK ! &amp;#39; else echo &amp;#39; AC Power off, shut down NAS !</description>
+      <guid>https://syaofox.github.io/post/ups%E9%80%9A%E8%BF%87ping%E5%AE%9E%E7%8E%B0nas%E6%96%AD%E7%94%B5%E8%87%AA%E5%8A%A8%E5%85%B3%E6%9C%BA/</guid>
+      <description>没有数据通讯的UPS，只有电源接口，无法判断断电后自动关机,保护数据安全,这里通过ping简单实现 思路，ups只接NAS，路由接市电，通过每隔一定时间通过NAS ping路由IP地址来确认是否停电，如果</description>
     </item>
     
   </channel>

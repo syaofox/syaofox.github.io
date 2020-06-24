@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Youtube-dl on 霜天晓角</title>
+    <title>Youtube-dl on 云流</title>
     <link>https://syaofox.github.io/tags/youtube-dl/</link>
-    <description>Recent content in Youtube-dl on 霜天晓角</description>
+    <description>Recent content in Youtube-dl on 云流</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>Syaofox 2020 copyright.</copyright>
     <lastBuildDate>Thu, 18 Jun 2020 09:41:34 +0800</lastBuildDate>
     
 	<atom:link href="https://syaofox.github.io/tags/youtube-dl/index.xml" rel="self" type="application/rss+xml" />
@@ -14,12 +13,11 @@
     
     <item>
       <title>Youtube-dl 常用操作</title>
-      <link>https://syaofox.github.io/software/youtube-dl-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</link>
+      <link>https://syaofox.github.io/post/youtube-dl-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</link>
       <pubDate>Thu, 18 Jun 2020 09:41:34 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/software/youtube-dl-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
-      <description>调用外部下载工具下载列表 youtube-dl &amp;#34;https://www.youtube.com/playlist?list=PL7enJ2-v6SPnQe5bqB0xupPSRpynhzH_E&amp;#34; --external-downloader aria2c --external-downloader-args &amp;#34;-x 16 -k 1M&amp;#34; 下载最好质量视频并指定格式 youtube-dl --format &amp;#34;bestvideo+bestaudio[ext=m4a]/bestvideo+bestaudio/best&amp;#34; --merge-output-format mp4 范例:下载最佳mp4和字幕
-youtube-dl --write-sub --sub-lang zh-CN,zh-TW --sub-format srt --format &amp;#34;bestvideo+bestaudio[ext=m4a]/bestvideo+bestaudio/best&amp;#34; --merge-output-format mp4 &amp;#34;https://www.youtube.com/playlist?list=PL7enJ2-v6SPlgDsNHXJ1K2RpkZY2b_pm7&amp;#34; --external-downloader aria2c --external-downloader-args &amp;#34;-x 16 -k 1M&amp;#34; </description>
+      <guid>https://syaofox.github.io/post/youtube-dl-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
+      <description>调用外部下载工具下载列表 youtube-dl &amp;quot;https://www.youtube.com/playlist?list=PL7enJ2-v6SPnQe5bqB0xupPSRpynhzH_E&amp;quot; --external-downloader aria2c --external-downloader-args &amp;quot;-x 16 -k 1M&amp;quot; 下载最好质量视频并指定格式 youtube-dl --format &amp;quot;bestvideo+bestaudio[ext=m4a]/bestvideo+bestaudio/best&amp;quot; --merge-output-format mp4 范例:下载最佳mp4和字幕 youtube-dl --write-sub --sub-lang zh-CN,zh-TW --sub-format srt --format &amp;quot;bestvideo+bestaudio[ext=m4a]/bestvideo+bestaudio/best&amp;quot; --merge-output-format mp4 &amp;quot;https://www.youtube.com/playlist?list=PL7enJ2-v6SPlgDsNHXJ1K2RpkZY2b_pm7&amp;quot; --external-downloader aria2c --external-downloader-args &amp;quot;-x 16 -k 1M&amp;quot;</description>
     </item>
     
   </channel>

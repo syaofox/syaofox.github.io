@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>H264 on 霜天晓角</title>
+    <title>H264 on 云流</title>
     <link>https://syaofox.github.io/tags/h264/</link>
-    <description>Recent content in H264 on 霜天晓角</description>
+    <description>Recent content in H264 on 云流</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>Syaofox 2020 copyright.</copyright>
     <lastBuildDate>Thu, 18 Jun 2020 09:30:43 +0800</lastBuildDate>
     
 	<atom:link href="https://syaofox.github.io/tags/h264/index.xml" rel="self" type="application/rss+xml" />
@@ -14,17 +13,11 @@
     
     <item>
       <title>H264视频编码推荐的分辨率和码率配置表</title>
-      <link>https://syaofox.github.io/tips/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/</link>
+      <link>https://syaofox.github.io/post/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/</link>
       <pubDate>Thu, 18 Jun 2020 09:30:43 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/tips/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/</guid>
-      <description>在各种视频编码标准中，行业一直在求追“高压缩比（数据量越小越好）”，同时又保证“高视频质量”的算法。鱼和熊掌不可兼得，视频编码是一种折中的游戏。参数“视频码率”的设定，就代表了这种折中的选择。码率越高，数据量越大，视频质量越好，码率越小，数据量越小，视频质量越差。
-但是，码率大到一定阈值之后，码率的提升带来的视频质量改善就会变得微不足道，所以这个码率阈值就显得非常重要。
-网上这篇文章「Video Encoding Settings for H.264 Excellence」，就针对H.264视频编码，测试了不同视频分辨率下的码率阈值。
-其介绍了用于高质量H.264视频编码的一组分辨率，码率设置，以及这些选择背后的推理。这篇文章很好的帮我们解答了：针对H.264视频编码（对其他视频编码格式无效），给定一个视频分辨率，要设置什么视频码率，才能得到“最具性价比”的高质量视频画面。
-针对H.264编码格式，根据不同分辨率，推荐其对应的码率配置关系如下图所示：
-  宽屏
-   Name Resolution Link(Mbps) Bitrate(Mbps) Video(kbps) Audio(kbps)     240p 424x240 1.0 0.64 576 64   360p 640x360 1.5 0.96 896 64   432p 768x432 1.8 1.15 1088 64   480p 848x480 2.0 1.28 1216 64   480p HQ 848x480 2.5 1.60 1536 64   576p 1024x576 3.0 1.</description>
+      <guid>https://syaofox.github.io/post/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/</guid>
+      <description>在各种视频编码标准中，行业一直在求追“高压缩比（数据量越小越好）”，同时又保证“高视频质量”的算法。鱼和熊掌不可兼得，视频编码是一种折中的游戏。参数“视频码率”的设定，就代表了这种折中的选择。码率越高</description>
     </item>
     
   </channel>

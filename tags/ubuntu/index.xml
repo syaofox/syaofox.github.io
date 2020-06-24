@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ubuntu on 霜天晓角</title>
+    <title>Ubuntu on 云流</title>
     <link>https://syaofox.github.io/tags/ubuntu/</link>
-    <description>Recent content in Ubuntu on 霜天晓角</description>
+    <description>Recent content in Ubuntu on 云流</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>Syaofox 2020 copyright.</copyright>
     <lastBuildDate>Thu, 18 Jun 2020 20:31:51 +0800</lastBuildDate>
     
 	<atom:link href="https://syaofox.github.io/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
@@ -14,116 +13,84 @@
     
     <item>
       <title>Ubuntu 配置 Postfix 通过 Gmail 发送邮件</title>
-      <link>https://syaofox.github.io/linux/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/</link>
+      <link>https://syaofox.github.io/post/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/</link>
       <pubDate>Thu, 18 Jun 2020 20:31:51 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/linux/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/</guid>
-      <description>修改 Ubuntu 本机 Hostname 查看当前 hostname hostname -f 修改当前 hostname 可以通过命令修改 hostname
-hostname syaofox.com 但是这样修改只是临时的,系统重启后失效,必须修改配置文件才能永久生效
-sudo nano /etc/hostname 修改为
-syaofox.com 修改 hosts 修改 hosts 文件
-sudo nano /etc/hosts 修改 127.0.1.1 解析为刚才修改的 hostname
-127.0.1.1 syaofox.com 重启
-安装 Postfix sudo apt update sudo apt install mailutils 选择 Internet Site
-下一步填入hostname
- 以后可以通过输入以下命令修改配置
- dpkg-reconfigure postfix 使用Gmail SMTP 配置 Postfix 修改配置文件 sudo nano /etc/postfix/main.cf 找到 relayhost= 这行,修改
-myhostname = syaofox.com relayhost = [smtp.gmail.com]:587 mydestination = localhost.</description>
+      <guid>https://syaofox.github.io/post/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/</guid>
+      <description>修改 Ubuntu 本机 Hostname 查看当前 hostname hostname -f 修改当前 hostname 可以通过命令修改 hostname hostname syaofox.com 但是这样修改只是临时的,系统重启后失效,必须修改配置文件才能永久生效 sudo nano /etc/hostname 修改为 syaofox.com 修改 hosts 修改 hosts 文件 sudo nano /etc/hosts 修改 127.0.1.1 解析为刚才修改的 hostname 127.0.1.1 syaofox.com 重启 安装 Postfix</description>
     </item>
     
     <item>
       <title>Ubuntu 配置 ZFS Event Daemon</title>
-      <link>https://syaofox.github.io/linux/ubuntu1604-%E9%85%8D%E7%BD%AEzfs-event-daemon/</link>
+      <link>https://syaofox.github.io/post/ubuntu1604-%E9%85%8D%E7%BD%AEzfs-event-daemon/</link>
       <pubDate>Thu, 18 Jun 2020 12:09:42 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/linux/ubuntu1604-%E9%85%8D%E7%BD%AEzfs-event-daemon/</guid>
-      <description>一、安装软件 zed是zfs的一个事件服务，需要安装zfs-zed来使用，同时，为了能邮件通知，还需要安装mailutils msmtp msmtp-mta s-nail
-apt-get install mailutils msmtp msmtp-mta s-nail zfs-zed 二、配置msmtp 修改或新建/etc/msmtprc
-defaults auth login #tls_starttls off tls off #tls_trust_file /etc/ssl/certs/ca-certificates.crt logfile ~/.msmtp.log account alerts host smtp.qq.com port 25 from 地址@qq.com user 地址@qq.com password xxxx #这里的密码是smtp的验证密码，不是邮箱登录密码 # Set a default account account default : alerts 配置完后echo &amp;quot;test mail&amp;quot; | mail -s &amp;quot;test&amp;quot; 地址@qq.com测试是否能收到邮件。
-三、配置zed vi /etc/zfs/zed.d/zed.rc ZED_EMAIL_ADDR=&amp;#34;地址@qq.com&amp;#34; ZED_EMAIL_PROG=&amp;#34;mail&amp;#34; ZED_EMAIL_OPTS=&amp;#34;-s &amp;#39;@SUBJECT@&amp;#39; @ADDRESS@ -r 地址@qq.com&amp;#34; ZED_NOTIFY_INTERVAL_SECS=&amp;#34;3600&amp;#34; ZED_NOTIFY_VERBOSE=1 ZED_DEBUG_LOG=&amp;#34;/tmp/zed.debug.log&amp;#34; ZED_SYSLOG_PRIORITY=&amp;#34;daemon.notice&amp;#34; ZED_SYSLOG_TAG=&amp;#34;zed&amp;#34; Restart zfs-zed</description>
+      <guid>https://syaofox.github.io/post/ubuntu1604-%E9%85%8D%E7%BD%AEzfs-event-daemon/</guid>
+      <description>一、安装软件 zed是zfs的一个事件服务，需要安装zfs-zed来使用，同时，为了能邮件通知，还需要安装mailutils msmtp msmtp-mta s-nail apt-get install mailutils msmtp msmtp-mta s-nail zfs-zed 二、配置msmtp 修改或新建/etc/msmtprc defaults auth login</description>
     </item>
     
     <item>
       <title>Intel NUC 冥王峡谷（NUC8i7HVK）安装 Ubuntu18 AMD 显卡的驱动方法</title>
-      <link>https://syaofox.github.io/linux/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/</link>
+      <link>https://syaofox.github.io/post/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/</link>
       <pubDate>Thu, 18 Jun 2020 11:23:52 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/linux/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/</guid>
-      <description>升级 BIOS  从 这里 下载BIOS文件 按照 说明 更新 BIOS  安装 Ubuntu  BIOS内关闭安全启动  更新内核 AMD GPU的驱动程序随Linux 4.17一起提供，根据测试，只有4.18才提供正式支持，所以必须升级内核。
-手动升级
-wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-headers-4.18.0-041800rc5_4.18.0-041800rc5.201807152130_all.deb wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-headers-4.18.0-041800rc5-generic_4.18.0-041800rc5.201807152130_amd64.deb wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-image-unsigned-4.18.0-041800rc5-generic_4.18.0-041800rc5.201807152130_amd64.deb wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-modules-4.18.0-041800rc5-generic_4.18.0-041800rc5.201807152130_amd64.deb sudo dpkg -i linux-*.deb 或者
-sudo add-apt-repository ppa:teejee2008/ppa sudo apt update sudo apt install ukuu 从GUI运行UKUU，选择Linux Kernel 4.18.3，重新启动。
- 注意：确保BIOS内安全启动已经关闭
- 重启后查看内核
-uname -a 添加并更新 Mesa sudo add-apt-repository ppa:ubuntu-x-swat/updates sudo apt dist-upgrade 获得AMD Vega M Linux驱动程序并将其放在适当的目录中 wget -m -np https://people.freedesktop.org/~agd5f/radeon_ucode/vegam/ sudo cp people.</description>
+      <guid>https://syaofox.github.io/post/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/</guid>
+      <description>升级 BIOS 从 这里 下载BIOS文件 按照 说明 更新 BIOS 安装 Ubuntu BIOS内关闭安全启动 更新内核 AMD GPU的驱动程序随Linux 4.17一起提供，根据测试，只有4.18才提供正式支持，所以必须升级内核。 手动升级 wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-headers-4.18.0-041800rc5_4.18.0-041800rc5.201807152130_all.deb wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-headers-4.18.0-041800rc5-generic_4.18.0-041800rc5.201807152130_amd64.deb wget</description>
     </item>
     
     <item>
       <title>Ubuntu 18.04 LTS 更换国内源——解决终端下载速度慢的问题</title>
-      <link>https://syaofox.github.io/linux/ubuntu18-04%E6%8D%A2%E6%BA%90/</link>
+      <link>https://syaofox.github.io/post/ubuntu18-04%E6%8D%A2%E6%BA%90/</link>
       <pubDate>Thu, 18 Jun 2020 11:22:36 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/linux/ubuntu18-04%E6%8D%A2%E6%BA%90/</guid>
+      <guid>https://syaofox.github.io/post/ubuntu18-04%E6%8D%A2%E6%BA%90/</guid>
       <description>&lt;p&gt;最近装了ubuntu18.04 LTS，下载软件有点慢，换国内源&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Ubuntu 18 4 HDMI声音有杂音的修复方法</title>
-      <link>https://syaofox.github.io/linux/ubuntu-18-4-hdmi%E5%A3%B0%E9%9F%B3%E6%9C%89%E6%9D%82%E9%9F%B3%E7%9A%84%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/</link>
+      <link>https://syaofox.github.io/post/ubuntu-18-4-hdmi%E5%A3%B0%E9%9F%B3%E6%9C%89%E6%9D%82%E9%9F%B3%E7%9A%84%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/</link>
       <pubDate>Thu, 18 Jun 2020 11:19:25 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/linux/ubuntu-18-4-hdmi%E5%A3%B0%E9%9F%B3%E6%9C%89%E6%9D%82%E9%9F%B3%E7%9A%84%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/</guid>
+      <guid>https://syaofox.github.io/post/ubuntu-18-4-hdmi%E5%A3%B0%E9%9F%B3%E6%9C%89%E6%9D%82%E9%9F%B3%E7%9A%84%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/</guid>
       <description>&lt;p&gt;显示器自带音箱，通过hdmi连接电脑，安装完ubuntu 18后声音出现比较大的杂音&amp;hellip;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Ubuntu Server 18 04 LTS 上安装Virtual Box 并配置 PhpVirtualbox</title>
-      <link>https://syaofox.github.io/linux/ubuntu-server-18-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85virtual-box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpvirtualbox/</link>
+      <link>https://syaofox.github.io/post/ubuntu-server-18-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85virtual-box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpvirtualbox/</link>
       <pubDate>Thu, 18 Jun 2020 11:17:22 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/linux/ubuntu-server-18-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85virtual-box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpvirtualbox/</guid>
+      <guid>https://syaofox.github.io/post/ubuntu-server-18-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85virtual-box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpvirtualbox/</guid>
       <description>&lt;p&gt;本教程将指导你在 Ubuntu 18.04 LTS 无头服务器上，一步一步地安装 Oracle VirtualBox。同时，本教程也将介绍如何使用 phpVirtualBox 去管理安装在无头服务器上的 VirtualBox 实例。phpVirtualBox 是 VirtualBox 的一个基于 Web 的前端工具。这个教程也可以工作在 Debian 和其它 Ubuntu 衍生版本上，如 Linux Mint。现在，我们开始。
 原文地址:&lt;a href=&#34;https://www.ostechnix.com/install-oracle-virtualbox-ubuntu-16-04-headless-server/&#34;&gt;https://www.ostechnix.com/install-oracle-virtualbox-ubuntu-16-04-headless-server/&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Ubuntu Server 20.04 LTS NAS 安装记录</title>
-      <link>https://syaofox.github.io/linux/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
+      <link>https://syaofox.github.io/post/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Thu, 18 Jun 2020 11:15:54 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/linux/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
-      <description>Nas 安装 Ubuntu Server 20.04 LTS 系统，基于 zfs on linux
-安装 Ubuntu 注意选中安装ssh,否则安装完成无法远程连接
-更新系统 sudo apt update sudo apt upgrade 设置时区 # 查看当前时区 timedatectl # 列出所有时区 timedatectl list-timezones # 显示亚洲时区 timedatectl list-timezones | grep Asia # 设置时区为上海 sudo timedatectl set-timezone Asia/Shanghai 修改 root 用户登录权限 # 编辑 &amp;#39;/etc/ssh/sshd_config&amp;#39; sudo sed -i &amp;#39;s/#PermitRootLogin prohibit-password/PermitRootLogin yes/&amp;#39; /etc/ssh/sshd_config # 重启SSH服务 sudo systemctl restart ssh # 设置root账号密码 sudo passwd root 初始化硬盘 # 查看分区情况 lsblk # 使用 gdisk 初始化硬盘 添加账号 adduser wife 使用 ZFS 系统 # 安装 zfs apt update apt install zfsutils-linux # 重启 # 创建 RAIDZ2 存储池 /dev/disk/by-id zpool create pool raidz2 /dev/sdb /dev/sdc /dev/sdd /dev/sde # 查看存储池状态 zpool status -v # 查看存储池空间 df -h | grep pool # 创建数据集并设置开启lz4压缩 zfs create -o compression=lz4 pool/share zfs create -o compression=lz4 pool/media zfs create -o compression=lz4 pool/work zfs create -o compression=lz4 pool/me # 修改各数据集挂载点权限 chmod -R 777 /pool/share chmod -R 777 /pool/media chmod -R 777 /pool/work chmod -R 777 /pool/me 安装 samba 并设置 samba 共享 # 安装 samba apt install samba # 备份配置文件 cp /etc/samba/smb.</description>
+      <guid>https://syaofox.github.io/post/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
+      <description>Nas 安装 Ubuntu Server 20.04 LTS 系统，基于 zfs on linux 安装 Ubuntu 注意选中安装ssh,否则安装完成无法远程连接 更新系统 sudo apt update sudo apt upgrade 设置时区 # 查看当前时区 timedatectl # 列出所有时区 timedatectl list-timezones # 显示亚洲时区 timedatectl list-timezones | grep Asia # 设置时区为上海 sudo timedatectl set-timezone Asia/Shanghai 修改 root 用户</description>
     </item>
     
     <item>
       <title>如何在 Ubuntu 安装 Samba 实现文件夹共享</title>
-      <link>https://syaofox.github.io/linux/%E5%A6%82%E4%BD%95%E5%9C%A8-ubuntu-%E5%AE%89%E8%A3%85-samba-%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%85%B1%E4%BA%AB/</link>
+      <link>https://syaofox.github.io/post/%E5%A6%82%E4%BD%95%E5%9C%A8-ubuntu-%E5%AE%89%E8%A3%85-samba-%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%85%B1%E4%BA%AB/</link>
       <pubDate>Thu, 18 Jun 2020 11:05:14 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/linux/%E5%A6%82%E4%BD%95%E5%9C%A8-ubuntu-%E5%AE%89%E8%A3%85-samba-%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%85%B1%E4%BA%AB/</guid>
-      <description>samba的优点在于可以在WindowsLinuxAndriod之间实现文件夹共享传输文件，适用的范围更广，更推荐大家选择这种方式_
-一、安装samba # 获取最新的版本信息 sudo apt update # 安装samba sudo apt-get install samba # 安装samba客户端（可选） sudo apt-get install smbclient 二、创建samba配置文件 # 创建共享目录 sudo mkdir -p /share # 对目录进行赋权 sudo chmod 777 /share # 对配置文件进行备份 sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak # 修改配置文件 sudo nano /etc/samba/smb.conf # 在配置文件的末尾添加下面的代码： [share] path = /share browseable = yes writable = yes comment = smb share test public = yes # 配置文件的名称解释： [share] # 该共享的共享名 comment = smb share test # 该共享的备注 path = /home/share # 共享路径 allow hosts = host(subnet) # 设置该Samba服务器允许的工作组或者域 deny hosts = host(subnet) # 设置该Samba服务器拒绝的工作组或者域 available = yes|no # 设置该共享目录是否可用 browseable = yes|no # 设置该共享目录是否可显示 writable = yes|no # 指定了这个目录缺省是否可写，也可以用readonly = no来设置可写 public = yes|no # 指明该共享资源是否能给游客帐号访问，guest ok = yes其实和public = yes是一样的 user = user, @group # user设置所有可能使用该共享资源的用户，也可以用@group代表group这个组的所有成员，不同的项目之间用空格或者逗号隔开 valid users = user, @group # 指定能够使用该共享资源的用户和组 invalid users = user, @group # 指定不能够使用该共享资源的用户和组 read list = user, @group # 指定只能读取该共享资源的用户和组 write list = user, @group # 指定能读取和写该共享资源的用户和组 admin list = user, @group # 指定能管理该共享资源（包括读写和权限赋予等）的用户和组 hide dot files = yes|no # 指明是否像UNIX那样隐藏以“.</description>
+      <guid>https://syaofox.github.io/post/%E5%A6%82%E4%BD%95%E5%9C%A8-ubuntu-%E5%AE%89%E8%A3%85-samba-%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%85%B1%E4%BA%AB/</guid>
+      <description>samba的优点在于可以在WindowsLinuxAndriod之间实现文件夹共享传输文件，适用的范围更广，更推荐大家选择这种方式_ 一、安装samba # 获取最新的版本信息 sudo apt update # 安装samba sudo apt-get install samba</description>
     </item>
     
     <item>
       <title>Ubuntu 的 UPS 电源安装</title>
-      <link>https://syaofox.github.io/linux/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/</link>
+      <link>https://syaofox.github.io/post/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/</link>
       <pubDate>Thu, 18 Jun 2020 11:02:01 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/linux/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/</guid>
-      <description>跑程序，网络不是最重要，但是长时间的稳定电源还是非常重要的，所以加一个UPS可以避免一些短时间的断电。
-首先看看usb有没有成功连接到ups电源,一般会出现下面信息
-$ lsusb Bus 002 Device 004: ID 051d:0002 American Power Conversion Uninterruptible Power Supply 安装很简单，就是一句命令
-sudo apt-get -y install apcupsd 备份文件
-sudo cp /etc/apcupsd/apcupsd.conf /etc/apcupsd/apcupsd.conf.bak 编辑下面文件
-sudo nano /etc/apcupsd/apcupsd.conf
-UPSNAME smartups750 UPSCABLE usb UPSTYPE usb DEVICE POLLTIME 60 另外一个文件
-sudo cp /etc/default/apcupsd /etc/default/apcupsd.bak sudo nano /etc/default/apcupsd 内容为
-ISCONFIGURED=yes 重启服务
-sudo systemctl restart apcupsd.service 然后可以运行下面命令看ups电源的状态
-$ apcaccess status APC : 001,037,0923 DATE : 2017-02-05 04:57:23 +0800 HOSTNAME : gtx1080 VERSION : 3.</description>
+      <guid>https://syaofox.github.io/post/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/</guid>
+      <description>跑程序，网络不是最重要，但是长时间的稳定电源还是非常重要的，所以加一个UPS可以避免一些短时间的断电。 首先看看usb有没有成功连接到ups电源,一般会出现下面信息 $ lsusb Bus 002 Device 004: ID 051d:0002 American Power Conversion Uninterruptible Power Supply 安装很简单</description>
     </item>
     
   </channel>

@@ -1,11 +1,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>霜天晓角</title>
+    <title>云流</title>
     <link>https://syaofox.github.io/</link>
-    <description>Recent content on 霜天晓角</description>
+    <description>Recent content on 云流</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>Syaofox 2020 copyright.</copyright>
     <lastBuildDate>Thu, 18 Jun 2020 20:31:51 +0800</lastBuildDate>
     
         <atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml" />
@@ -14,11 +13,11 @@
     
         <item>
         <title>H264视频编码推荐的分辨率和码率配置表</title>
-        <link>https://syaofox.github.io/tips/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/</link>
+        <link>https://syaofox.github.io/post/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/</link>
         <pubDate>Thu, 18 Jun 2020 09:30:43 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/tips/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/</guid>
-        <description>霜天晓角 https://syaofox.github.io/tips/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/ -&lt;p&gt;在各种视频编码标准中，行业一直在求追“高压缩比（数据量越小越好）”，同时又保证“高视频质量”的算法。鱼和熊掌不可兼得，视频编码是一种折中的游戏。参数“视频码率”的设定，就代表了这种折中的选择。码率越高，数据量越大，视频质量越好，码率越小，数据量越小，视频质量越差。&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/</guid>
+        <description>云流 https://syaofox.github.io/post/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/ -&lt;p&gt;在各种视频编码标准中，行业一直在求追“高压缩比（数据量越小越好）”，同时又保证“高视频质量”的算法。鱼和熊掌不可兼得，视频编码是一种折中的游戏。参数“视频码率”的设定，就代表了这种折中的选择。码率越高，数据量越大，视频质量越好，码率越小，数据量越小，视频质量越差。&lt;/p&gt;
 &lt;p&gt;但是，码率大到一定阈值之后，码率的提升带来的视频质量改善就会变得微不足道，所以这个码率阈值就显得非常重要。&lt;/p&gt;
 &lt;p&gt;网上这篇文章&lt;a href=&#34;http://www.lighterra.com/papers/videoencodingh264/&#34;&gt;「Video Encoding Settings for H.264 Excellence」&lt;/a&gt;，就针对H.264视频编码，测试了不同视频分辨率下的码率阈值。&lt;/p&gt;
 &lt;p&gt;其介绍了用于高质量H.264视频编码的一组分辨率，码率设置，以及这些选择背后的推理。这篇文章很好的帮我们解答了：针对H.264视频编码（对其他视频编码格式无效），给定一个视频分辨率，要设置什么视频码率，才能得到“最具性价比”的高质量视频画面。&lt;/p&gt;
@@ -243,47 +242,52 @@
 &lt;/table&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-- https://syaofox.github.io/tips/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/ - Syaofox 2020 copyright.</description>
+- https://syaofox.github.io/post/h264%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%8E%A8%E8%8D%90%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E7%A0%81%E7%8E%87%E9%85%8D%E7%BD%AE%E8%A1%A8/ - </description>
         </item>
     
     
     
         <item>
         <title>Git Submodule 子模块的管理和使用</title>
-        <link>https://syaofox.github.io/coding/git-submodule-%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9A%84%E7%AE%A1%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8/</link>
+        <link>https://syaofox.github.io/post/git-submodule-%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9A%84%E7%AE%A1%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8/</link>
         <pubDate>Thu, 18 Jun 2020 09:22:48 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/coding/git-submodule-%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9A%84%E7%AE%A1%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8/</guid>
-        <description>霜天晓角 https://syaofox.github.io/coding/git-submodule-%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9A%84%E7%AE%A1%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8/ -&lt;h2 id=&#34;使用前提&#34;&gt;使用前提&lt;/h2&gt;
+        <guid>https://syaofox.github.io/post/git-submodule-%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9A%84%E7%AE%A1%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8/</guid>
+        <description>云流 https://syaofox.github.io/post/git-submodule-%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9A%84%E7%AE%A1%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8/ -&lt;h2 id=&#34;使用前提&#34;&gt;使用前提&lt;/h2&gt;
 &lt;p&gt;经常碰到这种情况：当你在一个Git 项目上工作时，你需要在其中使用另外一个Git 项目。也许它是一个第三方开发的Git 库或者是你独立开发和并在多个父项目中使用的。这个情况下一个常见的问题产生了：你想将两个项目单独处理但是又需要在其中一个中使用另外一个。&lt;/p&gt;
 &lt;p&gt;在Git 中你可以用子模块&lt;code&gt;submodule&lt;/code&gt;来管理这些项目，&lt;code&gt;submodule&lt;/code&gt;允许你将一个Git 仓库当作另外一个Git 仓库的子目录。这允许你克隆另外一个仓库到你的项目中并且保持你的提交相对独立。&lt;/p&gt;
 &lt;h2 id=&#34;添加子模块&#34;&gt;添加子模块&lt;/h2&gt;
 &lt;p&gt;此文中统一将远程项目&lt;code&gt;https://github.com/maonx/vimwiki-assets.git&lt;/code&gt;克隆到本地&lt;code&gt;assets&lt;/code&gt;文件夹。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git submodule add https://github.com/maonx/vimwiki-assets.git assets
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;添加子模块后运行&lt;code&gt;git status&lt;/code&gt;, 可以看到目录有增加1个文件&lt;code&gt;.gitmodules&lt;/code&gt;, 这个文件用来保存子模块的信息。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git status
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ git submodule add https://github.com/maonx/vimwiki-assets.git assets
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;添加子模块后运行&lt;code&gt;git status&lt;/code&gt;, 可以看到目录有增加1个文件&lt;code&gt;.gitmodules&lt;/code&gt;, 这个文件用来保存子模块的信息。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ git status
 On branch master
 
 Initial commit
 
 Changes to be committed:
-  (use &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;git rm --cached &amp;lt;file&amp;gt;...&amp;#34;&lt;/span&gt; to unstage)
+  (use &amp;quot;git rm --cached &amp;lt;file&amp;gt;...&amp;quot; to unstage)
 
     new file:   .gitmodules
     new file:   assets
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;查看子模块&#34;&gt;查看子模块&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git submodule
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;查看子模块&#34;&gt;查看子模块&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ git submodule
  e33f854d3f51f5ebd771a68da05ad0371a3c0570 assets (heads/master)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;更新子模块&#34;&gt;更新子模块&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;更新子模块&#34;&gt;更新子模块&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;更新项目内子模块到最新版本&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git submodule update
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ git submodule update
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;更新子模块为远程项目的最新版本&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git submodule update --remote
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ git submodule update --remote
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;克隆包含子模块的项目&#34;&gt;克隆包含子模块的项目&lt;/h2&gt;
 &lt;p&gt;克隆包含子模块的项目有二种方法：一种是先克隆父项目，再更新子模块；另一种是直接递归克隆整个项目。&lt;/p&gt;
@@ -291,74 +295,84 @@ Changes to be committed:
 &lt;ol&gt;
 &lt;li&gt;克隆父项目&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git clone https://github.com/maonx/vimwiki-assets.git assets
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ git clone https://github.com/maonx/vimwiki-assets.git assets
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
 &lt;li&gt;查看子模块&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git submodule
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ git submodule
  -e33f854d3f51f5ebd771a68da05ad0371a3c0570 assets
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;子模块前面有一个&lt;code&gt;-&lt;/code&gt;，说明子模块文件还未检入（空文件夹）。&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;子模块前面有一个&lt;code&gt;-&lt;/code&gt;，说明子模块文件还未检入（空文件夹）。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;初始化子模块&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git submodule init
-Submodule &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;assets&amp;#39;&lt;/span&gt; (https://github.com/maonx/vimwiki-assets.git) registered &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;for&lt;/span&gt; path &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;assets&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;初始化模块只需在克隆父项目后运行一次。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ git submodule init
+Submodule &#39;assets&#39; (https://github.com/maonx/vimwiki-assets.git) registered for path &#39;assets&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;初始化模块只需在克隆父项目后运行一次。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;更新子模块&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git submodule update
-Cloning into &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;assets&amp;#39;&lt;/span&gt;...
-remote: Counting objects: 151, &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;done&lt;/span&gt;.
-remote: Compressing objects: 100% (80/80), &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;done&lt;/span&gt;.
-remote: Total &lt;span style=&#34;color:#b452cd&#34;&gt;151&lt;/span&gt; (delta 18), reused &lt;span style=&#34;color:#b452cd&#34;&gt;0&lt;/span&gt; (delta 0), pack-reused &lt;span style=&#34;color:#b452cd&#34;&gt;70&lt;/span&gt;
-Receiving objects: 100% (151/151), 1.34 MiB | 569.00 KiB/s, &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;done&lt;/span&gt;.
-Resolving deltas: 100% (36/36), &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;done&lt;/span&gt;.
-Checking connectivity... &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;done&lt;/span&gt;.
-Submodule path &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;assets&amp;#39;&lt;/span&gt;: checked out &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;e33f854d3f51f5ebd771a68da05ad0371a3c0570&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;递归克隆整个项目&#34;&gt;递归克隆整个项目&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;git clone https://github.com/maonx/vimwiki-assets.git assets --recursive 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;递归克隆整个项目，子模块已经同时更新了，一步到位。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ git submodule update
+Cloning into &#39;assets&#39;...
+remote: Counting objects: 151, done.
+remote: Compressing objects: 100% (80/80), done.
+remote: Total 151 (delta 18), reused 0 (delta 0), pack-reused 70
+Receiving objects: 100% (151/151), 1.34 MiB | 569.00 KiB/s, done.
+Resolving deltas: 100% (36/36), done.
+Checking connectivity... done.
+Submodule path &#39;assets&#39;: checked out &#39;e33f854d3f51f5ebd771a68da05ad0371a3c0570&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;递归克隆整个项目&#34;&gt;递归克隆整个项目&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git clone https://github.com/maonx/vimwiki-assets.git assets --recursive 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;递归克隆整个项目，子模块已经同时更新了，一步到位。&lt;/p&gt;
 &lt;h2 id=&#34;修改子模块&#34;&gt;修改子模块&lt;/h2&gt;
 &lt;p&gt;在子模块中修改文件后，直接提交到远程项目分支。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git add .
-$ git ci -m &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;commit&amp;#34;&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ git add .
+$ git ci -m &amp;quot;commit&amp;quot;
 $ git push origin HEAD:master
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;删除子模块&#34;&gt;删除子模块&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;删除子模块&#34;&gt;删除子模块&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;删除子模块比较麻烦，需要手动删除相关的文件，否则在添加子模块时有可能出现错误&lt;/strong&gt;
 同样以删除&lt;code&gt;assets&lt;/code&gt;文件夹为例&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;删除子模块文件夹&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ git rm --cached assets
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ git rm --cached assets
 $ rm -rf assets
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
 &lt;li&gt;删除&lt;code&gt;.gitmodules&lt;/code&gt;文件中相关子模块信息&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;[submodule &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;assets&amp;#34;&lt;/span&gt;]
-  &lt;span style=&#34;color:#00688b&#34;&gt;path&lt;/span&gt; = assets
-  &lt;span style=&#34;color:#00688b&#34;&gt;url&lt;/span&gt; = https://github.com/maonx/vimwiki-assets.git
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;[submodule &amp;quot;assets&amp;quot;]
+  path = assets
+  url = https://github.com/maonx/vimwiki-assets.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
 &lt;li&gt;删除&lt;code&gt;.git/config&lt;/code&gt;中的相关子模块信息&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;[submodule &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;assets&amp;#34;&lt;/span&gt;]
-  &lt;span style=&#34;color:#00688b&#34;&gt;url&lt;/span&gt; = https://github.com/maonx/vimwiki-assets.git
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;[submodule &amp;quot;assets&amp;quot;]
+  url = https://github.com/maonx/vimwiki-assets.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
 &lt;li&gt;删除&lt;code&gt;.git&lt;/code&gt;文件夹中的相关子模块文件&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ rm -rf .git/modules/assets
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/coding/git-submodule-%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9A%84%E7%AE%A1%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8/ - Syaofox 2020 copyright.</description>
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;$ rm -rf .git/modules/assets
+&lt;/code&gt;&lt;/pre&gt;
+- https://syaofox.github.io/post/git-submodule-%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9A%84%E7%AE%A1%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8/ - </description>
         </item>
     
     
     
         <item>
         <title>使用GitHub（二）：配置并使用Git创建版本库</title>
-        <link>https://syaofox.github.io/coding/%E4%BD%BF%E7%94%A8github%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/</link>
+        <link>https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8github%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/</link>
         <pubDate>Thu, 18 Jun 2020 09:12:27 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/coding/%E4%BD%BF%E7%94%A8github%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/</guid>
-        <description>霜天晓角 https://syaofox.github.io/coding/%E4%BD%BF%E7%94%A8github%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/ -&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
+        <guid>https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8github%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/</guid>
+        <description>云流 https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8github%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/ -&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;本文简单介绍使用GitHub对代码进行版本控制，包括&lt;strong&gt;添加SSHkey&lt;/strong&gt;、&lt;strong&gt;配置Git&lt;/strong&gt;、&lt;strong&gt;使用Git创建版本库&lt;/strong&gt;并在GitHub上进行管理，主要目的是对学习内容进行总结以及方便日后查阅。&lt;/li&gt;
@@ -372,7 +386,8 @@ $ rm -rf assets
     git config --global push.default matching
     git config --global core.quotepath false
     git config --global core.editor &amp;quot;vim&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;五句话，依次运行。&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;五句话，依次运行。&lt;/p&gt;
 &lt;h2 id=&#34;使用git创建版本库&#34;&gt;使用Git创建版本库&lt;/h2&gt;
 &lt;hr&gt;
 &lt;p&gt;使用 git 有三种方式，请按照需求选择。&lt;/p&gt;
@@ -405,13 +420,15 @@ $ rm -rf assets
 &lt;pre&gt;&lt;code&gt;touch index.html
 mkdir css
 touch css/style.css
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;运行 &lt;code&gt;git status -sb&lt;/code&gt; 可以看到文件前面有 &lt;code&gt;??&lt;/code&gt; 号&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;    touch index.html
     mkdir css
     touch css/style.css
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;这个 &lt;code&gt;??&lt;/code&gt; 表示 git不知道你要怎么对待这些变动。&lt;/p&gt;
 &lt;ol&gt;
@@ -422,11 +439,13 @@ touch css/style.css
 &lt;p&gt;你可以一个一个地 add&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;    git add index.html
     git add css/style.css
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;你也可以一次性 add&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;git add .
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;意思是把当前目录（.表示当前目录）里面的变动都加到「暂存区」&lt;/p&gt;
 &lt;ol&gt;
@@ -435,18 +454,21 @@ touch css/style.css
 &lt;pre&gt;&lt;code&gt;## Initial commit on master
 A  css/style.css
 A  index.html
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;A 的意思就是添加，也就是说你告诉 git，这些文件我要加到仓库里&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;A 的意思就是添加，也就是说你告诉 git，这些文件我要加到仓库里&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;使用 &lt;code&gt;git commit -m &amp;quot;信息&amp;quot;&lt;/code&gt; 将你 add过的内容「正式提交」到本地仓库（&lt;code&gt;.git&lt;/code&gt;就是本地仓库），并添加一些注释信息，方便日后查阅&lt;/li&gt;
 &lt;li&gt;你可以一个一个地 commit&lt;/li&gt;
 &lt;/ol&gt;
 &lt;pre&gt;&lt;code&gt;git add index.html
 git add css/style.css
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;你也可以一次性 commit&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;git commit . -m &amp;quot;添加了几个文件&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
 &lt;li&gt;再再次运行 &lt;code&gt;git status -sb&lt;/code&gt;，发现没有文件变动了，这是因为文件的变动已经记录在仓库里了。&lt;/li&gt;
 &lt;li&gt;这时你使用 &lt;code&gt;git log&lt;/code&gt; 就可以看到历史上的变动：&lt;/li&gt;
 &lt;/ol&gt;
@@ -457,7 +479,8 @@ git add css/style.css
  Date:   Thu Sep 28 22:30:43 2017 +0800
 
 添加几个文件
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
 &lt;li&gt;以上就是 &lt;code&gt;git add&lt;/code&gt; / &lt;code&gt;git commit&lt;/code&gt; 的一次完整过程。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h4 id=&#34;12-文件变动&#34;&gt;1.2 文件变动&lt;/h4&gt;
@@ -469,7 +492,8 @@ git add css/style.css
 &lt;/ol&gt;
 &lt;pre&gt;&lt;code&gt;## master
 M css/style.css
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这个 &lt;code&gt;M&lt;/code&gt; 的意思就是 Modified，表示这个文件被修改了&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这个 &lt;code&gt;M&lt;/code&gt; 的意思就是 Modified，表示这个文件被修改了&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;此时你如果想让改动保存到仓库里，你需要先 &lt;code&gt;git add css/style.css&lt;/code&gt; 或者也可以 &lt;code&gt;git add .&lt;/code&gt;&lt;/p&gt;
@@ -477,9 +501,11 @@ M css/style.css
 &lt;p&gt;注意&lt;/p&gt;
 &lt;p&gt;：由于这个&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;css/style.css
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以前被我们 add 过，你往文章上面看，我们是 add 过&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;以前被我们 add 过，你往文章上面看，我们是 add 过&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;css/style.css
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;的，所以此处的 git add操作可以省略，但我建议你使用 git 的前一个月，不要省略 git add。&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;的，所以此处的 git add操作可以省略，但我建议你使用 git 的前一个月，不要省略 git add。&lt;/p&gt;
 &lt;p&gt;换句话说，每一次改动，都要经过 &lt;code&gt;git add&lt;/code&gt; 和 &lt;code&gt;git commit&lt;/code&gt; 两个命令，才能被添加到 .git 本地仓库里。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -534,7 +560,8 @@ M css/style.css
 &lt;li&gt;
 &lt;p&gt;在 GitHub 上新建一个空仓库，名称随意，一般可以跟本地目录名一致，也叫做&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;git-demo-1
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E4%BD%BF%E7%94%A8GitHub%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8Git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/1460000013760572.jpg&#34; alt=&#34;建立空仓库&#34;&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E4%BD%BF%E7%94%A8GitHub%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8Git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/1460000013760572.jpg&#34; alt=&#34;建立空仓库&#34;&gt;&lt;/p&gt;
 &lt;p&gt;按照截图所示，除了仓库名，&lt;strong&gt;其他的什么都别改&lt;/strong&gt;，这样你才能创建一个&lt;strong&gt;空仓库&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -588,7 +615,8 @@ M css/style.css
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E4%BD%BF%E7%94%A8GitHub%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8Git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/1460000013760575.jpg&#34; alt=&#34;clone&#34;&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;gt; 请确保弹出层里的地址是 SSH 地址，也就是 git@github.com 开头的地址，如果不是，就点击 Use SSH 按钮，就**点击
 &amp;gt; Use SSH 按钮**。然后复制这个地址。
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
 &lt;li&gt;打开 Git Bash，找一个安全的目录，比如 &lt;code&gt;~/Desktop&lt;/code&gt; 。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;运行 &lt;code&gt;git clone 你刚才得到的以git@github.com开头的地址&lt;/code&gt;，运行完了你就会发现，桌面上多出一个 &lt;code&gt;git-demo-2&lt;/code&gt;。&lt;/p&gt;
@@ -640,7 +668,8 @@ M css/style.css
 git commit -m &amp;quot;信息&amp;quot;
 git pull  （一定不要忘记这一个命令）
 git push
-&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
 &lt;p&gt;为何要push之前要pull？
 &lt;strong&gt;push是推送&lt;/strong&gt;，&lt;strong&gt;pull是拉取&lt;/strong&gt;的意思。假如你在远端修改了文件，然后本地并没有同步更新，这时候你push的时候就会出现错误，因为两端不同步了。多人合作的时候这种问题就会出现的更多，所以现在养成push之前要pull的习惯。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -651,19 +680,20 @@ git add index2.html
 git commit -m &amp;quot;新建 index2.html&amp;quot;
 git pull
 git push
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后去 &lt;code&gt;git-demo-1&lt;/code&gt; 的 GitHub 页面，就能看到 &lt;code&gt;index2.html&lt;/code&gt; 出现在里面了。&lt;/p&gt;
-- https://syaofox.github.io/coding/%E4%BD%BF%E7%94%A8github%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/ - Syaofox 2020 copyright.</description>
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后去 &lt;code&gt;git-demo-1&lt;/code&gt; 的 GitHub 页面，就能看到 &lt;code&gt;index2.html&lt;/code&gt; 出现在里面了。&lt;/p&gt;
+- https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8github%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/ - </description>
         </item>
     
     
     
         <item>
         <title>使用GitHub（一）：添加SSHkey</title>
-        <link>https://syaofox.github.io/coding/%E4%BD%BF%E7%94%A8github%E4%B8%80%E6%B7%BB%E5%8A%A0sshkey/</link>
+        <link>https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8github%E4%B8%80%E6%B7%BB%E5%8A%A0sshkey/</link>
         <pubDate>Thu, 18 Jun 2020 09:01:14 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/coding/%E4%BD%BF%E7%94%A8github%E4%B8%80%E6%B7%BB%E5%8A%A0sshkey/</guid>
-        <description>霜天晓角 https://syaofox.github.io/coding/%E4%BD%BF%E7%94%A8github%E4%B8%80%E6%B7%BB%E5%8A%A0sshkey/ -&lt;blockquote&gt;
+        <guid>https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8github%E4%B8%80%E6%B7%BB%E5%8A%A0sshkey/</guid>
+        <description>云流 https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8github%E4%B8%80%E6%B7%BB%E5%8A%A0sshkey/ -&lt;blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;本文简单介绍使用GitHub对代码进行版本控制，包括&lt;strong&gt;添加SSHkey&lt;/strong&gt;、&lt;strong&gt;配置Git&lt;/strong&gt;、&lt;strong&gt;使用Git创建版本库&lt;/strong&gt;并在GitHub上进行管理，主要目的是对学习内容进行总结以及方便日后查阅。&lt;/li&gt;
 &lt;/ul&gt;
@@ -746,18 +776,18 @@ git push
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-- https://syaofox.github.io/coding/%E4%BD%BF%E7%94%A8github%E4%B8%80%E6%B7%BB%E5%8A%A0sshkey/ - Syaofox 2020 copyright.</description>
+- https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8github%E4%B8%80%E6%B7%BB%E5%8A%A0sshkey/ - </description>
         </item>
     
     
     
         <item>
         <title>Git 相关操作</title>
-        <link>https://syaofox.github.io/coding/git-%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</link>
+        <link>https://syaofox.github.io/post/git-%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</link>
         <pubDate>Thu, 18 Jun 2020 08:58:45 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/coding/git-%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</guid>
-        <description>霜天晓角 https://syaofox.github.io/coding/git-%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/ -&lt;h2 id=&#34;git仓库&#34;&gt;git仓库&lt;/h2&gt;
+        <guid>https://syaofox.github.io/post/git-%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</guid>
+        <description>云流 https://syaofox.github.io/post/git-%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/ -&lt;h2 id=&#34;git仓库&#34;&gt;git仓库&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;本地文件&lt;/li&gt;
 &lt;li&gt;缓存区（ &lt;code&gt;git add&lt;/code&gt; 命令可以添加项目到缓存区）&lt;/li&gt;
@@ -828,18 +858,18 @@ git push
 &lt;li&gt;&lt;code&gt;-r =&amp;gt; --remote&lt;/code&gt; 远程&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;-a =&amp;gt; --all&lt;/code&gt; 所有&lt;/li&gt;
 &lt;/ul&gt;
-- https://syaofox.github.io/coding/git-%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/ - Syaofox 2020 copyright.</description>
+- https://syaofox.github.io/post/git-%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/ - </description>
         </item>
     
     
     
         <item>
         <title>正则表达式速查表</title>
-        <link>https://syaofox.github.io/coding/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5%E8%A1%A8/</link>
+        <link>https://syaofox.github.io/post/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5%E8%A1%A8/</link>
         <pubDate>Thu, 18 Jun 2020 08:39:51 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/coding/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5%E8%A1%A8/</guid>
-        <description>霜天晓角 https://syaofox.github.io/coding/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5%E8%A1%A8/ -&lt;ul&gt;
+        <guid>https://syaofox.github.io/post/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5%E8%A1%A8/</guid>
+        <description>云流 https://syaofox.github.io/post/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5%E8%A1%A8/ -&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;常用表达式&lt;/p&gt;
 &lt;/li&gt;
@@ -912,18 +942,18 @@ git push
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5%E8%A1%A8/zz.jpg&#34; alt=&#34;正则表达式&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-- https://syaofox.github.io/coding/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5%E8%A1%A8/ - Syaofox 2020 copyright.</description>
+- https://syaofox.github.io/post/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5%E8%A1%A8/ - </description>
         </item>
     
     
     
         <item>
         <title>利用EverAver Emby Kodi打造本地AV库</title>
-        <link>https://syaofox.github.io/adult/%E5%88%A9%E7%94%A8everaver-emby-kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0av%E5%BA%93/</link>
+        <link>https://syaofox.github.io/post/%E5%88%A9%E7%94%A8everaver-emby-kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0av%E5%BA%93/</link>
         <pubDate>Thu, 18 Jun 2020 08:19:45 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/adult/%E5%88%A9%E7%94%A8everaver-emby-kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0av%E5%BA%93/</guid>
-        <description>霜天晓角 https://syaofox.github.io/adult/%E5%88%A9%E7%94%A8everaver-emby-kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0av%E5%BA%93/ -&lt;p&gt;&lt;strong&gt;W A R N I N G ！&lt;/strong&gt;&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/%E5%88%A9%E7%94%A8everaver-emby-kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0av%E5%BA%93/</guid>
+        <description>云流 https://syaofox.github.io/post/%E5%88%A9%E7%94%A8everaver-emby-kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0av%E5%BA%93/ -&lt;p&gt;&lt;strong&gt;W A R N I N G ！&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;※阅读正文前请保持房间明亮，并年满18岁。&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -993,20 +1023,21 @@ git push
 &lt;p&gt;用文本文档 / 编辑器打开&lt;code&gt;nfo&lt;/code&gt;文件便能看到整个&lt;code&gt;元数据&lt;/code&gt;的结构与编写规则。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-02a9b51a1f1446887f89bc7e92fc8d63.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;规则非常简单，看tag英文便能明白需要填入什么，比如：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;movie&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;title&lt;/span&gt;&amp;gt;影片标题&amp;lt;/&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;title&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;studio&lt;/span&gt;&amp;gt;制作组&amp;lt;/&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;studio&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;year&lt;/span&gt;&amp;gt;发行年份&amp;lt;/&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;year&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;premiered&lt;/span&gt;&amp;gt;具体发行时间&amp;lt;/&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;premiered&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;outline&lt;/span&gt;&amp;gt;影片大纲&amp;lt;/&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;outline&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;plot&lt;/span&gt;&amp;gt;内容简介&amp;lt;/&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;plot&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;runtime&lt;/span&gt;&amp;gt;影片时长&amp;lt;/&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;runtime&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;director&lt;/span&gt;&amp;gt;导演&amp;lt;/&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;director&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;actor&lt;/span&gt;&amp;gt;
-    &amp;lt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;name&lt;/span&gt;&amp;gt;演员&amp;lt;/&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;name&lt;/span&gt;&amp;gt;
-  &amp;lt;/&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;actor&lt;/span&gt;&amp;gt;
-&amp;lt;/&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;movie&lt;/span&gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;更多的&lt;code&gt;nfo&lt;/code&gt;编写规则请参阅wiki：&lt;a href=&#34;https://kodi.wiki/view/NFO_files&#34;&gt;NFO files&lt;/a&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;movie&amp;gt;
+  &amp;lt;title&amp;gt;影片标题&amp;lt;/title&amp;gt;
+  &amp;lt;studio&amp;gt;制作组&amp;lt;/studio&amp;gt;
+  &amp;lt;year&amp;gt;发行年份&amp;lt;/year&amp;gt;
+  &amp;lt;premiered&amp;gt;具体发行时间&amp;lt;/premiered&amp;gt;
+  &amp;lt;outline&amp;gt;影片大纲&amp;lt;/outline&amp;gt;
+  &amp;lt;plot&amp;gt;内容简介&amp;lt;/plot&amp;gt;
+  &amp;lt;runtime&amp;gt;影片时长&amp;lt;/runtime&amp;gt;
+  &amp;lt;director&amp;gt;导演&amp;lt;/director&amp;gt;
+  &amp;lt;actor&amp;gt;
+    &amp;lt;name&amp;gt;演员&amp;lt;/name&amp;gt;
+  &amp;lt;/actor&amp;gt;
+&amp;lt;/movie&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;更多的&lt;code&gt;nfo&lt;/code&gt;编写规则请参阅wiki：&lt;a href=&#34;https://kodi.wiki/view/NFO_files&#34;&gt;NFO files&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;优缺点不言自明，纯人工是最准确的方案，也是最费事的方案。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;而当我们无法通过软件找到影片&lt;code&gt;元数据&lt;/code&gt;时，也只能参考日本通贩网站上的信息（如&lt;a href=&#34;http://www.dmm.co.jp/digital/&#34;&gt;DMM&lt;/a&gt;），手动编写&lt;code&gt;nfo&lt;/code&gt;了。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;~——软件搞不定问题的话，用人力搞定不就行了？~&lt;/strong&gt;&lt;/p&gt;
@@ -1014,11 +1045,12 @@ git push
 &lt;p&gt;比起通过plex/emby的媒体库页面管理影片，在windows资源管理器添加&lt;code&gt;网络位置&lt;/code&gt;映射NAS上的硬盘，通过&lt;code&gt;smb&lt;/code&gt;管理文件显然更加便利。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;所以我们在动工之前，最好明确影片存放层级，利用文件夹归类。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;我的目录层级如下：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;硬盘根目录/顶层文件夹
+&lt;pre&gt;&lt;code class=&#34;language-plain&#34;&gt;硬盘根目录/顶层文件夹
 ——演员实用度/等级（第一层子文件夹）
 ————演员名字（第二层子文件夹）
 –——————演员所有影片
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-0fa576214251e47e2557e84cdcaf7f03.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-0fa576214251e47e2557e84cdcaf7f03.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;~为了方便理解，我特地把原本N/R/SR/SSR/UR的沙雕抽卡等级改成了“星级”。~&lt;/p&gt;
 &lt;p&gt;毕竟出演AV的老师实在太多，不划分层级并归类，直接全扔一起会完全不知道谁是谁。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-13e01cec63239696371b313ec5a0def6.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
@@ -1045,17 +1077,20 @@ git push
 &lt;/ul&gt;
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-7b95034796fcb12adef2c66334149a0e.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;格式设定&lt;/code&gt;中的&lt;code&gt;命名格式&lt;/code&gt;修改为：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;%actor% - [%year%] %title% [%num%]
+&lt;pre&gt;&lt;code class=&#34;language-plain&#34;&gt;%actor% - [%year%] %title% [%num%]
 
 显示效果如下：
 女优名字 - [作品年份] 作品标题 [作品番号].mp4
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;建立层级目录&lt;/code&gt;修改为：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;#%actor%
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-b078bac313823940314da7d8318969dc.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;建立层级目录&lt;/code&gt;修改为：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-plain&#34;&gt;#%actor%
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-b078bac313823940314da7d8318969dc.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;务必加一个符号在&lt;code&gt;%actor%&lt;/code&gt;前面（如“#”号），否则导入时Emby会将演员目录下的所有片子错误识别成“同一作品”。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;更名设定&lt;/code&gt;的第一项建议修改为：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-plain&#34; data-lang=&#34;plain&#34;&gt;NULL
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;EverAver配置完毕。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-plain&#34;&gt;NULL
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;EverAver配置完毕。&lt;/p&gt;
 &lt;h4 id=&#34;使用everavere4bdbfe794a8everaver&#34;&gt;使用EverAver&lt;a href=&#34;#%E4%BD%BF%E7%94%A8everaver&#34;&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;使用前请在&lt;code&gt;搜寻品番&lt;/code&gt;的文本框内右键，选择你的影片类型。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E5%88%A9%E7%94%A8EverAver-Emby-Kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0AV%E5%BA%93/1569658013-3d99f19bf80c863569b9c41a65bfa3ef.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
@@ -1381,18 +1416,18 @@ git push
 &lt;p&gt;关闭电视，掏出手机。&lt;/p&gt;
 &lt;p&gt;点开由&lt;a href=&#34;https://twitter.com/tanave_&#34;&gt;田辺京&lt;/a&gt;老师绘制的儿童色情漫画——&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;~——“还是纸片人适合老子。”~&lt;/strong&gt;&lt;/p&gt;
-- https://syaofox.github.io/adult/%E5%88%A9%E7%94%A8everaver-emby-kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0av%E5%BA%93/ - Syaofox 2020 copyright.</description>
+- https://syaofox.github.io/post/%E5%88%A9%E7%94%A8everaver-emby-kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0av%E5%BA%93/ - </description>
         </item>
     
     
     
         <item>
         <title>欧美 Porn Star 收录</title>
-        <link>https://syaofox.github.io/adult/%E6%AC%A7%E7%BE%8Eporn-star%E6%94%B6%E5%BD%95/</link>
+        <link>https://syaofox.github.io/post/%E6%AC%A7%E7%BE%8Eporn-star%E6%94%B6%E5%BD%95/</link>
         <pubDate>Wed, 17 Jun 2020 21:41:33 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/adult/%E6%AC%A7%E7%BE%8Eporn-star%E6%94%B6%E5%BD%95/</guid>
-        <description>霜天晓角 https://syaofox.github.io/adult/%E6%AC%A7%E7%BE%8Eporn-star%E6%94%B6%E5%BD%95/ -&lt;h2 id=&#34;a&#34;&gt;A&lt;/h2&gt;
+        <guid>https://syaofox.github.io/post/%E6%AC%A7%E7%BE%8Eporn-star%E6%94%B6%E5%BD%95/</guid>
+        <description>云流 https://syaofox.github.io/post/%E6%AC%A7%E7%BE%8Eporn-star%E6%94%B6%E5%BD%95/ -&lt;h2 id=&#34;a&#34;&gt;A&lt;/h2&gt;
 &lt;h3 id=&#34;abigaile-johnson&#34;&gt;Abigaile Johnson&lt;/h3&gt;
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E6%AC%A7%E7%BE%8EPorn-Star%E6%94%B6%E5%BD%95/1569250503494.jpg&#34; alt=&#34;Abigaile Johnson&#34;&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -2065,18 +2100,18 @@ Durden，2007年11月他们正式结婚。&lt;/p&gt;
 &lt;p&gt;在2007年5月她的第2个女儿降生。不过她和Tyler Durden分手了，也就是2008年5月的事。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-- https://syaofox.github.io/adult/%E6%AC%A7%E7%BE%8Eporn-star%E6%94%B6%E5%BD%95/ - Syaofox 2020 copyright.</description>
+- https://syaofox.github.io/post/%E6%AC%A7%E7%BE%8Eporn-star%E6%94%B6%E5%BD%95/ - </description>
         </item>
     
     
     
         <item>
         <title>AV女优明星脸</title>
-        <link>https://syaofox.github.io/adult/av%E5%A5%B3%E4%BC%98%E6%98%8E%E6%98%9F%E8%84%B8/</link>
+        <link>https://syaofox.github.io/post/av%E5%A5%B3%E4%BC%98%E6%98%8E%E6%98%9F%E8%84%B8/</link>
         <pubDate>Wed, 17 Jun 2020 20:21:59 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/adult/av%E5%A5%B3%E4%BC%98%E6%98%8E%E6%98%9F%E8%84%B8/</guid>
-        <description>霜天晓角 https://syaofox.github.io/adult/av%E5%A5%B3%E4%BC%98%E6%98%8E%E6%98%9F%E8%84%B8/ -&lt;h2 id=&#34;苍井空-vs-沈傲君&#34;&gt;苍井空 vs 沈傲君&lt;/h2&gt;
+        <guid>https://syaofox.github.io/post/av%E5%A5%B3%E4%BC%98%E6%98%8E%E6%98%9F%E8%84%B8/</guid>
+        <description>云流 https://syaofox.github.io/post/av%E5%A5%B3%E4%BC%98%E6%98%8E%E6%98%9F%E8%84%B8/ -&lt;h2 id=&#34;苍井空-vs-沈傲君&#34;&gt;苍井空 vs 沈傲君&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/AV%E5%A5%B3%E4%BC%98%E6%98%8E%E6%98%9F%E8%84%B8/%E8%8B%8D%E4%BA%95%E7%A9%BA.jpg&#34; alt=&#34;苍井空&#34;&gt;
 &lt;img src=&#34;https://syaofox.github.io/AV%E5%A5%B3%E4%BC%98%E6%98%8E%E6%98%9F%E8%84%B8/%E6%B2%88%E5%82%B2%E5%90%9B.jpg&#34; alt=&#34;沈傲君&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -2154,18 +2189,18 @@ Durden，2007年11月他们正式结婚。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;遥惠美出身于日本东京都。身高：162厘米。兴趣：料理。专长：足球。看见没！人家的专长也是体育系&amp;hellip;&lt;/p&gt;
 &lt;/blockquote&gt;
-- https://syaofox.github.io/adult/av%E5%A5%B3%E4%BC%98%E6%98%8E%E6%98%9F%E8%84%B8/ - Syaofox 2020 copyright.</description>
+- https://syaofox.github.io/post/av%E5%A5%B3%E4%BC%98%E6%98%8E%E6%98%9F%E8%84%B8/ - </description>
         </item>
     
     
     
         <item>
         <title>成人版大富翁~华丽人生2</title>
-        <link>https://syaofox.github.io/acg/%E6%88%90%E4%BA%BA%E7%89%88%E5%A4%A7%E5%AF%8C%E7%BF%81%E5%8D%8E%E4%B8%BD%E4%BA%BA%E7%94%9F2/</link>
+        <link>https://syaofox.github.io/post/%E6%88%90%E4%BA%BA%E7%89%88%E5%A4%A7%E5%AF%8C%E7%BF%81%E5%8D%8E%E4%B8%BD%E4%BA%BA%E7%94%9F2/</link>
         <pubDate>Tue, 16 Jun 2020 22:41:29 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/acg/%E6%88%90%E4%BA%BA%E7%89%88%E5%A4%A7%E5%AF%8C%E7%BF%81%E5%8D%8E%E4%B8%BD%E4%BA%BA%E7%94%9F2/</guid>
-        <description>霜天晓角 https://syaofox.github.io/acg/%E6%88%90%E4%BA%BA%E7%89%88%E5%A4%A7%E5%AF%8C%E7%BF%81%E5%8D%8E%E4%B8%BD%E4%BA%BA%E7%94%9F2/ -&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <guid>https://syaofox.github.io/post/%E6%88%90%E4%BA%BA%E7%89%88%E5%A4%A7%E5%AF%8C%E7%BF%81%E5%8D%8E%E4%B8%BD%E4%BA%BA%E7%94%9F2/</guid>
+        <description>云流 https://syaofox.github.io/post/%E6%88%90%E4%BA%BA%E7%89%88%E5%A4%A7%E5%AF%8C%E7%BF%81%E5%8D%8E%E4%B8%BD%E4%BA%BA%E7%94%9F2/ -&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;台湾天堂鸟，童年回忆的厂家。我第一次玩这个游戏是在97年，肯定比这个早多了= =&lt;/p&gt;
 &lt;p&gt;华丽人生的主题非常简单——大富翁，最快达成胜利条件（规定时间内现金最多或最先到达设定金额）者胜出。&lt;/p&gt;
 &lt;p&gt;而游戏中挣钱的手段就只有&lt;strong&gt;积攒女朋友&lt;/strong&gt;一项。&lt;/p&gt;
@@ -2247,7 +2282,7 @@ windows计算器(程序员版) x 1&lt;/p&gt;
 &lt;p&gt;要注意的是用修改的方始从别人手上抢女友，原本的爱情跟疲劳会直接继承，还有要是该女孩已经在对手的店铺工作，改过来的话还是会在原本的店铺上班， 但是每个月的薪水会拿给你，这样除非对手卖地，不然女孩会再也无法换工作。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-- https://syaofox.github.io/acg/%E6%88%90%E4%BA%BA%E7%89%88%E5%A4%A7%E5%AF%8C%E7%BF%81%E5%8D%8E%E4%B8%BD%E4%BA%BA%E7%94%9F2/ - Syaofox 2020 copyright.</description>
+- https://syaofox.github.io/post/%E6%88%90%E4%BA%BA%E7%89%88%E5%A4%A7%E5%AF%8C%E7%BF%81%E5%8D%8E%E4%B8%BD%E4%BA%BA%E7%94%9F2/ - </description>
         </item>
     
     

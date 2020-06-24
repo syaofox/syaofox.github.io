@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Mergerfs on 霜天晓角</title>
+    <title>Mergerfs on 云流</title>
     <link>https://syaofox.github.io/tags/mergerfs/</link>
-    <description>Recent content in Mergerfs on 霜天晓角</description>
+    <description>Recent content in Mergerfs on 云流</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>Syaofox 2020 copyright.</copyright>
     <lastBuildDate>Thu, 18 Jun 2020 11:03:08 +0800</lastBuildDate>
     
 	<atom:link href="https://syaofox.github.io/tags/mergerfs/index.xml" rel="self" type="application/rss+xml" />
@@ -14,18 +13,11 @@
     
     <item>
       <title>使用 Mergerfs 合并多块硬盘的剩余空间</title>
-      <link>https://syaofox.github.io/linux/%E4%BD%BF%E7%94%A8-mergerfs-%E5%90%88%E5%B9%B6%E5%A4%9A%E5%9D%97%E7%A1%AC%E7%9B%98%E7%9A%84%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4/</link>
+      <link>https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8-mergerfs-%E5%90%88%E5%B9%B6%E5%A4%9A%E5%9D%97%E7%A1%AC%E7%9B%98%E7%9A%84%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4/</link>
       <pubDate>Thu, 18 Jun 2020 11:03:08 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/linux/%E4%BD%BF%E7%94%A8-mergerfs-%E5%90%88%E5%B9%B6%E5%A4%9A%E5%9D%97%E7%A1%AC%E7%9B%98%E7%9A%84%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4/</guid>
-      <description>两年前，我买了一台 HP Gen8 微型服务器，其功能之一是作为网络存储。当时它只接了一块 SSD 作为系统盘和一块 2 TB HDD 作为存储盘。随着存储文件的增多，我又先后增加了两块 4 TB HDD，现在它已经接了共计 10 TB 的存储空间。我觉得有必要分享一下我用来将这些硬盘的空间合并在一起的工具——mergerfs。
-原文出处:https://wzyboy.im/post/1148.html
-一、网络存储之硬盘困境 在讲工具之前，我有必要先说明一下我目前的存储方案。
-我的 Gen8 没有直接装通用操作系统，而是先通过 ESXi 实现了虚拟化，再将存储盘通过 RDM 的方式完整地映射给其中的一台虚拟机（Arch Linux）。在 Arch Linux 里运行了 Samba, NFS, aria2 RPC, Transmission daemon, BorgBackup 等服务，供局域网电脑存取文件、远程下载，以及备份。
-我在存储盘里的东西分为两类：一类是多份备份中的一份BorgBackup；另一类是从互联网上下载的可再生资源。前者本身有冗余，后者丢了不心疼。出于以上考虑，为了硬盘空间利用率的最大化，我并没有采用 RAID 1 或 RAID 5 之类的冗余存储的方案，而是采用了 JBOD 方案——Just Bunch of Disks。
-不使用 RAID 做冗余还有一个原因：我希望这些硬盘从 Gen8 上拔下来之后接到别的电脑上我能直接读取它们。
-当我的第一块存储盘快要装满的时候，我买了第二块盘，这时候就面临了一个问题：如何把两块硬盘的空间合并？考虑到我已经在运行的那些服务，我自然不想再增加一个额外的挂载点。我曾考虑过三个硬盘空间合并方案：
- RAID 0。与 RAID 1 或 RAID 5 不同，RAID 0 是对多块相同容量的硬盘进行平行读写，从而提升性能，其额外效果就是硬盘空间也被合并了。但这种方案非常危险：多块硬盘中的任意一块挂了，所有的数据都将无法读取。这个方案不行。 LVM。相比 RAID 0 的原理，LVM 只是将空间连接起来了，而没有平行读写，所以多块硬盘中的一块挂了，也只是丢了那一块的数据。但创建过 LVM PV 的硬盘，在别的机器上读取起来比较麻烦，所以这个方案我也不喜欢。 MooseFS。相对前两种方案，由于它在 FUSE 层面实现，所以更灵活一些，甚至可以通过网络，把没有挂在 Gen8 上的硬盘也纳入存储空间。但这个方案和 LVM 一样，协作性不强，硬盘在别的机器上只能看到一堆数据碎块文件，因此也被我否决了。  以上三种方案还有一个问题：我需要把硬盘里现有的数据全部倒出来再倒进去……我需要的是能将文件分散存储到多块硬盘，同时又不改变文件形态的方案。</description>
+      <guid>https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8-mergerfs-%E5%90%88%E5%B9%B6%E5%A4%9A%E5%9D%97%E7%A1%AC%E7%9B%98%E7%9A%84%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4/</guid>
+      <description>两年前，我买了一台 HP Gen8 微型服务器，其功能之一是作为网络存储。当时它只接了一块 SSD 作为系统盘和一块 2 TB HDD 作为存储盘。随着存储文件的增多，我又先后增加了两块 4 TB HDD，现在它已经接了共计 10 TB 的存储空间。我觉</description>
     </item>
     
   </channel>
