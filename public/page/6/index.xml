@@ -716,7 +716,7 @@ OVER&lt;/p&gt;
 &lt;h2 id=&#34;游戏修改&#34;&gt;游戏修改&lt;/h2&gt;
 &lt;h3 id=&#34;直接看图法&#34;&gt;直接看图法：&lt;/h3&gt;
 &lt;p&gt;将&lt;code&gt;DR4.BAT&lt;/code&gt;中的：
-&lt;code&gt;DRA4 start.mes HXC&lt;/code&gt; 改成 
+&lt;code&gt;DRA4 start.mes HXC&lt;/code&gt; 改成
 &lt;code&gt;H.MES&lt;/code&gt; 出现选单，欣赏众美女
 &lt;code&gt;TEST.MES&lt;/code&gt;　秀出所有图片&lt;/p&gt;
 &lt;h3 id=&#34;修改战斗数据&#34;&gt;修改战斗数据&lt;/h3&gt;
