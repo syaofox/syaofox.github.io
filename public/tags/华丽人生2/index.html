@@ -24,21 +24,6 @@
 
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-169928403-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
-
-
 
 <script src="/vendor/js/jquery.min.js" ></script>
 <script src="/vendor/js/popper.min.js" ></script>
@@ -50,9 +35,6 @@ if (!doNotTrack) {
 
 
 
-<link rel="icon" href="/favicon.ico">
-
-
 
 
 <link rel="stylesheet" href="https://syaofox.github.io/scss/journal.min.2725bdf31310513b302e62b01700d09aeff9316f5344e988decd15737cf0b3c5.css" integrity="sha256-JyW98xMQUTswLmKwFwDQmu/5MW9TROmI3s0Vc3zws8U=" media="screen">
@@ -62,7 +44,7 @@ if (!doNotTrack) {
 <link rel="stylesheet" href="https://syaofox.github.io/scss/dark-mode.min.e93e28b95f534b47ed30828c25fef57eb3c43aa0270721098b7f9d4f1c40bf1f.css" integrity="sha256-6T4ouV9TS0ftMIKMJf71frPEOqAnByEJi3&#43;dTxxAvx8=" media="screen">
 
 
-<script src="https://syaofox.github.io//js/loadCSS.js"></script>
+<script src="https://syaofox.github.io/js/loadCSS.js"></script>
 <script>
   loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
 </script>
@@ -82,14 +64,14 @@ if (!doNotTrack) {
 </head><body>
     	<div id="app"><div ref="sideContainer" class="side-container">
     
-    <a class="a-block nav-head false" href="https://syaofox.github.io/">
+    <a class="a-block nav-head false" href="https://syaofox.github.io">
     
         <div class="nav-title">
-            霜天晓角
+            云流
         </div>
         
         <div class="nav-subtitle">
-            心似白云常自在
+            心似白云常自在 意如流水任东西
         </div>
         
     </a>
@@ -97,62 +79,20 @@ if (!doNotTrack) {
     <div class="nav-link-list">
         
         
-            
-            
-            
-            
-            
-            <a class="a-block nav-link-item false" href="/archives">
-                归档
-            </a>
-            
-        
-            
-            
-            
-            
-            
-            <a class="a-block nav-link-item false" href="/categories">
-                分类
-            </a>
-            
-        
-            
-            
-            
-                
-            
-            
-            
-            <a class="a-block nav-link-item active" href="/tags">
-                标签
-            </a>
-            
-        
-            
-            
-            
-            
-            
-            <a class="a-block nav-link-item false" href="/index.xml">
-                RSS 订阅
-            </a>
-            
-        
     </div>
 
     
 
     <div class="nav-footer">
         
-Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+ <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>  <a href="https://amazingrise.net">Rise</a>
 <br>
-移植自 <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+ <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
 <br>
 
 &copy;
 	
-	Syaofox 2020 copyright.
+	2020 云流
 	
 
     </div>
@@ -187,48 +127,6 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
             
             
             
-                
-                
-                
-                
-                
-                <a class="a-block drawer-menu-item false" href="/archives">
-                    归档
-                </a>
-                
-            
-                
-                
-                
-                
-                
-                <a class="a-block drawer-menu-item false" href="/categories">
-                    分类
-                </a>
-                
-            
-                
-                
-                
-                    
-                
-                
-                
-                <a class="a-block drawer-menu-item active" href="/tags">
-                    标签
-                </a>
-                
-            
-                
-                
-                
-                
-                
-                <a class="a-block drawer-menu-item false" href="/index.xml">
-                    RSS 订阅
-                </a>
-                
-            
             
         </div>
     </div>
@@ -244,8 +142,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                 menu
             </i>
         </button>
-        <a ref="navTitle" class="navbar-brand" href="https://syaofox.github.io/">
-            霜天晓角
+        <a ref="navTitle" class="navbar-brand" href="https://syaofox.github.io">
+            云流
         </a>
         
         <button type="button" class="nav-darkmode-toggle" v-on:click="toggleDarkMode">
@@ -261,10 +159,10 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 </nav>
 <div class="single-column-header-container" ref="pageHead"
      v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
-    <a href="https://syaofox.github.io/">
-        <div class="single-column-header-title">霜天晓角</div>
+    <a href="https://syaofox.github.io">
+        <div class="single-column-header-title">云流</div>
         
-        <div class="single-column-header-subtitle">心似白云常自在</div>
+        <div class="single-column-header-subtitle">心似白云常自在 意如流水任东西</div>
         
 
     </a>
@@ -276,11 +174,11 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
             <div class="post-item post-item-no-gaps">
                 <div class="post-item-info-wrapper">
                     <div class="post-item-title  post-item-title-small">
-                        <a href="https://syaofox.github.io/">霜天晓角</a> / 华丽人生2
+                        <a href="https://syaofox.github.io/">云流</a> / 华丽人生2
                     </div>
                 </div>
             </div>
-        </div><a href="/acg/%E6%88%90%E4%BA%BA%E7%89%88%E5%A4%A7%E5%AF%8C%E7%BF%81%E5%8D%8E%E4%B8%BD%E4%BA%BA%E7%94%9F2/" class="a-block">
+        </div><a href="/post/%E6%88%90%E4%BA%BA%E7%89%88%E5%A4%A7%E5%AF%8C%E7%BF%81%E5%8D%8E%E4%B8%BD%E4%BA%BA%E7%94%9F2/" class="a-block">
             <div class="post-item-wrapper">
                 <div class="post-item post-item-no-gaps">
                     <div class="post-item-info-wrapper">
@@ -288,20 +186,9 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
                             成人版大富翁~华丽人生2
                         </div>
                         <div class="post-item-meta">
-    2020-06-16
+    
     &emsp;
     
-    
-    <i class="material-icons" style="font-size:10px">schedule</i>
-    
-
-    
-    
-
-    
-    16 min
-    
-    51 s
     
     
     &emsp;
@@ -318,14 +205,14 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 
 
 <div id="single-column-footer">
-Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+ <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>  <a href="https://amazingrise.net">Rise</a>
 <br>
-移植自 <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+ <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
 <br>
 
 &copy;
 	
-	Syaofox 2020 copyright.
+	2020 云流
 	
 </div>
             </div>
@@ -429,6 +316,6 @@ app = new Vue({
 });
 </script>
 
-<script src="https://syaofox.github.io//js/journal.js"></script>
+<script src="https://syaofox.github.io/js/journal.js"></script>
     </body>
 </html>

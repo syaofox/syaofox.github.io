@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Exiftool on 霜天晓角</title>
+    <title>Exiftool on 云流</title>
     <link>https://syaofox.github.io/tags/exiftool/</link>
-    <description>Recent content in Exiftool on 霜天晓角</description>
+    <description>Recent content in Exiftool on 云流</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>Syaofox 2020 copyright.</copyright>
     <lastBuildDate>Thu, 18 Jun 2020 09:55:26 +0800</lastBuildDate>
     
 	<atom:link href="https://syaofox.github.io/tags/exiftool/index.xml" rel="self" type="application/rss+xml" />
@@ -14,15 +13,11 @@
     
     <item>
       <title>图片 EXIF 信息查看与 Exiftool 使用</title>
-      <link>https://syaofox.github.io/software/exiftools-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</link>
+      <link>https://syaofox.github.io/post/exiftools-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</link>
       <pubDate>Thu, 18 Jun 2020 09:55:26 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/software/exiftools-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
-      <description>一、什么是EXIF ​ 可交换图像文件格式常被简称为Exif（Exchangeable image file format），是专门为数码相机的照片设定的，可以记录数码照片的属性信息和拍摄数据。Exif 可以被附加在 JPEG、TIFF、RIFF 等文件之中，为其增加有关数码相机拍摄信息的内容和缩略图或图像处理软件的一些版本信息。
-了解更多：维基百科
-二、Exiftool使用 一）为什么使用Exiftool  exiftool是经过测试发现对图片EXIF信息解析支持是最好的（如果有更好的请补充） exiftool支持图片EXIF信息查询，修改及批量操作，还支持其它文件的EXIF操作。 安全隐私问题，因为经常有网上暴露图片隐私问题，使用在线需要上传到服务器。采用exiftool保证了图片的安全和隐私，显然是最适合的。 ​ 我们知道文件后缀名并不能代表文件的类型格式，比如上图webp格式后缀名是jpg，换言之一张jpg后缀名图片可能不是jpg图片，可能是web，png，text或其它类型文件。那么怎么快速了解它是哪种类型文件并获取它的一些其它信息呢，这时exiftool就派上用场了，试了下其它几个Exif工具，也用Mac/iOS原生代码测试了下，发现不能有效的读取jpg后缀的webp图片，而exiftool能很好支持。注意并非每一张图片都包含 exif 信息，像微信朋友圈如果发表的不是原图就没有。  二）Exiftool安装与使用 1、exiftool安装 $ brew install exiftool 或直接下载：https://sno.phy.queensu.ca/~phil/exiftool/
-2、查看EXIF信息 $ exiftool photo.jpg #默认显示所有的信息 exiftool+图片路径/图片名.jpg 输出信息如下：
-#$ ExifTool /Users/apple/Desktop/photo.jpg ExifTool Version Number : 10.80 File Name : photo.jpg Directory : /Users/pconline/Desktop File Size : 18 kB File Modification Date/Time : 2018:03:02 10:22:03+08:00 File Access Date/Time : 2018:03:02 11:47:58+08:00 File Inode Change Date/Time : 2018:03:02 11:47:57+08:00 File Permissions : rw-r--r-- File Type : WEBP File Type Extension : webp MIME Type : image/webp VP8 Version : 0 (bicubic reconstruction, normal loop) Image Width : 640 Horizontal Scale : 0 Image Height : 400 Vertical Scale : 0 Image Size : 640x400 Megapixels : 0.</description>
+      <guid>https://syaofox.github.io/post/exiftools-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
+      <description>一、什么是EXIF ​ 可交换图像文件格式常被简称为Exif（Exchangeable image file format），是专门为数码相机的照片设定的，可以记录数码照片的属性信息和拍摄数据。Exif 可以被附加在 JPEG、</description>
     </item>
     
   </channel>

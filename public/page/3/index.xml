@@ -1,11 +1,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>霜天晓角</title>
+    <title>云流</title>
     <link>https://syaofox.github.io/</link>
-    <description>Recent content on 霜天晓角</description>
+    <description>Recent content on 云流</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>Syaofox 2020 copyright.</copyright>
     <lastBuildDate>Thu, 18 Jun 2020 20:31:51 +0800</lastBuildDate>
     
         <atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml" />
@@ -14,37 +13,44 @@
     
         <item>
         <title>Ubuntu 的 UPS 电源安装</title>
-        <link>https://syaofox.github.io/linux/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/</link>
+        <link>https://syaofox.github.io/post/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/</link>
         <pubDate>Thu, 18 Jun 2020 11:02:01 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/ -&lt;p&gt;跑程序，网络不是最重要，但是长时间的稳定电源还是非常重要的，所以加一个UPS可以避免一些短时间的断电。&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/</guid>
+        <description>云流 https://syaofox.github.io/post/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/ -&lt;p&gt;跑程序，网络不是最重要，但是长时间的稳定电源还是非常重要的，所以加一个UPS可以避免一些短时间的断电。&lt;/p&gt;
 &lt;p&gt;首先看看usb有没有成功连接到ups电源,一般会出现下面信息&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ lsusb Bus &lt;span style=&#34;color:#b452cd&#34;&gt;002&lt;/span&gt; Device 004: ID 051d:0002 American Power Conversion Uninterruptible Power Supply
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装很简单，就是一句命令&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt-get -y install apcupsd
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;备份文件&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo cp /etc/apcupsd/apcupsd.conf /etc/apcupsd/apcupsd.conf.bak
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;编辑下面文件&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ lsusb Bus 002 Device 004: ID 051d:0002 American Power Conversion Uninterruptible Power Supply
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;安装很简单，就是一句命令&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get -y install apcupsd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;备份文件&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo cp /etc/apcupsd/apcupsd.conf /etc/apcupsd/apcupsd.conf.bak
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;编辑下面文件&lt;/p&gt;
 &lt;p&gt;sudo nano /etc/apcupsd/apcupsd.conf&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;UPSNAME smartups750
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;UPSNAME smartups750
 UPSCABLE usb
 UPSTYPE usb
 DEVICE 
-POLLTIME &lt;span style=&#34;color:#b452cd&#34;&gt;60&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;另外一个文件&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo cp /etc/default/apcupsd /etc/default/apcupsd.bak
+POLLTIME 60
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;另外一个文件&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo cp /etc/default/apcupsd /etc/default/apcupsd.bak
 sudo nano /etc/default/apcupsd
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;内容为&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#00688b&#34;&gt;ISCONFIGURED&lt;/span&gt;=yes
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;重启服务&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo systemctl restart apcupsd.service
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后可以运行下面命令看ups电源的状态&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ apcaccess status
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;内容为&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ISCONFIGURED=yes
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;重启服务&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo systemctl restart apcupsd.service
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后可以运行下面命令看ups电源的状态&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ apcaccess status
 APC      : 001,037,0923
 DATE     : 2017-02-05 04:57:23 +0800  
 HOSTNAME : gtx1080
-VERSION  : 3.14.12 (&lt;span style=&#34;color:#b452cd&#34;&gt;29&lt;/span&gt; March 2014) debian
+VERSION  : 3.14.12 (29 March 2014) debian
 UPSNAME  : gtx1080
 CABLE    : USB Cable
 DRIVER   : USB UPS Driver
@@ -56,141 +62,155 @@ LINEV    : 230.0 Volts
 LOADPCT  : 7.0 Percent
 BCHARGE  : 100.0 Percent
 TIMELEFT : 83.1 Minutes
-MBATTCHG : &lt;span style=&#34;color:#b452cd&#34;&gt;5&lt;/span&gt; Percent
-MINTIMEL : &lt;span style=&#34;color:#b452cd&#34;&gt;3&lt;/span&gt; Minutes
-MAXTIME  : &lt;span style=&#34;color:#b452cd&#34;&gt;0&lt;/span&gt; Seconds
+MBATTCHG : 5 Percent
+MINTIMEL : 3 Minutes
+MAXTIME  : 0 Seconds
 SENSE    : Medium
 LOTRANS  : 155.0 Volts
 HITRANS  : 280.0 Volts
 ALARMDEL : No alarm
 BATTV    : 28.1 Volts
 LASTXFER : Low line voltage
-NUMXFERS : &lt;span style=&#34;color:#b452cd&#34;&gt;1&lt;/span&gt;
+NUMXFERS : 1
 XONBATT  : 2017-02-05 03:09:35 +0800  
-TONBATT  : &lt;span style=&#34;color:#b452cd&#34;&gt;0&lt;/span&gt; Seconds
-CUMONBATT: &lt;span style=&#34;color:#b452cd&#34;&gt;672&lt;/span&gt; Seconds
+TONBATT  : 0 Seconds
+CUMONBATT: 672 Seconds
 XOFFBATT : 2017-02-05 03:20:47 +0800  
 SELFTEST : NO
 STATFLAG : 0x05000008
 SERIALNO : 3B1644X34934  
 BATTDATE : 2016-11-05
-NOMINV   : &lt;span style=&#34;color:#b452cd&#34;&gt;230&lt;/span&gt; Volts
+NOMINV   : 230 Volts
 NOMBATTV : 24.0 Volts
-NOMPOWER : &lt;span style=&#34;color:#b452cd&#34;&gt;700&lt;/span&gt; Watts
+NOMPOWER : 700 Watts
 FIRMWARE : 926.T2 .I USB FW:T2
 END APC  : 2017-02-05 04:57:28 +0800 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在空载的情况下可以运行&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;TIMELEFT : 83.1 Minutes
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/linux/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/ - Syaofox 2020 copyright.</description>
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在空载的情况下可以运行&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;TIMELEFT : 83.1 Minutes
+&lt;/code&gt;&lt;/pre&gt;
+- https://syaofox.github.io/post/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/ - </description>
         </item>
     
     
     
         <item>
         <title>UPS 通过 ping 实现 NAS 断电自动关机</title>
-        <link>https://syaofox.github.io/linux/ups%E9%80%9A%E8%BF%87ping%E5%AE%9E%E7%8E%B0nas%E6%96%AD%E7%94%B5%E8%87%AA%E5%8A%A8%E5%85%B3%E6%9C%BA/</link>
+        <link>https://syaofox.github.io/post/ups%E9%80%9A%E8%BF%87ping%E5%AE%9E%E7%8E%B0nas%E6%96%AD%E7%94%B5%E8%87%AA%E5%8A%A8%E5%85%B3%E6%9C%BA/</link>
         <pubDate>Thu, 18 Jun 2020 11:00:48 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/ups%E9%80%9A%E8%BF%87ping%E5%AE%9E%E7%8E%B0nas%E6%96%AD%E7%94%B5%E8%87%AA%E5%8A%A8%E5%85%B3%E6%9C%BA/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/ups%E9%80%9A%E8%BF%87ping%E5%AE%9E%E7%8E%B0nas%E6%96%AD%E7%94%B5%E8%87%AA%E5%8A%A8%E5%85%B3%E6%9C%BA/ -&lt;p&gt;没有数据通讯的UPS，只有电源接口，无法判断断电后自动关机,保护数据安全,这里通过ping简单实现&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/ups%E9%80%9A%E8%BF%87ping%E5%AE%9E%E7%8E%B0nas%E6%96%AD%E7%94%B5%E8%87%AA%E5%8A%A8%E5%85%B3%E6%9C%BA/</guid>
+        <description>云流 https://syaofox.github.io/post/ups%E9%80%9A%E8%BF%87ping%E5%AE%9E%E7%8E%B0nas%E6%96%AD%E7%94%B5%E8%87%AA%E5%8A%A8%E5%85%B3%E6%9C%BA/ -&lt;p&gt;没有数据通讯的UPS，只有电源接口，无法判断断电后自动关机,保护数据安全,这里通过ping简单实现&lt;/p&gt;
 &lt;p&gt;思路，ups只接NAS，路由接市电，通过每隔一定时间通过NAS ping路由IP地址来确认是否停电，如果ping没有问题，就是有电，如果突然断电，ping不通了，就认为断电，执行关机命令。&lt;/p&gt;
 &lt;p&gt;TG500-1.sh脚本如下:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#1e889b&#34;&gt;#!/bin/sh
-&lt;/span&gt;&lt;span style=&#34;color:#1e889b&#34;&gt;&lt;/span&gt;
-ping -c &lt;span style=&#34;color:#b452cd&#34;&gt;1&lt;/span&gt; 192.168.1.1 &amp;gt; /dev/null
-&lt;span style=&#34;color:#00688b&#34;&gt;ret&lt;/span&gt;=&lt;span style=&#34;color:#00688b&#34;&gt;$?&lt;/span&gt;
-&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;if&lt;/span&gt; [ &lt;span style=&#34;color:#00688b&#34;&gt;$ret&lt;/span&gt; -eq &lt;span style=&#34;color:#b452cd&#34;&gt;0&lt;/span&gt; ]
-&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;then&lt;/span&gt;
-&lt;span style=&#34;color:#658b00&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39; AC Power OK ! &amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;else&lt;/span&gt;
-&lt;span style=&#34;color:#658b00&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39; AC Power maybe off, checking again after 4 minutes ! &amp;#39;&lt;/span&gt;
-sleep &lt;span style=&#34;color:#b452cd&#34;&gt;240&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#!/bin/sh
+
+ping -c 1 192.168.1.1 &amp;gt; /dev/null
+ret=$?
+if [ $ret -eq 0 ]
+then
+echo &#39; AC Power OK ! &#39;
+else
+echo &#39; AC Power maybe off, checking again after 4 minutes ! &#39;
+sleep 240
 /usr/sbin/TG500-2.sh
-&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;fi&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;TG500-2.sh脚本如下:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#1e889b&#34;&gt;#!/bin/sh
-&lt;/span&gt;&lt;span style=&#34;color:#1e889b&#34;&gt;&lt;/span&gt;
-ping -c &lt;span style=&#34;color:#b452cd&#34;&gt;1&lt;/span&gt; 192.168.1.1 &amp;gt; /dev/null
-&lt;span style=&#34;color:#00688b&#34;&gt;ret&lt;/span&gt;=&lt;span style=&#34;color:#00688b&#34;&gt;$?&lt;/span&gt;
-&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;if&lt;/span&gt; [ &lt;span style=&#34;color:#00688b&#34;&gt;$ret&lt;/span&gt; -eq &lt;span style=&#34;color:#b452cd&#34;&gt;0&lt;/span&gt; ]
-&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;then&lt;/span&gt;
-&lt;span style=&#34;color:#658b00&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39; AC Power OK ! &amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;else&lt;/span&gt;
-&lt;span style=&#34;color:#658b00&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39; AC Power off, shut down NAS ! &amp;#39;&lt;/span&gt;
+fi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;TG500-2.sh脚本如下:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#!/bin/sh
+
+ping -c 1 192.168.1.1 &amp;gt; /dev/null
+ret=$?
+if [ $ret -eq 0 ]
+then
+echo &#39; AC Power OK ! &#39;
+else
+echo &#39; AC Power off, shut down NAS ! &#39;
 /sbin/poweroff
-&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;fi&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后修改/etc/config/crontab文件，5分钟执行一次TG500-1.sh&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;*/5 * * * * /usr/sbin/TG500-1.sh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过以上的脚本，得到的效果是如果断电，那么在9-14分钟内NAS就会自动关闭，如果路由只是重启，4分钟内不会关闭NAS&lt;/p&gt;
-- https://syaofox.github.io/linux/ups%E9%80%9A%E8%BF%87ping%E5%AE%9E%E7%8E%B0nas%E6%96%AD%E7%94%B5%E8%87%AA%E5%8A%A8%E5%85%B3%E6%9C%BA/ - Syaofox 2020 copyright.</description>
+fi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后修改/etc/config/crontab文件，5分钟执行一次TG500-1.sh&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;*/5 * * * * /usr/sbin/TG500-1.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;通过以上的脚本，得到的效果是如果断电，那么在9-14分钟内NAS就会自动关闭，如果路由只是重启，4分钟内不会关闭NAS&lt;/p&gt;
+- https://syaofox.github.io/post/ups%E9%80%9A%E8%BF%87ping%E5%AE%9E%E7%8E%B0nas%E6%96%AD%E7%94%B5%E8%87%AA%E5%8A%A8%E5%85%B3%E6%9C%BA/ - </description>
         </item>
     
     
     
         <item>
         <title>使用screen来实现多任务不断线操作命令</title>
-        <link>https://syaofox.github.io/linux/%E4%BD%BF%E7%94%A8screen%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8D%E6%96%AD%E7%BA%BF%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</link>
+        <link>https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8screen%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8D%E6%96%AD%E7%BA%BF%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</link>
         <pubDate>Thu, 18 Jun 2020 10:59:04 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/%E4%BD%BF%E7%94%A8screen%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8D%E6%96%AD%E7%BA%BF%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/%E4%BD%BF%E7%94%A8screen%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8D%E6%96%AD%E7%BA%BF%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/ -&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <guid>https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8screen%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8D%E6%96%AD%E7%BA%BF%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</guid>
+        <description>云流 https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8screen%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8D%E6%96%AD%E7%BA%BF%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/ -&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;我们用&lt;code&gt;VPS&lt;/code&gt;执行一个系统安装，就输入命令然后在那一直等。如果出现掉线或者断网死机的情况，我们还得重新安装。如果能使用上&lt;code&gt;screen&lt;/code&gt;命令可以实现无人值守的效果。我们可以同时操作多个任务，也可以关机操作。所以说很方便。&lt;/p&gt;
 &lt;h2 id=&#34;方法&#34;&gt;方法&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;1、安装方法：&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;yum install screen  &lt;span style=&#34;color:#228b22&#34;&gt;#CentOS&lt;/span&gt;
-apt-get install screen  &lt;span style=&#34;color:#228b22&#34;&gt;#Debian或者Ubuntu&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;2、创建一个screen会话：&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;screen -S xx  &lt;span style=&#34;color:#228b22&#34;&gt;#xx为创建会话的名称&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;3、隐藏并保留当前会话窗口：&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;按Ctrl+A，再按&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;D&amp;#34;&lt;/span&gt;键
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果怕中途掉线或者要离开的话，可以使用。&lt;br&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;yum install screen  #CentOS
+apt-get install screen  #Debian或者Ubuntu
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;2、创建一个screen会话：&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;screen -S xx  #xx为创建会话的名称
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;3、隐藏并保留当前会话窗口：&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;按Ctrl+A，再按&amp;quot;D&amp;quot;键
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果怕中途掉线或者要离开的话，可以使用。&lt;br&gt;
 &lt;strong&gt;4、恢复会话窗口：&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;screen -r xx &lt;span style=&#34;color:#228b22&#34;&gt;#恢复名字为xx的会话&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果在恢复会话的时候忘记了或者没有设定会话名称我们就要执行：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;screen -ls
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;他会列出你所有的会话列表，然后使用：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;screen -r 会话名称
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;来恢复会话窗口。&lt;br&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;screen -r xx #恢复名字为xx的会话
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果在恢复会话的时候忘记了或者没有设定会话名称我们就要执行：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;screen -ls
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;他会列出你所有的会话列表，然后使用：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;screen -r 会话名称
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;来恢复会话窗口。&lt;br&gt;
 &lt;strong&gt;5、关闭会话窗口：&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#658b00&#34;&gt;exit&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;screen&lt;/code&gt;的好处就是不会因为远程的操作因网络问题中断掉。&lt;/p&gt;
-- https://syaofox.github.io/linux/%E4%BD%BF%E7%94%A8screen%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8D%E6%96%AD%E7%BA%BF%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/ - Syaofox 2020 copyright.</description>
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;exit
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;screen&lt;/code&gt;的好处就是不会因为远程的操作因网络问题中断掉。&lt;/p&gt;
+- https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8screen%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%B8%8D%E6%96%AD%E7%BA%BF%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/ - </description>
         </item>
     
     
     
         <item>
         <title>重新安装windows无法选择版本的问题</title>
-        <link>https://syaofox.github.io/windows/%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85windows%E6%97%A0%E6%B3%95%E9%80%89%E6%8B%A9%E7%89%88%E6%9C%AC%E7%9A%84%E9%97%AE%E9%A2%98/</link>
+        <link>https://syaofox.github.io/post/%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85windows%E6%97%A0%E6%B3%95%E9%80%89%E6%8B%A9%E7%89%88%E6%9C%AC%E7%9A%84%E9%97%AE%E9%A2%98/</link>
         <pubDate>Thu, 18 Jun 2020 10:50:46 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/windows/%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85windows%E6%97%A0%E6%B3%95%E9%80%89%E6%8B%A9%E7%89%88%E6%9C%AC%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
-        <description>霜天晓角 https://syaofox.github.io/windows/%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85windows%E6%97%A0%E6%B3%95%E9%80%89%E6%8B%A9%E7%89%88%E6%9C%AC%E7%9A%84%E9%97%AE%E9%A2%98/ -&lt;p&gt;有些品牌机在重新安装系统时无法选择windows版本，默认安装家庭版，解决这个问题很简单&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85windows%E6%97%A0%E6%B3%95%E9%80%89%E6%8B%A9%E7%89%88%E6%9C%AC%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
+        <description>云流 https://syaofox.github.io/post/%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85windows%E6%97%A0%E6%B3%95%E9%80%89%E6%8B%A9%E7%89%88%E6%9C%AC%E7%9A%84%E9%97%AE%E9%A2%98/ -&lt;p&gt;有些品牌机在重新安装系统时无法选择windows版本，默认安装家庭版，解决这个问题很简单&lt;/p&gt;
 &lt;p&gt;新建txt文档，复制粘贴下面几行字符，保存，修改文件名为ei.cfg(连同后缀名一块修改)。然后将这个文件添加到镜像中的sources文件夹内即可。如果想保存为ISO镜像，需要使用ISO编辑软件添加此文件。如果是通过U盘，硬盘安装，在制作好U盘启动盘或者解压后添加即可。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;[EditionID]&lt;/span&gt;
-&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;[Channel]&lt;/span&gt;
-&lt;span style=&#34;color:#658b00&#34;&gt;Retail&lt;/span&gt;
-&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;[VL]&lt;/span&gt;
-&lt;span style=&#34;color:#658b00&#34;&gt;0&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/windows/%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85windows%E6%97%A0%E6%B3%95%E9%80%89%E6%8B%A9%E7%89%88%E6%9C%AC%E7%9A%84%E9%97%AE%E9%A2%98/ - Syaofox 2020 copyright.</description>
+&lt;pre&gt;&lt;code class=&#34;language-ini&#34;&gt;[EditionID]
+[Channel]
+Retail
+[VL]
+0
+&lt;/code&gt;&lt;/pre&gt;
+- https://syaofox.github.io/post/%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85windows%E6%97%A0%E6%B3%95%E9%80%89%E6%8B%A9%E7%89%88%E6%9C%AC%E7%9A%84%E9%97%AE%E9%A2%98/ - </description>
         </item>
     
     
     
         <item>
         <title>一次永久解决cmd窗口汉字显示乱码</title>
-        <link>https://syaofox.github.io/windows/%E4%B8%80%E6%AC%A1%E6%B0%B8%E4%B9%85%E8%A7%A3%E5%86%B3cmd%E7%AA%97%E5%8F%A3%E6%B1%89%E5%AD%97%E6%98%BE%E7%A4%BA%E4%B9%B1%E7%A0%81/</link>
+        <link>https://syaofox.github.io/post/%E4%B8%80%E6%AC%A1%E6%B0%B8%E4%B9%85%E8%A7%A3%E5%86%B3cmd%E7%AA%97%E5%8F%A3%E6%B1%89%E5%AD%97%E6%98%BE%E7%A4%BA%E4%B9%B1%E7%A0%81/</link>
         <pubDate>Thu, 18 Jun 2020 10:49:36 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/windows/%E4%B8%80%E6%AC%A1%E6%B0%B8%E4%B9%85%E8%A7%A3%E5%86%B3cmd%E7%AA%97%E5%8F%A3%E6%B1%89%E5%AD%97%E6%98%BE%E7%A4%BA%E4%B9%B1%E7%A0%81/</guid>
-        <description>霜天晓角 https://syaofox.github.io/windows/%E4%B8%80%E6%AC%A1%E6%B0%B8%E4%B9%85%E8%A7%A3%E5%86%B3cmd%E7%AA%97%E5%8F%A3%E6%B1%89%E5%AD%97%E6%98%BE%E7%A4%BA%E4%B9%B1%E7%A0%81/ -&lt;p&gt;对于编译出的程序，在 &lt;code&gt;cmd&lt;/code&gt; 和 &lt;code&gt;power shell&lt;/code&gt; 运行时都不能正确显示汉字。
+        <guid>https://syaofox.github.io/post/%E4%B8%80%E6%AC%A1%E6%B0%B8%E4%B9%85%E8%A7%A3%E5%86%B3cmd%E7%AA%97%E5%8F%A3%E6%B1%89%E5%AD%97%E6%98%BE%E7%A4%BA%E4%B9%B1%E7%A0%81/</guid>
+        <description>云流 https://syaofox.github.io/post/%E4%B8%80%E6%AC%A1%E6%B0%B8%E4%B9%85%E8%A7%A3%E5%86%B3cmd%E7%AA%97%E5%8F%A3%E6%B1%89%E5%AD%97%E6%98%BE%E7%A4%BA%E4%B9%B1%E7%A0%81/ -&lt;p&gt;对于编译出的程序，在 &lt;code&gt;cmd&lt;/code&gt; 和 &lt;code&gt;power shell&lt;/code&gt; 运行时都不能正确显示汉字。
 网上查，可以在命令窗口修改：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;打开&lt;code&gt;CMD.exe&lt;/code&gt;命令行窗口&lt;/li&gt;
 &lt;li&gt;通过 &lt;code&gt;chcp&lt;/code&gt;命令改变代码页，&lt;code&gt;UTF-8&lt;/code&gt;的代码页为&lt;code&gt;65001 &lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;chcp &lt;span style=&#34;color:#b452cd&#34;&gt;65001&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;执行该操作后，代码页就被变成&lt;code&gt;UTF-8&lt;/code&gt;了。
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;chcp 65001
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;执行该操作后，代码页就被变成&lt;code&gt;UTF-8&lt;/code&gt;了。
 在当前窗口的确可以解决问题，但是&lt;strong&gt;重新打开的&lt;code&gt;cmd&lt;/code&gt;窗口或者&lt;code&gt;power shell&lt;/code&gt; 窗口仍然不能正确显示汉字&lt;/strong&gt;。
 最终发现，&lt;code&gt;cmd&lt;/code&gt;的属性设置可以在注册表中修改，实现一次修改永远有效:&lt;/p&gt;
 &lt;ol&gt;
@@ -276,71 +296,71 @@ apt-get install screen  &lt;span style=&#34;color:#228b22&#34;&gt;#Debian或者U
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-- https://syaofox.github.io/windows/%E4%B8%80%E6%AC%A1%E6%B0%B8%E4%B9%85%E8%A7%A3%E5%86%B3cmd%E7%AA%97%E5%8F%A3%E6%B1%89%E5%AD%97%E6%98%BE%E7%A4%BA%E4%B9%B1%E7%A0%81/ - Syaofox 2020 copyright.</description>
+- https://syaofox.github.io/post/%E4%B8%80%E6%AC%A1%E6%B0%B8%E4%B9%85%E8%A7%A3%E5%86%B3cmd%E7%AA%97%E5%8F%A3%E6%B1%89%E5%AD%97%E6%98%BE%E7%A4%BA%E4%B9%B1%E7%A0%81/ - </description>
         </item>
     
     
     
         <item>
         <title>微软拼音增加输入当前时间</title>
-        <link>https://syaofox.github.io/windows/%E5%BE%AE%E8%BD%AF%E6%8B%BC%E9%9F%B3%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/</link>
+        <link>https://syaofox.github.io/post/%E5%BE%AE%E8%BD%AF%E6%8B%BC%E9%9F%B3%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/</link>
         <pubDate>Thu, 18 Jun 2020 10:47:55 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/windows/%E5%BE%AE%E8%BD%AF%E6%8B%BC%E9%9F%B3%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/</guid>
-        <description>霜天晓角 https://syaofox.github.io/windows/%E5%BE%AE%E8%BD%AF%E6%8B%BC%E9%9F%B3%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/ -&lt;p&gt;Windows10 自带的微软拼音输入法已经非常好用了，不过缺少了一个比较实用的功能：输入当前时间。&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/%E5%BE%AE%E8%BD%AF%E6%8B%BC%E9%9F%B3%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/</guid>
+        <description>云流 https://syaofox.github.io/post/%E5%BE%AE%E8%BD%AF%E6%8B%BC%E9%9F%B3%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/ -&lt;p&gt;Windows10 自带的微软拼音输入法已经非常好用了，不过缺少了一个比较实用的功能：输入当前时间。&lt;/p&gt;
 &lt;p&gt;这里介绍添加输入当前时间的方法。&lt;/p&gt;
 &lt;p&gt;win10&amp;mdash;&amp;gt;设置&amp;mdash;&amp;gt;日期和语言&amp;mdash;&amp;gt;语言&amp;mdash;中文&amp;mdash;选项&amp;mdash;微软拼音&amp;mdash;选项&amp;mdash;词库和自学习&amp;mdash;添加或编辑自定义短语&lt;/p&gt;
 &lt;p&gt;按格式&lt;code&gt;%yyyy%-%MM%-%dd% %HH%:%mm%:%ss%&lt;/code&gt;添加&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E5%BE%AE%E8%BD%AF%E6%8B%BC%E9%9F%B3%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200612224358.jpg&#34; alt=&#34;设置自定义短语&#34;&gt;&lt;/p&gt;
 &lt;p&gt;这时候输入now，搞定！&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E5%BE%AE%E8%BD%AF%E6%8B%BC%E9%9F%B3%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200612224423.jpg&#34; alt=&#34;输入now&#34;&gt;&lt;/p&gt;
-- https://syaofox.github.io/windows/%E5%BE%AE%E8%BD%AF%E6%8B%BC%E9%9F%B3%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/ - Syaofox 2020 copyright.</description>
+- https://syaofox.github.io/post/%E5%BE%AE%E8%BD%AF%E6%8B%BC%E9%9F%B3%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/ - </description>
         </item>
     
     
     
         <item>
         <title>截图时如何截取右键菜单？</title>
-        <link>https://syaofox.github.io/windows/%E6%88%AA%E5%9B%BE%E6%97%B6%E5%A6%82%E4%BD%95%E6%88%AA%E4%BD%8F%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/</link>
+        <link>https://syaofox.github.io/post/%E6%88%AA%E5%9B%BE%E6%97%B6%E5%A6%82%E4%BD%95%E6%88%AA%E4%BD%8F%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/</link>
         <pubDate>Thu, 18 Jun 2020 10:45:18 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/windows/%E6%88%AA%E5%9B%BE%E6%97%B6%E5%A6%82%E4%BD%95%E6%88%AA%E4%BD%8F%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/</guid>
-        <description>霜天晓角 https://syaofox.github.io/windows/%E6%88%AA%E5%9B%BE%E6%97%B6%E5%A6%82%E4%BD%95%E6%88%AA%E4%BD%8F%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/ -&lt;p&gt;博主昨天在写博客时，想要将右键菜单的图给截下来保存。于是乎，截图快捷键走起来。&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/%E6%88%AA%E5%9B%BE%E6%97%B6%E5%A6%82%E4%BD%95%E6%88%AA%E4%BD%8F%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/</guid>
+        <description>云流 https://syaofox.github.io/post/%E6%88%AA%E5%9B%BE%E6%97%B6%E5%A6%82%E4%BD%95%E6%88%AA%E4%BD%8F%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/ -&lt;p&gt;博主昨天在写博客时，想要将右键菜单的图给截下来保存。于是乎，截图快捷键走起来。&lt;/p&gt;
 &lt;p&gt;Ctrl + Alt + A&lt;/p&gt;
 &lt;p&gt;但是却发现利用QQ的截图快捷键竟然做不到，一按快捷键右键菜单就收起来了。多次尝试不果，所以就百度一下解决方案，当然很快就找到了答案。于是也写下来做下记录，希望能给还不知道的同学一点点帮助^_^。&lt;/p&gt;
 &lt;p&gt;方法就是：&lt;/p&gt;
 &lt;p&gt;右键呼出菜单，然后鼠标移动到某选项上，按住鼠标左键不动，然后再按截图的快捷键，这样就可以截到右键菜单了。&lt;/p&gt;
 &lt;p&gt;快试一下吧！！！&lt;/p&gt;
-- https://syaofox.github.io/windows/%E6%88%AA%E5%9B%BE%E6%97%B6%E5%A6%82%E4%BD%95%E6%88%AA%E4%BD%8F%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/ - Syaofox 2020 copyright.</description>
+- https://syaofox.github.io/post/%E6%88%AA%E5%9B%BE%E6%97%B6%E5%A6%82%E4%BD%95%E6%88%AA%E4%BD%8F%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/ - </description>
         </item>
     
     
     
         <item>
         <title>利用 Windows 自带的资源监视器查看文件占用</title>
-        <link>https://syaofox.github.io/windows/%E5%88%A9%E7%94%A8windows%E8%87%AA%E5%B8%A6%E7%9A%84%E8%B5%84%E6%BA%90%E7%9B%91%E8%A7%86%E5%99%A8%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%8D%A0%E7%94%A8/</link>
+        <link>https://syaofox.github.io/post/%E5%88%A9%E7%94%A8windows%E8%87%AA%E5%B8%A6%E7%9A%84%E8%B5%84%E6%BA%90%E7%9B%91%E8%A7%86%E5%99%A8%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%8D%A0%E7%94%A8/</link>
         <pubDate>Thu, 18 Jun 2020 10:35:52 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/windows/%E5%88%A9%E7%94%A8windows%E8%87%AA%E5%B8%A6%E7%9A%84%E8%B5%84%E6%BA%90%E7%9B%91%E8%A7%86%E5%99%A8%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%8D%A0%E7%94%A8/</guid>
-        <description>霜天晓角 https://syaofox.github.io/windows/%E5%88%A9%E7%94%A8windows%E8%87%AA%E5%B8%A6%E7%9A%84%E8%B5%84%E6%BA%90%E7%9B%91%E8%A7%86%E5%99%A8%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%8D%A0%E7%94%A8/ -&lt;p&gt;经常当我们删除文件时，有时会提示【操作无法完成，因为文件已在另一个程序中打开，请关闭该文件并重试】，到底是哪些程序呢？&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/%E5%88%A9%E7%94%A8windows%E8%87%AA%E5%B8%A6%E7%9A%84%E8%B5%84%E6%BA%90%E7%9B%91%E8%A7%86%E5%99%A8%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%8D%A0%E7%94%A8/</guid>
+        <description>云流 https://syaofox.github.io/post/%E5%88%A9%E7%94%A8windows%E8%87%AA%E5%B8%A6%E7%9A%84%E8%B5%84%E6%BA%90%E7%9B%91%E8%A7%86%E5%99%A8%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%8D%A0%E7%94%A8/ -&lt;p&gt;经常当我们删除文件时，有时会提示【操作无法完成，因为文件已在另一个程序中打开，请关闭该文件并重试】，到底是哪些程序呢？&lt;/p&gt;
 &lt;p&gt;有时候一个一个找真不是办法，已经被这个问题折磨很久了，今天下决心要把它解决，找到办法了。如果系统是win7以上，可以这么做：&lt;/p&gt;
 &lt;p&gt;在开始菜单中的搜索框内输入“资源监视器”，回车，打开“资源监视器”。&lt;/p&gt;
 &lt;p&gt;看下图，在“资源监视器”界面中，点击第二个选项卡“CPU”。在“关联的句柄”右侧搜索框内输入文件名称，点击右侧下拉箭头，就可以查看该文件被那几个程序占用了。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E5%88%A9%E7%94%A8windows%E8%87%AA%E5%B8%A6%E7%9A%84%E8%B5%84%E6%BA%90%E7%9B%91%E8%A7%86%E5%99%A8%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%8D%A0%E7%94%A8/20200618103858.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;选中程序，右击选择结束进程。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E5%88%A9%E7%94%A8windows%E8%87%AA%E5%B8%A6%E7%9A%84%E8%B5%84%E6%BA%90%E7%9B%91%E8%A7%86%E5%99%A8%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%8D%A0%E7%94%A8/20200618104345.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-- https://syaofox.github.io/windows/%E5%88%A9%E7%94%A8windows%E8%87%AA%E5%B8%A6%E7%9A%84%E8%B5%84%E6%BA%90%E7%9B%91%E8%A7%86%E5%99%A8%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%8D%A0%E7%94%A8/ - Syaofox 2020 copyright.</description>
+- https://syaofox.github.io/post/%E5%88%A9%E7%94%A8windows%E8%87%AA%E5%B8%A6%E7%9A%84%E8%B5%84%E6%BA%90%E7%9B%91%E8%A7%86%E5%99%A8%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%8D%A0%E7%94%A8/ - </description>
         </item>
     
     
     
         <item>
         <title>禁止 windows 生成 thumbs.db</title>
-        <link>https://syaofox.github.io/windows/%E7%A6%81%E6%AD%A2windows%E7%94%9F%E6%88%90thumbs-db/</link>
+        <link>https://syaofox.github.io/post/%E7%A6%81%E6%AD%A2windows%E7%94%9F%E6%88%90thumbs-db/</link>
         <pubDate>Thu, 18 Jun 2020 10:31:40 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/windows/%E7%A6%81%E6%AD%A2windows%E7%94%9F%E6%88%90thumbs-db/</guid>
-        <description>霜天晓角 https://syaofox.github.io/windows/%E7%A6%81%E6%AD%A2windows%E7%94%9F%E6%88%90thumbs-db/ -&lt;ol&gt;
+        <guid>https://syaofox.github.io/post/%E7%A6%81%E6%AD%A2windows%E7%94%9F%E6%88%90thumbs-db/</guid>
+        <description>云流 https://syaofox.github.io/post/%E7%A6%81%E6%AD%A2windows%E7%94%9F%E6%88%90thumbs-db/ -&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;按下 Win+R 打开“运行”，输入：gpedit.msc 回车;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E7%A6%81%E6%AD%A2windows%E7%94%9F%E6%88%90thumbs-db/1569154295281.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
@@ -359,18 +379,18 @@ apt-get install screen  &lt;span style=&#34;color:#228b22&#34;&gt;#Debian或者U
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/%E7%A6%81%E6%AD%A2windows%E7%94%9F%E6%88%90thumbs-db/1569154337114.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-- https://syaofox.github.io/windows/%E7%A6%81%E6%AD%A2windows%E7%94%9F%E6%88%90thumbs-db/ - Syaofox 2020 copyright.</description>
+- https://syaofox.github.io/post/%E7%A6%81%E6%AD%A2windows%E7%94%9F%E6%88%90thumbs-db/ - </description>
         </item>
     
     
     
         <item>
         <title>Windows CPL文件</title>
-        <link>https://syaofox.github.io/windows/windows-cpl%E6%96%87%E4%BB%B6/</link>
+        <link>https://syaofox.github.io/post/windows-cpl%E6%96%87%E4%BB%B6/</link>
         <pubDate>Thu, 18 Jun 2020 10:26:56 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/windows/windows-cpl%E6%96%87%E4%BB%B6/</guid>
-        <description>霜天晓角 https://syaofox.github.io/windows/windows-cpl%E6%96%87%E4%BB%B6/ -&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <guid>https://syaofox.github.io/post/windows-cpl%E6%96%87%E4%BB%B6/</guid>
+        <description>云流 https://syaofox.github.io/post/windows-cpl%E6%96%87%E4%BB%B6/ -&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;CPL文件，又叫控制面板项（Control Panel Item），多保存于系统安装目录的 system32 文件夹下，它们分别对应着控制面板中的项目，普通用户的访问受到限制。它可由shell32.dll、control.exe打开。此外，你也可以直接在资源管理器中双击调用Open命令打开（实质上调用了shell32.dll）。&lt;/p&gt;
 &lt;p&gt;CPL文件本质是Windows可执行性文件，但不属于可以直接独立运行的文件，通常由shell32.dll打开。&lt;/p&gt;
 &lt;p&gt;system32目录里绝大多数cpl文件是Windows系统文件，具有“存档”文件属性，Windows操作系统的文件保护功能保护它们不被篡改。&lt;/p&gt;
@@ -426,7 +446,7 @@ apt-get install screen  &lt;span style=&#34;color:#228b22&#34;&gt;#Debian或者U
 &lt;/blockquote&gt;
 &lt;p&gt;3、运行“控制面板”中的“用户”工具，请键入 control Ncpa.cpl users，然后按 ENTER 键。&lt;/p&gt;
 &lt;p&gt;4、运行 Windows 95/98/ME 的“用户”工具，请键入“control inetcpl.cpl users”（不键入引号），然后按 ENTER 键。&lt;/p&gt;
-- https://syaofox.github.io/windows/windows-cpl%E6%96%87%E4%BB%B6/ - Syaofox 2020 copyright.</description>
+- https://syaofox.github.io/post/windows-cpl%E6%96%87%E4%BB%B6/ - </description>
         </item>
     
     

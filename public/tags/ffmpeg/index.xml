@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>FFMPEG on 霜天晓角</title>
+    <title>FFMPEG on 云流</title>
     <link>https://syaofox.github.io/tags/ffmpeg/</link>
-    <description>Recent content in FFMPEG on 霜天晓角</description>
+    <description>Recent content in FFMPEG on 云流</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>Syaofox 2020 copyright.</copyright>
     <lastBuildDate>Thu, 18 Jun 2020 09:37:05 +0800</lastBuildDate>
     
 	<atom:link href="https://syaofox.github.io/tags/ffmpeg/index.xml" rel="self" type="application/rss+xml" />
@@ -14,13 +13,11 @@
     
     <item>
       <title>FFMPEG 常用操作</title>
-      <link>https://syaofox.github.io/software/ffmpeg-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</link>
+      <link>https://syaofox.github.io/post/ffmpeg-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</link>
       <pubDate>Thu, 18 Jun 2020 09:37:05 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/software/ffmpeg-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
-      <description>转码 ffmpeg -i out.ogv -vcodec h264 out.mp4 ffmpeg -i out.ogv -vcodec mpeg4 out.mp4 ffmpeg -i out.ogv -vcodec libxvid out.mp4 ffmpeg -i out.mp4 -vcodec wmv1 out.wmv ffmpeg -i out.mp4 -vcodec wmv2 out.wmv -i 后面是输入文件名。-vcodec 后面是编码格式，h264 最佳，但 Windows 系统默认不安装。如果是要插入 ppt 的视频，选择 wmv1 或 wmv2 基本上万无一失。
-附加选项：-r 指定帧率，-s 指定分辨率，-b 指定比特率；于此同时可以对声道进行转码，-acodec 指定音频编码，-ab 指定音频比特率，-ac 指定声道数，例如
-ffmpeg -i out.ogv -s 640x480 -b 500k -vcodec h264 -r 29.97 -acodec libfaac -ab 48k -ac 2 out.mp4 截取 用 -ss 和 -t 选项， 从第 30 秒开始，向后截取 10 秒的视频，并保存：</description>
+      <guid>https://syaofox.github.io/post/ffmpeg-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
+      <description>转码 ffmpeg -i out.ogv -vcodec h264 out.mp4 ffmpeg -i out.ogv -vcodec mpeg4 out.mp4 ffmpeg -i out.ogv -vcodec libxvid out.mp4 ffmpeg -i out.mp4 -vcodec wmv1 out.wmv ffmpeg -i out.mp4 -vcodec wmv2 out.wmv -i 后面是输入文件名。-vcodec 后面是编码格式，h264 最佳，但 Windows 系统默认不安装。如果是要插入 ppt 的视频，选择 wmv1 或 wmv2 基本上万无一失。 附加</description>
     </item>
     
   </channel>

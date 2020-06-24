@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html><head>
+<title>图片 EXIF 信息查看与 Exiftool 使用</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+<meta name="google-site-verification" content="oogV8o8B0_GmgleXKYHSkWxodG-N4Nz9mIlHqljGd-0" />
+
+
+
+
+
+
+
+
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="https://syaofox.github.io/scss/journal.min.2725bdf31310513b302e62b01700d09aeff9316f5344e988decd15737cf0b3c5.css" integrity="sha256-JyW98xMQUTswLmKwFwDQmu/5MW9TROmI3s0Vc3zws8U=" media="screen">
+
+
+
+<link rel="stylesheet" href="https://syaofox.github.io/scss/dark-mode.min.e93e28b95f534b47ed30828c25fef57eb3c43aa0270721098b7f9d4f1c40bf1f.css" integrity="sha256-6T4ouV9TS0ftMIKMJf71frPEOqAnByEJi3&#43;dTxxAvx8=" media="screen">
+
+
+<script src="https://syaofox.github.io/js/loadCSS.js"></script>
+<script>
+  loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+
+
+
+  
+    <script src="https://syaofox.github.io/js/toc-collapse.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://syaofox.github.io">
+    
+        <div class="nav-title">
+            云流
+        </div>
+        
+        <div class="nav-subtitle">
+            心似白云常自在 意如流水任东西
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+ <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>  <a href="https://amazingrise.net">Rise</a>
+<br>
+ <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2020 云流
+	
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>-  -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e4%b8%80%e4%bb%80%e4%b9%88%e6%98%afexif" onclick="collapseOthers(`#一什么是exif-nav`)" id="一什么是exif-nav">
+									一、什么是EXIF
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%ba%8cexiftool%e4%bd%bf%e7%94%a8" onclick="collapseOthers(`#二exiftool使用-nav`)" id="二exiftool使用-nav">
+									二、Exiftool使用
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e4%b8%80%e4%b8%ba%e4%bb%80%e4%b9%88%e4%bd%bf%e7%94%a8exiftool" onclick="collapseOthers(`#一为什么使用exiftool-nav`)" id="一为什么使用exiftool-nav">
+									一）为什么使用Exiftool
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%ba%8cexiftool%e5%ae%89%e8%a3%85%e4%b8%8e%e4%bd%bf%e7%94%a8" onclick="collapseOthers(`#二exiftool安装与使用-nav`)" id="二exiftool安装与使用-nav">
+									二）Exiftool安装与使用
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#1exiftool%e5%ae%89%e8%a3%85" onclick="collapseOthers(`#1exiftool安装-nav`)" id="1exiftool安装-nav">
+									1、exiftool安装
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#2%e6%9f%a5%e7%9c%8bexif%e4%bf%a1%e6%81%af" onclick="collapseOthers(`#2查看exif信息-nav`)" id="2查看exif信息-nav">
+									2、查看EXIF信息
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#3exiftool%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4%e7%a4%ba%e4%be%8b" onclick="collapseOthers(`#3exiftool常用命令示例-nav`)" id="3exiftool常用命令示例-nav">
+									3、Exiftool常用命令示例
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#4%e6%9f%a5%e8%af%a2%e7%9b%b8%e5%85%b3%e5%91%bd%e4%bb%a4" onclick="collapseOthers(`#4查询相关命令-nav`)" id="4查询相关命令-nav">
+									4、查询相关命令
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#5%e5%86%99%e5%85%a5%e7%bc%96%e8%be%91%e5%91%bd%e4%bb%a4" onclick="collapseOthers(`#5写入编辑命令-nav`)" id="5写入编辑命令-nav">
+									5、写入编辑命令
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#6%e4%bd%bf%e7%94%a8exiftool%e6%89%b9%e9%87%8f%e5%a4%84%e7%90%86exif%e4%bf%a1%e6%81%af" onclick="collapseOthers(`#6使用exiftool批量处理exif信息-nav`)" id="6使用exiftool批量处理exif信息-nav">
+									6、使用ExifTool批量处理EXIF信息
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e4%b8%89%e5%b8%b8%e7%94%a8%e6%8c%87%e4%bb%a4" onclick="collapseOthers(`#三常用指令-nav`)" id="三常用指令-nav">
+									三）常用指令
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e6%89%b9%e9%87%8f%e4%bf%ae%e6%94%b9%e6%96%87%e4%bb%b6%e5%90%8d" onclick="collapseOthers(`#批量修改文件名-nav`)" id="批量修改文件名-nav">
+									批量修改文件名
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%80%9a%e8%bf%87%e4%bf%ae%e6%94%b9%e6%97%b6%e9%97%b4%e5%86%99%e5%85%a5%e6%8b%8d%e6%91%84%e6%97%a5%e6%9c%9f" onclick="collapseOthers(`#通过修改时间写入拍摄日期-nav`)" id="通过修改时间写入拍摄日期-nav">
+									通过修改时间写入拍摄日期
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%86%99%e5%85%a5%e6%8c%87%e5%ae%9a%e6%97%b6%e9%97%b4" onclick="collapseOthers(`#写入指定时间-nav`)" id="写入指定时间-nav">
+									写入指定时间
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%86%99%e5%85%a5%e8%a7%86%e9%a2%91%e5%aa%92%e4%bd%93%e5%88%9b%e4%bd%9c%e6%97%b6%e9%97%b4" onclick="collapseOthers(`#写入视频媒体创作时间-nav`)" id="写入视频媒体创作时间-nav">
+									写入视频媒体创作时间
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a class="pagination-action" v-on:click="toggleDarkMode">
+            <i class="material-icons pagination-action-icon" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons pagination-action-icon" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </a>
+        
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>-  -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e4%b8%80%e4%bb%80%e4%b9%88%e6%98%afexif" onclick="collapseOthers(`#一什么是exif-nav`)" id="一什么是exif-nav">
+									一、什么是EXIF
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%ba%8cexiftool%e4%bd%bf%e7%94%a8" onclick="collapseOthers(`#二exiftool使用-nav`)" id="二exiftool使用-nav">
+									二、Exiftool使用
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e4%b8%80%e4%b8%ba%e4%bb%80%e4%b9%88%e4%bd%bf%e7%94%a8exiftool" onclick="collapseOthers(`#一为什么使用exiftool-nav`)" id="一为什么使用exiftool-nav">
+									一）为什么使用Exiftool
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%ba%8cexiftool%e5%ae%89%e8%a3%85%e4%b8%8e%e4%bd%bf%e7%94%a8" onclick="collapseOthers(`#二exiftool安装与使用-nav`)" id="二exiftool安装与使用-nav">
+									二）Exiftool安装与使用
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#1exiftool%e5%ae%89%e8%a3%85" onclick="collapseOthers(`#1exiftool安装-nav`)" id="1exiftool安装-nav">
+									1、exiftool安装
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#2%e6%9f%a5%e7%9c%8bexif%e4%bf%a1%e6%81%af" onclick="collapseOthers(`#2查看exif信息-nav`)" id="2查看exif信息-nav">
+									2、查看EXIF信息
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#3exiftool%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4%e7%a4%ba%e4%be%8b" onclick="collapseOthers(`#3exiftool常用命令示例-nav`)" id="3exiftool常用命令示例-nav">
+									3、Exiftool常用命令示例
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#4%e6%9f%a5%e8%af%a2%e7%9b%b8%e5%85%b3%e5%91%bd%e4%bb%a4" onclick="collapseOthers(`#4查询相关命令-nav`)" id="4查询相关命令-nav">
+									4、查询相关命令
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#5%e5%86%99%e5%85%a5%e7%bc%96%e8%be%91%e5%91%bd%e4%bb%a4" onclick="collapseOthers(`#5写入编辑命令-nav`)" id="5写入编辑命令-nav">
+									5、写入编辑命令
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#6%e4%bd%bf%e7%94%a8exiftool%e6%89%b9%e9%87%8f%e5%a4%84%e7%90%86exif%e4%bf%a1%e6%81%af" onclick="collapseOthers(`#6使用exiftool批量处理exif信息-nav`)" id="6使用exiftool批量处理exif信息-nav">
+									6、使用ExifTool批量处理EXIF信息
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e4%b8%89%e5%b8%b8%e7%94%a8%e6%8c%87%e4%bb%a4" onclick="collapseOthers(`#三常用指令-nav`)" id="三常用指令-nav">
+									三）常用指令
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e6%89%b9%e9%87%8f%e4%bf%ae%e6%94%b9%e6%96%87%e4%bb%b6%e5%90%8d" onclick="collapseOthers(`#批量修改文件名-nav`)" id="批量修改文件名-nav">
+									批量修改文件名
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%80%9a%e8%bf%87%e4%bf%ae%e6%94%b9%e6%97%b6%e9%97%b4%e5%86%99%e5%85%a5%e6%8b%8d%e6%91%84%e6%97%a5%e6%9c%9f" onclick="collapseOthers(`#通过修改时间写入拍摄日期-nav`)" id="通过修改时间写入拍摄日期-nav">
+									通过修改时间写入拍摄日期
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%86%99%e5%85%a5%e6%8c%87%e5%ae%9a%e6%97%b6%e9%97%b4" onclick="collapseOthers(`#写入指定时间-nav`)" id="写入指定时间-nav">
+									写入指定时间
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%86%99%e5%85%a5%e8%a7%86%e9%a2%91%e5%aa%92%e4%bd%93%e5%88%9b%e4%bd%9c%e6%97%b6%e9%97%b4" onclick="collapseOthers(`#写入视频媒体创作时间-nav`)" id="写入视频媒体创作时间-nav">
+									写入视频媒体创作时间
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://syaofox.github.io">
+            云流
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" v-on:click="toggleDarkMode">
+            <i class="material-icons" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://syaofox.github.io">
+        <div class="single-column-header-title">云流</div>
+        
+        <div class="single-column-header-subtitle">心似白云常自在 意如流水任东西</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    图片 EXIF 信息查看与 Exiftool 使用
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            
+                        </time>
+                        
+
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/software">Software</a>
+                                &nbsp;
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/exiftool">Exiftool</a>
+                                &nbsp;
+                            
+                                <a href="/tags/exif">Exif</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <h2 id="一什么是exif">一、什么是EXIF</h2>
+<p>​     可交换图像文件格式常被简称为Exif（Exchangeable image file format），是专门为数码相机的照片设定的，可以记录数码照片的属性信息和拍摄数据。Exif 可以被附加在 JPEG、TIFF、RIFF 等文件之中，为其增加有关数码相机拍摄信息的内容和缩略图或图像处理软件的一些版本信息。</p>
+<p>了解更多：<a href="https://link.jianshu.com?t=https%3A%2F%2Fzh.wikipedia.org%2Fwiki%2FEXIF">维基百科</a></p>
+<h2 id="二exiftool使用">二、Exiftool使用</h2>
+<h3 id="一为什么使用exiftool">一）为什么使用Exiftool</h3>
+<ul>
+<li><code>exiftool</code>是经过测试发现对图片EXIF信息解析支持是最好的（如果有更好的请补充）</li>
+<li><code>exiftool</code>支持图片EXIF信息查询，修改及批量操作，还支持其它文件的EXIF操作。</li>
+<li>安全隐私问题，因为经常有网上暴露图片隐私问题，使用在线需要上传到服务器。采用<code>exiftool</code>保证了图片的安全和隐私，显然是最适合的。
+​   我们知道文件后缀名并不能代表文件的类型格式，比如上图webp格式后缀名是jpg，换言之一张jpg后缀名图片可能不是jpg图片，可能是<code>web</code>，<code>png</code>，<code>text</code>或其它类型文件。那么怎么快速了解它是哪种类型文件并获取它的一些其它信息呢，这时<code>exiftool</code>就派上用场了，试了下其它几个Exif工具，也用Mac/iOS原生代码测试了下，发现不能有效的读取jpg后缀的webp图片，而exiftool能很好支持。注意并非每一张图片都包含 exif 信息，像微信朋友圈如果发表的不是原图就没有。</li>
+</ul>
+<h3 id="二exiftool安装与使用">二）Exiftool安装与使用</h3>
+<h4 id="1exiftool安装">1、exiftool安装</h4>
+<pre><code class="language-bash">$ brew install exiftool
+</code></pre>
+<p>或直接下载：<a href="https://link.jianshu.com?t=https%3A%2F%2Fsno.phy.queensu.ca%2F~phil%2Fexiftool%2F">https://sno.phy.queensu.ca/~phil/exiftool/</a></p>
+<h4 id="2查看exif信息">2、查看EXIF信息</h4>
+<pre><code class="language-bash">$ exiftool photo.jpg  #默认显示所有的信息 exiftool+图片路径/图片名.jpg
+</code></pre>
+<p>输出信息如下：</p>
+<pre><code class="language-bash">#$ ExifTool /Users/apple/Desktop/photo.jpg
+ExifTool Version Number         : 10.80
+File Name                       : photo.jpg
+Directory                       : /Users/pconline/Desktop
+File Size                       : 18 kB
+File Modification Date/Time     : 2018:03:02 10:22:03+08:00
+File Access Date/Time           : 2018:03:02 11:47:58+08:00
+File Inode Change Date/Time     : 2018:03:02 11:47:57+08:00
+File Permissions                : rw-r--r--
+File Type                       : WEBP
+File Type Extension             : webp
+MIME Type                       : image/webp
+VP8 Version                     : 0 (bicubic reconstruction, normal loop)
+Image Width                     : 640
+Horizontal Scale                : 0
+Image Height                    : 400
+Vertical Scale                  : 0
+Image Size                      : 640x400
+Megapixels                      : 0.256
+</code></pre>
+<pre><code class="language-css">从打印信息我们可以看到，图片photo.jpg虽然后缀名是jpg，但File Type则是WEBP
+</code></pre>
+<h4 id="3exiftool常用命令示例">3、Exiftool常用命令示例</h4>
+<p>终端输入</p>
+<pre><code class="language-bash">$ exiftool -h #查看使用详细列表
+</code></pre>
+<p>使用帮助，可看到所有命令帮助，也可看到exiftool的支持文件类型和文件元信息如下：</p>
+<pre><code class="language-bash">File Types
+----------------------+----------------------+---------------------
+3G2   r/w   | DVB   r/w   | JPEG  r/w   | ODT   r     | RIFF  r
+....
+Meta Information
+----------------------+----------------------+---------------------
+EXIF           r/w/c  |  CIFF           r/w  |  Ricoh RMETA    r
+GPS            r/w/c  |  AFCP           r/w  |  Picture Info   r
+IPTC           r/w/c  |  Kodak Meta     r/w  |  Adobe APP14    r
+XMP            r/w/c  |  FotoStation    r/w  |  MPF            r
+MakerNotes     r/w/c  |  PhotoMechanic  r/w  |  Stim           r
+Photoshop IRB  r/w/c  |  JPEG 2000      r    |  DPX            r
+ICC Profile    r/w/c  |  DICOM          r    |  APE            r
+MIE            r/w/c  |  Flash          r    |  Vorbis         r
+JFIF           r/w/c  |  FlashPix       r    |  SPIFF          r
+Ducky APP12    r/w/c  |  QuickTime      r    |  DjVu           r
+PDF            r/w/c  |  Matroska       r    |  M2TS           r
+PNG            r/w/c  |  MXF            r    |  PE/COFF        r
+Canon VRD      r/w/c  |  PrintIM        r    |  AVCHD          r
+Nikon Capture  r/w/c  |  FLAC           r    |  ZIP            r
+GeoTIFF        r/w/c  |  ID3            r    |  (and more)
+</code></pre>
+<h4 id="4查询相关命令">4、查询相关命令</h4>
+<pre><code class="language-bash">$cd /Users/apple/Desktop
+exiftool photo.jpg #查看所有信息
+exiftool -a -u -g1 photo.jpg #查看所有元信息，包括重复和未知标签，并按小组排列
+exiftool -s -ImageSize -ExposureTime photo.jpg #查看图片尺寸
+exiftool -common dir  #查看dir目录文件信息（不仅仅是图片）
+exiftool -l  c.jpg d.jpg  #从两个图像文件打印所有信息。
+exiftool -l -canon c.jpg d.jpg  #从两个图像文件打印标准的佳能信息。
+</code></pre>
+<h4 id="5写入编辑命令">5、写入编辑命令</h4>
+<p>更改创建和修改时间</p>
+<pre><code class="language-bash">$ exiftool -gps:all= photo.jpg  #有些相机会记录拍照时的GPS定位信息。如果你不希望别人看到使用该命令删除gps信息
+$ exiftool -all= photo.jpg  #删除所有信息
+$ exiftool -all= --exif:all photo.jpg  #删除EXIF以外的所有信息
+</code></pre>
+<p>写入标签</p>
+<pre><code class="language-bash">$ exiftool -artist=标签名称 photo.jpg            #写入艺术家标签
+$ exiftool -artist=标签名称 a.jpg b.jpg c.jpg   #写多个文件
+$ exiftool -artist=标签名称  /exiftoolTest      #写在一个目录的所有文件 exiftoolTest为文件夹
+</code></pre>
+<p>其它：</p>
+<pre><code class="language-bash">exiftool -Comment ='这是一个新的评论'dst.jpg
+    向JPG图片写入新评论（取代任何现有评论）。
+exiftool -comment = -o newdir -ext jpg。
+    删除当前目录中所有JPG图像的评论，
+    将修改后的图像写入新目录。
+exiftool -keywords = EXIF -keywords =编辑器dst.jpg
+    用两个新的关键字（“EXIF”和。）替换现有的关键字列表
+    “编辑”）。
+exiftool -Keywords + =单词-o newfile.jpg src.jpg
+    将源图像复制到新文件，然后添加关键字（“单词”）
+    当前关键字列表。            
+exiftool -credit- = xxx dir
+    从一个目录中的所有文件中删除信用信息，信用值是“xxx”。
+exiftool -all = dst.jpg
+    从图像中删除所有元信息。注意：你不应该
+    对RAW图像（DNG除外）进行处理，因为它是专有的RAW图像
+    格式通常包含制造注释中的信息
+    转换图像所必需的。
+exiftool -all = -comment ='寂寞'dst.jpg
+    删除图像中的所有元信息并添加评论
+    （注意顺序很重要：“-comment ='lonely'-all =”
+    也会删除新评论。）
+exiftool -all = --jfif：全部dst.jpg
+    从图像中删除除JFIF组以外的所有元信息。
+exiftool -Photoshop：全部= dst.jpg
+    从图像中删除Photoshop元信息（注意
+    Photoshop信息还包括IPTC）。
+exiftool -r -XMP-crss：all = DIR
+    递归删除a中的图像中的所有XMP-crss信息
+    目录。
+exiftool'-ThumbnailImage &lt;= thumb.jpg'dst.jpg
+    从指定的文件中设置缩略图（注意：引号是
+    以防止外壳重定向）。
+exiftool'-JpgFromRaw &lt;=％d％f_JFR.JPG'-ext NEF -r。
+    递归地写入以“_JFR.JPG”结尾的文件名的JPEG图像
+    添加到扩展名为“.NEF”的类似文件的JpgFromRaw标记中
+    当前目录。 （这是“-JpgFromRaw”的倒数
+    上面的“READING EXAMPLES”部分的命令）。
+exiftool -DateTimeOriginal - ='0：0：0 1：30：0'dir
+    调整目录“dir”中所有图像的原始日期/时间
+    减去1小时30分钟。 （这相当于
+    “-DateTimeOriginal- = 1.5”。请参阅Image :: ExifTool :: Shift.pl
+    细节。）
+exiftool -createdate + = 3 -modifydate + = 3 a.jpg b.jpg
+    向两个CreateDate和ModifyDate时间戳添加3个小时
+    图片。
+exiftool -AllDates + = 1：30 -if'$ make eq“Canon”'dir
+    移动DateTimeOriginal，CreateDate和ModifyDate的值
+    将所有佳能影像转换1小时30分钟
+    目录。 （AllDates标签作为这些的快捷方式提供
+    三个标签，允许他们通过一个标签访问。）
+exiftool -xmp：city = Kingston image1.jpg image2.nef
+    将标签写入两个图像的XMP组。 （没有“xmp：”
+    自从“City”存在以后，该标签将被写入IPTC组
+    在这两种情况下，IPTC默认是首选。）
+exiftool -LightSource - ='未知（0）'dst.tiff
+    只有在值为0时才删除“LightSource”标签。
+exiftool -whitebalance- = auto -WhiteBalance = tung dst.jpg
+    只有之前为“自动”时，才将“WhiteBalance”设置为“Tungsten”。
+exiftool -comment- = -comment ='新评论'a.jpg
+    只有当图片还没有时才写新评论。
+exiftool -o％d％f.xmp目录
+    为“dir”中的所有图像创建XMP元信息数据文件。
+exiftool -o test.xmp -owner = Phil -title ='XMP File'
+    仅从命令中定义的标签创建XMP数据文件
+    线。
+</code></pre>
+<p>更多命令查看<code>exiftool -h</code></p>
+<h4 id="6使用exiftool批量处理exif信息">6、使用ExifTool批量处理EXIF信息</h4>
+<p>如果要处理的文件太多，一张一张处理效率太低，ExifTool支持批量操作：</p>
+<pre><code class="language-bash">$ exiftool -artist=标签名称  /dirName    #批量写入dirName目录艺术家标签
+$ exiftool -r -all= /dirName      #批量删除dirName及其子目录所有文件EXIF信息，-r表示递归处理子目录
+$ exiftool -gps:all= /dirName     #批量删除dirName及其子目录所有文件gps信息
+</code></pre>
+<p>其它相关：</p>
+<pre><code class="language-bash">$ mdls  photo.jpg #这个命令显示指定文件的metadata的属性,当不能准确的获取exif信息
+</code></pre>
+<h3 id="三常用指令">三）常用指令</h3>
+<h4 id="批量修改文件名">批量修改文件名</h4>
+<pre><code class="language-bash">exiftool -d %Y-%m-%d_%H-%M-%S%%-c.%%e &quot;-filename&lt;MediaCreateDate&quot; .\1.mp4
+exiftool -d %Y-%m-%d_%H-%M-%S%%-c.%%e &quot;-filename&lt;DateTimeOriginal&quot; .\
+exiftool -d %Y-%m-%d_%H-%M-%S%%-c.%%e &quot;-filename&lt;FileModifyDate&quot; .\
+</code></pre>
+<h4 id="通过修改时间写入拍摄日期">通过修改时间写入拍摄日期</h4>
+<pre><code class="language-bash">exiftool &quot;-DateTimeOriginal&lt;FileModifyDate&quot; -r -overwrite_original .\
+exiftool &quot;-FileModifyDate&lt;DateTimeOriginal&quot; -r -overwrite_original .\
+</code></pre>
+<h4 id="写入指定时间">写入指定时间</h4>
+<pre><code class="language-bash">exiftool &quot;-DateTimeOriginal='2008-05-01_08:00:00'&quot; -r -overwrite_original .\
+exiftool &quot;-FileModifyDate='2008-05-01_08:00:00'&quot; -r -overwrite_original .\
+</code></pre>
+<h4 id="写入视频媒体创作时间">写入视频媒体创作时间</h4>
+<pre><code class="language-bash">exiftool  &quot;-FileModifyDate&lt;filename&quot; &quot;-CreateDate&lt;filename&quot;   &quot;-MediaModifyDate&lt;filename&quot; &quot;-MediaCreateDate&lt;filename&quot; -api quicktimeutc=1 -quicktime:createdate&lt;filename -overwrite_original *.mp4
+</code></pre>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;"></p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://syaofox.github.io/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8calibre%E5%88%B6%E4%BD%9C%E5%B8%A6%E7%9B%AE%E5%BD%95%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/">
+			<br>如何使用Calibre制作带目录的电子书
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://syaofox.github.io/post/chrome-%E5%B0%8F%E6%8A%80%E5%B7%A7/">
+			<br>Chrome 小技巧
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+                <p style="opacity: 0.6" align="center">
+                    <small></small>
+                </p>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">
+ <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>  <a href="https://amazingrise.net">Rise</a>
+<br>
+ <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2020 云流
+	
+</div>
+            </div>
+    <script>
+let app;
+
+app = new Vue({
+    el: '#app',
+    data: {
+        scrollY: 0,
+        navOpacity: 0,
+        isDrawerOpen: false,
+        mounted: false,
+        isDarkMode: false
+    },
+    methods: {
+            sgn(t, x) {
+                let k = 1. / (1. - 2 * t);
+                if (x <= t) return 0;
+                else if (x >= 1 - t) return 1;
+                else {
+                    return k * (x - t);
+                }
+            },
+            handleScroll() {
+                this.scrollY = window.scrollY;
+                this.navOpacity = this.sgn(.0, Math.min(1, Math.max(0, window.scrollY / (this.pageHeadHeight() - this.navBarHeight() * 0.8))));
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+
+                if (this.navOpacity >= 1) {
+                    navBackground.style.opacity = 1;
+                    navTitle.style.opacity = 1;
+                } else {
+                    navBackground.style.opacity = 0;
+                    navTitle.style.opacity = 0;
+                }
+            },
+            handleResize() {
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+                extraContainer.style.left = (streamContainer.offsetWidth - extraContainer.offsetWidth) + 'px';
+            },
+            navBarHeight() {
+                return this.$refs.navBar.offsetHeight;
+            },
+            pageHeadHeight() {
+                return this.$refs.pageHead.offsetHeight;
+            },
+            toggleDrawer() {
+                this.isDrawerOpen = !this.isDrawerOpen;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            closeDrawer() {
+                this.isDrawerOpen = false;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            toggleDarkMode() {
+                this.isDarkMode = !this.isDarkMode;
+                if (this.isDarkMode==true){
+                    document.cookie = "night=1;path=/";
+                    document.body.classList.add("night");
+                } else {
+                    document.cookie = "night=0;path=/";
+                    document.body.classList.remove("night");
+                }
+            }
+    },
+    created() {
+        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('resize', this.handleResize);
+        window._nonDesktop = function () {
+            let check = false;
+            (function (a) {
+                if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+            })(navigator.userAgent || navigator.vendor || window.opera);
+            return check;
+        };
+        
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (night==""){
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                
+            }
+        }else{
+            
+            if (night=="1") {
+                this.toggleDarkMode();
+            }
+        }
+    },
+    mounted() {
+        this.handleScroll();
+        this.handleResize();
+        this.mounted = true;
+
+        
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.handleResize);
+    }
+});
+</script>
+
+<script src="https://syaofox.github.io/js/journal.js"></script>
+    </body>
+</html>

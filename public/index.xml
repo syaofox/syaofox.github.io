@@ -1,11 +1,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>霜天晓角</title>
+    <title>云流</title>
     <link>https://syaofox.github.io/</link>
-    <description>Recent content on 霜天晓角</description>
+    <description>Recent content on 云流</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>Syaofox 2020 copyright.</copyright>
     <lastBuildDate>Thu, 18 Jun 2020 20:31:51 +0800</lastBuildDate>
     
         <atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml" />
@@ -14,221 +13,253 @@
     
         <item>
         <title>Ubuntu 配置 Postfix 通过 Gmail 发送邮件</title>
-        <link>https://syaofox.github.io/linux/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/</link>
+        <link>https://syaofox.github.io/post/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/</link>
         <pubDate>Thu, 18 Jun 2020 20:31:51 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/ -&lt;h2 id=&#34;修改-ubuntu-本机-hostname&#34;&gt;修改 Ubuntu 本机 Hostname&lt;/h2&gt;
+        <guid>https://syaofox.github.io/post/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/</guid>
+        <description>云流 https://syaofox.github.io/post/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/ -&lt;h2 id=&#34;修改-ubuntu-本机-hostname&#34;&gt;修改 Ubuntu 本机 Hostname&lt;/h2&gt;
 &lt;h3 id=&#34;查看当前-hostname&#34;&gt;查看当前 hostname&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;hostname -f
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;修改当前-hostname&#34;&gt;修改当前 hostname&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;hostname -f
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;修改当前-hostname&#34;&gt;修改当前 hostname&lt;/h3&gt;
 &lt;p&gt;可以通过命令修改 hostname&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span style=&#34;color:#658b00&#34;&gt;hostname syaofox.com&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;但是这样修改只是临时的,系统重启后失效,必须修改配置文件才能永久生效&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo nano /etc/hostname
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;修改为&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span style=&#34;color:#658b00&#34;&gt;syaofox.com&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;修改-hosts&#34;&gt;修改 hosts&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-ini&#34;&gt;hostname syaofox.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;但是这样修改只是临时的,系统重启后失效,必须修改配置文件才能永久生效&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo nano /etc/hostname
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;修改为&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-ini&#34;&gt;syaofox.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;修改-hosts&#34;&gt;修改 hosts&lt;/h3&gt;
 &lt;p&gt;修改 hosts 文件&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo nano /etc/hosts
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;修改 127.0.1.1 解析为刚才修改的 hostname&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span style=&#34;color:#658b00&#34;&gt;127.0.1.1 syaofox.com&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;重启&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo nano /etc/hosts
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;修改 127.0.1.1 解析为刚才修改的 hostname&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-ini&#34;&gt;127.0.1.1 syaofox.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;重启&lt;/p&gt;
 &lt;h2 id=&#34;安装-postfix&#34;&gt;安装 Postfix&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt update
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt update
 
 sudo apt install mailutils
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;选择 Internet Site&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;选择 Internet Site&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/linuxubuntu-%E9%85%8D%E7%BD%AE-Postfix-%E9%80%9A%E8%BF%87-Gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/Configure_Postfix_Installation.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;下一步填入hostname&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/linuxubuntu-%E9%85%8D%E7%BD%AE-Postfix-%E9%80%9A%E8%BF%87-Gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/Configure_Postfix_with_FQDN_hostname.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;以后可以通过输入以下命令修改配置&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;dpkg-reconfigure postfix
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;使用gmail-smtp-配置-postfix&#34;&gt;使用Gmail SMTP 配置 Postfix&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;dpkg-reconfigure postfix
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;使用gmail-smtp-配置-postfix&#34;&gt;使用Gmail SMTP 配置 Postfix&lt;/h2&gt;
 &lt;h3 id=&#34;修改配置文件&#34;&gt;修改配置文件&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo nano /etc/postfix/main.cf
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;找到 relayhost= 这行,修改&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;
-&lt;span style=&#34;color:#658b00&#34;&gt;myhostname&lt;/span&gt; = &lt;span style=&#34;color:#cd5555&#34;&gt;syaofox.com&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo nano /etc/postfix/main.cf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;找到 relayhost= 这行,修改&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-ini&#34;&gt;
+myhostname = syaofox.com
 
-&lt;span style=&#34;color:#658b00&#34;&gt;relayhost&lt;/span&gt; = &lt;span style=&#34;color:#cd5555&#34;&gt;[smtp.gmail.com]:587&lt;/span&gt;
+relayhost = [smtp.gmail.com]:587
 
-&lt;span style=&#34;color:#658b00&#34;&gt;mydestination&lt;/span&gt; = &lt;span style=&#34;color:#cd5555&#34;&gt;localhost.syaofox.com, , localhost&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;配置文件末尾添加&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# Enables SASL authentication for postfix&lt;/span&gt;
-&lt;span style=&#34;color:#658b00&#34;&gt;smtp_sasl_auth_enable&lt;/span&gt; = &lt;span style=&#34;color:#cd5555&#34;&gt;yes&lt;/span&gt;
-&lt;span style=&#34;color:#228b22&#34;&gt;# Disallow methods that allow anonymous authentication&lt;/span&gt;
-&lt;span style=&#34;color:#658b00&#34;&gt;smtp_sasl_security_options&lt;/span&gt; = &lt;span style=&#34;color:#cd5555&#34;&gt;noanonymous&lt;/span&gt;
-&lt;span style=&#34;color:#228b22&#34;&gt;# Location of sasl_passwd we saved&lt;/span&gt;
-&lt;span style=&#34;color:#658b00&#34;&gt;smtp_sasl_password_maps&lt;/span&gt; = &lt;span style=&#34;color:#cd5555&#34;&gt;hash:/etc/postfix/sasl/sasl_passwd&lt;/span&gt;
-&lt;span style=&#34;color:#228b22&#34;&gt;# Enable STARTTLS encryption for SMTP&lt;/span&gt;
-&lt;span style=&#34;color:#658b00&#34;&gt;smtp_tls_security_level&lt;/span&gt; = &lt;span style=&#34;color:#cd5555&#34;&gt;encrypt&lt;/span&gt;
-&lt;span style=&#34;color:#228b22&#34;&gt;# Location of CA certificates for TLS&lt;/span&gt;
-&lt;span style=&#34;color:#658b00&#34;&gt;smtp_tls_CAfile&lt;/span&gt; = &lt;span style=&#34;color:#cd5555&#34;&gt;/etc/ssl/certs/ca-certificates.crt&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;添加smtp连接信息文件&#34;&gt;添加SMTP连接信息文件&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo nano /etc/postfix/sasl/sasl_passwd
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;里面添加&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span style=&#34;color:#658b00&#34;&gt;[smtp.gmail.com]:587 syaofox@gmail.com:密码  #你的Gmail地址和密码,开启两步验证的请使用应用专用密码&lt;/span&gt;
+mydestination = localhost.syaofox.com, , localhost
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;配置文件末尾添加&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-ini&#34;&gt;# Enables SASL authentication for postfix
+smtp_sasl_auth_enable = yes
+# Disallow methods that allow anonymous authentication
+smtp_sasl_security_options = noanonymous
+# Location of sasl_passwd we saved
+smtp_sasl_password_maps = hash:/etc/postfix/sasl/sasl_passwd
+# Enable STARTTLS encryption for SMTP
+smtp_tls_security_level = encrypt
+# Location of CA certificates for TLS
+smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;添加smtp连接信息文件&#34;&gt;添加SMTP连接信息文件&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo nano /etc/postfix/sasl/sasl_passwd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;里面添加&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-ini&#34;&gt;[smtp.gmail.com]:587 syaofox@gmail.com:密码  #你的Gmail地址和密码,开启两步验证的请使用应用专用密码
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;转换配置文件&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo postmap /etc/postfix/sasl/sasl_passwd
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;修改配置文件权限&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;chown root:root /etc/postfix/sasl/sasl_passwd
-chmod &lt;span style=&#34;color:#b452cd&#34;&gt;600&lt;/span&gt; /etc/postfix/sasl/sasl_passwd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;转换配置文件&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo postmap /etc/postfix/sasl/sasl_passwd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;修改配置文件权限&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;chown root:root /etc/postfix/sasl/sasl_passwd
+chmod 600 /etc/postfix/sasl/sasl_passwd
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;重启-postfix-服务&#34;&gt;重启 Postfix 服务&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo service postfix restart
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;重启-postfix-服务&#34;&gt;重启 Postfix 服务&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo service postfix restart
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;发送测试邮件&#34;&gt;发送测试邮件&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#658b00&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;这是邮件正文&amp;#34;&lt;/span&gt; | mail -s &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;这是邮件标题&amp;#34;&lt;/span&gt; syaofox@gmail.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;发送测试邮件&#34;&gt;发送测试邮件&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;echo &amp;quot;这是邮件正文&amp;quot; | mail -s &amp;quot;这是邮件标题&amp;quot; syaofox@gmail.com
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 发送带附件的邮件&lt;/span&gt;
+# 发送带附件的邮件
 
-&lt;span style=&#34;color:#658b00&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;这是邮件正文&amp;#34;&lt;/span&gt; | mail -s &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;这是邮件标题&amp;#34;&lt;/span&gt; -A ~/test.txt syaofox@gmail.com
+echo &amp;quot;这是邮件正文&amp;quot; | mail -s &amp;quot;这是邮件标题&amp;quot; -A ~/test.txt syaofox@gmail.com
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;修改邮件发件人显示名&#34;&gt;修改邮件发件人显示名&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;修改邮件发件人显示名&#34;&gt;修改邮件发件人显示名&lt;/h3&gt;
 &lt;p&gt;默认邮件发送人显示root,可以通过下面命令修改&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 查看当期邮件发送人&lt;/span&gt;
-getent passwd &lt;span style=&#34;color:#00688b&#34;&gt;$USER&lt;/span&gt; | cut -d &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;:&amp;#39;&lt;/span&gt; -f &lt;span style=&#34;color:#b452cd&#34;&gt;5&lt;/span&gt; | cut -d &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;,&amp;#39;&lt;/span&gt; -f &lt;span style=&#34;color:#b452cd&#34;&gt;1&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 查看当期邮件发送人
+getent passwd $USER | cut -d &#39;:&#39; -f 5 | cut -d &#39;,&#39; -f 1
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 显示&lt;/span&gt;
+# 显示
 root
 
-&lt;span style=&#34;color:#228b22&#34;&gt;# 修改root的显示名&lt;/span&gt;
+# 修改root的显示名
 
-sudo chfn -f &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;FirstName LastName&amp;#34;&lt;/span&gt; root
+sudo chfn -f &amp;quot;FirstName LastName&amp;quot; root
 
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/linux/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/ - Syaofox 2020 copyright.</description>
+&lt;/code&gt;&lt;/pre&gt;
+- https://syaofox.github.io/post/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/ - </description>
         </item>
     
     
     
         <item>
         <title>Ubuntu 配置 ZFS Event Daemon</title>
-        <link>https://syaofox.github.io/linux/ubuntu1604-%E9%85%8D%E7%BD%AEzfs-event-daemon/</link>
+        <link>https://syaofox.github.io/post/ubuntu1604-%E9%85%8D%E7%BD%AEzfs-event-daemon/</link>
         <pubDate>Thu, 18 Jun 2020 12:09:42 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/ubuntu1604-%E9%85%8D%E7%BD%AEzfs-event-daemon/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/ubuntu1604-%E9%85%8D%E7%BD%AEzfs-event-daemon/ -&lt;h2 id=&#34;一安装软件&#34;&gt;一、安装软件&lt;/h2&gt;
+        <guid>https://syaofox.github.io/post/ubuntu1604-%E9%85%8D%E7%BD%AEzfs-event-daemon/</guid>
+        <description>云流 https://syaofox.github.io/post/ubuntu1604-%E9%85%8D%E7%BD%AEzfs-event-daemon/ -&lt;h2 id=&#34;一安装软件&#34;&gt;一、安装软件&lt;/h2&gt;
 &lt;p&gt;zed是zfs的一个事件服务，需要安装zfs-zed来使用，同时，为了能邮件通知，还需要安装&lt;code&gt;mailutils msmtp msmtp-mta s-nail&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;apt-get install mailutils msmtp msmtp-mta s-nail zfs-zed
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;二配置msmtp&#34;&gt;二、配置msmtp&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;apt-get install mailutils msmtp msmtp-mta s-nail zfs-zed
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;二配置msmtp&#34;&gt;二、配置msmtp&lt;/h2&gt;
 &lt;p&gt;修改或新建/etc/msmtprc&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;defaults
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;defaults
 auth           login
-&lt;span style=&#34;color:#1e889b&#34;&gt;#tls_starttls   off
-&lt;/span&gt;&lt;span style=&#34;color:#1e889b&#34;&gt;&lt;/span&gt;tls            off
-&lt;span style=&#34;color:#1e889b&#34;&gt;#tls_trust_file /etc/ssl/certs/ca-certificates.crt
-&lt;/span&gt;&lt;span style=&#34;color:#1e889b&#34;&gt;&lt;/span&gt;logfile        ~/.msmtp.log
+#tls_starttls   off
+tls            off
+#tls_trust_file /etc/ssl/certs/ca-certificates.crt
+logfile        ~/.msmtp.log
 
 account alerts
 host smtp.qq.com
-port &lt;span style=&#34;color:#b452cd&#34;&gt;25&lt;/span&gt;
-from &lt;span style=&#34;color:#a61717;background-color:#e3d2d2&#34;&gt;地址@&lt;/span&gt;qq.com
-user &lt;span style=&#34;color:#a61717;background-color:#e3d2d2&#34;&gt;地址@&lt;/span&gt;qq.com
-password xxxx       &lt;span style=&#34;color:#a61717;background-color:#e3d2d2&#34;&gt;#这里的密码是&lt;/span&gt;smtp的验证密码&lt;span style=&#34;color:#a61717;background-color:#e3d2d2&#34;&gt;，不是邮箱登录密码&lt;/span&gt;
+port 25
+from 地址@qq.com
+user 地址@qq.com
+password xxxx       #这里的密码是smtp的验证密码，不是邮箱登录密码
 
-&lt;span style=&#34;color:#1e889b&#34;&gt;# Set a default account
-&lt;/span&gt;&lt;span style=&#34;color:#1e889b&#34;&gt;&lt;/span&gt;account &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;default&lt;/span&gt; : alerts
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;配置完后&lt;code&gt;echo &amp;quot;test mail&amp;quot; | mail -s &amp;quot;test&amp;quot; 地址@qq.com&lt;/code&gt;测试是否能收到邮件。&lt;/p&gt;
+# Set a default account
+account default : alerts
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;配置完后&lt;code&gt;echo &amp;quot;test mail&amp;quot; | mail -s &amp;quot;test&amp;quot; 地址@qq.com&lt;/code&gt;测试是否能收到邮件。&lt;/p&gt;
 &lt;h2 id=&#34;三配置zed&#34;&gt;三、配置zed&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;vi /etc/zfs/zed.d/zed.rc
-&lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;ZED_EMAIL_ADDR=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;地址@qq.com&amp;#34;&lt;/span&gt;
-ZED_EMAIL_PROG=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;mail&amp;#34;&lt;/span&gt;
-ZED_EMAIL_OPTS=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;-s &amp;#39;@SUBJECT@&amp;#39; @ADDRESS@ -r 地址@qq.com&amp;#34;&lt;/span&gt;
-ZED_NOTIFY_INTERVAL_SECS=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;3600&amp;#34;&lt;/span&gt;
-ZED_NOTIFY_VERBOSE=&lt;span style=&#34;color:#b452cd&#34;&gt;1&lt;/span&gt;
-ZED_DEBUG_LOG=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;/tmp/zed.debug.log&amp;#34;&lt;/span&gt;
-ZED_SYSLOG_PRIORITY=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;daemon.notice&amp;#34;&lt;/span&gt;
-ZED_SYSLOG_TAG=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;zed&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Restart zfs-zed&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;systemctl&lt;/span&gt; &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;restart&lt;/span&gt; &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;zfs-zed&lt;/span&gt;.&lt;span style=&#34;color:#008b45;font-weight:bold&#34;&gt;service&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;/etc/aliases file:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;root&lt;/span&gt;: &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;brismuth&lt;/span&gt;
-&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;brismuth&lt;/span&gt;: &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;brismuth&lt;/span&gt;@&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;gmail&lt;/span&gt;.&lt;span style=&#34;color:#008b45;font-weight:bold&#34;&gt;com&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You’ll want to replace “brismuth” with your username and you’ll want to use your own email address at the end. This file tells your computer that all email intended for the “root” user should be sent to the “brismuth” user, and that all email intended for the “brismuth” user should be sent to “[brismuth@gmail.com]&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;ZED_EMAIL_ADDR=&amp;quot;地址@qq.com&amp;quot;
+ZED_EMAIL_PROG=&amp;quot;mail&amp;quot;
+ZED_EMAIL_OPTS=&amp;quot;-s &#39;@SUBJECT@&#39; @ADDRESS@ -r 地址@qq.com&amp;quot;
+ZED_NOTIFY_INTERVAL_SECS=&amp;quot;3600&amp;quot;
+ZED_NOTIFY_VERBOSE=1
+ZED_DEBUG_LOG=&amp;quot;/tmp/zed.debug.log&amp;quot;
+ZED_SYSLOG_PRIORITY=&amp;quot;daemon.notice&amp;quot;
+ZED_SYSLOG_TAG=&amp;quot;zed&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Restart zfs-zed&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;systemctl restart zfs-zed.service
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;/etc/aliases file:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;root: brismuth
+brismuth: brismuth@gmail.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You’ll want to replace “brismuth” with your username and you’ll want to use your own email address at the end. This file tells your computer that all email intended for the “root” user should be sent to the “brismuth” user, and that all email intended for the “brismuth” user should be sent to “[brismuth@gmail.com]&lt;/p&gt;
 &lt;h2 id=&#34;四测试验证&#34;&gt;四、测试验证&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;zpool scrub pool
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;五计划任务&#34;&gt;五、计划任务&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# zpool scrub every month&lt;/span&gt;
-&lt;span style=&#34;color:#b452cd&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#b452cd&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#b452cd&#34;&gt;1&lt;/span&gt; * * &lt;span style=&#34;color:#1c7e71&#34;&gt;/sbin/&lt;/span&gt;zpool scrub pool
-&lt;span style=&#34;color:#b452cd&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#b452cd&#34;&gt;13&lt;/span&gt; &lt;span style=&#34;color:#b452cd&#34;&gt;1&lt;/span&gt; * * &lt;span style=&#34;color:#1c7e71&#34;&gt;/sbin/&lt;/span&gt;zpool status
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/linux/ubuntu1604-%E9%85%8D%E7%BD%AEzfs-event-daemon/ - Syaofox 2020 copyright.</description>
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;五计划任务&#34;&gt;五、计划任务&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# zpool scrub every month
+0 2 1 * * /sbin/zpool scrub pool
+0 13 1 * * /sbin/zpool status
+&lt;/code&gt;&lt;/pre&gt;
+- https://syaofox.github.io/post/ubuntu1604-%E9%85%8D%E7%BD%AEzfs-event-daemon/ - </description>
         </item>
     
     
     
         <item>
         <title>Crontab 脚本错误日志和正确的输出写入到文件</title>
-        <link>https://syaofox.github.io/linux/crontab-%E8%84%9A%E6%9C%AC%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97%E5%92%8C%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%BE%93%E5%87%BA%E5%86%99%E5%85%A5%E5%88%B0%E6%96%87%E4%BB%B6/</link>
+        <link>https://syaofox.github.io/post/crontab-%E8%84%9A%E6%9C%AC%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97%E5%92%8C%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%BE%93%E5%87%BA%E5%86%99%E5%85%A5%E5%88%B0%E6%96%87%E4%BB%B6/</link>
         <pubDate>Thu, 18 Jun 2020 12:08:17 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/crontab-%E8%84%9A%E6%9C%AC%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97%E5%92%8C%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%BE%93%E5%87%BA%E5%86%99%E5%85%A5%E5%88%B0%E6%96%87%E4%BB%B6/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/crontab-%E8%84%9A%E6%9C%AC%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97%E5%92%8C%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%BE%93%E5%87%BA%E5%86%99%E5%85%A5%E5%88%B0%E6%96%87%E4%BB%B6/ -&lt;p&gt;crontab 脚本运行时,需要把运行日志写入到日志中方便查阅,本文介绍一下如果控制输出内容&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/crontab-%E8%84%9A%E6%9C%AC%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97%E5%92%8C%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%BE%93%E5%87%BA%E5%86%99%E5%85%A5%E5%88%B0%E6%96%87%E4%BB%B6/</guid>
+        <description>云流 https://syaofox.github.io/post/crontab-%E8%84%9A%E6%9C%AC%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97%E5%92%8C%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%BE%93%E5%87%BA%E5%86%99%E5%85%A5%E5%88%B0%E6%96%87%E4%BB%B6/ -&lt;p&gt;crontab 脚本运行时,需要把运行日志写入到日志中方便查阅,本文介绍一下如果控制输出内容&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;如果crontab不重定向输出，并且crontab所执行的命令有输出内容的话，是一件非常危险的事情。因为该输出内容会以邮件的形式发送给用户，内容存储在邮件文件&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;/var/spool/mail/&lt;span style=&#34;color:#00688b&#34;&gt;$user&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/var/spool/mail/$user
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
 &lt;p&gt;如果命令执行比较频繁（如每分钟一次），或者命令输出内容较多，会使这个邮件文件不断追加内容，文件越来越大。而邮件文件一般存放在根分区，根分区一般相对较小，所以会造成根分区写满而无法登录服务器。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;不输出内容&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;*/5 * * * * /root/XXXX.sh &amp;amp;&amp;gt;/dev/null 2&amp;gt;&amp;amp;&lt;span style=&#34;color:#b452cd&#34;&gt;1&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;*/5 * * * * /root/XXXX.sh &amp;amp;&amp;gt;/dev/null 2&amp;gt;&amp;amp;1 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
 &lt;li&gt;将正确和错误日志都输出到 /tmp/load.log&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;*/1 * * * * /root/XXXX.sh &amp;gt; /tmp/load.log 2&amp;gt;&amp;amp;&lt;span style=&#34;color:#b452cd&#34;&gt;1&lt;/span&gt; &amp;amp;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;*/1 * * * * /root/XXXX.sh &amp;gt; /tmp/load.log 2&amp;gt;&amp;amp;1 &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
 &lt;li&gt;只输出正确日志到 /tmp/load.log&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;*/1 * * * * /root/XXXX.sh &amp;gt; /tmp/load.log &amp;amp;  等同于   */1 * * * * /root/XXXX.sh 1&amp;gt;/tmp/load.log &amp;amp;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;*/1 * * * * /root/XXXX.sh &amp;gt; /tmp/load.log &amp;amp;  等同于   */1 * * * * /root/XXXX.sh 1&amp;gt;/tmp/load.log &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
 &lt;li&gt;只输出错误日志到 /tmp/load.log&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;*/1 * * * * /root/XXXX.sh 2&amp;gt; /tmp/load.log &amp;amp; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;*/1 * * * * /root/XXXX.sh 2&amp;gt; /tmp/load.log &amp;amp; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
 &lt;p&gt;名词解释&lt;/p&gt;
 &lt;p&gt;在shell中，每个进程都和三个系统文件相关联：标准输入stdin，标准输出stdout和标准错误stderr，三个系统文件的文件描述符分别为0，1和2。所以这里2&amp;gt;&amp;amp;1的意思就是将标准错误也输出到标准输出当中。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&amp;gt; 就相当于 1&amp;gt; 也就是重定向标准输出，不包括标准错误。通过2&amp;gt;&amp;amp;1，就将标准错误重定向到标准输出了（stderr已作为stdout的副本），那么再使用&amp;gt;重定向就会将标准输出和标准错误信息一同重定向了。如果只想重定向标准错误到文件中，则可以使用2&amp;gt; file。&lt;/p&gt;
 &lt;/blockquote&gt;
-- https://syaofox.github.io/linux/crontab-%E8%84%9A%E6%9C%AC%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97%E5%92%8C%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%BE%93%E5%87%BA%E5%86%99%E5%85%A5%E5%88%B0%E6%96%87%E4%BB%B6/ - Syaofox 2020 copyright.</description>
+- https://syaofox.github.io/post/crontab-%E8%84%9A%E6%9C%AC%E9%94%99%E8%AF%AF%E6%97%A5%E5%BF%97%E5%92%8C%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%BE%93%E5%87%BA%E5%86%99%E5%85%A5%E5%88%B0%E6%96%87%E4%BB%B6/ - </description>
         </item>
     
     
     
         <item>
         <title>Docker Hub 镜像加速器</title>
-        <link>https://syaofox.github.io/linux/docker-hub-%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8/</link>
+        <link>https://syaofox.github.io/post/docker-hub-%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8/</link>
         <pubDate>Thu, 18 Jun 2020 12:06:21 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/docker-hub-%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/docker-hub-%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8/ -&lt;p&gt;国内从 Docker Hub 拉取镜像有时会遇到困难，此时可以配置镜像加速器。Docker 官方和国内很多云服务商都提供了国内加速器服务。*&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/docker-hub-%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8/</guid>
+        <description>云流 https://syaofox.github.io/post/docker-hub-%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8/ -&lt;p&gt;国内从 Docker Hub 拉取镜像有时会遇到困难，此时可以配置镜像加速器。Docker 官方和国内很多云服务商都提供了国内加速器服务。*&lt;/p&gt;
 &lt;h2 id=&#34;配置加速地址&#34;&gt;配置加速地址&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Ubuntu 16.04+、Debian 8+、CentOS 7+&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;创建或修改 &lt;code&gt;/etc/docker/daemon.json&lt;/code&gt;：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo mkdir -p /etc/docker
-sudo tee /etc/docker/daemon.json &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;lt;&amp;lt;-&amp;#39;EOF&amp;#39;
-&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;{
-&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;    &amp;#34;registry-mirrors&amp;#34;: [
-&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;        &amp;#34;https://1nj0zren.mirror.aliyuncs.com&amp;#34;,
-&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;        &amp;#34;https://docker.mirrors.ustc.edu.cn&amp;#34;,
-&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;        &amp;#34;http://f1361db2.m.daocloud.io&amp;#34;,
-&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;        &amp;#34;https://registry.docker-cn.com&amp;#34;
-&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;    ]
-&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;}
-&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;EOF&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json &amp;lt;&amp;lt;-&#39;EOF&#39;
+{
+    &amp;quot;registry-mirrors&amp;quot;: [
+        &amp;quot;https://1nj0zren.mirror.aliyuncs.com&amp;quot;,
+        &amp;quot;https://docker.mirrors.ustc.edu.cn&amp;quot;,
+        &amp;quot;http://f1361db2.m.daocloud.io&amp;quot;,
+        &amp;quot;https://registry.docker-cn.com&amp;quot;
+    ]
+}
+EOF
 sudo systemctl daemon-reload
 sudo systemctl restart docker
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;docker-hub-镜像加速器列表&#34;&gt;Docker Hub 镜像加速器列表&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;docker-hub-镜像加速器列表&#34;&gt;Docker Hub 镜像加速器列表&lt;/h2&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -291,63 +322,69 @@ sudo systemctl restart docker
 &lt;/table&gt;
 &lt;h2 id=&#34;检查加速器是否生效&#34;&gt;检查加速器是否生效&lt;/h2&gt;
 &lt;p&gt;命令行执行 &lt;code&gt;docker info&lt;/code&gt;，如果从结果中看到了如下内容，说明配置成功。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;Registry Mirrors:
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Registry Mirrors:
  [...]
  https://registry.docker-cn.com/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;docker-hub-镜像测速&#34;&gt;Docker Hub 镜像测速&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;docker-hub-镜像测速&#34;&gt;Docker Hub 镜像测速&lt;/h2&gt;
 &lt;p&gt;使用镜像前后，可使用 &lt;code&gt;time&lt;/code&gt; 统计所花费的总时间。测速前先移除本地的镜像！&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ docker rmi node:latest
-$ &lt;span style=&#34;color:#658b00&#34;&gt;time&lt;/span&gt; docker pull node:latest
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker rmi node:latest
+$ time docker pull node:latest
 Pulling repository node
 [...]
 
 real   1m14.078s
 user   0m0.176s
 sys    0m0.120s
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;- https://syaofox.github.io/linux/docker-hub-%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8/ - Syaofox 2020 copyright.</description>
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;- https://syaofox.github.io/post/docker-hub-%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8/ - </description>
         </item>
     
     
     
         <item>
         <title>Docker 容器使用宿主机同网段IP</title>
-        <link>https://syaofox.github.io/linux/docker-%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%90%8C%E7%BD%91%E6%AE%B5ip/</link>
+        <link>https://syaofox.github.io/post/docker-%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%90%8C%E7%BD%91%E6%AE%B5ip/</link>
         <pubDate>Thu, 18 Jun 2020 12:05:03 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/docker-%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%90%8C%E7%BD%91%E6%AE%B5ip/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/docker-%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%90%8C%E7%BD%91%E6%AE%B5ip/ -&lt;p&gt;工作需要临时启动一个 gitlab,无奈 gitlab 需要 ssh 的 22 端口;而使用传统网桥方式映射端口则 clone 等都需要输入端口号,很麻烦;22 端口宿主机又有 sshd 监听;研究了下 docker 网络,记录一下如何分配宿主机网段 IP*&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/docker-%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%90%8C%E7%BD%91%E6%AE%B5ip/</guid>
+        <description>云流 https://syaofox.github.io/post/docker-%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%90%8C%E7%BD%91%E6%AE%B5ip/ -&lt;p&gt;工作需要临时启动一个 gitlab,无奈 gitlab 需要 ssh 的 22 端口;而使用传统网桥方式映射端口则 clone 等都需要输入端口号,很麻烦;22 端口宿主机又有 sshd 监听;研究了下 docker 网络,记录一下如何分配宿主机网段 IP*&lt;/p&gt;
 &lt;h3 id=&#34;创建-macvlan-网络&#34;&gt;创建 macvlan 网络&lt;/h3&gt;
 &lt;p&gt;关于 Docker 网络模式这里不再细说;由于默认的网桥方式无法满足需要,所以需要创建一个 macvlan 网络&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;docker network create -d macvlan  --subnet=172.16.0.0/19 --gateway=172.16.0.1 -o &lt;span style=&#34;color:#00688b&#34;&gt;parent&lt;/span&gt;=eth0 gitlab-net
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;docker network create -d macvlan  --subnet=172.16.0.0/19 --gateway=172.16.0.1 -o parent=eth0 gitlab-net
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;--subnet&lt;/code&gt;: 指定网段(宿主机)&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;--gateway&lt;/code&gt;: 指定网关(宿主机)&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;parent&lt;/code&gt;: 注定父网卡(宿主机)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;创建以后可以使用 &lt;code&gt;docker network ls&lt;/code&gt; 查看&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;➜  ~  docker network ls
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;➜  ~  docker network ls
 NETWORK ID          NAME                    DRIVER              SCOPE
-a4a2980c9165        agent_default           bridge              &lt;span style=&#34;color:#658b00&#34;&gt;local&lt;/span&gt;               
-a0f29102b413        bridge                  bridge              &lt;span style=&#34;color:#658b00&#34;&gt;local&lt;/span&gt;               
-2f46dc70b763        gitlab-net              macvlan             &lt;span style=&#34;color:#658b00&#34;&gt;local&lt;/span&gt;               
-51bd6222530f        host                    host                &lt;span style=&#34;color:#658b00&#34;&gt;local&lt;/span&gt;               
-7a14a09c3cfc        none                    null                &lt;span style=&#34;color:#658b00&#34;&gt;local&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;创建使用容器&#34;&gt;创建使用容器[]&lt;/h3&gt;
+a4a2980c9165        agent_default           bridge              local               
+a0f29102b413        bridge                  bridge              local               
+2f46dc70b763        gitlab-net              macvlan             local               
+51bd6222530f        host                    host                local               
+7a14a09c3cfc        none                    null                local
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;创建使用容器&#34;&gt;创建使用容器[]&lt;/h3&gt;
 &lt;p&gt;接下来创建容器指定网络即可&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;docker run --net=gitlab-net --ip=172.16.0.170  -dt --name &lt;span style=&#34;color:#658b00&#34;&gt;test&lt;/span&gt; centos:7
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;&lt;code&gt;--net&lt;/code&gt; 指定使用的网络,&lt;code&gt;--ip&lt;/code&gt; 用于指定网段内 IP&lt;/strong&gt;;启动后只需要在容器内启动程序测试即可&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 启动一个 nginx&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;docker run --net=gitlab-net --ip=172.16.0.170  -dt --name test centos:7
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;--net&lt;/code&gt; 指定使用的网络,&lt;code&gt;--ip&lt;/code&gt; 用于指定网段内 IP&lt;/strong&gt;;启动后只需要在容器内启动程序测试即可&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# 启动一个 nginx
 yum install nginx
 nginx
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;启动后在局域网内能直接通过 IP:80 访问,而且宿主机 80 不受影响&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;启动后在局域网内能直接通过 IP:80 访问,而且宿主机 80 不受影响&lt;/p&gt;
 &lt;h3 id=&#34;docker-compose-测试&#34;&gt;docker-compose 测试&lt;/h3&gt;
 &lt;p&gt;docker-compose 示例如下&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;version: &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;2&amp;#39;&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;version: &#39;2&#39;
 services:
   centos:
     image: centos:7
     restart: always
-    command: /bin/bash -c &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;sleep 999999&amp;#34;&lt;/span&gt;
+    command: /bin/bash -c &amp;quot;sleep 999999&amp;quot;
     networks:
       app_net:
         ipv4_address: 10.10.1.34
@@ -360,19 +397,20 @@ networks:
       config:
       - subnet: 10.10.1.0/24
         gateway: 10.10.1.2
-&lt;span style=&#34;color:#228b22&#34;&gt;#        ip_range: 10.25.87.32/28&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/linux/docker-%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%90%8C%E7%BD%91%E6%AE%B5ip/ - Syaofox 2020 copyright.</description>
+#        ip_range: 10.25.87.32/28
+&lt;/code&gt;&lt;/pre&gt;
+- https://syaofox.github.io/post/docker-%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%90%8C%E7%BD%91%E6%AE%B5ip/ - </description>
         </item>
     
     
     
         <item>
         <title>Linux命令行帮助解析</title>
-        <link>https://syaofox.github.io/linux/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B8%AE%E5%8A%A9%E8%A7%A3%E6%9E%90/</link>
+        <link>https://syaofox.github.io/post/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B8%AE%E5%8A%A9%E8%A7%A3%E6%9E%90/</link>
         <pubDate>Thu, 18 Jun 2020 12:03:25 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B8%AE%E5%8A%A9%E8%A7%A3%E6%9E%90/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B8%AE%E5%8A%A9%E8%A7%A3%E6%9E%90/ -&lt;p&gt;作为Linux小菜，使用Linux终端命令时总是不知到如何使用相关的参数，如-p ，-r ，使用-和不使用-，一个-和两个&amp;ndash;，有时能够在网上查询别人的使用方法，可是使用一次，第二次又忘记了，所以自己还是得掌握查看帮助文档的方法。&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B8%AE%E5%8A%A9%E8%A7%A3%E6%9E%90/</guid>
+        <description>云流 https://syaofox.github.io/post/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B8%AE%E5%8A%A9%E8%A7%A3%E6%9E%90/ -&lt;p&gt;作为Linux小菜，使用Linux终端命令时总是不知到如何使用相关的参数，如-p ，-r ，使用-和不使用-，一个-和两个&amp;ndash;，有时能够在网上查询别人的使用方法，可是使用一次，第二次又忘记了，所以自己还是得掌握查看帮助文档的方法。&lt;/p&gt;
 &lt;h2 id=&#34;常用帮助命令&#34;&gt;常用帮助命令：&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;--help&lt;/code&gt; 显示使用摘要和参数列表(可以查看大多数命令的用法)&lt;/li&gt;
@@ -412,38 +450,43 @@ networks:
 &lt;li&gt;
 &lt;p&gt;省略号表示该选项可以单个或多个&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;- https://syaofox.github.io/linux/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B8%AE%E5%8A%A9%E8%A7%A3%E6%9E%90/ - Syaofox 2020 copyright.</description>
+&lt;/ul&gt;- https://syaofox.github.io/post/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B8%AE%E5%8A%A9%E8%A7%A3%E6%9E%90/ - </description>
         </item>
     
     
     
         <item>
         <title>Linux上面碰到鬼畜逆天级的软件依赖关系大家都是怎么解决的</title>
-        <link>https://syaofox.github.io/linux/linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/</link>
+        <link>https://syaofox.github.io/post/linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/</link>
         <pubDate>Thu, 18 Jun 2020 11:59:08 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/ -&lt;p&gt;硬刚Linux软件安装依赖问题的办法有很多，我给他分为两大类！&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/</guid>
+        <description>云流 https://syaofox.github.io/post/linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/ -&lt;p&gt;硬刚Linux软件安装依赖问题的办法有很多，我给他分为两大类！&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;一类合法，另一类暴力。&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&#34;先说合法的解决方案&#34;&gt;先说合法的解决方案&lt;/h2&gt;
 &lt;p&gt;也是所有人都知道的解决方案：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt-get install xxxxx
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;一般情况下，它会连带软件的依赖一起安装。如果这个过程中依赖安装失败，就执行&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt-get -f install
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;一次不行两次，只要源里有，只要能保证依赖关系是顺畅的，再多的依赖多执行几次都能装完。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get install xxxxx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;一般情况下，它会连带软件的依赖一起安装。如果这个过程中依赖安装失败，就执行&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get -f install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;一次不行两次，只要源里有，只要能保证依赖关系是顺畅的，再多的依赖多执行几次都能装完。&lt;/p&gt;
 &lt;p&gt;如果有依赖源里找不到。这个坑就踩不过去了，解决办法是：找到缺失的库的安装包手动下载下来。然后通过&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo dpkg -i xxxx.deb
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装。需要手动下载安装包的寻找主要有两个途径：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo dpkg -i xxxx.deb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;安装。需要手动下载安装包的寻找主要有两个途径：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;百度找，直接搜包名+版本号并带上关键字&lt;code&gt;deb&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;通过源。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;百度直接找库就不多说了，额外说一下通过源怎么找。&lt;/p&gt;
 &lt;p&gt;你在网上搜ubuntu国内源。会找到很多类似这样的写法：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这其实即是给&lt;code&gt;apt-get&lt;/code&gt;工具配置的源地址，也是个实际的网址，你可以直接从浏览器里访问到，比如上面这个&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这其实即是给&lt;code&gt;apt-get&lt;/code&gt;工具配置的源地址，也是个实际的网址，你可以直接从浏览器里访问到，比如上面这个&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;它其实代表的是： &lt;code&gt;https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/xenial/&lt;/code&gt; 这个路径下的&lt;code&gt;main&lt;/code&gt;，&lt;code&gt;restricted&lt;/code&gt;，&lt;code&gt;universe&lt;/code&gt;，&lt;code&gt;multiverse&lt;/code&gt; 这几个目录：&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;它其实代表的是： &lt;code&gt;https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/xenial/&lt;/code&gt; 这个路径下的&lt;code&gt;main&lt;/code&gt;，&lt;code&gt;restricted&lt;/code&gt;，&lt;code&gt;universe&lt;/code&gt;，&lt;code&gt;multiverse&lt;/code&gt; 这几个目录：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/v2-d6f7bafb479d38d0d840a11c36e91952_b.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;apt-get&lt;/code&gt;工具会在这四个的目录下自动检索对应的软件包下载并安装。&lt;/p&gt;
 &lt;p&gt;在一些特殊情况，比如机器网络受限，但浏览器开了代理可以访问外网的情况下。&lt;code&gt;apt-get&lt;/code&gt;无法从源里获取软件，你可以从这里手动找到对应的软件包下载下来然后使用&lt;code&gt;dpkg&lt;/code&gt;安装。&lt;/p&gt;
@@ -494,13 +537,14 @@ networks:
 &lt;p&gt;一个一个说：&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1、&amp;ndash;ignore-depends&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;这是所有暴力方案里技术门槛最低的一个，你可以通过&lt;code&gt;dpkg --help &lt;/code&gt;查看&lt;code&gt;--ignore-depends&lt;/code&gt;选项：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;选项：
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;选项：
 ......其它选项
   --ignore-depends=&amp;lt;软件包&amp;gt;,...
                              忽略关于 &amp;lt;软件包&amp;gt; 的所有依赖关系。
   --force-...                忽视遇到的问题(参见 --force-help)。
 ......其它选项
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个选项可以指定要忽略的依赖包。所以安装的时候如果依赖不满足，你直接加上这个参数把依赖忽略的就完了：&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这个选项可以指定要忽略的依赖包。所以安装的时候如果依赖不满足，你直接加上这个参数把依赖忽略的就完了：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/v2-b549bd9ba2f7c4f3726c6c0f9dee5245_b.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
 &lt;p&gt;当然，安装不会有任何问题，但是能不能用就看要造化了。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;并不是依赖不满足，装上就一定完全不能用&lt;/strong&gt;。有时候只是功能不全而已。&lt;/p&gt;
@@ -512,14 +556,16 @@ networks:
 &lt;p&gt;dpkg -X 只会解压出安装包的文件，无法解压出安装包带的脚本和控制信息。&lt;/p&gt;
 &lt;p&gt;右键提取到此处，解压出来的control和data分开两个压缩包，也不是打包前完美的状态。&lt;/p&gt;
 &lt;p&gt;这里要用的是&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;dpkg-deb -R sogoupinyin_xxxx.deb ./sogou
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样解压出来的就是deb在被打包前完完整整的样子，我解压了一个搜狗输入法的安装包为例：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;dpkg-deb -R sogoupinyin_xxxx.deb ./sogou
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这样解压出来的就是deb在被打包前完完整整的样子，我解压了一个搜狗输入法的安装包为例：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/v2-84fcb04a202435f0cfa16e0466de827f_b.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
 &lt;p&gt;其他的我们都不用管，直接打开control文件：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/v2-2b55f2764b33a675f2be68ca53c4a428_b.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
 &lt;p&gt;看到红框的部分了吧，直接把这行全部干掉。然后再把拆出来的文件重新打回一个安装包：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;fakeroot dpkg-deb --build ./sogou mysogou.deb
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个自己打的&lt;code&gt;mysogou&lt;/code&gt;安装包，和搜狗原生安装包唯一的区别就是没有依赖&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;fakeroot dpkg-deb --build ./sogou mysogou.deb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这个自己打的&lt;code&gt;mysogou&lt;/code&gt;安装包，和搜狗原生安装包唯一的区别就是没有依赖&lt;/p&gt;
 &lt;p&gt;这下就可以一路畅通无阻，直接装完。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;3、修改系统中记录的status文件&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;和刚才那个方案思路差不多，只不过换了一个突破点，比刚才要更方便一点。&lt;/p&gt;
@@ -535,7 +581,7 @@ networks:
 &lt;p&gt;同样，如果出现依赖的包需要的版本不满足的情况，你也可以直接找到文件里对应的包的信息，改掉&lt;code&gt;Version&lt;/code&gt;字段到一个满足需求的版本就可以。&lt;/p&gt;
 &lt;p&gt;当然，实际上系统里是没有安装这些库的，我们只是骗过了dpkg。&lt;/p&gt;
 &lt;p&gt;系统里的软件信息一般都写得特别多，这里简单提供个样例，实在不会抄系统的就抄这个：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;Package: mtest  
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Package: mtest  
 Priority: optional
 Section: editors
 Maintainer: Threedog Team &amp;lt;qiugeyafang@gmail.com&amp;gt;
@@ -543,7 +589,8 @@ Architecture: all
 Version: 1.0.0
 Homepage: http://www.threedog.top
 Description: test
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;只要把Package换成缺失的依赖包的名字，加到status文件里就可以了。记得和其他软件信息之间要有空行。&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;只要把Package换成缺失的依赖包的名字，加到status文件里就可以了。记得和其他软件信息之间要有空行。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;4、无视安装失败，直接运行。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;这个方案之所以可行，是dpkg对软件安装过程的执行机制决定的。dpkg对依赖的处理时机是：&lt;strong&gt;先释放文件，再检测依赖，然后再完成最终配置。&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -624,20 +671,20 @@ Description: test
 &lt;p&gt;根本不像大多数人认为的那样老死不相往来：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/v2-ee4834413b7925e2346b3eca6c507a76_b.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/Linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/v2-03d1541d94d33e53d6c1cda5b6ccee1a_b.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
-- https://syaofox.github.io/linux/linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/ - Syaofox 2020 copyright.</description>
+- https://syaofox.github.io/post/linux%E4%B8%8A%E9%9D%A2%E7%A2%B0%E5%88%B0%E9%AC%BC%E7%95%9C%E9%80%86%E5%A4%A9%E7%BA%A7%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%A4%A7%E5%AE%B6%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E7%9A%84/ - </description>
         </item>
     
     
     
         <item>
         <title>Rsync 命令比对文件及增量同步</title>
-        <link>https://syaofox.github.io/linux/rsync%E5%91%BD%E4%BB%A4%E6%AF%94%E5%AF%B9%E6%96%87%E4%BB%B6%E5%8F%8A%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5/</link>
+        <link>https://syaofox.github.io/post/rsync%E5%91%BD%E4%BB%A4%E6%AF%94%E5%AF%B9%E6%96%87%E4%BB%B6%E5%8F%8A%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5/</link>
         <pubDate>Thu, 18 Jun 2020 11:56:31 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/rsync%E5%91%BD%E4%BB%A4%E6%AF%94%E5%AF%B9%E6%96%87%E4%BB%B6%E5%8F%8A%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/rsync%E5%91%BD%E4%BB%A4%E6%AF%94%E5%AF%B9%E6%96%87%E4%BB%B6%E5%8F%8A%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5/ -&lt;p&gt;rsync基于ssh协议实现高效率远程或本地文件复制，传输速度比scp快。复制文件时会比对本地文件与远程主机的文件，仅复制有差异的文件。&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/rsync%E5%91%BD%E4%BB%A4%E6%AF%94%E5%AF%B9%E6%96%87%E4%BB%B6%E5%8F%8A%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5/</guid>
+        <description>云流 https://syaofox.github.io/post/rsync%E5%91%BD%E4%BB%A4%E6%AF%94%E5%AF%B9%E6%96%87%E4%BB%B6%E5%8F%8A%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5/ -&lt;p&gt;rsync基于ssh协议实现高效率远程或本地文件复制，传输速度比scp快。复制文件时会比对本地文件与远程主机的文件，仅复制有差异的文件。&lt;/p&gt;
 &lt;h2 id=&#34;常用选项&#34;&gt;常用选项：&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;-q,--quiet：suppress non-error messages 静默模式
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;-q,--quiet：suppress non-error messages 静默模式
 -v,--verbose：increase verbosity
 -a,--archive：archive mode; equals -rlptgoD (no -H,-A,-X) 归档模式，相当于-rlptgoD,不包括(no -H,-A,-X);最常用的参数
 -H,--hard-links：preserve hard links 保留硬链接
@@ -647,7 +694,7 @@ Description: test
 -r,--recursive：recurse into directories 递归
 -l,--links：copy symlinks as symlinks 保留软链接,而不跟踪原文件
 -p,--perms：preserve permissions 保留权限
--t,--times：preserve modification &lt;span style=&#34;color:#658b00&#34;&gt;times&lt;/span&gt; 保留mtime
+-t,--times：preserve modification times 保留mtime
 -g,--group：preserve group 保留属组
 -o,--owner：preserve owner (super-user only) 保留属主
 -D：same as --devices,--specials 保留设备文件和特殊文件
@@ -657,32 +704,38 @@ Description: test
 -z,--compress：compress file data during the transfer 输过程中压缩文件数据
 -n, --dry-run：perform a trial run with no changes made 干跑测试
 -u,--update：skip files that are newer on the receiver 增量同步，跳过比本地较新的文件
---delete：delete extraneous files from destination &lt;span style=&#34;color:#658b00&#34;&gt;dirs&lt;/span&gt; 删除目标目录多余文件
+--delete：delete extraneous files from destination dirs 删除目标目录多余文件
 --progress：show progress during transfer 显示传输进度
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;本地复制&#34;&gt;本地复制&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;rsync -av ansible_auto/public/uy-s-192-v01.cfg objects/ansible_auto/public/uy-s-192-v01.cfg
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;比对文件&#34;&gt;比对文件&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#658b00&#34;&gt;cd&lt;/span&gt; /usr/local/nagios/etc/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;本地复制&#34;&gt;本地复制&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;rsync -av ansible_auto/public/uy-s-192-v01.cfg objects/ansible_auto/public/uy-s-192-v01.cfg
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;比对文件&#34;&gt;比对文件&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;cd /usr/local/nagios/etc/
 rsync -acvn ansible_auto/ objects/ansible_auto/ &amp;gt; diff
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;增量同步合并目录文件最终与目标目录一致&#34;&gt;增量同步（合并目录文件，最终与目标目录一致）&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;rsync -avzu --progress /opt/* devops@11.0.10.8:/opt/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;删除同步删除目标目录多余文件最终与源目录一致&#34;&gt;删除同步（删除目标目录多余文件，最终与源目录一致）&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;rsync -avzu --delete --progress /opt/* devops@11.0.10.8:/opt/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;另外可以设置计划任务实时同步和备份文件&#34;&gt;另外，可以设置计划任务实时同步和备份文件&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;crontab -e
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;增量同步合并目录文件最终与目标目录一致&#34;&gt;增量同步（合并目录文件，最终与目标目录一致）&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;rsync -avzu --progress /opt/* devops@11.0.10.8:/opt/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;删除同步删除目标目录多余文件最终与源目录一致&#34;&gt;删除同步（删除目标目录多余文件，最终与源目录一致）&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;rsync -avzu --delete --progress /opt/* devops@11.0.10.8:/opt/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;另外可以设置计划任务实时同步和备份文件&#34;&gt;另外，可以设置计划任务实时同步和备份文件&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;crontab -e
 */1 * * * * rsync -avzu /opt/media/* 192.168.201.123:/opt/media
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/linux/rsync%E5%91%BD%E4%BB%A4%E6%AF%94%E5%AF%B9%E6%96%87%E4%BB%B6%E5%8F%8A%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5/ - Syaofox 2020 copyright.</description>
+&lt;/code&gt;&lt;/pre&gt;
+- https://syaofox.github.io/post/rsync%E5%91%BD%E4%BB%A4%E6%AF%94%E5%AF%B9%E6%96%87%E4%BB%B6%E5%8F%8A%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5/ - </description>
         </item>
     
     
     
         <item>
         <title>Intel NUC 冥王峡谷（NUC8i7HVK）安装 Ubuntu18 AMD 显卡的驱动方法</title>
-        <link>https://syaofox.github.io/linux/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/</link>
+        <link>https://syaofox.github.io/post/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/</link>
         <pubDate>Thu, 18 Jun 2020 11:23:52 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/ -&lt;h2 id=&#34;升级-bios&#34;&gt;升级 BIOS&lt;/h2&gt;
+        <guid>https://syaofox.github.io/post/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/</guid>
+        <description>云流 https://syaofox.github.io/post/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/ -&lt;h2 id=&#34;升级-bios&#34;&gt;升级 BIOS&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;从 &lt;a href=&#34;https://downloadcenter.intel.com/download/28073/BIOS-Update-HNKBLi70-86A-&#34;&gt;这里&lt;/a&gt; 下载BIOS文件&lt;/li&gt;
 &lt;li&gt;按照 &lt;a href=&#34;https://www.intel.com/content/www/us/en/support/articles/000005850/mini-pcs.html&#34;&gt;说明&lt;/a&gt; 更新 BIOS&lt;/li&gt;
@@ -694,57 +747,65 @@ rsync -acvn ansible_auto/ objects/ansible_auto/ &amp;gt; diff
 &lt;h2 id=&#34;更新内核&#34;&gt;更新内核&lt;/h2&gt;
 &lt;p&gt;AMD GPU的驱动程序随Linux 4.17一起提供，根据测试，只有4.18才提供正式支持，所以必须升级内核。&lt;/p&gt;
 &lt;p&gt;手动升级&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-headers-4.18.0-041800rc5_4.18.0-041800rc5.201807152130_all.deb
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-headers-4.18.0-041800rc5_4.18.0-041800rc5.201807152130_all.deb
 wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-headers-4.18.0-041800rc5-generic_4.18.0-041800rc5.201807152130_amd64.deb
 wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-image-unsigned-4.18.0-041800rc5-generic_4.18.0-041800rc5.201807152130_amd64.deb
 wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-modules-4.18.0-041800rc5-generic_4.18.0-041800rc5.201807152130_amd64.deb
 sudo dpkg -i linux-*.deb
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;或者&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo add-apt-repository ppa:teejee2008/ppa
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;或者&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo add-apt-repository ppa:teejee2008/ppa
 sudo apt update
 sudo apt install ukuu
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;从GUI运行UKUU，选择Linux Kernel 4.18.3，重新启动。&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;从GUI运行UKUU，选择Linux Kernel 4.18.3，重新启动。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;注意：确保BIOS内安全启动已经关闭&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;重启后查看内核&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;uname -a
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;添加并更新-mesa&#34;&gt;添加并更新 Mesa&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo add-apt-repository ppa:ubuntu-x-swat/updates
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;uname -a
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;添加并更新-mesa&#34;&gt;添加并更新 Mesa&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo add-apt-repository ppa:ubuntu-x-swat/updates
 sudo apt dist-upgrade
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;获得amd-vega-m-linux驱动程序并将其放在适当的目录中&#34;&gt;获得AMD Vega M Linux驱动程序并将其放在适当的目录中&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;wget -m -np https://people.freedesktop.org/~agd5f/radeon_ucode/vegam/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;获得amd-vega-m-linux驱动程序并将其放在适当的目录中&#34;&gt;获得AMD Vega M Linux驱动程序并将其放在适当的目录中&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget -m -np https://people.freedesktop.org/~agd5f/radeon_ucode/vegam/
 sudo cp people.freedesktop.org/~agd5f/radeon_ucode/vegam/*.bin /lib/firmware/amdgpu
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后更新Ramdisk以识别/选择正确的内核:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo /usr/sbin/update-initramfs -u -k all
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;关闭-nomodeset-选项&#34;&gt;关闭 nomodeset 选项&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后更新Ramdisk以识别/选择正确的内核:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo /usr/sbin/update-initramfs -u -k all
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;关闭-nomodeset-选项&#34;&gt;关闭 nomodeset 选项&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;修改引导文件 &lt;code&gt;/etc/default/grub&lt;/code&gt; 设置&lt;code&gt;GRUB_CMDLINE_LINUX_DEFAULT=&amp;quot;&amp;quot;&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;运行 &lt;code&gt;sudo update-grub2&lt;/code&gt; 更新引导并重新启动&lt;/li&gt;
 &lt;/ul&gt;
-- https://syaofox.github.io/linux/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/ - Syaofox 2020 copyright.</description>
+- https://syaofox.github.io/post/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/ - </description>
         </item>
     
     
     
         <item>
         <title>Ubuntu 18.04 LTS 更换国内源——解决终端下载速度慢的问题</title>
-        <link>https://syaofox.github.io/linux/ubuntu18-04%E6%8D%A2%E6%BA%90/</link>
+        <link>https://syaofox.github.io/post/ubuntu18-04%E6%8D%A2%E6%BA%90/</link>
         <pubDate>Thu, 18 Jun 2020 11:22:36 +0800</pubDate>
         
-        <guid>https://syaofox.github.io/linux/ubuntu18-04%E6%8D%A2%E6%BA%90/</guid>
-        <description>霜天晓角 https://syaofox.github.io/linux/ubuntu18-04%E6%8D%A2%E6%BA%90/ -&lt;p&gt;最近装了ubuntu18.04 LTS，下载软件有点慢，换国内源&lt;/p&gt;
+        <guid>https://syaofox.github.io/post/ubuntu18-04%E6%8D%A2%E6%BA%90/</guid>
+        <description>云流 https://syaofox.github.io/post/ubuntu18-04%E6%8D%A2%E6%BA%90/ -&lt;p&gt;最近装了ubuntu18.04 LTS，下载软件有点慢，换国内源&lt;/p&gt;
 &lt;h2 id=&#34;更换etcaptsourceslist文件里的源&#34;&gt;更换**/etc/apt/sources.list**文件里的源&lt;/h2&gt;
 &lt;h3 id=&#34;1-备份源列表&#34;&gt;1. 备份源列表&lt;/h3&gt;
 &lt;p&gt;Ubuntu配置的默认源并不是国内的服务器，下载更新软件都比较慢。首先备份源列表文件&lt;strong&gt;sources.list&lt;/strong&gt;：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 首先备份源列表&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 首先备份源列表
 sudo cp /etc/apt/sources.list /etc/apt/sources.list_backup
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2-打开sourceslist文件修改&#34;&gt;2. 打开sources.list文件修改&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;2-打开sourceslist文件修改&#34;&gt;2. 打开sources.list文件修改&lt;/h3&gt;
 &lt;p&gt;选择合适的源，替换原文件的内容，保存编辑好的文件, 以阿里云更新服务器为例（可以分别测试阿里云、清华、中科大、163源的速度，选择最快的）：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 打开sources.list文件&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 打开sources.list文件
 sudo gedit /etc/apt/sources.list
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;编辑**/etc/apt/sources.list**文件, 在文件最前面添加阿里云镜像源：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;#  阿里源&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;编辑**/etc/apt/sources.list**文件, 在文件最前面添加阿里云镜像源：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#  阿里源
 deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
 deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
 deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
@@ -755,14 +816,16 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted univer
 deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
 deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
 deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;3-刷新列表&#34;&gt;3. 刷新列表&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt-get update
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;3-刷新列表&#34;&gt;3. 刷新列表&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install build-essential
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;下载速度瞬间就起飞了。&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;下载速度瞬间就起飞了。&lt;/p&gt;
 &lt;h3 id=&#34;4-其他源&#34;&gt;4. 其他源&lt;/h3&gt;
 &lt;p&gt;中科大源：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;#  中科大源&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#  中科大源
 deb https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse
 deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse
 deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
@@ -773,8 +836,9 @@ deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe
 deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
 deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
 deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;163源：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 163源&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;163源：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 163源
 deb http://mirrors.163.com/ubuntu/ bionic main restricted universe multiverse
 deb http://mirrors.163.com/ubuntu/ bionic-security main restricted universe multiverse
 deb http://mirrors.163.com/ubuntu/ bionic-updates main restricted universe multiverse
@@ -785,8 +849,9 @@ deb-src http://mirrors.163.com/ubuntu/ bionic-security main restricted universe 
 deb-src http://mirrors.163.com/ubuntu/ bionic-updates main restricted universe multiverse
 deb-src http://mirrors.163.com/ubuntu/ bionic-proposed main restricted universe multiverse
 deb-src http://mirrors.163.com/ubuntu/ bionic-backports main restricted universe multiverse
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;清华源：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 清华源&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;清华源：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 清华源
 deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
 deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
 deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
@@ -797,7 +862,7 @@ deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted
 deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
 deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
 deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://syaofox.github.io/linux/ubuntu18-04%E6%8D%A2%E6%BA%90/ - Syaofox 2020 copyright.</description>
+&lt;/code&gt;&lt;/pre&gt;- https://syaofox.github.io/post/ubuntu18-04%E6%8D%A2%E6%BA%90/ - </description>
         </item>
     
     

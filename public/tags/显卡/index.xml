@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>显卡 on 霜天晓角</title>
+    <title>显卡 on 云流</title>
     <link>https://syaofox.github.io/tags/%E6%98%BE%E5%8D%A1/</link>
-    <description>Recent content in 显卡 on 霜天晓角</description>
+    <description>Recent content in 显卡 on 云流</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>Syaofox 2020 copyright.</copyright>
     <lastBuildDate>Thu, 18 Jun 2020 11:23:52 +0800</lastBuildDate>
     
 	<atom:link href="https://syaofox.github.io/tags/%E6%98%BE%E5%8D%A1/index.xml" rel="self" type="application/rss+xml" />
@@ -14,17 +13,11 @@
     
     <item>
       <title>Intel NUC 冥王峡谷（NUC8i7HVK）安装 Ubuntu18 AMD 显卡的驱动方法</title>
-      <link>https://syaofox.github.io/linux/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/</link>
+      <link>https://syaofox.github.io/post/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/</link>
       <pubDate>Thu, 18 Jun 2020 11:23:52 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/linux/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/</guid>
-      <description>升级 BIOS  从 这里 下载BIOS文件 按照 说明 更新 BIOS  安装 Ubuntu  BIOS内关闭安全启动  更新内核 AMD GPU的驱动程序随Linux 4.17一起提供，根据测试，只有4.18才提供正式支持，所以必须升级内核。
-手动升级
-wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-headers-4.18.0-041800rc5_4.18.0-041800rc5.201807152130_all.deb wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-headers-4.18.0-041800rc5-generic_4.18.0-041800rc5.201807152130_amd64.deb wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-image-unsigned-4.18.0-041800rc5-generic_4.18.0-041800rc5.201807152130_amd64.deb wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-modules-4.18.0-041800rc5-generic_4.18.0-041800rc5.201807152130_amd64.deb sudo dpkg -i linux-*.deb 或者
-sudo add-apt-repository ppa:teejee2008/ppa sudo apt update sudo apt install ukuu 从GUI运行UKUU，选择Linux Kernel 4.18.3，重新启动。
- 注意：确保BIOS内安全启动已经关闭
- 重启后查看内核
-uname -a 添加并更新 Mesa sudo add-apt-repository ppa:ubuntu-x-swat/updates sudo apt dist-upgrade 获得AMD Vega M Linux驱动程序并将其放在适当的目录中 wget -m -np https://people.freedesktop.org/~agd5f/radeon_ucode/vegam/ sudo cp people.</description>
+      <guid>https://syaofox.github.io/post/ubuntu18-04-nuc8i7hvk-amd-vegam-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/</guid>
+      <description>升级 BIOS 从 这里 下载BIOS文件 按照 说明 更新 BIOS 安装 Ubuntu BIOS内关闭安全启动 更新内核 AMD GPU的驱动程序随Linux 4.17一起提供，根据测试，只有4.18才提供正式支持，所以必须升级内核。 手动升级 wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-headers-4.18.0-041800rc5_4.18.0-041800rc5.201807152130_all.deb wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.18-rc5/linux-headers-4.18.0-041800rc5-generic_4.18.0-041800rc5.201807152130_amd64.deb wget</description>
     </item>
     
   </channel>

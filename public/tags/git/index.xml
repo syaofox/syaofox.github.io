@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Git on 霜天晓角</title>
+    <title>Git on 云流</title>
     <link>https://syaofox.github.io/tags/git/</link>
-    <description>Recent content in Git on 霜天晓角</description>
+    <description>Recent content in Git on 云流</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>Syaofox 2020 copyright.</copyright>
     <lastBuildDate>Thu, 18 Jun 2020 09:22:48 +0800</lastBuildDate>
     
 	<atom:link href="https://syaofox.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
@@ -14,60 +13,38 @@
     
     <item>
       <title>Git Submodule 子模块的管理和使用</title>
-      <link>https://syaofox.github.io/coding/git-submodule-%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9A%84%E7%AE%A1%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8/</link>
+      <link>https://syaofox.github.io/post/git-submodule-%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9A%84%E7%AE%A1%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Thu, 18 Jun 2020 09:22:48 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/coding/git-submodule-%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9A%84%E7%AE%A1%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8/</guid>
-      <description>使用前提 经常碰到这种情况：当你在一个Git 项目上工作时，你需要在其中使用另外一个Git 项目。也许它是一个第三方开发的Git 库或者是你独立开发和并在多个父项目中使用的。这个情况下一个常见的问题产生了：你想将两个项目单独处理但是又需要在其中一个中使用另外一个。
-在Git 中你可以用子模块submodule来管理这些项目，submodule允许你将一个Git 仓库当作另外一个Git 仓库的子目录。这允许你克隆另外一个仓库到你的项目中并且保持你的提交相对独立。
-添加子模块 此文中统一将远程项目https://github.com/maonx/vimwiki-assets.git克隆到本地assets文件夹。
-$ git submodule add https://github.com/maonx/vimwiki-assets.git assets 添加子模块后运行git status, 可以看到目录有增加1个文件.gitmodules, 这个文件用来保存子模块的信息。
-$ git status On branch master Initial commit Changes to be committed: (use &amp;#34;git rm --cached &amp;lt;file&amp;gt;...&amp;#34; to unstage) new file: .gitmodules new file: assets 查看子模块 $ git submodule e33f854d3f51f5ebd771a68da05ad0371a3c0570 assets (heads/master) 更新子模块   更新项目内子模块到最新版本
-$ git submodule update   更新子模块为远程项目的最新版本
-$ git submodule update --remote   克隆包含子模块的项目 克隆包含子模块的项目有二种方法：一种是先克隆父项目，再更新子模块；另一种是直接递归克隆整个项目。</description>
+      <guid>https://syaofox.github.io/post/git-submodule-%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9A%84%E7%AE%A1%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8/</guid>
+      <description>使用前提 经常碰到这种情况：当你在一个Git 项目上工作时，你需要在其中使用另外一个Git 项目。也许它是一个第三方开发的Git 库或者是你独立开发和并在多个父项目中使用的。这个情况下一个常见的问题产生了：你</description>
     </item>
     
     <item>
       <title>使用GitHub（二）：配置并使用Git创建版本库</title>
-      <link>https://syaofox.github.io/coding/%E4%BD%BF%E7%94%A8github%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/</link>
+      <link>https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8github%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/</link>
       <pubDate>Thu, 18 Jun 2020 09:12:27 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/coding/%E4%BD%BF%E7%94%A8github%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/</guid>
-      <description>前言   本文简单介绍使用GitHub对代码进行版本控制，包括添加SSHkey、配置Git、使用Git创建版本库并在GitHub上进行管理，主要目的是对学习内容进行总结以及方便日后查阅。    配置Git   git config --global user.name 你的英文名 git config --global user.email 你的邮箱 git config --global push.default matching git config --global core.quotepath false git config --global core.editor &amp;quot;vim&amp;quot; 五句话，依次运行。
-使用Git创建版本库  使用 git 有三种方式，请按照需求选择。
- 只在本地使用 将本地仓库上传到 GitHub 下载 GitHub 上的仓库   其中1+2的最终效果=3
- 1只在本地使用  1.1 初始化   创建目录作为我们的项目目录：mkdir git-demo-1
-  进入目录 cd git-demo-1
-  git init，这句命令会在 git-demo-1 里创建一个 .</description>
+      <guid>https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8github%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/</guid>
+      <description>前言 本文简单介绍使用GitHub对代码进行版本控制，包括添加SSHkey、配置Git、使用Git创建版本库并在GitHub上进行管理，主要目的是对学习内容进行总结以及方便日后查阅。 配置Git git config --global user.name 你</description>
     </item>
     
     <item>
       <title>使用GitHub（一）：添加SSHkey</title>
-      <link>https://syaofox.github.io/coding/%E4%BD%BF%E7%94%A8github%E4%B8%80%E6%B7%BB%E5%8A%A0sshkey/</link>
+      <link>https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8github%E4%B8%80%E6%B7%BB%E5%8A%A0sshkey/</link>
       <pubDate>Thu, 18 Jun 2020 09:01:14 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/coding/%E4%BD%BF%E7%94%A8github%E4%B8%80%E6%B7%BB%E5%8A%A0sshkey/</guid>
-      <description>本文简单介绍使用GitHub对代码进行版本控制，包括添加SSHkey、配置Git、使用Git创建版本库并在GitHub上进行管理，主要目的是对学习内容进行总结以及方便日后查阅。   前言  简单说，SSH是一种网络协议，用于计算机之间的加密登录。 如果一个用户从本地计算机，使用SSH协议登录另一台远程计算机，我们就可以认为，这种登录是安全的，即使被中途截获，密码也不会泄露。 最早的时候，互联网通信都是明文通信，一旦被截获，内容就暴露无疑。1995年，芬兰学者TatuYlonen设计了SSH协议，将登录信息全部加密，成为互联网安全的一个基本解决方案，迅速在全世界获得推广，目前已经成为Linux系统的标准配置。 在这里你只需要知道使用GitHub之前需要添加SSHkey，用来验证GitHub远程仓库就可以了，如果想深入了解原理，参考阮一峰SSH原理。  步骤：   进入 https://github.com/settings/keys
-  如果页面里已经有一些 key，就点「delete」按钮把这些 key 全删掉。如果没有，就往下看
-  点击 New SSH key，你需要输入 Title 和 Key，但是你现在没有 key，往下看
- 添加步骤参考这里
-   打开 Git Bash
-  复制并运行 rm -rf ~/.ssh/* 把现有的 ssh key都删掉，这句命令行如果你多打一个空格，可能就要重装系统了，建议复制运行。
-  运行 ssh-keygen -t rsa -b 4096 -C &amp;quot;你的邮箱&amp;quot;，注意填写你的真实邮箱。
-  按回车三次
-参考示例：
-这时会在~目录下生成一个.ssh的隐藏文件!
-参考示例2
-  运行 cat ~/.</description>
+      <guid>https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8github%E4%B8%80%E6%B7%BB%E5%8A%A0sshkey/</guid>
+      <description>本文简单介绍使用GitHub对代码进行版本控制，包括添加SSHkey、配置Git、使用Git创建版本库并在GitHub上进行管理，主要目的是对学习内容进行总结以及方便日后查阅。 前言 简单说，SSH是一种</description>
     </item>
     
     <item>
       <title>Git 相关操作</title>
-      <link>https://syaofox.github.io/coding/git-%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</link>
+      <link>https://syaofox.github.io/post/git-%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</link>
       <pubDate>Thu, 18 Jun 2020 08:58:45 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/coding/git-%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</guid>
-      <description>git仓库  本地文件 缓存区（ git add 命令可以添加项目到缓存区） 本地仓库（ git commit 可以添加到本地仓库） 远程仓库( git push 将本地仓库文件推送到远程仓库)  初始化git项目并且提交  git init echo &#39;# project name&#39; &amp;gt;&amp;gt; README.md // 写入内容 git add README.md 或 git add . 增加文件进行跟踪 git commit -m &amp;quot;commmit info&amp;quot; git push orgin master   本地有修改，与远程有冲突  git stash 备份本地文件 git pull origin master 拉取远程文件 git stash pop 推出备份文件，解决冲突   删除远程分支上的文件夹，但是保留本地分支的文件夹  git rm &amp;lt;delete file path&amp;gt; 需要删除暂存区或分支上的文件, 同时工作区也不需要这个文件了 git rm --cached -r &amp;lt;delete folder path&amp;gt; 需要删除暂存区或分支上的文件, 但不希望工作区删除这个文件 git commit -m &#39;delete folder&#39; git push orgin master   拉取  git fetch 用户将远程最新内容拉取到本地，用户检查了是否要合并到本地工作分支中 git pull 用户将远程内容拉取到本地，并且强制合并，相当于 git fetch + git merge git fetch &amp;lt;远程主机名&amp;gt; &amp;lt;分支名&amp;gt; git pull &amp;lt;远程主机名&amp;gt; &amp;lt;远程分支名&amp;gt;:&amp;lt;本地分支名&amp;gt; 从远程分支拉取内容到本地分支  分支相关操作  git branch 查看本地所有分支 git branch -r 查看远程所有分支 git branch -a 查看本地和远程的所有分支 git branch &amp;lt;branchname&amp;gt; 新建分支 git checkout newBranch 切换到你的新分支 git checkout -b newBranch 创建并切换到新分支 git push origin newBranch 将新分支发布在github上 git branch -d &amp;lt;branchname&amp;gt; 删除本地分支 git push origin :newBranch 在github远程端删除一个分支 (分支名前的冒号代表删除) git branch -m &amp;lt;oldbranch&amp;gt; &amp;lt;newbranch&amp;gt; 重命名本地分支  常用命令  git status 查看当前 git 状态（有几个文件修改，有几个新增） git diff 查看所有文件被修改的地方 git checkout [filepath] 拉取删除本地被删除的具体文件 git remote -v 查看远程版本 git merge &amp;lt;分支名&amp;gt; 将指定分支内容合并到当前分支 ssh-keygen -p 删除ssh密码 git reset [filename] 撤销添加文件操作，如果跟文件名那么撤销此文件，如果不跟文件名那么撤销全部  简化符对应关系  -d =&amp;gt; --delete 删除 -D =&amp;gt; --delete --force 强制删除 -f =&amp;gt; --force 强制 -m =&amp;gt; --move 移动或重命名 -M =&amp;gt; --move --force 强制 移动或重命名 -r =&amp;gt; --remote 远程 -a =&amp;gt; --all 所有  </description>
+      <guid>https://syaofox.github.io/post/git-%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</guid>
+      <description>git仓库 本地文件 缓存区（ git add 命令可以添加项目到缓存区） 本地仓库（ git commit 可以添加到本地仓库） 远程仓库( git push 将本地仓库文件推送到远程仓库) 初始化git项目并且提交 git init echo &#39;# project name&#39; &amp;gt;&amp;gt; README.md // 写入内容 git add README.md 或 git add . 增</description>
     </item>
     
   </channel>

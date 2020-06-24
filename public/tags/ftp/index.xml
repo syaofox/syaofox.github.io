@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>FTP on 霜天晓角</title>
+    <title>FTP on 云流</title>
     <link>https://syaofox.github.io/tags/ftp/</link>
-    <description>Recent content in FTP on 霜天晓角</description>
+    <description>Recent content in FTP on 云流</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>Syaofox 2020 copyright.</copyright>
     <lastBuildDate>Thu, 18 Jun 2020 10:14:12 +0800</lastBuildDate>
     
 	<atom:link href="https://syaofox.github.io/tags/ftp/index.xml" rel="self" type="application/rss+xml" />
@@ -14,22 +13,11 @@
     
     <item>
       <title>Windows10 配置 FTP</title>
-      <link>https://syaofox.github.io/windows/windows10-%E9%85%8D%E7%BD%AE-ftp/</link>
+      <link>https://syaofox.github.io/post/windows10-%E9%85%8D%E7%BD%AE-ftp/</link>
       <pubDate>Thu, 18 Jun 2020 10:14:12 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/windows/windows10-%E9%85%8D%E7%BD%AE-ftp/</guid>
-      <description>  控制面板 &amp;gt; 程序 &amp;gt; 启用或关闭 Windows 功能 &amp;gt; …
-控制面板可在 桌面右键&amp;gt;个性化&amp;gt;主题&amp;gt;桌面图标设置&amp;gt;勾选控制面板&amp;gt;确定
-  小娜搜索 IIS 打开 IIS
-  右击网站添加 FTP 站点
-  输入站点名称和作为 FTP 的目录
-  IP 地址填 FTP 本机 IP，选择无 SSL
-  根据需要选择身份验证，授权与权限
-  控制面板 &amp;gt; 系统和安全 &amp;gt; 防火墙 &amp;gt; 允许应用或功能通过 Window 防火墙 &amp;gt; …
-  点击更改设置，勾选 FTP 服务器&amp;amp;专用&amp;amp;公用
-  点击允许其它应用,选择C:\Windows\System32\svchost.exe然后添加，最后确定。
-  资源处理器访问ftp:// IP 试试吧！
-  </description>
+      <guid>https://syaofox.github.io/post/windows10-%E9%85%8D%E7%BD%AE-ftp/</guid>
+      <description>控制面板 &amp;gt; 程序 &amp;gt; 启用或关闭 Windows 功能 &amp;gt; … 控制面板可在 桌面右键&amp;gt;个性化&amp;gt;主题&amp;gt;桌面图标设置&amp;gt;勾选控制面板&amp;gt;确定 小娜搜索 IIS 打开 IIS 右击网站添加 FTP 站点 输入站点名称和作为 FTP 的目录 IP 地址</description>
     </item>
     
   </channel>

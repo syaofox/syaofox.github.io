@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html><head>
+<title>使用 Mergerfs 合并多块硬盘的剩余空间</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+<meta name="google-site-verification" content="oogV8o8B0_GmgleXKYHSkWxodG-N4Nz9mIlHqljGd-0" />
+
+
+
+
+
+
+
+
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="https://syaofox.github.io/scss/journal.min.2725bdf31310513b302e62b01700d09aeff9316f5344e988decd15737cf0b3c5.css" integrity="sha256-JyW98xMQUTswLmKwFwDQmu/5MW9TROmI3s0Vc3zws8U=" media="screen">
+
+
+
+<link rel="stylesheet" href="https://syaofox.github.io/scss/dark-mode.min.e93e28b95f534b47ed30828c25fef57eb3c43aa0270721098b7f9d4f1c40bf1f.css" integrity="sha256-6T4ouV9TS0ftMIKMJf71frPEOqAnByEJi3&#43;dTxxAvx8=" media="screen">
+
+
+<script src="https://syaofox.github.io/js/loadCSS.js"></script>
+<script>
+  loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+
+
+
+  
+    <script src="https://syaofox.github.io/js/toc-collapse.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://syaofox.github.io">
+    
+        <div class="nav-title">
+            云流
+        </div>
+        
+        <div class="nav-subtitle">
+            心似白云常自在 意如流水任东西
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+ <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>  <a href="https://amazingrise.net">Rise</a>
+<br>
+ <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2020 云流
+	
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>-  -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e4%b8%80%e7%bd%91%e7%bb%9c%e5%ad%98%e5%82%a8%e4%b9%8b%e7%a1%ac%e7%9b%98%e5%9b%b0%e5%a2%83" onclick="collapseOthers(`#一网络存储之硬盘困境-nav`)" id="一网络存储之硬盘困境-nav">
+									一、网络存储之硬盘困境
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%ba%8cmhddfs-%e4%b8%8e-mergerfs" onclick="collapseOthers(`#二mhddfs-与-mergerfs-nav`)" id="二mhddfs-与-mergerfs-nav">
+									二、mhddfs 与 mergerfs
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%b8%89mergerfs-%e7%9a%84%e5%ae%89%e8%a3%85%e4%b8%8e%e9%85%8d%e7%bd%ae" onclick="collapseOthers(`#三mergerfs-的安装与配置-nav`)" id="三mergerfs-的安装与配置-nav">
+									三、mergerfs 的安装与配置
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%9b%9bmergerfs-%e7%9a%84%e8%af%bb%e5%86%99%e7%ad%96%e7%95%a5" onclick="collapseOthers(`#四mergerfs-的读写策略-nav`)" id="四mergerfs-的读写策略-nav">
+									四、mergerfs 的读写策略
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e8%af%bb%e8%80%85%e6%9d%a5%e4%bf%a1%e6%9c%89%e5%85%b3-zfs" onclick="collapseOthers(`#读者来信有关-zfs-nav`)" id="读者来信有关-zfs-nav">
+									读者来信：有关 ZFS
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a class="pagination-action" v-on:click="toggleDarkMode">
+            <i class="material-icons pagination-action-icon" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons pagination-action-icon" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </a>
+        
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>-  -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e4%b8%80%e7%bd%91%e7%bb%9c%e5%ad%98%e5%82%a8%e4%b9%8b%e7%a1%ac%e7%9b%98%e5%9b%b0%e5%a2%83" onclick="collapseOthers(`#一网络存储之硬盘困境-nav`)" id="一网络存储之硬盘困境-nav">
+									一、网络存储之硬盘困境
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%ba%8cmhddfs-%e4%b8%8e-mergerfs" onclick="collapseOthers(`#二mhddfs-与-mergerfs-nav`)" id="二mhddfs-与-mergerfs-nav">
+									二、mhddfs 与 mergerfs
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%b8%89mergerfs-%e7%9a%84%e5%ae%89%e8%a3%85%e4%b8%8e%e9%85%8d%e7%bd%ae" onclick="collapseOthers(`#三mergerfs-的安装与配置-nav`)" id="三mergerfs-的安装与配置-nav">
+									三、mergerfs 的安装与配置
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%9b%9bmergerfs-%e7%9a%84%e8%af%bb%e5%86%99%e7%ad%96%e7%95%a5" onclick="collapseOthers(`#四mergerfs-的读写策略-nav`)" id="四mergerfs-的读写策略-nav">
+									四、mergerfs 的读写策略
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e8%af%bb%e8%80%85%e6%9d%a5%e4%bf%a1%e6%9c%89%e5%85%b3-zfs" onclick="collapseOthers(`#读者来信有关-zfs-nav`)" id="读者来信有关-zfs-nav">
+									读者来信：有关 ZFS
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://syaofox.github.io">
+            云流
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" v-on:click="toggleDarkMode">
+            <i class="material-icons" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://syaofox.github.io">
+        <div class="single-column-header-title">云流</div>
+        
+        <div class="single-column-header-subtitle">心似白云常自在 意如流水任东西</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    使用 Mergerfs 合并多块硬盘的剩余空间
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            
+                        </time>
+                        
+
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/linux">Linux</a>
+                                &nbsp;
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/mergerfs">Mergerfs</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <p>两年前，我买了一台 HP Gen8 微型服务器，其功能之一是作为网络存储。当时它只接了一块 SSD 作为系统盘和一块 2 TB HDD 作为存储盘。随着存储文件的增多，我又先后增加了两块 4 TB HDD，现在它已经接了共计 10 TB 的存储空间。我觉得有必要分享一下我用来将这些硬盘的空间合并在一起的工具——mergerfs。</p>
+<p>原文出处:<a href="https://wzyboy.im/post/1148.html">https://wzyboy.im/post/1148.html</a></p>
+<h2 id="一网络存储之硬盘困境">一、网络存储之硬盘困境</h2>
+<p>在讲工具之前，我有必要先说明一下我目前的存储方案。</p>
+<p>我的 Gen8 没有直接装通用操作系统，而是先通过 ESXi 实现了虚拟化，再将存储盘通过 RDM 的方式完整地映射给其中的一台虚拟机（Arch Linux）。在 Arch Linux 里运行了 Samba, NFS, aria2 RPC, Transmission daemon, BorgBackup 等服务，供局域网电脑存取文件、远程下载，以及备份。</p>
+<p>我在存储盘里的东西分为两类：一类是多份备份中的一份BorgBackup；另一类是从互联网上下载的可再生资源。前者本身有冗余，后者丢了不心疼。出于以上考虑，为了硬盘空间利用率的最大化，我并没有采用 RAID 1 或 RAID 5 之类的冗余存储的方案，而是采用了 JBOD 方案——Just Bunch of Disks。</p>
+<p>不使用 RAID 做冗余还有一个原因：我希望这些硬盘从 Gen8 上拔下来之后接到别的电脑上我能直接读取它们。</p>
+<p>当我的第一块存储盘快要装满的时候，我买了第二块盘，这时候就面临了一个问题：如何把两块硬盘的空间合并？考虑到我已经在运行的那些服务，我自然不想再增加一个额外的挂载点。我曾考虑过三个硬盘空间合并方案：</p>
+<ul>
+<li>RAID 0。与 RAID 1 或 RAID 5 不同，RAID 0 是对多块相同容量的硬盘进行平行读写，从而提升性能，其额外效果就是硬盘空间也被合并了。但这种方案非常危险：多块硬盘中的任意一块挂了，所有的数据都将无法读取。这个方案不行。</li>
+<li>LVM。相比 RAID 0 的原理，LVM 只是将空间连接起来了，而没有平行读写，所以多块硬盘中的一块挂了，也只是丢了那一块的数据。但创建过 LVM PV 的硬盘，在别的机器上读取起来比较麻烦，所以这个方案我也不喜欢。</li>
+<li>MooseFS。相对前两种方案，由于它在 FUSE 层面实现，所以更灵活一些，甚至可以通过网络，把没有挂在 Gen8 上的硬盘也纳入存储空间。但这个方案和 LVM 一样，协作性不强，硬盘在别的机器上只能看到一堆数据碎块文件，因此也被我否决了。</li>
+</ul>
+<p>以上三种方案还有一个问题：我需要把硬盘里现有的数据全部倒出来再倒进去……我需要的是能将文件分散存储到多块硬盘，同时又不改变文件形态的方案。</p>
+<h2 id="二mhddfs-与-mergerfs">二、mhddfs 与 mergerfs</h2>
+<p>早有人遇到过像我一样的困境，于是他开发了 <a href="https://romanrm.net/mhddfs">mhddfs</a>。在用了它一段时间之后，我又发现了一个更好的实现 <a href="https://github.com/trapexit/mergerfs">mergerfs</a>。两者的思路类似，但后者比前者功能更丰富、更安全、更稳定。本文以后者为例说明。</p>
+<p>mergerfs 的思路是用 FUSE 实现一个新的文件系统，它的下层存储并不是直接的块设备，而是别的已经挂载的文件系统。mergerfs 接收到读写请求时，它会根据约定好的策略，从下层文件系统中读取文件，或是将数据写入下层文件系统。mergerfs 所呈现的文件系统，容量是所有下层文件系统之和，而内容则是所有下层文件系统的合并。</p>
+<p>引用 mergerfs README 里的 ASCII art：</p>
+<pre><code class="language-plain">A         +      B        =       C
+/disk1           /disk2           /merged
+|                |                |
++-- /dir1        +-- /dir1        +-- /dir1
+|   |            |   |            |   |
+|   +-- file1    |   +-- file2    |   +-- file1
+|                |   +-- file3    |   +-- file2
++-- /dir2        |                |   +-- file3
+|   |            +-- /dir3        |
+|   +-- file4        |            +-- /dir2
+|                     +-- file5   |   |
++-- file6                         |   +-- file4
+                                  |
+                                  +-- /dir3
+                                  |   |
+                                  |   +-- file5
+                                  |
+                                  +-- file6
+</code></pre>
+<p>如图所示，<code>/merged</code> 是 mergerfs 的挂载点，其下层两个文件系统的挂载点是 <code>/disk1</code> 和 <code>/disk2</code>。</p>
+<p>这样一个文件系统完全符合我的需求：读写文件时能获得合并空间的优势，而当硬盘损坏或是想要直接读取硬盘里的数据的时候又可以单独把硬盘拆出来读取。而且我不用把现有的数据倒腾来倒腾去了，无痛迁移！</p>
+<h2 id="三mergerfs-的安装与配置">三、mergerfs 的安装与配置</h2>
+<p>mergerfs 的作者非常勤奋，每个版本都会为 RHEL / CentOS, Fedora, Debian, Ubuntu 不同发行版的不同版本、不同架构组合打包 30 多个 <a href="https://github.com/trapexit/mergerfs/releases">rpm 和 deb 安装包</a>，其中包括了 ARM 甚至 PowerPC 架构，方便使用 Raspberry Pi 或是老 Mac 作为网络存储设备的用户。Arch Linux 用户则可以通过 AUR 安装。</p>
+<p>安装之后通过编辑 <code>/etc/fstab</code> 来挂载 mergerfs。我使用的 fstab 如下：</p>
+<pre><code class="language-plain">/dev/sdb1               /media/disk1    ext4            defaults,noauto                 0 0
+/dev/sdc1               /media/disk2    ext4            defaults,noauto                 0 0
+/dev/sdd1               /media/disk3    ext4            defaults,noauto                 0 0
+/media/disk1:/media/disk2:/media/disk3  /media/vdisk    fuse.mergerfs   defaults,noauto,allow_other,use_ino,minfreespace=100G,ignorepponrename=true 0 0
+</code></pre>
+<p>前三行是三块存储盘的普通挂载，第四行是 mergerfs 的条目，它的挂载源是前三块盘的的挂载点，用冒号分隔。最后一列的参数说明：</p>
+<ul>
+<li><code>defaults</code>: 开启以下 FUSE 参数以提升性能：atomic_o_trunc, auto_cache, big_writes, default_permissions, splice_move, splice_read, splice_write；</li>
+<li><code>noauto</code>: 禁止开机自动挂载。意外关机重启之后我可能需要手动检查文件系统后再挂载，所以我不希望它自动挂载；</li>
+<li><code>allow_other</code>: 允许挂载者以外的用户访问 FUSE。你可能需要编辑 <code>/etc/fuse.conf</code> 来允许这一选项；</li>
+<li><code>use_ino</code>: 使用 mergerfs 而不是 libfuse 提供的 inode，使硬链接的文件 inode 一致；</li>
+<li><code>minfreespace=100G</code>: 选择往哪个下层文件系统写文件时，跳过剩余空间低于 100G 的文件系统；</li>
+<li><code>ignorepponrename=true</code>: 重命名文件时，不再遵守路径保留原则，见下一节详解。</li>
+</ul>
+<p>写完 fstab 之后就可以让 mergerfs 跑起来了：</p>
+<pre><code class="language-plain">mount /media/disk1 &amp;&amp; mount /media/disk2 &amp;&amp; mount /media/disk3 &amp;&amp; mount /media/vdisk
+</code></pre>
+<p>效果：</p>
+<pre><code class="language-plain">Filesystem      Size  Used Avail Use% Mounted on
+/dev/sdb1       1.8T  1.7T  179G  91% /media/disk1
+/dev/sdc1       3.6T  3.4T  215G  95% /media/disk2
+/dev/sdd1       3.6T   89M  3.4T   1% /media/disk3
+1:2:3           9.0T  5.0T  3.8T  57% /media/vdisk
+</code></pre>
+<p>disk3 是我今天刚装上的，所以它还是空的。</p>
+<h2 id="四mergerfs-的读写策略">四、mergerfs 的读写策略</h2>
+<p>如果多块硬盘里同名的目录或文件，从哪儿读？往哪儿写？如果多块硬盘都有足够的剩余空间，在哪块硬盘创建新文件？mergerfs 对 FUSE 的不同操作有着不同的读写策略。默认的策略是：</p>
+<ul>
+<li>action 类别：对于 chmod, chown 等改变文件或目录属性的操作，mergerfs 检索所有下层文件系统，确保所有文件或目录都得到更改；</li>
+<li>search 类别：对于 open, getattr 等读取文件或目录的操作，mergerfs <strong>按挂载源列表的顺序</strong>检索下层文件系统，返回第一个找到结果；</li>
+<li>create 类别：对于 create, mkdir 等创建文件或目录的操作，mergerfs <strong>优先选择相对路径已经存在的下层文件系统中剩余空间最大的那个作为写入目标</strong>。</li>
+</ul>
+<p>前两条很好理解，最后一条比较拗口。举例来说是这样：</p>
+<ul>
+<li>disk1 剩余 100 GiB 空间，有 <code>/dir1</code> 目录；</li>
+<li>disk2 剩余 200 GiB 空间，有 <code>/dir2</code> 目录；</li>
+<li>disk3 剩余 300 GiB 空间，有 <code>/dir3</code> 目录；</li>
+<li>mergerfs 将这三块硬盘的文件系统合并成一个，可以同时看到 <code>/dir1, /dir2, /dir3</code> 三个目录。</li>
+</ul>
+<p>这时在 mergerfs 对于上层文件系统写入一个 150 GiB 的文件到 <code>/dir2/foo.bin</code> 位置，按照默认的策略，mergerfs 会选择 disk2 写入。因为：disk1 剩余空间不足（小于 <code>minfreespace</code> 或是只读文件系统也会被跳过选择），而虽然 disk3 比 disk2 剩余空间更多，但因为 disk2 已经有 <code>/dir2</code> 目录了，所以 mergerfs 会优先选择写入 disk2 而不是 disk3。</p>
+<p>这个策略的意义在于，当下层文件系统的剩余空间差不多时，你的文件不会被分散开。比如你正在将你的<a href="https://en.wikipedia.org/wiki/Design_rule_for_Camera_File_system">相机图片文件夹</a>复制到 mergerfs 里，一个文件夹里有 999 张图片，第一张图片的落点也将决定接下来 998 张文件的落点，而不会因为下层文件系统剩余空间的交替变化而一会儿落到这个文件系统，一会儿落到那个文件系统。最终下层文件系统会被平衡地使用，但相同目录的文件会尽可能地在同一个文件系统里，这非常棒。</p>
+<p>但这个策略一直有一个痛点让我难受了很久：移动文件。比如 2016 年份的文件位于 disk1，而 2017 年份的文件因为 disk1 已经满了写到 disk2 来了，在 2018 年的时候我想把三年的文件都归到一个新目录里。此时 2016 年的文件可以瞬间完成，2017 年的文件则由于上述策略会优先选择 disk1，于是就从瞬间完成变成了缓慢的跨盘移动，当这些文件数量巨大的时候，已经开始的传输我又不敢贸然中止……这样的坑我在整理文件时掉过很多次。终于，mergerfs 2.23.0 版本新增了 <code>ignorepponrename</code> 选项，使得在重命名文件的时候，忽略路径保留规则，避免了简单的文件整理操作变成痛苦的跨盘移动的悲剧。</p>
+<p>如果 mergerfs 的默认读写策略不适用于你的应用场景，可以通过挂载参数选用别的策略。</p>
+<p>本文地址：<a href="https://wzyboy.im/post/1148.html">https://wzyboy.im/post/1148.html</a></p>
+<hr>
+<h2 id="读者来信有关-zfs">读者来信：有关 ZFS</h2>
+<p>2018-02-11 读者 Rmrf99 <a href="mailto:r...@protonmail.com">r...@protonmail.com</a> 来信推荐了 ZFS。Rmrf99 在自己的 Ubuntu 工作站上使用 ZFS 作为存储方案。我没有用过 Solaris，对 ZFS on Linux 也不是很了解。在 Rmrf99 的推荐下，我在 Ubuntu 虚拟机中尝试了 ZFS。ZFS 将 RAID / LVM 中的「卷」的概念与文件系统概念结合了：使用块设备直接创建 ZFS pool，而 pool 的更小单位就直接是文件系统了，调整大小、快照、缓存、加密、配额等都很方便，不再需要像 LVM 像俄罗斯套娃那样一层一层地操作。</p>
+<p>然而，在我的使用场景下，ZFS 相比 mergerfs 有两点不适合我的地方：</p>
+<ul>
+<li>有时我需要高速读取/写入大量数据，我目前的做法是直接将一块存储盘从 Gen8 上拔下来，使用 SATA-USB 转换器将其连接至计算机，而 ZFS pool 中的某个成员不能脱离 pool 单独工作，你也不能将一块已经加入 pool 的成员从 pool 中移除（除非拆毁 pool 并重建）；</li>
+<li>相比 Ubuntu，目前 Arch Linux 对 ZFS on Linux 的支持不够完善，使用和维护成本较高，与 ZFS 的 zero administration 理念相违背。</li>
+</ul>
+<p>此外，对于需要跨平台协作的用户来说，mergerfs 可以将不同文件系统的分区拼成一个，使 Ext4 与 NTFS 和谐共处，而 ZFS 在可预见的未来没有可用的 Windows 支持。</p>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;"></p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://syaofox.github.io/post/%E7%9B%AE%E5%BD%95%E7%BA%A7%E5%88%AB%E7%9A%84%E5%86%97%E4%BD%99%E5%AD%98%E5%82%A8-snapraid/">
+			<br>目录级别的冗余存储 SnapRAID
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://syaofox.github.io/post/ubuntu%E7%9A%84ups%E7%94%B5%E6%BA%90%E5%AE%89%E8%A3%85/">
+			<br>Ubuntu 的 UPS 电源安装
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+                <p style="opacity: 0.6" align="center">
+                    <small></small>
+                </p>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">
+ <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>  <a href="https://amazingrise.net">Rise</a>
+<br>
+ <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2020 云流
+	
+</div>
+            </div>
+    <script>
+let app;
+
+app = new Vue({
+    el: '#app',
+    data: {
+        scrollY: 0,
+        navOpacity: 0,
+        isDrawerOpen: false,
+        mounted: false,
+        isDarkMode: false
+    },
+    methods: {
+            sgn(t, x) {
+                let k = 1. / (1. - 2 * t);
+                if (x <= t) return 0;
+                else if (x >= 1 - t) return 1;
+                else {
+                    return k * (x - t);
+                }
+            },
+            handleScroll() {
+                this.scrollY = window.scrollY;
+                this.navOpacity = this.sgn(.0, Math.min(1, Math.max(0, window.scrollY / (this.pageHeadHeight() - this.navBarHeight() * 0.8))));
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+
+                if (this.navOpacity >= 1) {
+                    navBackground.style.opacity = 1;
+                    navTitle.style.opacity = 1;
+                } else {
+                    navBackground.style.opacity = 0;
+                    navTitle.style.opacity = 0;
+                }
+            },
+            handleResize() {
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+                extraContainer.style.left = (streamContainer.offsetWidth - extraContainer.offsetWidth) + 'px';
+            },
+            navBarHeight() {
+                return this.$refs.navBar.offsetHeight;
+            },
+            pageHeadHeight() {
+                return this.$refs.pageHead.offsetHeight;
+            },
+            toggleDrawer() {
+                this.isDrawerOpen = !this.isDrawerOpen;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            closeDrawer() {
+                this.isDrawerOpen = false;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            toggleDarkMode() {
+                this.isDarkMode = !this.isDarkMode;
+                if (this.isDarkMode==true){
+                    document.cookie = "night=1;path=/";
+                    document.body.classList.add("night");
+                } else {
+                    document.cookie = "night=0;path=/";
+                    document.body.classList.remove("night");
+                }
+            }
+    },
+    created() {
+        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('resize', this.handleResize);
+        window._nonDesktop = function () {
+            let check = false;
+            (function (a) {
+                if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+            })(navigator.userAgent || navigator.vendor || window.opera);
+            return check;
+        };
+        
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (night==""){
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                
+            }
+        }else{
+            
+            if (night=="1") {
+                this.toggleDarkMode();
+            }
+        }
+    },
+    mounted() {
+        this.handleScroll();
+        this.handleResize();
+        this.mounted = true;
+
+        
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.handleResize);
+    }
+});
+</script>
+
+<script src="https://syaofox.github.io/js/journal.js"></script>
+    </body>
+</html>

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>NES on 霜天晓角</title>
+    <title>NES on 云流</title>
     <link>https://syaofox.github.io/tags/nes/</link>
-    <description>Recent content in NES on 霜天晓角</description>
+    <description>Recent content in NES on 云流</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>Syaofox 2020 copyright.</copyright>
     <lastBuildDate>Tue, 16 Jun 2020 22:35:34 +0800</lastBuildDate>
     
 	<atom:link href="https://syaofox.github.io/tags/nes/index.xml" rel="self" type="application/rss+xml" />
@@ -14,20 +13,11 @@
     
     <item>
       <title>圣斗士星矢~黄金传说完结篇~攻略~</title>
-      <link>https://syaofox.github.io/acg/saintseiya-ougondensetsukanketsuhen/</link>
+      <link>https://syaofox.github.io/post/saintseiya-ougondensetsukanketsuhen/</link>
       <pubDate>Tue, 16 Jun 2020 22:35:34 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/acg/saintseiya-ougondensetsukanketsuhen/</guid>
-      <description>一、前言 圣斗士星矢是许多75后、80后甚至90后的共同回忆。作者作为85后的一员，在当年那个物资缺乏的年代，《圣斗士星矢》漫画就是为数不多的娱乐精神来源之一。也因为这部漫画，作者对黄道十二星座的了解也比同龄人更深一层，对十二星座的排序、时段、来历也非常熟悉。
-《圣斗士星矢》漫画正篇共110话，经过较长的铺垫，在29话左右进入了黄道十二宫篇，本篇这也是正篇真正的第一次高潮所在，讲述了纱织（女神雅典娜的转生）带着不死四青铜圣斗士到圣域调查神秘教皇事件，雅典娜刚到圣域，就被天箭座白银圣斗士射中了心脏。众青铜圣斗士必须在十二小时内突破十二宫，拯救纱织。
-《圣斗士星矢》漫画的角色设定和剧情安排，以当年国内审美来说，算是非常惊艳，加上旧时光加成，这部漫画在广大漫迷中有举足轻重的影响。FC游戏《圣斗士星矢-黄金传说完结篇》严谨地重现了漫画的剧情和细节，这是《圣斗士星矢-黄金传说完结篇》的魅力之一。
-二、出招说明及技巧 本游戏因为依据原作，共12名黄金圣斗士，也就是12宫，再加上教皇，共13关，每一关分为两个部分：普通关卡和BOSS关卡，需要分别来说。因为我用的是汉化版，所以在截图上和原版日文的并不一样，但剧情并无出入。
-操作    键位 普通关卡 BOSS战     方向键 移动人物 移动光标   A 跳跃（上+A为大跳，下+A为跳下） 确定   B 攻击 退出    参数说明    人物属性       COSMO：小宇宙
-LIFE：生命 SEVENSENSES：第七感（简称SS）       BOSS战时       左上：攻击
-右上：换人
-左下：对话
-右下：状态    通关技巧 五小强中，每个人与每个人的招数不一样，在普通关卡时，能力也有所不同，其实个人认为通关必须掌握好三种技术：
- 一、招数（分普通战和BOSS战） 二、跳跃（普通战） 三、闪避（BOSS战）  我们来分别说明：</description>
+      <guid>https://syaofox.github.io/post/saintseiya-ougondensetsukanketsuhen/</guid>
+      <description>一、前言 圣斗士星矢是许多75后、80后甚至90后的共同回忆。作者作为85后的一员，在当年那个物资缺乏的年代，《圣斗士星矢》漫画就是为数不多的娱乐精神来源之一。也因为这部漫画，作者对黄道十二星座的了解也</description>
     </item>
     
   </channel>

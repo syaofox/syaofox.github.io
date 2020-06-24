@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html><head>
+<title>使用GitHub（二）：配置并使用Git创建版本库</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+<meta name="google-site-verification" content="oogV8o8B0_GmgleXKYHSkWxodG-N4Nz9mIlHqljGd-0" />
+
+
+
+
+
+
+
+
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="https://syaofox.github.io/scss/journal.min.2725bdf31310513b302e62b01700d09aeff9316f5344e988decd15737cf0b3c5.css" integrity="sha256-JyW98xMQUTswLmKwFwDQmu/5MW9TROmI3s0Vc3zws8U=" media="screen">
+
+
+
+<link rel="stylesheet" href="https://syaofox.github.io/scss/dark-mode.min.e93e28b95f534b47ed30828c25fef57eb3c43aa0270721098b7f9d4f1c40bf1f.css" integrity="sha256-6T4ouV9TS0ftMIKMJf71frPEOqAnByEJi3&#43;dTxxAvx8=" media="screen">
+
+
+<script src="https://syaofox.github.io/js/loadCSS.js"></script>
+<script>
+  loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+
+
+
+  
+    <script src="https://syaofox.github.io/js/toc-collapse.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://syaofox.github.io">
+    
+        <div class="nav-title">
+            云流
+        </div>
+        
+        <div class="nav-subtitle">
+            心似白云常自在 意如流水任东西
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+ <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>  <a href="https://amazingrise.net">Rise</a>
+<br>
+ <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2020 云流
+	
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>-  -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%89%8d%e8%a8%80" onclick="collapseOthers(`#前言-nav`)" id="前言-nav">
+									前言
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e9%85%8d%e7%bd%aegit" onclick="collapseOthers(`#配置git-nav`)" id="配置git-nav">
+									配置Git
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%bd%bf%e7%94%a8git%e5%88%9b%e5%bb%ba%e7%89%88%e6%9c%ac%e5%ba%93" onclick="collapseOthers(`#使用git创建版本库-nav`)" id="使用git创建版本库-nav">
+									使用Git创建版本库
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#1%e5%8f%aa%e5%9c%a8%e6%9c%ac%e5%9c%b0%e4%bd%bf%e7%94%a8" onclick="collapseOthers(`#1只在本地使用-nav`)" id="1只在本地使用-nav">
+									1只在本地使用
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#11-%e5%88%9d%e5%a7%8b%e5%8c%96" onclick="collapseOthers(`#11-初始化-nav`)" id="11-初始化-nav">
+									1.1 初始化
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#12-%e6%96%87%e4%bb%b6%e5%8f%98%e5%8a%a8" onclick="collapseOthers(`#12-文件变动-nav`)" id="12-文件变动-nav">
+									1.2 文件变动
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#13-%e6%80%bb%e7%bb%93" onclick="collapseOthers(`#13-总结-nav`)" id="13-总结-nav">
+									1.3 总结
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#2-%e5%b0%86%e6%9c%ac%e5%9c%b0%e4%bb%93%e5%ba%93%e4%b8%8a%e4%bc%a0%e5%88%b0-github" onclick="collapseOthers(`#2-将本地仓库上传到-github-nav`)" id="2-将本地仓库上传到-github-nav">
+									2 将本地仓库上传到 GitHub
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#3-%e7%9b%b4%e6%8e%a5%e5%9c%a8-github-%e5%88%9b%e5%bb%ba%e4%b8%80%e4%b8%aa%e4%bb%93%e5%ba%93%e7%84%b6%e5%90%8e%e4%b8%8b%e8%bd%bd%e5%88%b0%e6%9c%ac%e5%9c%b0" onclick="collapseOthers(`#3-直接在-github-创建一个仓库然后下载到本地-nav`)" id="3-直接在-github-创建一个仓库然后下载到本地-nav">
+									3 直接在 GitHub 创建一个仓库，然后下载到本地
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%a6%82%e4%bd%95%e4%b8%8a%e4%bc%a0%e6%9b%b4%e6%96%b0" onclick="collapseOthers(`#如何上传更新-nav`)" id="如何上传更新-nav">
+									如何上传更新
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a class="pagination-action" v-on:click="toggleDarkMode">
+            <i class="material-icons pagination-action-icon" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons pagination-action-icon" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </a>
+        
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>-  -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%89%8d%e8%a8%80" onclick="collapseOthers(`#前言-nav`)" id="前言-nav">
+									前言
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e9%85%8d%e7%bd%aegit" onclick="collapseOthers(`#配置git-nav`)" id="配置git-nav">
+									配置Git
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%bd%bf%e7%94%a8git%e5%88%9b%e5%bb%ba%e7%89%88%e6%9c%ac%e5%ba%93" onclick="collapseOthers(`#使用git创建版本库-nav`)" id="使用git创建版本库-nav">
+									使用Git创建版本库
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#1%e5%8f%aa%e5%9c%a8%e6%9c%ac%e5%9c%b0%e4%bd%bf%e7%94%a8" onclick="collapseOthers(`#1只在本地使用-nav`)" id="1只在本地使用-nav">
+									1只在本地使用
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#11-%e5%88%9d%e5%a7%8b%e5%8c%96" onclick="collapseOthers(`#11-初始化-nav`)" id="11-初始化-nav">
+									1.1 初始化
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#12-%e6%96%87%e4%bb%b6%e5%8f%98%e5%8a%a8" onclick="collapseOthers(`#12-文件变动-nav`)" id="12-文件变动-nav">
+									1.2 文件变动
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#13-%e6%80%bb%e7%bb%93" onclick="collapseOthers(`#13-总结-nav`)" id="13-总结-nav">
+									1.3 总结
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#2-%e5%b0%86%e6%9c%ac%e5%9c%b0%e4%bb%93%e5%ba%93%e4%b8%8a%e4%bc%a0%e5%88%b0-github" onclick="collapseOthers(`#2-将本地仓库上传到-github-nav`)" id="2-将本地仓库上传到-github-nav">
+									2 将本地仓库上传到 GitHub
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#3-%e7%9b%b4%e6%8e%a5%e5%9c%a8-github-%e5%88%9b%e5%bb%ba%e4%b8%80%e4%b8%aa%e4%bb%93%e5%ba%93%e7%84%b6%e5%90%8e%e4%b8%8b%e8%bd%bd%e5%88%b0%e6%9c%ac%e5%9c%b0" onclick="collapseOthers(`#3-直接在-github-创建一个仓库然后下载到本地-nav`)" id="3-直接在-github-创建一个仓库然后下载到本地-nav">
+									3 直接在 GitHub 创建一个仓库，然后下载到本地
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%a6%82%e4%bd%95%e4%b8%8a%e4%bc%a0%e6%9b%b4%e6%96%b0" onclick="collapseOthers(`#如何上传更新-nav`)" id="如何上传更新-nav">
+									如何上传更新
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://syaofox.github.io">
+            云流
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" v-on:click="toggleDarkMode">
+            <i class="material-icons" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://syaofox.github.io">
+        <div class="single-column-header-title">云流</div>
+        
+        <div class="single-column-header-subtitle">心似白云常自在 意如流水任东西</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    使用GitHub（二）：配置并使用Git创建版本库
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            
+                        </time>
+                        
+
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/coding">Coding</a>
+                                &nbsp;
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/git">Git</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <h1 id="前言">前言</h1>
+<blockquote>
+<ul>
+<li>本文简单介绍使用GitHub对代码进行版本控制，包括<strong>添加SSHkey</strong>、<strong>配置Git</strong>、<strong>使用Git创建版本库</strong>并在GitHub上进行管理，主要目的是对学习内容进行总结以及方便日后查阅。</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="配置git">配置Git</h2>
+<hr>
+<pre><code>    git config --global user.name 你的英文名
+    git config --global user.email 你的邮箱
+    git config --global push.default matching
+    git config --global core.quotepath false
+    git config --global core.editor &quot;vim&quot;
+</code></pre>
+<p>五句话，依次运行。</p>
+<h2 id="使用git创建版本库">使用Git创建版本库</h2>
+<hr>
+<p>使用 git 有三种方式，请按照需求选择。</p>
+<ol>
+<li>只在本地使用</li>
+<li>将本地仓库上传到 GitHub</li>
+<li>下载 GitHub 上的仓库</li>
+</ol>
+<blockquote>
+<p>其中1+2的最终效果=3</p>
+</blockquote>
+<h3 id="1只在本地使用">1只在本地使用</h3>
+<hr>
+<h4 id="11-初始化">1.1 初始化</h4>
+<ol>
+<li>
+<p>创建目录作为我们的项目目录：<code>mkdir git-demo-1</code></p>
+</li>
+<li>
+<p>进入目录 <code>cd git-demo-1</code></p>
+</li>
+<li>
+<p><code>git init</code>，这句命令会在 <code>git-demo-1</code> 里创建一个 <code>.git</code> 目录</p>
+</li>
+<li>
+<p><code>ls -la</code> 你就会看到 <code>.git</code>目录，它就是一个「仓库」，不要进去看。</p>
+</li>
+<li>
+<p>在 <code>git-demo-1</code>目录里面添加任意文件，假设我们添加了两个文件，分别是 <code>index.html</code> 和 <code>css/style.css</code></p>
+<pre><code>touch index.html
+mkdir css
+touch css/style.css
+</code></pre>
+</li>
+<li>
+<p>运行 <code>git status -sb</code> 可以看到文件前面有 <code>??</code> 号</p>
+<pre><code>    touch index.html
+    mkdir css
+    touch css/style.css
+</code></pre>
+</li>
+</ol>
+<p>这个 <code>??</code> 表示 git不知道你要怎么对待这些变动。</p>
+<ol>
+<li>
+<p>使用 <code>git add</code> 将文件添加到「暂存区」</p>
+</li>
+<li>
+<p>你可以一个一个地 add</p>
+<pre><code>    git add index.html
+    git add css/style.css
+</code></pre>
+</li>
+<li>
+<p>你也可以一次性 add</p>
+<pre><code>git add .
+</code></pre>
+</li>
+</ol>
+<p>意思是把当前目录（.表示当前目录）里面的变动都加到「暂存区」</p>
+<ol>
+<li>再次运行 <code>git status -sb</code>，可以看到 <code>??</code> 变成了 A</li>
+</ol>
+<pre><code>## Initial commit on master
+A  css/style.css
+A  index.html
+</code></pre>
+<p>A 的意思就是添加，也就是说你告诉 git，这些文件我要加到仓库里</p>
+<ol>
+<li>使用 <code>git commit -m &quot;信息&quot;</code> 将你 add过的内容「正式提交」到本地仓库（<code>.git</code>就是本地仓库），并添加一些注释信息，方便日后查阅</li>
+<li>你可以一个一个地 commit</li>
+</ol>
+<pre><code>git add index.html
+git add css/style.css
+</code></pre>
+<ol>
+<li>
+<p>你也可以一次性 commit</p>
+<pre><code>git commit . -m &quot;添加了几个文件&quot;
+</code></pre>
+<ol>
+<li>再再次运行 <code>git status -sb</code>，发现没有文件变动了，这是因为文件的变动已经记录在仓库里了。</li>
+<li>这时你使用 <code>git log</code> 就可以看到历史上的变动：</li>
+</ol>
+</li>
+</ol>
+<pre><code>commit f0d95058cd32a332b98967f6c0a701c64a00810a
+ Author: frankfang &lt;frankfang1990@gmail.com&gt;
+ Date:   Thu Sep 28 22:30:43 2017 +0800
+
+添加几个文件
+</code></pre>
+<ol>
+<li>以上就是 <code>git add</code> / <code>git commit</code> 的一次完整过程。</li>
+</ol>
+<h4 id="12-文件变动">1.2 文件变动</h4>
+<p>如果我想继续改文件，应该怎么做呢？</p>
+<ol>
+<li><code>start css/style.css</code> 会使用默认的编辑器打开 <code>css/style.css</code>（macOS 上对应的命令是 <code>open css/style.css</code>）</li>
+<li>然后我们在 <code>css/style.css</code> 里写入 <code>body {background: red}</code>，保存退出</li>
+<li>运行 <code>git status -sb</code> 发现提示中有一个 <code>M</code></li>
+</ol>
+<pre><code>## master
+M css/style.css
+</code></pre>
+<p>这个 <code>M</code> 的意思就是 Modified，表示这个文件被修改了</p>
+<ol>
+<li>
+<p>此时你如果想让改动保存到仓库里，你需要先 <code>git add css/style.css</code> 或者也可以 <code>git add .</code></p>
+<blockquote>
+<p>注意</p>
+<p>：由于这个</p>
+<pre><code>css/style.css
+</code></pre>
+<p>以前被我们 add 过，你往文章上面看，我们是 add 过</p>
+<pre><code>css/style.css
+</code></pre>
+<p>的，所以此处的 git add操作可以省略，但我建议你使用 git 的前一个月，不要省略 git add。</p>
+<p>换句话说，每一次改动，都要经过 <code>git add</code> 和 <code>git commit</code> 两个命令，才能被添加到 .git 本地仓库里。</p>
+</blockquote>
+</li>
+<li>
+<p>再次运行 <code>git status -sb</code> 发现 M 有红色变成了绿色。</p>
+</li>
+<li>
+<p>运行 git commit -m` &ldquo;更新 css/style.css&rdquo;，这个改动就被提交到 .git 本地仓库了。再说一次，不要去 .git 目录里面。</p>
+</li>
+<li>
+<p>再再次运行 <code>git status -sb</code>，会发现没有变更了，这说明所有变动都被本地仓库记录在案了。</p>
+</li>
+</ol>
+<blockquote>
+<p><strong><code>git status -sb</code> 是什么意思：</strong>
+<code>git status</code> 是用来显示当前的文件状态的，哪个文件变动了，方便你进行 <code>git add</code> 操作。</p>
+<ul>
+<li><code>-s</code> 的意思是显示总结（summary）</li>
+<li><code>-b</code> 的意思是显示分支（branch）</li>
+<li>所以 <code>-sb</code> 的意思是显示总结和分支。</li>
+</ul>
+</blockquote>
+<h4 id="13-总结">1.3 总结</h4>
+<p>至此，我们来总结一下用到的命令</p>
+<ol>
+<li>
+<p><code>git init</code>，初始化本地仓库 <code>.git</code></p>
+</li>
+<li>
+<p><code>git status -sb</code>，显示当前所有文件的状态</p>
+</li>
+<li>
+<p><code>git add 文件路径</code>，用来将变动加到暂存区</p>
+</li>
+<li>
+<p><code>git commit -m &quot;信息&quot;</code>，用来正式提交变动，提交至 <code>.git</code> 仓库</p>
+</li>
+<li>
+<p>如果有新的变动，我们只需要依次执行 <code>git add xxx</code> 和 <code>git commit -m 'xxx'</code> 两个命令即可。</p>
+<blockquote>
+<p>别看本教程废话那么多，其实就这一句有用！先 add 再 commit，行了，你学会 git 了。</p>
+</blockquote>
+</li>
+<li>
+<p><code>git log</code> 查看变更历史</p>
+</li>
+</ol>
+<h3 id="2-将本地仓库上传到-github">2 将本地仓库上传到 GitHub</h3>
+<hr>
+<p>如何将我们这个 git-demo-1 上传到 GitHub 呢？</p>
+<ol>
+<li>
+<p>在 GitHub 上新建一个空仓库，名称随意，一般可以跟本地目录名一致，也叫做</p>
+<pre><code>git-demo-1
+</code></pre>
+<p><img src="/%E4%BD%BF%E7%94%A8GitHub%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8Git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/1460000013760572.jpg" alt="建立空仓库"></p>
+<p>按照截图所示，除了仓库名，<strong>其他的什么都别改</strong>，这样你才能创建一个<strong>空仓库</strong></p>
+</li>
+<li>
+<p>点击创建按钮之后，GitHub 就会把后续的操作全告诉你，如图</p>
+<p>请点击一下 ssh</p>
+<p><img src="/%E4%BD%BF%E7%94%A8GitHub%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8Git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/1460000014076777.jpg" alt="点击SSH">
+<img src="/%E4%BD%BF%E7%94%A8GitHub%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8Git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/1460000014076778.jpg" alt="点击SSH2"></p>
+</li>
+<li>
+<p><strong>点击一下 ssh</strong>，你就会使用默认的 HTTPS 地址。但是千万不要使用 HTTPS 地址，因为 HTTPS地址使用起来特别麻烦，每次都要输入密码，而 SSH 不用输入用户名密码。</p>
+<blockquote>
+<p>为什么 SSH 不用密码呢，因为你已经上传了 SSH public key。详情请看上一篇博文使用GitHub（一）</p>
+</blockquote>
+</li>
+<li>
+<p>由于我们已经有本地仓库了，所以图中<strong>下面半部分</strong>就是你需要的命令，我们一行一行拷贝过来执行</p>
+<ul>
+<li>再次点击 SSH 按钮</li>
+<li>命令 <code>git remote add origin git@github.com:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/git-demo-1.git</code>，复制并运行它</li>
+<li>复制第二行 <code>git push -u origin master</code>，运行它</li>
+<li>刷新当前页面，你的仓库就上传到 GitHub 了.</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>在建立空库的情况下，以上两步在本地建一个Git仓库和将Git仓库上传到GitHub上加起来就等同于下面的第3条。</p>
+</blockquote>
+<h3 id="3-直接在-github-创建一个仓库然后下载到本地">3 直接在 GitHub 创建一个仓库，然后下载到本地</h3>
+<hr>
+<blockquote>
+<p>上面两步讲了</p>
+<ul>
+<li>在本地创建仓库</li>
+<li>将本地仓库上传到 GitHub</li>
+</ul>
+<p>这里讲第三种用法，那就是直接在 GitHub 创建一个仓库，然后下载到本地</p>
+</blockquote>
+<ol>
+<li>在GitHub 上新建一个仓库<code>git-demo-2</code>，这次就不创建空仓库了，而是自带 <code>README</code> 和 <code>Lisence</code> 的仓库，创建截图如下：</li>
+</ol>
+<p><img src="/%E4%BD%BF%E7%94%A8GitHub%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8Git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/1460000013760573.jpg" alt="创建新的仓库">
+然后点击创建按钮。</p>
+<ol>
+<li>这样一来，这个仓库就会自动拥有三个文件：</li>
+</ol>
+<p><img src="/%E4%BD%BF%E7%94%A8GitHub%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8Git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/1460000013760574.jpg" alt="仓库文件"></p>
+<ol>
+<li>使用 <code>git clone</code> 命令下载到本地</li>
+<li>点击页面中唯一的绿色按钮「clone or download」，会看到一个弹出层</li>
+</ol>
+<p><img src="/%E4%BD%BF%E7%94%A8GitHub%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8Git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/1460000013760575.jpg" alt="clone"></p>
+<pre><code>&gt; 请确保弹出层里的地址是 SSH 地址，也就是 git@github.com 开头的地址，如果不是，就点击 Use SSH 按钮，就**点击
+&gt; Use SSH 按钮**。然后复制这个地址。
+</code></pre>
+<ol>
+<li>打开 Git Bash，找一个安全的目录，比如 <code>~/Desktop</code> 。</li>
+</ol>
+<p>运行 <code>git clone 你刚才得到的以git@github.com开头的地址</code>，运行完了你就会发现，桌面上多出一个 <code>git-demo-2</code>。</p>
+<ol>
+<li><code>cd git-demo-2</code>进入这个目录。</li>
+<li>运行 ls -la 你会看到，远程目录的所有文件都在这里出现了，另外你还看到了 <code>.git</code> 本地仓库。这时你就可以添加文件，git add，然后 git commit 了。</li>
+</ol>
+<blockquote>
+<p>三种方式都说完了，它们分别是：</p>
+<ul>
+<li>在本地创建仓库</li>
+<li>将本地仓库上传到 GitHub</li>
+<li>下载 GitHub 上的仓库到本地</li>
+</ul>
+<p>其实呢，还有很多种不同的方式，但是，记住这几种就行了，够用了。我们并不想要了解 git 的所有高级用法，我们的目的很明确：能通过 Git
+命令使用 GitHub 就行</p>
+</blockquote>
+<p><strong>总结：</strong></p>
+<p>回顾一遍已经学到的命令：（这次只多了一个 git clone 命令）</p>
+<ul>
+<li>
+<p><code>git clone git@github.com:xxxx</code>，下载仓库</p>
+</li>
+<li>
+<p><code>git init</code>，初始化本地仓库 .git</p>
+</li>
+<li>
+<p><code>git status -sb</code>，显示当前所有文件的状态</p>
+</li>
+<li>
+<p><code>git add 文件路径</code>，用来将变动加到暂存区</p>
+</li>
+<li>
+<p><code>git commit -m &quot;信息&quot;</code>，用来正式提交变动，提交至 .git 仓库</p>
+</li>
+<li>
+<p>如果有新的变动，我们只需要依次执行 <code>git add xxx</code> 和 <code>git commit -m 'xxx'</code> 两个命令即可。</p>
+<blockquote>
+<p>别看本教程废话那么多，其实就这一句有用！先 add 再 commit，行了，学会 git 了。</p>
+</blockquote>
+</li>
+<li>
+<p><code>git log</code> 查看变更历史</p>
+</li>
+</ul>
+<h2 id="如何上传更新">如何上传更新</h2>
+<p>你在本地目录有任何变动，只需按照以下顺序就能上传：</p>
+<pre><code>git add 文件路径
+git commit -m &quot;信息&quot;
+git pull  （一定不要忘记这一个命令）
+git push
+</code></pre>
+<blockquote>
+<p>为何要push之前要pull？
+<strong>push是推送</strong>，<strong>pull是拉取</strong>的意思。假如你在远端修改了文件，然后本地并没有同步更新，这时候你push的时候就会出现错误，因为两端不同步了。多人合作的时候这种问题就会出现的更多，所以现在养成push之前要pull的习惯。</p>
+</blockquote>
+<p>下面是例子</p>
+<pre><code>cd git-demo-1
+touch index2.html
+git add index2.html
+git commit -m &quot;新建 index2.html&quot;
+git pull
+git push
+</code></pre>
+<p>然后去 <code>git-demo-1</code> 的 GitHub 页面，就能看到 <code>index2.html</code> 出现在里面了。</p>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;"></p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://syaofox.github.io/post/git-submodule-%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9A%84%E7%AE%A1%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8/">
+			<br>Git Submodule 子模块的管理和使用
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://syaofox.github.io/post/%E4%BD%BF%E7%94%A8github%E4%B8%80%E6%B7%BB%E5%8A%A0sshkey/">
+			<br>使用GitHub（一）：添加SSHkey
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+                <p style="opacity: 0.6" align="center">
+                    <small></small>
+                </p>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">
+ <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>  <a href="https://amazingrise.net">Rise</a>
+<br>
+ <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2020 云流
+	
+</div>
+            </div>
+    <script>
+let app;
+
+app = new Vue({
+    el: '#app',
+    data: {
+        scrollY: 0,
+        navOpacity: 0,
+        isDrawerOpen: false,
+        mounted: false,
+        isDarkMode: false
+    },
+    methods: {
+            sgn(t, x) {
+                let k = 1. / (1. - 2 * t);
+                if (x <= t) return 0;
+                else if (x >= 1 - t) return 1;
+                else {
+                    return k * (x - t);
+                }
+            },
+            handleScroll() {
+                this.scrollY = window.scrollY;
+                this.navOpacity = this.sgn(.0, Math.min(1, Math.max(0, window.scrollY / (this.pageHeadHeight() - this.navBarHeight() * 0.8))));
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+
+                if (this.navOpacity >= 1) {
+                    navBackground.style.opacity = 1;
+                    navTitle.style.opacity = 1;
+                } else {
+                    navBackground.style.opacity = 0;
+                    navTitle.style.opacity = 0;
+                }
+            },
+            handleResize() {
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+                extraContainer.style.left = (streamContainer.offsetWidth - extraContainer.offsetWidth) + 'px';
+            },
+            navBarHeight() {
+                return this.$refs.navBar.offsetHeight;
+            },
+            pageHeadHeight() {
+                return this.$refs.pageHead.offsetHeight;
+            },
+            toggleDrawer() {
+                this.isDrawerOpen = !this.isDrawerOpen;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            closeDrawer() {
+                this.isDrawerOpen = false;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            toggleDarkMode() {
+                this.isDarkMode = !this.isDarkMode;
+                if (this.isDarkMode==true){
+                    document.cookie = "night=1;path=/";
+                    document.body.classList.add("night");
+                } else {
+                    document.cookie = "night=0;path=/";
+                    document.body.classList.remove("night");
+                }
+            }
+    },
+    created() {
+        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('resize', this.handleResize);
+        window._nonDesktop = function () {
+            let check = false;
+            (function (a) {
+                if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+            })(navigator.userAgent || navigator.vendor || window.opera);
+            return check;
+        };
+        
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (night==""){
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                
+            }
+        }else{
+            
+            if (night=="1") {
+                this.toggleDarkMode();
+            }
+        }
+    },
+    mounted() {
+        this.handleScroll();
+        this.handleResize();
+        this.mounted = true;
+
+        
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.handleResize);
+    }
+});
+</script>
+
+<script src="https://syaofox.github.io/js/journal.js"></script>
+    </body>
+</html>

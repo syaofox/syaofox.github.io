@@ -1,0 +1,22 @@
+$body-font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Helvetica', 'Arial', 'PingFang SC', 'Hiragino Sans GB', 'Source Han Sans CN', 'Source Han Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+$mono-font: 'Cascadia Code', 'SF Mono', 'Fira Code', 'Consolas', $body-font;
+$title-font: 'Product Sans', $body-font;
+$body-font-size: 16px;
+
+$light-color-primary: #8aa2d3; // https://irocore.com/aofuji/
+$light-color-secondary: #8f82bc; // https://irocore.com/fujimurasaki/
+$light-color-focus: #3b469b; // https://irocore.com/aomurasaki/
+$light-color-mute: #9ea1a3; // https://irocore.com/suzu-iro/
+$light-color-font: #3f4551; // https://irocore.com/konnezu/
+$light-color-divider: #e5e2e4; // https://irocore.com/komachinezu/
+$light-color-bg: #fffffd; // https://irocore.com/shiro/
+$light-color-codebg: #f6f8fa; // GitHub
+
+$dark-color-primary: #8aa2d3; // https://irocore.com/aofuji/
+$dark-color-secondary: #bab1df; // https://irocore.com/fujimurasaki/
+$dark-color-focus: #e6e6e6; // https://irocore.com/shironezumi/
+$dark-color-mute: #9ea1a3; // https://irocore.com/suzu-iro/
+$dark-color-font: #c0c0c0; // https://irocore.com/gin-iro/
+$dark-color-divider: #4d5158; // Discord
+$dark-color-bg: #2f3136; // Discord
+$dark-color-codebg: #414449; // GitHub

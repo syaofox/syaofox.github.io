@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>正则表达式 on 霜天晓角</title>
+    <title>正则表达式 on 云流</title>
     <link>https://syaofox.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</link>
-    <description>Recent content in 正则表达式 on 霜天晓角</description>
+    <description>Recent content in 正则表达式 on 云流</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>Syaofox 2020 copyright.</copyright>
     <lastBuildDate>Thu, 18 Jun 2020 08:39:51 +0800</lastBuildDate>
     
 	<atom:link href="https://syaofox.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
@@ -14,12 +13,11 @@
     
     <item>
       <title>正则表达式速查表</title>
-      <link>https://syaofox.github.io/coding/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5%E8%A1%A8/</link>
+      <link>https://syaofox.github.io/post/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5%E8%A1%A8/</link>
       <pubDate>Thu, 18 Jun 2020 08:39:51 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/coding/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5%E8%A1%A8/</guid>
-      <description>常用表达式
-     表达式 说明     匹配中文字符 [\u4e00-\u9fa5]   匹配双字节字符(含汉字) [^\x00-\xff]   匹配空白行 \n\s*\r   匹配Email地址 [\w!#$%&amp;amp;&#39;*+/=?^_`{|}~-]+(?:\.[\w!#$%&amp;amp;&#39;*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?   匹配网址URL [a-zA-z]+://[^\s]*   匹配国内电话号码 \d{3}-\d{8}|\d{4}-\{7,8}   匹配腾讯QQ号 [1-9][0-9]{4,}   匹配中国邮政编码 [1-9]\d{5}(?!\d)   匹配18位身份证号 ^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$   匹配(年-月-日)格式日期 ([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})-(((0[13578]|1[02])-(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8])))   匹配正整数 ^[1-9]\d*$   匹配负整数 ^-[1-9]\d*$   匹配整数 ^-?[1-9]\d*$      速查表</description>
+      <guid>https://syaofox.github.io/post/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5%E8%A1%A8/</guid>
+      <description>常用表达式 表达式 说明 匹配中文字符 [\u4e00-\u9fa5] 匹配双字节字符(含汉字) [^\x00-\xff] 匹配空白行 \n\s*\r 匹配Email地址 [\w!#$%&amp;amp;&#39;*+/=?^_`{|}~-]+(?:\.[\w!#$%&amp;amp;&#39;*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])? 匹配网址URL [a-zA-z]+://[^\s]* 匹配国内电话号码 \d{3}-\d{8}|\d{4}-\{7,8} 匹配腾讯QQ号 [1-9][0-9]{4,} 匹配中国邮政编码 [1-9]\d{5}(?!\d) 匹配18位身份证号 ^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$ 匹配(年-月-日)格</description>
     </item>
     
   </channel>
