@@ -155,7 +155,7 @@ tropical NOT island
 tropical OR island
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;查找包含“tropical”或“island”单词的文件。&lt;/p&gt;
 &lt;h1 id=&#34;使用关键字细化搜索&#34;&gt;使用关键字细化搜索&lt;/h1&gt;
-&lt;p&gt;更多用法参考
+&lt;p&gt;更多用法参考 
 微软官方文档 &lt;a href=&#34;https://docs.microsoft.com/zh-cn/windows/win32/lwef/-search-2x-wds-aqsreference?redirectedfrom=MSDN&#34;&gt;Advanced Query Syntax&lt;/a&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;

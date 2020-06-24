@@ -40,7 +40,7 @@ myhostname = syaofox.com relayhost = [smtp.gmail.com]:587 mydestination = localh
       <description>一、安装软件 zed是zfs的一个事件服务，需要安装zfs-zed来使用，同时，为了能邮件通知，还需要安装mailutils msmtp msmtp-mta s-nail
 apt-get install mailutils msmtp msmtp-mta s-nail zfs-zed 二、配置msmtp 修改或新建/etc/msmtprc
 defaults auth login #tls_starttls off tls off #tls_trust_file /etc/ssl/certs/ca-certificates.crt logfile ~/.msmtp.log account alerts host smtp.qq.com port 25 from 地址@qq.com user 地址@qq.com password xxxx #这里的密码是smtp的验证密码，不是邮箱登录密码 # Set a default account account default : alerts 配置完后echo &amp;quot;test mail&amp;quot; | mail -s &amp;quot;test&amp;quot; 地址@qq.com测试是否能收到邮件。
-三、配置zed vi /etc/zfs/zed.d/zed.rc ZED_EMAIL_ADDR=&amp;#34;地址@qq.com&amp;#34; ZED_EMAIL_PROG=&amp;#34;mail&amp;#34; ZED_EMAIL_OPTS=&amp;#34;-s &amp;#39;@SUBJECT@&amp;#39; @ADDRESS@ -r 地址@qq.com&amp;#34; ZED_NOTIFY_INTERVAL_SECS=&amp;#34;3600&amp;#34; ZED_NOTIFY_VERBOSE=1 ZED_DEBUG_LOG=&amp;#34;/tmp/zed.debug.log&amp;#34; ZED_SYSLOG_PRIORITY=&amp;#34;daemon.notice&amp;#34; ZED_SYSLOG_TAG=&amp;#34;zed&amp;#34; Restart zfs-zed</description>
+三、配置zed vi /etc/zfs/zed.d/zed.rcZED_EMAIL_ADDR=&amp;#34;地址@qq.com&amp;#34; ZED_EMAIL_PROG=&amp;#34;mail&amp;#34; ZED_EMAIL_OPTS=&amp;#34;-s &amp;#39;@SUBJECT@&amp;#39; @ADDRESS@ -r 地址@qq.com&amp;#34; ZED_NOTIFY_INTERVAL_SECS=&amp;#34;3600&amp;#34; ZED_NOTIFY_VERBOSE=1 ZED_DEBUG_LOG=&amp;#34;/tmp/zed.debug.log&amp;#34; ZED_SYSLOG_PRIORITY=&amp;#34;daemon.notice&amp;#34; ZED_SYSLOG_TAG=&amp;#34;zed&amp;#34; Restart zfs-zed</description>
     </item>
     
     <item>

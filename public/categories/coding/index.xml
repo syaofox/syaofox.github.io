@@ -33,7 +33,7 @@ $ git submodule update --remote   克隆包含子模块的项目 克隆包含子
       <pubDate>Thu, 18 Jun 2020 09:12:27 +0800</pubDate>
       
       <guid>https://syaofox.github.io/coding/%E4%BD%BF%E7%94%A8github%E4%BA%8C%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/</guid>
-      <description>前言   本文简单介绍使用GitHub对代码进行版本控制，包括添加SSHkey、配置Git、使用Git创建版本库并在GitHub上进行管理，主要目的是对学习内容进行总结以及方便日后查阅。    配置Git   git config --global user.name 你的英文名 git config --global user.email 你的邮箱 git config --global push.default matching git config --global core.quotepath false git config --global core.editor &amp;quot;vim&amp;quot; 五句话，依次运行。
+      <description>前言   本文简单介绍使用GitHub对代码进行版本控制，包括添加SSHkey、配置Git、使用Git创建版本库并在GitHub上进行管理，主要目的是对学习内容进行总结以及方便日后查阅。    配置Git   git config --global user.name 你的英文名git config --global user.email 你的邮箱git config --global push.default matchinggit config --global core.quotepath falsegit config --global core.editor &amp;quot;vim&amp;quot;五句话，依次运行。
 使用Git创建版本库  使用 git 有三种方式，请按照需求选择。
  只在本地使用 将本地仓库上传到 GitHub 下载 GitHub 上的仓库   其中1+2的最终效果=3
  1只在本地使用  1.1 初始化   创建目录作为我们的项目目录：mkdir git-demo-1
