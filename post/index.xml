@@ -126,7 +126,7 @@
       
       <guid>https://syaofox.github.io/post/ubuntu-server-18-04-lts-%E4%B8%8A%E5%AE%89%E8%A3%85virtual-box-%E5%B9%B6%E9%85%8D%E7%BD%AE-phpvirtualbox/</guid>
       <description>&lt;p&gt;本教程将指导你在 Ubuntu 18.04 LTS 无头服务器上，一步一步地安装 Oracle VirtualBox。同时，本教程也将介绍如何使用 phpVirtualBox 去管理安装在无头服务器上的 VirtualBox 实例。phpVirtualBox 是 VirtualBox 的一个基于 Web 的前端工具。这个教程也可以工作在 Debian 和其它 Ubuntu 衍生版本上，如 Linux Mint。现在，我们开始。
-原文地址:&lt;a href=&#34;https://www.ostechnix.com/install-oracle-virtualbox-ubuntu-16-04-headless-server/&#34;&gt;https://www.ostechnix.com/install-oracle-virtualbox-ubuntu-16-04-headless-server/&lt;/a&gt;&lt;/p&gt;</description>
+原文地址:&lt;a href=&#34;https://www.ostechnix.com/install-oracle-virtualbox-ubuntu-16-04-headless-server/&#34; target=&#34;_blank&#34;&gt;https://www.ostechnix.com/install-oracle-virtualbox-ubuntu-16-04-headless-server/&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -153,7 +153,7 @@
       <pubDate>Thu, 18 Jun 2020 11:13:29 +0800</pubDate>
       
       <guid>https://syaofox.github.io/post/zfs-on-linux-%E4%BD%BF%E7%94%A8/</guid>
-      <description>&lt;p&gt;Linux上的ZFS项目是OpenZFS的实现，旨在在Linux环境中工作。OpenZFS是一个出色的存储平台，它包含传统文件系统，卷管理器等的功能，并且在所有发行版中均具有一致的可靠性，功能和性能。有关OpenZFS的其他信息，请参见&lt;a href=&#34;https://en.wikipedia.org/wiki/OpenZFS&#34;&gt;OpenZFS维基百科文章&lt;/a&gt;。&lt;/p&gt;
+      <description>&lt;p&gt;Linux上的ZFS项目是OpenZFS的实现，旨在在Linux环境中工作。OpenZFS是一个出色的存储平台，它包含传统文件系统，卷管理器等的功能，并且在所有发行版中均具有一致的可靠性，功能和性能。有关OpenZFS的其他信息，请参见&lt;a href=&#34;https://en.wikipedia.org/wiki/OpenZFS&#34; target=&#34;_blank&#34;&gt;OpenZFS维基百科文章&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;本文以 Ubuntu 下使用 ZFS 为例&lt;/p&gt;</description>
     </item>
     
