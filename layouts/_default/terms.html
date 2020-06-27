@@ -12,20 +12,22 @@
                 </div>
             </div>
         </a>
-        
-        {{ range .Paginator.Pages }}
-                <a href="{{.Permalink}}" class="a-block">
-                    <div class="post-item-wrapper">
-                        <div class="post-item post-item-no-gaps">
-                            <div class="post-item-info-wrapper"> 
-                                <div class="post-item-title">
-                                    {{.Title}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-        {{ end }}
+
+        <div class="page_tags">
+            <ul>
+                {{ $data := .Data }}
+                {{ range $key, $value := .Data.Terms.ByCount }}
+                {{ if ($value.Name) }}
+                <li>
+                    <a href="{{ $data.Plural | absURL }}/{{ $value.Name | urlize }}">
+                        {{ $value.Name }}
+                    </a> <span class="terms_count">{{ $value.Count }}</span>
+                </li>
+                {{ end }}
+                {{ end }}
+            </ul>
+        </div>
+
     </div>
 </div>
 
