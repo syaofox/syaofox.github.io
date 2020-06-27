@@ -188,5 +188,40 @@ Happy Ending 前面只要按剧情走就可以了
 游戏人物    人物 年龄 血型 简介     鸣泽 唯 (YUI NARUSAWA) 18岁 O 八岁起就和主角住在同一个屋檐下，对学校里的男生从不表示兴趣，经常 为主角的事情操心。   舞岛 可怜 (KAREN MAIJIMA) 18岁 A 八十八学园的同级生，八岁时进入演艺圈，是人气 No.1 的偶像歌手 ，由於工作相当忙碌，很少到学校来。   加藤 美纪 (MINORI KATO) 18岁 AB 八十八学园的同级生，不止是主角，连和其他学生也很少交谈的女孩子， 经常戴著厚重的眼镜，谁也没看过她的真面目。   筱原 泉美 (IZUMI SHINOHARA) 18岁 A 八十八学园的同级生，由於说话口气像男孩子，连主角也把她当成男性友 人来看待，射箭部社长，也是筱原重工的社长千金。   南川 洋子 (YOUKO MINAMIKAWA) 18岁 O 八十八学园最粗暴的女孩，与主角从一年级时起就经常吵架，非常喜欢摩 托车，家里也经营著机车行。   都筑 梢江 (KOZUE TSUZUKI) 16岁 B 八十八学园的一年级生，也就是主角的学妹。从以前就对主角很有兴趣， 是个个性有点奇怪的女孩子。   水野 友美 (TOMOMI MIZUNO) 18岁 A 八十八学园的同级生，住在主角家隔壁，也是青梅竹马，喜欢读书和花卉 ，是校内有名的才女。   安田 爱美 (AZUMI YASUDA) 21岁 O 八十八町“花园保育园”的保母，由於过去令人不愉快的回忆，对男性抱 著相当强烈的猜疑心。   鸣泽 美佐子(MISAKO NARUSAWA ） ？岁 O 是 唯 的亲生母亲，对主角而言也是近似母亲的存在，一人独力经 营著咖啡店《憩》，非常喜欢忙碌的女性。   田中 美沙 (MISA TANAKA) 20岁 B 与『同级生1』里出场的 田中美沙 是同一人物，体育大学二年级生，趁 著寒假到八十八町的朋友家来玩。   片桐 美铃 (MIREI KATAGIRI) 25岁 A 八十八学园公认的美人教师，是主角的导师，能够温柔、理智地了解学生 ，加上出众的美貌，自然成为男生们仰慕的对象。   野野村 美里(MISATO NONOMURA) 21岁 B “入梅兴业”的导游小姐，性格开朗，一直以自己的工作为傲。   川尻 信良 (AKIRA KAWAJIRI) 18岁 A 八十八学园的同级生，电视与柔道是他的最爱，对主角而言是学校里最知 心的朋友，是个纯情的大男孩。   长冈 芳树 (YOSHIKI NAGAOKA) 18岁 A 八十八学园的同级生，唯一兴趣是拍女孩子的内裤照片，在八十八学园里 是仅次於主角的问题儿童。   西御寺 有友(ARITOMO SAIONJI) 18岁 O 八十八学园的同级生，西御寺财阀的独生子，自以为世上的女人都会喜欢 上他，当然和主角的关系不会好到哪里去。   天道 新干线(SHINKANSEN TENDO) 33岁 AB 八十八学园的教师，与主角的冲突不断，从外表看来像是那种喜欢 欺负学生的虐待狂教师。   主角 (HERO) 18岁 不明 八十八学园&amp;hellip;&amp;hellip;.</description>
     </item>
     
+    <item>
+      <title>Ubuntu Server 20.04 LTS NAS 安装记录</title>
+      <link>https://syaofox.github.io/posts/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Mon, 01 Jun 2020 11:15:54 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/posts/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
+      <description>安装 Ubuntu 注意选中安装ssh,否则安装完成无法远程连接
+更新系统 sudo apt update sudo apt upgrade 设置时区 # 查看当前时区 timedatectl # 列出所有时区 timedatectl list-timezones # 显示亚洲时区 timedatectl list-timezones | grep Asia # 设置时区为上海 sudo timedatectl set-timezone Asia/Shanghai 修改 root 用户登录权限 # 编辑 &amp;#39;/etc/ssh/sshd_config&amp;#39; sudo sed -i &amp;#39;s/#PermitRootLogin prohibit-password/PermitRootLogin yes/&amp;#39; /etc/ssh/sshd_config # 重启SSH服务 sudo systemctl restart ssh # 设置root账号密码 sudo passwd root 初始化硬盘 # 查看分区情况 lsblk # 使用 gdisk 初始化硬盘 添加账号 adduser wife 使用 ZFS 系统 # 安装 zfs apt update apt install zfsutils-linux # 重启 # 创建 RAIDZ2 存储池 /dev/disk/by-id zpool create pool raidz2 /dev/sdb /dev/sdc /dev/sdd /dev/sde # 查看存储池状态 zpool status -v # 查看存储池空间 df -h | grep pool # 创建数据集并设置开启lz4压缩 zfs create -o compression=lz4 pool/share zfs create -o compression=lz4 pool/media zfs create -o compression=lz4 pool/work zfs create -o compression=lz4 pool/me # 修改各数据集挂载点权限 chmod -R 777 /pool/share chmod -R 777 /pool/media chmod -R 777 /pool/work chmod -R 777 /pool/me 安装 samba 并设置 samba 共享 # 安装 samba apt install samba # 备份配置文件 cp /etc/samba/smb.</description>
+    </item>
+    
+    <item>
+      <title>基于 ZFS 文件系统的 OpenMediaVault 安装记录</title>
+      <link>https://syaofox.github.io/posts/%E5%9F%BA%E4%BA%8E-zfs-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84-openmediavault-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Mon, 01 Jun 2020 11:12:00 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/posts/%E5%9F%BA%E4%BA%8E-zfs-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84-openmediavault-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
+      <description>安装系统 注意事项：
+  镜像选清华镜像 mirrors.tuna.tsinghua.edu.cn
+  修改引导防止挂载路径变化后无法引导
+获得磁盘UUID
+blkid /dev/sda1: UUID=&amp;#34;8305-3011&amp;#34; TYPE=&amp;#34;vfat&amp;#34; PARTUUID=&amp;#34;2b972aa5-f2fd-475a-8353-77594dc8a1e1&amp;#34; /dev/sda2: UUID=&amp;#34;f4add2f3-efd0-42df-b23d-e453ab285aa3&amp;#34; TYPE=&amp;#34;ext4&amp;#34; PARTUUID=&amp;#34;f120845a-5b97-4eb3-884d-43fb45b41720&amp;#34; /dev/sda3: UUID=&amp;#34;9fcacfa0-cb8d-45be-9efc-3f8d8222f03e&amp;#34; TYPE=&amp;#34;swap&amp;#34; PARTUUID=&amp;#34;acf58c24-4829-41b5-b326-6d295e3d720a&amp;#34; 修改引导文件/boot/grub/grub.cfg
+把boot=/dev/sda2 改成 boot=UUID=f4add2f3-efd0-42df-b23d-e453ab285aa3
+重启测试
+update-grub   修改时区
+  修改密码
+  修改后台登出时间
+  修改网络DHCP -&amp;gt; 静态IP
+  更新系统
+  安装OMV-EXTRAS
+wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/master/install | bash   安装并配置 ZFS 文件系统   更换Proxmox内核
+  重启
+  删除non-Proxmox内核
+  安装 zfs 插件</description>
+    </item>
+    
   </channel>
 </rss>
