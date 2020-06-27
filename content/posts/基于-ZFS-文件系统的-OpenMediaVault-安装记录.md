@@ -2,7 +2,7 @@
 title: "基于 ZFS 文件系统的 OpenMediaVault 安装记录"
 date: 2020-06-01T11:12:00+08:00
 description: "「记录安装基于 ZFS 文件系统的 OpenMediaVault 安装过程。本篇不是教程，部分步骤略过不表」"
-# tags: [ZFS, NAS, OMV, OpenMediaVault]
+tags: [ZFS, NAS, OMV, OpenMediaVault]
 featured_image: ""
 # images is optional, but needed for showing Twitter Card
 images: []

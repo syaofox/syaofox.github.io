@@ -2,7 +2,7 @@
 title: "利用EverAver Emby Kodi打造本地AV库"
 date: 2020-06-18T08:19:45+08:00
 description: "「让AV再次伟大!」"
-# tags: [Software, Emby, Kodi]
+tags: [Software, Emby, Kodi]
 featured_image: "/利用EverAver-Emby-Kodi打造本地AV库/banner.jpg"
 # images is optional, but needed for showing Twitter Card
 images: []

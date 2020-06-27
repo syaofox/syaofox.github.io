@@ -2,7 +2,7 @@
 title: "AV女优明星脸"
 date: 2020-06-17T20:21:59+08:00
 description: "「岛国强大的AV文化产业催生了更多的社会岗位，由于从业人数呈现范围广、基数大的特点，所以我们经常会在“看片儿”的时候发现很多“明星脸”，今天我们就将岛国AV界的“明星脸”一网打尽。」"
-# tags: [JAV]
+tags: [JAV]
 featured_image: "/AV女优明星脸/banner.jpg"
 # images is optional, but needed for showing Twitter Card
 images: []

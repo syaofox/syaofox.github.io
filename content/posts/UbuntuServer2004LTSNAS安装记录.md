@@ -2,9 +2,8 @@
 title: "Ubuntu Server 20.04 LTS NAS 安装记录"
 date: 2020-06-01T11:15:54+08:00
 description: "「Nas 安装 Ubuntu Server 20.04 LTS 系统，基于 zfs on linux」"
-# tags: [Ubuntu, Nas]
+tags: [Ubuntu, Nas]
 featured_image: ""
-# images is optional, but needed for showing Twitter Card
 images: []
 categories: Linux
 comment : false
