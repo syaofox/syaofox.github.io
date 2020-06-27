@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html><head>
+<title>成人版大富翁~华丽人生2</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="「人生总有一次要为女人抛弃生命」">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="http://syaofox.github.org/scss/journal.min.47aa1ffb60880ad8c72feecd6962a14331eca7a7a30e08354a1ca91009b8bc5b.css" integrity="sha256-R6of&#43;2CICtjHL&#43;7NaWKhQzHsp6ejDgg1ShypEAm4vFs=" media="screen">
+
+
+
+<link rel="stylesheet" href="http://syaofox.github.org/scss/dark-mode.min.b13808e7c98cd5aa981a3822fd3421e26f1015876bb15a3fbf8ed5991c382367.css" integrity="sha256-sTgI58mM1aqYGjgi/TQh4m8QFYdrsVo/v47VmRw4I2c=" media="screen">
+
+
+<script src="http://syaofox.github.org//js/loadCSS.js"></script>
+<script>
+  loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+
+
+
+  
+    <script src="http://syaofox.github.org//js/toc-collapse.js"></script>
+  
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="/vendor/js/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+  clientID: 'your client id',
+  clientSecret: 'your client secret',
+  repo: 'repo name',
+  owner: 'user',
+  admin: ['user'],
+  id: md5(location.pathname),
+  distractionFreeMode: 'false'
+  });
+  window.onload = function () {
+        gitalk.render('gitalk-container')
+  }
+</script>
+
+
+
+
+
+
+
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="http://syaofox.github.org/">
+    
+        <div class="nav-title">
+            Syaofox&#39;s Elysion
+        </div>
+        
+        <div class="nav-subtitle">
+            Nothing gold can stay
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/categories">
+                Categories
+            </a>
+            
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/posts">
+                Archive
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/index.xml">
+                RSS Feed
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+移植自 <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2020
+	
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- 目录 -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e5%89%8d%e8%a8%80" onclick="collapseOthers(`#前言-nav`)" id="前言-nav">
+									前言
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%94%bb%e7%95%a5" onclick="collapseOthers(`#攻略-nav`)" id="攻略-nav">
+									攻略
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%bf%ae%e6%94%b9" onclick="collapseOthers(`#修改-nav`)" id="修改-nav">
+									修改
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a class="pagination-action" v-on:click="toggleDarkMode">
+            <i class="material-icons pagination-action-icon" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons pagination-action-icon" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </a>
+        
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/categories">
+                    Categories
+                </a>
+                
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/posts">
+                    Archive
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/index.xml">
+                    RSS Feed
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- 目录 -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#%e5%89%8d%e8%a8%80" onclick="collapseOthers(`#前言-nav`)" id="前言-nav">
+									前言
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%94%bb%e7%95%a5" onclick="collapseOthers(`#攻略-nav`)" id="攻略-nav">
+									攻略
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%bf%ae%e6%94%b9" onclick="collapseOthers(`#修改-nav`)" id="修改-nav">
+									修改
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="http://syaofox.github.org/">
+            Syaofox&#39;s Elysion
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" v-on:click="toggleDarkMode">
+            <i class="material-icons" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="http://syaofox.github.org/">
+        <div class="single-column-header-title">Syaofox&#39;s Elysion</div>
+        
+        <div class="single-column-header-subtitle">Nothing gold can stay</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+                
+            
+
+            <div class="post-head-wrapper"
+                
+                    
+                    
+                    style="background-image: url('http://syaofox.github.org/%E6%88%90%E4%BA%BA%E7%89%88%E5%A4%A7%E5%AF%8C%E7%BF%81%E2%80%93%E5%8D%8E%E4%B8%BD%E4%BA%BA%E7%94%9F2/banner.jpg')"
+                    
+                
+            >
+                <div class="post-title">
+                    成人版大富翁~华丽人生2
+                    
+                    <div class="post-subtitle">
+                        「人生总有一次要为女人抛弃生命」
+                    </div>
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2020-06-16 22:41
+                        </time>
+                        
+
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/acg">ACG</a>
+                                &nbsp;
+                        
+
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <h2 id="前言">前言</h2>
+<p>台湾天堂鸟，童年回忆的厂家。我第一次玩这个游戏是在97年，肯定比这个早多了= =</p>
+<p>华丽人生的主题非常简单——大富翁，最快达成胜利条件（规定时间内现金最多或最先到达设定金额）者胜出。</p>
+<p>而游戏中挣钱的手段就只有<strong>积攒女朋友</strong>一项。</p>
+<p><img src="/%E6%88%90%E4%BA%BA%E7%89%88%E5%A4%A7%E5%AF%8C%E7%BF%81%E2%80%93%E5%8D%8E%E4%B8%BD%E4%BA%BA%E7%94%9F2/4771439d9c9d6d350236f87c501bd63e.jpg" alt="华丽人生2"></p>
+<p>接下来就是奇的设定了，首先<strong>所有女朋友都是在包养你控制的角色</strong>，每个回合掷骰子移动后都会再掷三个骰子来决定本回合人物事件，这时就可能会遇到女性角色，主角就向她们表示求交往，然后就成男女朋友了，女朋友的数量不限&hellip;&hellip;</p>
+<p>成为女朋友之后她会每个月给你一些金钱当做包养费，具体金额和女朋友的职业有关，比方说高中生（妈的还管学生要钱&hellip;）一个月可能就只能给你1万日元，而董事长秘书或者歌手一开始每月就能给你7万日元。</p>
+<p>我们看上面那张图，其中【爱情】就是指你们俩之间的感情度，感情越好的给你的钱就越多，而且越不容易分手，缺点是爱情越高越容易出现【结婚】事件，结婚之后你的其他女朋友爱情值减半，而且要花很多钱（这个游戏专门给渣男准备噢耶）。</p>
+<p>爱情上方的【典型】则是看这个女生的特质，也就是她喜欢什么，图中的牧濑优子是典型的物质角色，要想快速提升她的爱情就得花钱给她买东西。</p>
+<p>典型有几种——</p>
+<ol>
+<li>钱：直接给她现金</li>
+<li>物质：给她买衣服首饰房子车</li>
+<li>H（正常）：啪啪啪啪啪啪啪啪啪啪</li>
+<li>H（M）：你打她</li>
+<li>H（S）：她打你</li>
+<li>正常：哪种方式效果都不错，但又都不算很好</li>
+</ol>
+<p>其中最开心的当然是H，图总共96张就不放了各位没玩过的自行脑补。</p>
+<p><img src="/%E6%88%90%E4%BA%BA%E7%89%88%E5%A4%A7%E5%AF%8C%E7%BF%81%E2%80%93%E5%8D%8E%E4%B8%BD%E4%BA%BA%E7%94%9F2/d4096d27025b3831fa4dc0faf22d6519.jpg" alt="华丽人生2"></p>
+<p>图中的林原阳子就是典型的S型。</p>
+<p>所有手段在提升爱情的同时也会有降低女朋友的疲劳度，如果【疲劳度】高于【忍耐力】的话就会有分手的危机，而忍耐力则是因人而异的，比方说宇都宫兰这个人忍耐力就高达88</p>
+<p><img src="/%E6%88%90%E4%BA%BA%E7%89%88%E5%A4%A7%E5%AF%8C%E7%BF%81%E2%80%93%E5%8D%8E%E4%B8%BD%E4%BA%BA%E7%94%9F2/897774c3dce29e770f1b552e290fc28e.jpg" alt="华丽人生2"></p>
+<p>她的忍耐力就很高，因为她性格悲观总有种怎么着都无所谓的想法，和她的H也很像强奸戏&hellip;&hellip;</p>
+<p>而有个叫豪德寺吉莎的妹子就是疯狂热爱啪啪啪但是忍耐力特别低，说白了就是性瘾女，你不每回合上她她就分手= =</p>
+<p>在所有女朋友中最好的就是偶像歌手木村光，因为她家里很穷需要她来支撑（主角仍然好意思管她要钱&hellip;），而且性格又温柔贤惠，所以她的忍耐力是最高的99，当然她的缺点是典型为正常，也就说提升爱情需要一步一步脚踏实地的来。</p>
+<p>除了得到女朋友的供养费，还有个赚外快的好方式就是把她们的裸照和内裤卖给地下黑市，这是初期赚钱的一个手段，具体的金额也是因人而异，假如是像宇都宫兰这种普通的主妇就只能卖5万块，高中生虽然给不了你多少钱但是内裤和裸照很值钱（什么世道= =），为什么说木村光是最棒的女朋友呢，因为她除了忍耐力特别强之外，作为偶像歌手她的内裤和裸照能卖800万！初期投资经费瞬间回收！！玩家缺德值突破天际了要！！！</p>
+<p>但即使是艺人，一个月最多也就给你100万日元，离胜利是非常遥远的（我和朋友玩一般设定成5亿胜利），真正想要赚钱的方法还得是开店——风俗业。</p>
+<p>一开始没钱可以盖小型酒吧，客人进店不能啪啪啪但是也得花几十万，陪酒女们当然就是你的女朋友啊~另外领班的妈妈桑会更赚一些，基本上花500万开个小型酒吧的话，一个女朋友就能月入200万了（泡沫经济时期真是了不起）。</p>
+<p>有了钱又有多余女朋友的话还可以开更大的店，客人们可以进店和女郎们玩各种啪啪啪，挣的钱则是非常非常多！当然！！还是你的女朋友们！！！</p>
+<p>总共女朋友有48个，玩家们（最多4人）初期的方针就是多多积攒女朋友的数量和爱情度，然后开店赚钱，但女朋友总是有限的，大家交完就没法再扩张了，怎么办？？</p>
+<p><strong>当然是他妈的抢啊！！！！！！！！！！N！T！R！！！</strong></p>
+<p>你进到别的玩家开的店里，和她的女朋友进行一次【生意上的来往】后，可以谈挖角的事情，就是不断的掷骰子（0-9），必须要达到她的要求，这个要求和她对你的爱情度（你在她那里消费越高送的礼物越贵爱情度越高），她对她男朋友的爱情度都有关，如果爱情度低，她会要求你投出一次7，然后再投三个加起来大于24这种几乎不可能完成的要求，如果爱情度高，她就只要求投出一次单数然后再投三个加起来大于15这种还算可能的请求。</p>
+<p>也就是说抢到一个妹子，即使在运气好的情况下，8000万的礼物钱是跑不了的。</p>
+<p>但是一旦抢到效果拔群！对方不但失去了重要的资金源，甚至那家店也要关张，更重要的是那个妹子一到你这边就拥有很高的爱情度，但这些都不是最重要的！</p>
+<p>最重要的是这个游戏的终极目的，因为所有的日常H图都是普通的，而只有胜利者可以观看自己所有女朋友的终极H图和对话，比如第二张图中的林原阳子，她是S型角色，但是玩家胜出时女朋友里有她的话她会变成M型来恭喜玩家，等等等等。</p>
+<p>这才是这个游戏的目标啊！！！！！</p>
+<p>就因为如此大家都拼命抢女朋友，甚至很多时候已经能够胜利了也不通关，而是争取再多抢一个女朋友再赢！！！！</p>
+<p>玩起来各种缺德！我不但抢你的女朋友，我还想办法花钱买通侦探骗你俩结婚，这样你所有女朋友爱情度减半！我还可以花钱买通侦探骗你俩离婚，这样你财产又减半！</p>
+<p>更重要的当然是我把键盘抢走让你直接跳过这回合和女朋友的H，她们疲劳度瞬间飚了！</p>
+<p>这个游戏我每年假期都要玩，几个朋友旅游也好家庭聚会也好都要在一起斗一次，抢走别人女朋友的那种成就感，或者没抢走只是让他们分手了都令我心痛并快乐！</p>
+<p>最疯狂一次我坐拥了29个姑娘，然而我最喜欢的那个人却在谭骏的店里打工，为了她我花了1亿5千万终于追求到手，然而这1亿5千万的支出却令我直接掉队，最终谭骏以3个女朋友的巨大劣势奇迹翻盘。</p>
+<p>看着他和3个女朋友开心的H SCENE，再看我和那个姑娘甚至都还没有交往就已经输了，突然反应过来——</p>
+<p>“原来我喜欢一个人的时候是这样子的啊”</p>
+<p>死变态。</p>
+<h2 id="攻略">攻略</h2>
+<p>华丽人生2用正攻法来说，其实难度算是中等，要是缺了说明书大概有中上，原因在于女角的喜好需求难以掌握，事件轮盘不明与店铺CP值的问题～再不考虑SL与轮盘作弊的情况下，初期收女友部分是很运气的，前文版友也有提到，初期如果能多收金钱与物质型角色，忍耐度又高的话，对于攻略是非常有利的，EX：木村光、宇都宫茧当然要是不运收到一堆「标准型」的话大概真要哭哭了～～（顺带一提，要是玩家在没女友的状态下转出000或到辛迪加地下组织的话，有50%会收到宇都宫茧，但前提要她没被收走），有了女友后，别忘了每回合提升好感度，但初期最好先挤出一笔盖店铺的资金为首要，至于店铺兴建上，只要专注「健身房」→「内衣酒吧」→「泡沫俱乐部」三大类为主，其他三款可以略过，因为前三者赚钱多但忍耐度容易飙高、后三者忍耐度不易上生不过赚钱超没效率，所以要累积财富还是以前三者为主，而女角好感度则是影响收入高低，另外若想靠轮盘致富的话，用正攻法大概很有难度^^;;，要不然也能卖照片赚钱，可惜除了木村光其他收益都不算令人惊艳～～</p>
+<p>正规比赛里，电脑其实不强，而且多喜欢兴建小酒吧为主，顶多有多一点钱盖健身房或高级店铺，所以玩家不太需要在意电脑的发展，而是顾好手边女有为先，因为与其拉一堆女子让自己分身乏术，不如专注几个女角专心培养其成为摇钱树为先，等到摇钱树种起来了，再开始狂砸钱拉人，要不然直接请辛加迪挖角更快（255一样可挖）</p>
+<p>中后期因为财力够稳，大概只要小心特殊的轮盘事件以及电脑极少出现的挖角即可以我个人经验，我通常都是中期财力够了后，再小心不让金钱破亿，持续地挖角，等到全女角收完才过关，当然因为游戏没有像大富翁系列的倒闭或物价指数问题，所以基本上电脑是死不了的，当游戏女角全出现而电脑又遇不到女友时，便会触发搞笑的男男赚钱事件，后期用这来整电脑真的挺有趣的～～</p>
+<p>最后附带一提，如果可以话，结婚事件不妨尽早触发，因为成为妻子的女角不论疲劳多高都不会离玩家而去，但若是中后期女角一多又触发时，可是会让全体疲劳爆点～</p>
+<p>还有一旦结婚就得小心不要触发离婚事件，要是资产雄厚可是会被拿走一半资产外加</p>
+<p>老婆离去，伤害非常大～～</p>
+<h2 id="修改">修改</h2>
+<ul>
+<li>
+<p>前言：</p>
+<p>因为在windows底下内存分配是系统给的，所以没办法直接给记忆体地址,只能用相对地址去找。</p>
+</li>
+<li>
+<p>前置准备：</p>
+<p>可以扫描、修改内存的程序 x 1
+windows计算器(程序员版) x 1</p>
+</li>
+<li>
+<p>修改:</p>
+<p>先用高阶搜索去查找金钱，金钱是游戏开场就给的，也是一开始最容易增减的值，下面的相对地址都是从金钱开始算。
+一开始找金钱没意外的话会搜到四个内存地址，请修改地址最小的那一个，那个才是手上现金的地址，金钱的表示法是2 Byte，也就是FF FF = 65535
+不过游戏当中所持金可以超过65535，这边不知道是怎么处理的。</p>
+<p>在现金后面会有一个跟金钱一模一样的值，那是储存玩家手上的总资产用的</p>
+<p>(总资产 = 玩家手上现金 + 房地产价值)。</p>
+<p>女友爱情：</p>
+<p>现金地址 - 5AF8</p>
+<p>爱情是一个连续30 Byte的组合，每个Byte刚好代表一个女角的爱情度，上限是255</p>
+<p>疲劳的表示法跟爱情一样，地址是</p>
+<p>现金地址 - 5BDE</p>
+<p>女友所属：</p>
+<p>现金地址 - 5CD8</p>
+<p>跟前面两个值一样是由连续30 Byte构成，00代表女孩目前没有男友、01代表1P</p>
+<p>以此类推。</p>
+<p>要注意的是用修改的方始从别人手上抢女友，原本的爱情跟疲劳会直接继承，还有要是该女孩已经在对手的店铺工作，改过来的话还是会在原本的店铺上班， 但是每个月的薪水会拿给你，这样除非对手卖地，不然女孩会再也无法换工作。</p>
+</li>
+</ul>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">最后修改于 2020-06-16</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="http://syaofox.github.org/posts/av%E5%A5%B3%E4%BC%98%E6%98%8E%E6%98%9F%E8%84%B8/">
+			下回<br>AV女优明星脸
+                </a>
+                
+                
+                
+                <a class="older-posts" href="http://syaofox.github.org/posts/%E5%9C%A3%E6%96%97%E5%A3%AB%E6%98%9F%E7%9F%A2~%E9%BB%84%E9%87%91%E4%BC%A0%E8%AF%B4%E5%AE%8C%E7%BB%93%E7%AF%87~%E6%94%BB%E7%95%A5~/">
+			上回<br>圣斗士星矢~黄金传说完结篇~攻略~
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+                <p style="opacity: 0.6" align="center">
+                    <small>此篇文章的评论功能已经停用。</small>
+                </p>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+移植自 <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2020
+	
+</div>
+            </div>
+    <script>
+let app;
+
+app = new Vue({
+    el: '#app',
+    data: {
+        scrollY: 0,
+        navOpacity: 0,
+        isDrawerOpen: false,
+        mounted: false,
+        isDarkMode: false
+    },
+    methods: {
+            sgn(t, x) {
+                let k = 1. / (1. - 2 * t);
+                if (x <= t) return 0;
+                else if (x >= 1 - t) return 1;
+                else {
+                    return k * (x - t);
+                }
+            },
+            handleScroll() {
+                this.scrollY = window.scrollY;
+                this.navOpacity = this.sgn(.0, Math.min(1, Math.max(0, window.scrollY / (this.pageHeadHeight() - this.navBarHeight() * 0.8))));
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+
+                if (this.navOpacity >= 1) {
+                    navBackground.style.opacity = 1;
+                    navTitle.style.opacity = 1;
+                } else {
+                    navBackground.style.opacity = 0;
+                    navTitle.style.opacity = 0;
+                }
+            },
+            handleResize() {
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+                extraContainer.style.left = (streamContainer.offsetWidth - extraContainer.offsetWidth) + 'px';
+            },
+            navBarHeight() {
+                return this.$refs.navBar.offsetHeight;
+            },
+            pageHeadHeight() {
+                return this.$refs.pageHead.offsetHeight;
+            },
+            toggleDrawer() {
+                this.isDrawerOpen = !this.isDrawerOpen;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            closeDrawer() {
+                this.isDrawerOpen = false;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            toggleDarkMode() {
+                this.isDarkMode = !this.isDarkMode;
+                if (this.isDarkMode==true){
+                    document.cookie = "night=1;path=/";
+                    document.body.classList.add("night");
+                } else {
+                    document.cookie = "night=0;path=/";
+                    document.body.classList.remove("night");
+                }
+            }
+    },
+    created() {
+        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('resize', this.handleResize);
+        window._nonDesktop = function () {
+            let check = false;
+            (function (a) {
+                if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+            })(navigator.userAgent || navigator.vendor || window.opera);
+            return check;
+        };
+        
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (night==""){
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                
+            }
+        }else{
+            
+            if (night=="1") {
+                this.toggleDarkMode();
+            }
+        }
+    },
+    mounted() {
+        this.handleScroll();
+        this.handleResize();
+        this.mounted = true;
+
+        
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.handleResize);
+    }
+});
+</script>
+
+<script src="http://syaofox.github.org//js/journal.js"></script>
+    </body>
+</html>
