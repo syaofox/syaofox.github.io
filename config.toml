@@ -1,4 +1,4 @@
-baseURL = "http://syaofox.github.org/"
+baseURL = "https://syaofox.github.io/"
 DefaultContentLanguage = "zh" # Theme's display language, supports: en, fr, zh, zh-hant
 languageCode = "en-us"
 title = "Syaofox's Elysion"

@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Syaofox&#39;s Elysion</title>
-    <link>http://syaofox.github.org/categories/</link>
+    <link>https://syaofox.github.io/categories/</link>
     <description>Recent content in Categories on Syaofox&#39;s Elysion</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>2020</copyright>
     <lastBuildDate>Thu, 18 Jun 2020 08:19:45 +0800</lastBuildDate>
     
-	<atom:link href="http://syaofox.github.org/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://syaofox.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Adult</title>
-      <link>http://syaofox.github.org/categories/adult/</link>
+      <link>https://syaofox.github.io/categories/adult/</link>
       <pubDate>Thu, 18 Jun 2020 08:19:45 +0800</pubDate>
       
-      <guid>http://syaofox.github.org/categories/adult/</guid>
+      <guid>https://syaofox.github.io/categories/adult/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ACG</title>
-      <link>http://syaofox.github.org/categories/acg/</link>
+      <link>https://syaofox.github.io/categories/acg/</link>
       <pubDate>Tue, 16 Jun 2020 22:41:29 +0800</pubDate>
       
-      <guid>http://syaofox.github.org/categories/acg/</guid>
+      <guid>https://syaofox.github.io/categories/acg/</guid>
       <description></description>
     </item>
     
