@@ -1,135 +1,55 @@
-baseURL = "https://syaofox.github.io"
-title = "云流"
-
-theme = "fuji"
-hasCJKLanguage = true
-enableEmoji = true
-enableRobotsTXT = true
-disableKinds = ["taxonomyTerm"]
-
-## Change this two to switch between different language
-languageCode = "zh-cn"  # For RSS, view https://www.rssboard.org/rss-language-codes
-defaultContentLanguage = "zh-hans"  # For HTML page, now support: en, zh-hans, zh-hant, ja, nl
-
-summaryLength = 100 # Custom summary length, add <!--more--> in post file to custom split point
-paginate = 10
-
-# googleAnalytics = "UA-000000000-0" # Set your Google Analytics UA here
-
-[outputs]
-  home = ["html", "rss", "json"]
-
-[permalinks]
-  post = "/:section/:filename/" # Custom post links, e.g. "/:year/:month/:title/"
-
-[params]
-  author = "syaofox" # You can also set author in post front matter individually
-  subTitle = "心似白云常自在 意如流水任东西"
-
-  # Use CloudFlare Workers to accelerate the Google Analytics
-  # If you are using this please comment the googleAnalytics above
-  # Check https://github.com/SukkaW/cloudflare-workers-async-google-analytics for more details
-  # googleAnalyticsTid = "UA-000000000-0"
-  # googleAnalyticsRoute = "https://*.*.workers.dev/"
-
-  # Google AdSense
-  # The AdSense code will be inserted between the head tags of your site.
-  # googleAdsense = "0000000000000000"
-
-  # Word counter and read time indicator in post metadata
-  showWordCounter = true
-  showReadTime = false
-
-  # License at the end of each post
-  showLicense = true
-  showToc = true
-
-  # Open Graph & Twitter Card variables
-  # You can also set description and images in post front matter individually
-  description = "心似白云常自在 意如流水任东西"
-  images = ["img/og.png"] # This will use the image called og.png in static/img folder
-
-  # Posts shown in homepage
-  mainSections = ["post"]
-
-  # Bangumi image chart id
-  # bgmImageChart = "000000"
-
-  # License
-  license = "CC BY-NC-SA 4.0"
-  licenseLink = "http://creativecommons.org/licenses/by-nc-sa/4.0/"
-
-  # Comments
-  # utterances, see: https://utteranc.es/
-  # utterancesRepo = "*/*"
-  # utterancesIssueTerm = "pathname"
-
-  # Disqus, see: https://disqus.com/admin/install/platforms/universalcode/
-  # disqusShortname = "*********"
-  # Also use DisqusJS for accessing from Mainland China, see: https://github.com/SukkaW/DisqusJS
-  # If you want to set multiple api key, see theme's README for more details
-  # disqusJSApi = "https://*********/"
-  # disqusJSApikey = "**********"
-
-  # custom lazyload placeholder
-  # 16:9
-  lazyPlaceholder = "/assets/lazyload/dsrca_loading_480x270.svg"
-  # 32:9
-  lazyPlaceholderRow = "/assets/lazyload/dsrca_loading_960x270.svg"
-  # 8:9
-  lazyPlaceholderCol = "/assets/lazyload/dsrca_loading_480x540.svg"
-
-  # Use Hugo Pipes in Hugo Extended Version to compile SCSS
-  useHugoPipes = true
-
-  # Let images display in full brightness under dark mode
-  # disableDarkImage = true
+baseURL = "http://example.org/"
+DefaultContentLanguage = "en" # Theme's display language, supports: en, fr, zh, zh-hant
+languageCode = "en-us"
+title = "A Hugo Site"
+copyright = "This is a customized copyright."
+theme = "diary"
+# googleAnalytics = "UA-123-45"
 
 [markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true  # Enable user to embed HTML snippets in Markdown content
   [markup.highlight]
-    codeFences = false  # Disable Hugo's code highlighter
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    style = "perldoc"
+    tabWidth = 4
 
-  [markup.tableOfContents]
-    startLevel = 2
-    endLevel = 3
+[params]
+subtitle = "Themed by Diary."
+enableGitalk = true
 
+# Twitter Card and Open Graph settings
+enableOpenGraph = true
+enableTwitterCards = true
+title = "My Blog" # will set 'og:site_name'
+description = "My HomePage Description"  # will set 'og:description'
+
+[params.gitalk]
+  owner = "user"
+  repo = "repo name"
+  client_id = "your client id"
+  client_secret = "your client secret"
 [taxonomies]
-  tag = "tags"
+   tag = "tags"
+   category = "categories"
 
-[menu]
-  [[menu.nav]]
-    name = "首页"
-    url = "/"
-    weight = 1
-  [[menu.nav]]
-    name = "归档"
-    url = "/archives/"
-    weight = 2
-  [[menu.nav]]
-    name = "关于"
-    url = "/about/"
-    weight = 3
-  [[menu.nav]]
-    name = "搜索"
-    url = "/search/"
-    weight = 4
-  [[menu.nav]]
-    name = "RSS"
-    url = "/index.xml"
-    weight = 5
-
-  [[menu.link]]
-    name = "GitHub"
-    url = "https://github.com/syaofox"
-    weight = 1
-  [[menu.link]]
-    name = "Twitter"
-    url = "https://twitter.com/syaofox"
-    weight = 2
-  [[menu.link]]
-    name = "bilibili"
-    url = "https://space.bilibili.com/1643024"
-    weight = 3
+[[menu.main]]
+url = "/categories"
+name = "Categories"
+weight = 2
+[[menu.main]]
+url = "/tags"
+name = "Tags"
+weight = 3
+[[menu.main]]
+url = "/posts"
+name = "Archive"
+weight = 1
+[[menu.main]]
+url = "/index.xml"
+name = "RSS Feed"
+weight = 4
