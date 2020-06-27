@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nas on Syaofox&#39;s Elysion</title>
+    <link>https://syaofox.github.io/tags/nas/</link>
+    <description>Recent content in Nas on Syaofox&#39;s Elysion</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>2020</copyright>
+    <lastBuildDate>Mon, 01 Jun 2020 11:15:54 +0800</lastBuildDate>
+    
+	<atom:link href="https://syaofox.github.io/tags/nas/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ubuntu Server 20.04 LTS NAS 安装记录</title>
+      <link>https://syaofox.github.io/posts/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Mon, 01 Jun 2020 11:15:54 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/posts/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
+      <description>安装 Ubuntu 注意选中安装ssh,否则安装完成无法远程连接
+更新系统 sudo apt update sudo apt upgrade 设置时区 # 查看当前时区 timedatectl # 列出所有时区 timedatectl list-timezones # 显示亚洲时区 timedatectl list-timezones | grep Asia # 设置时区为上海 sudo timedatectl set-timezone Asia/Shanghai 修改 root 用户登录权限 # 编辑 &amp;#39;/etc/ssh/sshd_config&amp;#39; sudo sed -i &amp;#39;s/#PermitRootLogin prohibit-password/PermitRootLogin yes/&amp;#39; /etc/ssh/sshd_config # 重启SSH服务 sudo systemctl restart ssh # 设置root账号密码 sudo passwd root 初始化硬盘 # 查看分区情况 lsblk # 使用 gdisk 初始化硬盘 添加账号 adduser wife 使用 ZFS 系统 # 安装 zfs apt update apt install zfsutils-linux # 重启 # 创建 RAIDZ2 存储池 /dev/disk/by-id zpool create pool raidz2 /dev/sdb /dev/sdc /dev/sdd /dev/sde # 查看存储池状态 zpool status -v # 查看存储池空间 df -h | grep pool # 创建数据集并设置开启lz4压缩 zfs create -o compression=lz4 pool/share zfs create -o compression=lz4 pool/media zfs create -o compression=lz4 pool/work zfs create -o compression=lz4 pool/me # 修改各数据集挂载点权限 chmod -R 777 /pool/share chmod -R 777 /pool/media chmod -R 777 /pool/work chmod -R 777 /pool/me 安装 samba 并设置 samba 共享 # 安装 samba apt install samba # 备份配置文件 cp /etc/samba/smb.</description>
+    </item>
+    
+    <item>
+      <title>基于 ZFS 文件系统的 OpenMediaVault 安装记录</title>
+      <link>https://syaofox.github.io/posts/%E5%9F%BA%E4%BA%8E-zfs-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84-openmediavault-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Mon, 01 Jun 2020 11:12:00 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/posts/%E5%9F%BA%E4%BA%8E-zfs-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84-openmediavault-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
+      <description>安装系统 注意事项：
+  镜像选清华镜像 mirrors.tuna.tsinghua.edu.cn
+  修改引导防止挂载路径变化后无法引导
+获得磁盘UUID
+blkid /dev/sda1: UUID=&amp;#34;8305-3011&amp;#34; TYPE=&amp;#34;vfat&amp;#34; PARTUUID=&amp;#34;2b972aa5-f2fd-475a-8353-77594dc8a1e1&amp;#34; /dev/sda2: UUID=&amp;#34;f4add2f3-efd0-42df-b23d-e453ab285aa3&amp;#34; TYPE=&amp;#34;ext4&amp;#34; PARTUUID=&amp;#34;f120845a-5b97-4eb3-884d-43fb45b41720&amp;#34; /dev/sda3: UUID=&amp;#34;9fcacfa0-cb8d-45be-9efc-3f8d8222f03e&amp;#34; TYPE=&amp;#34;swap&amp;#34; PARTUUID=&amp;#34;acf58c24-4829-41b5-b326-6d295e3d720a&amp;#34; 修改引导文件/boot/grub/grub.cfg
+把boot=/dev/sda2 改成 boot=UUID=f4add2f3-efd0-42df-b23d-e453ab285aa3
+重启测试
+update-grub   修改时区
+  修改密码
+  修改后台登出时间
+  修改网络DHCP -&amp;gt; 静态IP
+  更新系统
+  安装OMV-EXTRAS
+wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/master/install | bash   安装并配置 ZFS 文件系统   更换Proxmox内核
+  重启
+  删除non-Proxmox内核
+  安装 zfs 插件</description>
+    </item>
+    
+  </channel>
+</rss>
