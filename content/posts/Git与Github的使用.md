@@ -2,7 +2,7 @@
 title: "Git与Github的使用"
 date: 2021-04-18T09:38:06+08:00
 description: "Git与Github的使用"
-tags: [Git]
+tags: [Git, Github]
 featured_image: ""
 # images is optional, but needed for showing Twitter Card
 images: []
@@ -41,7 +41,7 @@ ssh-keygen -t rsa -b 4096 -C "syaofox@gmail.com"
 
 - 添加SSHKey
 
-- 取个名字，填入'~/.ssh/id_rsa.pub`内容
+- 取个名字，填入`~/.ssh/id_rsa.pub`内容
 
 - 执行`ssh -T git@github.com`测试
 
