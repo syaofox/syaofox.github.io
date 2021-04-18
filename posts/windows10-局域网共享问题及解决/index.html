@@ -713,10 +713,10 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <h3 id="21-设置文件和打印机共享">2.1 设置文件和打印机共享</h3>
 <p>依次打开“<strong>控制面板\网络和 Internet\网络和共享中心\高级共享设置</strong>”， 然后对&quot;专用&quot;, &ldquo;来宾&rdquo;, “所有网络”网络分别设置。</p>
 <p>注意：“所有网络”要设置“<strong>关闭密码保护共享</strong>”。</p>
-<p><img src="../../static/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-7f8fdd5e139442d4478caaa8ba2d4be9.jpg" alt=""></p>
+<p><img src="/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-7f8fdd5e139442d4478caaa8ba2d4be9.jpg" alt=""></p>
 <h3 id="22-开启相应服务">2.2 开启相应服务</h3>
 <p>依次打开“<strong>控制面板\管理工具\服务</strong>”， 找到“Function DiscoveryResource Publication”服务， 将其设置为“自动启动”。</p>
-<p><img src="../../static/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-0c7231f1f98f1588c8045b9143125914.jpg" alt=""></p>
+<p><img src="/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-0c7231f1f98f1588c8045b9143125914.jpg" alt=""></p>
 <h3 id="23-启用不安全来宾访问">2.3 启用不安全来宾访问</h3>
 <p>Win10默认移除了对匿名网络的不安全访问，我们需要开启它。一共2步设置，分别在<strong>注册表设置</strong>和组策略中设置。</p>
 <ol>
@@ -725,28 +725,28 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> b
 <p>按下 win+R 组合键，呼出“运行”对话框，输入： regedit  。依次找到如下键值<strong>AllowInsecureGuestAuth</strong>，(类型为DWORD)并设置为“<strong>1</strong>”。</p>
 <p>[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters]</p>
 <p>&ldquo;AllowInsecureGuestAuth&rdquo;=dword:00000001</p>
-<p><img src="../../static/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-494eb1983acc161b0b4c89fd44d62d62.jpg" alt=""></p>
+<p><img src="/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-494eb1983acc161b0b4c89fd44d62d62.jpg" alt=""></p>
 <ol start="2">
 <li>组策略设置</li>
 </ol>
 <p>按下 win+R 组合键，呼出“运行”对话框，输入： gpedit.msc, 打开&quot;组策略设置&quot;。</p>
 <p>依次展开“计算机配置&ndash;管理模板&ndash;网络&ndash;Lanman 工作站”，设置“启用不安全的来宾登录”为启用，并点击【应用】-【保存】设置。</p>
-<p><img src="../../static/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-a04d1ef446b67264f32022eeef6915bb.jpg" alt=""></p>
+<p><img src="/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-a04d1ef446b67264f32022eeef6915bb.jpg" alt=""></p>
 <h3 id="24-启用smb10功能">2.4 启用SMB1.0功能</h3>
 <p>依次打开“<strong>控制面板\程序\程序和功能</strong>”， 点击“<strong>启用或关闭Windows功能</strong>”</p>
-<p><img src="../../static/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-ef149610b58b896486359a914b2dd20d.jpg" alt=""></p>
+<p><img src="/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-ef149610b58b896486359a914b2dd20d.jpg" alt=""></p>
 <h3 id="25-重新启动windows系统">2.5 重新启动Windows系统</h3>
 <p>重启系统后，网络邻居里面应该就能看见局域网中的所有共享用户，并能访问其共享资源。</p>
 <h2 id="3-本机共享设置">3. 本机共享设置</h2>
 <p>在需要设置共享的驱动器/目录上，点击右键，属性，共享，高级共享，权限，添加Everyone用户，在设置相应权限即可。</p>
-<p><img src="../../static/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-a158d4343b1f181714d3148788e672f7.jpg" alt=""></p>
+<p><img src="/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-a158d4343b1f181714d3148788e672f7.jpg" alt=""></p>
 <h2 id="4-faq">4. FAQ</h2>
 <ol>
 <li>如果只是一两台服务器共享无法访问，可以直接使用“<strong>凭据管理</strong>”功能添加凭据即可。<strong>上述的所有设置(1,2,3步)都可以不用</strong>。</li>
 </ol>
 <p>方法如下：</p>
 <p>依次打开“<strong>控制面板\用户帐户\凭据管理器</strong>”，依次点击“windows凭据”，“添加windows凭据”，输入被共享的服务器用户名和密码即可。</p>
-<p><img src="../../static/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-4c1c39fbb2cb5c4113a8f88920873912.jpg" alt=""></p>
+<p><img src="/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-4c1c39fbb2cb5c4113a8f88920873912.jpg" alt=""></p>
 
                     
                     <HR width="100%" id="EOF">

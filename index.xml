@@ -27,10 +27,10 @@
 &lt;h3 id=&#34;21-设置文件和打印机共享&#34;&gt;2.1 设置文件和打印机共享&lt;/h3&gt;
 &lt;p&gt;依次打开“&lt;strong&gt;控制面板\网络和 Internet\网络和共享中心\高级共享设置&lt;/strong&gt;”， 然后对&amp;quot;专用&amp;quot;, &amp;ldquo;来宾&amp;rdquo;, “所有网络”网络分别设置。&lt;/p&gt;
 &lt;p&gt;注意：“所有网络”要设置“&lt;strong&gt;关闭密码保护共享&lt;/strong&gt;”。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;../../static/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-7f8fdd5e139442d4478caaa8ba2d4be9.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-7f8fdd5e139442d4478caaa8ba2d4be9.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;22-开启相应服务&#34;&gt;2.2 开启相应服务&lt;/h3&gt;
 &lt;p&gt;依次打开“&lt;strong&gt;控制面板\管理工具\服务&lt;/strong&gt;”， 找到“Function DiscoveryResource Publication”服务， 将其设置为“自动启动”。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;../../static/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-0c7231f1f98f1588c8045b9143125914.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-0c7231f1f98f1588c8045b9143125914.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;23-启用不安全来宾访问&#34;&gt;2.3 启用不安全来宾访问&lt;/h3&gt;
 &lt;p&gt;Win10默认移除了对匿名网络的不安全访问，我们需要开启它。一共2步设置，分别在&lt;strong&gt;注册表设置&lt;/strong&gt;和组策略中设置。&lt;/p&gt;
 &lt;ol&gt;
@@ -39,28 +39,28 @@
 &lt;p&gt;按下 win+R 组合键，呼出“运行”对话框，输入： regedit  。依次找到如下键值&lt;strong&gt;AllowInsecureGuestAuth&lt;/strong&gt;，(类型为DWORD)并设置为“&lt;strong&gt;1&lt;/strong&gt;”。&lt;/p&gt;
 &lt;p&gt;[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters]&lt;/p&gt;
 &lt;p&gt;&amp;ldquo;AllowInsecureGuestAuth&amp;rdquo;=dword:00000001&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;../../static/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-494eb1983acc161b0b4c89fd44d62d62.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-494eb1983acc161b0b4c89fd44d62d62.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;组策略设置&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;按下 win+R 组合键，呼出“运行”对话框，输入： gpedit.msc, 打开&amp;quot;组策略设置&amp;quot;。&lt;/p&gt;
 &lt;p&gt;依次展开“计算机配置&amp;ndash;管理模板&amp;ndash;网络&amp;ndash;Lanman 工作站”，设置“启用不安全的来宾登录”为启用，并点击【应用】-【保存】设置。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;../../static/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-a04d1ef446b67264f32022eeef6915bb.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-a04d1ef446b67264f32022eeef6915bb.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;24-启用smb10功能&#34;&gt;2.4 启用SMB1.0功能&lt;/h3&gt;
 &lt;p&gt;依次打开“&lt;strong&gt;控制面板\程序\程序和功能&lt;/strong&gt;”， 点击“&lt;strong&gt;启用或关闭Windows功能&lt;/strong&gt;”&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;../../static/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-ef149610b58b896486359a914b2dd20d.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-ef149610b58b896486359a914b2dd20d.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;25-重新启动windows系统&#34;&gt;2.5 重新启动Windows系统&lt;/h3&gt;
 &lt;p&gt;重启系统后，网络邻居里面应该就能看见局域网中的所有共享用户，并能访问其共享资源。&lt;/p&gt;
 &lt;h2 id=&#34;3-本机共享设置&#34;&gt;3. 本机共享设置&lt;/h2&gt;
 &lt;p&gt;在需要设置共享的驱动器/目录上，点击右键，属性，共享，高级共享，权限，添加Everyone用户，在设置相应权限即可。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;../../static/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-a158d4343b1f181714d3148788e672f7.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-a158d4343b1f181714d3148788e672f7.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;4-faq&#34;&gt;4. FAQ&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;如果只是一两台服务器共享无法访问，可以直接使用“&lt;strong&gt;凭据管理&lt;/strong&gt;”功能添加凭据即可。&lt;strong&gt;上述的所有设置(1,2,3步)都可以不用&lt;/strong&gt;。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;方法如下：&lt;/p&gt;
 &lt;p&gt;依次打开“&lt;strong&gt;控制面板\用户帐户\凭据管理器&lt;/strong&gt;”，依次点击“windows凭据”，“添加windows凭据”，输入被共享的服务器用户名和密码即可。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;../../static/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-4c1c39fbb2cb5c4113a8f88920873912.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://syaofox.github.io/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-4c1c39fbb2cb5c4113a8f88920873912.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 - https://syaofox.github.io/posts/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/ - 2020</description>
         </item>
     
