@@ -7,17 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>2020</copyright>
-    <lastBuildDate>Mon, 01 Jun 2020 11:15:54 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Ubuntu Server 20.04 LTS NAS 安装记录</title>
-      <link>https://syaofox.github.io/posts/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
-      <pubDate>Mon, 01 Jun 2020 11:15:54 +0800</pubDate>
-      
-      <guid>https://syaofox.github.io/posts/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
-      <description>安装 Ubuntu 注意选中安装ssh,否则安装完成无法远程连接
-更新系统 sudo apt update sudo apt upgrade 设置时区 # 查看当前时区 timedatectl # 列出所有时区 timedatectl list-timezones # 显示亚洲时区 timedatectl list-timezones | grep Asia # 设置时区为上海 sudo timedatectl set-timezone Asia/Shanghai 修改 root 用户登录权限 # 编辑 &amp;#39;/etc/ssh/sshd_config&amp;#39; sudo sed -i &amp;#39;s/#PermitRootLogin prohibit-password/PermitRootLogin yes/&amp;#39; /etc/ssh/sshd_config # 重启SSH服务 sudo systemctl restart ssh # 设置root账号密码 sudo passwd root 初始化硬盘 # 查看分区情况 lsblk # 使用 gdisk 初始化硬盘 添加账号 adduser wife 使用 ZFS 系统 # 安装 zfs apt update apt install zfsutils-linux # 重启 # 创建 RAIDZ2 存储池 /dev/disk/by-id zpool create pool raidz2 /dev/sdb /dev/sdc /dev/sdd /dev/sde # 查看存储池状态 zpool status -v # 查看存储池空间 df -h | grep pool # 创建数据集并设置开启lz4压缩 zfs create -o compression=lz4 pool/share zfs create -o compression=lz4 pool/media zfs create -o compression=lz4 pool/work zfs create -o compression=lz4 pool/me # 修改各数据集挂载点权限 chmod -R 777 /pool/share chmod -R 777 /pool/media chmod -R 777 /pool/work chmod -R 777 /pool/me 安装 samba 并设置 samba 共享 # 安装 samba apt install samba # 备份配置文件 cp /etc/samba/smb.</description>
-    </item>
-    
+    <lastBuildDate>Mon, 01 Jun 2020 11:12:00 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>基于 ZFS 文件系统的 OpenMediaVault 安装记录</title>
       <link>https://syaofox.github.io/posts/%E5%9F%BA%E4%BA%8E-zfs-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84-openmediavault-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>

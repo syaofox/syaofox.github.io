@@ -7,7 +7,32 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>2020</copyright>
-    <lastBuildDate>Sun, 18 Apr 2021 09:38:06 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Apr 2021 10:07:13 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>windows10-局域网共享问题及解决</title>
+      <link>https://syaofox.github.io/posts/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/</link>
+      <pubDate>Sun, 18 Apr 2021 10:07:13 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/posts/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/</guid>
+      <description>Win10 出现不能匿名访问局域网共享，同时本机的共享也无法被其它机器匿名访问。 本文给出了设置方法来解决此问题。
+1. 前言  Win10的安全性设置越来越严格，与此同时，也带来了易用性的缺失。新手往往会陷入很多功能不能使用的窘境中，从而导致了对Win10的排斥。局域网共享就是一个很典型的例子。
+ 对很多中小企业而言， 无密码的局域网共享是非常方便和实用的功能，对于提升生产力而言，安全性是次要考虑的因素。 但是Win10 对无密码的局域网共享是深恶痛绝的，默认设置根本就不能使用。 尤其是局域网中同时还存在WinXP, Win7等共享的情况下。
+下面我们来一步步设置，使得Win10支持浏览和访问局域网中的共享。
+2. 设置步骤 2.1 设置文件和打印机共享 依次打开“控制面板\网络和 Internet\网络和共享中心\高级共享设置”， 然后对&amp;quot;专用&amp;quot;, &amp;ldquo;来宾&amp;rdquo;, “所有网络”网络分别设置。
+注意：“所有网络”要设置“关闭密码保护共享”。
+2.2 开启相应服务 依次打开“控制面板\管理工具\服务”， 找到“Function DiscoveryResource Publication”服务， 将其设置为“自动启动”。
+2.3 启用不安全来宾访问 Win10默认移除了对匿名网络的不安全访问，我们需要开启它。一共2步设置，分别在注册表设置和组策略中设置。
+ 注册表设置  按下 win+R 组合键，呼出“运行”对话框，输入： regedit 。依次找到如下键值AllowInsecureGuestAuth，(类型为DWORD)并设置为“1”。
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters]
+&amp;ldquo;AllowInsecureGuestAuth&amp;rdquo;=dword:00000001
+组策略设置  按下 win+R 组合键，呼出“运行”对话框，输入： gpedit.msc, 打开&amp;quot;组策略设置&amp;quot;。
+依次展开“计算机配置&amp;ndash;管理模板&amp;ndash;网络&amp;ndash;Lanman 工作站”，设置“启用不安全的来宾登录”为启用，并点击【应用】-【保存】设置。
+2.4 启用SMB1.0功能 依次打开“控制面板\程序\程序和功能”， 点击“启用或关闭Windows功能”
+2.5 重新启动Windows系统 重启系统后，网络邻居里面应该就能看见局域网中的所有共享用户，并能访问其共享资源。
+3. 本机共享设置 在需要设置共享的驱动器/目录上，点击右键，属性，共享，高级共享，权限，添加Everyone用户，在设置相应权限即可。
+4. FAQ  如果只是一两台服务器共享无法访问，可以直接使用“凭据管理”功能添加凭据即可。上述的所有设置(1,2,3步)都可以不用。  方法如下：</description>
+    </item>
+    
     <item>
       <title>Git与Github的使用</title>
       <link>https://syaofox.github.io/posts/git%E4%B8%8Egithub%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
@@ -231,31 +256,6 @@ wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/maste
   重启
   删除non-Proxmox内核
   安装 zfs 插件</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://syaofox.github.io/posts/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://syaofox.github.io/posts/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/</guid>
-      <description>Win10 出现不能匿名访问局域网共享，同时本机的共享也无法被其它机器匿名访问。 本文给出了设置方法来解决此问题。
-1. 前言  Win10的安全性设置越来越严格，与此同时，也带来了易用性的缺失。新手往往会陷入很多功能不能使用的窘境中，从而导致了对Win10的排斥。局域网共享就是一个很典型的例子。
- 对很多中小企业而言， 无密码的局域网共享是非常方便和实用的功能，对于提升生产力而言，安全性是次要考虑的因素。 但是Win10 对无密码的局域网共享是深恶痛绝的，默认设置根本就不能使用。 尤其是局域网中同时还存在WinXP, Win7等共享的情况下。
-下面我们来一步步设置，使得Win10支持浏览和访问局域网中的共享。
-2. 设置步骤 2.1 设置文件和打印机共享 依次打开“控制面板\网络和 Internet\网络和共享中心\高级共享设置”， 然后对&amp;quot;专用&amp;quot;, &amp;ldquo;来宾&amp;rdquo;, “所有网络”网络分别设置。
-注意：“所有网络”要设置“关闭密码保护共享”。
-2.2 开启相应服务 依次打开“控制面板\管理工具\服务”， 找到“Function DiscoveryResource Publication”服务， 将其设置为“自动启动”。
-2.3 启用不安全来宾访问 Win10默认移除了对匿名网络的不安全访问，我们需要开启它。一共2步设置，分别在注册表设置和组策略中设置。
- 注册表设置  按下 win+R 组合键，呼出“运行”对话框，输入： regedit 。依次找到如下键值AllowInsecureGuestAuth，(类型为DWORD)并设置为“1”。
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters]
-&amp;ldquo;AllowInsecureGuestAuth&amp;rdquo;=dword:00000001
-组策略设置  按下 win+R 组合键，呼出“运行”对话框，输入： gpedit.msc, 打开&amp;quot;组策略设置&amp;quot;。
-依次展开“计算机配置&amp;ndash;管理模板&amp;ndash;网络&amp;ndash;Lanman 工作站”，设置“启用不安全的来宾登录”为启用，并点击【应用】-【保存】设置。
-2.4 启用SMB1.0功能 依次打开“控制面板\程序\程序和功能”， 点击“启用或关闭Windows功能”
-2.5 重新启动Windows系统 重启系统后，网络邻居里面应该就能看见局域网中的所有共享用户，并能访问其共享资源。
-3. 本机共享设置 在需要设置共享的驱动器/目录上，点击右键，属性，共享，高级共享，权限，添加Everyone用户，在设置相应权限即可。
-4. FAQ  如果只是一两台服务器共享无法访问，可以直接使用“凭据管理”功能添加凭据即可。上述的所有设置(1,2,3步)都可以不用。  方法如下：</description>
     </item>
     
   </channel>
