@@ -6,7 +6,7 @@ tags: [ZFS, NAS, OMV, OpenMediaVault]
 featured_image: ""
 # images is optional, but needed for showing Twitter Card
 images: []
-categories: Linux
+categories: windows
 comment : false
 draft: false 
 author: "syaofox"
