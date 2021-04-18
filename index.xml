@@ -38,7 +38,7 @@ git config --global core.ignorecase &lt;span style=&#34;color:#658b00&#34;&gt;fa
 &lt;p&gt;添加SSHKey&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;取个名字，填入&#39;~/.ssh/id_rsa.pub`内容&lt;/p&gt;
+&lt;p&gt;取个名字，填入&lt;code&gt;~/.ssh/id_rsa.pub&lt;/code&gt;内容&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;执行&lt;code&gt;ssh -T git@github.com&lt;/code&gt;测试&lt;/p&gt;
