@@ -1,0 +1,191 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Syaofox&#39;s Elysion</title>
+    <link>https://syaofox.github.io/</link>
+    <description>Recent content on Syaofox&#39;s Elysion</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>2020</copyright>
+    <lastBuildDate>Sun, 18 Apr 2021 09:38:06 +0800</lastBuildDate>
+    
+        <atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>基于 ZFS 文件系统的 OpenMediaVault 安装记录</title>
+        <link>https://syaofox.github.io/posts/%E5%9F%BA%E4%BA%8E-zfs-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84-openmediavault-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
+        <pubDate>Mon, 01 Jun 2020 11:12:00 +0800</pubDate>
+        
+        <guid>https://syaofox.github.io/posts/%E5%9F%BA%E4%BA%8E-zfs-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84-openmediavault-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
+        <description>Syaofox&#39;s Elysion https://syaofox.github.io/posts/%E5%9F%BA%E4%BA%8E-zfs-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84-openmediavault-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/ -&lt;h2 id=&#34;安装系统&#34;&gt;安装系统&lt;/h2&gt;
+&lt;p&gt;注意事项：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;镜像选清华镜像 &lt;a href=&#34;https://mirrors.tuna.tsinghua.edu.cn/&#34;&gt;mirrors.tuna.tsinghua.edu.cn&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修改引导防止挂载路径变化后无法引导&lt;/p&gt;
+&lt;p&gt;获得磁盘UUID&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;blkid
+  
+/dev/sda1: &lt;span style=&#34;color:#00688b&#34;&gt;UUID&lt;/span&gt;=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;8305-3011&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;TYPE&lt;/span&gt;=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;vfat&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;PARTUUID&lt;/span&gt;=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;2b972aa5-f2fd-475a-8353-77594dc8a1e1&amp;#34;&lt;/span&gt;
+/dev/sda2: &lt;span style=&#34;color:#00688b&#34;&gt;UUID&lt;/span&gt;=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;f4add2f3-efd0-42df-b23d-e453ab285aa3&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;TYPE&lt;/span&gt;=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;ext4&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;PARTUUID&lt;/span&gt;=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;f120845a-5b97-4eb3-884d-43fb45b41720&amp;#34;&lt;/span&gt;
+/dev/sda3: &lt;span style=&#34;color:#00688b&#34;&gt;UUID&lt;/span&gt;=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;9fcacfa0-cb8d-45be-9efc-3f8d8222f03e&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;TYPE&lt;/span&gt;=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;swap&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;PARTUUID&lt;/span&gt;=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;acf58c24-4829-41b5-b326-6d295e3d720a&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;修改引导文件&lt;code&gt;/boot/grub/grub.cfg&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;把&lt;code&gt;boot=/dev/sda2&lt;/code&gt; 改成 &lt;code&gt;boot=UUID=f4add2f3-efd0-42df-b23d-e453ab285aa3&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;重启测试&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;update-grub
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修改时区&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修改密码&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修改后台登出时间&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修改网络DHCP -&amp;gt; 静态IP&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;更新系统&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装&lt;code&gt;OMV-EXTRAS&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/master/install | bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;安装并配置-zfs-文件系统&#34;&gt;安装并配置 ZFS 文件系统&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;更换&lt;code&gt;Proxmox&lt;/code&gt;内核&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;重启&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;删除&lt;code&gt;non-Proxmox&lt;/code&gt;内核&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装 zfs 插件&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;重启&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;更新系统&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;重启&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建 zfs 池&lt;code&gt;pool&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;设置池属性&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 设置继承&lt;/span&gt;
+zfs &lt;span style=&#34;color:#658b00&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;aclinherit&lt;/span&gt;=passthrough pool  
+&lt;span style=&#34;color:#228b22&#34;&gt;# 设置扩展属性,一开始就必须设置,改变设置只会对新文件生效&lt;/span&gt;
+zfs &lt;span style=&#34;color:#658b00&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;acltype&lt;/span&gt;=posixacl pool
+zfs &lt;span style=&#34;color:#658b00&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;acltype&lt;/span&gt;=posixacl pool
+&lt;span style=&#34;color:#228b22&#34;&gt;# 开启压缩,lz4占用资源很少,速度很快&lt;/span&gt;
+zfs &lt;span style=&#34;color:#658b00&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;compression&lt;/span&gt;=lz4 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;**可选 **限制zfs最大内存使用为4G（物理内存的一半），理论上在不影响其他服务的情况下，默认管理即可（默认4G内存以上使用最大内存-1G）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#658b00&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;options zfs zfs_arc_max=4294967296&amp;#34;&lt;/span&gt; | sudo tee -a /etc/modprobe.d/zfs.conf
+&lt;span style=&#34;color:#658b00&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#b452cd&#34;&gt;4294967296&lt;/span&gt; &amp;gt; /sys/module/zfs/parameters/zfs_arc_max
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;重启后查看&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cat /proc/spl/kstat/zfs/arcstats | grep c_max
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;设置自动创建快照&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;安装&lt;code&gt;ZnapZend&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 安装必要组件 不想安装perl可以下载二进制文件存到/opt/&lt;/span&gt;
+apt-get update
+apt-get install perl unzip    
+apt-get install  gcc automake autoconf libtool make
+    
+wget https://github.com/oetiker/znapzend/releases/download/v0.20.0/znapzend-0.20.0.tar.gz
+tar zxvf znapzend-0.20.0.tar.gz
+&lt;span style=&#34;color:#658b00&#34;&gt;cd&lt;/span&gt; znapzend-0.20.0
+./configure --prefix=/opt/znapzend-0.20.0
+make
+make install
+    
+&lt;span style=&#34;color:#228b22&#34;&gt;# 设置环境变量 可选&lt;/span&gt;
+&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;for&lt;/span&gt; x in /opt/znapzend-0.20.0/bin/*; &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;do&lt;/span&gt; ln -s &lt;span style=&#34;color:#00688b&#34;&gt;$x&lt;/span&gt; /usr/local/bin; &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;设置&lt;code&gt;ZnapZend&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;创建规则&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# pool 备份规则代表 1小时备份1次保留最新的2周,1天备份一次保留最新的3个月,1星期备份一次保留最新的10年&lt;/span&gt;
+znapzendzetup create --tsformat=&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;znapzend-%Y-%m-%d-%H%M%S&amp;#39;&lt;/span&gt; SRC &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;2w=&amp;gt;1h,3m=&amp;gt;1d,10y=&amp;gt;1w&amp;#39;&lt;/span&gt; pool 
+    
+&lt;span style=&#34;color:#228b22&#34;&gt;# 测试规则&lt;/span&gt;
+znapzendzetup list
+znapzend --noaction --debug --runonce=pool
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;创建&lt;code&gt;znapzend systemctl&lt;/code&gt;服务&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;复制安装时生成的服务文件&lt;code&gt;/root/znapzend-0.20.0/init/znapzend.service&lt;/code&gt;到&lt;code&gt;/etc/systemd/system/&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;启动并设置开启自动启动&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 重载系统服务&lt;/span&gt;
+&lt;span style=&#34;color:#228b22&#34;&gt;#systemctl daemon-reload&lt;/span&gt;
+        
+&lt;span style=&#34;color:#228b22&#34;&gt;# 设置开机启动&lt;/span&gt;
+systemctl &lt;span style=&#34;color:#658b00&#34;&gt;enable&lt;/span&gt; znapzend.service
+&lt;span style=&#34;color:#228b22&#34;&gt;# 启动服务&lt;/span&gt;
+systemctl start znapzend.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;重启后查看是否自动启动&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;systemctl status znapzend.service
+ps -aux | grep &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;znapzend&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;安装-docker-与-porainer&#34;&gt;安装 Docker 与 Porainer&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;OMV-Extras 直接安装&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;安装-ups-管理插件&#34;&gt;安装 UPS 管理插件&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;插件名&lt;code&gt;openmediavault-nut 5.1.0-1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;设置邮件通知&#34;&gt;设置邮件通知&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;以GMail为例&lt;/p&gt;
+&lt;p&gt;SMTP 服务器: smtp.gmail.com&lt;/p&gt;
+&lt;p&gt;SMTP 端口: 587&lt;/p&gt;
+&lt;p&gt;加密模式: 启用TLS&lt;/p&gt;
+&lt;p&gt;发送Email: Gmai账号&lt;/p&gt;
+&lt;p&gt;需要验证: 打开&lt;/p&gt;
+&lt;p&gt;用户名: Gmail账号&lt;/p&gt;
+&lt;p&gt;密码: Gmail密码,开启两步验证的账号请使用应用专用密码&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+- https://syaofox.github.io/posts/%E5%9F%BA%E4%BA%8E-zfs-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84-openmediavault-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/ - 2020</description>
+        </item>
+    
+    
+  </channel>
+</rss> 
