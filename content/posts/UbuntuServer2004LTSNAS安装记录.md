@@ -5,7 +5,7 @@ description: "「Nas 安装 Ubuntu Server 20.04 LTS 系统，基于 zfs on linux
 tags: [Ubuntu, Nas]
 featured_image: ""
 images: []
-categories: Linux
+categories: OS
 comment : false
 draft: false 
 author: "syaofox"

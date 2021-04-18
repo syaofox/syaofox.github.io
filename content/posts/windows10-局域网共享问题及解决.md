@@ -1,3 +1,17 @@
+---
+title: "windows10-局域网共享问题及解决"
+date: 2021-04-18T10:07:13+08:00
+description: "windows10-局域网共享问题及解决"
+tags: [windows, Software]
+featured_image: ""
+# images is optional, but needed for showing Twitter Card
+images: []
+categories: 'OS'
+comment : false
+draft: false 
+author: "syaofox"
+type: post
+---
 Win10 出现不能匿名访问局域网共享，同时本机的共享也无法被其它机器匿名访问。 本文给出了设置方法来解决此问题。
 
 ##  1. 前言
