@@ -7,7 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>2020</copyright>
-    <lastBuildDate>Thu, 18 Jun 2020 08:19:45 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Apr 2021 09:38:06 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git与Github的使用</title>
+      <link>https://syaofox.github.io/posts/git%E4%B8%8Egithub%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Sun, 18 Apr 2021 09:38:06 +0800</pubDate>
+      
+      <guid>https://syaofox.github.io/posts/git%E4%B8%8Egithub%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>一、配置本地Git与Github 1.1 配置本地Git全局信息 git config --global user.name &amp;#34;syaofox&amp;#34; git config --global user.email &amp;#34;syaofox@gmail.com&amp;#34; #pull 默认合并 git config --global pull.rebase false #设置大小写敏感 git config --global core.ignorecase false 1.2 创建ssh密钥 ssh-keygen -t rsa -b 4096 -C &amp;#34;syaofox@gmail.com&amp;#34; 会在本地家目录的.ssh目录下生成密钥
+1.3 配置Github   打开 https://github.com/settings/keys
+  添加SSHKey
+  取个名字，填入&#39;~/.ssh/id_rsa.pub`内容
+  执行ssh -T git@github.com测试
+  二、Git常用操作 2.1 git仓库  本地文件 缓存区（ git add 命令可以添加项目到缓存区） 本地仓库（ git commit 可以添加到本地仓库） 远程仓库( git push 将本地仓库文件推送到远程仓库)  2.</description>
+    </item>
+    
     <item>
       <title>利用EverAver Emby Kodi打造本地AV库</title>
       <link>https://syaofox.github.io/posts/%E5%88%A9%E7%94%A8everaver-emby-kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0av%E5%BA%93/</link>
