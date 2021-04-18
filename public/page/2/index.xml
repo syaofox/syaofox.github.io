@@ -6,9 +6,157 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>2020</copyright>
-    <lastBuildDate>Sun, 18 Apr 2021 09:38:06 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 18 Apr 2021 10:07:13 +0800</lastBuildDate>
     
         <atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Ubuntu Server 20.04 LTS NAS 安装记录</title>
+        <link>https://syaofox.github.io/posts/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
+        <pubDate>Mon, 01 Jun 2020 11:15:54 +0800</pubDate>
+        
+        <guid>https://syaofox.github.io/posts/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
+        <description>Syaofox&#39;s Elysion https://syaofox.github.io/posts/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/ -&lt;h2 id=&#34;安装-ubuntu&#34;&gt;安装 Ubuntu&lt;/h2&gt;
+&lt;p&gt;注意选中安装ssh,否则安装完成无法远程连接&lt;/p&gt;
+&lt;h2 id=&#34;更新系统&#34;&gt;更新系统&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt update
+sudo apt upgrade
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;设置时区&#34;&gt;设置时区&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 查看当前时区&lt;/span&gt;
+timedatectl
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 列出所有时区&lt;/span&gt;
+timedatectl list-timezones
+&lt;span style=&#34;color:#228b22&#34;&gt;# 显示亚洲时区&lt;/span&gt;
+timedatectl list-timezones | grep Asia
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 设置时区为上海&lt;/span&gt;
+sudo timedatectl set-timezone Asia/Shanghai
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;修改-root-用户登录权限&#34;&gt;修改 root 用户登录权限&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 编辑 &amp;#39;/etc/ssh/sshd_config&amp;#39;&lt;/span&gt;
+sudo sed -i &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;s/#PermitRootLogin prohibit-password/PermitRootLogin yes/&amp;#39;&lt;/span&gt; /etc/ssh/sshd_config
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 重启SSH服务&lt;/span&gt;
+sudo systemctl restart ssh
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 设置root账号密码&lt;/span&gt;
+sudo passwd root
+初始化硬盘
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 查看分区情况&lt;/span&gt;
+lsblk
+&lt;span style=&#34;color:#228b22&#34;&gt;# 使用 gdisk 初始化硬盘&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;添加账号&#34;&gt;添加账号&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;adduser wife 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;使用-zfs-系统&#34;&gt;使用 ZFS 系统&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 安装 zfs&lt;/span&gt;
+apt update
+apt install zfsutils-linux
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 重启&lt;/span&gt;
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 创建 RAIDZ2 存储池 /dev/disk/by-id&lt;/span&gt;
+zpool create pool raidz2 /dev/sdb /dev/sdc /dev/sdd /dev/sde 
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 查看存储池状态&lt;/span&gt;
+zpool status -v
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 查看存储池空间&lt;/span&gt;
+df -h | grep pool
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 创建数据集并设置开启lz4压缩&lt;/span&gt;
+zfs create -o &lt;span style=&#34;color:#00688b&#34;&gt;compression&lt;/span&gt;=lz4 pool/share
+zfs create -o &lt;span style=&#34;color:#00688b&#34;&gt;compression&lt;/span&gt;=lz4 pool/media
+zfs create -o &lt;span style=&#34;color:#00688b&#34;&gt;compression&lt;/span&gt;=lz4 pool/work 
+zfs create -o &lt;span style=&#34;color:#00688b&#34;&gt;compression&lt;/span&gt;=lz4 pool/me
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 修改各数据集挂载点权限&lt;/span&gt;
+chmod -R &lt;span style=&#34;color:#b452cd&#34;&gt;777&lt;/span&gt; /pool/share
+chmod -R &lt;span style=&#34;color:#b452cd&#34;&gt;777&lt;/span&gt; /pool/media
+chmod -R &lt;span style=&#34;color:#b452cd&#34;&gt;777&lt;/span&gt; /pool/work
+chmod -R &lt;span style=&#34;color:#b452cd&#34;&gt;777&lt;/span&gt; /pool/me
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;安装-samba-并设置-samba-共享&#34;&gt;安装 samba 并设置 samba 共享&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 安装 samba&lt;/span&gt;
+apt install samba
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 备份配置文件&lt;/span&gt;
+cp /etc/samba/smb.conf /etc/samba/smb.conf.bak 
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 修改配置文件 添加共享文件夹配置&lt;/span&gt;
+nano /etc/samba/smb.conf
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 所有人可以访问&lt;/span&gt;
+[share]
+ &lt;span style=&#34;color:#00688b&#34;&gt;path&lt;/span&gt; = /pool/share
+ &lt;span style=&#34;color:#00688b&#34;&gt;browseable&lt;/span&gt; = yes
+ &lt;span style=&#34;color:#658b00&#34;&gt;read&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;only&lt;/span&gt; = no
+ &lt;span style=&#34;color:#00688b&#34;&gt;public&lt;/span&gt; = yes
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# syaofox 可读写 wife 可读&lt;/span&gt;
+[media]
+ &lt;span style=&#34;color:#00688b&#34;&gt;path&lt;/span&gt; = /pool/media
+ &lt;span style=&#34;color:#00688b&#34;&gt;browseable&lt;/span&gt; = yes
+ &lt;span style=&#34;color:#658b00&#34;&gt;read&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;only&lt;/span&gt; = no
+ valid &lt;span style=&#34;color:#00688b&#34;&gt;users&lt;/span&gt; = syaofox wife
+ &lt;span style=&#34;color:#658b00&#34;&gt;read&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;list&lt;/span&gt; = syaofox wife
+ write &lt;span style=&#34;color:#00688b&#34;&gt;list&lt;/span&gt; = syaofox
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# syaofox 可读写 wife 可读&lt;/span&gt;
+[work]
+ &lt;span style=&#34;color:#00688b&#34;&gt;path&lt;/span&gt; = /pool/work
+ &lt;span style=&#34;color:#00688b&#34;&gt;browseable&lt;/span&gt; = yes
+ &lt;span style=&#34;color:#658b00&#34;&gt;read&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;only&lt;/span&gt; = no
+ valid &lt;span style=&#34;color:#00688b&#34;&gt;users&lt;/span&gt; = syaofox wife
+ &lt;span style=&#34;color:#658b00&#34;&gt;read&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;list&lt;/span&gt; = syaofox wife
+ write &lt;span style=&#34;color:#00688b&#34;&gt;list&lt;/span&gt; = syaofox
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# syaofox可读写&lt;/span&gt;
+[me]
+ &lt;span style=&#34;color:#00688b&#34;&gt;path&lt;/span&gt; = /pool/me
+ &lt;span style=&#34;color:#00688b&#34;&gt;browseable&lt;/span&gt; = yes
+ &lt;span style=&#34;color:#658b00&#34;&gt;read&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;only&lt;/span&gt; = no
+ valid &lt;span style=&#34;color:#00688b&#34;&gt;users&lt;/span&gt; = syaofox
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 创建 samba 用户&lt;/span&gt;
+smbpasswd -a syaofox
+smbpasswd -a wife
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 重启 samba 服务&lt;/span&gt;
+service smbd restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;安装-docker&#34;&gt;安装 docker&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 安装依赖包&lt;/span&gt;
+apt update
+apt install apt-transport-https ca-certificates curl software-properties-common
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 添加GPG&lt;/span&gt;
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 添加源,注意版本 这里对应20.04 focal&lt;/span&gt;
+add-apt-repository &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable&amp;#34;&lt;/span&gt;
+apt update
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 查看 apt 缓存,确保源生效&lt;/span&gt;
+apt-cache policy docker-ce
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 安装 docker&lt;/span&gt;
+apt install docker-ce
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 安装 Docker Compose 注意更新版本&lt;/span&gt;
+curl -L &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;https://github.com/docker/compose/releases/download/1.26.0/docker-compose-&lt;/span&gt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;$(&lt;/span&gt;uname -s&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;$(&lt;/span&gt;uname -m&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;&lt;/span&gt; -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+
+&lt;span style=&#34;color:#228b22&#34;&gt;# 安装 portainer&lt;/span&gt;
+docker volume create portainer_data
+docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过服务器&lt;code&gt;ip:9000&lt;/code&gt;访问&lt;code&gt;portainer&lt;/code&gt;后台&lt;/p&gt;
+&lt;p&gt;添加国内镜像加快docker镜像拉取速度&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;科大 &lt;a href=&#34;https://docker.mirrors.ustc.edu.cn&#34;&gt;https://docker.mirrors.ustc.edu.cn&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;七牛云 &lt;a href=&#34;https://reg-mirror.qiniu.com&#34;&gt;https://reg-mirror.qiniu.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;安装邮件服务器&#34;&gt;安装邮件服务器&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://syaofox.github.io/linux/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6&#34;&gt;Ubuntu 配置 Postfix 通过 Gmail 发送邮件&lt;/a&gt;&lt;/p&gt;
+- https://syaofox.github.io/posts/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/ - 2020</description>
+        </item>
     
     
     
@@ -185,8 +333,6 @@ ps -aux | grep &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;znapzend&amp;#
 &lt;/ul&gt;
 - https://syaofox.github.io/posts/%E5%9F%BA%E4%BA%8E-zfs-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84-openmediavault-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/ - 2020</description>
         </item>
-    
-    
     
     
   </channel>

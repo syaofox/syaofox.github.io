@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Software on Syaofox&#39;s Elysion</title>
-    <link>https://syaofox.github.io/tags/software/</link>
-    <description>Recent content in Software on Syaofox&#39;s Elysion</description>
+    <title>OS on Syaofox&#39;s Elysion</title>
+    <link>https://syaofox.github.io/categories/os/</link>
+    <description>Recent content in OS on Syaofox&#39;s Elysion</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>2020</copyright>
-    <lastBuildDate>Sun, 18 Apr 2021 10:07:13 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/tags/software/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Apr 2021 10:07:13 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/categories/os/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>windows10-局域网共享问题及解决</title>
       <link>https://syaofox.github.io/posts/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/</link>
@@ -34,36 +34,13 @@
     </item>
     
     <item>
-      <title>利用EverAver Emby Kodi打造本地AV库</title>
-      <link>https://syaofox.github.io/posts/%E5%88%A9%E7%94%A8everaver-emby-kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0av%E5%BA%93/</link>
-      <pubDate>Thu, 18 Jun 2020 08:19:45 +0800</pubDate>
+      <title>Ubuntu Server 20.04 LTS NAS 安装记录</title>
+      <link>https://syaofox.github.io/posts/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Mon, 01 Jun 2020 11:15:54 +0800</pubDate>
       
-      <guid>https://syaofox.github.io/posts/%E5%88%A9%E7%94%A8everaver-emby-kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0av%E5%BA%93/</guid>
-      <description>W A R N I N G ！
- ※阅读正文前请保持房间明亮，并年满18岁。  ~——只为给伟大的日本劳动女性献上赞歌。~
-本文将深入浅出，从无到有，以日本“成人视频”为例。
-——由影片元数据抓取（EverAver）开始，到服务端软件选择（Emby），再到客户端配置（Kodi），做出完整的教程指南。
-无论您是搭建本地媒体库，还是影片归类管理，相信都能在文中找到合适工具。
-请善用文章右侧的CATALOG快速跳转至您需要的教程。
-元数据 / EverAver 什么是“元数据” 元数据（metadata）即影片信息：如影片封面 / 影片标题 / 发行时间 / 影片简介 / 制作公司 / 演员表 / Staff表。
-越是完善的元数据，导入plex/emby等本地媒体库后就越是美观便利。
-就像这样：
-而我们平时下片 ~发电~ 显然不会保留这些信息。
-所以搭建本地片库的第一步，便是补全影片元数据。
-元数据有四种抓法 就像~Android App的网络访问方式有四种~，元数据抓取也有的是招：
- Plex / Emby自带“刮削器”  普通电影/日本动画使用自带tmdb/anidb等刮削器（metadata agents）便能实现元数据自动抓取。
-成人类视频的刮削器则在plex/emby的社区论坛内提供，作为扩展插件安装即可。
-但刮削器对文件名要求极高，视频文件名必须需包含影片英文名（普通视频）或番号（成人视频）。
-而我们下载的AV却普遍如下画风
-自动工具根本无法应对如此复杂且混乱的命名方式。
-要么识别错误，要么无法识别，而一旦识别错误，改起来更是蛋疼无比，因为你甚至不知道哪部错了。
-——日本爱情动作片对不懂爱的“自动程序”而言，显然是超纲了。
- JavHelper  一款由台湾人开发的AV元数据抓取工具。
-集自动重命名 / 元数据抓取 / 大批量操作于一身。
-弊端与plex/emby的刮削器相同，基于程序识别的“自动批量”终有极限，虽识别精度高于刮削器，但依然不是可用级别。
-并且该软件抓取的元数据相对简陋，只有单张封面和简单信息，无法满足搭建“媒体库”的需求。
-——仅适用于轻度粗略的文件管理。
- EverAver  又一款台湾人开发的AV元数据抓取工具。</description>
+      <guid>https://syaofox.github.io/posts/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
+      <description>安装 Ubuntu 注意选中安装ssh,否则安装完成无法远程连接
+更新系统 sudo apt update sudo apt upgrade 设置时区 # 查看当前时区 timedatectl # 列出所有时区 timedatectl list-timezones # 显示亚洲时区 timedatectl list-timezones | grep Asia # 设置时区为上海 sudo timedatectl set-timezone Asia/Shanghai 修改 root 用户登录权限 # 编辑 &amp;#39;/etc/ssh/sshd_config&amp;#39; sudo sed -i &amp;#39;s/#PermitRootLogin prohibit-password/PermitRootLogin yes/&amp;#39; /etc/ssh/sshd_config # 重启SSH服务 sudo systemctl restart ssh # 设置root账号密码 sudo passwd root 初始化硬盘 # 查看分区情况 lsblk # 使用 gdisk 初始化硬盘 添加账号 adduser wife 使用 ZFS 系统 # 安装 zfs apt update apt install zfsutils-linux # 重启 # 创建 RAIDZ2 存储池 /dev/disk/by-id zpool create pool raidz2 /dev/sdb /dev/sdc /dev/sdd /dev/sde # 查看存储池状态 zpool status -v # 查看存储池空间 df -h | grep pool # 创建数据集并设置开启lz4压缩 zfs create -o compression=lz4 pool/share zfs create -o compression=lz4 pool/media zfs create -o compression=lz4 pool/work zfs create -o compression=lz4 pool/me # 修改各数据集挂载点权限 chmod -R 777 /pool/share chmod -R 777 /pool/media chmod -R 777 /pool/work chmod -R 777 /pool/me 安装 samba 并设置 samba 共享 # 安装 samba apt install samba # 备份配置文件 cp /etc/samba/smb.</description>
     </item>
     
   </channel>

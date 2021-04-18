@@ -6,9 +6,63 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>2020</copyright>
-    <lastBuildDate>Sun, 18 Apr 2021 09:38:06 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 18 Apr 2021 10:07:13 +0800</lastBuildDate>
     
         <atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>windows10-局域网共享问题及解决</title>
+        <link>https://syaofox.github.io/posts/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/</link>
+        <pubDate>Sun, 18 Apr 2021 10:07:13 +0800</pubDate>
+        
+        <guid>https://syaofox.github.io/posts/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/</guid>
+        <description>Syaofox&#39;s Elysion https://syaofox.github.io/posts/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/ -&lt;p&gt;Win10 出现不能匿名访问局域网共享，同时本机的共享也无法被其它机器匿名访问。 本文给出了设置方法来解决此问题。&lt;/p&gt;
+&lt;h2 id=&#34;1-前言&#34;&gt;1. 前言&lt;/h2&gt;
+&lt;p&gt;  Win10的安全性设置越来越严格，与此同时，也带来了易用性的缺失。新手往往会陷入很多功能不能使用的窘境中，从而导致了对Win10的排斥。局域网共享就是一个很典型的例子。&lt;/p&gt;
+&lt;p&gt;  对很多中小企业而言， 无密码的局域网共享是非常方便和实用的功能，对于提升生产力而言，安全性是次要考虑的因素。 但是Win10 对无密码的局域网共享是深恶痛绝的，默认设置根本就不能使用。 尤其是局域网中同时还存在WinXP, Win7等共享的情况下。&lt;/p&gt;
+&lt;p&gt;下面我们来一步步设置，使得Win10支持浏览和访问局域网中的共享。&lt;/p&gt;
+&lt;h2 id=&#34;2-设置步骤&#34;&gt;2. 设置步骤&lt;/h2&gt;
+&lt;h3 id=&#34;21-设置文件和打印机共享&#34;&gt;2.1 设置文件和打印机共享&lt;/h3&gt;
+&lt;p&gt;依次打开“&lt;strong&gt;控制面板\网络和 Internet\网络和共享中心\高级共享设置&lt;/strong&gt;”， 然后对&amp;quot;专用&amp;quot;, &amp;ldquo;来宾&amp;rdquo;, “所有网络”网络分别设置。&lt;/p&gt;
+&lt;p&gt;注意：“所有网络”要设置“&lt;strong&gt;关闭密码保护共享&lt;/strong&gt;”。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../static/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-7f8fdd5e139442d4478caaa8ba2d4be9.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;22-开启相应服务&#34;&gt;2.2 开启相应服务&lt;/h3&gt;
+&lt;p&gt;依次打开“&lt;strong&gt;控制面板\管理工具\服务&lt;/strong&gt;”， 找到“Function DiscoveryResource Publication”服务， 将其设置为“自动启动”。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../static/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-0c7231f1f98f1588c8045b9143125914.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;23-启用不安全来宾访问&#34;&gt;2.3 启用不安全来宾访问&lt;/h3&gt;
+&lt;p&gt;Win10默认移除了对匿名网络的不安全访问，我们需要开启它。一共2步设置，分别在&lt;strong&gt;注册表设置&lt;/strong&gt;和组策略中设置。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;注册表设置&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;按下 win+R 组合键，呼出“运行”对话框，输入： regedit  。依次找到如下键值&lt;strong&gt;AllowInsecureGuestAuth&lt;/strong&gt;，(类型为DWORD)并设置为“&lt;strong&gt;1&lt;/strong&gt;”。&lt;/p&gt;
+&lt;p&gt;[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters]&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;AllowInsecureGuestAuth&amp;rdquo;=dword:00000001&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../static/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-494eb1983acc161b0b4c89fd44d62d62.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;组策略设置&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;按下 win+R 组合键，呼出“运行”对话框，输入： gpedit.msc, 打开&amp;quot;组策略设置&amp;quot;。&lt;/p&gt;
+&lt;p&gt;依次展开“计算机配置&amp;ndash;管理模板&amp;ndash;网络&amp;ndash;Lanman 工作站”，设置“启用不安全的来宾登录”为启用，并点击【应用】-【保存】设置。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../static/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-a04d1ef446b67264f32022eeef6915bb.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;24-启用smb10功能&#34;&gt;2.4 启用SMB1.0功能&lt;/h3&gt;
+&lt;p&gt;依次打开“&lt;strong&gt;控制面板\程序\程序和功能&lt;/strong&gt;”， 点击“&lt;strong&gt;启用或关闭Windows功能&lt;/strong&gt;”&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../static/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-ef149610b58b896486359a914b2dd20d.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;25-重新启动windows系统&#34;&gt;2.5 重新启动Windows系统&lt;/h3&gt;
+&lt;p&gt;重启系统后，网络邻居里面应该就能看见局域网中的所有共享用户，并能访问其共享资源。&lt;/p&gt;
+&lt;h2 id=&#34;3-本机共享设置&#34;&gt;3. 本机共享设置&lt;/h2&gt;
+&lt;p&gt;在需要设置共享的驱动器/目录上，点击右键，属性，共享，高级共享，权限，添加Everyone用户，在设置相应权限即可。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../static/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-a158d4343b1f181714d3148788e672f7.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;4-faq&#34;&gt;4. FAQ&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;如果只是一两台服务器共享无法访问，可以直接使用“&lt;strong&gt;凭据管理&lt;/strong&gt;”功能添加凭据即可。&lt;strong&gt;上述的所有设置(1,2,3步)都可以不用&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;方法如下：&lt;/p&gt;
+&lt;p&gt;依次打开“&lt;strong&gt;控制面板\用户帐户\凭据管理器&lt;/strong&gt;”，依次点击“windows凭据”，“添加windows凭据”，输入被共享的服务器用户名和密码即可。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../static/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/1569226002-4c1c39fbb2cb5c4113a8f88920873912.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+- https://syaofox.github.io/posts/windows10-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/ - 2020</description>
+        </item>
     
     
     
@@ -5090,154 +5144,6 @@ TOOLS: (1) UEdit32 (2) PCTOOL&lt;/p&gt;
 &lt;p&gt;在网球场的树木Click一下亦有以上的提示&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://syaofox.github.io/posts/%E5%A4%8F%E6%97%A5%E7%9A%84%E5%9B%9E%E5%BF%86~%E5%90%8C%E7%BA%A7%E7%94%9F2/ - 2020</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Ubuntu Server 20.04 LTS NAS 安装记录</title>
-        <link>https://syaofox.github.io/posts/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</link>
-        <pubDate>Mon, 01 Jun 2020 11:15:54 +0800</pubDate>
-        
-        <guid>https://syaofox.github.io/posts/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
-        <description>Syaofox&#39;s Elysion https://syaofox.github.io/posts/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/ -&lt;h2 id=&#34;安装-ubuntu&#34;&gt;安装 Ubuntu&lt;/h2&gt;
-&lt;p&gt;注意选中安装ssh,否则安装完成无法远程连接&lt;/p&gt;
-&lt;h2 id=&#34;更新系统&#34;&gt;更新系统&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt update
-sudo apt upgrade
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;设置时区&#34;&gt;设置时区&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 查看当前时区&lt;/span&gt;
-timedatectl
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 列出所有时区&lt;/span&gt;
-timedatectl list-timezones
-&lt;span style=&#34;color:#228b22&#34;&gt;# 显示亚洲时区&lt;/span&gt;
-timedatectl list-timezones | grep Asia
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 设置时区为上海&lt;/span&gt;
-sudo timedatectl set-timezone Asia/Shanghai
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;修改-root-用户登录权限&#34;&gt;修改 root 用户登录权限&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 编辑 &amp;#39;/etc/ssh/sshd_config&amp;#39;&lt;/span&gt;
-sudo sed -i &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#39;s/#PermitRootLogin prohibit-password/PermitRootLogin yes/&amp;#39;&lt;/span&gt; /etc/ssh/sshd_config
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# 重启SSH服务&lt;/span&gt;
-sudo systemctl restart ssh
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# 设置root账号密码&lt;/span&gt;
-sudo passwd root
-初始化硬盘
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 查看分区情况&lt;/span&gt;
-lsblk
-&lt;span style=&#34;color:#228b22&#34;&gt;# 使用 gdisk 初始化硬盘&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;添加账号&#34;&gt;添加账号&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;adduser wife 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;使用-zfs-系统&#34;&gt;使用 ZFS 系统&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 安装 zfs&lt;/span&gt;
-apt update
-apt install zfsutils-linux
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# 重启&lt;/span&gt;
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# 创建 RAIDZ2 存储池 /dev/disk/by-id&lt;/span&gt;
-zpool create pool raidz2 /dev/sdb /dev/sdc /dev/sdd /dev/sde 
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# 查看存储池状态&lt;/span&gt;
-zpool status -v
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# 查看存储池空间&lt;/span&gt;
-df -h | grep pool
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# 创建数据集并设置开启lz4压缩&lt;/span&gt;
-zfs create -o &lt;span style=&#34;color:#00688b&#34;&gt;compression&lt;/span&gt;=lz4 pool/share
-zfs create -o &lt;span style=&#34;color:#00688b&#34;&gt;compression&lt;/span&gt;=lz4 pool/media
-zfs create -o &lt;span style=&#34;color:#00688b&#34;&gt;compression&lt;/span&gt;=lz4 pool/work 
-zfs create -o &lt;span style=&#34;color:#00688b&#34;&gt;compression&lt;/span&gt;=lz4 pool/me
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# 修改各数据集挂载点权限&lt;/span&gt;
-chmod -R &lt;span style=&#34;color:#b452cd&#34;&gt;777&lt;/span&gt; /pool/share
-chmod -R &lt;span style=&#34;color:#b452cd&#34;&gt;777&lt;/span&gt; /pool/media
-chmod -R &lt;span style=&#34;color:#b452cd&#34;&gt;777&lt;/span&gt; /pool/work
-chmod -R &lt;span style=&#34;color:#b452cd&#34;&gt;777&lt;/span&gt; /pool/me
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;安装-samba-并设置-samba-共享&#34;&gt;安装 samba 并设置 samba 共享&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 安装 samba&lt;/span&gt;
-apt install samba
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# 备份配置文件&lt;/span&gt;
-cp /etc/samba/smb.conf /etc/samba/smb.conf.bak 
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# 修改配置文件 添加共享文件夹配置&lt;/span&gt;
-nano /etc/samba/smb.conf
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# 所有人可以访问&lt;/span&gt;
-[share]
- &lt;span style=&#34;color:#00688b&#34;&gt;path&lt;/span&gt; = /pool/share
- &lt;span style=&#34;color:#00688b&#34;&gt;browseable&lt;/span&gt; = yes
- &lt;span style=&#34;color:#658b00&#34;&gt;read&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;only&lt;/span&gt; = no
- &lt;span style=&#34;color:#00688b&#34;&gt;public&lt;/span&gt; = yes
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# syaofox 可读写 wife 可读&lt;/span&gt;
-[media]
- &lt;span style=&#34;color:#00688b&#34;&gt;path&lt;/span&gt; = /pool/media
- &lt;span style=&#34;color:#00688b&#34;&gt;browseable&lt;/span&gt; = yes
- &lt;span style=&#34;color:#658b00&#34;&gt;read&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;only&lt;/span&gt; = no
- valid &lt;span style=&#34;color:#00688b&#34;&gt;users&lt;/span&gt; = syaofox wife
- &lt;span style=&#34;color:#658b00&#34;&gt;read&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;list&lt;/span&gt; = syaofox wife
- write &lt;span style=&#34;color:#00688b&#34;&gt;list&lt;/span&gt; = syaofox
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# syaofox 可读写 wife 可读&lt;/span&gt;
-[work]
- &lt;span style=&#34;color:#00688b&#34;&gt;path&lt;/span&gt; = /pool/work
- &lt;span style=&#34;color:#00688b&#34;&gt;browseable&lt;/span&gt; = yes
- &lt;span style=&#34;color:#658b00&#34;&gt;read&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;only&lt;/span&gt; = no
- valid &lt;span style=&#34;color:#00688b&#34;&gt;users&lt;/span&gt; = syaofox wife
- &lt;span style=&#34;color:#658b00&#34;&gt;read&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;list&lt;/span&gt; = syaofox wife
- write &lt;span style=&#34;color:#00688b&#34;&gt;list&lt;/span&gt; = syaofox
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# syaofox可读写&lt;/span&gt;
-[me]
- &lt;span style=&#34;color:#00688b&#34;&gt;path&lt;/span&gt; = /pool/me
- &lt;span style=&#34;color:#00688b&#34;&gt;browseable&lt;/span&gt; = yes
- &lt;span style=&#34;color:#658b00&#34;&gt;read&lt;/span&gt; &lt;span style=&#34;color:#00688b&#34;&gt;only&lt;/span&gt; = no
- valid &lt;span style=&#34;color:#00688b&#34;&gt;users&lt;/span&gt; = syaofox
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# 创建 samba 用户&lt;/span&gt;
-smbpasswd -a syaofox
-smbpasswd -a wife
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# 重启 samba 服务&lt;/span&gt;
-service smbd restart
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;安装-docker&#34;&gt;安装 docker&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#228b22&#34;&gt;# 安装依赖包&lt;/span&gt;
-apt update
-apt install apt-transport-https ca-certificates curl software-properties-common
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# 添加GPG&lt;/span&gt;
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# 添加源,注意版本 这里对应20.04 focal&lt;/span&gt;
-add-apt-repository &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable&amp;#34;&lt;/span&gt;
-apt update
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# 查看 apt 缓存,确保源生效&lt;/span&gt;
-apt-cache policy docker-ce
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# 安装 docker&lt;/span&gt;
-apt install docker-ce
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# 安装 Docker Compose 注意更新版本&lt;/span&gt;
-curl -L &lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;https://github.com/docker/compose/releases/download/1.26.0/docker-compose-&lt;/span&gt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;$(&lt;/span&gt;uname -s&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;$(&lt;/span&gt;uname -m&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#cd5555&#34;&gt;&amp;#34;&lt;/span&gt; -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-
-&lt;span style=&#34;color:#228b22&#34;&gt;# 安装 portainer&lt;/span&gt;
-docker volume create portainer_data
-docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过服务器&lt;code&gt;ip:9000&lt;/code&gt;访问&lt;code&gt;portainer&lt;/code&gt;后台&lt;/p&gt;
-&lt;p&gt;添加国内镜像加快docker镜像拉取速度&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;科大 &lt;a href=&#34;https://docker.mirrors.ustc.edu.cn&#34;&gt;https://docker.mirrors.ustc.edu.cn&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;七牛云 &lt;a href=&#34;https://reg-mirror.qiniu.com&#34;&gt;https://reg-mirror.qiniu.com&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;安装邮件服务器&#34;&gt;安装邮件服务器&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://syaofox.github.io/linux/ubuntu-%E9%85%8D%E7%BD%AE-postfix-%E9%80%9A%E8%BF%87-gmail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6&#34;&gt;Ubuntu 配置 Postfix 通过 Gmail 发送邮件&lt;/a&gt;&lt;/p&gt;
-- https://syaofox.github.io/posts/ubuntuserver2004ltsnas%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/ - 2020</description>
         </item>
     
     
