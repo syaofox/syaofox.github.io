@@ -113,7 +113,54 @@ and the repository exists.
 &lt;ol>
 &lt;li>在SSH中，@与:之间就是Host，因此在git clone &lt;a class="link" href="mailto:git@github.com" >git@github.com&lt;/a>:convict/my-repo.git中，Host就是github.com，但在前面配置的config文件中，指定了两个Host，分别为my与company，而没有一个加github.com的Host！这是尤其需要注意的。&lt;/li>
 &lt;li>使用git clone git@my:convict/my-repo.git时，会在config中找到一个值为my的Host，接着到其HostName上找到与其私钥对应的公钥的仓库地址。在本例中，就是根据其私钥id_rsa_my，在github.com托管平台上，匹配对应的公钥，然后匹配到convict/my-repo.git这个仓库。&lt;/li>
-&lt;/ol></description></item><item><title>解决cmd下运行python指令弹出微软商店现象</title><link>https://syaofox.github.io/p/%E8%A7%A3%E5%86%B3cmd%E4%B8%8B%E8%BF%90%E8%A1%8Cpython%E6%8C%87%E4%BB%A4%E5%BC%B9%E5%87%BA%E5%BE%AE%E8%BD%AF%E5%95%86%E5%BA%97%E7%8E%B0%E8%B1%A1/</link><pubDate>Sat, 22 Jan 2022 10:51:35 +0800</pubDate><guid>https://syaofox.github.io/p/%E8%A7%A3%E5%86%B3cmd%E4%B8%8B%E8%BF%90%E8%A1%8Cpython%E6%8C%87%E4%BB%A4%E5%BC%B9%E5%87%BA%E5%BE%AE%E8%BD%AF%E5%95%86%E5%BA%97%E7%8E%B0%E8%B1%A1/</guid><description>&lt;h2 id="问题">问题&lt;/h2>
+&lt;/ol></description></item><item><title>windows上powershell脚本文件运行权限的问题</title><link>https://syaofox.github.io/p/windows%E4%B8%8Apowershell%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E8%BF%90%E8%A1%8C%E6%9D%83%E9%99%90%E7%9A%84%E9%97%AE%E9%A2%98/</link><pubDate>Sat, 22 Jan 2022 10:59:57 +0800</pubDate><guid>https://syaofox.github.io/p/windows%E4%B8%8Apowershell%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E8%BF%90%E8%A1%8C%E6%9D%83%E9%99%90%E7%9A%84%E9%97%AE%E9%A2%98/</guid><description>&lt;h2 id="问题描述">问题描述&lt;/h2>
+&lt;p>我在某个项目里使用了pipenv虚拟环境，当我在VS Code中右键该项目的文件-在集成终端中打开，就会爆出下面的错误 - &lt;code>&amp;amp; : 无法加载文件 C:\Users\Kearney\.virtualenvs\fb-xzc3iOtr\Scripts\Activate.ps1，因为在此系统上禁止运行脚本。有关详细信息，请参阅 https:/go.micros oft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。&lt;/code>&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 569;
+flex-basis: 1367px"
+>
+&lt;a href="https://syaofox.github.io/p/windows%E4%B8%8Apowershell%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E8%BF%90%E8%A1%8C%E6%9D%83%E9%99%90%E7%9A%84%E9%97%AE%E9%A2%98/v2-111911d588d094c155f5f8d4029a66e2_r.jpg" data-size="1955x343">
+&lt;img src="https://syaofox.github.io/p/windows%E4%B8%8Apowershell%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E8%BF%90%E8%A1%8C%E6%9D%83%E9%99%90%E7%9A%84%E9%97%AE%E9%A2%98/v2-111911d588d094c155f5f8d4029a66e2_r.jpg"
+width="1955"
+height="343"
+srcset="https://syaofox.github.io/p/windows%E4%B8%8Apowershell%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E8%BF%90%E8%A1%8C%E6%9D%83%E9%99%90%E7%9A%84%E9%97%AE%E9%A2%98/v2-111911d588d094c155f5f8d4029a66e2_r_hu5036f2db0a32e5b6ef80d996466d90a0_61051_480x0_resize_q75_box.jpg 480w, https://syaofox.github.io/p/windows%E4%B8%8Apowershell%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E8%BF%90%E8%A1%8C%E6%9D%83%E9%99%90%E7%9A%84%E9%97%AE%E9%A2%98/v2-111911d588d094c155f5f8d4029a66e2_r_hu5036f2db0a32e5b6ef80d996466d90a0_61051_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p>
+&lt;h2 id="解决办法">解决办法&lt;/h2>
+&lt;p>在&lt;a class="link" href="https://www.jianshu.com/p/4eaad2163567" target="_blank" rel="noopener"
+>PowerShell：因为在此系统上禁止运行脚本，解决方法 - sinler&lt;/a>中可以知道问题的根源在于win10默认的执行策略是&lt;strong>不载入任何配置文件，不运行任何脚本&lt;/strong>。这一点可以通过命令行查看&lt;/p>
+&lt;h2 id="查看当前执行策略">查看当前执行策略&lt;/h2>
+&lt;p>在控制台敲入命令&lt;code>get-executionpolicy&lt;/code>回车即可，默认是Restricted&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&amp;gt; get-executionpolicy
+Restricted
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>可以加上参数&lt;code>-Scope CurrentUser&lt;/code>表示当前用户，默认是本机&lt;/p>
+&lt;h3 id="参数详解">参数详解&lt;/h3>
+&lt;blockquote>
+&lt;p>– Restricted: 不载入任何配置文件，不运行任何脚本。 “Restricted” 是默认的。&lt;br>
+– AllSigned: 只有被Trusted publisher签名的脚本或者配置文件才能使用，包括你自己再本地写的脚本。&lt;br>
+– RemoteSigned: 对于从Internet上下载的脚本或者配置文件，只有被Trusted，publisher签名的才能使用。&lt;br>
+– Unrestricted: 可以载入所有配置文件，可以运行所有脚本文件. 如果你运行一个从internet下载并且没有签名的脚本，在运行之前，你会被提示需要一定的权限。&lt;br>
+– Bypass: 所有东西都可以使用，并且没有提示和警告。&lt;br>
+– Undefined: 删除当前scope被赋予的ExecutionPolicy，但是Group Policy scope的Execution Policy不会被删除。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="修改执行策略">修改执行策略&lt;/h2>
+&lt;p>.涉及到注册表问题，这里必须“以管理员身份运行”选项启动 &lt;strong>Windows PowerShell&lt;/strong>&lt;/p>
+&lt;h3 id="格式">格式：&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>Set-ExecutionPolicy 参数&lt;/code>：设置全局执行策略为参数&lt;/li>
+&lt;li>&lt;code>Set-ExecutionPolicy 参数 -Scope CurrentUser&lt;/code>：设置当前用户执行策略为参数&lt;br>
+例子&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&amp;gt; Set-ExecutionPolicy AllSigned
+&amp;gt; Set-ExecutionPolicy -Scope CurrentUser Unrestricted
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="解决办法-1">解决办法&lt;/h3>
+&lt;p>实践表明，仅设置当前用户的执行策略不需要管理员身份的powershell，在vs code的集成终端就能解决&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&amp;gt; Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>实践表明：AllSigned参数不能解决问题，RemoteSigned才解决了这个问题，带来的好处就是省掉了每次进入环境都需要敲一次pipenv shell.&lt;/p></description></item><item><title>解决cmd下运行python指令弹出微软商店现象</title><link>https://syaofox.github.io/p/%E8%A7%A3%E5%86%B3cmd%E4%B8%8B%E8%BF%90%E8%A1%8Cpython%E6%8C%87%E4%BB%A4%E5%BC%B9%E5%87%BA%E5%BE%AE%E8%BD%AF%E5%95%86%E5%BA%97%E7%8E%B0%E8%B1%A1/</link><pubDate>Sat, 22 Jan 2022 10:51:35 +0800</pubDate><guid>https://syaofox.github.io/p/%E8%A7%A3%E5%86%B3cmd%E4%B8%8B%E8%BF%90%E8%A1%8Cpython%E6%8C%87%E4%BB%A4%E5%BC%B9%E5%87%BA%E5%BE%AE%E8%BD%AF%E5%95%86%E5%BA%97%E7%8E%B0%E8%B1%A1/</guid><description>&lt;h2 id="问题">问题&lt;/h2>
 &lt;p>win10系统下下载了python之后每次使用cmd执行python指令都会自动弹出微软商店
 解决方案:
 在查询菜单栏中搜索“管理应用执行别名” ,将应用安装程序的两项关掉可以解决&lt;/p>
@@ -33637,51 +33684,4 @@ docker run -d -p 8000:8000 -p 9000:9000 --name&lt;span class="o">=&lt;/span>port
 >https://docker.mirrors.ustc.edu.cn&lt;/a>&lt;/li>
 &lt;li>七牛云 &lt;a class="link" href="https://reg-mirror.qiniu.com" target="_blank" rel="noopener"
 >https://reg-mirror.qiniu.com&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>windows上powershell脚本文件运行权限的问题</title><link>https://syaofox.github.io/p/windows%E4%B8%8Apowershell%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E8%BF%90%E8%A1%8C%E6%9D%83%E9%99%90%E7%9A%84%E9%97%AE%E9%A2%98/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://syaofox.github.io/p/windows%E4%B8%8Apowershell%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E8%BF%90%E8%A1%8C%E6%9D%83%E9%99%90%E7%9A%84%E9%97%AE%E9%A2%98/</guid><description>&lt;h2 id="问题描述">问题描述&lt;/h2>
-&lt;p>我在某个项目里使用了pipenv虚拟环境，当我在VS Code中右键该项目的文件-在集成终端中打开，就会爆出下面的错误 - &lt;code>&amp;amp; : 无法加载文件 C:\Users\Kearney\.virtualenvs\fb-xzc3iOtr\Scripts\Activate.ps1，因为在此系统上禁止运行脚本。有关详细信息，请参阅 https:/go.micros oft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。&lt;/code>&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 569;
-flex-basis: 1367px"
->
-&lt;a href="https://syaofox.github.io/p/windows%E4%B8%8Apowershell%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E8%BF%90%E8%A1%8C%E6%9D%83%E9%99%90%E7%9A%84%E9%97%AE%E9%A2%98/v2-111911d588d094c155f5f8d4029a66e2_r.jpg" data-size="1955x343">
-&lt;img src="https://syaofox.github.io/p/windows%E4%B8%8Apowershell%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E8%BF%90%E8%A1%8C%E6%9D%83%E9%99%90%E7%9A%84%E9%97%AE%E9%A2%98/v2-111911d588d094c155f5f8d4029a66e2_r.jpg"
-width="1955"
-height="343"
-srcset="https://syaofox.github.io/p/windows%E4%B8%8Apowershell%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E8%BF%90%E8%A1%8C%E6%9D%83%E9%99%90%E7%9A%84%E9%97%AE%E9%A2%98/v2-111911d588d094c155f5f8d4029a66e2_r_hu5036f2db0a32e5b6ef80d996466d90a0_61051_480x0_resize_q75_box.jpg 480w, https://syaofox.github.io/p/windows%E4%B8%8Apowershell%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E8%BF%90%E8%A1%8C%E6%9D%83%E9%99%90%E7%9A%84%E9%97%AE%E9%A2%98/v2-111911d588d094c155f5f8d4029a66e2_r_hu5036f2db0a32e5b6ef80d996466d90a0_61051_1024x0_resize_q75_box.jpg 1024w"
-loading="lazy"
->
-&lt;/a>
-&lt;/figure>&lt;/p>
-&lt;h2 id="解决办法">解决办法&lt;/h2>
-&lt;p>在&lt;a class="link" href="https://www.jianshu.com/p/4eaad2163567" target="_blank" rel="noopener"
->PowerShell：因为在此系统上禁止运行脚本，解决方法 - sinler&lt;/a>中可以知道问题的根源在于win10默认的执行策略是&lt;strong>不载入任何配置文件，不运行任何脚本&lt;/strong>。这一点可以通过命令行查看&lt;/p>
-&lt;h2 id="查看当前执行策略">查看当前执行策略&lt;/h2>
-&lt;p>在控制台敲入命令&lt;code>get-executionpolicy&lt;/code>回车即可，默认是Restricted&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&amp;gt; get-executionpolicy
-Restricted
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>可以加上参数&lt;code>-Scope CurrentUser&lt;/code>表示当前用户，默认是本机&lt;/p>
-&lt;h3 id="参数详解">参数详解&lt;/h3>
-&lt;blockquote>
-&lt;p>– Restricted: 不载入任何配置文件，不运行任何脚本。 “Restricted” 是默认的。&lt;br>
-– AllSigned: 只有被Trusted publisher签名的脚本或者配置文件才能使用，包括你自己再本地写的脚本。&lt;br>
-– RemoteSigned: 对于从Internet上下载的脚本或者配置文件，只有被Trusted，publisher签名的才能使用。&lt;br>
-– Unrestricted: 可以载入所有配置文件，可以运行所有脚本文件. 如果你运行一个从internet下载并且没有签名的脚本，在运行之前，你会被提示需要一定的权限。&lt;br>
-– Bypass: 所有东西都可以使用，并且没有提示和警告。&lt;br>
-– Undefined: 删除当前scope被赋予的ExecutionPolicy，但是Group Policy scope的Execution Policy不会被删除。&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="修改执行策略">修改执行策略&lt;/h2>
-&lt;p>.涉及到注册表问题，这里必须“以管理员身份运行”选项启动 &lt;strong>Windows PowerShell&lt;/strong>&lt;/p>
-&lt;h3 id="格式">格式：&lt;/h3>
-&lt;ul>
-&lt;li>&lt;code>Set-ExecutionPolicy 参数&lt;/code>：设置全局执行策略为参数&lt;/li>
-&lt;li>&lt;code>Set-ExecutionPolicy 参数 -Scope CurrentUser&lt;/code>：设置当前用户执行策略为参数&lt;br>
-例子&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&amp;gt; Set-ExecutionPolicy AllSigned
-&amp;gt; Set-ExecutionPolicy -Scope CurrentUser Unrestricted
-&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="解决办法-1">解决办法&lt;/h3>
-&lt;p>实践表明，仅设置当前用户的执行策略不需要管理员身份的powershell，在vs code的集成终端就能解决&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&amp;gt; Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>实践表明：AllSigned参数不能解决问题，RemoteSigned才解决了这个问题，带来的好处就是省掉了每次进入环境都需要敲一次pipenv shell.&lt;/p></description></item></channel></rss>
+&lt;/ul></description></item></channel></rss>
