@@ -8556,68 +8556,7 @@ loading="lazy"
 &lt;h2 id="检索-dom-节点">检索 DOM 节点&lt;/h2>
 &lt;p>现在，您可以使用 &lt;code>window.get_elements(selector)&lt;/code> 函数检索DOM节点。节点使用 &lt;a class="link" href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Fazaslavsky%2FdomJSON" target="_blank" rel="noopener"
 >domJSON&lt;/a> 库进行序列化。&lt;a class="link" href="https://links.jianshu.com/go?to=https%3A%2F%2Fpywebview.flowrl.com%2Fexamples%2Fget_elements.html" target="_blank" rel="noopener"
->Example&lt;/a>&lt;/p></description></item><item><title>Python Jinja2使用方法</title><link>https://syaofox.github.io/p/python-jinja2%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</link><pubDate>Wed, 22 Dec 2021 10:43:25 +0800</pubDate><guid>https://syaofox.github.io/p/python-jinja2%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</guid><description>&lt;p>说起Jinja2 想必每个资深的python程序猿都有所接触，因为它被作为了一些主流web框架(如Flask, Django)的数据渲染的底层调用，尤其是其模板语言，相当方便。&lt;/p>
-&lt;p>近期利用Jinja2完成了一个后台(Python)与前端(HTML)之间的数据交互，利用了Jinja2的模板语言，省下了相当于多的心思，下面就先分享一下我使用的模板语言主要有哪些，还有注意事项吧~~&lt;/p>
-&lt;p>一、 作为一个模板语言，它的主要优势是可以省去很多重复的前端代码，用类似于后台循环代码等方式来产生html，首先，需要读入一个带有模板语言的html 模板，类似于如下:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">head&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">meta&lt;/span> &lt;span class="na">charset&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;UTF-8&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">head&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span> &lt;span class="na">style&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#39;font-size:15px; font-family:Arial;&amp;#39;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>{{ content }}&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">table&lt;/span> &lt;span class="na">border&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;1&amp;#34;&lt;/span> &lt;span class="na">cellspacing&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;0&amp;#34;&lt;/span> &lt;span class="na">cellpadding&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;0&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">tr&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-{% if array_table_head %}
-{% for var_i in array_table_head %}
-&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">th&lt;/span> &lt;span class="na">style&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;font-size: 15px; padding: 3px;&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>{{var_i}}&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">th&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-{% endfor %}
-{% endif %}
-&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">tr&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-{% if dict_table_data %}
-{% for table_data in dict_table_data %}
-&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">tr&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">th&lt;/span> &lt;span class="na">style&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;font-size: 12px; padding: 3px;&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>{{ table_data.Name }}&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">th&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">th&lt;/span> &lt;span class="na">style&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;font-size: 12px; padding: 3px;&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>{{ table_data.Type }}&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">th&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">th&lt;/span> &lt;span class="na">style&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;font-size: 12px; padding: 3px;&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>{{ table_data.Value }}&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">th&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">tr&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-{% endfor %}
-{% endif %}
-&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">table&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>其中， 以&lt;code>{% %}&lt;/code>包裹的为模板语句，语法和python神似，只有些许不同，详见&lt;a class="link" href="http://jinja.pocoo.org/docs/2.10/" target="_blank" rel="noopener"
->Jinja2官方文档&lt;/a>(过滤器等)，以&lt;code>{{ }}&lt;/code> 包裹的为变量引用，会被Jinja2解析为一个变量，即动态变化的数据。&lt;/p>
-&lt;p>二、加载模板&lt;/p>
-&lt;p>有了上述的html模板，后台利用如下代码读入。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python"> &lt;span class="kn">import&lt;/span> &lt;span class="nn">jinja2&lt;/span>
-&lt;span class="n">env&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">jinja2&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Environment&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">loader&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">jinja2&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">FileSystemLoader&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="p">))&lt;/span>
-&lt;span class="n">temp&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">env&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_template&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;statics/template.html&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>注意一点: 其中path需要为当前python文件&lt;strong>所在目录&lt;/strong>的完整路径，get_template内部的参数为html模板相对于该python文件所在目录的路径(相对路径)。&lt;/p>
-&lt;p>三、模拟数据，对模板进行Render&lt;/p>
-&lt;p>通过第一部分的html模板中我们不难发现该模板一共需要三个变量，content、 array_table_head 以及 dict_table_data。所以我们需要在后台对这三个变量进行模拟。&lt;/p>
-&lt;p>1. 类型分析。需要注意的是，变量的类型一定要把控好，从模板的观察可以看出content是直接用&lt;code>{{ }}&lt;/code>包裹来引用的，所以在后台应该是一种可以直接取值的类型，例如str， int等。而array_table_head是通过遍历来引用的，说明最外层在后台是一个List或tuple等可遍历对象，其次在内层是直接取值的，所以后台应该是一个简单的str或者int的列表。同理，对于dict_table_data, 则是一个字典字符串，所以三个变量的模拟应该如下:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python"> &lt;span class="n">render_dict&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{}&lt;/span>
-&lt;span class="n">dict_table_data&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[{&lt;/span>&lt;span class="s1">&amp;#39;Name&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39;Basketball&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Type&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39;Sports&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Value&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">},&lt;/span>
-&lt;span class="p">{&lt;/span>&lt;span class="s1">&amp;#39;Name&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39;Football&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Type&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39;Sports&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Value&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mf">4.5&lt;/span>&lt;span class="p">},&lt;/span>
-&lt;span class="p">{&lt;/span>&lt;span class="s1">&amp;#39;Name&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39;Pencil&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Type&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39;Learning&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Value&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">},&lt;/span>
-&lt;span class="p">{&lt;/span>&lt;span class="s1">&amp;#39;Name&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39;Hat&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Type&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39;Wearing&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Value&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">}]&lt;/span>
-&lt;span class="n">render_dict&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">update&lt;/span>&lt;span class="p">({&lt;/span>&lt;span class="s1">&amp;#39;Content&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39;Hello reader, here is a table:&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;span class="s1">&amp;#39;array_table_head&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;Name&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Type&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Value&amp;#39;&lt;/span>&lt;span class="p">],&lt;/span>
-&lt;span class="s1">&amp;#39;dict_table_data&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">dict_table_data&lt;/span>&lt;span class="p">})&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>2. 模板渲染&lt;/p>
-&lt;p>最后一步，即通过render方法将变量放入模板中，然后生成新的html写入文件，此时，模板语言将会全部被转化为html。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="n">temp_out&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">temp&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">render&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">content&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">render_dict&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;Content&amp;#39;&lt;/span>&lt;span class="p">],&lt;/span>
-&lt;span class="n">array_table_head&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">render_dict&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;array_table_head&amp;#39;&lt;/span>&lt;span class="p">],&lt;/span>
-&lt;span class="n">dict_table_data&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">render_dict&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;dict_table_data&amp;#39;&lt;/span>&lt;span class="p">])&lt;/span>
-&lt;span class="k">with&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;statics/out.html&amp;#39;&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="s1">&amp;#39;w&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">encoding&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;utf-8&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">:&lt;/span>
-&lt;span class="n">f&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">writelines&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">temp_out&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">f&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>四、总结&lt;/p>
-&lt;p>Jinja2 对于html数据渲染有奇效，同时还具有许多优点：&lt;/p>
-&lt;p>(1)安全: 强大的 HTML 自动转义系统保护系统免受 XSS攻击。&lt;/p>
-&lt;p>(2)编译快速: 及时编译最优的 python 代码。&lt;/p>
-&lt;p>(3)易于调试。异常的行数直接指向模板中的对应行。&lt;/p>
-&lt;p>(4)具有模板继承的特性，减少大量的工作量。&lt;/p></description></item><item><title>股市技术分析利器之TA-Lib（二）</title><link>https://syaofox.github.io/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/</link><pubDate>Wed, 22 Dec 2021 10:36:04 +0800</pubDate><guid>https://syaofox.github.io/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/</guid><description>&lt;blockquote>
+>Example&lt;/a>&lt;/p></description></item><item><title>股市技术分析利器之TA-Lib（二）</title><link>https://syaofox.github.io/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/</link><pubDate>Wed, 22 Dec 2021 10:36:04 +0800</pubDate><guid>https://syaofox.github.io/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/</guid><description>&lt;blockquote>
 &lt;p>不进行研究的投资，就像打扑克从来不看牌一样，必然失败——彼得·林奇&lt;/p>
 &lt;/blockquote>
 &lt;p>&lt;strong>引言&lt;/strong>&lt;/p>
