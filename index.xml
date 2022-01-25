@@ -8585,8 +8585,8 @@ loading="lazy"
 &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">table&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>其中， 以{% %}包裹的为模板语句，语法和python神似，只有些许不同，详见&lt;a class="link" href="http://jinja.pocoo.org/docs/2.10/" target="_blank" rel="noopener"
->Jinja2官方文档&lt;/a>(过滤器等)，以{{ }} 包裹的为变量引用，会被Jinja2解析为一个变量，即动态变化的数据。&lt;/p>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>其中， 以&lt;code>{% %}&lt;/code>包裹的为模板语句，语法和python神似，只有些许不同，详见&lt;a class="link" href="http://jinja.pocoo.org/docs/2.10/" target="_blank" rel="noopener"
+>Jinja2官方文档&lt;/a>(过滤器等)，以&lt;code>{{ }}&lt;/code> 包裹的为变量引用，会被Jinja2解析为一个变量，即动态变化的数据。&lt;/p>
 &lt;p>二、加载模板&lt;/p>
 &lt;p>有了上述的html模板，后台利用如下代码读入。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python"> &lt;span class="kn">import&lt;/span> &lt;span class="nn">jinja2&lt;/span>
@@ -8595,7 +8595,7 @@ loading="lazy"
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>注意一点: 其中path需要为当前python文件&lt;strong>所在目录&lt;/strong>的完整路径，get_template内部的参数为html模板相对于该python文件所在目录的路径(相对路径)。&lt;/p>
 &lt;p>三、模拟数据，对模板进行Render&lt;/p>
 &lt;p>通过第一部分的html模板中我们不难发现该模板一共需要三个变量，content、 array_table_head 以及 dict_table_data。所以我们需要在后台对这三个变量进行模拟。&lt;/p>
-&lt;p>1. 类型分析。需要注意的是，变量的类型一定要把控好，从模板的观察可以看出content是直接用{{ }}包裹来引用的，所以在后台应该是一种可以直接取值的类型，例如str， int等。而array_table_head是通过遍历来引用的，说明最外层在后台是一个List或tuple等可遍历对象，其次在内层是直接取值的，所以后台应该是一个简单的str或者int的列表。同理，对于dict_table_data, 则是一个字典字符串，所以三个变量的模拟应该如下:&lt;/p>
+&lt;p>1. 类型分析。需要注意的是，变量的类型一定要把控好，从模板的观察可以看出content是直接用&lt;code>{{ }}&lt;/code>包裹来引用的，所以在后台应该是一种可以直接取值的类型，例如str， int等。而array_table_head是通过遍历来引用的，说明最外层在后台是一个List或tuple等可遍历对象，其次在内层是直接取值的，所以后台应该是一个简单的str或者int的列表。同理，对于dict_table_data, 则是一个字典字符串，所以三个变量的模拟应该如下:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python"> &lt;span class="n">render_dict&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{}&lt;/span>
 &lt;span class="n">dict_table_data&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[{&lt;/span>&lt;span class="s1">&amp;#39;Name&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39;Basketball&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Type&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39;Sports&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Value&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">},&lt;/span>
 &lt;span class="p">{&lt;/span>&lt;span class="s1">&amp;#39;Name&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39;Football&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Type&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39;Sports&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Value&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mf">4.5&lt;/span>&lt;span class="p">},&lt;/span>
