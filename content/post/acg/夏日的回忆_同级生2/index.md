@@ -15,9 +15,9 @@ image: "Doukyuusei2.jpg"
 《同级生2》是由elf公司开发的一款冒险游戏，于1995年发行。本作是《同级生1》的续集，玩家在游戏中可以追求15个女孩（年龄范围从18~38)。 
 
 在某个场合上见了美女，上去搭讪，然后，hehe……估计很多人也只有在游戏里YY的份。但92年《同级生》一代的出现却把这种YY的梦想变成了现实。绝对是H-game史上的一个里程碑，不夸张，一点都不夸张。当时顶级的CG水平，极高的自由度，相当不错的人设，青春的校园背景，尤其是完全创新的游戏方式，一下子让沉浸在电子小说方式的玩家们发现了新大陆。即使到了今天，仍然能够通过卖同级生1周边来赚钱！
-![](dgszzang7410_4_garnet17th_1upin.gif)![](eb600044bf0fff381b2.jpg)
+![](assets/dgszzang7410_4_garnet17th_1upin.gif)![](assets/eb600044bf0fff381b2.jpg)
 
-![](rlacjfrms7_3_1upin.jpg)![](sjey4444_1_1upin.jpg)![](sjey4444_7_1upin.jpg)
+![](assets/rlacjfrms7_3_1upin.jpg)![](assets/sjey4444_1_1upin.jpg)![](assets/sjey4444_7_1upin.jpg)
 
 
 

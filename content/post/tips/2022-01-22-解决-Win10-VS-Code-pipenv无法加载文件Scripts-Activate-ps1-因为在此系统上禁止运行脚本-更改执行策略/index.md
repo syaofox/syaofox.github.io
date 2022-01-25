@@ -1,6 +1,6 @@
 ---
 title: "windows上powershell脚本文件运行权限的问题"
-date: 2022-1-22T10:59:57+08:00
+date: 2022-01-22T10:59:57+08:00
 description: ""
 image: ""
 categories: [Tips]
