@@ -1,0 +1,377 @@
+<!doctype html><html lang=zh-cn>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="市场有自己的时间观念。股票投资就如同任何人类互动一样，耐心是一项美德。——罗伯特·D·爱德华《股市趋势技术分析》 引言 TA-Lib，全称“Te"><title>股市技术分析利器之TA-Lib（一）</title>
+<link rel=canonical href=https://syaofox.github.io/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/>
+<link rel=stylesheet href=/scss/style.min.1b3ac667198cb83edcc9c45e606a6f4dd6910b8ada6b74d7fd988f1b2dfd0c7c.css><meta property="og:title" content="股市技术分析利器之TA-Lib（一）">
+<meta property="og:description" content="市场有自己的时间观念。股票投资就如同任何人类互动一样，耐心是一项美德。——罗伯特·D·爱德华《股市趋势技术分析》 引言 TA-Lib，全称“Te">
+<meta property="og:url" content="https://syaofox.github.io/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/">
+<meta property="og:site_name" content="Syaofox's Elysion">
+<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="python"><meta property="article:tag" content="量化"><meta property="article:published_time" content="2021-12-22T10:33:58+08:00"><meta property="article:modified_time" content="2021-12-22T10:33:58+08:00">
+<meta name=twitter:site content="@syaofox">
+<meta name=twitter:creator content="@syaofox"><meta name=twitter:title content="股市技术分析利器之TA-Lib（一）">
+<meta name=twitter:description content="市场有自己的时间观念。股票投资就如同任何人类互动一样，耐心是一项美德。——罗伯特·D·爱德华《股市趋势技术分析》 引言 TA-Lib，全称“Te">
+<link rel="shortcut icon" href=favicon.ico>
+</head>
+<body class=article-page>
+<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+<div class="container main-container flex
+on-phone--column extended">
+<aside class="sidebar left-sidebar sticky">
+<button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box>
+<span class=hamburger-inner></span>
+</span>
+</button>
+<header class=site-info>
+<figure class=site-avatar>
+<a href=/>
+<img src=/img/avatar_hud16b5be2cb59ef34c458fa0cf37a2af2_51405_300x0_resize_box_3.png width=300 height=300 class=site-logo loading=lazy alt=Avatar>
+</a>
+<span class=emoji>🍥</span>
+</figure>
+<h1 class=site-name><a href=/>Syaofox's Elysion</a></h1>
+<h2 class=site-description>心似白云常自在,意如流水任东西.</h2><ol class=social-menu>
+<li>
+<a href=https://github.com/syaofox target=_blank title=GitHub><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+</a>
+</li>
+</ol></header>
+<ol class=menu id=main-menu>
+<li>
+<a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>首页</span>
+</a>
+</li>
+<li>
+<a href=/%E5%85%B3%E4%BA%8E/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span>
+</a>
+</li>
+<li>
+<a href=/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span>
+</a>
+</li>
+<li>
+<a href=/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span>
+</a>
+</li>
+<li id=dark-mode-toggle><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span>
+</li>
+</ol>
+</aside>
+<main class="main full-width">
+<article class=main-article>
+<header class=article-header>
+<div class=article-details>
+<header class=article-category>
+<a href=/categories/investment/ style=background-color:#2a9d8f;color:#fff>
+Investment
+</a>
+</header>
+<h2 class=article-title>
+<a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/>股市技术分析利器之TA-Lib（一）</a>
+</h2>
+<footer class=article-time>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Dec 22, 2021</time>
+</div>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>
+阅读时长: 5 分钟
+</time>
+</div>
+</footer>
+</div>
+</header>
+<section class=article-content>
+<p>市场有自己的时间观念。股票投资就如同任何人类互动一样，耐心是一项美德。——罗伯特·D·爱德华《股市趋势技术分析》</p>
+<p><strong>引言</strong></p>
+<p><strong>TA-Lib</strong>，全称“Technical Analysis Library”, 即技术分析库，是Python金融量化的高级库，涵盖了150多种股票、期货交易软件中常用的技术分析指标，如MACD、RSI、KDJ、动量指标、布林带等等。TA-Lib可分为10个子板块：Overlap Studies(重叠指标)，Momentum Indicators(动量指标)，Volume Indicators(交易量指标)，Cycle Indicators(周期指标)，Price Transform(价格变换)，Volatility Indicators(波动率指标)，Pattern Recognition(模式识别)，Statistic Functions(统计函数)，Math Transform(数学变换)和Math Operators(数学运算)，见下图。本公众号将以系列的形式详细介绍talib技术指标的实现和应用，而本文作为开篇，主要介绍Overlap Studies内容。</p>
+<p><figure class=gallery-image style=flex-grow:302;flex-basis:725px>
+<a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-a59efd9b4d4b6dcb2ccc4cc87c519550.jpg data-size=553x183>
+<img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-a59efd9b4d4b6dcb2ccc4cc87c519550.jpg width=553 height=183 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-a59efd9b4d4b6dcb2ccc4cc87c519550_huc3f56866a282fa70b3310a18ff4040eb_12189_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-a59efd9b4d4b6dcb2ccc4cc87c519550_huc3f56866a282fa70b3310a18ff4040eb_12189_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
+</a>
+</figure></p>
+<p><strong>安装与使用</strong></p>
+<p><strong>安装</strong>：在cmd上使用“pip install talib”命令一般会报错，正确安装方法是，进入_<a class=link href=https://www.lfd.uci.edu/~gohlke/pythonlibs/ target=_blank rel=noopener>https://www.lfd.uci.edu/~gohlke/pythonlibs/</a>_，下拉选择TA_Lib-0.4.17-cp37-cp37m-win_amd64.whl（win系统64位，python3.7版本，根据自己系统和python版本选择相应的安装包），将下载包放在当前工作路径中，然后在Anaconda Prompt（或windows的cmd）里面输入命令：pip install TA_Lib-0.4.17-cp27-cp27m-win_amd64.whl。</p>
+<p><strong>使用</strong>：import talib as ta</p>
+<p>Overlap Studies Functions重叠指标</p>
+<p><figure class=gallery-image style=flex-grow:206;flex-basis:495px>
+<a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-c727f4820d9792d76e34daa35e25cfac.jpg data-size=553x268>
+<img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-c727f4820d9792d76e34daa35e25cfac.jpg width=553 height=268 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-c727f4820d9792d76e34daa35e25cfac_hu3d34d33fe5289af75ca082f1ffe5c5b6_17192_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-c727f4820d9792d76e34daa35e25cfac_hu3d34d33fe5289af75ca082f1ffe5c5b6_17192_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
+</a>
+</figure></p>
+<p>01移动平均线系列</p>
+<p>移动平均线是技术分析理论中应用最普遍的指标之一，主要用于确认、跟踪和判断趋势，提示买入和卖出信号，在单边市场行情中可以较好的把握市场机会和规避风险。但是，移动平均线一般要与其他的技术指标或基本面相结合来使用，特别是当市场处于盘整行情时，其买入卖出信号会频繁出现，容易失真。</p>
+<p><strong>通用函数名</strong>：MA</p>
+<p><strong>代码</strong>：ta.MA(close,timeperiod=30,matype=0)</p>
+<p>移动平均线系列指标包括：SMA简单移动平均线、EMA指数移动平均线、WMA加权移动平均线、DEMA双移动平均线、TEMA三重指数移动平均线、TRIMA三角移动平均线、KAMA考夫曼自适应移动平均线、MAMA为MESA自适应移动平均线、T3三重指数移动平均线。</p>
+<p>其中，close为收盘价，时间序列，timeperiod为时间短，默认30天，指标类型matype分别对应：0=SMA, 1=EMA, 2=WMA, 3=DEMA, 4=TEMA, 5=TRIMA, 6=KAMA, 7=MAMA, 8=T3 (Default=SMA)</p>
+<p>不同类型的移动均线也有各自相应的调用函数：</p>
+<p><figure class=gallery-image style=flex-grow:255;flex-basis:613px>
+<a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-0442d61c7e41f42e1b0d893bb15ff1cb.jpg data-size=834x326>
+<img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-0442d61c7e41f42e1b0d893bb15ff1cb.jpg width=834 height=326 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-0442d61c7e41f42e1b0d893bb15ff1cb_huce569b1e402e6134871ebd2997be06f8_48979_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-0442d61c7e41f42e1b0d893bb15ff1cb_huce569b1e402e6134871ebd2997be06f8_48979_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
+</a>
+</figure></p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=c1>#先引入后面可能用到的包（package）</span>
+<span class=kn>import</span> <span class=nn>pandas</span> <span class=k>as</span> <span class=nn>pd</span>  
+<span class=kn>import</span> <span class=nn>numpy</span> <span class=k>as</span> <span class=nn>np</span>
+<span class=kn>import</span> <span class=nn>matplotlib.pyplot</span> <span class=k>as</span> <span class=nn>plt</span>
+<span class=o>%</span><span class=n>matplotlib</span> <span class=n>inline</span>   
+
+<span class=c1>#正常显示画图时出现的中文和负号</span>
+<span class=kn>from</span> <span class=nn>pylab</span> <span class=kn>import</span> <span class=n>mpl</span>
+<span class=n>mpl</span><span class=o>.</span><span class=n>rcParams</span><span class=p>[</span><span class=s1>&#39;font.sans-serif&#39;</span><span class=p>]</span><span class=o>=</span><span class=p>[</span><span class=s1>&#39;SimHei&#39;</span><span class=p>]</span>
+<span class=n>mpl</span><span class=o>.</span><span class=n>rcParams</span><span class=p>[</span><span class=s1>&#39;axes.unicode_minus&#39;</span><span class=p>]</span><span class=o>=</span><span class=kc>False</span>
+
+<span class=c1>#引入TA-Lib库</span>
+<span class=kn>import</span> <span class=nn>talib</span> <span class=k>as</span> <span class=nn>ta</span>
+
+<span class=c1>#查看包含的技术指标和数学运算函数</span>
+<span class=c1>#print(ta.get_functions())</span>
+<span class=c1>#print(ta.get_function_groups())</span>
+
+<span class=n>ta_fun</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>get_function_groups</span><span class=p>()</span>
+<span class=n>ta_fun</span><span class=o>.</span><span class=n>keys</span><span class=p>()</span>
+
+<span class=c1>#使用tushare获取上证指数数据作为示例</span>
+<span class=kn>import</span> <span class=nn>tushare</span> <span class=k>as</span> <span class=nn>ts</span>
+<span class=n>df</span><span class=o>=</span><span class=n>ts</span><span class=o>.</span><span class=n>get_k_data</span><span class=p>(</span><span class=s1>&#39;sh&#39;</span><span class=p>,</span><span class=n>start</span><span class=o>=</span><span class=s1>&#39;2000-01-01&#39;</span><span class=p>)</span>
+<span class=n>df</span><span class=o>.</span><span class=n>index</span><span class=o>=</span><span class=n>pd</span><span class=o>.</span><span class=n>to_datetime</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>date</span><span class=p>)</span>
+<span class=n>df</span><span class=o>=</span><span class=n>df</span><span class=o>.</span><span class=n>sort_index</span><span class=p>()</span>
+
+<span class=n>types</span><span class=o>=</span><span class=p>[</span><span class=s1>&#39;SMA&#39;</span><span class=p>,</span><span class=s1>&#39;EMA&#39;</span><span class=p>,</span><span class=s1>&#39;WMA&#39;</span><span class=p>,</span><span class=s1>&#39;DEMA&#39;</span><span class=p>,</span><span class=s1>&#39;TEMA&#39;</span><span class=p>,</span>
+<span class=s1>&#39;TRIMA&#39;</span><span class=p>,</span><span class=s1>&#39;KAMA&#39;</span><span class=p>,</span><span class=s1>&#39;MAMA&#39;</span><span class=p>,</span><span class=s1>&#39;T3&#39;</span><span class=p>]</span>
+<span class=n>df_ma</span><span class=o>=</span><span class=n>pd</span><span class=o>.</span><span class=n>DataFrame</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
+<span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>types</span><span class=p>)):</span>
+    <span class=n>df_ma</span><span class=p>[</span><span class=n>types</span><span class=p>[</span><span class=n>i</span><span class=p>]]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>MA</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>,</span><span class=n>timeperiod</span><span class=o>=</span><span class=mi>5</span><span class=p>,</span><span class=n>matype</span><span class=o>=</span><span class=n>i</span><span class=p>)</span>
+<span class=n>df_ma</span><span class=o>.</span><span class=n>tail</span><span class=p>()</span>
+<span class=n>df_ma</span><span class=o>.</span><span class=n>loc</span><span class=p>[</span><span class=s1>&#39;2018-08-01&#39;</span><span class=p>:]</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>16</span><span class=p>,</span><span class=mi>6</span><span class=p>))</span>
+<span class=n>ax</span> <span class=o>=</span> <span class=n>plt</span><span class=o>.</span><span class=n>gca</span><span class=p>()</span>  
+<span class=n>ax</span><span class=o>.</span><span class=n>spines</span><span class=p>[</span><span class=s1>&#39;right&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>set_color</span><span class=p>(</span><span class=s1>&#39;none&#39;</span><span class=p>)</span> 
+<span class=n>ax</span><span class=o>.</span><span class=n>spines</span><span class=p>[</span><span class=s1>&#39;top&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>set_color</span><span class=p>(</span><span class=s1>&#39;none&#39;</span><span class=p>)</span>   
+<span class=n>plt</span><span class=o>.</span><span class=n>title</span><span class=p>(</span><span class=s1>&#39;上证指数各种类型移动平均线&#39;</span><span class=p>,</span><span class=n>fontsize</span><span class=o>=</span><span class=mi>15</span><span class=p>)</span>
+<span class=n>plt</span><span class=o>.</span><span class=n>xlabel</span><span class=p>(</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+<span class=n>plt</span><span class=o>.</span><span class=n>show</span><span class=p>()</span>
+</code></pre></div><p><figure class=gallery-image style=flex-grow:262;flex-basis:629px>
+<a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-3819a64a26854fb1258b951832924eae.jpg data-size=937x357>
+<img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-3819a64a26854fb1258b951832924eae.jpg width=937 height=357 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-3819a64a26854fb1258b951832924eae_hu2e5f5425f6f7e65874101d4c71ec99e8_22873_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-3819a64a26854fb1258b951832924eae_hu2e5f5425f6f7e65874101d4c71ec99e8_22873_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
+</a>
+</figure></p>
+<p>数据来源：tushare</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=c1>#画5、30、120、250指数移动平均线</span>
+<span class=n>N</span><span class=o>=</span><span class=p>[</span><span class=mi>5</span><span class=p>,</span><span class=mi>30</span><span class=p>,</span><span class=mi>120</span><span class=p>,</span><span class=mi>250</span><span class=p>]</span>
+<span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>N</span><span class=p>:</span>
+    <span class=n>df</span><span class=p>[</span><span class=s1>&#39;ma_&#39;</span><span class=o>+</span><span class=nb>str</span><span class=p>(</span><span class=n>i</span><span class=p>)]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>EMA</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>,</span><span class=n>timeperiod</span><span class=o>=</span><span class=n>i</span><span class=p>)</span>
+<span class=n>df</span><span class=o>.</span><span class=n>tail</span><span class=p>()</span>
+
+<span class=n>df</span><span class=o>.</span><span class=n>loc</span><span class=p>[</span><span class=s1>&#39;2014-01-01&#39;</span><span class=p>:,[</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;ma_5&#39;</span><span class=p>,</span><span class=s1>&#39;ma_30&#39;</span><span class=p>,</span><span class=s1>&#39;ma_120&#39;</span><span class=p>,</span><span class=s1>&#39;ma_250&#39;</span><span class=p>]]</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>16</span><span class=p>,</span><span class=mi>6</span><span class=p>))</span>
+<span class=n>ax</span> <span class=o>=</span> <span class=n>plt</span><span class=o>.</span><span class=n>gca</span><span class=p>()</span>  
+<span class=n>ax</span><span class=o>.</span><span class=n>spines</span><span class=p>[</span><span class=s1>&#39;right&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>set_color</span><span class=p>(</span><span class=s1>&#39;none&#39;</span><span class=p>)</span> 
+<span class=n>ax</span><span class=o>.</span><span class=n>spines</span><span class=p>[</span><span class=s1>&#39;top&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>set_color</span><span class=p>(</span><span class=s1>&#39;none&#39;</span><span class=p>)</span>   
+<span class=n>plt</span><span class=o>.</span><span class=n>title</span><span class=p>(</span><span class=s1>&#39;上证指数走势&#39;</span><span class=p>,</span><span class=n>fontsize</span><span class=o>=</span><span class=mi>15</span><span class=p>)</span>
+<span class=n>plt</span><span class=o>.</span><span class=n>xlabel</span><span class=p>(</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+<span class=n>plt</span><span class=o>.</span><span class=n>show</span><span class=p>()</span>
+</code></pre></div><p><figure class=gallery-image style=flex-grow:268;flex-basis:644px>
+<a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-883a4dbf53249fbffc8544aacd83a76a.jpg data-size=937x349>
+<img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-883a4dbf53249fbffc8544aacd83a76a.jpg width=937 height=349 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-883a4dbf53249fbffc8544aacd83a76a_hu7f1e8a9a1fe643b78157024e0d284c86_17987_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-883a4dbf53249fbffc8544aacd83a76a_hu7f1e8a9a1fe643b78157024e0d284c86_17987_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
+</a>
+</figure></p>
+<p>数据来源：tushare</p>
+<p>02布林带</p>
+<p><strong>布林带</strong>(Bollinger Band)，由压力线、支撑线价格平均线组成，一般情况价格线在压力线和支撑线组成的上下区间中游走，区间位置会随着价格的变化而自动调整。布林线的理论使用原则是：当股价穿越最外面的压力线（支撑线）时，表示卖点（买点）出现。当股价延着压力线（支撑线）上升（下降）运行，虽然股价并未穿越，但若回头突破第二条线即是卖点或买点。在实际应用中，布林线有其滞后性，相对于其他技术指标在判断行情反转时参考价值较低，但在判断盘整行情终结节点上成功率较高。</p>
+<p>**计算方法：**首先计出过去 N 日收巿价的标准差 SD(Standard Deviation) ，通常再乘 2 得出 2 倍标准差， Up 线为 N日平均线加 2 倍标准差， Down 线则为 N日平均线减 2 倍标准差。</p>
+<p>**代码：**ta.BBANDS(close, timeperiod=5, nbdevup=2, nbdevdn=2, matype=0)</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>H_line</span><span class=p>,</span><span class=n>M_line</span><span class=p>,</span><span class=n>L_line</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>BBANDS</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>,</span> <span class=n>timeperiod</span><span class=o>=</span><span class=mi>20</span><span class=p>,</span> <span class=n>nbdevup</span><span class=o>=</span><span class=mi>2</span><span class=p>,</span> <span class=n>nbdevdn</span><span class=o>=</span><span class=mi>2</span><span class=p>,</span> <span class=n>matype</span><span class=o>=</span><span class=mi>0</span><span class=p>)</span>
+<span class=n>df1</span><span class=o>=</span><span class=n>pd</span><span class=o>.</span><span class=n>DataFrame</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>,</span><span class=n>index</span><span class=o>=</span><span class=n>df</span><span class=o>.</span><span class=n>index</span><span class=p>,</span><span class=n>columns</span><span class=o>=</span><span class=p>[</span><span class=s1>&#39;close&#39;</span><span class=p>])</span>
+<span class=n>df1</span><span class=p>[</span><span class=s1>&#39;H_line&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>H_line</span>
+<span class=n>df1</span><span class=p>[</span><span class=s1>&#39;M_line&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>M_line</span>
+<span class=n>df1</span><span class=p>[</span><span class=s1>&#39;L_line&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>L_line</span>
+<span class=n>df1</span><span class=o>.</span><span class=n>tail</span><span class=p>()</span>
+</code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>df1</span><span class=o>.</span><span class=n>loc</span><span class=p>[</span><span class=s1>&#39;2013-01-01&#39;</span><span class=p>:</span><span class=s1>&#39;2014-12-30&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>16</span><span class=p>,</span><span class=mi>6</span><span class=p>))</span>
+<span class=n>ax</span> <span class=o>=</span> <span class=n>plt</span><span class=o>.</span><span class=n>gca</span><span class=p>()</span>  
+<span class=n>ax</span><span class=o>.</span><span class=n>spines</span><span class=p>[</span><span class=s1>&#39;right&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>set_color</span><span class=p>(</span><span class=s1>&#39;none&#39;</span><span class=p>)</span> 
+<span class=n>ax</span><span class=o>.</span><span class=n>spines</span><span class=p>[</span><span class=s1>&#39;top&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>set_color</span><span class=p>(</span><span class=s1>&#39;none&#39;</span><span class=p>)</span>   
+<span class=n>plt</span><span class=o>.</span><span class=n>title</span><span class=p>(</span><span class=s1>&#39;上证指数布林线&#39;</span><span class=p>,</span><span class=n>fontsize</span><span class=o>=</span><span class=mi>15</span><span class=p>)</span>
+<span class=n>plt</span><span class=o>.</span><span class=n>xlabel</span><span class=p>(</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+<span class=n>plt</span><span class=o>.</span><span class=n>show</span><span class=p>()</span>
+</code></pre></div><p><figure class=gallery-image style=flex-grow:262;flex-basis:629px>
+<a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-a918db3c78debf0bba20279fbb565a23.jpg data-size=937x357>
+<img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-a918db3c78debf0bba20279fbb565a23.jpg width=937 height=357 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-a918db3c78debf0bba20279fbb565a23_hua4efca95818b657dbe7fd4f2e72b0590_20441_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-a918db3c78debf0bba20279fbb565a23_hua4efca95818b657dbe7fd4f2e72b0590_20441_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
+</a>
+</figure></p>
+<p>数据来源：tushare</p>
+<p>03其他指标</p>
+<p><figure class=gallery-image style=flex-grow:257;flex-basis:617px>
+<a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-4e6a9fc8578b25e44551d826159df517.jpg data-size=833x324>
+<img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-4e6a9fc8578b25e44551d826159df517.jpg width=833 height=324 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-4e6a9fc8578b25e44551d826159df517_hub9875ed979d49caeca1f5dd5b0572c49_40246_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-4e6a9fc8578b25e44551d826159df517_hub9875ed979d49caeca1f5dd5b0572c49_40246_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
+</a>
+</figure></p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>df2</span><span class=o>=</span><span class=n>pd</span><span class=o>.</span><span class=n>DataFrame</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
+<span class=n>df2</span><span class=p>[</span><span class=s1>&#39;HT&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>HT_TRENDLINE</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
+<span class=n>periods</span> <span class=o>=</span><span class=n>np</span><span class=o>.</span><span class=n>array</span><span class=p>([</span><span class=mi>3</span><span class=p>]</span><span class=o>*</span><span class=nb>len</span><span class=p>(</span><span class=n>df</span><span class=p>),</span> <span class=n>dtype</span><span class=o>=</span><span class=nb>float</span><span class=p>)</span>
+<span class=n>df2</span><span class=p>[</span><span class=s1>&#39;MAVP&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span> <span class=n>MAVP</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>,</span><span class=n>periods</span><span class=p>)</span>
+<span class=n>df2</span><span class=p>[</span><span class=s1>&#39;MIDPOINT&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>MIDPOINT</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
+<span class=n>df2</span><span class=p>[</span><span class=s1>&#39;MIDPRICE&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>MIDPRICE</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>)</span>
+<span class=n>df2</span><span class=p>[</span><span class=s1>&#39;SAR&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>SAR</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>)</span>
+<span class=n>df2</span><span class=p>[</span><span class=s1>&#39;SAREXT&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>SAREXT</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>)</span>
+<span class=n>df2</span><span class=o>.</span><span class=n>tail</span><span class=p>()</span>
+</code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>df2</span><span class=o>.</span><span class=n>loc</span><span class=p>[</span><span class=s1>&#39;2018-01-01&#39;</span><span class=p>:</span><span class=s1>&#39;2019-02-21&#39;</span><span class=p>,[</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;HT&#39;</span><span class=p>,</span><span class=s1>&#39;MAVP&#39;</span><span class=p>,</span><span class=s1>&#39;MIDPOINT&#39;</span><span class=p>,</span><span class=s1>&#39;MIDPRICE&#39;</span><span class=p>,</span><span class=s1>&#39;SAR&#39;</span><span class=p>]]</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>16</span><span class=p>,</span><span class=mi>6</span><span class=p>))</span>
+<span class=n>ax</span> <span class=o>=</span> <span class=n>plt</span><span class=o>.</span><span class=n>gca</span><span class=p>()</span>  
+<span class=n>ax</span><span class=o>.</span><span class=n>spines</span><span class=p>[</span><span class=s1>&#39;right&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>set_color</span><span class=p>(</span><span class=s1>&#39;none&#39;</span><span class=p>)</span> 
+<span class=n>ax</span><span class=o>.</span><span class=n>spines</span><span class=p>[</span><span class=s1>&#39;top&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>set_color</span><span class=p>(</span><span class=s1>&#39;none&#39;</span><span class=p>)</span>   
+<span class=n>plt</span><span class=o>.</span><span class=n>title</span><span class=p>(</span><span class=s1>&#39;上证指数的其他趋势指标线&#39;</span><span class=p>,</span><span class=n>fontsize</span><span class=o>=</span><span class=mi>15</span><span class=p>)</span>
+<span class=n>plt</span><span class=o>.</span><span class=n>xlabel</span><span class=p>(</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+<span class=n>plt</span><span class=o>.</span><span class=n>show</span><span class=p>()</span>
+</code></pre></div><p><figure class=gallery-image style=flex-grow:262;flex-basis:629px>
+<a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-2d54cc358b4c6c2cc394fbd3e69b3f70.jpg data-size=937x357>
+<img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-2d54cc358b4c6c2cc394fbd3e69b3f70.jpg width=937 height=357 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-2d54cc358b4c6c2cc394fbd3e69b3f70_hub361cb3da01ae277a0ff2322123ba1e5_20877_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-2d54cc358b4c6c2cc394fbd3e69b3f70_hub361cb3da01ae277a0ff2322123ba1e5_20877_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
+</a>
+</figure></p>
+<p>数据来源：tushare</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>df2</span><span class=o>.</span><span class=n>loc</span><span class=p>[</span><span class=s1>&#39;2018-01-01&#39;</span><span class=p>:</span><span class=s1>&#39;2019-02-21&#39;</span><span class=p>,</span><span class=s1>&#39;SAREXT&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>16</span><span class=p>,</span><span class=mi>6</span><span class=p>))</span>
+<span class=n>ax</span> <span class=o>=</span> <span class=n>plt</span><span class=o>.</span><span class=n>gca</span><span class=p>()</span>  
+<span class=n>ax</span><span class=o>.</span><span class=n>spines</span><span class=p>[</span><span class=s1>&#39;right&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>set_color</span><span class=p>(</span><span class=s1>&#39;none&#39;</span><span class=p>)</span> 
+<span class=n>ax</span><span class=o>.</span><span class=n>spines</span><span class=p>[</span><span class=s1>&#39;top&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>set_color</span><span class=p>(</span><span class=s1>&#39;none&#39;</span><span class=p>)</span>   
+<span class=n>plt</span><span class=o>.</span><span class=n>title</span><span class=p>(</span><span class=s1>&#39;上证指数的抛物线扩展走势&#39;</span><span class=p>,</span><span class=n>fontsize</span><span class=o>=</span><span class=mi>15</span><span class=p>)</span>
+<span class=n>plt</span><span class=o>.</span><span class=n>xlabel</span><span class=p>(</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+<span class=n>plt</span><span class=o>.</span><span class=n>show</span><span class=p>()</span>
+</code></pre></div><p><figure class=gallery-image style=flex-grow:263;flex-basis:633px>
+<a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-c1a8e9f67ef5c03a0e831fb9d5d5d608.jpg data-size=942x357>
+<img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-c1a8e9f67ef5c03a0e831fb9d5d5d608.jpg width=942 height=357 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-c1a8e9f67ef5c03a0e831fb9d5d5d608_hu7812169f8fe71ae1d6314fea8c7ba886_18748_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-c1a8e9f67ef5c03a0e831fb9d5d5d608_hu7812169f8fe71ae1d6314fea8c7ba886_18748_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
+</a>
+</figure></p>
+<p>数据来源：tushare</p>
+<p><strong>均线策略回测</strong></p>
+<p>双均线策略：分别选择L天和S天的移动平均线（L>S），如L=20，S=5，当短周期S均线（5日均线）向上突破长周期L均线（20日均线）时，为买入点；反之，当S均线向下击穿L均线时为卖出点。</p>
+<p>标的：中国平安（601318），期间：2014.1-2019.1，回测结果：</p>
+<p><figure class=gallery-image style=flex-grow:283;flex-basis:680px>
+<a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-43e16d2f16469a0b858e06afa229fbaa.jpg data-size=553x195>
+<img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-43e16d2f16469a0b858e06afa229fbaa.jpg width=553 height=195 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-43e16d2f16469a0b858e06afa229fbaa_hu1246c11a92eeba724eface6bd9a8e6e7_14342_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-43e16d2f16469a0b858e06afa229fbaa_hu1246c11a92eeba724eface6bd9a8e6e7_14342_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
+</a>
+</figure></p>
+<p>数据来源：万矿</p>
+<p><strong>布林线策略回测</strong></p>
+<p>**标的：**黄金期货</p>
+<p>**策略：**下穿布林线上边界做空，上穿布林线下边界做多</p>
+<p>（1）timeperiod=10,回测期间：2017.01.01-2019.02.21</p>
+<p><figure class=gallery-image style=flex-grow:288;flex-basis:691px>
+<a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-2f88c481a0ad312ae91990ca0f3ccc76.jpg data-size=553x192>
+<img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-2f88c481a0ad312ae91990ca0f3ccc76.jpg width=553 height=192 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-2f88c481a0ad312ae91990ca0f3ccc76_hu4db06426392ee02a23a690e694eb8586_14172_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-2f88c481a0ad312ae91990ca0f3ccc76_hu4db06426392ee02a23a690e694eb8586_14172_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
+</a>
+</figure></p>
+<p>（2）timeperiod=10,回测期间：2016.01.01-2017.02.21</p>
+<p><figure class=gallery-image style=flex-grow:285;flex-basis:684px>
+<a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-7c83c35cecdd8eafc7cd592b4fcbfd35.jpg data-size=553x194>
+<img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-7c83c35cecdd8eafc7cd592b4fcbfd35.jpg width=553 height=194 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-7c83c35cecdd8eafc7cd592b4fcbfd35_hu812569e13309e783e43b73df4038398f_12871_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/1640140211-7c83c35cecdd8eafc7cd592b4fcbfd35_hu812569e13309e783e43b73df4038398f_12871_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
+</a>
+</figure></p>
+</section>
+<footer class=article-footer>
+<section class=article-tags>
+<a href=/tags/python/>python</a>
+<a href=/tags/%E9%87%8F%E5%8C%96/>量化</a>
+</section>
+</footer>
+</article>
+<aside class=related-contents--wrapper>
+<h2 class=section-title>相关文章</h2>
+<div class=related-contents>
+<div class="flex article-list--tile">
+<article>
+<a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/>
+<div class=article-details>
+<h2 class=article-title>股市技术分析利器之TA-Lib（二）</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/%E5%A4%AE%E8%A1%8C%E5%AE%8F%E8%A7%82%E8%B0%83%E8%8A%82%E5%B7%A5%E5%85%B7%E4%B8%AD-slfslomlfpsl-%E5%90%84%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9%E5%A4%AE%E8%A1%8C%E6%98%AF%E5%A6%82%E4%BD%95%E9%80%89%E5%8F%96%E8%BF%99%E4%BA%9B%E5%B7%A5%E5%85%B7%E8%BF%9B%E8%A1%8C%E5%AE%8F%E8%A7%82%E8%B0%83%E6%8E%A7%E7%9A%84/>
+<div class=article-details>
+<h2 class=article-title>央行宏观调节工具中 SLF、SLO、MLF、PSL 各有什么特点？央行是如何选取这些工具进行宏观调控的？</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/%E4%BB%80%E4%B9%88%E6%98%AF%E7%BB%BF%E9%9E%8B%E6%9C%BA%E5%88%B6/>
+<div class=article-details>
+<h2 class=article-title>什么是绿鞋机制</h2>
+</div>
+</a>
+</article>
+<article class=has-image>
+<a href=/p/%E7%B4%A2%E7%BD%97%E6%96%AF%E7%94%A8%E5%AF%B9%E5%86%B2%E6%89%8B%E6%B3%95%E5%81%9A%E7%A9%BA%E4%B8%80%E4%B8%AA%E5%9B%BD%E5%AE%B6%E7%9A%84%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88/>
+<div class=article-image>
+<img src=/p/%E7%B4%A2%E7%BD%97%E6%96%AF%E7%94%A8%E5%AF%B9%E5%86%B2%E6%89%8B%E6%B3%95%E5%81%9A%E7%A9%BA%E4%B8%80%E4%B8%AA%E5%9B%BD%E5%AE%B6%E7%9A%84%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88/cover.39b0857cc717928e31658c44e76787d5_hu816abf456dd96277cf7f1d7e0e6c615e_32909_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post 索罗斯用对冲手法做空一个国家的底层原理是什么？" data-hash="md5-ObCFfMcXko4xZYxE52eH1Q==">
+</div>
+<div class=article-details>
+<h2 class=article-title>索罗斯用对冲手法做空一个国家的底层原理是什么？</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/%E8%82%A1%E7%A5%A8%CE%B2%E7%B3%BB%E6%95%B0%E8%B4%9D%E5%A1%94beta%E6%98%AF%E4%BB%80%E4%B9%88%E4%B8%9C%E8%A5%BF/>
+<div class=article-details>
+<h2 class=article-title>股票β系数（贝塔、beta）是什么东西？</h2>
+</div>
+</a>
+</article>
+</div>
+</div>
+</aside>
+<footer class=site-footer>
+<section class=copyright>
+&copy;
+2020 -
+2022 Syaofox's Elysion
+</section>
+<section class=powerby>
+Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.7.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+</section>
+</footer>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
+</body>
+</html>

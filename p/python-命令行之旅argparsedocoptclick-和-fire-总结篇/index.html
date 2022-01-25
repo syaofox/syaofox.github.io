@@ -1,0 +1,320 @@
+<!doctype html><html lang=zh-cn>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="一、前言 在近半年的 Python 命令行旅程中，我们依次学习了 argparse、docopt、click 和 fire 库的特点和用法，逐步了解到 Python 命令行库的设计哲学"><title>Python 命令行之旅：argparse、docopt、click 和 fire 总结篇</title>
+<link rel=canonical href=https://syaofox.github.io/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85argparsedocoptclick-%E5%92%8C-fire-%E6%80%BB%E7%BB%93%E7%AF%87/>
+<link rel=stylesheet href=/scss/style.min.1b3ac667198cb83edcc9c45e606a6f4dd6910b8ada6b74d7fd988f1b2dfd0c7c.css><meta property="og:title" content="Python 命令行之旅：argparse、docopt、click 和 fire 总结篇">
+<meta property="og:description" content="一、前言 在近半年的 Python 命令行旅程中，我们依次学习了 argparse、docopt、click 和 fire 库的特点和用法，逐步了解到 Python 命令行库的设计哲学">
+<meta property="og:url" content="https://syaofox.github.io/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85argparsedocoptclick-%E5%92%8C-fire-%E6%80%BB%E7%BB%93%E7%AF%87/">
+<meta property="og:site_name" content="Syaofox's Elysion">
+<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="python"><meta property="article:published_time" content="2022-01-07T14:44:19+08:00"><meta property="article:modified_time" content="2022-01-07T14:44:19+08:00">
+<meta name=twitter:site content="@syaofox">
+<meta name=twitter:creator content="@syaofox"><meta name=twitter:title content="Python 命令行之旅：argparse、docopt、click 和 fire 总结篇">
+<meta name=twitter:description content="一、前言 在近半年的 Python 命令行旅程中，我们依次学习了 argparse、docopt、click 和 fire 库的特点和用法，逐步了解到 Python 命令行库的设计哲学">
+<link rel="shortcut icon" href=favicon.ico>
+</head>
+<body class="article-page has-toc">
+<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+<div class="container main-container flex
+extended">
+<div id=article-toolbar>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<span>返回</span>
+</a>
+</div>
+<main class="main full-width">
+<article class=main-article>
+<header class=article-header>
+<div class=article-details>
+<header class=article-category>
+<a href=/categories/coding/ style=background-color:#2a9d8f;color:#fff>
+Coding
+</a>
+</header>
+<h2 class=article-title>
+<a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85argparsedocoptclick-%E5%92%8C-fire-%E6%80%BB%E7%BB%93%E7%AF%87/>Python 命令行之旅：argparse、docopt、click 和 fire 总结篇</a>
+</h2>
+<footer class=article-time>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Jan 07, 2022</time>
+</div>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>
+阅读时长: 5 分钟
+</time>
+</div>
+</footer>
+</div>
+</header>
+<section class=article-content>
+<h2 id=一前言><strong>一、前言</strong></h2>
+<p>在近半年的 Python 命令行旅程中，我们依次学习了 <code>argparse</code>、<code>docopt</code>、<code>click</code> 和 <code>fire</code> 库的特点和用法，逐步了解到 Python 命令行库的设计哲学与演变。 本文作为本次旅程的终点，希望从一个更高的视角对这些库进行横向对比，总结它们的异同点和使用场景，以期在应对不同场景时能够分析利弊，选择合适的库为己所用。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>本系列文章默认使用 Python 3 作为解释器进行讲解。
+若你仍在使用 Python 2，请注意两者之间语法和库的使用差异哦~
+</code></pre></div><h2 id=二设计理念><strong>二、设计理念</strong></h2>
+<p>在讨论各个库的设计理念之前，我们先设计一个<code>计算器程序</code>，其实这个例子在 <code>argparse</code> 库的第一篇讲解中出现过，也就是：</p>
+<ul>
+<li>命令行程序接受一个位置参数，它能出现多次，且是数字</li>
+<li>默认情况下，命令行程序会求出给定的一串数字的最大值</li>
+<li>如果指定了选项参数 <code>--sum</code>，那么就会将求出给定的一串数字的和</li>
+</ul>
+<p>希望从各个库实现该例子的代码中能进一步体会它们的设计理念。</p>
+<h3 id=21argparse><strong>2.1、argparse</strong></h3>
+<p><code>argparse</code> 的设计理念就是提供给你最细粒度的控制，你需要详细地告诉它参数是选项参数还是位置参数、参数值的类型是什么、该参数的处理动作是怎样的。 总之，它就像是一个没有智能分析能力的初代机器人，你需要告诉它明确的信息，它才会根据给定的信息去帮助你做事情。</p>
+<p>以下示例为 <code>argparse</code> 实现的 <code>计算器程序</code>：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>argparse</span>
+
+<span class=c1># 1. 设置解析器</span>
+<span class=n>parser</span> <span class=o>=</span> <span class=n>argparse</span><span class=o>.</span><span class=n>ArgumentParser</span><span class=p>(</span><span class=n>description</span><span class=o>=</span><span class=s1>&#39;Calculator Program.&#39;</span><span class=p>)</span>
+
+<span class=c1># 2. 定义参数</span>
+<span class=c1># 添加位置参数 nums，在帮助信息中显示为 num</span>
+<span class=c1># 其类型为 int，且支持输入多个，且至少需要提供一个</span>
+<span class=n>parser</span><span class=o>.</span><span class=n>add_argument</span><span class=p>(</span><span class=s1>&#39;nums&#39;</span><span class=p>,</span>  <span class=n>metavar</span><span class=o>=</span><span class=s1>&#39;num&#39;</span><span class=p>,</span> <span class=nb>type</span><span class=o>=</span><span class=nb>int</span><span class=p>,</span> <span class=n>nargs</span><span class=o>=</span><span class=s1>&#39;+&#39;</span><span class=p>,</span>
+                    <span class=n>help</span><span class=o>=</span><span class=s1>&#39;a num for the accumulator&#39;</span><span class=p>)</span>
+<span class=c1># 添加选项参数 --sum，该参数被 parser 解析后所对应的属性名为 accumulate</span>
+<span class=c1># 若不提供 --sum，默认值为 max 函数，否则为 sum 函数</span>
+<span class=n>parser</span><span class=o>.</span><span class=n>add_argument</span><span class=p>(</span><span class=s1>&#39;--sum&#39;</span><span class=p>,</span> <span class=n>dest</span><span class=o>=</span><span class=s1>&#39;accumulate&#39;</span><span class=p>,</span> <span class=n>action</span><span class=o>=</span><span class=s1>&#39;store_const&#39;</span><span class=p>,</span>
+                    <span class=n>const</span><span class=o>=</span><span class=nb>sum</span><span class=p>,</span> <span class=n>default</span><span class=o>=</span><span class=nb>max</span><span class=p>,</span>
+                    <span class=n>help</span><span class=o>=</span><span class=s1>&#39;sum the nums (default: find the max)&#39;</span><span class=p>)</span>
+
+
+<span class=c1># 3. 解析参数</span>
+<span class=n>args</span> <span class=o>=</span> <span class=n>parser</span><span class=o>.</span><span class=n>parse_args</span><span class=p>([</span><span class=s1>&#39;--sum&#39;</span><span class=p>,</span> <span class=s1>&#39;1&#39;</span><span class=p>,</span> <span class=s1>&#39;2&#39;</span><span class=p>,</span> <span class=s1>&#39;3&#39;</span><span class=p>])</span>
+<span class=nb>print</span><span class=p>(</span><span class=n>args</span><span class=p>)</span> <span class=c1># 结果：Namespace(accumulate=&lt;built-in function sum&gt;, nums=[1, 2, 3])</span>
+
+<span class=c1># 4. 业务逻辑</span>
+<span class=n>result</span> <span class=o>=</span> <span class=n>args</span><span class=o>.</span><span class=n>accumulate</span><span class=p>(</span><span class=n>args</span><span class=o>.</span><span class=n>nums</span><span class=p>)</span>
+<span class=nb>print</span><span class=p>(</span><span class=n>result</span><span class=p>)</span>  <span class=c1># 基于上文的 [&#39;--sum&#39;, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;] 参数，accumulate 为 sum 函数，其结果为 6</span>
+</code></pre></div><p>从上述示例可以看到，我们需要通过 <code>add_argument</code> 很明确地告诉 <code>argparse</code> 参数长什么样：</p>
+<ul>
+<li>它是位置参数 <code>nums</code>，还是选项参数 <code>--sum</code></li>
+<li>它的类型是什么，比如 <code>type=int</code> 表示类型是 int</li>
+<li>这个参数能重复出现几次，比如 <code>nargs='+'</code> 表示至少提供 1 个</li>
+<li>参数的是存什么的，比如 <code>action='store_const'</code> 表示存常量</li>
+</ul>
+<p>然后它才根据给定的这些元信息来解析命令行参数（也就是示例中的 <code>['--sum', '1', '2', '3']</code>）。</p>
+<p>这是很计算机的思维，虽然冗长，但也带来了灵活性。</p>
+<h3 id=22docopt><strong>2.2、docopt</strong></h3>
+<p>从 <code>argparse</code> 的理念可以看出，它是命令式的。这时候 <code>docopt</code> 另辟蹊径，声明式是不是也可以？一个命令行程序的帮助信息其实已然包含了这个命令行的完整元信息，那不就可以通过定义帮助信息来定义命令行？<code>docopt</code> 就是基于这样的想法去设计的。</p>
+<p>声明式的好处在于只要你掌握了声明式的语法，那么定义命令行的元信息就会很简单。</p>
+<p>以下示例为 <code>docopt</code> 实现的 <code>计算器程序</code>：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=c1># 1. 定义接口描述/帮助信息</span>
+<span class=s2>&#34;&#34;&#34;Calculator Program.
+</span><span class=s2>
+</span><span class=s2>Usage:
+</span><span class=s2>  calculator.py [--sum] &lt;num&gt;...
+</span><span class=s2>  calculator.py (-h | --help)
+</span><span class=s2>
+</span><span class=s2>Options:
+</span><span class=s2>  -h --help     Show help.
+</span><span class=s2>  --sum         Sum the nums (default: find the max).
+</span><span class=s2>&#34;&#34;&#34;</span>
+
+<span class=kn>from</span> <span class=nn>docopt</span> <span class=kn>import</span> <span class=n>docopt</span>
+
+<span class=c1># 2. 解析命令行</span>
+<span class=n>arguments</span> <span class=o>=</span> <span class=n>docopt</span><span class=p>(</span><span class=vm>__doc__</span><span class=p>,</span> <span class=n>options_first</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>argv</span><span class=o>=</span><span class=p>[</span><span class=s1>&#39;--sum&#39;</span><span class=p>,</span> <span class=s1>&#39;1&#39;</span><span class=p>,</span> <span class=s1>&#39;2&#39;</span><span class=p>,</span> <span class=s1>&#39;3&#39;</span><span class=p>])</span>
+<span class=nb>print</span><span class=p>(</span><span class=n>arguments</span><span class=p>)</span> <span class=c1># 结果：{&#39;--help&#39;: False, &#39;--sum&#39;: True, &#39;&lt;num&gt;&#39;: [&#39;1&#39;, &#39;2&#39;, &#39;3&#39;]}</span>
+
+<span class=c1># 3. 业务逻辑</span>
+<span class=n>nums</span> <span class=o>=</span> <span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>num</span><span class=p>)</span> <span class=k>for</span> <span class=n>num</span> <span class=ow>in</span> <span class=n>arguments</span><span class=p>[</span><span class=s1>&#39;&lt;num&gt;&#39;</span><span class=p>])</span>
+
+<span class=k>if</span> <span class=n>arguments</span><span class=p>[</span><span class=s1>&#39;--sum&#39;</span><span class=p>]:</span>
+    <span class=n>result</span> <span class=o>=</span> <span class=nb>sum</span><span class=p>(</span><span class=n>nums</span><span class=p>)</span>
+<span class=k>else</span><span class=p>:</span>
+    <span class=n>result</span> <span class=o>=</span> <span class=nb>max</span><span class=p>(</span><span class=n>nums</span><span class=p>)</span>
+
+<span class=nb>print</span><span class=p>(</span><span class=n>result</span><span class=p>)</span> <span class=c1># 基于上文的 [&#39;--sum&#39;, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;] 参数，处理函数为 sum 函数，其结果为 6</span>
+</code></pre></div><p>从上述示例可以看到，我们通过 <code>__doc__</code> 定义了接口描述，这和 <code>argparse</code> 中 <code>add_argument</code> 是等价的，然后 <code>docopt</code> 便会根据这个元信息把命令行参数转换为一个字典。业务逻辑中就需要对这个字典进行处理。</p>
+<p>对比与 <code>argparse</code>：</p>
+<ul>
+<li>对于更为复杂的命令程序，元信息的定义上 <code>docopt</code> 会更加简单</li>
+<li>然而在业务逻辑的处理上，由于 <code>argparse</code> 在一些简单参数的处理上会更加便捷（比如示例中的情形），相对来说 <code>docopt</code> 转换为字典后就把所有处理交给业务逻辑的方式会更加复杂</li>
+</ul>
+<h3 id=23click><strong>2.3、click</strong></h3>
+<p>命令行程序本质上是定义参数和处理参数，而处理参数的逻辑一定是与所定义的参数有关联的。那可不可以用函数和装饰器来实现处理参数逻辑与定义参数的关联呢？而 <code>click</code> 正好就是以这种使用方式来设计的。</p>
+<p><code>click</code> 使用装饰器的好处就在于用装饰器优雅的语法将参数定义和处理逻辑整合在一起，从而暗示了路由关系。相比于 <code>argparse</code> 和 <code>docopt</code> 需要自行对解析后的参数来做路由关系，简单了不少。</p>
+<p>以下示例为 <code>click</code> 实现的 <code>计算器程序</code>：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>sys</span>
+<span class=kn>import</span> <span class=nn>click</span>
+
+<span class=n>sys</span><span class=o>.</span><span class=n>argv</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;calculator.py&#39;</span><span class=p>,</span> <span class=s1>&#39;--sum&#39;</span><span class=p>,</span> <span class=s1>&#39;1&#39;</span><span class=p>,</span> <span class=s1>&#39;2&#39;</span><span class=p>,</span> <span class=s1>&#39;3&#39;</span><span class=p>]</span>
+
+<span class=c1># 2. 定义参数</span>
+<span class=nd>@click</span><span class=o>.</span><span class=n>command</span><span class=p>()</span>
+<span class=nd>@click</span><span class=o>.</span><span class=n>argument</span><span class=p>(</span><span class=s1>&#39;nums&#39;</span><span class=p>,</span> <span class=n>nargs</span><span class=o>=-</span><span class=mi>1</span><span class=p>,</span> <span class=nb>type</span><span class=o>=</span><span class=nb>int</span><span class=p>)</span>
+<span class=nd>@click</span><span class=o>.</span><span class=n>option</span><span class=p>(</span><span class=s1>&#39;--sum&#39;</span><span class=p>,</span> <span class=s1>&#39;use_sum&#39;</span><span class=p>,</span> <span class=n>is_flag</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>help</span><span class=o>=</span><span class=s1>&#39;sum the nums (default: find the max)&#39;</span><span class=p>)</span>
+<span class=c1># 1. 业务逻辑</span>
+<span class=k>def</span> <span class=nf>calculator</span><span class=p>(</span><span class=n>nums</span><span class=p>,</span> <span class=n>use_sum</span><span class=p>):</span>
+    <span class=s2>&#34;&#34;&#34;Calculator Program.&#34;&#34;&#34;</span>
+    <span class=nb>print</span><span class=p>(</span><span class=n>nums</span><span class=p>,</span> <span class=n>use_sum</span><span class=p>)</span> <span class=c1># 输出：(1, 2, 3) True</span>
+    <span class=k>if</span> <span class=n>use_sum</span><span class=p>:</span>
+        <span class=n>result</span> <span class=o>=</span> <span class=nb>sum</span><span class=p>(</span><span class=n>nums</span><span class=p>)</span>
+    <span class=k>else</span><span class=p>:</span>
+        <span class=n>result</span> <span class=o>=</span> <span class=nb>max</span><span class=p>(</span><span class=n>nums</span><span class=p>)</span>
+
+    <span class=nb>print</span><span class=p>(</span><span class=n>result</span><span class=p>)</span> <span class=c1># 基于上文的 [&#39;--sum&#39;, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;] 参数，处理函数为 sum 函数，其结果为 6</span>
+
+<span class=n>calculator</span><span class=p>()</span>
+</code></pre></div><p>从上述示例可以看出，参数和对应的处理逻辑非常好地绑定在了一起，看上去就很直观，使得我们可以明确了解参数会怎么处理，这在有大量参数时显得尤为重要，这边是 <code>click</code> 相比于 <code>argparse</code> 和 <code>docopt</code> 最明显的优势。</p>
+<p>此外，<code>click</code> 还内置了很多实用工具和额外能力，比如说 Bash 补全、颜色、分页支持、进度条等诸多实用功能，可谓是如虎添翼。</p>
+<h3 id=24fire><strong>2.4、fire</strong></h3>
+<p><code>fire</code> 则是用一种面向广义对象的方式来玩转命令行，这种对象可以是类、函数、字典、列表等，它更加灵活，也更加简单。你都不需要定义参数类型，<code>fire</code> 会根据输入和参数默认值来自动判断，这无疑进一步简化了实现过程。</p>
+<p>以下示例为 <code>fire</code> 实现的 <code>计算器程序</code>：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>sys</span>
+<span class=kn>import</span> <span class=nn>fire</span>
+
+<span class=n>sys</span><span class=o>.</span><span class=n>argv</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;calculator.py&#39;</span><span class=p>,</span> <span class=s1>&#39;1&#39;</span><span class=p>,</span> <span class=s1>&#39;2&#39;</span><span class=p>,</span> <span class=s1>&#39;3&#39;</span><span class=p>,</span> <span class=s1>&#39;--sum&#39;</span><span class=p>]</span>
+
+<span class=n>builtin_sum</span> <span class=o>=</span> <span class=nb>sum</span>
+
+<span class=c1># 1. 业务逻辑</span>
+<span class=c1># sum=False，暗示它是一个选项参数 --sum，不提供的时候为 False</span>
+<span class=c1># *nums 暗示它是一个能提供任意数量的位置参数</span>
+<span class=k>def</span> <span class=nf>calculator</span><span class=p>(</span><span class=nb>sum</span><span class=o>=</span><span class=kc>False</span><span class=p>,</span> <span class=o>*</span><span class=n>nums</span><span class=p>):</span>
+    <span class=s2>&#34;&#34;&#34;Calculator Program.&#34;&#34;&#34;</span>
+    <span class=nb>print</span><span class=p>(</span><span class=nb>sum</span><span class=p>,</span> <span class=n>nums</span><span class=p>)</span> <span class=c1># 输出：True (1, 2, 3)</span>
+    <span class=k>if</span> <span class=nb>sum</span><span class=p>:</span>
+        <span class=n>result</span> <span class=o>=</span> <span class=n>builtin_sum</span><span class=p>(</span><span class=n>nums</span><span class=p>)</span>
+    <span class=k>else</span><span class=p>:</span>
+        <span class=n>result</span> <span class=o>=</span> <span class=nb>max</span><span class=p>(</span><span class=n>nums</span><span class=p>)</span>
+
+    <span class=nb>print</span><span class=p>(</span><span class=n>result</span><span class=p>)</span> <span class=c1># 基于上文的 [&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;--sum&#39;] 参数，处理函数为 sum 函数，其结果为 6</span>
+
+
+<span class=n>fire</span><span class=o>.</span><span class=n>Fire</span><span class=p>(</span><span class=n>calculator</span><span class=p>)</span>
+</code></pre></div><p>从上述示例可以看出，<code>fire</code> 提供的方式无疑是最简单、并且最 Pythonic 的了。我们只需关注业务逻辑，而命令行参数的定义则和函数参数的定义融为了一体。</p>
+<p>不过，有利自然也有弊，比如 <code>nums</code> 并没有说是什么类型，也就意味着输入字符串&rsquo;abc&rsquo;也是合法的，这就意味着一个严格的命令行程序必须在自己的业务逻辑中来对期望的类型进行约束。</p>
+<h2 id=三横向对比><strong>三、横向对比</strong></h2>
+<p>最后，我们横向对比下<code>argparse</code>、<code>docopt</code>、<code>click</code> 和 <code>fire</code> 库的各项功能和特点：</p>
+<p><figure class=gallery-image style=flex-grow:71;flex-basis:170px>
+<a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85argparsedocoptclick-%E5%92%8C-fire-%E6%80%BB%E7%BB%93%E7%AF%87/1641536582-7c00487dbdfeb1200f546efb06b6dadc.jpg data-size=446x626>
+<img src=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85argparsedocoptclick-%E5%92%8C-fire-%E6%80%BB%E7%BB%93%E7%AF%87/1641536582-7c00487dbdfeb1200f546efb06b6dadc.jpg width=446 height=626 srcset="/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85argparsedocoptclick-%E5%92%8C-fire-%E6%80%BB%E7%BB%93%E7%AF%87/1641536582-7c00487dbdfeb1200f546efb06b6dadc_hu5134dcc9352896e69eac07dd94a762f1_12754_480x0_resize_q75_box.jpg 480w, /p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85argparsedocoptclick-%E5%92%8C-fire-%E6%80%BB%E7%BB%93%E7%AF%87/1641536582-7c00487dbdfeb1200f546efb06b6dadc_hu5134dcc9352896e69eac07dd94a762f1_12754_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
+</a>
+</figure></p>
+<p>Python 的命令行库种类繁多、各具特色。结合上面的总结，可以选择出符合使用场景的库，如果几个库都符合，那么就根据你更偏爱的风格来选择。这些库都很优秀，其背后的思想很是值得我们学习和扩展。</p>
+</section>
+<footer class=article-footer>
+<section class=article-tags>
+<a href=/tags/python/>python</a>
+</section>
+</footer>
+</article>
+<aside class=related-contents--wrapper>
+<h2 class=section-title>相关文章</h2>
+<div class=related-contents>
+<div class="flex article-list--tile">
+<article>
+<a href=/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/>
+<div class=article-details>
+<h2 class=article-title>Python学习笔记 容易忽略的知识点</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/%E4%BD%BF%E7%94%A8propertysetterdeleter/>
+<div class=article-details>
+<h2 class=article-title>使用@property、setter、deleter</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/__init__.py%E7%9A%84%E7%A5%9E%E5%A5%87%E7%94%A8%E6%B3%95/>
+<div class=article-details>
+<h2 class=article-title>__init__.py的神奇用法</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/%E4%B8%80%E6%96%87%E6%8E%8C%E6%8F%A1-python-%E4%B8%AD%E7%9A%84-is-%E5%92%8C/>
+<div class=article-details>
+<h2 class=article-title>一文掌握 Python 中的 "is" 和 "=="</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85fire-%E5%AE%9E%E7%8E%B0-git-%E5%91%BD%E4%BB%A4/>
+<div class=article-details>
+<h2 class=article-title>Python 命令行之旅：fire 实现 git 命令</h2>
+</div>
+</a>
+</article>
+</div>
+</div>
+</aside>
+<footer class=site-footer>
+<section class=copyright>
+&copy;
+2020 -
+2022 Syaofox's Elysion
+</section>
+<section class=powerby>
+Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.7.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+</section>
+</footer>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main>
+<aside class="sidebar right-sidebar sticky">
+<section class="widget archives">
+<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+</div>
+<h2 class="widget-title section-title">目录</h2>
+<div class=widget--toc>
+<nav id=TableOfContents>
+<ol>
+<li><a href=#一前言><strong>一、前言</strong></a></li>
+<li><a href=#二设计理念><strong>二、设计理念</strong></a>
+<ol>
+<li><a href=#21argparse><strong>2.1、argparse</strong></a></li>
+<li><a href=#22docopt><strong>2.2、docopt</strong></a></li>
+<li><a href=#23click><strong>2.3、click</strong></a></li>
+<li><a href=#24fire><strong>2.4、fire</strong></a></li>
+</ol>
+</li>
+<li><a href=#三横向对比><strong>三、横向对比</strong></a></li>
+</ol>
+</nav>
+</div>
+</section>
+</aside>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
+</body>
+</html>

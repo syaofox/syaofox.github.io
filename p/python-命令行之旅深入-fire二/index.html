@@ -1,0 +1,397 @@
+<!doctype html><html lang=zh-cn>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="一、前言 在上一篇文章中我们介绍了 fire 的子命令、嵌套命令和属性访问等内容，今天我们将继续深入了解 fire 的其他功能。 本系列文章默认使用 Python 3 作为解释器进"><title>Python 命令行之旅：深入 fire（二）</title>
+<link rel=canonical href=https://syaofox.github.io/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E6%B7%B1%E5%85%A5-fire%E4%BA%8C/>
+<link rel=stylesheet href=/scss/style.min.1b3ac667198cb83edcc9c45e606a6f4dd6910b8ada6b74d7fd988f1b2dfd0c7c.css><meta property="og:title" content="Python 命令行之旅：深入 fire（二）">
+<meta property="og:description" content="一、前言 在上一篇文章中我们介绍了 fire 的子命令、嵌套命令和属性访问等内容，今天我们将继续深入了解 fire 的其他功能。 本系列文章默认使用 Python 3 作为解释器进">
+<meta property="og:url" content="https://syaofox.github.io/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E6%B7%B1%E5%85%A5-fire%E4%BA%8C/">
+<meta property="og:site_name" content="Syaofox's Elysion">
+<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="python"><meta property="article:tag" content="fire"><meta property="article:published_time" content="2022-01-07T14:43:58+08:00"><meta property="article:modified_time" content="2022-01-07T14:43:58+08:00">
+<meta name=twitter:site content="@syaofox">
+<meta name=twitter:creator content="@syaofox"><meta name=twitter:title content="Python 命令行之旅：深入 fire（二）">
+<meta name=twitter:description content="一、前言 在上一篇文章中我们介绍了 fire 的子命令、嵌套命令和属性访问等内容，今天我们将继续深入了解 fire 的其他功能。 本系列文章默认使用 Python 3 作为解释器进">
+<link rel="shortcut icon" href=favicon.ico>
+</head>
+<body class="article-page has-toc">
+<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+<div class="container main-container flex
+extended">
+<div id=article-toolbar>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<span>返回</span>
+</a>
+</div>
+<main class="main full-width">
+<article class=main-article>
+<header class=article-header>
+<div class=article-details>
+<header class=article-category>
+<a href=/categories/coding/ style=background-color:#2a9d8f;color:#fff>
+Coding
+</a>
+</header>
+<h2 class=article-title>
+<a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E6%B7%B1%E5%85%A5-fire%E4%BA%8C/>Python 命令行之旅：深入 fire（二）</a>
+</h2>
+<footer class=article-time>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Jan 07, 2022</time>
+</div>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>
+阅读时长: 5 分钟
+</time>
+</div>
+</footer>
+</div>
+</header>
+<section class=article-content>
+<h2 id=一前言>一、前言</h2>
+<p>在上一篇文章中我们介绍了 <code>fire</code> 的子命令、嵌套命令和属性访问等内容，今天我们将继续深入了解 <code>fire</code> 的其他功能。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>本系列文章默认使用 Python 3 作为解释器进行讲解。
+若你仍在使用 Python 2，请注意两者之间语法和库的使用差异哦~
+</code></pre></div><h2 id=二功能>二、功能</h2>
+<h3 id=21-最简命令实现>2.1 最简命令实现</h3>
+<p>在上一节中，我们介绍了只要定义一个函数就可以实现命令行程序。比如：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>fire</span>
+
+<span class=k>def</span> <span class=nf>english</span><span class=p>():</span>
+  <span class=k>return</span> <span class=s1>&#39;Hello, fire!&#39;</span>
+
+<span class=k>def</span> <span class=nf>chinese</span><span class=p>():</span>
+  <span class=k>return</span> <span class=s1>&#39;你好，fire！&#39;</span>
+
+<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+  <span class=n>fire</span><span class=o>.</span><span class=n>Fire</span><span class=p>()</span>
+</code></pre></div><p>但这还不是最简单的实现方式，<code>fire</code> 甚至允许你通过定义变量的方式来实现命令行！ 上面的例子可以写成下面这种形式：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>fire</span>
+
+<span class=n>english</span> <span class=o>=</span> <span class=s1>&#39;Hello, fire!&#39;</span>
+<span class=n>chinese</span> <span class=o>=</span> <span class=s1>&#39;你好，fire！&#39;</span>
+
+<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+  <span class=n>fire</span><span class=o>.</span><span class=n>Fire</span><span class=p>()</span>
+</code></pre></div><h3 id=22-链式调用>2.2 链式调用</h3>
+<p>在 <code>Fire CLI</code> 中，你可以通过链式调用不断地对上一个结果进行处理。</p>
+<p>想做到这一点也很简单，就是在实例方法中返回 <code>self</code> 即可。</p>
+<p>在下面的示例中，我们实现了一个简单的四则运算命令，可链式调用 <code>add</code>、<code>sub</code>、<code>mul</code> 和 <code>div</code>。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>fire</span>
+
+<span class=k>class</span> <span class=nc>Calculator</span><span class=p>:</span>
+
+  <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>result</span> <span class=o>=</span> <span class=mi>0</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>express</span> <span class=o>=</span> <span class=s1>&#39;0&#39;</span>
+
+  <span class=k>def</span> <span class=fm>__str__</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+    <span class=k>return</span> <span class=sa>f</span><span class=s1>&#39;</span><span class=si>{</span><span class=bp>self</span><span class=o>.</span><span class=n>express</span><span class=si>}</span><span class=s1> = </span><span class=si>{</span><span class=bp>self</span><span class=o>.</span><span class=n>result</span><span class=si>}</span><span class=s1>&#39;</span>
+
+  <span class=k>def</span> <span class=nf>add</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>x</span><span class=p>):</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>result</span> <span class=o>+=</span> <span class=n>x</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>express</span> <span class=o>=</span> <span class=sa>f</span><span class=s1>&#39;</span><span class=si>{</span><span class=bp>self</span><span class=o>.</span><span class=n>express</span><span class=si>}</span><span class=s1>+</span><span class=si>{</span><span class=n>x</span><span class=si>}</span><span class=s1>&#39;</span>
+    <span class=k>return</span> <span class=bp>self</span>
+
+  <span class=k>def</span> <span class=nf>sub</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>x</span><span class=p>):</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>result</span> <span class=o>-=</span> <span class=n>x</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>express</span> <span class=o>=</span> <span class=sa>f</span><span class=s1>&#39;</span><span class=si>{</span><span class=bp>self</span><span class=o>.</span><span class=n>express</span><span class=si>}</span><span class=s1>-</span><span class=si>{</span><span class=n>x</span><span class=si>}</span><span class=s1>&#39;</span>
+    <span class=k>return</span> <span class=bp>self</span>
+
+  <span class=k>def</span> <span class=nf>mul</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>x</span><span class=p>):</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>result</span> <span class=o>*=</span> <span class=n>x</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>express</span> <span class=o>=</span> <span class=sa>f</span><span class=s1>&#39;(</span><span class=si>{</span><span class=bp>self</span><span class=o>.</span><span class=n>express</span><span class=si>}</span><span class=s1>)*</span><span class=si>{</span><span class=n>x</span><span class=si>}</span><span class=s1>&#39;</span>
+    <span class=k>return</span> <span class=bp>self</span>
+
+  <span class=k>def</span> <span class=nf>div</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>x</span><span class=p>):</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>result</span> <span class=o>/=</span> <span class=n>x</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>express</span> <span class=o>=</span> <span class=sa>f</span><span class=s1>&#39;(</span><span class=si>{</span><span class=bp>self</span><span class=o>.</span><span class=n>express</span><span class=si>}</span><span class=s1>)/</span><span class=si>{</span><span class=n>x</span><span class=si>}</span><span class=s1>&#39;</span>
+    <span class=k>return</span> <span class=bp>self</span>
+
+<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+  <span class=n>fire</span><span class=o>.</span><span class=n>Fire</span><span class=p>(</span><span class=n>Calculator</span><span class=p>)</span>
+</code></pre></div><p>上述代码中的 <code>add</code>、<code>sub</code>、<code>mul</code>、<code>div</code> 分别对应加、减、乘、除的逻辑，每个方法都接受 <code>x</code> 参数作为参与运算的数字，返回值均为 <code>self</code>，这样就可以无限次地链式调用。在命令行中链式调用结束后，会最终调用到 <code>__str__</code> 方法将结果打印出来。</p>
+<p>其中，<code>__str__</code> 在 <code>fire</code> 中用来完成自定义序列化。如果不提供这个方法，在链式调用完成后将会打印帮助内容。</p>
+<p>比如，我们可以这么调用：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>$ python calculator.py add 1 sub 2 mul 3 div 4
+((+1-2)*3)/4 = -0.75
+
+$ python calculator.py add 1 sub 2 mul 3 div 4 add 4 sub 3 mul 2 div 1
+((((0+1-2)*3)/4+4-3)*2)/1 = 0.5
+</code></pre></div><h3 id=23-位置参数和选项参数>2.3 位置参数和选项参数</h3>
+<p>通过前面的介绍我们也都清楚了在 <code>fire</code> 中不必显式的定义位置参数或选项参数。</p>
+<p>通过下面的例子，我们将细化两类参数的使用：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>fire</span>
+
+<span class=k>class</span> <span class=nc>Building</span><span class=p>(</span><span class=nb>object</span><span class=p>):</span>
+
+  <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>name</span><span class=p>,</span> <span class=n>stories</span><span class=o>=</span><span class=mi>1</span><span class=p>):</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>name</span> <span class=o>=</span> <span class=n>name</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>stories</span> <span class=o>=</span> <span class=n>stories</span>
+
+  <span class=k>def</span> <span class=fm>__str__</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+    <span class=k>return</span> <span class=sa>f</span><span class=s1>&#39;name: </span><span class=si>{</span><span class=bp>self</span><span class=o>.</span><span class=n>name</span><span class=si>}</span><span class=s1>, stories: </span><span class=si>{</span><span class=bp>self</span><span class=o>.</span><span class=n>stories</span><span class=si>}</span><span class=s1>&#39;</span>
+
+  <span class=k>def</span> <span class=nf>climb_stairs</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>stairs_per_story</span><span class=o>=</span><span class=mi>10</span><span class=p>):</span>
+    <span class=k>yield</span> <span class=bp>self</span><span class=o>.</span><span class=n>name</span>
+    <span class=k>for</span> <span class=n>story</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>stories</span><span class=p>):</span>
+      <span class=k>for</span> <span class=n>stair</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=n>stairs_per_story</span><span class=p>):</span>
+        <span class=k>yield</span> <span class=n>stair</span>
+      <span class=k>yield</span> <span class=s1>&#39;Phew!&#39;</span>
+    <span class=k>yield</span> <span class=s1>&#39;Done!&#39;</span>
+
+<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+  <span class=n>fire</span><span class=o>.</span><span class=n>Fire</span><span class=p>(</span><span class=n>Building</span><span class=p>)</span>
+</code></pre></div><ul>
+<li>构造函数中定义的参数（如 <code>name</code> 和 <code>stories</code>）在命令行中仅为选项参数（如 <code>--name</code> 和 <code>--stories</code>）。我们可以这么调用：</li>
+</ul>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>$ python example.py --name=&#34;Sherrerd Hall&#34; --stories=3
+</code></pre></div><ul>
+<li>构造函数中定义的参数可在命令中放于任意位置。比如下面两个调用都是可以的：</li>
+</ul>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>$ python example.py --name=&#34;Sherrerd Hall&#34; climb-stairs --stairs-per-story 10
+$ python example.py climb-stairs --stairs-per-story 10 --name=&#34;Sherrerd Hall&#34;
+</code></pre></div><ul>
+<li>构造函数和普通方法中定义的默认参数（如 <code>stories</code>），在命令行中是可选的。我们可以这么调用：</li>
+</ul>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>$ python example.py --name=&#34;Sherrerd Hall&#34;
+</code></pre></div><ul>
+<li>普通方法中定义的参数（如 <code>stairs_per_story</code>）在命令行中即可以是位置参数，也可以是选项参数。我们可以这么调用：</li>
+</ul>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text># 作为位置参数
+$ python example.py --name=&#34;Sherrerd Hall&#34; climb_stairs 10
+# 作为选项参数
+$ python example.py --name=&#34;Sherrerd Hall&#34; climb_stairs --stairs_per_story=10
+</code></pre></div><ul>
+<li>选项参数中的横杠（<code>-</code>）和下划线（<code>_</code>）是等价的。因此也可以这么调用：</li>
+</ul>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text># 作为选项参数
+$ python example.py --name=&#34;Sherrerd Hall&#34; climb_stairs --stairs-per-story=10
+</code></pre></div><p>此外，<code>fire</code> 还支持在函数中定义 <code>*args</code> 和 <code>**kwargs</code>。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>fire</span>
+
+<span class=k>def</span> <span class=nf>fargs</span><span class=p>(</span><span class=o>*</span><span class=n>args</span><span class=p>):</span>
+  <span class=k>return</span> <span class=nb>str</span><span class=p>(</span><span class=n>args</span><span class=p>)</span>
+
+
+<span class=k>def</span> <span class=nf>fkwargs</span><span class=p>(</span><span class=o>**</span><span class=n>kwargs</span><span class=p>):</span>
+  <span class=k>return</span> <span class=nb>str</span><span class=p>(</span><span class=n>kwargs</span><span class=p>)</span>
+
+<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+  <span class=n>fire</span><span class=o>.</span><span class=n>Fire</span><span class=p>()</span>
+</code></pre></div><ul>
+<li>函数中的 <code>*args</code> 在命令行中为位置参数。我们可以这么调用：</li>
+</ul>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>$ python example.py fargs a b c
+</code></pre></div><ul>
+<li>函数中的 <code>**kwargs</code> 在命令行中为选项参数。我们可以这么调用：</li>
+</ul>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>$ python example.py fargs --a a1 --b b1 --c c1
+</code></pre></div><ul>
+<li>通过分隔符 <code>-</code> 可显式告知分隔符后的为子命令，而非命令的参数。且看下面的示例：</li>
+</ul>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text># 没有使用分隔符，upper 被作为位置参数
+$ python example.py fargs a b c upper
+(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;upper&#39;)
+
+# 使用了分隔符，upper 被作为子命令
+$ python example.py fargs a b c - upper
+(&#39;A&#39;, &#39;B&#39;, &#39;C&#39;)
+</code></pre></div><ul>
+<li>通过 <code>fire</code> 内置的 <code>--separator</code> 可以自定义分隔符，此选项参数需要跟在单独的 <code>--</code> 后面：</li>
+</ul>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>$ python example.py a b c X upper -- --separator=X
+(&#39;A&#39;, &#39;B&#39;, &#39;C&#39;)
+</code></pre></div><h3 id=24-参数类型>2.4 参数类型</h3>
+<p>在 <code>fire</code> 中，参数的类型由其值决定，通过下面的简单代码，我们可以看到给不同的值时，<code>fire</code>会解析为什么类型：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>import fire
+fire.Fire(lambda obj: type(obj).__name__)
+$ python example.py 10
+int
+$ python example.py 10.0
+float
+$ python example.py hello
+str
+$ python example.py &#39;(1,2)&#39;
+tuple
+$ python example.py [1,2]
+list
+$ python example.py True
+bool
+$ python example.py {name: David}
+dict
+</code></pre></div><p>如果想传递字符串形式的数字，那就需要小心引号了，要么把引号引起来，要么转义引号：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text># 数字 10
+$ python example.py 10
+int
+# 没有对引号处理，仍然是数字10
+$ python example.py &#34;10&#34;
+int
+# 把引号引起来，所以是字符串“10”
+$ python example.py &#39;&#34;10&#34;&#39;
+str
+# 另一种把引号引起来的形式
+$ python example.py &#34;&#39;10&#39;&#34;
+str
+# 转义引号
+$ python example.py \&#34;10\&#34;
+str
+</code></pre></div><p>考虑下更复杂的场景，如果传递的是字典，在字典中有字符串，那么也是要小心引号的：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text># 推荐做法
+$ python example.py &#39;{&#34;name&#34;: &#34;David Bieber&#34;}&#39;
+dict
+# 也是可以的
+$ python example.py {&#34;name&#34;:&#39;&#34;David Bieber&#34;&#39;}
+dict
+# 错误，会被解析为字符串
+$ python example.py {&#34;name&#34;:&#34;David Bieber&#34;}
+str
+# 错误，不会作为单个参数（因为中间有空格），报错
+$ python example.py {&#34;name&#34;: &#34;David Bieber&#34;}
+&lt;error&gt;
+</code></pre></div><p>如果值为 <code>True</code> 或 <code>False</code> 将为视为布尔值，<code>fire</code> 还支持通过 <code>--name</code> 将 <code>name</code> 设为 <code>True</code>，或通过 <code>--noname</code> 将 <code>name</code> 设为 <code>False</code>：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>$ python example.py --obj=True
+bool
+$ python example.py --obj=False
+bool
+$ python example.py --obj
+bool
+$ python example.py --noobj
+bool
+</code></pre></div><h3 id=25-fire-内置选项参数>2.5 Fire 内置选项参数</h3>
+<p>Fire 内置了一些选项参数，以帮助我们更容易地使用命令行程序。若想使用内置的选项功能，需要将选项参数跟在 <code>--</code> 后，在上文中，我们介绍了 <code>--separator</code> 参数，除了它，<code>fire</code> 还支持以下选项参数：</p>
+<ul>
+<li><code>command -- --help</code> 列出详细的帮助信息</li>
+<li><code>command -- --interactive</code> 进入交互式模式</li>
+<li><code>command -- --completion [shell]</code> 生成 CLI 程序的自动补全脚本，以支持自动补全</li>
+<li><code>command -- --trace</code> 获取命令的 Fire 追踪以了解调用 Fire 后究竟发生了什么</li>
+<li><code>command -- --verbose</code> 获取包含私有成员在内的详情</li>
+</ul>
+<h2 id=三小结>三、小结</h2>
+<p><code>fire</code> 让命令行程序的实现变得特别简单，本文着重介绍了它的链式调用、选项参数、位置参数、参数类型以及内置选项参数。<code>fire</code> 的概念并不多，真正践行了“把简单留给他人，把复杂留给自己”的理念。</p>
+<p><code>fire</code> 的介绍就告一段落，它绝对会是你编写命令行程序的一大利器。在下一篇文章中，我们依然会通过实现一个简单的 <code>git</code> 程序来进行 <code>fire</code> 的实战。</p>
+</section>
+<footer class=article-footer>
+<section class=article-tags>
+<a href=/tags/python/>python</a>
+<a href=/tags/fire/>fire</a>
+</section>
+</footer>
+</article>
+<aside class=related-contents--wrapper>
+<h2 class=section-title>相关文章</h2>
+<div class=related-contents>
+<div class="flex article-list--tile">
+<article>
+<a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85fire-%E5%AE%9E%E7%8E%B0-git-%E5%91%BD%E4%BB%A4/>
+<div class=article-details>
+<h2 class=article-title>Python 命令行之旅：fire 实现 git 命令</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E6%B7%B1%E5%85%A5-fire%E4%B8%80/>
+<div class=article-details>
+<h2 class=article-title>Python 命令行之旅：深入 fire（一）</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E5%88%9D%E6%8E%A2-fire/>
+<div class=article-details>
+<h2 class=article-title>Python 命令行之旅：初探 fire</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/>
+<div class=article-details>
+<h2 class=article-title>Python学习笔记 容易忽略的知识点</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/%E4%BD%BF%E7%94%A8propertysetterdeleter/>
+<div class=article-details>
+<h2 class=article-title>使用@property、setter、deleter</h2>
+</div>
+</a>
+</article>
+</div>
+</div>
+</aside>
+<footer class=site-footer>
+<section class=copyright>
+&copy;
+2020 -
+2022 Syaofox's Elysion
+</section>
+<section class=powerby>
+Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.7.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+</section>
+</footer>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main>
+<aside class="sidebar right-sidebar sticky">
+<section class="widget archives">
+<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+</div>
+<h2 class="widget-title section-title">目录</h2>
+<div class=widget--toc>
+<nav id=TableOfContents>
+<ol>
+<li><a href=#一前言>一、前言</a></li>
+<li><a href=#二功能>二、功能</a>
+<ol>
+<li><a href=#21-最简命令实现>2.1 最简命令实现</a></li>
+<li><a href=#22-链式调用>2.2 链式调用</a></li>
+<li><a href=#23-位置参数和选项参数>2.3 位置参数和选项参数</a></li>
+<li><a href=#24-参数类型>2.4 参数类型</a></li>
+<li><a href=#25-fire-内置选项参数>2.5 Fire 内置选项参数</a></li>
+</ol>
+</li>
+<li><a href=#三小结>三、小结</a></li>
+</ol>
+</nav>
+</div>
+</section>
+</aside>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
+</body>
+</html>

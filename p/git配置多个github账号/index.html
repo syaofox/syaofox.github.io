@@ -1,0 +1,286 @@
+<!doctype html><html lang=zh-cn>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Git配置多个github账号 在公司开发中，有时候会存在公司账户跟私人账户共存，并随时需要切换的情况，这种情况下git可以配置多个ssh-k"><title>Git配置多个github账号</title>
+<link rel=canonical href=https://syaofox.github.io/p/git%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgithub%E8%B4%A6%E5%8F%B7/>
+<link rel=stylesheet href=/scss/style.min.1b3ac667198cb83edcc9c45e606a6f4dd6910b8ada6b74d7fd988f1b2dfd0c7c.css><meta property="og:title" content="Git配置多个github账号">
+<meta property="og:description" content="Git配置多个github账号 在公司开发中，有时候会存在公司账户跟私人账户共存，并随时需要切换的情况，这种情况下git可以配置多个ssh-k">
+<meta property="og:url" content="https://syaofox.github.io/p/git%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgithub%E8%B4%A6%E5%8F%B7/">
+<meta property="og:site_name" content="Syaofox's Elysion">
+<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="github"><meta property="article:published_time" content="2022-01-25T18:56:33+08:00"><meta property="article:modified_time" content="2022-01-25T18:56:33+08:00">
+<meta name=twitter:site content="@syaofox">
+<meta name=twitter:creator content="@syaofox"><meta name=twitter:title content="Git配置多个github账号">
+<meta name=twitter:description content="Git配置多个github账号 在公司开发中，有时候会存在公司账户跟私人账户共存，并随时需要切换的情况，这种情况下git可以配置多个ssh-k">
+<link rel="shortcut icon" href=favicon.ico>
+</head>
+<body class="article-page has-toc">
+<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+<div class="container main-container flex
+extended">
+<div id=article-toolbar>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<span>返回</span>
+</a>
+</div>
+<main class="main full-width">
+<article class=main-article>
+<header class=article-header>
+<div class=article-details>
+<header class=article-category>
+<a href=/categories/tips/>
+Tips
+</a>
+</header>
+<h2 class=article-title>
+<a href=/p/git%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgithub%E8%B4%A6%E5%8F%B7/>Git配置多个github账号</a>
+</h2>
+<footer class=article-time>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Jan 25, 2022</time>
+</div>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>
+阅读时长: 4 分钟
+</time>
+</div>
+</footer>
+</div>
+</header>
+<section class=article-content>
+<h1 id=git配置多个github账号>Git配置多个github账号</h1>
+<p>在公司开发中，有时候会存在公司账户跟私人账户共存，并随时需要切换的情况，这种情况下git可以配置多个ssh-key，无缝切换账号。<br>
+假如有两个github账号，一个是私人github账号，一个是公司github账号<br>
+私人账号:</p>
+<ul>
+<li>github用户名：my</li>
+<li>email：convict@qq.com</li>
+</ul>
+<p>公司账号：</p>
+<ul>
+<li>github用户名：company</li>
+<li>email：convict.yellow@work.com</li>
+</ul>
+<h3 id=一在用户目录下的ssh目录下生成秘钥与公钥>一、在用户目录下的.ssh目录下生成秘钥与公钥</h3>
+<p>如果用户目录下没有.ssh目录，则需要新建一个</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain>cd ~/.ssh
+ssh-keygen -t rsa -f id_rsa_my
+ssh-keygen -t rsa -f id_rsa_company
+1.2.3.
+</code></pre></div><p>一路回车即可</p>
+<p>上面ssh-keygen 命令参数：</p>
+<ul>
+<li>-t: 指定生成rsa 类型秘钥</li>
+<li>-f: 指定生成秘钥的名字，可以不指定该参数，默认就会生成2个文件：私钥id_rsa，公钥id_rsa.pub。因此上面的命令需要指定-f，否则生成两次后，私钥跟公钥会覆盖</li>
+</ul>
+<p>因此上面的命令调用完后至少会生成四个文件：</p>
+<ul>
+<li>id_rsa_my</li>
+<li>id_rsa_my.pub</li>
+<li>id_rsa_company</li>
+<li>id_rsa_company.pub</li>
+</ul>
+<h3 id=二将公钥配置到对应的github账号中>二、将公钥配置到对应的github账号中</h3>
+<p>公钥即.pub文件可以直接用文本打开，内容粘贴到github的 Settings -> SSH and GPG keys -> New SSH Key，Title随便起，自己能认出来即可，Key里面填写复制的.pub里的内容，这样公钥就配置好了<br>
+<figure class=gallery-image style=flex-grow:229;flex-basis:549px>
+<a href=/p/git%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgithub%E8%B4%A6%E5%8F%B7/6b738e1327909d9ba03fc9fc6b7cd7f5.png data-size=1022x446>
+<img src=/p/git%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgithub%E8%B4%A6%E5%8F%B7/6b738e1327909d9ba03fc9fc6b7cd7f5.png width=1022 height=446 srcset="/p/git%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgithub%E8%B4%A6%E5%8F%B7/6b738e1327909d9ba03fc9fc6b7cd7f5_hud042e23f3ad2b0cdde7c9e2d2ab00d34_53572_480x0_resize_box_3.png 480w, /p/git%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgithub%E8%B4%A6%E5%8F%B7/6b738e1327909d9ba03fc9fc6b7cd7f5_hud042e23f3ad2b0cdde7c9e2d2ab00d34_53572_1024x0_resize_box_3.png 1024w" loading=lazy alt=Git配置多个github账号_github>
+</a>
+<figcaption>Git配置多个github账号_github</figcaption>
+</figure></p>
+<h3 id=三将私钥配置到git中>三、将私钥配置到git中</h3>
+<h4 id=1-依次使用命令>1. 依次使用命令</h4>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain>ssh-agent bash
+ssh-add id_rsa_my
+ssh-add id_rsa_company
+1.2.3.
+</code></pre></div><ul>
+<li>ssh-agent bash（或eval $(ssh-agent)）会启动一个进程在内存里管理这些私钥，可以把它理解成一个私钥管理中心</li>
+<li>ssh-add分别把两个私钥添加进来</li>
+</ul>
+<h4 id=2-查看私钥添加结果>2. 查看私钥添加结果</h4>
+<p>调用 ssh-add -l查看添加结果，添加成功的话如下所示：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain>2048 SHA256:X5HtSLQFgc55bQJ8kNwChmcfTOS6vvjIpAmj9PCX2Fs id_rsa_my (RSA)
+2048 SHA256:C+UmpLUGhSgoSdMDebJeJ6hDrodYFjtkyCcBqvFWO1o id_rsa_company (RSA)
+1.2.
+</code></pre></div><h4 id=3-创建config文件>3. 创建config文件</h4>
+<p>在.ssh目录下创建config 文件，git通过这个文件才知道哪个私钥去对应哪个公钥</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain>touch config
+1.
+</code></pre></div><p>config文件内容：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain># my
+Host my
+HostName github.com
+IdentityFile ~/.ssh/id_rsa_my
+
+# company
+Host company
+HostName github.com
+IdentityFile ~/.ssh/id_rsa_company
+1.2.3.4.5.6.7.8.9.
+</code></pre></div><p>config文件部分参数含义，仅做记录-</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain># Host: 主机别名
+# HostName: 托管平台域名地址，如github.com
+# IdentityFile : 指明上面User对应的identityFile路径
+# User: 托管平台用户名
+# Port: 端口号，可不填（如果不是默认22号端口则需要指定）
+# PreferredAuthentications publickey
+1.2.3.4.5.6.
+</code></pre></div><h4 id=4-测试ssh-key是否连通>4. 测试ssh-key是否连通</h4>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain>ssh -T git@my
+ssh -T git@company
+1.2.
+</code></pre></div><p>成功的情况下会返回：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain>Hi xxx! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
+1.
+</code></pre></div><p>此时私钥 和 公钥 都配置正常了</p>
+<h4 id=5-自动切换github>5. 自动切换github</h4>
+<p>此时测试一下clone私人git仓库，必须使用SSH方式clone。SSH类型的链接格式为：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain>git@github.com:github用户名/仓库名.git
+1.
+</code></pre></div><p>比如：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain>git@github.com:convict/my-repo.git
+1.
+</code></pre></div><p>若要clone这个仓库，应使用git clone git@my:convict/my-repo.git，即把github.com 换成my，此时clone成功，同理需要clone公司账户下的仓库，需要把github.com 换成company即可</p>
+<p>若直接使用git clone <a class=link href=mailto:git@github.com>git@github.com</a>:convict/my-repo.git，会clone失败：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain>Cloning into &#39;test&#39;...
+Warning: Permanently added the RSA host key for IP address &#39;13.250.177.223&#39; to the list of known hosts.
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+1.2.3.4.5.6.7.
+</code></pre></div><p>解释：</p>
+<ol>
+<li>在SSH中，@与:之间就是Host，因此在git clone <a class=link href=mailto:git@github.com>git@github.com</a>:convict/my-repo.git中，Host就是github.com，但在前面配置的config文件中，指定了两个Host，分别为my与company，而没有一个加github.com的Host！这是尤其需要注意的。</li>
+<li>使用git clone git@my:convict/my-repo.git时，会在config中找到一个值为my的Host，接着到其HostName上找到与其私钥对应的公钥的仓库地址。在本例中，就是根据其私钥id_rsa_my，在github.com托管平台上，匹配对应的公钥，然后匹配到convict/my-repo.git这个仓库。</li>
+</ol>
+</section>
+<footer class=article-footer>
+<section class=article-tags>
+<a href=/tags/github/>github</a>
+</section>
+</footer>
+</article>
+<aside class=related-contents--wrapper>
+<h2 class=section-title>相关文章</h2>
+<div class=related-contents>
+<div class="flex article-list--tile">
+<article>
+<a href=/p/%E4%BD%BF%E7%94%A8hugo-github-pages%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/>
+<div class=article-details>
+<h2 class=article-title>使用hugo+GitHub pages自动部署静态博客</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/%E8%A7%A3%E5%86%B3cmd%E4%B8%8B%E8%BF%90%E8%A1%8Cpython%E6%8C%87%E4%BB%A4%E5%BC%B9%E5%87%BA%E5%BE%AE%E8%BD%AF%E5%95%86%E5%BA%97%E7%8E%B0%E8%B1%A1/>
+<div class=article-details>
+<h2 class=article-title>解决cmd下运行python指令弹出微软商店现象</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/debian-%E7%AC%94%E8%AE%B0/>
+<div class=article-details>
+<h2 class=article-title>Debian 笔记</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/%E9%99%84%E4%BD%BF%E7%94%A8%E5%8F%8A%E8%AE%B0%E5%BF%86%E6%96%B9%E6%B3%95win11-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%E4%B8%80%E8%A7%88/>
+<div class=article-details>
+<h2 class=article-title>附使用及记忆方法，Win11 常用快捷键一览</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/gapps-%E5%90%84%E7%89%88%E6%9C%AC%E5%B7%AE%E5%BC%82-/-gapps-version/>
+<div class=article-details>
+<h2 class=article-title>GApps 各版本差异 / GApps Version</h2>
+</div>
+</a>
+</article>
+</div>
+</div>
+</aside>
+<footer class=site-footer>
+<section class=copyright>
+&copy;
+2020 -
+2022 Syaofox's Elysion
+</section>
+<section class=powerby>
+Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.7.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+</section>
+</footer>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main>
+<aside class="sidebar right-sidebar sticky">
+<section class="widget archives">
+<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+</div>
+<h2 class="widget-title section-title">目录</h2>
+<div class=widget--toc>
+<nav id=TableOfContents>
+<ol>
+<li>
+<ol>
+<li><a href=#一在用户目录下的ssh目录下生成秘钥与公钥>一、在用户目录下的.ssh目录下生成秘钥与公钥</a></li>
+<li><a href=#二将公钥配置到对应的github账号中>二、将公钥配置到对应的github账号中</a></li>
+<li><a href=#三将私钥配置到git中>三、将私钥配置到git中</a>
+<ol>
+<li><a href=#1-依次使用命令>1. 依次使用命令</a></li>
+<li><a href=#2-查看私钥添加结果>2. 查看私钥添加结果</a></li>
+<li><a href=#3-创建config文件>3. 创建config文件</a></li>
+<li><a href=#4-测试ssh-key是否连通>4. 测试ssh-key是否连通</a></li>
+<li><a href=#5-自动切换github>5. 自动切换github</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</nav>
+</div>
+</section>
+</aside>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
+</body>
+</html>

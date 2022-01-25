@@ -1,0 +1,337 @@
+<!doctype html><html lang=zh-cn>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="一、前言 在前面三篇介绍 fire 的文章中，我们全面了解了 fire 强大而不失简洁的能力。按照惯例，我们要像使用 argparse、docopt 和 click 一样使用 fire 来"><title>Python 命令行之旅：fire 实现 git 命令</title>
+<link rel=canonical href=https://syaofox.github.io/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85fire-%E5%AE%9E%E7%8E%B0-git-%E5%91%BD%E4%BB%A4/>
+<link rel=stylesheet href=/scss/style.min.1b3ac667198cb83edcc9c45e606a6f4dd6910b8ada6b74d7fd988f1b2dfd0c7c.css><meta property="og:title" content="Python 命令行之旅：fire 实现 git 命令">
+<meta property="og:description" content="一、前言 在前面三篇介绍 fire 的文章中，我们全面了解了 fire 强大而不失简洁的能力。按照惯例，我们要像使用 argparse、docopt 和 click 一样使用 fire 来">
+<meta property="og:url" content="https://syaofox.github.io/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85fire-%E5%AE%9E%E7%8E%B0-git-%E5%91%BD%E4%BB%A4/">
+<meta property="og:site_name" content="Syaofox's Elysion">
+<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="python"><meta property="article:tag" content="fire"><meta property="article:published_time" content="2022-01-07T14:44:10+08:00"><meta property="article:modified_time" content="2022-01-07T14:44:10+08:00">
+<meta name=twitter:site content="@syaofox">
+<meta name=twitter:creator content="@syaofox"><meta name=twitter:title content="Python 命令行之旅：fire 实现 git 命令">
+<meta name=twitter:description content="一、前言 在前面三篇介绍 fire 的文章中，我们全面了解了 fire 强大而不失简洁的能力。按照惯例，我们要像使用 argparse、docopt 和 click 一样使用 fire 来">
+<link rel="shortcut icon" href=favicon.ico>
+</head>
+<body class="article-page has-toc">
+<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+<div class="container main-container flex
+extended">
+<div id=article-toolbar>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<span>返回</span>
+</a>
+</div>
+<main class="main full-width">
+<article class=main-article>
+<header class=article-header>
+<div class=article-details>
+<header class=article-category>
+<a href=/categories/coding/ style=background-color:#2a9d8f;color:#fff>
+Coding
+</a>
+</header>
+<h2 class=article-title>
+<a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85fire-%E5%AE%9E%E7%8E%B0-git-%E5%91%BD%E4%BB%A4/>Python 命令行之旅：fire 实现 git 命令</a>
+</h2>
+<footer class=article-time>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Jan 07, 2022</time>
+</div>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>
+阅读时长: 4 分钟
+</time>
+</div>
+</footer>
+</div>
+</header>
+<section class=article-content>
+<h2 id=一前言>一、前言</h2>
+<p>在前面三篇介绍 <code>fire</code> 的文章中，我们全面了解了 <code>fire</code> 强大而不失简洁的能力。按照惯例，我们要像使用 <code>argparse</code>、<code>docopt</code> 和 <code>click</code> 一样使用 <code>fire</code> 来实现 git 命令。</p>
+<p>本文的关注点并不在 <code>git</code> 的各种命令是如何实现的，而是怎么使用 <code>fire</code> 去打造一个实用命令行程序，代码结构是怎样的。因此，和 <code>git</code> 相关的操作，将会使用 <code>gitpython</code> 库来简单实现。</p>
+<p>为了让没读过 <code>使用 xxx 实现 git 命令</code>（<code>xxx</code> 指 <code>argparse</code>、<code>docopt</code> 和 <code>click</code>） 的小伙伴也能读明白本文，我们仍会对 <code>git</code> 常用命令和 <code>gitpython</code> 做一个简单介绍。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>本系列文章默认使用 Python 3 作为解释器进行讲解。
+若你仍在使用 Python 2，请注意两者之间语法和库的使用差异哦~
+</code></pre></div><h2 id=二git-常用命令>二、git 常用命令</h2>
+<p>当你写好一段代码或增删一些文件后，会用如下命令查看文件状态：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>git status
+</code></pre></div><p>确认文件状态后，会用如下命令将的一个或多个文件（夹）添加到暂存区：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>git add [pathspec [pathspec ...]]
+</code></pre></div><p>然后使用如下命令提交信息：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>git commit -m &#34;your commit message&#34;
+</code></pre></div><p>最后使用如下命令将提交推送到远程仓库：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>git push
+</code></pre></div><p>我们将使用 <code>fire</code> 和 <code>gitpython</code> 库来实现这 4 个子命令。</p>
+<h2 id=三关于-gitpython>三、关于 gitpython</h2>
+<p><a class=link href=https://gitpython.readthedocs.io/en/stable/intro.html target=_blank rel=noopener>gitpython</a> 是一个和 <code>git</code> 仓库交互的 Python 第三方库。 我们将借用它的能力来实现真正的 <code>git</code> 逻辑。</p>
+<p>安装：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>pip install gitpython
+</code></pre></div><h2 id=四思考>四、思考</h2>
+<p>在实现前，我们不妨先思考下会用到 <code>fire</code> 的哪些功能？整个程序的结构是怎样的？</p>
+<p><strong>fire</strong></p>
+<p><code>git</code> 的 4 个子命令的实现其实对应于四个函数，我们可以都放到一个类中，实现四个实例方法。 而对于 <code>git add</code> 命令，需要接受任意个参数，在实例方法中用 <code>*pathspecs</code> 参数来表达。 对于 <code>git commit</code> 命令，需要接受 <code>-m</code> 选项，在实例方法中用 <code>m</code> 参数来表达。</p>
+<p><strong>程序结构</strong></p>
+<p>程序结构上：</p>
+<ul>
+<li>实例化 <code>Git</code> 对象，供全局使用</li>
+<li>在 <code>GitCli</code> 类中定义四个命令对应的实例方法 <code>status</code>、<code>add</code>、<code>commit</code>、<code>push</code></li>
+</ul>
+<p>则基本结构如下：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>os</span>
+<span class=kn>import</span> <span class=nn>fire</span>
+<span class=kn>from</span> <span class=nn>git.cmd</span> <span class=kn>import</span> <span class=n>Git</span>
+
+<span class=n>git</span> <span class=o>=</span> <span class=n>Git</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>getcwd</span><span class=p>())</span>
+
+<span class=k>class</span> <span class=nc>GitCli</span><span class=p>:</span>
+    <span class=k>def</span> <span class=nf>status</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+        <span class=s2>&#34;&#34;&#34;
+</span><span class=s2>        处理 status 命令
+</span><span class=s2>        &#34;&#34;&#34;</span>
+        <span class=k>pass</span>
+
+    <span class=k>def</span> <span class=nf>add</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=o>*</span><span class=n>pathspecs</span><span class=p>):</span>
+        <span class=s2>&#34;&#34;&#34;
+</span><span class=s2>        处理 add 命令
+</span><span class=s2>        &#34;&#34;&#34;</span>
+        <span class=k>pass</span>
+
+    <span class=k>def</span> <span class=nf>commit</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>m</span><span class=p>):</span>
+        <span class=s2>&#34;&#34;&#34;
+</span><span class=s2>        处理 -m &lt;msg&gt; 命令
+</span><span class=s2>        &#34;&#34;&#34;</span>
+        <span class=k>pass</span>
+
+    <span class=k>def</span> <span class=nf>push</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+        <span class=s2>&#34;&#34;&#34;
+</span><span class=s2>        处理 push 命令
+</span><span class=s2>        &#34;&#34;&#34;</span>
+        <span class=k>pass</span>
+
+
+<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+    <span class=n>fire</span><span class=o>.</span><span class=n>Fire</span><span class=p>(</span><span class=n>GitCli</span><span class=p>())</span>
+</code></pre></div><p>下面我们将一步步地实现我们的 <code>git</code> 程序。</p>
+<h2 id=五实现>五、实现</h2>
+<p>假定我们在 <a class=link href=https://github.com/HelloGitHub-Team/Article/blob/master/contents/Python/cmdline/fire-git.py target=_blank rel=noopener>fire-git.py</a> 文件中实现我们的 <code>git</code> 程序。</p>
+<h3 id=51-status-子命令>5.1 status 子命令</h3>
+<p><code>status</code> 子命令不接受任何参数和选项，因此 <code>status</code> 方法无需任何入参。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=k>class</span> <span class=nc>GitCli</span><span class=p>:</span>
+    <span class=k>def</span> <span class=nf>status</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+        <span class=s2>&#34;&#34;&#34;
+</span><span class=s2>        处理 status 命令
+</span><span class=s2>        &#34;&#34;&#34;</span>
+        <span class=n>cmd</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;git&#39;</span><span class=p>,</span> <span class=s1>&#39;status&#39;</span><span class=p>]</span>
+        <span class=n>output</span> <span class=o>=</span> <span class=n>git</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=n>cmd</span><span class=p>)</span>
+        <span class=k>return</span> <span class=n>output</span>
+</code></pre></div><p>不难看出，我们最后调用了真正的 <code>git status</code> 来实现，并打印了输出。</p>
+<h3 id=52-add-子命令>5.2 add 子命令</h3>
+<p><code>add</code> 子命令相对于 <code>status</code> 子命令，需要接受任意个 pathspec 参数，因此 <code>add</code> 方法需要增加 <code>*pathspecs</code> 入参。 fire 最终传入的是一个元组，我们需要将其转换成 list 以便后续处理。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=k>class</span> <span class=nc>GitCli</span><span class=p>:</span>
+    <span class=k>def</span> <span class=nf>add</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=o>*</span><span class=n>pathspecs</span><span class=p>):</span>
+        <span class=s2>&#34;&#34;&#34;
+</span><span class=s2>        处理 add 命令
+</span><span class=s2>        &#34;&#34;&#34;</span>
+        <span class=n>cmd</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;git&#39;</span><span class=p>,</span> <span class=s1>&#39;add&#39;</span><span class=p>]</span> <span class=o>+</span> <span class=nb>list</span><span class=p>(</span><span class=n>pathspecs</span><span class=p>)</span>
+        <span class=n>output</span> <span class=o>=</span> <span class=n>git</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=n>cmd</span><span class=p>)</span>
+        <span class=k>return</span> <span class=n>output</span>
+</code></pre></div><p>当我们执行 <code>python3 fire-git.py add --help</code> 时，结果如下：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>INFO: Showing help with the command &#39;fire-git.py add -- --help&#39;.
+
+NAME
+    fire-git.py add - 处理 add 命令
+
+SYNOPSIS
+    fire-git.py add [PATHSPECS]...
+
+DESCRIPTION
+    处理 add 命令
+
+POSITIONAL ARGUMENTS
+    PATHSPECS
+</code></pre></div><h3 id=53-commit-子命令>5.3 commit 子命令</h3>
+<p><code>commit</code> 子命令相对于 <code>status</code> 子命令，需要接受 <code>-m</code> 选项，因此 <code>commit</code> 方法需要增加 <code>m</code> 入参。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=k>class</span> <span class=nc>GitCli</span><span class=p>:</span>
+    <span class=k>def</span> <span class=nf>commit</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>m</span><span class=p>):</span>
+        <span class=s2>&#34;&#34;&#34;
+</span><span class=s2>        处理 -m &lt;msg&gt; 命令
+</span><span class=s2>        &#34;&#34;&#34;</span>
+        <span class=n>cmd</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;git&#39;</span><span class=p>,</span> <span class=s1>&#39;commit&#39;</span><span class=p>,</span> <span class=s1>&#39;-m&#39;</span><span class=p>,</span> <span class=n>m</span><span class=p>]</span>
+        <span class=n>output</span> <span class=o>=</span> <span class=n>git</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=n>cmd</span><span class=p>)</span>
+        <span class=k>return</span> <span class=n>output</span>
+</code></pre></div><h3 id=54-push-子命令>5.4 push 子命令</h3>
+<p><code>push</code> 子命令同 <code>status</code> 子命令一样，不接受任何参数和选项，因此 <code>push</code> 方法无需任何入参。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=k>class</span> <span class=nc>GitCli</span><span class=p>:</span>
+    <span class=k>def</span> <span class=nf>push</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+        <span class=s2>&#34;&#34;&#34;
+</span><span class=s2>        处理 push 命令
+</span><span class=s2>        &#34;&#34;&#34;</span>
+        <span class=n>cmd</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;git&#39;</span><span class=p>,</span> <span class=s1>&#39;push&#39;</span><span class=p>]</span>
+        <span class=n>output</span> <span class=o>=</span> <span class=n>git</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=n>cmd</span><span class=p>)</span>
+        <span class=k>return</span> <span class=n>output</span>
+</code></pre></div><p>至此，我们就实现了一个简单的 <code>git</code> 命令行，使用 <code>python fire-git.py status</code> 便可查询项目状态。</p>
+<p>非常方便的是，每个命令函数的 <code>docstring</code> 都将作为这个命令的帮助信息，因此，当我们执行 <code>python3 fire-git.py --help</code> 会自动生成如下帮助内容：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>INFO: Showing help with the command &#39;fire-git.py -- --help&#39;.
+
+NAME
+    fire-git.py
+
+SYNOPSIS
+    fire-git.py COMMAND
+
+COMMANDS
+    COMMAND is one of the following:
+
+     add
+       处理 add 命令
+
+     commit
+       处理 -m &lt;msg&gt; 命令
+
+     push
+       处理 push 命令
+
+     status
+       处理 status 命令
+</code></pre></div><p>想看整个源码，请戳 <a class=link href=https://github.com/HelloGitHub-Team/Article/blob/master/contents/Python/cmdline/fire-git.py target=_blank rel=noopener>fire-git.py</a> 。</p>
+<h2 id=六小结>六、小结</h2>
+<p>本文简单介绍了日常工作中常用的 <code>git</code> 命令，然后提出实现它的思路，最终一步步地使用 <code>fire</code> 和 <code>gitpython</code> 实现了 <code>git</code> 程序。</p>
+<p>对比 <code>argparse</code>、<code>docopt</code> 和 <code>click</code> 的实现版本，你会发现使用 <code>fire</code> 来实现是最简单的：</p>
+<ul>
+<li>相较于 <code>argparse</code>，子解析器、参数类型什么的统统不需要关心</li>
+<li>相较于 <code>docopt</code>，参数解析和命令调用处理也不需要关心</li>
+<li>相较于 <code>click</code>，装饰器所定义的命令行参数信息也必须要关心</li>
+</ul>
+<p>无疑，<code>fire</code> 把能简化的都简化了，简直就是懒人福音。</p>
+<p>关于 <code>fire</code> 的讲解将告一段落，回顾下 <code>fire</code> 的至简之道，你会深爱上它。这也体现出了 Python 之美。</p>
+<p>现在，你已学会了四个特点各异的主流命令行解析库的使用了，再也不需要为命令行程序的实现而烦恼了。</p>
+<p>什么，你为要使用哪一个库而发愁？在下一篇也是最后一篇文章中，我们将对这些库做一个横向对比，以对什么场景下使用什么样的命令行库了然于胸~</p>
+</section>
+<footer class=article-footer>
+<section class=article-tags>
+<a href=/tags/python/>python</a>
+<a href=/tags/fire/>fire</a>
+</section>
+</footer>
+</article>
+<aside class=related-contents--wrapper>
+<h2 class=section-title>相关文章</h2>
+<div class=related-contents>
+<div class="flex article-list--tile">
+<article>
+<a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E6%B7%B1%E5%85%A5-fire%E4%BA%8C/>
+<div class=article-details>
+<h2 class=article-title>Python 命令行之旅：深入 fire（二）</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E6%B7%B1%E5%85%A5-fire%E4%B8%80/>
+<div class=article-details>
+<h2 class=article-title>Python 命令行之旅：深入 fire（一）</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E5%88%9D%E6%8E%A2-fire/>
+<div class=article-details>
+<h2 class=article-title>Python 命令行之旅：初探 fire</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/>
+<div class=article-details>
+<h2 class=article-title>Python学习笔记 容易忽略的知识点</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/%E4%BD%BF%E7%94%A8propertysetterdeleter/>
+<div class=article-details>
+<h2 class=article-title>使用@property、setter、deleter</h2>
+</div>
+</a>
+</article>
+</div>
+</div>
+</aside>
+<footer class=site-footer>
+<section class=copyright>
+&copy;
+2020 -
+2022 Syaofox's Elysion
+</section>
+<section class=powerby>
+Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.7.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+</section>
+</footer>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main>
+<aside class="sidebar right-sidebar sticky">
+<section class="widget archives">
+<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+</div>
+<h2 class="widget-title section-title">目录</h2>
+<div class=widget--toc>
+<nav id=TableOfContents>
+<ol>
+<li><a href=#一前言>一、前言</a></li>
+<li><a href=#二git-常用命令>二、git 常用命令</a></li>
+<li><a href=#三关于-gitpython>三、关于 gitpython</a></li>
+<li><a href=#四思考>四、思考</a></li>
+<li><a href=#五实现>五、实现</a>
+<ol>
+<li><a href=#51-status-子命令>5.1 status 子命令</a></li>
+<li><a href=#52-add-子命令>5.2 add 子命令</a></li>
+<li><a href=#53-commit-子命令>5.3 commit 子命令</a></li>
+<li><a href=#54-push-子命令>5.4 push 子命令</a></li>
+</ol>
+</li>
+<li><a href=#六小结>六、小结</a></li>
+</ol>
+</nav>
+</div>
+</section>
+</aside>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
+</body>
+</html>

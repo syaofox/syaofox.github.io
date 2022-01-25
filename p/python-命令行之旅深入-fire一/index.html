@@ -1,0 +1,354 @@
+<!doctype html><html lang=zh-cn>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="一、前言 在第一篇“初探 fire”的文章中，我们初步掌握了使用 fire 的简单步骤，了解了它 Pythonic 的用法。 今天我们将深入了解 fire 的子命令、嵌套命令和属性访问"><title>Python 命令行之旅：深入 fire（一）</title>
+<link rel=canonical href=https://syaofox.github.io/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E6%B7%B1%E5%85%A5-fire%E4%B8%80/>
+<link rel=stylesheet href=/scss/style.min.1b3ac667198cb83edcc9c45e606a6f4dd6910b8ada6b74d7fd988f1b2dfd0c7c.css><meta property="og:title" content="Python 命令行之旅：深入 fire（一）">
+<meta property="og:description" content="一、前言 在第一篇“初探 fire”的文章中，我们初步掌握了使用 fire 的简单步骤，了解了它 Pythonic 的用法。 今天我们将深入了解 fire 的子命令、嵌套命令和属性访问">
+<meta property="og:url" content="https://syaofox.github.io/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E6%B7%B1%E5%85%A5-fire%E4%B8%80/">
+<meta property="og:site_name" content="Syaofox's Elysion">
+<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="python"><meta property="article:tag" content="fire"><meta property="article:published_time" content="2022-01-07T14:43:50+08:00"><meta property="article:modified_time" content="2022-01-07T14:43:50+08:00">
+<meta name=twitter:site content="@syaofox">
+<meta name=twitter:creator content="@syaofox"><meta name=twitter:title content="Python 命令行之旅：深入 fire（一）">
+<meta name=twitter:description content="一、前言 在第一篇“初探 fire”的文章中，我们初步掌握了使用 fire 的简单步骤，了解了它 Pythonic 的用法。 今天我们将深入了解 fire 的子命令、嵌套命令和属性访问">
+<link rel="shortcut icon" href=favicon.ico>
+</head>
+<body class="article-page has-toc">
+<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+<div class="container main-container flex
+extended">
+<div id=article-toolbar>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<span>返回</span>
+</a>
+</div>
+<main class="main full-width">
+<article class=main-article>
+<header class=article-header>
+<div class=article-details>
+<header class=article-category>
+<a href=/categories/coding/ style=background-color:#2a9d8f;color:#fff>
+Coding
+</a>
+</header>
+<h2 class=article-title>
+<a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E6%B7%B1%E5%85%A5-fire%E4%B8%80/>Python 命令行之旅：深入 fire（一）</a>
+</h2>
+<footer class=article-time>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Jan 07, 2022</time>
+</div>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>
+阅读时长: 3 分钟
+</time>
+</div>
+</footer>
+</div>
+</header>
+<section class=article-content>
+<h2 id=一前言>一、前言</h2>
+<p>在第一篇“初探 fire”的文章中，我们初步掌握了使用 <code>fire</code> 的简单步骤，了解了它 Pythonic 的用法。</p>
+<p>今天我们将深入了解 <code>fire</code> 的子命令、嵌套命令和属性访问功能。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>本系列文章默认使用 Python 3 作为解释器进行讲解。
+若你仍在使用 Python 2，请注意两者之间语法和库的使用差异哦~
+</code></pre></div><h2 id=二功能>二、功能</h2>
+<h3 id=21-子命令>2.1 子命令</h3>
+<p>使用 <code>fire</code> 实现子命令有多种方式：</p>
+<h3 id=211-定义若干函数使用-firefire>2.1.1 定义若干函数，使用 fire.Fire()</h3>
+<p>实现子命令最简单的方式就是定义若干个函数，每个函数名隐式就是子命令名称，然后调用 <code>fire.Fire()</code> 变将当前模块所有的函数解析为对应的子命令的处理函数。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>fire</span>
+
+<span class=k>def</span> <span class=nf>add</span><span class=p>(</span><span class=n>x</span><span class=p>,</span> <span class=n>y</span><span class=p>):</span>
+  <span class=k>return</span> <span class=n>x</span> <span class=o>+</span> <span class=n>y</span>
+
+<span class=k>def</span> <span class=nf>multiply</span><span class=p>(</span><span class=n>x</span><span class=p>,</span> <span class=n>y</span><span class=p>):</span>
+  <span class=k>return</span> <span class=n>x</span> <span class=o>*</span> <span class=n>y</span>
+
+<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+  <span class=n>fire</span><span class=o>.</span><span class=n>Fire</span><span class=p>()</span>
+</code></pre></div><p>然后我们就可以在命令行中这么调用：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>$ python example.py add 10 20
+30
+$ python example.py multiply 10 20
+200
+</code></pre></div><p>关于如何识别参数类型，比如上述 <code>add 10 20</code> 中 <code>10</code> 和 <code>20</code> 是作为数字而非字符串，我们会在下篇文章的参数解析章节中进行讲解。</p>
+<h3 id=212-定义若干函数使用-firefire>2.1.2 定义若干函数，使用 fire.Fire()</h3>
+<p>在 <code>2.1.1</code> 的版本中，会把所有函数都当做是子命令。有时我们可能只想把部分函数当做子命令，或者是希望子命令名称和函数名称不一样。这个时候我们就可以通过字典对象显式地告诉 <code>fire</code>。</p>
+<p>字典对象的形式为 <code>{'子命令名称': 函数}</code>，比如前面的示例中，我们希望最终的子命令为 <code>add</code> 和 <code>mul</code>，那么就可以这么写：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>fire</span><span class=o>.</span><span class=n>Fire</span><span class=p>({</span>
+  <span class=s1>&#39;add&#39;</span><span class=p>:</span> <span class=n>add</span><span class=p>,</span>
+  <span class=s1>&#39;mul&#39;</span><span class=p>:</span> <span class=n>multiply</span><span class=p>,</span>
+<span class=p>})</span>
+</code></pre></div><p>然后我们就可以在命令行中这么调用：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>$ python example.py add 10 20
+30
+$ python example.py mul 10 20
+200
+</code></pre></div><h3 id=213-定义类和方法使用-firefire>2.1.3 定义类和方法，使用 fire.Fire()</h3>
+<p>定义类和方法的这种方式我们在上一篇文章中介绍过，它和定义函数的方式基本相同，只不过是用类的方式来组织。</p>
+<p>然后将类实例化，并把实例化的对象多为 <code>fire.Fire</code> 的入参：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>fire</span>
+
+<span class=k>class</span> <span class=nc>Calculator</span><span class=p>(</span><span class=nb>object</span><span class=p>):</span>
+
+  <span class=k>def</span> <span class=nf>add</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>x</span><span class=p>,</span> <span class=n>y</span><span class=p>):</span>
+    <span class=k>return</span> <span class=n>x</span> <span class=o>+</span> <span class=n>y</span>
+
+  <span class=k>def</span> <span class=nf>multiply</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>x</span><span class=p>,</span> <span class=n>y</span><span class=p>):</span>
+    <span class=k>return</span> <span class=n>x</span> <span class=o>*</span> <span class=n>y</span>
+
+<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+  <span class=n>calculator</span> <span class=o>=</span> <span class=n>Calculator</span><span class=p>()</span>
+  <span class=n>fire</span><span class=o>.</span><span class=n>Fire</span><span class=p>(</span><span class=n>calculator</span><span class=p>)</span>
+</code></pre></div><h3 id=214-定义类和方法使用-firefire>2.1.4 定义类和方法，使用 fire.Fire()</h3>
+<p>和 <code>2.1.3</code> 中的唯一不同点是把类而非实例对象作为 <code>fire.Fire</code> 的入参：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>fire</span><span class=o>.</span><span class=n>Fire</span><span class=p>(</span><span class=n>Calculator</span><span class=p>)</span>
+</code></pre></div><p>传递类和实例对象的基本作用是一样的，但传递类还有一个额外的特性：如果构造函数中定义了参数，那么这些参数都会作为整个命令行程序的选项参数。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>fire</span>
+
+<span class=k>class</span> <span class=nc>BrokenCalculator</span><span class=p>(</span><span class=nb>object</span><span class=p>):</span>
+
+  <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>offset</span><span class=o>=</span><span class=mi>1</span><span class=p>):</span>
+      <span class=bp>self</span><span class=o>.</span><span class=n>_offset</span> <span class=o>=</span> <span class=n>offset</span>
+
+  <span class=k>def</span> <span class=nf>add</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>x</span><span class=p>,</span> <span class=n>y</span><span class=p>):</span>
+    <span class=k>return</span> <span class=n>x</span> <span class=o>+</span> <span class=n>y</span> <span class=o>+</span> <span class=bp>self</span><span class=o>.</span><span class=n>_offset</span>
+
+  <span class=k>def</span> <span class=nf>multiply</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>x</span><span class=p>,</span> <span class=n>y</span><span class=p>):</span>
+    <span class=k>return</span> <span class=n>x</span> <span class=o>*</span> <span class=n>y</span> <span class=o>+</span> <span class=bp>self</span><span class=o>.</span><span class=n>_offset</span>
+
+<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+  <span class=n>fire</span><span class=o>.</span><span class=n>Fire</span><span class=p>(</span><span class=n>BrokenCalculator</span><span class=p>)</span>
+</code></pre></div><p>查看帮助命令有：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>$ python example.py --help
+INFO: Showing help with the command &#39;example.py -- --help&#39;.
+
+NAME
+    example.py
+
+SYNOPSIS
+    example.py &lt;flags&gt;
+
+FLAGS
+    --offset=OFFSET
+</code></pre></div><p>由此可见构造函数 <code>BrokenCalculator.__init__(self, offset=1)</code> 中的 <code>offset</code> 自动转换为了命令行中的全局选项参数 <code>--offset</code>，且默认值为 <code>1</code>。</p>
+<p>我们可以在命令行中这么调用：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>$ python example.py add 10 20
+31
+$ python example.py multiply 10 20
+201
+$ python example.py add 10 20 --offset=0
+30
+$ python example.py multiply 10 20 --offset=0
+200
+</code></pre></div><h3 id=22-命令组嵌套命令>2.2 命令组/嵌套命令</h3>
+<p>想要实现嵌套命令，可将多个类组织起来，示例如下：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=k>class</span> <span class=nc>IngestionStage</span><span class=p>(</span><span class=nb>object</span><span class=p>):</span>
+
+  <span class=k>def</span> <span class=nf>run</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+    <span class=k>return</span> <span class=s1>&#39;Ingesting! Nom nom nom...&#39;</span>
+
+<span class=k>class</span> <span class=nc>DigestionStage</span><span class=p>(</span><span class=nb>object</span><span class=p>):</span>
+
+  <span class=k>def</span> <span class=nf>run</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>volume</span><span class=o>=</span><span class=mi>1</span><span class=p>):</span>
+    <span class=k>return</span> <span class=s1>&#39; &#39;</span><span class=o>.</span><span class=n>join</span><span class=p>([</span><span class=s1>&#39;Burp!&#39;</span><span class=p>]</span> <span class=o>*</span> <span class=n>volume</span><span class=p>)</span>
+
+  <span class=k>def</span> <span class=nf>status</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+    <span class=k>return</span> <span class=s1>&#39;Satiated.&#39;</span>
+
+<span class=k>class</span> <span class=nc>Pipeline</span><span class=p>(</span><span class=nb>object</span><span class=p>):</span>
+
+  <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>ingestion</span> <span class=o>=</span> <span class=n>IngestionStage</span><span class=p>()</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>digestion</span> <span class=o>=</span> <span class=n>DigestionStage</span><span class=p>()</span>
+
+  <span class=k>def</span> <span class=nf>run</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>ingestion</span><span class=o>.</span><span class=n>run</span><span class=p>()</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>digestion</span><span class=o>.</span><span class=n>run</span><span class=p>()</span>
+
+<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+  <span class=n>fire</span><span class=o>.</span><span class=n>Fire</span><span class=p>(</span><span class=n>Pipeline</span><span class=p>)</span>
+</code></pre></div><p>在上面的示例中：</p>
+<ul>
+<li><code>IngestionStage</code> 实现了子命令 <code>run</code></li>
+<li><code>DigestionStage</code> 实现了子命令 <code>run</code> 和 <code>status</code></li>
+<li><code>Pipeline</code> 的构造函数中将 <code>IngestionStage</code> 实例化为 <code>ingestion</code>，将 <code>DigestionStage</code> 实例化为 <code>digestion</code>，就将这两个放到一个命令组中，因而支持了：</li>
+<li><code>ingestion run</code></li>
+<li><code>digestion run</code></li>
+<li><code>digestion status</code></li>
+<li><code>Pipeline</code> 实现了子命令 <code>run</code></li>
+</ul>
+<p>因此整个命令行程序支持如下命令：</p>
+<ul>
+<li><code>run</code></li>
+<li><code>ingestion run</code></li>
+<li><code>digestion run</code></li>
+<li><code>digestion status</code></li>
+</ul>
+<p>然后我们就可以在命令行中这么调用：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>$ python example.py run
+Ingesting! Nom nom nom...
+Burp!
+$ python example.py ingestion run
+Ingesting! Nom nom nom...
+$ python example.py digestion run
+Burp!
+$ python example.py digestion status
+Satiated.
+</code></pre></div><h3 id=23-属性访问>2.3 属性访问</h3>
+<p><code>属性访问</code> 是 <code>fire</code> 相对于其他命令行库来说一个比较独特的功能。所谓访问属性是获取预置的属性所对应的值。</p>
+<p>举个例子，在命令行中指定 <code>--code</code> 来告知程序要查询的程序编码，然后希望通过 <code>zipcode</code> 属性返回邮编，通过 <code>city</code> 属性返回城市名。那么属性可实现为实例成员属性：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>fire</span>
+
+<span class=n>cities</span> <span class=o>=</span> <span class=p>{</span>
+  <span class=s1>&#39;hz&#39;</span><span class=p>:</span> <span class=p>(</span><span class=mi>310000</span><span class=p>,</span> <span class=s1>&#39;杭州&#39;</span><span class=p>),</span>
+  <span class=s1>&#39;bj&#39;</span><span class=p>:</span> <span class=p>(</span><span class=mi>100000</span><span class=p>,</span> <span class=s1>&#39;北京&#39;</span><span class=p>),</span>
+<span class=p>}</span>
+
+
+<span class=k>class</span> <span class=nc>City</span><span class=p>(</span><span class=nb>object</span><span class=p>):</span>
+
+  <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>code</span><span class=p>):</span>
+    <span class=n>info</span> <span class=o>=</span> <span class=n>cities</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=n>code</span><span class=p>)</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>zipcode</span> <span class=o>=</span> <span class=n>info</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=k>if</span> <span class=n>info</span> <span class=k>else</span> <span class=kc>None</span>
+    <span class=bp>self</span><span class=o>.</span><span class=n>city</span> <span class=o>=</span> <span class=n>info</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=k>if</span> <span class=n>info</span> <span class=k>else</span> <span class=kc>None</span>
+
+<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+  <span class=n>fire</span><span class=o>.</span><span class=n>Fire</span><span class=p>(</span><span class=n>City</span><span class=p>)</span>
+</code></pre></div><p>使用方式如下：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text>$ python example.py --code bj zipcode
+100000
+$ python example.py --code hz city
+杭州
+</code></pre></div><h2 id=三小结>三、小结</h2>
+<p>使用 <code>fire</code> 实现子命令和嵌套命令相对于其他命令行库来说都更加简单清晰，不仅如此，<code>fire</code> 还提供了属性访问这种较为独特的能力。</p>
+<p>在下篇文章中，我们将进一步深入了解 <code>fire</code>，介绍其链式函数调用、自定义序列化、参数解析、fire 选项等更加高阶的功能。</p>
+</section>
+<footer class=article-footer>
+<section class=article-tags>
+<a href=/tags/python/>python</a>
+<a href=/tags/fire/>fire</a>
+</section>
+</footer>
+</article>
+<aside class=related-contents--wrapper>
+<h2 class=section-title>相关文章</h2>
+<div class=related-contents>
+<div class="flex article-list--tile">
+<article>
+<a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85fire-%E5%AE%9E%E7%8E%B0-git-%E5%91%BD%E4%BB%A4/>
+<div class=article-details>
+<h2 class=article-title>Python 命令行之旅：fire 实现 git 命令</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E6%B7%B1%E5%85%A5-fire%E4%BA%8C/>
+<div class=article-details>
+<h2 class=article-title>Python 命令行之旅：深入 fire（二）</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E5%88%9D%E6%8E%A2-fire/>
+<div class=article-details>
+<h2 class=article-title>Python 命令行之旅：初探 fire</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/>
+<div class=article-details>
+<h2 class=article-title>Python学习笔记 容易忽略的知识点</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/%E4%BD%BF%E7%94%A8propertysetterdeleter/>
+<div class=article-details>
+<h2 class=article-title>使用@property、setter、deleter</h2>
+</div>
+</a>
+</article>
+</div>
+</div>
+</aside>
+<footer class=site-footer>
+<section class=copyright>
+&copy;
+2020 -
+2022 Syaofox's Elysion
+</section>
+<section class=powerby>
+Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.7.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+</section>
+</footer>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main>
+<aside class="sidebar right-sidebar sticky">
+<section class="widget archives">
+<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+</div>
+<h2 class="widget-title section-title">目录</h2>
+<div class=widget--toc>
+<nav id=TableOfContents>
+<ol>
+<li><a href=#一前言>一、前言</a></li>
+<li><a href=#二功能>二、功能</a>
+<ol>
+<li><a href=#21-子命令>2.1 子命令</a></li>
+<li><a href=#211-定义若干函数使用-firefire>2.1.1 定义若干函数，使用 fire.Fire()</a></li>
+<li><a href=#212-定义若干函数使用-firefire>2.1.2 定义若干函数，使用 fire.Fire()</a></li>
+<li><a href=#213-定义类和方法使用-firefire>2.1.3 定义类和方法，使用 fire.Fire()</a></li>
+<li><a href=#214-定义类和方法使用-firefire>2.1.4 定义类和方法，使用 fire.Fire()</a></li>
+<li><a href=#22-命令组嵌套命令>2.2 命令组/嵌套命令</a></li>
+<li><a href=#23-属性访问>2.3 属性访问</a></li>
+</ol>
+</li>
+<li><a href=#三小结>三、小结</a></li>
+</ol>
+</nav>
+</div>
+</section>
+</aside>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
+</body>
+</html>
