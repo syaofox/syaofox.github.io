@@ -1,4 +1,233 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Syaofox's Elysion</title><link>https://syaofox.github.io/</link><description>Recent content on Syaofox's Elysion</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 30 Jan 2022 16:57:49 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Openwrt自动更新bt Tracker</title><link>https://syaofox.github.io/p/openwrt%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0bt-tracker/</link><pubDate>Sun, 30 Jan 2022 16:57:49 +0800</pubDate><guid>https://syaofox.github.io/p/openwrt%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0bt-tracker/</guid><description>&lt;h2 id="创建脚本">创建脚本&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Syaofox's Elysion</title><link>https://syaofox.github.io/</link><description>Recent content on Syaofox's Elysion</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 31 Jan 2022 10:11:48 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>安装一台基于debian的家庭服务器</title><link>https://syaofox.github.io/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/</link><pubDate>Mon, 31 Jan 2022 10:11:48 +0800</pubDate><guid>https://syaofox.github.io/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid><description>&lt;h2 id="安装sudo">安装sudo&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">apt install sudo
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="添加用户到sudo">添加用户到sudo&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">usermod -aG sudo username
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="设置静态ip">设置静态ip&lt;/h2>
+&lt;p>备份配置文件&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo cp /etc/network/interfaces /etc/network/interfaces.bak
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>修改配置文件&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo nano /etc/network/interfaces
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>原配置文件内容&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="c1"># This file describes the network interfaces available on your system&lt;/span>
+&lt;span class="c1"># and how to activate them. For more information, see interfaces(5).&lt;/span>
+&lt;span class="nb">source&lt;/span> /etc/network/interfaces.d/*
+&lt;span class="c1"># The loopback network interface&lt;/span>
+auto lo
+iface lo inet loopback
+&lt;span class="c1"># The primary network interface&lt;/span>
+allow-hotplug eth0
+iface eth0 inet dhcp
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>修改后内容&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="c1"># This file describes the network interfaces available on your system&lt;/span>
+&lt;span class="c1"># and how to activate them. For more information, see interfaces(5).&lt;/span>
+&lt;span class="nb">source&lt;/span> /etc/network/interfaces.d/*
+&lt;span class="c1"># The loopback network interface&lt;/span>
+auto lo
+iface lo inet loopback
+&lt;span class="c1"># The primary network interface&lt;/span>
+allow-hotplug eth0
+iface eth0 inet static
+address 10.10.10.101
+netmast 255.255.255.0
+gateway 10.10.10.1
+dns-nameservers 10.10.10.1
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>重启网络服务&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo systemctl restart networking
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="更换软件源">更换软件源&lt;/h2>
+&lt;p>备份软件源配置文件&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>打开源配置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo nano /etc/apt/sources.list
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>替换&lt;code>security.debian.org&lt;/code>为&lt;code>repo.huaweicloud.com&lt;/code>
+修改后的&lt;code>source.list&lt;/code>如下:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="c1"># deb http://repo.huaweicloud.com/debian/ bullseye main&lt;/span>
+deb http://repo.huaweicloud.com/debian/ bullseye main non-free contrib
+deb-src http://repo.huaweicloud.com/debian/ bullseye main non-free contrib
+deb http://repo.huaweicloud.com/debian-security bullseye-security main contrib non-free
+deb-src http://repo.huaweicloud.com/debian-security bullseye-security main contrib non-free
+&lt;span class="c1"># bullseye-updates, to get updates before a point release is made;&lt;/span>
+&lt;span class="c1"># see https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_updates_and_backports&lt;/span>
+deb http://repo.huaweicloud.com/debian/ bullseye-updates main contrib non-free
+deb-src http://repo.huaweicloud.com/debian/ bullseye-updates main contrib non-free
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>更新&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo apt update &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> sudo apt upgrade
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="增加别名">增加别名&lt;/h2>
+&lt;p>编辑home目录下的&lt;code>.bashrc&lt;/code>文件&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">nano .bashrc
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>增加一行&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="nb">alias&lt;/span> &lt;span class="nv">ll&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;ls -lha&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>重新加载&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="nb">source&lt;/span> .bashrc
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="设置硬盘">设置硬盘&lt;/h2>
+&lt;h3 id="初始化硬盘">初始化硬盘&lt;/h3>
+&lt;p>用&lt;code>lsblk&lt;/code>查看硬盘
+&lt;figure
+class="gallery-image"
+style="
+flex-grow: 229;
+flex-basis: 550px"
+>
+&lt;a href="https://syaofox.github.io/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/lsblk.jpg" data-size="447x195">
+&lt;img src="https://syaofox.github.io/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/lsblk.jpg"
+width="447"
+height="195"
+srcset="https://syaofox.github.io/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/lsblk_hua0cdb4774893f6f917dd3b4db9886d6d_17338_480x0_resize_q75_box.jpg 480w, https://syaofox.github.io/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/lsblk_hua0cdb4774893f6f917dd3b4db9886d6d_17338_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>
+分区并格式化硬盘&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo fdisk /dev/sdb
+sudo mkfs.ext4 /dev/sdb1
+sudo fdisk /dev/sdc
+sudo mkfs.ext4 /dev/sdc1
+sudo fdisk /dev/sdd
+sudo mkfs.ext4 /dev/sdd1
+sudo fdisk /dev/sde
+sudo mkfs.ext4 /dev/sde1
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="挂载硬盘">挂载硬盘&lt;/h2>
+&lt;p>创建挂载点目录&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo mkdir /mnt/disk&lt;span class="o">{&lt;/span>1,2,3,4&lt;span class="o">}&lt;/span>
+sudo mkdir /mnt/storage
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>用&lt;code>UUID&lt;/code>来挂宅
+使用&lt;code>blkid&lt;/code>命令查看硬盘&lt;code>uuid&lt;/code>
+&lt;figure
+class="gallery-image"
+style="
+flex-grow: 669;
+flex-basis: 1606px"
+>
+&lt;a href="https://syaofox.github.io/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/blkid.jpg" data-size="1131x169">
+&lt;img src="https://syaofox.github.io/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/blkid.jpg"
+width="1131"
+height="169"
+srcset="https://syaofox.github.io/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/blkid_hu22b539513430568cc6f04b798c1fc31e_54379_480x0_resize_q75_box.jpg 480w, https://syaofox.github.io/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/blkid_hu22b539513430568cc6f04b798c1fc31e_54379_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p>
+&lt;p>备份&lt;code>/etc/fstab&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo cp /etc/fstab /etc/fstab.bak
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>往&lt;code>/etc/fstab&lt;/code>追加硬盘uuid信息方便后续修改&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo blkid &lt;span class="p">|&lt;/span> grep &lt;span class="s2">&amp;#34;/dev/sd&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> sudo tee -a /etc/fstab
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>修改&lt;code>/etc/fstab&lt;/code>挂载硬盘&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo nano /etc/fstab
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>编辑挂载信息&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="c1"># data disks&lt;/span>
+&lt;span class="nv">UUID&lt;/span>&lt;span class="o">=&lt;/span>1daa1624-f850-4b99-8398-86058af157ab /mnt/disk1 ext4 noatime,rw &lt;span class="m">0&lt;/span> &lt;span class="m">0&lt;/span>
+&lt;span class="nv">UUID&lt;/span>&lt;span class="o">=&lt;/span>e8dafdfd-323a-40a4-97bc-139eaf0f544e /mnt/disk2 ext4 noatime,rw &lt;span class="m">0&lt;/span> &lt;span class="m">0&lt;/span>
+&lt;span class="nv">UUID&lt;/span>&lt;span class="o">=&lt;/span>dbbc75b7-9cf1-47f4-894b-5218e291832b /mnt/disk3 ext4 noatime,rw &lt;span class="m">0&lt;/span> &lt;span class="m">0&lt;/span>
+&lt;span class="nv">UUID&lt;/span>&lt;span class="o">=&lt;/span>ea136fb4-725a-4c45-aa2c-43f77751c66a /mnt/disk4 ext4 noatime,rw &lt;span class="m">0&lt;/span> &lt;span class="m">0&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>挂载硬盘&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo mount -a
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>检查挂载是否成功&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">df -h
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 193;
+flex-basis: 464px"
+>
+&lt;a href="https://syaofox.github.io/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/mount.jpg" data-size="499x258">
+&lt;img src="https://syaofox.github.io/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/mount.jpg"
+width="499"
+height="258"
+srcset="https://syaofox.github.io/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/mount_hu182eb5e86a61021d508c1783322a5e74_29953_480x0_resize_q75_box.jpg 480w, https://syaofox.github.io/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/mount_hu182eb5e86a61021d508c1783322a5e74_29953_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p>
+&lt;h2 id="mergerfs">mergerfs&lt;/h2>
+&lt;h3 id="安装">安装&lt;/h3>
+&lt;p>安装依赖&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo apt install fuse
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>安装mergerfs&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">wget https://github.com/trapexit/mergerfs/releases/download/2.33.3/mergerfs_2.33.3.debian-bullseye_amd64.deb
+sudo dpkg -i mergerfs_2.33.3.debian-bullseye_amd64.deb
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>编辑&lt;code>/etc/fstab&lt;/code>添加以下内容&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="c1"># mergerfs&lt;/span>
+/mnt/disk* /mnt/storage fuse.mergerfs allow_other,use_ino,cache.files&lt;span class="o">=&lt;/span>off,dropcacheonclose&lt;span class="o">=&lt;/span>true,category.create&lt;span class="o">=&lt;/span>mfs,ignorepponrename&lt;span class="o">=&lt;/span>true,minfreespace&lt;span class="o">=&lt;/span>1G &lt;span class="m">0&lt;/span> &lt;span class="m">0&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>挂载硬盘&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo mount -a
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>检查挂载是否成功&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">df -h
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>修改权限&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo chown -R vm:vm /mnt/disk1
+sudo chown -R vm:vm /mnt/disk2
+sudo chown -R vm:vm /mnt/disk3
+sudo chown -R vm:vm /mnt/disk4
+sudo chown -R vm:vm /mnt/storage
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="设置samba共享">设置samba共享&lt;/h2>
+&lt;p>安装samba&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo apt update
+sudo apt install samba
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>查看&lt;code>smbd&lt;/code>服务是否开启&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo systemctl status smbd
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果开启就关闭服务&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo systemctl stop smbd
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>备份配置文件&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo mv /etc/samba/smb.conf /etc/samba/smb.conf.bak
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>创建新的配置文件&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo nano /etc/samba/smb.conf
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>编辑如下内容&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="o">[&lt;/span>global&lt;span class="o">]&lt;/span>
+server &lt;span class="nv">string&lt;/span> &lt;span class="o">=&lt;/span> debian Server
+&lt;span class="nv">workgroup&lt;/span> &lt;span class="o">=&lt;/span> WORKGROUP
+&lt;span class="nv">security&lt;/span> &lt;span class="o">=&lt;/span> user
+map to &lt;span class="nv">guest&lt;/span> &lt;span class="o">=&lt;/span> Bad User
+name resolve &lt;span class="nv">order&lt;/span> &lt;span class="o">=&lt;/span> bcast host
+&lt;span class="nv">include&lt;/span> &lt;span class="o">=&lt;/span> /etc/samba/shares.conf
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>创建单独的shares配置文件&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo nano /etc/samba/shares.conf
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>编辑如下内容&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="o">[&lt;/span>storage&lt;span class="o">]&lt;/span>
+&lt;span class="nv">path&lt;/span> &lt;span class="o">=&lt;/span> /mnt/storage
+force &lt;span class="nv">user&lt;/span> &lt;span class="o">=&lt;/span> vm
+force &lt;span class="nv">group&lt;/span> &lt;span class="o">=&lt;/span> vm
+create &lt;span class="nv">mask&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="m">0664&lt;/span>
+force create &lt;span class="nv">mode&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="m">0664&lt;/span>
+directory &lt;span class="nv">mask&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="m">0775&lt;/span>
+force directory &lt;span class="nv">mode&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="m">0775&lt;/span>
+&lt;span class="nv">public&lt;/span> &lt;span class="o">=&lt;/span> yes
+&lt;span class="nv">writable&lt;/span> &lt;span class="o">=&lt;/span> yes
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>启动smbd服务&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell"> sudo systemctl start smbd
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="安装docker">安装docker&lt;/h2>
+&lt;p>安装https支持&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo apt install ca-certificates curl gnupg lsb-release
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>添加docker官方GPG key&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">curl -fsSL https://download.docker.com/linux/debian/gpg &lt;span class="p">|&lt;/span> sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>添加稳定版仓库&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="nb">echo&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;span class="se">&lt;/span> &lt;span class="s2">&amp;#34;deb [arch=&lt;/span>&lt;span class="k">$(&lt;/span>dpkg --print-architecture&lt;span class="k">)&lt;/span>&lt;span class="s2"> signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
+&lt;/span>&lt;span class="s2"> &lt;/span>&lt;span class="k">$(&lt;/span>lsb_release -cs&lt;span class="k">)&lt;/span>&lt;span class="s2"> stable&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> sudo tee /etc/apt/sources.list.d/docker.list &amp;gt; /dev/null
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>安装docker&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell"> sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>安装docker-compose&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo curl -L https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-&lt;span class="sb">`&lt;/span>uname -m&lt;span class="sb">`&lt;/span> &amp;gt; ./docker-compose
+sudo chmod +x ./docker-compose
+sudo mv ./docker-compose /usr/local/bin/docker-compose
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>添加vm用户docker启动权限&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo usermod -aG docker vm
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>切换用户后生效&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;h2 id="软件">软件&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://docs.photoprism.app/getting-started/docker-compose/" target="_blank" rel="noopener"
+>photoprism&lt;/a> 局域网相册
+&lt;ul>
+&lt;li>数据库密码不能小于6位数&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;a class="link" href="https://hub.docker.com/r/linuxserver/jellyfin" target="_blank" rel="noopener"
+>jellyfin&lt;/a> 局域网影音服务&lt;/li>
+&lt;li>&lt;a class="link" href="https://github.com/bastienwirtz/homer" target="_blank" rel="noopener"
+>homer&lt;/a> 个性化控制台&lt;/li>
+&lt;/ul></description></item><item><title>Openwrt自动更新bt Tracker</title><link>https://syaofox.github.io/p/openwrt%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0bt-tracker/</link><pubDate>Sun, 30 Jan 2022 16:57:49 +0800</pubDate><guid>https://syaofox.github.io/p/openwrt%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0bt-tracker/</guid><description>&lt;h2 id="创建脚本">创建脚本&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="cp">#!/bin/bash
 &lt;/span>&lt;span class="cp">&lt;/span>
 &lt;span class="nv">list&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="sb">`&lt;/span>wget -qO- https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all.txt&lt;span class="p">|&lt;/span>awk NF&lt;span class="p">|&lt;/span>sed &lt;span class="s2">&amp;#34;:a;N;s/\n/,/g;ta&amp;#34;&lt;/span>&lt;span class="sb">`&lt;/span>
@@ -270,7 +499,15 @@ sudo apt-get install broadcom-sta-*
 sudo modprobe wl
 &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;wl&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> sudo tee -a /etc/modules
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>不要忘记tee命令中的-a，否则您将覆盖整个文件！
-如果无法立即使用，请重新启动，应该没问题。&lt;/p></description></item><item><title>央行宏观调节工具中 SLF、SLO、MLF、PSL 各有什么特点？央行是如何选取这些工具进行宏观调控的？</title><link>https://syaofox.github.io/p/%E5%A4%AE%E8%A1%8C%E5%AE%8F%E8%A7%82%E8%B0%83%E8%8A%82%E5%B7%A5%E5%85%B7%E4%B8%AD-slfslomlfpsl-%E5%90%84%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9%E5%A4%AE%E8%A1%8C%E6%98%AF%E5%A6%82%E4%BD%95%E9%80%89%E5%8F%96%E8%BF%99%E4%BA%9B%E5%B7%A5%E5%85%B7%E8%BF%9B%E8%A1%8C%E5%AE%8F%E8%A7%82%E8%B0%83%E6%8E%A7%E7%9A%84/</link><pubDate>Wed, 19 Jan 2022 09:04:25 +0800</pubDate><guid>https://syaofox.github.io/p/%E5%A4%AE%E8%A1%8C%E5%AE%8F%E8%A7%82%E8%B0%83%E8%8A%82%E5%B7%A5%E5%85%B7%E4%B8%AD-slfslomlfpsl-%E5%90%84%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9%E5%A4%AE%E8%A1%8C%E6%98%AF%E5%A6%82%E4%BD%95%E9%80%89%E5%8F%96%E8%BF%99%E4%BA%9B%E5%B7%A5%E5%85%B7%E8%BF%9B%E8%A1%8C%E5%AE%8F%E8%A7%82%E8%B0%83%E6%8E%A7%E7%9A%84/</guid><description>&lt;p>央妈最常用法宝公开市场操作，是指央妈通过在公开市场上拿钱买卖有价证券，来调节货币供应量和利率。这法宝其实是个百宝箱，央妈不断鼓捣出了很多小玩意儿，使用起来比较灵便，效果比较温和。最初主要是回购，后来补充了很多工具，有些还挺国际范儿。2013年初，央妈创设了常备借贷便利（SLF），2014年1月引入了短期流动性调节工具（SLO），2014年4月份创设了抵押补充贷款（PSL），2014年9月份创设了中期借贷便利（MLF），2015年10月，又扩大信贷资产质押再贷款扩围。百宝箱的工具越来越丰富多样。&lt;/p>
+如果无法立即使用，请重新启动，应该没问题。&lt;/p>
+&lt;h2 id="查看当前debian版本">查看当前debian版本&lt;/h2>
+&lt;p>简单信息&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">cat /etc/issue
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>debian版本号&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">cat /etc/debian_version
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>debian详细信息&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">cat /etc/os-release
+&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>央行宏观调节工具中 SLF、SLO、MLF、PSL 各有什么特点？央行是如何选取这些工具进行宏观调控的？</title><link>https://syaofox.github.io/p/%E5%A4%AE%E8%A1%8C%E5%AE%8F%E8%A7%82%E8%B0%83%E8%8A%82%E5%B7%A5%E5%85%B7%E4%B8%AD-slfslomlfpsl-%E5%90%84%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9%E5%A4%AE%E8%A1%8C%E6%98%AF%E5%A6%82%E4%BD%95%E9%80%89%E5%8F%96%E8%BF%99%E4%BA%9B%E5%B7%A5%E5%85%B7%E8%BF%9B%E8%A1%8C%E5%AE%8F%E8%A7%82%E8%B0%83%E6%8E%A7%E7%9A%84/</link><pubDate>Wed, 19 Jan 2022 09:04:25 +0800</pubDate><guid>https://syaofox.github.io/p/%E5%A4%AE%E8%A1%8C%E5%AE%8F%E8%A7%82%E8%B0%83%E8%8A%82%E5%B7%A5%E5%85%B7%E4%B8%AD-slfslomlfpsl-%E5%90%84%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9%E5%A4%AE%E8%A1%8C%E6%98%AF%E5%A6%82%E4%BD%95%E9%80%89%E5%8F%96%E8%BF%99%E4%BA%9B%E5%B7%A5%E5%85%B7%E8%BF%9B%E8%A1%8C%E5%AE%8F%E8%A7%82%E8%B0%83%E6%8E%A7%E7%9A%84/</guid><description>&lt;p>央妈最常用法宝公开市场操作，是指央妈通过在公开市场上拿钱买卖有价证券，来调节货币供应量和利率。这法宝其实是个百宝箱，央妈不断鼓捣出了很多小玩意儿，使用起来比较灵便，效果比较温和。最初主要是回购，后来补充了很多工具，有些还挺国际范儿。2013年初，央妈创设了常备借贷便利（SLF），2014年1月引入了短期流动性调节工具（SLO），2014年4月份创设了抵押补充贷款（PSL），2014年9月份创设了中期借贷便利（MLF），2015年10月，又扩大信贷资产质押再贷款扩围。百宝箱的工具越来越丰富多样。&lt;/p>
 &lt;p>下面我们打开百宝箱，来看看这些新奇的工具。我们可以先从三个方面整理比较下：&lt;/p>
 &lt;p>首先，工具长短不同。下图直观地显示了各类工具的贷款期限长度（图中圆点表示主要操作期限，三角形是辅助操作期限），从短到长分别为SLO(1-6天)，正/逆回购（7、14、28天）、SLF（一般1-3个月，1、7日较少），MLF（3个月到1年），PSL（3年到5年）。&lt;/p>
 &lt;p>第二，工具作用不同。不同长短的工具用来引导相应不同期限的利率，对应的，SLO引导超短期利率；逆回购引导短期利率，必要时用SLF调整；MLF引导中期利率。但有时央妈也会连续通过期限短的工具解决下稍长期的利率问题。此外，央妈也会通过调剂不同工具的使用量，来调整市场上资金的平均利率高低。&lt;/p>
