@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Syaofox's Elysion</title><link>https://syaofox.github.io/</link><description>Recent content on Syaofox's Elysion</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 31 Jan 2022 10:11:48 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>安装一台基于debian的家庭服务器</title><link>https://syaofox.github.io/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/</link><pubDate>Mon, 31 Jan 2022 10:11:48 +0800</pubDate><guid>https://syaofox.github.io/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid><description>&lt;h2 id="安装sudo">安装sudo&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Syaofox's Elysion</title><link>https://syaofox.github.io/</link><description>Recent content on Syaofox's Elysion</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 03 Feb 2022 10:57:07 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Docker_networking</title><link>https://syaofox.github.io/p/docker_networking/</link><pubDate>Thu, 03 Feb 2022 10:57:07 +0800</pubDate><guid>https://syaofox.github.io/p/docker_networking/</guid><description>&lt;h2 id="显示网络">显示网络&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">docker network ls
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 524;
+flex-basis: 1258px"
+>
+&lt;a href="https://syaofox.github.io/p/docker_networking/ls_docker_network.jpg" data-size="671x128">
+&lt;img src="https://syaofox.github.io/p/docker_networking/ls_docker_network.jpg"
+width="671"
+height="128"
+srcset="https://syaofox.github.io/p/docker_networking/ls_docker_network_hu6d6e6c9a33c8f99c8ef8f6478686d185_14303_480x0_resize_q75_box.jpg 480w, https://syaofox.github.io/p/docker_networking/ls_docker_network_hu6d6e6c9a33c8f99c8ef8f6478686d185_14303_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p>
+&lt;h2 id="创建网络">创建网络&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">docker network create custombridge
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 335;
+flex-basis: 804px"
+>
+&lt;a href="https://syaofox.github.io/p/docker_networking/create_network_default.jpg" data-size="523x156">
+&lt;img src="https://syaofox.github.io/p/docker_networking/create_network_default.jpg"
+width="523"
+height="156"
+srcset="https://syaofox.github.io/p/docker_networking/create_network_default_hu6380d50286aea28fe901c83d87350251_18880_480x0_resize_q75_box.jpg 480w, https://syaofox.github.io/p/docker_networking/create_network_default_hu6380d50286aea28fe901c83d87350251_18880_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p></description></item><item><title>安装一台基于debian的家庭服务器</title><link>https://syaofox.github.io/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/</link><pubDate>Mon, 31 Jan 2022 10:11:48 +0800</pubDate><guid>https://syaofox.github.io/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid><description>&lt;h2 id="安装sudo">安装sudo&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">apt install sudo
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="添加用户到sudo">添加用户到sudo&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">usermod -aG sudo username
