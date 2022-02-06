@@ -63,6 +63,13 @@ sudo modprobe wl
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>cat /etc/debian_version
 </code></pre></div><p>debian详细信息</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>cat /etc/os-release
+</code></pre></div><h2 id=挂载ntfs格式>挂载ntfs格式</h2>
+<p>安装<code>ntfs-3g</code></p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt install ntfs-3g
+</code></pre></div><p>命令挂载</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>mount -t ntfs-3g /dev/sda1 /mnt/windows
+</code></pre></div><p>/etc/fstab</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>/dev/sda1 /mnt/windows ntfs-3g rw,uid<span class=o>=</span>1000,gid<span class=o>=</span>1000,dmask<span class=o>=</span>0002,fmask<span class=o>=</span><span class=m>0003</span> <span class=m>0</span> <span class=m>0</span>
 </code></pre></div>
 </section>
 <footer class=article-footer>
@@ -174,6 +181,7 @@ Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=
 <li><a href=#添加sudo权限>添加sudo权限</a></li>
 <li><a href=#macbook-broadcom-4360-无线网卡驱动>MacBook Broadcom 4360 无线网卡驱动</a></li>
 <li><a href=#查看当前debian版本>查看当前debian版本</a></li>
+<li><a href=#挂载ntfs格式>挂载ntfs格式</a></li>
 </ol>
 </nav>
 </div>
