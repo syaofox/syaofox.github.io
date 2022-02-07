@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Syaofox's Elysion</title><link>https://syaofox.github.io/</link><description>Recent content on Syaofox's Elysion</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 03 Feb 2022 10:57:07 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Docker_networking</title><link>https://syaofox.github.io/p/docker_networking/</link><pubDate>Thu, 03 Feb 2022 10:57:07 +0800</pubDate><guid>https://syaofox.github.io/p/docker_networking/</guid><description>&lt;h2 id="显示网络">显示网络&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Syaofox's Elysion</title><link>https://syaofox.github.io/</link><description>Recent content on Syaofox's Elysion</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 07 Feb 2022 09:13:12 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Ubuntu笔记</title><link>https://syaofox.github.io/p/ubuntu%E7%AC%94%E8%AE%B0/</link><pubDate>Mon, 07 Feb 2022 09:13:12 +0800</pubDate><guid>https://syaofox.github.io/p/ubuntu%E7%AC%94%E8%AE%B0/</guid><description>&lt;h2 id="修改ip">修改ip&lt;/h2>
+&lt;p>18，0以后使用netplan
+修改位于&lt;code> /etc/netplan/&lt;/code>下的yaml文件
+加载生效&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo netplan apply
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>也可以使用shell界面配置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo nmtui
+&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Docker_networking</title><link>https://syaofox.github.io/p/docker_networking/</link><pubDate>Thu, 03 Feb 2022 10:57:07 +0800</pubDate><guid>https://syaofox.github.io/p/docker_networking/</guid><description>&lt;h2 id="显示网络">显示网络&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">docker network ls
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;figure
 class="gallery-image"
@@ -255,6 +262,8 @@ sudo mv ./docker-compose /usr/local/bin/docker-compose
 &lt;!-- raw HTML omitted -->
 &lt;h2 id="软件">软件&lt;/h2>
 &lt;ul>
+&lt;li>&lt;a class="link" href="https://github.com/photoview/photoview" target="_blank" rel="noopener"
+>Photoview&lt;/a> 局域网相册&lt;/li>
 &lt;li>&lt;a class="link" href="https://docs.photoprism.app/getting-started/docker-compose/" target="_blank" rel="noopener"
 >photoprism&lt;/a> 局域网相册
 &lt;ul>
