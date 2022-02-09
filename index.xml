@@ -134,8 +134,8 @@ sudo mkfs.ext4 /dev/sde1
 &lt;p>创建挂载点目录&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo mkdir /mnt/disk&lt;span class="o">{&lt;/span>1,2,3,4&lt;span class="o">}&lt;/span>
 sudo mkdir /mnt/storage
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>用&lt;code>UUID&lt;/code>来挂宅
-使用&lt;code>blkid&lt;/code>命令查看硬盘&lt;code>uuid&lt;/code>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>用&lt;code>UUID&lt;/code>来挂载&lt;/p>
+&lt;p>使用&lt;code>blkid&lt;/code>命令查看硬盘&lt;code>uuid&lt;/code>
 &lt;figure
 class="gallery-image"
 style="
@@ -235,6 +235,8 @@ directory &lt;span class="nv">mask&lt;/span> &lt;span class="o">=&lt;/span> &lt;
 force directory &lt;span class="nv">mode&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="m">0775&lt;/span>
 &lt;span class="nv">public&lt;/span> &lt;span class="o">=&lt;/span> yes
 &lt;span class="nv">writable&lt;/span> &lt;span class="o">=&lt;/span> yes
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>设置对应用户&lt;code>vm&lt;/code>的samba登录密码&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo smbpasswd -a vm
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>启动smbd服务&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell"> sudo systemctl start smbd
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="安装docker">安装docker&lt;/h2>
@@ -274,6 +276,8 @@ sudo mv ./docker-compose /usr/local/bin/docker-compose
 >jellyfin&lt;/a> 局域网影音服务&lt;/li>
 &lt;li>&lt;a class="link" href="https://github.com/bastienwirtz/homer" target="_blank" rel="noopener"
 >homer&lt;/a> 个性化控制台&lt;/li>
+&lt;li>&lt;a class="link" href="https://github.com/netdata/netdata" target="_blank" rel="noopener"
+>netdata&lt;/a> 监控面版&lt;/li>
 &lt;/ul></description></item><item><title>Openwrt自动更新bt Tracker</title><link>https://syaofox.github.io/p/openwrt%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0bt-tracker/</link><pubDate>Sun, 30 Jan 2022 16:57:49 +0800</pubDate><guid>https://syaofox.github.io/p/openwrt%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0bt-tracker/</guid><description>&lt;h2 id="创建脚本">创建脚本&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="cp">#!/bin/bash
 &lt;/span>&lt;span class="cp">&lt;/span>
