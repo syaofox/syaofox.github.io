@@ -215,8 +215,9 @@ name resolve <span class=nv>order</span> <span class=o>=</span> bcast host
 </code></pre></div><p>编辑如下内容</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=o>[</span>storage<span class=o>]</span>
 <span class=nv>path</span> <span class=o>=</span> /mnt/storage
-force <span class=nv>user</span> <span class=o>=</span> vm
-force <span class=nv>group</span> <span class=o>=</span> vm
+<span class=c1># force user = vm</span>
+<span class=c1># force group = vm</span>
+valid <span class=nv>users</span> <span class=o>=</span> me
 create <span class=nv>mask</span> <span class=o>=</span> <span class=m>0664</span>
 force create <span class=nv>mode</span> <span class=o>=</span> <span class=m>0664</span>
 directory <span class=nv>mask</span> <span class=o>=</span> <span class=m>0775</span>

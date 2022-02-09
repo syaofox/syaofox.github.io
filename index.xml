@@ -227,8 +227,9 @@ name resolve &lt;span class="nv">order&lt;/span> &lt;span class="o">=&lt;/span> 
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>编辑如下内容&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="o">[&lt;/span>storage&lt;span class="o">]&lt;/span>
 &lt;span class="nv">path&lt;/span> &lt;span class="o">=&lt;/span> /mnt/storage
-force &lt;span class="nv">user&lt;/span> &lt;span class="o">=&lt;/span> vm
-force &lt;span class="nv">group&lt;/span> &lt;span class="o">=&lt;/span> vm
+&lt;span class="c1"># force user = vm&lt;/span>
+&lt;span class="c1"># force group = vm&lt;/span>
+valid &lt;span class="nv">users&lt;/span> &lt;span class="o">=&lt;/span> me
 create &lt;span class="nv">mask&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="m">0664&lt;/span>
 force create &lt;span class="nv">mode&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="m">0664&lt;/span>
 directory &lt;span class="nv">mask&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="m">0775&lt;/span>
