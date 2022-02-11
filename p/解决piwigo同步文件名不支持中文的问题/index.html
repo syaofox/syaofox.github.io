@@ -51,7 +51,7 @@ Tips
 <h2 id=修改同步文件名过滤规则>修改同步文件名过滤规则</h2>
 <p>搜索<code>sync_chars_regex</code>
 将整行修改为</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=nv>$conf</span><span class=o>[</span><span class=s1>&#39;sync_chars_regex&#39;</span><span class=o>]</span> <span class=o>=</span> <span class=s1>&#39;/^[\x{0800}-\x{9fa5}a-zA-Z0-9-_.\(\)\[\]\ 【】（）, ·^×{}=&amp;★☆@#\s+]+$/u&#39;</span><span class=p>;</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=nv>$conf</span><span class=o>[</span><span class=s1>&#39;sync_chars_regex&#39;</span><span class=o>]</span> <span class=o>=</span> <span class=s1>&#39;/^[\x{2e80}-\x{fe4f}a-zA-Z0-9-_.\(\)\[\]\!@#×\s]+$/u&#39;</span><span class=p>;</span>
 </code></pre></div>
 </section>
 <footer class=article-footer>

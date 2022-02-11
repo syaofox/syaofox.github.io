@@ -3,7 +3,7 @@
 &lt;h2 id="修改同步文件名过滤规则">修改同步文件名过滤规则&lt;/h2>
 &lt;p>搜索&lt;code>sync_chars_regex&lt;/code>
 将整行修改为&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="nv">$conf&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="s1">&amp;#39;sync_chars_regex&amp;#39;&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;/^[\x{0800}-\x{9fa5}a-zA-Z0-9-_.\(\)\[\]\ 【】（）, ·^×{}=&amp;amp;★☆@#\s+]+$/u&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="nv">$conf&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="s1">&amp;#39;sync_chars_regex&amp;#39;&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;/^[\x{2e80}-\x{fe4f}a-zA-Z0-9-_.\(\)\[\]\!@#×\s]+$/u&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Docker_networking</title><link>https://syaofox.github.io/p/docker_networking/</link><pubDate>Thu, 03 Feb 2022 10:57:07 +0800</pubDate><guid>https://syaofox.github.io/p/docker_networking/</guid><description>&lt;h2 id="显示网络">显示网络&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">docker network ls
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;figure
