@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Syaofox's Elysion</title><link>https://syaofox.github.io/</link><description>Recent content on Syaofox's Elysion</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 07 Feb 2022 09:13:12 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Ubuntu笔记</title><link>https://syaofox.github.io/p/ubuntu%E7%AC%94%E8%AE%B0/</link><pubDate>Mon, 07 Feb 2022 09:13:12 +0800</pubDate><guid>https://syaofox.github.io/p/ubuntu%E7%AC%94%E8%AE%B0/</guid><description>&lt;h2 id="修改ip">修改ip&lt;/h2>
-&lt;p>18，0以后使用netplan
-修改位于&lt;code> /etc/netplan/&lt;/code>下的yaml文件
-加载生效&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo netplan apply
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>也可以使用shell界面配置&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo nmtui
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Syaofox's Elysion</title><link>https://syaofox.github.io/</link><description>Recent content on Syaofox's Elysion</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 11 Feb 2022 09:09:22 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>解决piwigo同步文件名不支持中文的问题</title><link>https://syaofox.github.io/p/%E8%A7%A3%E5%86%B3piwigo%E5%90%8C%E6%AD%A5%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%8D%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E7%9A%84%E9%97%AE%E9%A2%98/</link><pubDate>Fri, 11 Feb 2022 09:09:22 +0800</pubDate><guid>https://syaofox.github.io/p/%E8%A7%A3%E5%86%B3piwigo%E5%90%8C%E6%AD%A5%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%8D%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E7%9A%84%E9%97%AE%E9%A2%98/</guid><description>&lt;h2 id="开启localfiles-editor插件">开启LocalFiles Editor插件&lt;/h2>
+&lt;p>工具 &amp;gt; 插件 &amp;gt; 打开LocalFiles Editor&lt;/p>
+&lt;h2 id="修改同步文件名过滤规则">修改同步文件名过滤规则&lt;/h2>
+&lt;p>搜索&lt;code>sync_chars_regex&lt;/code>
+将整行修改为&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="nv">$conf&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="s1">&amp;#39;sync_chars_regex&amp;#39;&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;/^[\x{0800}-\x{9fa5}a-zA-Z0-9-_.\(\)\[\]\ 【】（）, ·^×{}=&amp;amp;★☆@#\s+]+$/u&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Docker_networking</title><link>https://syaofox.github.io/p/docker_networking/</link><pubDate>Thu, 03 Feb 2022 10:57:07 +0800</pubDate><guid>https://syaofox.github.io/p/docker_networking/</guid><description>&lt;h2 id="显示网络">显示网络&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">docker network ls
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;figure
@@ -325,7 +324,11 @@ uci commit aria2
 &lt;p>检查&lt;code>ffmpeg-jellyfin&lt;/code>版本,4.0以上&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">/usr/lib/jellyfin-ffmpeg/ffmpeg version
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="安装-intel-核显的解码驱动non-free">安装 Intel 核显的解码驱动（non-free）&lt;/h2>
-&lt;p>安装&lt;/p>
+&lt;p>添加intel驱动源(linuxserver源已经添加)&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo apt-get install -y gpg-agent wget
+wget -qO - https://repositories.intel.com/graphics/intel-graphics.key &lt;span class="p">|&lt;/span> sudo apt-key add -
+sudo apt-add-repository &lt;span class="s1">&amp;#39;deb [arch=amd64] https://repositories.intel.com/graphics/ubuntu focal main&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>安装&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo apt update
 sudo apt install intel-media-va-driver-non-free vainfo -y
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>装好以后，可以通过 vainfo 检查，能看到 iHD driver 的版本号是 21.1.1 以上几成功了：&lt;/p>
@@ -542,9 +545,10 @@ Restricted
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">New-Alias &lt;span class="s2">&amp;#34;word&amp;#34;&lt;/span> &lt;span class="s2">&amp;#34;C:\Windows\System32\notepad.exe&amp;#34;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="修改别名">修改别名&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">set-Alias &lt;span class="s2">&amp;#34;wd&amp;#34;&lt;/span> &lt;span class="s2">&amp;#34;C:\Windows\System32\notepad.exe&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Debian 笔记</title><link>https://syaofox.github.io/p/debian-%E7%AC%94%E8%AE%B0/</link><pubDate>Fri, 21 Jan 2022 16:10:23 +0800</pubDate><guid>https://syaofox.github.io/p/debian-%E7%AC%94%E8%AE%B0/</guid><description>&lt;h2 id="添加sudo权限">添加sudo权限&lt;/h2>
+&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Linux 笔记</title><link>https://syaofox.github.io/p/linux-%E7%AC%94%E8%AE%B0/</link><pubDate>Fri, 21 Jan 2022 16:10:23 +0800</pubDate><guid>https://syaofox.github.io/p/linux-%E7%AC%94%E8%AE%B0/</guid><description>&lt;h2 id="debian">Debian&lt;/h2>
+&lt;h3 id="添加sudo权限">添加sudo权限&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">usermod -aG sudo username
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="macbook-broadcom-4360-无线网卡驱动">MacBook Broadcom 4360 无线网卡驱动&lt;/h2>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="macbook-broadcom-4360-无线网卡驱动">MacBook Broadcom 4360 无线网卡驱动&lt;/h3>
 &lt;p>首先，启用非免费存储库。通过将&lt;code>non-free&lt;/code> 添加到您的&lt;code>/etc/apt/sources.list&lt;/code>文件中。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo apt-get update
 sudo apt-get install broadcom-sta-*
@@ -552,20 +556,28 @@ sudo modprobe wl
 &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;wl&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> sudo tee -a /etc/modules
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>不要忘记tee命令中的-a，否则您将覆盖整个文件！
 如果无法立即使用，请重新启动，应该没问题。&lt;/p>
-&lt;h2 id="查看当前debian版本">查看当前debian版本&lt;/h2>
+&lt;h3 id="查看当前debian版本">查看当前debian版本&lt;/h3>
 &lt;p>简单信息&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">cat /etc/issue
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>debian版本号&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">cat /etc/debian_version
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>debian详细信息&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">cat /etc/os-release
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="挂载ntfs格式">挂载ntfs格式&lt;/h2>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="挂载ntfs格式">挂载ntfs格式&lt;/h3>
 &lt;p>安装&lt;code>ntfs-3g&lt;/code>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo apt install ntfs-3g
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>命令挂载&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">mount -t ntfs-3g /dev/sda1 /mnt/windows
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>/etc/fstab&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">/dev/sda1 /mnt/windows ntfs-3g rw,uid&lt;span class="o">=&lt;/span>1000,gid&lt;span class="o">=&lt;/span>1000,dmask&lt;span class="o">=&lt;/span>0002,fmask&lt;span class="o">=&lt;/span>&lt;span class="m">0003&lt;/span> &lt;span class="m">0&lt;/span> &lt;span class="m">0&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="ubuntu">Ubuntu&lt;/h2>
+&lt;h3 id="修改ip">修改ip&lt;/h3>
+&lt;p>18，0以后使用netplan
+修改位于&lt;code> /etc/netplan/&lt;/code>下的yaml文件
+加载生效&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo netplan apply
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>也可以使用shell界面配置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo nmtui
 &lt;/code>&lt;/pre>&lt;/div></description></item><item><title>央行宏观调节工具中 SLF、SLO、MLF、PSL 各有什么特点？央行是如何选取这些工具进行宏观调控的？</title><link>https://syaofox.github.io/p/%E5%A4%AE%E8%A1%8C%E5%AE%8F%E8%A7%82%E8%B0%83%E8%8A%82%E5%B7%A5%E5%85%B7%E4%B8%AD-slfslomlfpsl-%E5%90%84%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9%E5%A4%AE%E8%A1%8C%E6%98%AF%E5%A6%82%E4%BD%95%E9%80%89%E5%8F%96%E8%BF%99%E4%BA%9B%E5%B7%A5%E5%85%B7%E8%BF%9B%E8%A1%8C%E5%AE%8F%E8%A7%82%E8%B0%83%E6%8E%A7%E7%9A%84/</link><pubDate>Wed, 19 Jan 2022 09:04:25 +0800</pubDate><guid>https://syaofox.github.io/p/%E5%A4%AE%E8%A1%8C%E5%AE%8F%E8%A7%82%E8%B0%83%E8%8A%82%E5%B7%A5%E5%85%B7%E4%B8%AD-slfslomlfpsl-%E5%90%84%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9%E5%A4%AE%E8%A1%8C%E6%98%AF%E5%A6%82%E4%BD%95%E9%80%89%E5%8F%96%E8%BF%99%E4%BA%9B%E5%B7%A5%E5%85%B7%E8%BF%9B%E8%A1%8C%E5%AE%8F%E8%A7%82%E8%B0%83%E6%8E%A7%E7%9A%84/</guid><description>&lt;p>央妈最常用法宝公开市场操作，是指央妈通过在公开市场上拿钱买卖有价证券，来调节货币供应量和利率。这法宝其实是个百宝箱，央妈不断鼓捣出了很多小玩意儿，使用起来比较灵便，效果比较温和。最初主要是回购，后来补充了很多工具，有些还挺国际范儿。2013年初，央妈创设了常备借贷便利（SLF），2014年1月引入了短期流动性调节工具（SLO），2014年4月份创设了抵押补充贷款（PSL），2014年9月份创设了中期借贷便利（MLF），2015年10月，又扩大信贷资产质押再贷款扩围。百宝箱的工具越来越丰富多样。&lt;/p>
 &lt;p>下面我们打开百宝箱，来看看这些新奇的工具。我们可以先从三个方面整理比较下：&lt;/p>
 &lt;p>首先，工具长短不同。下图直观地显示了各类工具的贷款期限长度（图中圆点表示主要操作期限，三角形是辅助操作期限），从短到长分别为SLO(1-6天)，正/逆回购（7、14、28天）、SLF（一般1-3个月，1、7日较少），MLF（3个月到1年），PSL（3年到5年）。&lt;/p>

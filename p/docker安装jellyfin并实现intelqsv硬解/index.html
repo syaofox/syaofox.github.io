@@ -39,7 +39,7 @@ Tips
 </div>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
-阅读时长: 1 分钟
+阅读时长: 2 分钟
 </time>
 </div>
 </footer>
@@ -81,7 +81,11 @@ Tips
 <p>检查<code>ffmpeg-jellyfin</code>版本,4.0以上</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>/usr/lib/jellyfin-ffmpeg/ffmpeg version
 </code></pre></div><h2 id=安装-intel-核显的解码驱动non-free>安装 Intel 核显的解码驱动（non-free）</h2>
-<p>安装</p>
+<p>添加intel驱动源(linuxserver源已经添加)</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt-get install -y gpg-agent wget
+wget -qO - https://repositories.intel.com/graphics/intel-graphics.key <span class=p>|</span> sudo apt-key add -
+sudo apt-add-repository <span class=s1>&#39;deb [arch=amd64] https://repositories.intel.com/graphics/ubuntu focal main&#39;</span>
+</code></pre></div><p>安装</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt update
 sudo apt install intel-media-va-driver-non-free vainfo -y
 </code></pre></div><p>装好以后，可以通过 vainfo 检查，能看到 iHD driver 的版本号是 21.1.1 以上几成功了：</p>
@@ -120,6 +124,13 @@ apt install fonts-noto-cjk-extra
 <div class=related-contents>
 <div class="flex article-list--tile">
 <article>
+<a href=/p/%E8%A7%A3%E5%86%B3piwigo%E5%90%8C%E6%AD%A5%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%8D%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E7%9A%84%E9%97%AE%E9%A2%98/>
+<div class=article-details>
+<h2 class=article-title>解决piwigo同步文件名不支持中文的问题</h2>
+</div>
+</a>
+</article>
+<article>
 <a href=/p/docker_networking/>
 <div class=article-details>
 <h2 class=article-title>Docker_networking</h2>
@@ -144,13 +155,6 @@ apt install fonts-noto-cjk-extra
 <a href=/p/git%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgithub%E8%B4%A6%E5%8F%B7/>
 <div class=article-details>
 <h2 class=article-title>Git配置多个github账号</h2>
-</div>
-</a>
-</article>
-<article>
-<a href=/p/windows%E4%B8%8Apowershell%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E8%BF%90%E8%A1%8C%E6%9D%83%E9%99%90%E7%9A%84%E9%97%AE%E9%A2%98/>
-<div class=article-details>
-<h2 class=article-title>windows上powershell脚本文件运行权限的问题</h2>
 </div>
 </a>
 </article>
