@@ -18,7 +18,48 @@
 &lt;p>搜索&lt;code>sync_chars_regex&lt;/code>
 将整行修改为&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="nv">$conf&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="s1">&amp;#39;sync_chars_regex&amp;#39;&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;/^[\x{2e80}-\x{fe4f}a-zA-Z0-9-_.\(\)\[\]\!@#×\s]+$/u&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Docker_networking</title><link>https://syaofox.github.io/p/docker_networking/</link><pubDate>Thu, 03 Feb 2022 10:57:07 +0800</pubDate><guid>https://syaofox.github.io/p/docker_networking/</guid><description>&lt;h2 id="显示网络">显示网络&lt;/h2>
+&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Virtual Machine Setup in Linunx</title><link>https://syaofox.github.io/p/virtual-machine-setup-in-linunx/</link><pubDate>Tue, 08 Feb 2022 11:21:29 +0800</pubDate><guid>https://syaofox.github.io/p/virtual-machine-setup-in-linunx/</guid><description>&lt;p>&lt;strong>Check Virtualization Extension&lt;/strong> &lt;/p>
+&lt;p>Run this command to make sure you&amp;rsquo;ve enabled virtualization in on your computer. It should be above 0&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-plain" data-lang="plain">titus@debian:~$ egrep -c &amp;#39;(vmx|svm)&amp;#39; /proc/cpuinfo
+12
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;em>If the output is zero then go to bios settings and enable VT-x (Virtualization Technology Extension) for Intel processor and AMD-V for AMD processor.&lt;/em>&lt;/p>
+&lt;p>&lt;strong>Install QEMU and Virtual Machine Manager&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-plain" data-lang="plain">titus@debian:~$ sudo apt install qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon virt-manager -y
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Verify that Libvirtd service is started&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-plain" data-lang="plain">titus@debian:~$ sudo systemctl status libvirtd.service
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;a class="link" href="https://coachtestprep.s3.amazonaws.com/direct-uploads/user-68790/9830c4ad-fd61-4c73-bf43-17f3c6bb368a/2022-01-06_09-26.png" target="_blank" rel="noopener"
+>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 230;
+flex-basis: 552px"
+>
+&lt;a href="https://syaofox.github.io/p/virtual-machine-setup-in-linunx/1644290489-0e39b687a66f9e9e9ec50fe82bc66baa.png" data-size="1233x536">
+&lt;img src="https://syaofox.github.io/p/virtual-machine-setup-in-linunx/1644290489-0e39b687a66f9e9e9ec50fe82bc66baa.png"
+width="1233"
+height="536"
+srcset="https://syaofox.github.io/p/virtual-machine-setup-in-linunx/1644290489-0e39b687a66f9e9e9ec50fe82bc66baa_hu8844b6141c1dc547767382834a6ea0ec_621200_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/virtual-machine-setup-in-linunx/1644290489-0e39b687a66f9e9e9ec50fe82bc66baa_hu8844b6141c1dc547767382834a6ea0ec_621200_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/a>&lt;/p>
+&lt;p>**&lt;br>
+Start Default Network for Networking&lt;br>
+**&lt;/p>
+&lt;p>VIRSH is a command to directly interact with our VMs from terminal. We use it to list networks, vm-status and various other tools when we need to make tweaks. Here is how we start the default and make it auto-start after reboot. &lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-plain" data-lang="plain">titus@debian:~$ sudo virsh net-start default
+Network default started
+titus@debian:~$ sudo virsh net-autostart default
+Network default marked as autostarted
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Check status with:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-plain" data-lang="plain">titus@debian:~$ sudo virsh net-list --all
+Name State Autostart Persistent
+----------------------------------------------
+default active yes yes
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>Add User to libvirt to Allow Access to VMs&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-plain" data-lang="plain">titus@debian:~$ sudo adduser titus libvirt
+titus@debian:~$ sudo adduser titus libvirt-qemu
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Reboot and you are Finished!&lt;/p></description></item><item><title>Docker_networking</title><link>https://syaofox.github.io/p/docker_networking/</link><pubDate>Thu, 03 Feb 2022 10:57:07 +0800</pubDate><guid>https://syaofox.github.io/p/docker_networking/</guid><description>&lt;h2 id="显示网络">显示网络&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">docker network ls
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;figure
 class="gallery-image"
@@ -34098,4 +34139,34 @@ docker run -d -p 8000:8000 -p 9000:9000 --name&lt;span class="o">=&lt;/span>port
 >https://docker.mirrors.ustc.edu.cn&lt;/a>&lt;/li>
 &lt;li>七牛云 &lt;a class="link" href="https://reg-mirror.qiniu.com" target="_blank" rel="noopener"
 >https://reg-mirror.qiniu.com&lt;/a>&lt;/li>
-&lt;/ul></description></item></channel></rss>
+&lt;/ul></description></item><item><title/><link>https://syaofox.github.io/p/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://syaofox.github.io/p/</guid><description>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="nt">version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;2&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">services&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">qbittorrent&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">linuxserver/qbittorrent:14.2.3.99202004172232-6962-29e9594ubuntu18.04.1-ls73&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">container_name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">qbittorrent&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">restart&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">always&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">networks&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">macvlan&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ipv4_address&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">10.10.10.102&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">environment&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">PUID&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">1000&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">PGID&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">1000&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">TZ&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Asia/Shanghai&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">UMASK_SET&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">022&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">WEBUI_PORT&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">8080&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">volumes&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">/path/to/config:/config&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">/path/to/downloads:/downloads&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">networks&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">macvlan&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">macvlan&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">driver&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">macvlan&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">driver_opts&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">parent&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ovs_eth0&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">ipam&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">config&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">subnet&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">10.10.10.0&lt;/span>&lt;span class="l">/24&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">gateway&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">10.10.10.10&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
