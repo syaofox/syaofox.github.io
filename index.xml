@@ -1,4 +1,245 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Syaofox's Elysion</title><link>https://syaofox.github.io/</link><description>Recent content on Syaofox's Elysion</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 12 Feb 2022 17:16:24 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>正则表达式替换中为结果数字补0</title><link>https://syaofox.github.io/p/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%9B%BF%E6%8D%A2%E4%B8%AD%E4%B8%BA%E7%BB%93%E6%9E%9C%E6%95%B0%E5%AD%97%E8%A1%A50/</link><pubDate>Sat, 12 Feb 2022 17:16:24 +0800</pubDate><guid>https://syaofox.github.io/p/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%9B%BF%E6%8D%A2%E4%B8%AD%E4%B8%BA%E7%BB%93%E6%9E%9C%E6%95%B0%E5%AD%97%E8%A1%A50/</guid><description>&lt;p>分两步实现&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Syaofox's Elysion</title><link>https://syaofox.github.io/</link><description>Recent content on Syaofox's Elysion</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 15 Feb 2022 13:57:04 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>docker python_Docker极简实战之python项目安装部署</title><link>https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/</link><pubDate>Tue, 15 Feb 2022 13:57:04 +0800</pubDate><guid>https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/</guid><description>&lt;h1 id="docker-python_docker极简实战之python项目安装部署">docker python_Docker极简实战之python项目安装部署&lt;/h1>
+&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>docker问世多年，上手尝试，发现这的确是个好东西啊。应用简单明了、同一系统中部署多个docker环境分离互不干扰（python不同版本应用放到不同的docker），迁移方便。&lt;/p>
+&lt;p>本文从docker安装、python镜像、应用部署、镜像上传等方面，用最简洁的路径记录一个完整应用过程，算是做个笔记吧，毕竟命令容易忘。&lt;/p>
+&lt;p>&lt;strong>docker入门视频教程，简单明了&lt;/strong>&lt;/p>
+&lt;p>【2020新课程】Docker构建Python web环境-NEXT学院×腾讯云大学_哔哩哔哩 (゜-゜)つロ 干杯~-bilibili&lt;/p>
+&lt;p>&lt;strong>docker命令行大全，忘了就查查&lt;/strong>&lt;/p>
+&lt;p>Docker 命令大全 | 菜鸟教程&lt;/p>
+&lt;h2 id="1docker安装">1、Docker安装&lt;/h2>
+&lt;p>&lt;strong>（1）docker下载地址&lt;/strong>&lt;/p>
+&lt;p>Docker Hub官网下载docker&lt;/p>
+&lt;p>直接下载、双击、拖动安装。实在不明白，下边有安装和配置教程。&lt;/p>
+&lt;p>（2）详细安装教程&lt;/p>
+&lt;p>MacOS Docker 安装 | 菜鸟教程&lt;/p>
+&lt;h2 id="2python374镜像">2、python3.7.4镜像&lt;/h2>
+&lt;p>（1）双击docker启动应用（小鲸鱼图标）&lt;br>
+（2）拉取python镜像（这里默认外网，速度慢，详细教程有加速方法）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">1docker pull python:3.7.4
+&lt;span class="m">2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>（3）查看镜像，可以看到自己的镜像了&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">1docker images
+&lt;span class="m">2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 750;
+flex-basis: 1800px"
+>
+&lt;a href="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-8e6ed04705b8dbc1e87a20e829a8f163.png" data-size="720x96">
+&lt;img src="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-8e6ed04705b8dbc1e87a20e829a8f163.png"
+width="720"
+height="96"
+srcset="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-8e6ed04705b8dbc1e87a20e829a8f163_hufeb4c1ebbda208eae7b2ff2bd9056c2a_43376_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-8e6ed04705b8dbc1e87a20e829a8f163_hufeb4c1ebbda208eae7b2ff2bd9056c2a_43376_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="68c02e0e5d24666676bed3e84455df46.png">
+&lt;/a>
+&lt;figcaption>68c02e0e5d24666676bed3e84455df46.png&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;h2 id="3运行容器">3、运行容器&lt;/h2>
+&lt;p>容器就是应用所在的系统了，这就是能够运行一个python应用程序的完整环境。在这个容器中利用pip安装依赖包，放入开发好的python程序，然后将这个容器导出为image，就能够四处迁移了。&lt;/p>
+&lt;p>&lt;strong>（1）运行容器&lt;/strong>&lt;/p>
+&lt;p>-it：-i和-t的结合，感觉就是如下图，直接进入容器的命令行模式。&lt;/p>
+&lt;p>–name：自定义容器名称，不用的话会自动分配一个名称。&lt;/p>
+&lt;p>-v： 将本地文件夹~/PycharmProjects/text_similar与容器文件夹/root/text_similar共享。&lt;/p>
+&lt;p>python:3.7.4：要运行的镜像名+TAG&lt;/p>
+&lt;p>bash：进入容器命令行。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">1docker run -it --name pytest -v ~/PycharmProjects/text_similar:/root/text_similar python:3.7.4 bash
+&lt;span class="m">2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>执行上面命令后，就像进入了一个linux系统了，这里的所有操作都是在当前docker容器中。当然如果用rm -rf删除共享文件夹里边内容，那本地电脑里边的也就真删了。&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 2250;
+flex-basis: 5400px"
+>
+&lt;a href="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-f3eb1b8318a591eb2437e77fd3f67283.png" data-size="720x32">
+&lt;img src="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-f3eb1b8318a591eb2437e77fd3f67283.png"
+width="720"
+height="32"
+srcset="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-f3eb1b8318a591eb2437e77fd3f67283_hu5e545d995ab56d07406eb7295a0e51f6_13755_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-f3eb1b8318a591eb2437e77fd3f67283_hu5e545d995ab56d07406eb7295a0e51f6_13755_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="61d66aba4f77ed16e2d401451043bac8.png">
+&lt;/a>
+&lt;figcaption>61d66aba4f77ed16e2d401451043bac8.png&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;p>&lt;strong>（2）开始安装需要的python包&lt;/strong>&lt;br>
+-i命令是指定pip拉取python包的位置，默认是外网，太慢了。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">1pin install numpy -i https://pypi.tuna.tsinghua.edu.cn/simple
+&lt;span class="m">2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>（3）看一眼容器文件夹内容&lt;/strong>&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 481;
+flex-basis: 1154px"
+>
+&lt;a href="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-a367152fbbd643bd52d273796601cbcc.jpg" data-size="558x116">
+&lt;img src="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-a367152fbbd643bd52d273796601cbcc.jpg"
+width="558"
+height="116"
+srcset="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-a367152fbbd643bd52d273796601cbcc_hucdc385f1e96581deb2367b811991d670_21526_480x0_resize_q75_box.jpg 480w, https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-a367152fbbd643bd52d273796601cbcc_hucdc385f1e96581deb2367b811991d670_21526_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="075cb322c4964bab357d28a0f4912454.png">
+&lt;/a>
+&lt;figcaption>075cb322c4964bab357d28a0f4912454.png&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;p>&lt;strong>（4）创建一个文件夹&lt;/strong>&lt;/p>
+&lt;p>这个文件夹放要运行的python文件。容器打包成镜像，这个文件夹一起打包进去，就能作为执行文件直接使用了。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">1mkdir my_test_python
+&lt;span class="m">2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>(5) 创建测试python程序&lt;/strong>&lt;/p>
+&lt;p>本地text_similar文件夹创建hello.py，由于共享，可以直接在docker容器复制到my_test_python文件夹下&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 837;
+flex-basis: 2009px"
+>
+&lt;a href="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-0141a88d849195b67a8522798380d53c.png" data-size="720x86">
+&lt;img src="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-0141a88d849195b67a8522798380d53c.png"
+width="720"
+height="86"
+srcset="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-0141a88d849195b67a8522798380d53c_huef1217b6bdd31c24c5a5bbd1e9d6bf52_50724_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-0141a88d849195b67a8522798380d53c_huef1217b6bdd31c24c5a5bbd1e9d6bf52_50724_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="f4a0fa3831f38fd7cc3df530b41745ca.png">
+&lt;/a>
+&lt;figcaption>f4a0fa3831f38fd7cc3df530b41745ca.png&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;p>&lt;strong>（6）执行以下看看&lt;/strong>&lt;/p>
+&lt;p>里边只有一行代码，打印hello word&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 860;
+flex-basis: 2064px"
+>
+&lt;a href="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-8da5c3208feee6d28a55226ddc9aee23.png" data-size="774x90">
+&lt;img src="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-8da5c3208feee6d28a55226ddc9aee23.png"
+width="774"
+height="90"
+srcset="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-8da5c3208feee6d28a55226ddc9aee23_huc56806f2cd2acc518d0e47f7591255fe_42619_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-8da5c3208feee6d28a55226ddc9aee23_huc56806f2cd2acc518d0e47f7591255fe_42619_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="207d7f0970d7e10196fec7a39364e07e.png">
+&lt;/a>
+&lt;figcaption>207d7f0970d7e10196fec7a39364e07e.png&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;p>&lt;strong>(7) exit 命令推出docker容器&lt;/strong>&lt;/p>
+&lt;h2 id="4容器打包成镜像">4、容器打包成镜像&lt;/h2>
+&lt;p>&lt;strong>(1) 看一下容器信息&lt;/strong>&lt;/p>
+&lt;p>看到下图第一条容器信息，就是刚才创建的，已经退出了。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">1docker ps -a
+&lt;span class="m">2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 1440;
+flex-basis: 3456px"
+>
+&lt;a href="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-dc6f3cb53957b8834100aefdf32ea84f.png" data-size="720x50">
+&lt;img src="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-dc6f3cb53957b8834100aefdf32ea84f.png"
+width="720"
+height="50"
+srcset="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-dc6f3cb53957b8834100aefdf32ea84f_huf9a71a751268740cc79e76cb71dfc422_25551_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-dc6f3cb53957b8834100aefdf32ea84f_huf9a71a751268740cc79e76cb71dfc422_25551_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="f801edccc8e487d2b9e0b12f14252bd7.png">
+&lt;/a>
+&lt;figcaption>f801edccc8e487d2b9e0b12f14252bd7.png&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;p>&lt;strong>（2）把容器打包成镜像&lt;/strong>&lt;/p>
+&lt;p>用到容器ID，hello是镜像名称，v1是镜像TAG（版本号）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">1docker commit -a &lt;span class="s2">&amp;#34;eric&amp;#34;&lt;/span> -m &lt;span class="s2">&amp;#34;my python test&amp;#34;&lt;/span> 80cdd11f9b60 hello:v1
+&lt;span class="m">2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>-a :提交的镜像作者；&lt;/p>
+&lt;p>-c :使用Dockerfile指令来创建镜像；&lt;/p>
+&lt;p>-m :提交时的说明文字；&lt;/p>
+&lt;p>-p :在commit时，将容器暂停。&lt;/p>
+&lt;p>&lt;strong>(3) 查看一下新的镜像&lt;/strong>&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 1422;
+flex-basis: 3413px"
+>
+&lt;a href="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-c7637facbbca1fe766cdf5c9afb025e9.png" data-size="1280x90">
+&lt;img src="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-c7637facbbca1fe766cdf5c9afb025e9.png"
+width="1280"
+height="90"
+srcset="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-c7637facbbca1fe766cdf5c9afb025e9_hu751e561d393b28968cb61ab8836806b3_49876_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-c7637facbbca1fe766cdf5c9afb025e9_hu751e561d393b28968cb61ab8836806b3_49876_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="431fccc15f0d6a6bcdac33813dbe8453.png">
+&lt;/a>
+&lt;figcaption>431fccc15f0d6a6bcdac33813dbe8453.png&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;p>&lt;strong>(4)可以容器直接运行刚才hello.py，运行完退出&lt;/strong>&lt;/p>
+&lt;p>docker run 命令后边直接跟着python+容器内容要执行的程序文件&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 1450;
+flex-basis: 3480px"
+>
+&lt;a href="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-91531b913627977adad1792a646fa0c0.png" data-size="1218x84">
+&lt;img src="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-91531b913627977adad1792a646fa0c0.png"
+width="1218"
+height="84"
+srcset="https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-91531b913627977adad1792a646fa0c0_hubfef2afc3257de84deaf6fa33cc41a47_49553_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/1644904624-91531b913627977adad1792a646fa0c0_hubfef2afc3257de84deaf6fa33cc41a47_49553_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="5740b7e44de5bd138ef98845e435b946.png">
+&lt;/a>
+&lt;figcaption>5740b7e44de5bd138ef98845e435b946.png&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;h2 id="5docker上传image到docker-hub">5、docker上传image到docker hub&lt;/h2>
+&lt;p>这块具体细节不太清晰了，大概这么个流程，给个链接吧&lt;/p>
+&lt;p>Docker中上传镜像到docker hub中&lt;/p>
+&lt;p>（1）docker hub官网注册隔热你账号&lt;/p>
+&lt;p>（2）本地登录&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">1docker login -u 用户名 -p 密码
+&lt;span class="m">2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>（3）docker hub网站创建镜像信息&lt;/p>
+&lt;p>（4）本地tag关联&lt;/p>
+&lt;p>&lt;!-- raw HTML omitted -->：本地镜像，例如hello:v1&lt;/p>
+&lt;p>&lt;!-- raw HTML omitted -->：你的hub名字&lt;/p>
+&lt;p>&lt;!-- raw HTML omitted -->[:&lt;!-- raw HTML omitted -->]：你指定的docker hub的那个库的名字和版本号&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">1docker tag &amp;lt;existing-image&amp;gt; &amp;lt;hub-user&amp;gt;/&amp;lt;repo-name&amp;gt;&lt;span class="o">[&lt;/span>:&amp;lt;tag&amp;gt;&lt;span class="o">]&lt;/span>
+&lt;span class="m">2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>（5）push上去&lt;/p>
+&lt;p>都是docker hub上面已填写好的信息，外网，比较慢。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">1docker push &amp;lt;hub-user&amp;gt;/&amp;lt;repo-name&amp;gt;:&amp;lt;tag&amp;gt;
+&lt;span class="m">2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="6常用命令">6、常用命令&lt;/h2>
+&lt;p>&lt;strong>（1）删除容器&lt;/strong>&lt;/p>
+&lt;p>先用docker ps -a，查看存在的容器，然后根据名字删除。&lt;/p>
+&lt;p>还在运行的用docker stop停止后，再删除&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">1docker rm keen_poitras
+&lt;span class="m">2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>（2）删除镜像&lt;/strong>&lt;/p>
+&lt;p>需要先删除运行该镜像的容器。&lt;/p>
+&lt;p>删除前先用docker images查看镜像ID，然后直接删除&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">1docker rmi 6a87d348e445
+&lt;span class="m">2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>（3）后台运行容器&lt;/strong>&lt;/p>
+&lt;p>-d：命令让容器后台运行，关闭命令窗口，容器不关闭。&lt;/p>
+&lt;p>docker run -d …&lt;/p>
+&lt;p>（4）还有好一堆命令：端口映射、镜像本地存储和加载、这分配那分配，这里只是用一下运行python脚本程序，感觉简单了。真的运维部署，有点像linux系统配置，哈哈哈。&lt;/p>
+&lt;h2 id="7总结">7、总结&lt;/h2>
+&lt;p>docker还是不错的，记录一下笔记吧。&lt;/p></description></item><item><title>Debian APT 设置</title><link>https://syaofox.github.io/p/debian-apt-%E8%AE%BE%E7%BD%AE/</link><pubDate>Tue, 15 Feb 2022 11:17:29 +0800</pubDate><guid>https://syaofox.github.io/p/debian-apt-%E8%AE%BE%E7%BD%AE/</guid><description>&lt;h4 id="指定更新源">指定更新源&lt;/h4>
+&lt;p>这个问题其实困扰我很久了，前两天才刚刚弄明白！ 起因是我想安装 &lt;a class="link" href="http://redis.io/" target="_blank" rel="noopener"
+>redis&lt;/a>，但是官方网站上没有 deb 包，同时 Debian 自带的比较旧了。 后来发现在 &lt;a class="link" href="https://www.dotdeb.org/" target="_blank" rel="noopener"
+>dotdeb.org&lt;/a> 有包，但是我只想安装其中的 redis，别的好像用默认的。&lt;/p>
+&lt;p>解决方案就是，新建一个文件 &lt;code>/etc/apt/preferences.d/dotdeb.pref&lt;/code>，其内容如下：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-text" data-lang="text">Package: *
+Pin: release o=packages.dotdeb.org
+Pin-Priority: 1
+Package: redis-server
+Pin: release o=packages.dotdeb.org
+Pin-Priority: 900
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>下面解释下含义：&lt;/p>
+&lt;ul>
+&lt;li>第一段是说把 &lt;code>packages.dotdeb.org&lt;/code> 下的所有的包优先级设置成 &lt;strong>1&lt;/strong>，就是比默认的低&lt;/li>
+&lt;li>第二段是说把 &lt;code>redis-server&lt;/code> 这个包的优先级单独调成 &lt;strong>900&lt;/strong>，就是比默认的高&lt;/li>
+&lt;li>经过如上设置，就会变成只有 &lt;code>redis-server&lt;/code> 这个包使用 &lt;code>packages.dotdeb.org&lt;/code> 源了&lt;/li>
+&lt;/ul></description></item><item><title>正则表达式替换中为结果数字补0</title><link>https://syaofox.github.io/p/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%9B%BF%E6%8D%A2%E4%B8%AD%E4%B8%BA%E7%BB%93%E6%9E%9C%E6%95%B0%E5%AD%97%E8%A1%A50/</link><pubDate>Sat, 12 Feb 2022 17:16:24 +0800</pubDate><guid>https://syaofox.github.io/p/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%9B%BF%E6%8D%A2%E4%B8%AD%E4%B8%BA%E7%BB%93%E6%9E%9C%E6%95%B0%E5%AD%97%E8%A1%A50/</guid><description>&lt;p>分两步实现&lt;/p>
 &lt;ol>
 &lt;li>
 &lt;p>&lt;strong>先为数字添加多个0&lt;/strong>&lt;/p>
