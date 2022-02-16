@@ -209,6 +209,8 @@ loading="lazy"
 &lt;p>Tweaks &amp;gt; Window Titlebars &amp;gt; Enable Minimize&lt;/p>
 &lt;h2 id="安装hugo">安装hugo&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">snap install hugo --channel&lt;span class="o">=&lt;/span>extended
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="安装htop">安装htop&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo apt install htop
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="安装nerd字体">安装nerd字体&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">sudo apt install fonts-firacode
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="安装git并设置github">安装git并设置github&lt;/h2>
