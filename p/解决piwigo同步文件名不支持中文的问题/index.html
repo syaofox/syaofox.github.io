@@ -1,7 +1,6 @@
 <!doctype html><html lang=zh-cn>
 <head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="开启LocalFiles Editor插件 工具 &amp;gt; 插件 &amp;gt; 打开LocalFiles Editor 修改同步文件名过滤规则 搜索sync_chars_regex 将整"><title>解决piwigo同步文件名不支持中文的问题</title>
-<link rel=canonical href=https://syaofox.github.io/p/%E8%A7%A3%E5%86%B3piwigo%E5%90%8C%E6%AD%A5%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%8D%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E7%9A%84%E9%97%AE%E9%A2%98/>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="开启LocalFiles Editor插件 工具 &amp;gt; 插件 &amp;gt; 打开LocalFiles Editor 修改同步文件名过滤规则 搜索sync_chars_regex 将整"><title>解决piwigo同步文件名不支持中文的问题</title><link rel=canonical href=https://syaofox.github.io/p/%E8%A7%A3%E5%86%B3piwigo%E5%90%8C%E6%AD%A5%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%8D%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E7%9A%84%E9%97%AE%E9%A2%98/>
 <link rel=stylesheet href=/scss/style.min.1b3ac667198cb83edcc9c45e606a6f4dd6910b8ada6b74d7fd988f1b2dfd0c7c.css><meta property="og:title" content="解决piwigo同步文件名不支持中文的问题">
 <meta property="og:description" content="开启LocalFiles Editor插件 工具 &amp;gt; 插件 &amp;gt; 打开LocalFiles Editor 修改同步文件名过滤规则 搜索sync_chars_regex 将整">
 <meta property="og:url" content="https://syaofox.github.io/p/%E8%A7%A3%E5%86%B3piwigo%E5%90%8C%E6%AD%A5%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%8D%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E7%9A%84%E9%97%AE%E9%A2%98/">
@@ -11,17 +10,15 @@
 <meta name=twitter:creator content="@syaofox"><meta name=twitter:title content="解决piwigo同步文件名不支持中文的问题">
 <meta name=twitter:description content="开启LocalFiles Editor插件 工具 &amp;gt; 插件 &amp;gt; 打开LocalFiles Editor 修改同步文件名过滤规则 搜索sync_chars_regex 将整">
 <link rel="shortcut icon" href=favicon.ico>
-</head>
-<body class="article-page has-toc">
-<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+</head><body class="article-page has-toc">
+<script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script>
 <div class="container main-container flex
 extended">
 <div id=article-toolbar>
 <a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
 <span>返回</span>
 </a>
-</div>
-<main class="main full-width">
+</div><main class="main full-width">
 <article class=main-article>
 <header class=article-header>
 <div class=article-details>
@@ -29,146 +26,79 @@ extended">
 <a href=/categories/tips/>
 Tips
 </a>
-</header>
-<h2 class=article-title>
+</header><h2 class=article-title>
 <a href=/p/%E8%A7%A3%E5%86%B3piwigo%E5%90%8C%E6%AD%A5%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%8D%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E7%9A%84%E9%97%AE%E9%A2%98/>解决piwigo同步文件名不支持中文的问题</a>
-</h2>
-<footer class=article-time>
+</h2><footer class=article-time>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
 <time class=article-time--published>Feb 11, 2022</time>
-</div>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+</div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
 阅读时长: 1 分钟
 </time>
-</div>
-</footer>
-</div>
-</header>
-<section class=article-content>
-<h2 id=开启localfiles-editor插件>开启LocalFiles Editor插件</h2>
-<p>工具 > 插件 > 打开LocalFiles Editor</p>
-<h2 id=修改同步文件名过滤规则>修改同步文件名过滤规则</h2>
-<p>搜索<code>sync_chars_regex</code>
-将整行修改为</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=nv>$conf</span><span class=o>[</span><span class=s1>&#39;sync_chars_regex&#39;</span><span class=o>]</span> <span class=o>=</span> <span class=s1>&#39;/^[\x{2e80}-\x{fe4f}a-zA-Z0-9-_.\(\)\[\]\!@#×\s]+$/u&#39;</span><span class=p>;</span>
-</code></pre></div>
-</section>
-<footer class=article-footer>
+</div></footer></div></header><section class=article-content>
+<h2 id=开启localfiles-editor插件>开启LocalFiles Editor插件</h2><p>工具 > 插件 > 打开LocalFiles Editor</p><h2 id=修改同步文件名过滤规则>修改同步文件名过滤规则</h2><p>搜索<code>sync_chars_regex</code>
+将整行修改为</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nv>$conf</span><span class=o>[</span><span class=s1>&#39;sync_chars_regex&#39;</span><span class=o>]</span> <span class=o>=</span> <span class=s1>&#39;/^[\x{2e80}-\x{fe4f}a-zA-Z0-9-_.\(\)\[\]\!@#×\s]+$/u&#39;</span><span class=p>;</span>
+</span></span></code></pre></div></section><footer class=article-footer>
 <section class=article-tags>
 <a href=/tags/docker/>docker</a>
 <a href=/tags/piwigo/>piwigo</a>
 <a href=/tags/%E7%9B%B8%E5%86%8C/>相册</a>
-</section>
-</footer>
-</article>
-<aside class=related-contents--wrapper>
-<h2 class=section-title>相关文章</h2>
-<div class=related-contents>
+</section></footer></article><aside class=related-contents--wrapper>
+<h2 class=section-title>相关文章</h2><div class=related-contents>
 <div class="flex article-list--tile">
 <article>
 <a href=/p/docker_networking/>
 <div class=article-details>
-<h2 class=article-title>Docker_networking</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>Docker_networking</h2></div></a>
+</article><article>
 <a href=/p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/>
 <div class=article-details>
-<h2 class=article-title>安装debian11后应该做的事</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>安装debian11后应该做的事</h2></div></a>
+</article><article>
 <a href=/p/debian-apt-%E8%AE%BE%E7%BD%AE/>
 <div class=article-details>
-<h2 class=article-title>Debian APT 设置</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>Debian APT 设置</h2></div></a>
+</article><article>
 <a href=/p/virtual-machine-setup-in-linunx/>
 <div class=article-details>
-<h2 class=article-title>Virtual Machine Setup in Linunx</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>Virtual Machine Setup in Linunx</h2></div></a>
+</article><article>
 <a href=/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/>
 <div class=article-details>
-<h2 class=article-title>安装一台基于debian的家庭服务器</h2>
-</div>
-</a>
-</article>
-</div>
-</div>
-</aside>
-<footer class=site-footer>
+<h2 class=article-title>安装一台基于debian的家庭服务器</h2></div></a>
+</article></div></div></aside><footer class=site-footer>
 <section class=copyright>
 &copy;
 2020 -
 2022 Syaofox's Elysion
-</section>
-<section class=powerby>
+</section><section class=powerby>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
 Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.7.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
-</section>
-</footer>
-<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
-<div class=pswp__bg></div>
-<div class=pswp__scroll-wrap>
+</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div><div class=pswp__scroll-wrap>
 <div class=pswp__container>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-</div>
-<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden">
 <div class=pswp__top-bar>
-<div class=pswp__counter></div>
-<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
 <div class=pswp__preloader>
 <div class=pswp__preloader__icn>
 <div class=pswp__preloader__cut>
-<div class=pswp__preloader__donut></div>
-</div>
-</div>
-</div>
-</div>
-<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-<div class=pswp__share-tooltip></div>
-</div>
-<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+<div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
 </button>
 <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
 </button>
 <div class=pswp__caption>
-<div class=pswp__caption__center></div>
-</div>
-</div>
-</div>
-</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
-</main>
-<aside class="sidebar right-sidebar sticky">
+<div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main><aside class="sidebar right-sidebar sticky">
 <section class="widget archives">
 <div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
-</div>
-<h2 class="widget-title section-title">目录</h2>
-<div class=widget--toc>
+</div><h2 class="widget-title section-title">目录</h2><div class=widget--toc>
 <nav id=TableOfContents>
 <ol>
-<li><a href=#开启localfiles-editor插件>开启LocalFiles Editor插件</a></li>
-<li><a href=#修改同步文件名过滤规则>修改同步文件名过滤规则</a></li>
-</ol>
-</nav>
-</div>
-</section>
-</aside>
-</div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
-<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
-</body>
-</html>
+<li><a href=#开启localfiles-editor插件>开启LocalFiles Editor插件</a></li><li><a href=#修改同步文件名过滤规则>修改同步文件名过滤规则</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script>
+</body></html>

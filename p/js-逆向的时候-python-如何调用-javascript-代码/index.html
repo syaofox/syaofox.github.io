@@ -1,7 +1,6 @@
 <!doctype html><html lang=zh-cn>
 <head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="JS 逆向的时候 Python 如何调用 JavaScript 代码？ 本篇目标 了解为什么我们需要直接调用 JavaScript 了解常见的 Python 调用 JavaScript 的库 了解一种性能更高的操作方式 知道什么场景下应该使用什么"><title>JS 逆向的时候 Python 如何调用 JavaScript 代码？</title>
-<link rel=canonical href=https://syaofox.github.io/p/js-%E9%80%86%E5%90%91%E7%9A%84%E6%97%B6%E5%80%99-python-%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8-javascript-%E4%BB%A3%E7%A0%81/>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="JS 逆向的时候 Python 如何调用 JavaScript 代码？ 本篇目标 了解为什么我们需要直接调用 JavaScript 了解常见的 Python 调用 JavaScript 的库 了解一种性能更高的操作方式 知道什么场景下应该使用什么"><title>JS 逆向的时候 Python 如何调用 JavaScript 代码？</title><link rel=canonical href=https://syaofox.github.io/p/js-%E9%80%86%E5%90%91%E7%9A%84%E6%97%B6%E5%80%99-python-%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8-javascript-%E4%BB%A3%E7%A0%81/>
 <link rel=stylesheet href=/scss/style.min.1b3ac667198cb83edcc9c45e606a6f4dd6910b8ada6b74d7fd988f1b2dfd0c7c.css><meta property="og:title" content="JS 逆向的时候 Python 如何调用 JavaScript 代码？">
 <meta property="og:description" content="JS 逆向的时候 Python 如何调用 JavaScript 代码？ 本篇目标 了解为什么我们需要直接调用 JavaScript 了解常见的 Python 调用 JavaScript 的库 了解一种性能更高的操作方式 知道什么场景下应该使用什么">
 <meta property="og:url" content="https://syaofox.github.io/p/js-%E9%80%86%E5%90%91%E7%9A%84%E6%97%B6%E5%80%99-python-%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8-javascript-%E4%BB%A3%E7%A0%81/">
@@ -11,17 +10,15 @@
 <meta name=twitter:creator content="@syaofox"><meta name=twitter:title content="JS 逆向的时候 Python 如何调用 JavaScript 代码？">
 <meta name=twitter:description content="JS 逆向的时候 Python 如何调用 JavaScript 代码？ 本篇目标 了解为什么我们需要直接调用 JavaScript 了解常见的 Python 调用 JavaScript 的库 了解一种性能更高的操作方式 知道什么场景下应该使用什么">
 <link rel="shortcut icon" href=favicon.ico>
-</head>
-<body class="article-page has-toc">
-<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+</head><body class="article-page has-toc">
+<script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script>
 <div class="container main-container flex
 extended">
 <div id=article-toolbar>
 <a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
 <span>返回</span>
 </a>
-</div>
-<main class="main full-width">
+</div><main class="main full-width">
 <article class=main-article>
 <header class=article-header>
 <div class=article-details>
@@ -29,508 +26,311 @@ extended">
 <a href=/categories/coding/ style=background-color:#2a9d8f;color:#fff>
 Coding
 </a>
-</header>
-<h2 class=article-title>
+</header><h2 class=article-title>
 <a href=/p/js-%E9%80%86%E5%90%91%E7%9A%84%E6%97%B6%E5%80%99-python-%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8-javascript-%E4%BB%A3%E7%A0%81/>JS 逆向的时候 Python 如何调用 JavaScript 代码？</a>
-</h2>
-<footer class=article-time>
+</h2><footer class=article-time>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
 <time class=article-time--published>Jan 04, 2022</time>
-</div>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+</div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
 阅读时长: 14 分钟
 </time>
-</div>
-</footer>
-</div>
-</header>
-<section class=article-content>
-<h1 id=js-逆向的时候-python-如何调用-javascript-代码>JS 逆向的时候 Python 如何调用 JavaScript 代码？</h1>
-<h2 id=本篇目标>本篇目标</h2>
-<ul>
-<li>了解为什么我们需要直接调用 JavaScript</li>
-<li>了解常见的 Python 调用 JavaScript 的库</li>
-<li>了解一种性能更高的操作方式</li>
-<li>知道什么场景下应该使用什么方式进行调用</li>
-</ul>
-<blockquote>
-<p>通过本文的学习，在你写爬虫时，你应该会对调用 JavaScript 有一个更清晰的了解，并且你还要了解到一些你平时可能见不到的骚操作。</p>
-</blockquote>
-<p>大家如果接触过 JavaScript 逆向的话，应该都知道，通常来说碰到 JS　逆向网站时会有这两种情况：</p>
-<ul>
-<li>简单 JS 破解：通过 Python 代码轻松实现</li>
-<li>复杂的 JS 破解：代码不容易重写，使用程序直接调用 JS 运行获取结果。</li>
-</ul>
-<p>对于简单的 JS 来说，我们可以通过 Python 代码，直接重写，轻轻松松的就能搞定。 而对于复的 JS 代码而言呢，由于代码过于复杂，重写太费时费力，且碰到对方更新这就比较麻烦了。所以，我们一般直接使用程序去调用 JS，在 Python 层面就只是获取一个运行结果，这样做相比于重写而言就方便多了。 那么，接下来我带大家看一下两种比较简单的 JS 代码重写。</p>
-<h2 id=base64>Base64</h2>
-<p>首先，我们先来看一下 Base64 ，Base64 是我们再写爬虫过程中经常看到的一种编码方式。这边我们来写两个例子。</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain>// 原字符
-NightTeam
-// 编码之后的：
-TmlnaHRUZWFt
-</code></pre></div><p>第一个例子如上，是 NightTeam 经过编码是如上面的结果（<code>TmlnaHRUZWFt</code>），如果我们只是通过这个结果来分析的话，它的特征不是很明显。如果是见的不多或者是新手小白的同学，并不会把它往 Base64 方向去想。 然后，我们来看一下第二个例子：</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-protobuf data-lang=protobuf><span class=c1>// 原字符
-</span><span class=c1></span><span class=n>aiyuechuang</span><span class=err>
-</span><span class=err></span><span class=c1>// 编码之后的：
-</span><span class=c1></span><span class=n>YWl5dWVjaHVhbmc</span><span class=o>=</span><span class=err>
-</span><span class=err>
-</span><span class=err></span><span class=c1>// 原字符
-</span><span class=c1></span><span class=n>Python3</span><span class=err>
-</span><span class=err></span><span class=c1>// 编码之后
-</span><span class=c1></span><span class=n>UHl0aG9uMw</span><span class=o>==</span><span class=err>
-</span></code></pre></div><p>第二个例子是 aiyuechuang 编码之后的结果，它的末尾有一个等号，Python3 编码之后末尾有两个等号，这个特征相对第一个就比较明显了。一般我们看到尾号有两个等号时应该大概可以猜到这个就是 Base64 了。 然后，直接解码看一看，如果没有什么特别的话，就可以使用 Python 进行重写了。 同学可以使用以下链接 Base64 编码解码的测试学习：<a class=link href=http://tool.alixixi.com/base64/ target=_blank rel=noopener>http://tool.alixixi.com/base64/</a> 不过 Base64 也会有一些骚操作，碰到那种情况的时候，我们如果用 Python 重写可能有点麻烦。具体的内容我会在后面的的课程中，单独的跟大家详细的讲解。</p>
-<h2 id=md5>MD5</h2>
-<p>第二个的话就是 MD5 ，MD5 在 Javascript 中并没有标准的库，一般我们都是使用开源库去操作。</p>
-<blockquote>
-<p>注意：md5 的话是 <strong>哈希</strong> 并不是加密。</p>
-</blockquote>
-<p>下面我来看一个 js 实现 md5 的一个例子： <a class=link href=https://cuiqingcai.com/.3-%E4%BB%A3%E7%A0%81%E5%8C%85MD5JS target=_blank rel=noopener>md5.js</a> 上面的代码时被混淆过的，但是它的主要一个特征还是比较明显的，有一个入口函数：<code>console.log(hex_md5("aiyuechuang"))</code> 我们可以使用命令行运行一下结果，命令如下：</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain>node md5.js
-</code></pre></div><blockquote>
-<p>上面的代码自行复制保存为 md5.js 然后运行。</p>
-</blockquote>
-<p>运行结果：</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain>$ node md5.js
-e55babec7f5d5cf7bac7872f0481bec1
-</code></pre></div><p>我们数一下输出的结果的话，会发现这正好 是 32 位，通常我们看到 32 位的一个英文数字混合的字符串，应该马上就能想到时 md5 了，这两个操作的话，因为在 Python 中都有对应的库，分别是：Base64 和 hashlib ，大家应该都知道这个我就不多说了。 <strong>例程：Base64 和 hashlib</strong></p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain>import base64  
-str1 = b&#39;aiyuechuang&#39;
-str2 = base64.b64encode(str1)
-print(str2)
-str3 = base64.b64decode(&#39;YWl5dWVjaHVhbmc=&#39;)
-print(str3)
-</code></pre></div><p>输出</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain>b&#39;YWl5dWVjaHVhbmc=&#39;
-b&#39;aiyuechuang&#39;
-[Finished in 0.2s]
-</code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain>import hashlib
-
-data = &#34;aiyuechuang&#34;
-result = hashlib.md5(data.encode(encoding = &#34;UTF-8&#34;)).hexdigest()
-print(result)
-</code></pre></div><p>输出</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain>e55babec7f5d5cf7bac7872f0481bec1
-[Finished in 0.1s]
-</code></pre></div><p>像我们前面看到的那些代码，都是比较简单的，他们的算法部分也没有经过修改，所以我们可以使用其他语言和对应的库进行重写。 <strong>但是如果对方把算法部分做了一些改变呢？</strong> 如果代码量比较大也被混淆到看不出特征了，连操作后产生的字符串都看不出，我们就无法直接使用一个现成的库来复写操作了。 而且这种情况下的代码量太大了，直接对着代码重写成 Python 版本也不太现实，对方一更新你就得再重新看一遍，这样显然时非常麻烦的，也非常耗时。 <strong>那么有没有一种更高效的方法呢？</strong> 显然是有的，接下来我们来讲如何通过程序来直接调用 JavaScript 代码，也就是碰到复杂的 JS 时候的处理。</p>
-<ol>
-<li>使用 Python 调用 JS</li>
-<li>一种性能更高的调用方式</li>
-<li>到底选择哪种方案比较好</li>
-</ol>
-<p>首先，我会分享一些使用 Python 调用 JavaScript 的方式，然后会介绍一种性能更高的调用。以及具体使用哪种调用方式以及怎么选择性的使用，最后我会总结一下这些方案存在的小问题。并且会告诉你如何踩坑。</p>
-<h2 id=使用-python-调用-js>使用 Python 调用 JS</h2>
-<p>我们接下来首先讲一下 Python 中调用 JavaScript。</p>
-<ul>
-<li>PyV8</li>
-<li>Js2Py</li>
-<li>PyExecJS</li>
-<li>PyminiRacer</li>
-<li>Selenium</li>
-<li>Pyppeteer</li>
-</ul>
-<p>Python 调用 JS 库的话，光是我了解的话，目前就有这么一堆，接下来我们就来依次来介绍这些库。</p>
-<h3 id=pyv8>PyV8</h3>
-<ul>
-<li>V8 是谷歌开源的 JavaScript 引擎，被使用在了 Chrome 中</li>
-<li>PyV8 是 V8 引擎的一个 Python 层的包装，可以用来调用 V8 引擎执行 JS 代码</li>
-<li>网上有很多使用它来执行 JS 代码的文章</li>
-<li>年久失修，最新版本是 2010 年的（<a class=link href=https://pypi.org/project/PyV8/#history target=_blank rel=noopener>https://pypi.org/project/PyV8/#history</a>)</li>
-<li>存在内存泄漏问题，所以不建议使用</li>
-</ul>
-<p>首先来看一下什么是 PyV8，V8 是谷歌开源的 JavaScript 引擎，被使用在了 Chrome 浏览器中，后来因为有人想在 Python 上调用它（V8），于是就有了 PyV8。 那 PyV8 实际上是 V8 引擎的一个 Python 层的包装，可以用来调用 V8 引擎执行 JS 代码，但是这个我不推荐使用它，那我既然不推荐大家使用，我为什么又要讲它呢？ <strong>其实，是这样的：</strong> 虽然目前网上有很多文章使用它执行 JS 代码，但是这个 PyV8 实际上已经年久失修了，而且它最新的一个正式版本还是 2010 年的，可见是有多久远了，链接在上方可以执行访问查看。而且，如果你实际使用过的话，你应该会发现它存在一些<strong>内存泄漏</strong>的问题。 所以，这边我拿出来说一下，避免有人踩坑。接下来我们来说一下第二个 JS2Py。</p>
-<h3 id=js2py>Js2Py</h3>
-<ul>
-<li>Js2Py 是一个纯 Python 实现的 JavaScript 解释器和翻译器</li>
-<li>虽然 2019 年依然有更新，但那也是 6 月份的事情了，而且它的 issues 里面有很多的 bug 没有修复（<a class=link href=https://github.com/PiotrDabkowski/Js2Py/issues target=_blank rel=noopener>https://github.com/PiotrDabkowski/Js2Py/issues</a>）。</li>
-</ul>
-<p>Js2Py 是一个纯 Python 实现的 JavaScript 解释器和翻译器，它和 PyV8 一样，也是有挺多文章提到这个库，然后来调用 JS 代码。 但是，Js2Py 虽然在 2019 年仍然更新，但那也是 6 月份的事情了，而且它的 issues 里面有很多的 bug 没有修复（<a class=link href=https://github.com/PiotrDabkowski/Js2Py/issues target=_blank rel=noopener>https://github.com/PiotrDabkowski/Js2Py/issues</a>）。另外，Js2Py 本身也存在一些问题，就解释器部分来说： <strong>解释器部分：</strong></p>
-<ul>
-<li>性能不高</li>
-<li>存在一些 BUG</li>
-</ul>
-<p>那不仅仅就解释器部分，还有翻译器部分：</p>
-<ul>
-<li>对于高度混淆的大型 JS 会转换失败</li>
-<li>而且转换出来的代码可读性差、性能不高</li>
-</ul>
-<p>总之来讲，它在各个方面来说都不太适合我们的工作场景，所以也是不建议大家使用的。</p>
-<h3 id=pyminracer>PyMinRacer</h3>
-<ul>
-<li>同样是 V8 引擎的包装，和 PyV8 的效果一样</li>
-<li>一个继任 PyExecJS 和 PyramidV8 的库</li>
-<li>一个比较新的库</li>
-</ul>
-<p>这个库也是一个 PyV8 引擎包装，它的效果和 PyV8 的效果一样的。 而且作者号称这是一个继任 PyExecJS 和 PyramidV8 的库，乍眼一看挺唬人的，不过由于它是一个比较新的库，我这边就没有过多的尝试了，也没有再实际生产环境中使用过，所以不太清楚会有什么坑，感兴趣的朋友，大家可以自己去尝试一下。</p>
-<h3 id=pyexecjs>PyExecJS</h3>
-<ul>
-<li>一个最开始诞生于 Ruby 中的库，后来被移植到了 Python 上</li>
-<li>较新的文章一般都会说用它来执行 JS 代码</li>
-<li>有多个引擎可选，但一般我们会选择使用 NodeJS 作为引擎来执行代码</li>
-</ul>
-<p>接下来我要说的是 PyExecJS ，这个库一个最开始诞生于 Ruby 中的库，后来人被移植到了 Python 上，目前看到一些比较新的文章都是用它来执行 JS 代码的，然后它是有多个引擎可以选择的，我们一般选择 <strong>NodeJS</strong> 作为它的一个引擎执行代码，毕竟 <strong>NodeJS</strong> 的速度是比较快的而且配置起来比较简单，那我带大家来看一下 PyExecjs 的使用。</p>
-<h4 id=pyexecjs-的使用>PyExecJS 的使用</h4>
-<ol>
-<li>安装 JS 运行环境这里推荐安装 Node.js，安装方便，执行效率也高。</li>
-</ol>
-<p>首先我们就是要安装引擎了，这个引擎指的就是 JS 的一个运行环境，这边推荐使用 Node.js。</p>
-<blockquote>
-<p>注意：虽然 Windows 上有个系统自带的 JScript，可以用来作为 PyExecjs 的引擎，但是这个 JScript 很容易与其他的引擎有一个不一样的地方，容易踩到一些奇奇怪怪的坑。所以请大家务必要安装一个其他的引擎。比如说我们这里安装 Node.js 。</p>
-</blockquote>
-<p>那上面装完 Nodejs 之后呢，我们就需要执行安装 PyExecjs 了：</p>
-<ol>
+</div></footer></div></header><section class=article-content>
+<h1 id=js-逆向的时候-python-如何调用-javascript-代码>JS 逆向的时候 Python 如何调用 JavaScript 代码？</h1><h2 id=本篇目标>本篇目标</h2><ul>
+<li>了解为什么我们需要直接调用 JavaScript</li><li>了解常见的 Python 调用 JavaScript 的库</li><li>了解一种性能更高的操作方式</li><li>知道什么场景下应该使用什么方式进行调用</li></ul><blockquote>
+<p>通过本文的学习，在你写爬虫时，你应该会对调用 JavaScript 有一个更清晰的了解，并且你还要了解到一些你平时可能见不到的骚操作。</p></blockquote><p>大家如果接触过 JavaScript 逆向的话，应该都知道，通常来说碰到 JS　逆向网站时会有这两种情况：</p><ul>
+<li>简单 JS 破解：通过 Python 代码轻松实现</li><li>复杂的 JS 破解：代码不容易重写，使用程序直接调用 JS 运行获取结果。</li></ul><p>对于简单的 JS 来说，我们可以通过 Python 代码，直接重写，轻轻松松的就能搞定。 而对于复的 JS 代码而言呢，由于代码过于复杂，重写太费时费力，且碰到对方更新这就比较麻烦了。所以，我们一般直接使用程序去调用 JS，在 Python 层面就只是获取一个运行结果，这样做相比于重写而言就方便多了。 那么，接下来我带大家看一下两种比较简单的 JS 代码重写。</p><h2 id=base64>Base64</h2><p>首先，我们先来看一下 Base64 ，Base64 是我们再写爬虫过程中经常看到的一种编码方式。这边我们来写两个例子。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain><span class=line><span class=cl>// 原字符
+</span></span><span class=line><span class=cl>NightTeam
+</span></span><span class=line><span class=cl>// 编码之后的：
+</span></span><span class=line><span class=cl>TmlnaHRUZWFt
+</span></span></code></pre></div><p>第一个例子如上，是 NightTeam 经过编码是如上面的结果（<code>TmlnaHRUZWFt</code>），如果我们只是通过这个结果来分析的话，它的特征不是很明显。如果是见的不多或者是新手小白的同学，并不会把它往 Base64 方向去想。 然后，我们来看一下第二个例子：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-protobuf data-lang=protobuf><span class=line><span class=cl><span class=c1>// 原字符
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=n>aiyuechuang</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=c1>// 编码之后的：
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=n>YWl5dWVjaHVhbmc</span><span class=o>=</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=c1>// 原字符
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=n>Python3</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=c1>// 编码之后
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=n>UHl0aG9uMw</span><span class=o>==</span><span class=err>
+</span></span></span></code></pre></div><p>第二个例子是 aiyuechuang 编码之后的结果，它的末尾有一个等号，Python3 编码之后末尾有两个等号，这个特征相对第一个就比较明显了。一般我们看到尾号有两个等号时应该大概可以猜到这个就是 Base64 了。 然后，直接解码看一看，如果没有什么特别的话，就可以使用 Python 进行重写了。 同学可以使用以下链接 Base64 编码解码的测试学习：<a class=link href=http://tool.alixixi.com/base64/ target=_blank rel=noopener>http://tool.alixixi.com/base64/</a> 不过 Base64 也会有一些骚操作，碰到那种情况的时候，我们如果用 Python 重写可能有点麻烦。具体的内容我会在后面的的课程中，单独的跟大家详细的讲解。</p><h2 id=md5>MD5</h2><p>第二个的话就是 MD5 ，MD5 在 Javascript 中并没有标准的库，一般我们都是使用开源库去操作。</p><blockquote>
+<p>注意：md5 的话是 <strong>哈希</strong> 并不是加密。</p></blockquote><p>下面我来看一个 js 实现 md5 的一个例子： <a class=link href=https://cuiqingcai.com/.3-%E4%BB%A3%E7%A0%81%E5%8C%85MD5JS target=_blank rel=noopener>md5.js</a> 上面的代码时被混淆过的，但是它的主要一个特征还是比较明显的，有一个入口函数：<code>console.log(hex_md5("aiyuechuang"))</code> 我们可以使用命令行运行一下结果，命令如下：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain><span class=line><span class=cl>node md5.js
+</span></span></code></pre></div><blockquote>
+<p>上面的代码自行复制保存为 md5.js 然后运行。</p></blockquote><p>运行结果：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain><span class=line><span class=cl>$ node md5.js
+</span></span><span class=line><span class=cl>e55babec7f5d5cf7bac7872f0481bec1
+</span></span></code></pre></div><p>我们数一下输出的结果的话，会发现这正好 是 32 位，通常我们看到 32 位的一个英文数字混合的字符串，应该马上就能想到时 md5 了，这两个操作的话，因为在 Python 中都有对应的库，分别是：Base64 和 hashlib ，大家应该都知道这个我就不多说了。 <strong>例程：Base64 和 hashlib</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain><span class=line><span class=cl>import base64  
+</span></span><span class=line><span class=cl>str1 = b&#39;aiyuechuang&#39;
+</span></span><span class=line><span class=cl>str2 = base64.b64encode(str1)
+</span></span><span class=line><span class=cl>print(str2)
+</span></span><span class=line><span class=cl>str3 = base64.b64decode(&#39;YWl5dWVjaHVhbmc=&#39;)
+</span></span><span class=line><span class=cl>print(str3)
+</span></span></code></pre></div><p>输出</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain><span class=line><span class=cl>b&#39;YWl5dWVjaHVhbmc=&#39;
+</span></span><span class=line><span class=cl>b&#39;aiyuechuang&#39;
+</span></span><span class=line><span class=cl>[Finished in 0.2s]
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain><span class=line><span class=cl>import hashlib
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>data = &#34;aiyuechuang&#34;
+</span></span><span class=line><span class=cl>result = hashlib.md5(data.encode(encoding = &#34;UTF-8&#34;)).hexdigest()
+</span></span><span class=line><span class=cl>print(result)
+</span></span></code></pre></div><p>输出</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain><span class=line><span class=cl>e55babec7f5d5cf7bac7872f0481bec1
+</span></span><span class=line><span class=cl>[Finished in 0.1s]
+</span></span></code></pre></div><p>像我们前面看到的那些代码，都是比较简单的，他们的算法部分也没有经过修改，所以我们可以使用其他语言和对应的库进行重写。 <strong>但是如果对方把算法部分做了一些改变呢？</strong> 如果代码量比较大也被混淆到看不出特征了，连操作后产生的字符串都看不出，我们就无法直接使用一个现成的库来复写操作了。 而且这种情况下的代码量太大了，直接对着代码重写成 Python 版本也不太现实，对方一更新你就得再重新看一遍，这样显然时非常麻烦的，也非常耗时。 <strong>那么有没有一种更高效的方法呢？</strong> 显然是有的，接下来我们来讲如何通过程序来直接调用 JavaScript 代码，也就是碰到复杂的 JS 时候的处理。</p><ol>
+<li>使用 Python 调用 JS</li><li>一种性能更高的调用方式</li><li>到底选择哪种方案比较好</li></ol><p>首先，我会分享一些使用 Python 调用 JavaScript 的方式，然后会介绍一种性能更高的调用。以及具体使用哪种调用方式以及怎么选择性的使用，最后我会总结一下这些方案存在的小问题。并且会告诉你如何踩坑。</p><h2 id=使用-python-调用-js>使用 Python 调用 JS</h2><p>我们接下来首先讲一下 Python 中调用 JavaScript。</p><ul>
+<li>PyV8</li><li>Js2Py</li><li>PyExecJS</li><li>PyminiRacer</li><li>Selenium</li><li>Pyppeteer</li></ul><p>Python 调用 JS 库的话，光是我了解的话，目前就有这么一堆，接下来我们就来依次来介绍这些库。</p><h3 id=pyv8>PyV8</h3><ul>
+<li>V8 是谷歌开源的 JavaScript 引擎，被使用在了 Chrome 中</li><li>PyV8 是 V8 引擎的一个 Python 层的包装，可以用来调用 V8 引擎执行 JS 代码</li><li>网上有很多使用它来执行 JS 代码的文章</li><li>年久失修，最新版本是 2010 年的（<a class=link href=https://pypi.org/project/PyV8/#history target=_blank rel=noopener>https://pypi.org/project/PyV8/#history</a>)</li><li>存在内存泄漏问题，所以不建议使用</li></ul><p>首先来看一下什么是 PyV8，V8 是谷歌开源的 JavaScript 引擎，被使用在了 Chrome 浏览器中，后来因为有人想在 Python 上调用它（V8），于是就有了 PyV8。 那 PyV8 实际上是 V8 引擎的一个 Python 层的包装，可以用来调用 V8 引擎执行 JS 代码，但是这个我不推荐使用它，那我既然不推荐大家使用，我为什么又要讲它呢？ <strong>其实，是这样的：</strong> 虽然目前网上有很多文章使用它执行 JS 代码，但是这个 PyV8 实际上已经年久失修了，而且它最新的一个正式版本还是 2010 年的，可见是有多久远了，链接在上方可以执行访问查看。而且，如果你实际使用过的话，你应该会发现它存在一些<strong>内存泄漏</strong>的问题。 所以，这边我拿出来说一下，避免有人踩坑。接下来我们来说一下第二个 JS2Py。</p><h3 id=js2py>Js2Py</h3><ul>
+<li>Js2Py 是一个纯 Python 实现的 JavaScript 解释器和翻译器</li><li>虽然 2019 年依然有更新，但那也是 6 月份的事情了，而且它的 issues 里面有很多的 bug 没有修复（<a class=link href=https://github.com/PiotrDabkowski/Js2Py/issues target=_blank rel=noopener>https://github.com/PiotrDabkowski/Js2Py/issues</a>）。</li></ul><p>Js2Py 是一个纯 Python 实现的 JavaScript 解释器和翻译器，它和 PyV8 一样，也是有挺多文章提到这个库，然后来调用 JS 代码。 但是，Js2Py 虽然在 2019 年仍然更新，但那也是 6 月份的事情了，而且它的 issues 里面有很多的 bug 没有修复（<a class=link href=https://github.com/PiotrDabkowski/Js2Py/issues target=_blank rel=noopener>https://github.com/PiotrDabkowski/Js2Py/issues</a>）。另外，Js2Py 本身也存在一些问题，就解释器部分来说： <strong>解释器部分：</strong></p><ul>
+<li>性能不高</li><li>存在一些 BUG</li></ul><p>那不仅仅就解释器部分，还有翻译器部分：</p><ul>
+<li>对于高度混淆的大型 JS 会转换失败</li><li>而且转换出来的代码可读性差、性能不高</li></ul><p>总之来讲，它在各个方面来说都不太适合我们的工作场景，所以也是不建议大家使用的。</p><h3 id=pyminracer>PyMinRacer</h3><ul>
+<li>同样是 V8 引擎的包装，和 PyV8 的效果一样</li><li>一个继任 PyExecJS 和 PyramidV8 的库</li><li>一个比较新的库</li></ul><p>这个库也是一个 PyV8 引擎包装，它的效果和 PyV8 的效果一样的。 而且作者号称这是一个继任 PyExecJS 和 PyramidV8 的库，乍眼一看挺唬人的，不过由于它是一个比较新的库，我这边就没有过多的尝试了，也没有再实际生产环境中使用过，所以不太清楚会有什么坑，感兴趣的朋友，大家可以自己去尝试一下。</p><h3 id=pyexecjs>PyExecJS</h3><ul>
+<li>一个最开始诞生于 Ruby 中的库，后来被移植到了 Python 上</li><li>较新的文章一般都会说用它来执行 JS 代码</li><li>有多个引擎可选，但一般我们会选择使用 NodeJS 作为引擎来执行代码</li></ul><p>接下来我要说的是 PyExecJS ，这个库一个最开始诞生于 Ruby 中的库，后来人被移植到了 Python 上，目前看到一些比较新的文章都是用它来执行 JS 代码的，然后它是有多个引擎可以选择的，我们一般选择 <strong>NodeJS</strong> 作为它的一个引擎执行代码，毕竟 <strong>NodeJS</strong> 的速度是比较快的而且配置起来比较简单，那我带大家来看一下 PyExecjs 的使用。</p><h4 id=pyexecjs-的使用>PyExecJS 的使用</h4><ol>
+<li>安装 JS 运行环境这里推荐安装 Node.js，安装方便，执行效率也高。</li></ol><p>首先我们就是要安装引擎了，这个引擎指的就是 JS 的一个运行环境，这边推荐使用 Node.js。</p><blockquote>
+<p>注意：虽然 Windows 上有个系统自带的 JScript，可以用来作为 PyExecjs 的引擎，但是这个 JScript 很容易与其他的引擎有一个不一样的地方，容易踩到一些奇奇怪怪的坑。所以请大家务必要安装一个其他的引擎。比如说我们这里安装 Node.js 。</p></blockquote><p>那上面装完 Nodejs 之后呢，我们就需要执行安装 PyExecjs 了：</p><ol>
 <li>
-<p>安装 PyExecJS</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-cmake data-lang=cmake><span class=err>pip</span> <span class=err>install</span> <span class=err>pyexecjs
-</span></code></pre></div></li>
-</ol>
-<p>这边我们使用上面的 pip 就可以进行安装了。 那么我们现在环境就准备好了，可以开始运行了。</p>
-<ol>
-<li>代码示例（检测运行环境）</li>
-</ol>
-<p>首先，我们打开 IPython 终端，执行一下一下两行代码，以下也给出了运行结果：</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain>In [1]: import execjs
-
-In [2]: execjs.get().name # 查看调用环境
-Out[2]: &#39;Node.js (V8)&#39;
-</code></pre></div><p><code>execjs.get() # 查看调用的环境</code>用此来看看我们的库能不能检测到 nodejs，如果不能的话那就需要手动设置一下，不过一般像我上面一样正常输出 <code>node.js</code> 就可以了。 如果，你检测出来的引擎不是 <code>node.js</code> 的话，那你就需要手动设置一下了，这里有两种设置形式，我在下方给你写出来了： <strong>选择不同引擎进行解析</strong></p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain># 长期使用
-os.environ[&#34;EXECJS_RUNTIME&#34;]=&#34;Node&#34;
-
-# 临时使用
-import execjs.runtime_names
-node=execjs.get(execjs.runtime_names.Node)
-</code></pre></div><p>由上边可知，我们有两种形式：一种是长期使用的，通过环境变量的形式，通过把环境变量改成大写的 EXECJS_RUNTIME 然后将其值赋值为 Node。 另一种的话，将它改成临时使用的一种方式，这种是直接使用 get，这种做法的话，你在使用的时候就需要使用 node 变量了，不能直接导入 PyExecjs 来直接开始使用，相对麻烦一些。 接下来，就让我们正式使用 PyExecJS 这个包吧。</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain>In [8]: import execjs
-
-In [9]: e = execjs.eval(&#39;a = new Array(1, 2, 3)&#39;) # 可以直接执行 JS 代码
-
-In [10]: print(e)
-[1, 2, 3]
-</code></pre></div><p>PyExecjs 最简单的用法就是导入包，然后通过 eval 这个方法并传入简单的 JS 代码来执行。但是我们正常情况下肯定不会这么使用，因为我们的 JS 代码是比较复杂的而且 JS 代码内容也是比较多的。</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=c1># -*- coding: utf-8 -*-</span>
-<span class=c1># @Author: clela</span>
-<span class=c1># @Date:   2020-03-24 13:54:27</span>
-<span class=c1># @Last Modified by:   aiyuechuang</span>
-<span class=c1># @Last Modified time: 2020-04-03 08:44:15</span>
-<span class=c1># @公众号：AI悦创</span>
-
-<span class=n>In</span> <span class=p>[</span><span class=mi>12</span><span class=p>]:</span> <span class=kn>import</span> <span class=nn>execjs</span>
-
-<span class=n>In</span> <span class=p>[</span><span class=mi>13</span><span class=p>]:</span> <span class=n>jstext</span> <span class=o>=</span> <span class=s2>&#34;&#34;&#34;
-</span><span class=s2>    ...: function hello(str){return str;}
-</span><span class=s2>    ...: &#34;&#34;&#34;</span>
-
-<span class=n>In</span> <span class=p>[</span><span class=mi>14</span><span class=p>]:</span> <span class=n>ctx</span> <span class=o>=</span> <span class=n>execjs</span><span class=o>.</span><span class=n>compile</span><span class=p>(</span><span class=n>jstext</span><span class=p>)</span> <span class=c1># 编译 JS 代码</span>
-
-<span class=n>In</span> <span class=p>[</span><span class=mi>15</span><span class=p>]:</span> <span class=n>a</span> <span class=o>=</span> <span class=n>ctx</span><span class=o>.</span><span class=n>call</span><span class=p>(</span><span class=s2>&#34;hello&#34;</span><span class=p>,</span> <span class=s2>&#34;hello aiyc&#34;</span><span class=p>)</span>
-
-<span class=n>In</span> <span class=p>[</span><span class=mi>16</span><span class=p>]:</span> <span class=nb>print</span><span class=p>(</span><span class=n>a</span><span class=p>)</span>
-<span class=n>hello</span> <span class=n>aiyc</span>
-</code></pre></div><p>这样的话，我们一般通过使用第二种方式，第二种方式是通过使用 compile 对 JS 字符串进行编译，这个编译操作其实就是把参数（jstext）里面的那段 JS 代码给放到一个叫 Context 的上下文中，它并不是我们平时编译程序所说的编译。然后我们 调用 call 方法进行执行。 第一个参数是我们调用 JS 中的的函数名，也就是 hello。然后后面跟着的 hello aiyc 就是参数，也就是我们 JS 中需要传入到 str 的参数。如果 JS 中存在多个参数，我们就直接在后面打个逗号，然后接着写下一个参数就好了。 接下来我们来看一个具体的代码： <a class=link href=https://cuiqingcai.com/.3-%E4%BB%A3%E7%A0%81%E5%8C%85PyExecjsDemo target=_blank rel=noopener>aes_demo.js</a> 这边我准备了一个 CryptoJS 的一个 JS 文件，CryptoJS 它是一个包含各种加密哈希编码算法的一个开源库，很多网站都会用它提供的函数来生成参数，那么这边我是写了如上面这样的代码，用来调用它里面的 AES 加密参数，来加密一下我提供的字符串。</p>
-<blockquote>
-<p><strong>注意</strong>：JS 代码不要放在和 Python 代码同一个文件中，尽量放在单独的 js 文件中，因为我们的 JS 文件内容比较多。然后通过读取文件的方式，</p>
-</blockquote>
-<p><a class=link href=https://cuiqingcai.com/.3-%E4%BB%A3%E7%A0%81%E5%8C%85PyExecjsDemo target=_blank rel=noopener>run_aes.py</a></p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain># Python 文件：run_aes.py
-# -*- coding: utf-8 -*-
-# @时间 : 2020-04-06 00:00
-# @作者 : AI悦创
-# @文件名 : run_aes.py
-# @公众号: AI悦创
-from pprint import pprint
-
-import execjs
-import pathlib
-import os
-
-js_path = pathlib.Path(os.path.abspath(os.path.dirname(__file__)))
-js_path = js_path / &#34;crypto.js&#34;
-with js_path.open(&#39;r&#39;, encoding=&#34;utf-8&#34;) as f:
-    script = f.read()
-
-c = &#34;1234&#34;
-
-# 传入python中的变量
-add = (&#39;&#39;&#39;
-aesEncrypt = function() {
-    result={}
-    var t = CryptoJS.MD5(&#34;login.xxx.com&#34;),
-        i = CryptoJS.enc.Utf8.parse(t),
-        r = CryptoJS.enc.Utf8.parse(&#34;1234567812345678&#34;),
-        u = CryptoJS.AES.encrypt(&#39;&#39;&#39; + &#34;&#39;{}&#39;&#34;.format(c) + &#39;&#39;&#39;,i, {
-        iv: r
-    });
-        result.t=t.toString()
-        result.i =i.toString()
-        result.r =r.toString()
-        result.u =u.toString()
-        return result
-    };
-    &#39;&#39;&#39;)
-script = script + add
-print(&#34;script&#34;,script)
-
-x = execjs.compile(script)
-result = x.call(&#34;aesEncrypt&#34;)
-print(result)
-</code></pre></div><p>这里我通过读取文件的方式，将 js 文件读取进来，把代码读取到我们的字符串里面，这样一方面方便我们管理，另一方面也可以直接通过代码检测自动补全功能，使用起来会比较方便。 然后，这里我们有一个小技巧，我们可以通过 format 字符串拼接的形式，将 Python 中的变量，也就是上面的变量 <code>c</code> 然后将这个变量写入到 Js 代码中，从而变相的实现了通过调用 JS 函数，在没有参数的情况下修改 JS 代码中的特定变量的值。最后我们拼接好了我我们的 JS 代码（add 和 script）。 拼完 JS 代码之后，我们这边再常规的进行一个操作，调用 Call 方法执行 aesEncrypt 这样一个函数，需要注意的是，这个代码里面 return 出来的 JS，它是一个 object，JS 中的 object 也就是 Python 中的<strong>字典</strong>。 <figure class=gallery-image style=flex-grow:399;flex-basis:958px>
+<p>安装 PyExecJS</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-cmake data-lang=cmake><span class=line><span class=cl><span class=err>pip</span> <span class=err>install</span> <span class=err>pyexecjs
+</span></span></span></code></pre></div></li></ol><p>这边我们使用上面的 pip 就可以进行安装了。 那么我们现在环境就准备好了，可以开始运行了。</p><ol>
+<li>代码示例（检测运行环境）</li></ol><p>首先，我们打开 IPython 终端，执行一下一下两行代码，以下也给出了运行结果：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain><span class=line><span class=cl>In [1]: import execjs
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>In [2]: execjs.get().name # 查看调用环境
+</span></span><span class=line><span class=cl>Out[2]: &#39;Node.js (V8)&#39;
+</span></span></code></pre></div><p><code>execjs.get() # 查看调用的环境</code>用此来看看我们的库能不能检测到 nodejs，如果不能的话那就需要手动设置一下，不过一般像我上面一样正常输出 <code>node.js</code> 就可以了。 如果，你检测出来的引擎不是 <code>node.js</code> 的话，那你就需要手动设置一下了，这里有两种设置形式，我在下方给你写出来了： <strong>选择不同引擎进行解析</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain><span class=line><span class=cl># 长期使用
+</span></span><span class=line><span class=cl>os.environ[&#34;EXECJS_RUNTIME&#34;]=&#34;Node&#34;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># 临时使用
+</span></span><span class=line><span class=cl>import execjs.runtime_names
+</span></span><span class=line><span class=cl>node=execjs.get(execjs.runtime_names.Node)
+</span></span></code></pre></div><p>由上边可知，我们有两种形式：一种是长期使用的，通过环境变量的形式，通过把环境变量改成大写的 EXECJS_RUNTIME 然后将其值赋值为 Node。 另一种的话，将它改成临时使用的一种方式，这种是直接使用 get，这种做法的话，你在使用的时候就需要使用 node 变量了，不能直接导入 PyExecjs 来直接开始使用，相对麻烦一些。 接下来，就让我们正式使用 PyExecJS 这个包吧。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain><span class=line><span class=cl>In [8]: import execjs
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>In [9]: e = execjs.eval(&#39;a = new Array(1, 2, 3)&#39;) # 可以直接执行 JS 代码
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>In [10]: print(e)
+</span></span><span class=line><span class=cl>[1, 2, 3]
+</span></span></code></pre></div><p>PyExecjs 最简单的用法就是导入包，然后通过 eval 这个方法并传入简单的 JS 代码来执行。但是我们正常情况下肯定不会这么使用，因为我们的 JS 代码是比较复杂的而且 JS 代码内容也是比较多的。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># -*- coding: utf-8 -*-</span>
+</span></span><span class=line><span class=cl><span class=c1># @Author: clela</span>
+</span></span><span class=line><span class=cl><span class=c1># @Date:   2020-03-24 13:54:27</span>
+</span></span><span class=line><span class=cl><span class=c1># @Last Modified by:   aiyuechuang</span>
+</span></span><span class=line><span class=cl><span class=c1># @Last Modified time: 2020-04-03 08:44:15</span>
+</span></span><span class=line><span class=cl><span class=c1># @公众号：AI悦创</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>In</span> <span class=p>[</span><span class=mi>12</span><span class=p>]:</span> <span class=kn>import</span> <span class=nn>execjs</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>In</span> <span class=p>[</span><span class=mi>13</span><span class=p>]:</span> <span class=n>jstext</span> <span class=o>=</span> <span class=s2>&#34;&#34;&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>    ...: function hello(str){return str;}
+</span></span></span><span class=line><span class=cl><span class=s2>    ...: &#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>In</span> <span class=p>[</span><span class=mi>14</span><span class=p>]:</span> <span class=n>ctx</span> <span class=o>=</span> <span class=n>execjs</span><span class=o>.</span><span class=n>compile</span><span class=p>(</span><span class=n>jstext</span><span class=p>)</span> <span class=c1># 编译 JS 代码</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>In</span> <span class=p>[</span><span class=mi>15</span><span class=p>]:</span> <span class=n>a</span> <span class=o>=</span> <span class=n>ctx</span><span class=o>.</span><span class=n>call</span><span class=p>(</span><span class=s2>&#34;hello&#34;</span><span class=p>,</span> <span class=s2>&#34;hello aiyc&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>In</span> <span class=p>[</span><span class=mi>16</span><span class=p>]:</span> <span class=nb>print</span><span class=p>(</span><span class=n>a</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>hello</span> <span class=n>aiyc</span>
+</span></span></code></pre></div><p>这样的话，我们一般通过使用第二种方式，第二种方式是通过使用 compile 对 JS 字符串进行编译，这个编译操作其实就是把参数（jstext）里面的那段 JS 代码给放到一个叫 Context 的上下文中，它并不是我们平时编译程序所说的编译。然后我们 调用 call 方法进行执行。 第一个参数是我们调用 JS 中的的函数名，也就是 hello。然后后面跟着的 hello aiyc 就是参数，也就是我们 JS 中需要传入到 str 的参数。如果 JS 中存在多个参数，我们就直接在后面打个逗号，然后接着写下一个参数就好了。 接下来我们来看一个具体的代码： <a class=link href=https://cuiqingcai.com/.3-%E4%BB%A3%E7%A0%81%E5%8C%85PyExecjsDemo target=_blank rel=noopener>aes_demo.js</a> 这边我准备了一个 CryptoJS 的一个 JS 文件，CryptoJS 它是一个包含各种加密哈希编码算法的一个开源库，很多网站都会用它提供的函数来生成参数，那么这边我是写了如上面这样的代码，用来调用它里面的 AES 加密参数，来加密一下我提供的字符串。</p><blockquote>
+<p><strong>注意</strong>：JS 代码不要放在和 Python 代码同一个文件中，尽量放在单独的 js 文件中，因为我们的 JS 文件内容比较多。然后通过读取文件的方式，</p></blockquote><p><a class=link href=https://cuiqingcai.com/.3-%E4%BB%A3%E7%A0%81%E5%8C%85PyExecjsDemo target=_blank rel=noopener>run_aes.py</a></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain><span class=line><span class=cl># Python 文件：run_aes.py
+</span></span><span class=line><span class=cl># -*- coding: utf-8 -*-
+</span></span><span class=line><span class=cl># @时间 : 2020-04-06 00:00
+</span></span><span class=line><span class=cl># @作者 : AI悦创
+</span></span><span class=line><span class=cl># @文件名 : run_aes.py
+</span></span><span class=line><span class=cl># @公众号: AI悦创
+</span></span><span class=line><span class=cl>from pprint import pprint
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>import execjs
+</span></span><span class=line><span class=cl>import pathlib
+</span></span><span class=line><span class=cl>import os
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>js_path = pathlib.Path(os.path.abspath(os.path.dirname(__file__)))
+</span></span><span class=line><span class=cl>js_path = js_path / &#34;crypto.js&#34;
+</span></span><span class=line><span class=cl>with js_path.open(&#39;r&#39;, encoding=&#34;utf-8&#34;) as f:
+</span></span><span class=line><span class=cl>    script = f.read()
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>c = &#34;1234&#34;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># 传入python中的变量
+</span></span><span class=line><span class=cl>add = (&#39;&#39;&#39;
+</span></span><span class=line><span class=cl>aesEncrypt = function() {
+</span></span><span class=line><span class=cl>    result={}
+</span></span><span class=line><span class=cl>    var t = CryptoJS.MD5(&#34;login.xxx.com&#34;),
+</span></span><span class=line><span class=cl>        i = CryptoJS.enc.Utf8.parse(t),
+</span></span><span class=line><span class=cl>        r = CryptoJS.enc.Utf8.parse(&#34;1234567812345678&#34;),
+</span></span><span class=line><span class=cl>        u = CryptoJS.AES.encrypt(&#39;&#39;&#39; + &#34;&#39;{}&#39;&#34;.format(c) + &#39;&#39;&#39;,i, {
+</span></span><span class=line><span class=cl>        iv: r
+</span></span><span class=line><span class=cl>    });
+</span></span><span class=line><span class=cl>        result.t=t.toString()
+</span></span><span class=line><span class=cl>        result.i =i.toString()
+</span></span><span class=line><span class=cl>        result.r =r.toString()
+</span></span><span class=line><span class=cl>        result.u =u.toString()
+</span></span><span class=line><span class=cl>        return result
+</span></span><span class=line><span class=cl>    };
+</span></span><span class=line><span class=cl>    &#39;&#39;&#39;)
+</span></span><span class=line><span class=cl>script = script + add
+</span></span><span class=line><span class=cl>print(&#34;script&#34;,script)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>x = execjs.compile(script)
+</span></span><span class=line><span class=cl>result = x.call(&#34;aesEncrypt&#34;)
+</span></span><span class=line><span class=cl>print(result)
+</span></span></code></pre></div><p>这里我通过读取文件的方式，将 js 文件读取进来，把代码读取到我们的字符串里面，这样一方面方便我们管理，另一方面也可以直接通过代码检测自动补全功能，使用起来会比较方便。 然后，这里我们有一个小技巧，我们可以通过 format 字符串拼接的形式，将 Python 中的变量，也就是上面的变量 <code>c</code> 然后将这个变量写入到 Js 代码中，从而变相的实现了通过调用 JS 函数，在没有参数的情况下修改 JS 代码中的特定变量的值。最后我们拼接好了我我们的 JS 代码（add 和 script）。 拼完 JS 代码之后，我们这边再常规的进行一个操作，调用 Call 方法执行 aesEncrypt 这样一个函数，需要注意的是，这个代码里面 return 出来的 JS，它是一个 object，JS 中的 object 也就是 Python 中的<strong>字典</strong>。 <figure class=gallery-image style=flex-grow:399;flex-basis:958px>
 <a href=/p/js-%E9%80%86%E5%90%91%E7%9A%84%E6%97%B6%E5%80%99-python-%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8-javascript-%E4%BB%A3%E7%A0%81/1641296242-e7593b3b3ec58c514aaa140f894d0be2.png data-size=835x209>
 <img src=/p/js-%E9%80%86%E5%90%91%E7%9A%84%E6%97%B6%E5%80%99-python-%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8-javascript-%E4%BB%A3%E7%A0%81/1641296242-e7593b3b3ec58c514aaa140f894d0be2.png width=835 height=209 srcset="/p/js-%E9%80%86%E5%90%91%E7%9A%84%E6%97%B6%E5%80%99-python-%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8-javascript-%E4%BB%A3%E7%A0%81/1641296242-e7593b3b3ec58c514aaa140f894d0be2_huf04143b743a2d1f2f28473699ced3cb0_4628_480x0_resize_box_3.png 480w, /p/js-%E9%80%86%E5%90%91%E7%9A%84%E6%97%B6%E5%80%99-python-%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8-javascript-%E4%BB%A3%E7%A0%81/1641296242-e7593b3b3ec58c514aaa140f894d0be2_huf04143b743a2d1f2f28473699ced3cb0_4628_1024x0_resize_box_3.png 1024w" loading=lazy>
 </a>
-</figure> 我们实际使用时，如果需要在 Python 中拿到 object 的话，建议把它转换成一个 json 字符串，而不是直接的把结果 return 出来。 因为，有些时候 PyExecjs 对 object 的转换会出现问题，所以我们可能会拿到一些类似于将字典直接用 str 函数包裹后转为字符串的一个东西，这样的话它是无法通过正常的方式去解析的。 或者说你也可能会遇到其情况的报错，总之大家最好先转一下 json 字符串，然后再 return 避免踩坑。这是我们的一个代码。 <strong>接下来我们来说一下，PyExecJS 存在的一些问题主要有以下两点：</strong></p>
-<ul>
-<li>执行大型 JS 时会有点慢（这个是因为，每次执行 JS 代码的时候，都是从命令行去调用到的 JS，所以 JS 代码越复杂的话，nodejs 的初始化时间就越长，这个基本上是无解的）</li>
-<li>特殊编码的输入或输出参数会出现报错的情况（因为，是从命令行调用的，所以在碰到一些特殊字符输入或输出参数或者 JS 代码本身就有一些特殊字符的情况下，就会直接执行不了，给你抛出一个异常。不过这个跟系统的命令行默认编码有一定关系，具体的话这里就不深究了，直接就说解决方案吧。）</li>
-<li>可以把输入或输出的参数使用 Base64 编码一下（如果看报错是 JS 代码部分导致的，那就去看看能不能删除代码中的那部分字符或者你自己 new 一个上下文对象，将那个名叫 tempfile 的参数打开，这样在调用的时候，它就直接去执行那个文件了，不过大量调用的情况下，可能会对磁盘造成一定压力。</li>
-</ul>
-<p>而如果参数不充分导致的话，有个很简单的方法：就是把参数使用 Base64 编码一下，因为编码之后出来的字符串，我们知道 Base64 编码之后是生成英文和数字组成的。这样就没有特殊符号了。所以就不会出现问题了。） 关于 PyExecejs 的相关东西就介绍到这里了，我们来看一些其他的内容。</p>
-<h3 id=其他使用-python-调用-js-的骚操作>其他使用 Python 调用 JS 的骚操作</h3>
-<p>前面说的都是非浏览器环境下直接调用 JS 的操作，但是还有一些市面上根本没人提到的骚操作，其实也挺好用的，接下来我给大家介绍一下：</p>
-<ol>
-<li>Selenium</li>
-</ol>
-<ul>
-<li>一个 web 自动化测试框架，可以驱动各种浏览器进行模拟人工操作</li>
-<li>用于渲染页面以方便提取数据或过验证码</li>
-<li>也可以直接驱动浏览器执行 JS</li>
-</ul>
-<p>这个大家是比较熟悉的，它是一个外部自动化的测试框架，可以驱动各种浏览器进行模拟人工操作，很多文章或者培训班的课程，都会提到它在爬虫方面的一个使用，比如用它采集一些动态页面，或者用来过一些滑动验证码之类的。 不过我们这里不用它来做这些事，我们要做的是用它来执行 JS 代码，因为这样的话是直接在浏览器环境下执行的 ，所以的话它是省了很多事，那么 Selenium 执行 JS 的核心代码，实际上就下面一行：</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain>js = &#34;一大段 JS&#34;
-result = browser.execute_script(js)
-</code></pre></div><p>我们来看一下实际的例子： <a class=link href=https://cuiqingcai.com/.3-%E4%BB%A3%E7%A0%81%E5%8C%85SeleniumDemo target=_blank rel=noopener>SeleniumDemo</a> 进入项目根目录，输入：<code>python server.py</code></p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain>$ python server.py
- * Serving Flask app &#34;server&#34; (lazy loading)
- * Environment: production
-   WARNING: This is a development server. Do not use it in a production deployment.
-   Use a production WSGI server instead.
- * Debug mode: on
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 262-966-819
- * Running on http://0.0.0.0:5002/ (Press CTRL+C to quit)
-</code></pre></div><p>访问 <code>localhost:5002</code> 我们进入网页之后，有这样的一句话： <figure class=gallery-image style=flex-grow:839;flex-basis:2013px>
+</figure>我们实际使用时，如果需要在 Python 中拿到 object 的话，建议把它转换成一个 json 字符串，而不是直接的把结果 return 出来。 因为，有些时候 PyExecjs 对 object 的转换会出现问题，所以我们可能会拿到一些类似于将字典直接用 str 函数包裹后转为字符串的一个东西，这样的话它是无法通过正常的方式去解析的。 或者说你也可能会遇到其情况的报错，总之大家最好先转一下 json 字符串，然后再 return 避免踩坑。这是我们的一个代码。 <strong>接下来我们来说一下，PyExecJS 存在的一些问题主要有以下两点：</strong></p><ul>
+<li>执行大型 JS 时会有点慢（这个是因为，每次执行 JS 代码的时候，都是从命令行去调用到的 JS，所以 JS 代码越复杂的话，nodejs 的初始化时间就越长，这个基本上是无解的）</li><li>特殊编码的输入或输出参数会出现报错的情况（因为，是从命令行调用的，所以在碰到一些特殊字符输入或输出参数或者 JS 代码本身就有一些特殊字符的情况下，就会直接执行不了，给你抛出一个异常。不过这个跟系统的命令行默认编码有一定关系，具体的话这里就不深究了，直接就说解决方案吧。）</li><li>可以把输入或输出的参数使用 Base64 编码一下（如果看报错是 JS 代码部分导致的，那就去看看能不能删除代码中的那部分字符或者你自己 new 一个上下文对象，将那个名叫 tempfile 的参数打开，这样在调用的时候，它就直接去执行那个文件了，不过大量调用的情况下，可能会对磁盘造成一定压力。</li></ul><p>而如果参数不充分导致的话，有个很简单的方法：就是把参数使用 Base64 编码一下，因为编码之后出来的字符串，我们知道 Base64 编码之后是生成英文和数字组成的。这样就没有特殊符号了。所以就不会出现问题了。） 关于 PyExecejs 的相关东西就介绍到这里了，我们来看一些其他的内容。</p><h3 id=其他使用-python-调用-js-的骚操作>其他使用 Python 调用 JS 的骚操作</h3><p>前面说的都是非浏览器环境下直接调用 JS 的操作，但是还有一些市面上根本没人提到的骚操作，其实也挺好用的，接下来我给大家介绍一下：</p><ol>
+<li>Selenium</li></ol><ul>
+<li>一个 web 自动化测试框架，可以驱动各种浏览器进行模拟人工操作</li><li>用于渲染页面以方便提取数据或过验证码</li><li>也可以直接驱动浏览器执行 JS</li></ul><p>这个大家是比较熟悉的，它是一个外部自动化的测试框架，可以驱动各种浏览器进行模拟人工操作，很多文章或者培训班的课程，都会提到它在爬虫方面的一个使用，比如用它采集一些动态页面，或者用来过一些滑动验证码之类的。 不过我们这里不用它来做这些事，我们要做的是用它来执行 JS 代码，因为这样的话是直接在浏览器环境下执行的 ，所以的话它是省了很多事，那么 Selenium 执行 JS 的核心代码，实际上就下面一行：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain><span class=line><span class=cl>js = &#34;一大段 JS&#34;
+</span></span><span class=line><span class=cl>result = browser.execute_script(js)
+</span></span></code></pre></div><p>我们来看一下实际的例子： <a class=link href=https://cuiqingcai.com/.3-%E4%BB%A3%E7%A0%81%E5%8C%85SeleniumDemo target=_blank rel=noopener>SeleniumDemo</a> 进入项目根目录，输入：<code>python server.py</code></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain><span class=line><span class=cl>$ python server.py
+</span></span><span class=line><span class=cl> * Serving Flask app &#34;server&#34; (lazy loading)
+</span></span><span class=line><span class=cl> * Environment: production
+</span></span><span class=line><span class=cl>   WARNING: This is a development server. Do not use it in a production deployment.
+</span></span><span class=line><span class=cl>   Use a production WSGI server instead.
+</span></span><span class=line><span class=cl> * Debug mode: on
+</span></span><span class=line><span class=cl> * Restarting with stat
+</span></span><span class=line><span class=cl> * Debugger is active!
+</span></span><span class=line><span class=cl> * Debugger PIN: 262-966-819
+</span></span><span class=line><span class=cl> * Running on http://0.0.0.0:5002/ (Press CTRL+C to quit)
+</span></span></code></pre></div><p>访问 <code>localhost:5002</code> 我们进入网页之后，有这样的一句话： <figure class=gallery-image style=flex-grow:839;flex-basis:2013px>
 <a href=/p/js-%E9%80%86%E5%90%91%E7%9A%84%E6%97%B6%E5%80%99-python-%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8-javascript-%E4%BB%A3%E7%A0%81/1641296242-b6b80a810092669bfd7c28fea71cd47d.png data-size=1930x230>
 <img src=/p/js-%E9%80%86%E5%90%91%E7%9A%84%E6%97%B6%E5%80%99-python-%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8-javascript-%E4%BB%A3%E7%A0%81/1641296242-b6b80a810092669bfd7c28fea71cd47d.png width=1930 height=230 srcset="/p/js-%E9%80%86%E5%90%91%E7%9A%84%E6%97%B6%E5%80%99-python-%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8-javascript-%E4%BB%A3%E7%A0%81/1641296242-b6b80a810092669bfd7c28fea71cd47d_hu1ad64324a3ff927f3a0db3fc8c12148b_19959_480x0_resize_box_3.png 480w, /p/js-%E9%80%86%E5%90%91%E7%9A%84%E6%97%B6%E5%80%99-python-%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8-javascript-%E4%BB%A3%E7%A0%81/1641296242-b6b80a810092669bfd7c28fea71cd47d_hu1ad64324a3ff927f3a0db3fc8c12148b_19959_1024x0_resize_box_3.png 1024w" loading=lazy>
 </a>
-</figure> <figure class=gallery-image style=flex-grow:537;flex-basis:1289px>
+</figure><figure class=gallery-image style=flex-grow:537;flex-basis:1289px>
 <a href=/p/js-%E9%80%86%E5%90%91%E7%9A%84%E6%97%B6%E5%80%99-python-%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8-javascript-%E4%BB%A3%E7%A0%81/1641296242-1d683e6988edbbf896fc6f1cf707ea3a.png data-size=1924x358>
 <img src=/p/js-%E9%80%86%E5%90%91%E7%9A%84%E6%97%B6%E5%80%99-python-%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8-javascript-%E4%BB%A3%E7%A0%81/1641296242-1d683e6988edbbf896fc6f1cf707ea3a.png width=1924 height=358 srcset="/p/js-%E9%80%86%E5%90%91%E7%9A%84%E6%97%B6%E5%80%99-python-%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8-javascript-%E4%BB%A3%E7%A0%81/1641296242-1d683e6988edbbf896fc6f1cf707ea3a_hu12566f88d72640a86055adac4d951da0_18847_480x0_resize_box_3.png 480w, /p/js-%E9%80%86%E5%90%91%E7%9A%84%E6%97%B6%E5%80%99-python-%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8-javascript-%E4%BB%A3%E7%A0%81/1641296242-1d683e6988edbbf896fc6f1cf707ea3a_hu12566f88d72640a86055adac4d951da0_18847_1024x0_resize_box_3.png 1024w" loading=lazy>
 </a>
-</figure></p>
-<hr>
+</figure></p><hr>
 <p>每次刷新都会显示不同的内容，查看源代码的话，会发现这个页面中的源代码里面没有对应页面显示的那句话，而是只有一个 input 标签。 <figure class=gallery-image style=flex-grow:458;flex-basis:1100px>
 <a href=/p/js-%E9%80%86%E5%90%91%E7%9A%84%E6%97%B6%E5%80%99-python-%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8-javascript-%E4%BB%A3%E7%A0%81/1641296242-2fbbd46366ef0e488a139eac9a73dcda.png data-size=2586x564>
 <img src=/p/js-%E9%80%86%E5%90%91%E7%9A%84%E6%97%B6%E5%80%99-python-%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8-javascript-%E4%BB%A3%E7%A0%81/1641296242-2fbbd46366ef0e488a139eac9a73dcda.png width=2586 height=564 srcset="/p/js-%E9%80%86%E5%90%91%E7%9A%84%E6%97%B6%E5%80%99-python-%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8-javascript-%E4%BB%A3%E7%A0%81/1641296242-2fbbd46366ef0e488a139eac9a73dcda_hu43d66ae17defe3a8b6771f0a4d7caa15_45020_480x0_resize_box_3.png 480w, /p/js-%E9%80%86%E5%90%91%E7%9A%84%E6%97%B6%E5%80%99-python-%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8-javascript-%E4%BB%A3%E7%A0%81/1641296242-2fbbd46366ef0e488a139eac9a73dcda_hu43d66ae17defe3a8b6771f0a4d7caa15_45020_1024x0_resize_box_3.png 1024w" loading=lazy>
 </a>
-</figure> 我还能观察到，input 标签里面有两个属性，一个是 id、一个是 data，这两个是比较关键的属性，然后我们还发现这里面引用了一个 js 文件，所以这个网页最终结果实际上是通过 JS 文件，然后一系列的操作生成的，那接下来我就来看看 JS 文件，做了什么工作。 <a class=link href=https://cuiqingcai.com/.3-%E4%BB%A3%E7%A0%81%E5%8C%85SeleniumDemostaticjs target=_blank rel=noopener>js</a> 我们可以看见，这个 JS 文件最后一句，有一个 <code>window.onload =doit</code> 的这样一代码，这个我们知道，当页面加载完成之后，立即执行这个 JS 方法。</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=kd>function</span> <span class=nx>doit</span><span class=p>()</span> <span class=p>{</span>
-    <span class=kd>let</span> <span class=nx>browser_type</span><span class=o>=</span><span class=nx>BrowserType</span><span class=p>();</span>
-    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>browser_type</span><span class=p>)</span>
-    <span class=kd>let</span> <span class=nx>supporter</span> <span class=o>=</span><span class=nx>browser_type</span><span class=p>.</span><span class=nx>supporter</span>
-    <span class=k>if</span><span class=p>(</span><span class=nx>supporter</span><span class=o>===</span><span class=s2>&#34;chrome&#34;</span><span class=p>){</span>
-        <span class=nx>Base64</span><span class=p>.</span><span class=nx>run</span><span class=p>(</span><span class=s1>&#39;base64&#39;</span><span class=p>,</span> <span class=s1>&#39;data&#39;</span><span class=p>,</span><span class=nx>supporter</span><span class=p>)</span>
-    <span class=p>}</span>
-
-<span class=p>}</span>
-</code></pre></div><p>然后这个方法里面做了一个这样一个操作：<code>let browser_type=BrowserType();</code> 首先去判断 <code>supporter</code> 是否等于 <code>Chrome</code> 这个 <code>supporter</code> 实际上有一个 <code>browser_type</code> 这个 <code>browser_type</code> 实际上就是检测浏览器等一系列参数，然后我们获取它里面的 <code>supporter</code> 属性，当 <code>supporter</code>（ <code>supporter =browser_type.supporter</code> ）等于 Chrome 的时候，我们再去执行这个 run 函数。</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain>run: function (id, attr,supporter) {
-        let all_str = $(id).getAttribute(attr)
-        let end_index=supporter.length+58
-        Base64._keyStr = all_str.substring(0, end_index)
-        let charset = all_str.substring(64, all_str.length)
-        let encoded = Base64.decode(charset,supporter);
-        $(id).value = encoded;
-    }
-</code></pre></div><p>也就是 run 函数里面做了一系列操作，然后我传入的 id 可以通过看一下上面的函数 <code>doit</code> 可知传入的是 <code>Base64</code> 也就是说，实际上对 input 这个标签做了一个取值的操作，然后到这边我们就这整体一个过程将会用 JS 去模拟，所以这边我就不细说了。 最终会把这样的一个结果去通过 input.value 属性把值复制到 input 中，也就是我们最终看到的那样一个结果，到目前我就把这个 js 大概做了一件什么样的事情就已经讲的差不多了。接下来我们去看一下 Selenium 这边。 代码如下：</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=c1># -*- coding: utf-8 -*-</span>
-<span class=c1># @Time : 2020-04-01 20:56</span>
-<span class=c1># @Author : aiyuehcuang</span>
-<span class=c1># @File : demo.py</span>
-<span class=c1># @Software: PyCharm</span>
-<span class=kn>from</span> <span class=nn>selenium</span> <span class=kn>import</span> <span class=n>webdriver</span>
-<span class=kn>from</span> <span class=nn>selenium.webdriver.common.by</span> <span class=kn>import</span> <span class=n>By</span>
-<span class=kn>from</span> <span class=nn>selenium.webdriver.support.ui</span> <span class=kn>import</span> <span class=n>WebDriverWait</span>
-<span class=kn>from</span> <span class=nn>selenium.webdriver.support</span> <span class=kn>import</span> <span class=n>expected_conditions</span> <span class=k>as</span> <span class=n>EC</span>
-<span class=kn>from</span> <span class=nn>selenium.webdriver.common.action_chains</span> <span class=kn>import</span> <span class=n>ActionChains</span>
-<span class=kn>from</span> <span class=nn>selenium.webdriver.common.keys</span> <span class=kn>import</span> <span class=n>Keys</span>
-<span class=kn>from</span> <span class=nn>selenium.webdriver.chrome.options</span> <span class=kn>import</span> <span class=n>Options</span>
-<span class=kn>import</span> <span class=nn>time</span>
-
-<span class=k>def</span> <span class=nf>get_text</span><span class=p>(</span><span class=nb>id</span><span class=p>,</span><span class=n>attr</span><span class=p>):</span>
-    <span class=c1>###  拼接字符串注意{}要写出{{}}</span>
-    <span class=n>script</span><span class=o>=</span><span class=p>(</span><span class=s2>&#34;&#34;&#34;
-</span><span class=s2>       let bt=BrowserType();
-</span><span class=s2>       let id=&#39;</span><span class=si>{id}</span><span class=s2>&#39;;
-</span><span class=s2>       let attr=&#39;</span><span class=si>{attr}</span><span class=s2>&#39;;
-</span><span class=s2>       let supporter =bt.supporter;
-</span><span class=s2>    const run=function(){{
-</span><span class=s2>    let all_str = $(id).getAttribute(attr)
-</span><span class=s2>    let end_index=supporter.length+58
-</span><span class=s2>    Base64._keyStr = all_str.substring(0, end_index)
-</span><span class=s2>    let charset = all_str.substring(64, all_str.length)
-</span><span class=s2>    let encoded = Base64.decode(charset,supporter);
-</span><span class=s2>    return encoded
-</span><span class=s2>}}
-</span><span class=s2>    return run()
-</span><span class=s2>    &#34;&#34;&#34;</span><span class=p>)</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=nb>id</span><span class=o>=</span><span class=nb>id</span><span class=p>,</span><span class=n>attr</span><span class=o>=</span><span class=n>attr</span><span class=p>)</span>
-    <span class=k>return</span> <span class=n>script</span>
-
-<span class=n>chrome_option</span> <span class=o>=</span> <span class=n>Options</span><span class=p>()</span>
-<span class=n>chrome_option</span><span class=o>.</span><span class=n>add_argument</span><span class=p>(</span><span class=s2>&#34;--headless&#34;</span><span class=p>)</span>
-<span class=n>chrome_option</span><span class=o>.</span><span class=n>add_argument</span><span class=p>(</span><span class=s2>&#34;--disable-gpu&#34;</span><span class=p>)</span>
-<span class=n>chrome_option</span><span class=o>.</span><span class=n>add_argument</span><span class=p>(</span><span class=s1>&#39;--ignore-certificate-errors&#39;</span><span class=p>)</span>  <span class=c1># SSL保存</span>
-<span class=n>browser</span> <span class=o>=</span> <span class=n>webdriver</span><span class=o>.</span><span class=n>Chrome</span><span class=p>(</span><span class=n>options</span><span class=o>=</span><span class=n>chrome_option</span><span class=p>)</span>
-<span class=n>wait</span> <span class=o>=</span> <span class=n>WebDriverWait</span><span class=p>(</span><span class=n>browser</span><span class=p>,</span> <span class=mi>10</span><span class=p>)</span>
-<span class=c1># 启动浏览器，获取网页源代码</span>
-<span class=n>mainUrl</span> <span class=o>=</span> <span class=s2>&#34;http://127.0.0.1:5002/&#34;</span>
-<span class=n>browser</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=n>mainUrl</span><span class=p>)</span>
-<span class=n>result</span><span class=o>=</span><span class=n>browser</span><span class=o>.</span><span class=n>execute_script</span><span class=p>(</span><span class=n>get_text</span><span class=p>(</span><span class=s2>&#34;base64&#34;</span><span class=p>,</span><span class=s2>&#34;data&#34;</span><span class=p>))</span>
-<span class=nb>print</span><span class=p>(</span><span class=n>result</span><span class=p>)</span>
-<span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>10</span><span class=p>)</span>
-<span class=n>browser</span><span class=o>.</span><span class=n>quit</span><span class=p>()</span>
-</code></pre></div><p>这边关键的一行代码是：通过 <code>execute_script(get_text("base64","data"))</code> 这样的一句话去执行这个函数，这个函数实际上就是返回一段 JS 代码，这边实际上就是去模拟构造 run 所需要的一些参数，然后把最终的结果返回回去。 这里有两点需要注意：</p>
-<ol>
-<li>如果里面存在拼接字符串的时候，注意花括号实际上要写两个</li>
-<li>如果需要在后面需要获取 JS 返回的值，所以我们上面的代码需要加上 return 来返回 run 函数的结果</li>
-</ol>
-<p>我们可以运行一下代码，输出结果如下：</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-elixir data-lang=elixir><span class=err>$</span> <span class=n>python</span> <span class=n>demo</span><span class=o>.</span><span class=n>py</span>
-
-<span class=nc>DevTools</span> <span class=n>listening</span> <span class=n>on</span> <span class=n>ws</span><span class=ss>:/</span><span class=o>/</span><span class=mf>127.0</span><span class=o>.</span><span class=mf>0.1</span><span class=p>:</span><span class=mi>59507</span><span class=o>/</span><span class=n>devtools</span><span class=o>/</span><span class=n>browser</span><span class=o>/</span><span class=n>edbe51d8</span><span class=o>-</span><span class=mi>744</span><span class=n>d</span><span class=o>-</span><span class=mi>447</span><span class=n>d</span><span class=o>-</span><span class=mi>9304</span><span class=o>-</span><span class=n>e9551a2a6421</span>
-<span class=p>[</span><span class=mi>0407</span><span class=o>/</span><span class=mf>184920.601</span><span class=ss>:INFO:CONSOLE</span><span class=p>(</span><span class=mi>286</span><span class=p>)]</span> <span class=s2>&#34;[object Object]&#34;</span><span class=p>,</span> <span class=ss>source</span><span class=p>:</span> <span class=n>http</span><span class=ss>:/</span><span class=o>/</span><span class=mf>127.0</span><span class=o>.</span><span class=mf>0.1</span><span class=p>:</span><span class=mi>5002</span><span class=o>/</span><span class=n>static</span><span class=o>/</span><span class=n>js</span><span class=o>/</span><span class=n>base64</span><span class=o>.</span><span class=n>js</span> <span class=p>(</span><span class=mi>286</span><span class=p>)</span>
-<span class=err>生活不是等待暴风雨过去，而是要学会在雨中跳舞。</span>
-</code></pre></div><p>我们可以看到，我们程够获取到了结果。 这个例子因为它用到了检测浏览器的属性，而且它检测完属性之后会把属性值一直往下传，我们可以从上面的代码中看到它有很多地方使用。 所以，如果我们用 PyExecjs 来写的话，就需要修改很多参数，这样就很不方便了。因为我们需要去模拟这些浏览器参数，我这边写的例子比较简单，像那种更加复杂的。像获取更多的浏览器的一个属性的话，用 PyExecjs 再去写的时候，可能没有浏览器这样的一个环境，所以 PyExecjs 没有 Selenium 有优势。 当然，除了 Selenium 以为，还有一个叫做 Pyppeteer 的库，也是比较常见。 为了控制文章篇幅，咱们下次再续咯，记得关注公众号：AI 悦创！</p>
-</section>
-<footer class=article-footer>
+</figure>我还能观察到，input 标签里面有两个属性，一个是 id、一个是 data，这两个是比较关键的属性，然后我们还发现这里面引用了一个 js 文件，所以这个网页最终结果实际上是通过 JS 文件，然后一系列的操作生成的，那接下来我就来看看 JS 文件，做了什么工作。 <a class=link href=https://cuiqingcai.com/.3-%E4%BB%A3%E7%A0%81%E5%8C%85SeleniumDemostaticjs target=_blank rel=noopener>js</a> 我们可以看见，这个 JS 文件最后一句，有一个 <code>window.onload =doit</code> 的这样一代码，这个我们知道，当页面加载完成之后，立即执行这个 JS 方法。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>function</span> <span class=nx>doit</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kd>let</span> <span class=nx>browser_type</span><span class=o>=</span><span class=nx>BrowserType</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>browser_type</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=kd>let</span> <span class=nx>supporter</span> <span class=o>=</span><span class=nx>browser_type</span><span class=p>.</span><span class=nx>supporter</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=nx>supporter</span><span class=o>===</span><span class=s2>&#34;chrome&#34;</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=nx>Base64</span><span class=p>.</span><span class=nx>run</span><span class=p>(</span><span class=s1>&#39;base64&#39;</span><span class=p>,</span> <span class=s1>&#39;data&#39;</span><span class=p>,</span><span class=nx>supporter</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>然后这个方法里面做了一个这样一个操作：<code>let browser_type=BrowserType();</code> 首先去判断 <code>supporter</code> 是否等于 <code>Chrome</code> 这个 <code>supporter</code> 实际上有一个 <code>browser_type</code> 这个 <code>browser_type</code> 实际上就是检测浏览器等一系列参数，然后我们获取它里面的 <code>supporter</code> 属性，当 <code>supporter</code>（ <code>supporter =browser_type.supporter</code> ）等于 Chrome 的时候，我们再去执行这个 run 函数。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain><span class=line><span class=cl>run: function (id, attr,supporter) {
+</span></span><span class=line><span class=cl>        let all_str = $(id).getAttribute(attr)
+</span></span><span class=line><span class=cl>        let end_index=supporter.length+58
+</span></span><span class=line><span class=cl>        Base64._keyStr = all_str.substring(0, end_index)
+</span></span><span class=line><span class=cl>        let charset = all_str.substring(64, all_str.length)
+</span></span><span class=line><span class=cl>        let encoded = Base64.decode(charset,supporter);
+</span></span><span class=line><span class=cl>        $(id).value = encoded;
+</span></span><span class=line><span class=cl>    }
+</span></span></code></pre></div><p>也就是 run 函数里面做了一系列操作，然后我传入的 id 可以通过看一下上面的函数 <code>doit</code> 可知传入的是 <code>Base64</code> 也就是说，实际上对 input 这个标签做了一个取值的操作，然后到这边我们就这整体一个过程将会用 JS 去模拟，所以这边我就不细说了。 最终会把这样的一个结果去通过 input.value 属性把值复制到 input 中，也就是我们最终看到的那样一个结果，到目前我就把这个 js 大概做了一件什么样的事情就已经讲的差不多了。接下来我们去看一下 Selenium 这边。 代码如下：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># -*- coding: utf-8 -*-</span>
+</span></span><span class=line><span class=cl><span class=c1># @Time : 2020-04-01 20:56</span>
+</span></span><span class=line><span class=cl><span class=c1># @Author : aiyuehcuang</span>
+</span></span><span class=line><span class=cl><span class=c1># @File : demo.py</span>
+</span></span><span class=line><span class=cl><span class=c1># @Software: PyCharm</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>selenium</span> <span class=kn>import</span> <span class=n>webdriver</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>selenium.webdriver.common.by</span> <span class=kn>import</span> <span class=n>By</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>selenium.webdriver.support.ui</span> <span class=kn>import</span> <span class=n>WebDriverWait</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>selenium.webdriver.support</span> <span class=kn>import</span> <span class=n>expected_conditions</span> <span class=k>as</span> <span class=n>EC</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>selenium.webdriver.common.action_chains</span> <span class=kn>import</span> <span class=n>ActionChains</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>selenium.webdriver.common.keys</span> <span class=kn>import</span> <span class=n>Keys</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>selenium.webdriver.chrome.options</span> <span class=kn>import</span> <span class=n>Options</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>time</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>get_text</span><span class=p>(</span><span class=nb>id</span><span class=p>,</span><span class=n>attr</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=c1>###  拼接字符串注意{}要写出{{}}</span>
+</span></span><span class=line><span class=cl>    <span class=n>script</span><span class=o>=</span><span class=p>(</span><span class=s2>&#34;&#34;&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>       let bt=BrowserType();
+</span></span></span><span class=line><span class=cl><span class=s2>       let id=&#39;</span><span class=si>{id}</span><span class=s2>&#39;;
+</span></span></span><span class=line><span class=cl><span class=s2>       let attr=&#39;</span><span class=si>{attr}</span><span class=s2>&#39;;
+</span></span></span><span class=line><span class=cl><span class=s2>       let supporter =bt.supporter;
+</span></span></span><span class=line><span class=cl><span class=s2>    const run=function(){{
+</span></span></span><span class=line><span class=cl><span class=s2>    let all_str = $(id).getAttribute(attr)
+</span></span></span><span class=line><span class=cl><span class=s2>    let end_index=supporter.length+58
+</span></span></span><span class=line><span class=cl><span class=s2>    Base64._keyStr = all_str.substring(0, end_index)
+</span></span></span><span class=line><span class=cl><span class=s2>    let charset = all_str.substring(64, all_str.length)
+</span></span></span><span class=line><span class=cl><span class=s2>    let encoded = Base64.decode(charset,supporter);
+</span></span></span><span class=line><span class=cl><span class=s2>    return encoded
+</span></span></span><span class=line><span class=cl><span class=s2>}}
+</span></span></span><span class=line><span class=cl><span class=s2>    return run()
+</span></span></span><span class=line><span class=cl><span class=s2>    &#34;&#34;&#34;</span><span class=p>)</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=nb>id</span><span class=o>=</span><span class=nb>id</span><span class=p>,</span><span class=n>attr</span><span class=o>=</span><span class=n>attr</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>script</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>chrome_option</span> <span class=o>=</span> <span class=n>Options</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>chrome_option</span><span class=o>.</span><span class=n>add_argument</span><span class=p>(</span><span class=s2>&#34;--headless&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>chrome_option</span><span class=o>.</span><span class=n>add_argument</span><span class=p>(</span><span class=s2>&#34;--disable-gpu&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>chrome_option</span><span class=o>.</span><span class=n>add_argument</span><span class=p>(</span><span class=s1>&#39;--ignore-certificate-errors&#39;</span><span class=p>)</span>  <span class=c1># SSL保存</span>
+</span></span><span class=line><span class=cl><span class=n>browser</span> <span class=o>=</span> <span class=n>webdriver</span><span class=o>.</span><span class=n>Chrome</span><span class=p>(</span><span class=n>options</span><span class=o>=</span><span class=n>chrome_option</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>wait</span> <span class=o>=</span> <span class=n>WebDriverWait</span><span class=p>(</span><span class=n>browser</span><span class=p>,</span> <span class=mi>10</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1># 启动浏览器，获取网页源代码</span>
+</span></span><span class=line><span class=cl><span class=n>mainUrl</span> <span class=o>=</span> <span class=s2>&#34;http://127.0.0.1:5002/&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>browser</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=n>mainUrl</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>result</span><span class=o>=</span><span class=n>browser</span><span class=o>.</span><span class=n>execute_script</span><span class=p>(</span><span class=n>get_text</span><span class=p>(</span><span class=s2>&#34;base64&#34;</span><span class=p>,</span><span class=s2>&#34;data&#34;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>result</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>10</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>browser</span><span class=o>.</span><span class=n>quit</span><span class=p>()</span>
+</span></span></code></pre></div><p>这边关键的一行代码是：通过 <code>execute_script(get_text("base64","data"))</code> 这样的一句话去执行这个函数，这个函数实际上就是返回一段 JS 代码，这边实际上就是去模拟构造 run 所需要的一些参数，然后把最终的结果返回回去。 这里有两点需要注意：</p><ol>
+<li>如果里面存在拼接字符串的时候，注意花括号实际上要写两个</li><li>如果需要在后面需要获取 JS 返回的值，所以我们上面的代码需要加上 return 来返回 run 函数的结果</li></ol><p>我们可以运行一下代码，输出结果如下：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-elixir data-lang=elixir><span class=line><span class=cl><span class=err>$</span> <span class=n>python</span> <span class=n>demo</span><span class=o>.</span><span class=n>py</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nc>DevTools</span> <span class=n>listening</span> <span class=n>on</span> <span class=n>ws</span><span class=ss>:/</span><span class=o>/</span><span class=mf>127.0</span><span class=o>.</span><span class=mf>0.1</span><span class=p>:</span><span class=mi>59507</span><span class=o>/</span><span class=n>devtools</span><span class=o>/</span><span class=n>browser</span><span class=o>/</span><span class=n>edbe51d8</span><span class=o>-</span><span class=mi>744</span><span class=n>d</span><span class=o>-</span><span class=mi>447</span><span class=n>d</span><span class=o>-</span><span class=mi>9304</span><span class=o>-</span><span class=n>e9551a2a6421</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mi>0407</span><span class=o>/</span><span class=mf>184920.601</span><span class=ss>:INFO:CONSOLE</span><span class=p>(</span><span class=mi>286</span><span class=p>)]</span> <span class=s2>&#34;[object Object]&#34;</span><span class=p>,</span> <span class=ss>source</span><span class=p>:</span> <span class=n>http</span><span class=ss>:/</span><span class=o>/</span><span class=mf>127.0</span><span class=o>.</span><span class=mf>0.1</span><span class=p>:</span><span class=mi>5002</span><span class=o>/</span><span class=n>static</span><span class=o>/</span><span class=n>js</span><span class=o>/</span><span class=n>base64</span><span class=o>.</span><span class=n>js</span> <span class=p>(</span><span class=mi>286</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=err>生活不是等待暴风雨过去，而是要学会在雨中跳舞。</span>
+</span></span></code></pre></div><p>我们可以看到，我们程够获取到了结果。 这个例子因为它用到了检测浏览器的属性，而且它检测完属性之后会把属性值一直往下传，我们可以从上面的代码中看到它有很多地方使用。 所以，如果我们用 PyExecjs 来写的话，就需要修改很多参数，这样就很不方便了。因为我们需要去模拟这些浏览器参数，我这边写的例子比较简单，像那种更加复杂的。像获取更多的浏览器的一个属性的话，用 PyExecjs 再去写的时候，可能没有浏览器这样的一个环境，所以 PyExecjs 没有 Selenium 有优势。 当然，除了 Selenium 以为，还有一个叫做 Pyppeteer 的库，也是比较常见。 为了控制文章篇幅，咱们下次再续咯，记得关注公众号：AI 悦创！</p></section><footer class=article-footer>
 <section class=article-tags>
 <a href=/tags/python/>python</a>
 <a href=/tags/%E7%88%AC%E8%99%AB/>爬虫</a>
 <a href=/tags/javascript/>javascript</a>
-</section>
-</footer>
-</article>
-<aside class=related-contents--wrapper>
-<h2 class=section-title>相关文章</h2>
-<div class=related-contents>
+</section></footer></article><aside class=related-contents--wrapper>
+<h2 class=section-title>相关文章</h2><div class=related-contents>
 <div class="flex article-list--tile">
 <article>
 <a href=/p/%E6%96%B0%E5%85%B4%E7%88%AC%E8%99%AB%E5%88%A9%E5%99%A8-playwright-%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/>
 <div class=article-details>
-<h2 class=article-title>新兴爬虫利器 Playwright 的基本用法</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>新兴爬虫利器 Playwright 的基本用法</h2></div></a>
+</article><article>
 <a href=/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/>
 <div class=article-details>
-<h2 class=article-title>docker python_Docker极简实战之python项目安装部署</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>docker python_Docker极简实战之python项目安装部署</h2></div></a>
+</article><article>
 <a href=/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/>
 <div class=article-details>
-<h2 class=article-title>Python学习笔记 容易忽略的知识点</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>Python学习笔记 容易忽略的知识点</h2></div></a>
+</article><article>
 <a href=/p/%E4%BD%BF%E7%94%A8propertysetterdeleter/>
 <div class=article-details>
-<h2 class=article-title>使用@property、setter、deleter</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>使用@property、setter、deleter</h2></div></a>
+</article><article>
 <a href=/p/__init__.py%E7%9A%84%E7%A5%9E%E5%A5%87%E7%94%A8%E6%B3%95/>
 <div class=article-details>
-<h2 class=article-title>__init__.py的神奇用法</h2>
-</div>
-</a>
-</article>
-</div>
-</div>
-</aside>
-<footer class=site-footer>
+<h2 class=article-title>__init__.py的神奇用法</h2></div></a>
+</article></div></div></aside><footer class=site-footer>
 <section class=copyright>
 &copy;
 2020 -
 2022 Syaofox's Elysion
-</section>
-<section class=powerby>
+</section><section class=powerby>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
 Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.7.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
-</section>
-</footer>
-<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
-<div class=pswp__bg></div>
-<div class=pswp__scroll-wrap>
+</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div><div class=pswp__scroll-wrap>
 <div class=pswp__container>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-</div>
-<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden">
 <div class=pswp__top-bar>
-<div class=pswp__counter></div>
-<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
 <div class=pswp__preloader>
 <div class=pswp__preloader__icn>
 <div class=pswp__preloader__cut>
-<div class=pswp__preloader__donut></div>
-</div>
-</div>
-</div>
-</div>
-<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-<div class=pswp__share-tooltip></div>
-</div>
-<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+<div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
 </button>
 <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
 </button>
 <div class=pswp__caption>
-<div class=pswp__caption__center></div>
-</div>
-</div>
-</div>
-</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
-</main>
-<aside class="sidebar right-sidebar sticky">
+<div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main><aside class="sidebar right-sidebar sticky">
 <section class="widget archives">
 <div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
-</div>
-<h2 class="widget-title section-title">目录</h2>
-<div class=widget--toc>
+</div><h2 class="widget-title section-title">目录</h2><div class=widget--toc>
 <nav id=TableOfContents>
 <ol>
-<li><a href=#本篇目标>本篇目标</a></li>
-<li><a href=#base64>Base64</a></li>
-<li><a href=#md5>MD5</a></li>
-<li><a href=#使用-python-调用-js>使用 Python 调用 JS</a>
+<li><a href=#本篇目标>本篇目标</a></li><li><a href=#base64>Base64</a></li><li><a href=#md5>MD5</a></li><li><a href=#使用-python-调用-js>使用 Python 调用 JS</a>
 <ol>
-<li><a href=#pyv8>PyV8</a></li>
-<li><a href=#js2py>Js2Py</a></li>
-<li><a href=#pyminracer>PyMinRacer</a></li>
-<li><a href=#pyexecjs>PyExecJS</a>
+<li><a href=#pyv8>PyV8</a></li><li><a href=#js2py>Js2Py</a></li><li><a href=#pyminracer>PyMinRacer</a></li><li><a href=#pyexecjs>PyExecJS</a>
 <ol>
-<li><a href=#pyexecjs-的使用>PyExecJS 的使用</a></li>
-</ol>
-</li>
-<li><a href=#其他使用-python-调用-js-的骚操作>其他使用 Python 调用 JS 的骚操作</a></li>
-</ol>
-</li>
-</ol>
-</nav>
-</div>
-</section>
-</aside>
-</div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
-<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
-</body>
-</html>
+<li><a href=#pyexecjs-的使用>PyExecJS 的使用</a></li></ol></li><li><a href=#其他使用-python-调用-js-的骚操作>其他使用 Python 调用 JS 的骚操作</a></li></ol></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script>
+</body></html>

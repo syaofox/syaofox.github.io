@@ -1,7 +1,6 @@
 <!doctype html><html lang=zh-cn>
 <head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="在python中，我们需要对外暴露一个成员变量的时候，我们往往需要对外部输入的值进行判断，以确保是符合我们的期望的。 class Student(object): age = 20 student = Student() print student.age student.age ="><title>使用@property、setter、deleter</title>
-<link rel=canonical href=https://syaofox.github.io/p/%E4%BD%BF%E7%94%A8propertysetterdeleter/>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="在python中，我们需要对外暴露一个成员变量的时候，我们往往需要对外部输入的值进行判断，以确保是符合我们的期望的。 class Student(object): age = 20 student = Student() print student.age student.age ="><title>使用@property、setter、deleter</title><link rel=canonical href=https://syaofox.github.io/p/%E4%BD%BF%E7%94%A8propertysetterdeleter/>
 <link rel=stylesheet href=/scss/style.min.1b3ac667198cb83edcc9c45e606a6f4dd6910b8ada6b74d7fd988f1b2dfd0c7c.css><meta property="og:title" content="使用@property、setter、deleter">
 <meta property="og:description" content="在python中，我们需要对外暴露一个成员变量的时候，我们往往需要对外部输入的值进行判断，以确保是符合我们的期望的。 class Student(object): age = 20 student = Student() print student.age student.age =">
 <meta property="og:url" content="https://syaofox.github.io/p/%E4%BD%BF%E7%94%A8propertysetterdeleter/">
@@ -11,9 +10,8 @@
 <meta name=twitter:creator content="@syaofox"><meta name=twitter:title content="使用@property、setter、deleter">
 <meta name=twitter:description content="在python中，我们需要对外暴露一个成员变量的时候，我们往往需要对外部输入的值进行判断，以确保是符合我们的期望的。 class Student(object): age = 20 student = Student() print student.age student.age =">
 <link rel="shortcut icon" href=favicon.ico>
-</head>
-<body class=article-page>
-<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+</head><body class=article-page>
+<script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script>
 <div class="container main-container flex
 on-phone--column extended">
 <aside class="sidebar left-sidebar sticky">
@@ -28,41 +26,30 @@ on-phone--column extended">
 <img src=/img/avatar_hud16b5be2cb59ef34c458fa0cf37a2af2_51405_300x0_resize_box_3.png width=300 height=300 class=site-logo loading=lazy alt=Avatar>
 </a>
 <span class=emoji>🍥</span>
-</figure>
-<h1 class=site-name><a href=/>Syaofox's Elysion</a></h1>
-<h2 class=site-description>心似白云常自在,意如流水任东西.</h2><ol class=social-menu>
+</figure><h1 class=site-name><a href=/>Syaofox's Elysion</a></h1><h2 class=site-description>心似白云常自在,意如流水任东西.</h2><ol class=social-menu>
 <li>
 <a href=https://github.com/syaofox target=_blank title=GitHub><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
 </a>
-</li>
-</ol></header>
-<ol class=menu id=main-menu>
+</li></ol></header><ol class=menu id=main-menu>
 <li>
 <a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
 <span>首页</span>
 </a>
-</li>
-<li>
+</li><li>
 <a href=/%E5%85%B3%E4%BA%8E/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
 <span>关于</span>
 </a>
-</li>
-<li>
+</li><li>
 <a href=/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
 <span>归档</span>
 </a>
-</li>
-<li>
+</li><li>
 <a href=/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
 <span>搜索</span>
 </a>
-</li>
-<li id=dark-mode-toggle><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+</li><li id=dark-mode-toggle><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
 <span>暗色模式</span>
-</li>
-</ol>
-</aside>
-<main class="main full-width">
+</li></ol></aside><main class="main full-width">
 <article class=main-article>
 <header class=article-header>
 <div class=article-details>
@@ -70,185 +57,124 @@ on-phone--column extended">
 <a href=/categories/coding/ style=background-color:#2a9d8f;color:#fff>
 Coding
 </a>
-</header>
-<h2 class=article-title>
+</header><h2 class=article-title>
 <a href=/p/%E4%BD%BF%E7%94%A8propertysetterdeleter/>使用@property、setter、deleter</a>
-</h2>
-<footer class=article-time>
+</h2><footer class=article-time>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
 <time class=article-time--published>Jan 10, 2022</time>
-</div>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+</div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
 阅读时长: 2 分钟
 </time>
-</div>
-</footer>
-</div>
-</header>
-<section class=article-content>
-<p>在python中，我们需要对外暴露一个成员变量的时候，我们往往需要对外部输入的值进行判断，以确保是符合我们的期望的。</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-arduino data-lang=arduino><span class=err>class </span><span class=nc>Student</span><span class=p>(</span><span class=n>object</span><span class=p>)</span><span class=o>:</span>
-    <span class=n>age</span> <span class=o>=</span> <span class=mi>20</span>
-    
-<span class=n>student</span> <span class=o>=</span> <span class=n>Student</span><span class=p>()</span>
-<span class=nf>print</span> <span class=n>student</span><span class=p>.</span><span class=n>age</span>
-<span class=n>student</span><span class=p>.</span><span class=n>age</span> <span class=o>=</span> <span class=s>&#34;hello&#34;</span>
-</code></pre></div><p>上述这种写法虽然可以取到age属性，但是同时也可以对age设置任意值。所以并不合理。</p>
-<p>那怎么解决了，我们可以把age变成私有的成员变量。然后写一个getter用于供外部取得age值；一个setter函数用于供外部设置age值，并对age值进行一定的判断。<br>
-例如：</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=k>class</span> <span class=nc>Student</span><span class=p>(</span><span class=nb>object</span><span class=p>):</span>
-    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
-        <span class=bp>self</span><span class=o>.</span><span class=n>_age</span> <span class=o>=</span> <span class=kc>None</span>
-
-    <span class=k>def</span> <span class=nf>age_getter</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
-        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>_age</span>
-
-    <span class=k>def</span> <span class=nf>age_setter</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>age</span><span class=p>):</span>
-        <span class=k>if</span> <span class=nb>isinstance</span><span class=p>(</span><span class=n>age</span><span class=p>,</span> <span class=nb>str</span><span class=p>)</span> <span class=ow>and</span> <span class=n>age</span><span class=o>.</span><span class=n>isdigit</span><span class=p>():</span>
-            <span class=n>age</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>age</span><span class=p>)</span>
-        <span class=k>else</span><span class=p>:</span>
-            <span class=k>raise</span> <span class=ne>ValueError</span><span class=p>(</span><span class=s2>&#34;age is illegal&#34;</span><span class=p>)</span>
-        <span class=k>if</span> <span class=nb>isinstance</span><span class=p>(</span><span class=n>age</span><span class=p>,</span><span class=nb>int</span><span class=p>):</span>
-            <span class=bp>self</span><span class=o>.</span><span class=n>_age</span> <span class=o>=</span> <span class=n>age</span>
-</code></pre></div><p>那么我就需要<code>student.age_getter()</code>取得age，<code>student.age_setter()</code>设置age值。但是这样实现了功能，但是的确使得调用变得比较麻烦。有什么地方可以改进吗？</p>
-<p>这个时候我们可以在<code>getter</code>和<code>setter</code>后面定义一个成员变量age。例如</p>
-<pre tabindex=0><code class=language-crmsh data-lang=crmsh>age = property(age_getter, age_setter)
+</div></footer></div></header><section class=article-content>
+<p>在python中，我们需要对外暴露一个成员变量的时候，我们往往需要对外部输入的值进行判断，以确保是符合我们的期望的。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-arduino data-lang=arduino><span class=line><span class=cl><span class=err>class </span><span class=nc>Student</span><span class=p>(</span><span class=n>object</span><span class=p>)</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>age</span> <span class=o>=</span> <span class=mi>20</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl><span class=n>student</span> <span class=o>=</span> <span class=n>Student</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=nf>print</span> <span class=n>student</span><span class=p>.</span><span class=n>age</span>
+</span></span><span class=line><span class=cl><span class=n>student</span><span class=p>.</span><span class=n>age</span> <span class=o>=</span> <span class=s>&#34;hello&#34;</span>
+</span></span></code></pre></div><p>上述这种写法虽然可以取到age属性，但是同时也可以对age设置任意值。所以并不合理。</p><p>那怎么解决了，我们可以把age变成私有的成员变量。然后写一个getter用于供外部取得age值；一个setter函数用于供外部设置age值，并对age值进行一定的判断。<br>
+例如：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>class</span> <span class=nc>Student</span><span class=p>(</span><span class=nb>object</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>_age</span> <span class=o>=</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>age_getter</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>_age</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>age_setter</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>age</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nb>isinstance</span><span class=p>(</span><span class=n>age</span><span class=p>,</span> <span class=nb>str</span><span class=p>)</span> <span class=ow>and</span> <span class=n>age</span><span class=o>.</span><span class=n>isdigit</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>            <span class=n>age</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>age</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>raise</span> <span class=ne>ValueError</span><span class=p>(</span><span class=s2>&#34;age is illegal&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nb>isinstance</span><span class=p>(</span><span class=n>age</span><span class=p>,</span><span class=nb>int</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=bp>self</span><span class=o>.</span><span class=n>_age</span> <span class=o>=</span> <span class=n>age</span>
+</span></span></code></pre></div><p>那么我就需要<code>student.age_getter()</code>取得age，<code>student.age_setter()</code>设置age值。但是这样实现了功能，但是的确使得调用变得比较麻烦。有什么地方可以改进吗？</p><p>这个时候我们可以在<code>getter</code>和<code>setter</code>后面定义一个成员变量age。例如</p><pre tabindex=0><code class=language-crmsh data-lang=crmsh>age = property(age_getter, age_setter)
 </code></pre><p>这样我们就可以把age当成一个Student的属性来调用和赋值了。<br>
-例如：</p>
-<pre tabindex=0><code class=language-routeros data-lang=routeros>student.age = &quot;20&quot;
+例如：</p><pre tabindex=0><code class=language-routeros data-lang=routeros>student.age = &#34;20&#34;
 print student.age
 </code></pre><p>你觉得python只能这么写getter和setter了，那就图样图森破了。python还有逆天的装饰器来实现getter、setter、和deleter。<br>
-例如：</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=k>class</span> <span class=nc>Student</span><span class=p>(</span><span class=nb>object</span><span class=p>):</span>
-    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
-        <span class=bp>self</span><span class=o>.</span><span class=n>_age</span> <span class=o>=</span> <span class=kc>None</span>
-
-    <span class=nd>@property</span>
-    <span class=k>def</span> <span class=nf>age</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
-        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>_age</span>
-
-    <span class=nd>@age</span><span class=o>.</span><span class=n>setter</span>
-    <span class=k>def</span> <span class=nf>age</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>age</span><span class=p>):</span>
-        <span class=k>if</span> <span class=nb>isinstance</span><span class=p>(</span><span class=n>age</span><span class=p>,</span> <span class=nb>int</span><span class=p>):</span>
-            <span class=bp>self</span><span class=o>.</span><span class=n>_age</span> <span class=o>=</span> <span class=n>age</span>
-            <span class=k>return</span>
-        <span class=k>if</span> <span class=nb>isinstance</span><span class=p>(</span><span class=n>age</span><span class=p>,</span> <span class=nb>str</span><span class=p>)</span> <span class=ow>and</span> <span class=n>age</span><span class=o>.</span><span class=n>isdigit</span><span class=p>():</span>
-            <span class=n>age</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>age</span><span class=p>)</span>
-            <span class=bp>self</span><span class=o>.</span><span class=n>_age</span> <span class=o>=</span> <span class=n>age</span>
-        <span class=k>else</span><span class=p>:</span>
-            <span class=k>raise</span> <span class=ne>ValueError</span><span class=p>(</span><span class=s2>&#34;age is illegal&#34;</span><span class=p>)</span>
-
-    <span class=nd>@age</span><span class=o>.</span><span class=n>deleter</span>
-    <span class=k>def</span> <span class=nf>age</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
-        <span class=k>del</span> <span class=bp>self</span><span class=o>.</span><span class=n>_age</span>
-
-
-<span class=n>student</span> <span class=o>=</span> <span class=n>Student</span><span class=p>()</span>
-<span class=n>student</span><span class=o>.</span><span class=n>age</span> <span class=o>=</span> <span class=mi>20</span>
-<span class=nb>print</span> <span class=n>student</span><span class=o>.</span><span class=n>age</span>
-
-<span class=k>del</span> <span class=n>student</span><span class=o>.</span><span class=n>age</span>
-</code></pre></div><p>上面的例子中用@property、x.setter x.deleter实现了属性的读取、赋值、和删除。当然您也可以只是实现其中的一个或者几个。</p>
-</section>
-<footer class=article-footer>
+例如：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>class</span> <span class=nc>Student</span><span class=p>(</span><span class=nb>object</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>_age</span> <span class=o>=</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nd>@property</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>age</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>_age</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nd>@age</span><span class=o>.</span><span class=n>setter</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>age</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>age</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nb>isinstance</span><span class=p>(</span><span class=n>age</span><span class=p>,</span> <span class=nb>int</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=bp>self</span><span class=o>.</span><span class=n>_age</span> <span class=o>=</span> <span class=n>age</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nb>isinstance</span><span class=p>(</span><span class=n>age</span><span class=p>,</span> <span class=nb>str</span><span class=p>)</span> <span class=ow>and</span> <span class=n>age</span><span class=o>.</span><span class=n>isdigit</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>            <span class=n>age</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>age</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=bp>self</span><span class=o>.</span><span class=n>_age</span> <span class=o>=</span> <span class=n>age</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>raise</span> <span class=ne>ValueError</span><span class=p>(</span><span class=s2>&#34;age is illegal&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nd>@age</span><span class=o>.</span><span class=n>deleter</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>age</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>del</span> <span class=bp>self</span><span class=o>.</span><span class=n>_age</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>student</span> <span class=o>=</span> <span class=n>Student</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>student</span><span class=o>.</span><span class=n>age</span> <span class=o>=</span> <span class=mi>20</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span> <span class=n>student</span><span class=o>.</span><span class=n>age</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>del</span> <span class=n>student</span><span class=o>.</span><span class=n>age</span>
+</span></span></code></pre></div><p>上面的例子中用@property、x.setter x.deleter实现了属性的读取、赋值、和删除。当然您也可以只是实现其中的一个或者几个。</p></section><footer class=article-footer>
 <section class=article-tags>
 <a href=/tags/python/>python</a>
-</section>
-</footer>
-</article>
-<aside class=related-contents--wrapper>
-<h2 class=section-title>相关文章</h2>
-<div class=related-contents>
+</section></footer></article><aside class=related-contents--wrapper>
+<h2 class=section-title>相关文章</h2><div class=related-contents>
 <div class="flex article-list--tile">
 <article>
 <a href=/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/>
 <div class=article-details>
-<h2 class=article-title>docker python_Docker极简实战之python项目安装部署</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>docker python_Docker极简实战之python项目安装部署</h2></div></a>
+</article><article>
 <a href=/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/>
 <div class=article-details>
-<h2 class=article-title>Python学习笔记 容易忽略的知识点</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>Python学习笔记 容易忽略的知识点</h2></div></a>
+</article><article>
 <a href=/p/__init__.py%E7%9A%84%E7%A5%9E%E5%A5%87%E7%94%A8%E6%B3%95/>
 <div class=article-details>
-<h2 class=article-title>__init__.py的神奇用法</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>__init__.py的神奇用法</h2></div></a>
+</article><article>
 <a href=/p/%E4%B8%80%E6%96%87%E6%8E%8C%E6%8F%A1-python-%E4%B8%AD%E7%9A%84-is-%E5%92%8C/>
 <div class=article-details>
-<h2 class=article-title>一文掌握 Python 中的 "is" 和 "=="</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>一文掌握 Python 中的 "is" 和 "=="</h2></div></a>
+</article><article>
 <a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85argparsedocoptclick-%E5%92%8C-fire-%E6%80%BB%E7%BB%93%E7%AF%87/>
 <div class=article-details>
-<h2 class=article-title>Python 命令行之旅：argparse、docopt、click 和 fire 总结篇</h2>
-</div>
-</a>
-</article>
-</div>
-</div>
-</aside>
-<footer class=site-footer>
+<h2 class=article-title>Python 命令行之旅：argparse、docopt、click 和 fire 总结篇</h2></div></a>
+</article></div></div></aside><footer class=site-footer>
 <section class=copyright>
 &copy;
 2020 -
 2022 Syaofox's Elysion
-</section>
-<section class=powerby>
+</section><section class=powerby>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
 Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.7.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
-</section>
-</footer>
-<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
-<div class=pswp__bg></div>
-<div class=pswp__scroll-wrap>
+</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div><div class=pswp__scroll-wrap>
 <div class=pswp__container>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-</div>
-<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden">
 <div class=pswp__top-bar>
-<div class=pswp__counter></div>
-<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
 <div class=pswp__preloader>
 <div class=pswp__preloader__icn>
 <div class=pswp__preloader__cut>
-<div class=pswp__preloader__donut></div>
-</div>
-</div>
-</div>
-</div>
-<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-<div class=pswp__share-tooltip></div>
-</div>
-<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+<div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
 </button>
 <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
 </button>
 <div class=pswp__caption>
-<div class=pswp__caption__center></div>
-</div>
-</div>
-</div>
-</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
-</main>
-</div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
-<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
-</body>
-</html>
+<div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script>
+</body></html>

@@ -1,7 +1,6 @@
 <!doctype html><html lang=zh-cn>
 <head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="安装sudo apt install sudo 添加用户到sudo usermod -aG sudo username 设置静态ip 备份配置文件 sudo cp /etc/network/interfaces /etc/network/interfaces.bak 修改配置文件 sudo nano /etc/network/interfaces 原配置文件内容 # This file describes the network interfaces available on your system # and how to activate"><title>安装一台基于debian的家庭服务器</title>
-<link rel=canonical href=https://syaofox.github.io/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="安装sudo apt install sudo 添加用户到sudo usermod -aG sudo username 设置静态ip 备份配置文件 sudo cp /etc/network/interfaces /etc/network/interfaces.bak 修改配置文件 sudo nano /etc/network/interfaces 原配置文件内容 # This file describes the network interfaces available on your system # and how to activate"><title>安装一台基于debian的家庭服务器</title><link rel=canonical href=https://syaofox.github.io/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/>
 <link rel=stylesheet href=/scss/style.min.1b3ac667198cb83edcc9c45e606a6f4dd6910b8ada6b74d7fd988f1b2dfd0c7c.css><meta property="og:title" content="安装一台基于debian的家庭服务器">
 <meta property="og:description" content="安装sudo apt install sudo 添加用户到sudo usermod -aG sudo username 设置静态ip 备份配置文件 sudo cp /etc/network/interfaces /etc/network/interfaces.bak 修改配置文件 sudo nano /etc/network/interfaces 原配置文件内容 # This file describes the network interfaces available on your system # and how to activate">
 <meta property="og:url" content="https://syaofox.github.io/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/">
@@ -11,17 +10,15 @@
 <meta name=twitter:creator content="@syaofox"><meta name=twitter:title content="安装一台基于debian的家庭服务器">
 <meta name=twitter:description content="安装sudo apt install sudo 添加用户到sudo usermod -aG sudo username 设置静态ip 备份配置文件 sudo cp /etc/network/interfaces /etc/network/interfaces.bak 修改配置文件 sudo nano /etc/network/interfaces 原配置文件内容 # This file describes the network interfaces available on your system # and how to activate">
 <link rel="shortcut icon" href=favicon.ico>
-</head>
-<body class="article-page has-toc">
-<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+</head><body class="article-page has-toc">
+<script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script>
 <div class="container main-container flex
 extended">
 <div id=article-toolbar>
 <a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
 <span>返回</span>
 </a>
-</div>
-<main class="main full-width">
+</div><main class="main full-width">
 <article class=main-article>
 <header class=article-header>
 <div class=article-details>
@@ -29,370 +26,223 @@ extended">
 <a href=/categories/tips/>
 Tips
 </a>
-</header>
-<h2 class=article-title>
+</header><h2 class=article-title>
 <a href=/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/>安装一台基于debian的家庭服务器</a>
-</h2>
-<footer class=article-time>
+</h2><footer class=article-time>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
 <time class=article-time--published>Jan 31, 2022</time>
-</div>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+</div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
 阅读时长: 3 分钟
 </time>
-</div>
-</footer>
-</div>
-</header>
-<section class=article-content>
-<h2 id=安装sudo>安装sudo</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>apt install sudo
-</code></pre></div><h2 id=添加用户到sudo>添加用户到sudo</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>usermod -aG sudo username
-</code></pre></div><h2 id=设置静态ip>设置静态ip</h2>
-<p>备份配置文件</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo cp /etc/network/interfaces /etc/network/interfaces.bak
-</code></pre></div><p>修改配置文件</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo nano /etc/network/interfaces
-</code></pre></div><p>原配置文件内容</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># This file describes the network interfaces available on your system</span>
-<span class=c1># and how to activate them. For more information, see interfaces(5).</span>
-
-<span class=nb>source</span> /etc/network/interfaces.d/*
-
-<span class=c1># The loopback network interface</span>
-auto lo
-iface lo inet loopback
-
-<span class=c1># The primary network interface</span>
-allow-hotplug eth0
-iface eth0 inet dhcp
-
-</code></pre></div><p>修改后内容</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># This file describes the network interfaces available on your system</span>
-<span class=c1># and how to activate them. For more information, see interfaces(5).</span>
-
-<span class=nb>source</span> /etc/network/interfaces.d/*
-
-<span class=c1># The loopback network interface</span>
-auto lo
-iface lo inet loopback
-
-<span class=c1># The primary network interface</span>
-allow-hotplug eth0
-iface eth0 inet static
-  address 10.10.10.101
-  netmast 255.255.255.0
-  gateway 10.10.10.1
-  dns-nameservers 10.10.10.1
-</code></pre></div><p>重启网络服务</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo systemctl restart networking
-</code></pre></div><h2 id=更换软件源>更换软件源</h2>
-<p>备份软件源配置文件</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
-</code></pre></div><p>打开源配置</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo nano /etc/apt/sources.list
-</code></pre></div><p>替换<code>security.debian.org</code>为<code>repo.huaweicloud.com</code>
-修改后的<code>source.list</code>如下:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># deb http://repo.huaweicloud.com/debian/ bullseye main</span>
-
-deb http://repo.huaweicloud.com/debian/ bullseye main non-free contrib
-deb-src http://repo.huaweicloud.com/debian/ bullseye main non-free contrib
-
-deb http://repo.huaweicloud.com/debian-security bullseye-security main contrib non-free
-deb-src http://repo.huaweicloud.com/debian-security bullseye-security main contrib non-free
-
-<span class=c1># bullseye-updates, to get updates before a point release is made;</span>
-<span class=c1># see https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_updates_and_backports</span>
-deb http://repo.huaweicloud.com/debian/ bullseye-updates main contrib non-free
-deb-src http://repo.huaweicloud.com/debian/ bullseye-updates main contrib non-free
-</code></pre></div><p>更新</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt update <span class=o>&amp;&amp;</span> sudo apt upgrade
-</code></pre></div><h2 id=增加别名>增加别名</h2>
-<p>编辑home目录下的<code>.bashrc</code>文件</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>nano .bashrc
-</code></pre></div><p>增加一行</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=nb>alias</span> <span class=nv>ll</span><span class=o>=</span><span class=s1>&#39;ls -lha&#39;</span>
-</code></pre></div><p>重新加载</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=nb>source</span> .bashrc
-</code></pre></div><h2 id=设置硬盘>设置硬盘</h2>
-<h3 id=初始化硬盘>初始化硬盘</h3>
-<p>用<code>lsblk</code>查看硬盘
+</div></footer></div></header><section class=article-content>
+<h2 id=安装sudo>安装sudo</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>apt install sudo
+</span></span></code></pre></div><h2 id=添加用户到sudo>添加用户到sudo</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>usermod -aG sudo username
+</span></span></code></pre></div><h2 id=设置静态ip>设置静态ip</h2><p>备份配置文件</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo cp /etc/network/interfaces /etc/network/interfaces.bak
+</span></span></code></pre></div><p>修改配置文件</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo nano /etc/network/interfaces
+</span></span></code></pre></div><p>原配置文件内容</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># This file describes the network interfaces available on your system</span>
+</span></span><span class=line><span class=cl><span class=c1># and how to activate them. For more information, see interfaces(5).</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>source</span> /etc/network/interfaces.d/*
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># The loopback network interface</span>
+</span></span><span class=line><span class=cl>auto lo
+</span></span><span class=line><span class=cl>iface lo inet loopback
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># The primary network interface</span>
+</span></span><span class=line><span class=cl>allow-hotplug eth0
+</span></span><span class=line><span class=cl>iface eth0 inet dhcp
+</span></span></code></pre></div><p>修改后内容</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># This file describes the network interfaces available on your system</span>
+</span></span><span class=line><span class=cl><span class=c1># and how to activate them. For more information, see interfaces(5).</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>source</span> /etc/network/interfaces.d/*
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># The loopback network interface</span>
+</span></span><span class=line><span class=cl>auto lo
+</span></span><span class=line><span class=cl>iface lo inet loopback
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># The primary network interface</span>
+</span></span><span class=line><span class=cl>allow-hotplug eth0
+</span></span><span class=line><span class=cl>iface eth0 inet static
+</span></span><span class=line><span class=cl>  address 10.10.10.101
+</span></span><span class=line><span class=cl>  netmast 255.255.255.0
+</span></span><span class=line><span class=cl>  gateway 10.10.10.1
+</span></span><span class=line><span class=cl>  dns-nameservers 10.10.10.1
+</span></span></code></pre></div><p>重启网络服务</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo systemctl restart networking
+</span></span></code></pre></div><h2 id=更换软件源>更换软件源</h2><p>备份软件源配置文件</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+</span></span></code></pre></div><p>打开源配置</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo nano /etc/apt/sources.list
+</span></span></code></pre></div><p>替换<code>security.debian.org</code>为<code>repo.huaweicloud.com</code>
+修改后的<code>source.list</code>如下:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># deb http://repo.huaweicloud.com/debian/ bullseye main</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>deb http://repo.huaweicloud.com/debian/ bullseye main non-free contrib
+</span></span><span class=line><span class=cl>deb-src http://repo.huaweicloud.com/debian/ bullseye main non-free contrib
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>deb http://repo.huaweicloud.com/debian-security bullseye-security main contrib non-free
+</span></span><span class=line><span class=cl>deb-src http://repo.huaweicloud.com/debian-security bullseye-security main contrib non-free
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># bullseye-updates, to get updates before a point release is made;</span>
+</span></span><span class=line><span class=cl><span class=c1># see https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_updates_and_backports</span>
+</span></span><span class=line><span class=cl>deb http://repo.huaweicloud.com/debian/ bullseye-updates main contrib non-free
+</span></span><span class=line><span class=cl>deb-src http://repo.huaweicloud.com/debian/ bullseye-updates main contrib non-free
+</span></span></code></pre></div><p>更新</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt update <span class=o>&amp;&amp;</span> sudo apt upgrade
+</span></span></code></pre></div><h2 id=增加别名>增加别名</h2><p>编辑home目录下的<code>.bashrc</code>文件</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>nano .bashrc
+</span></span></code></pre></div><p>增加一行</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>alias</span> <span class=nv>ll</span><span class=o>=</span><span class=s1>&#39;ls -lha&#39;</span>
+</span></span></code></pre></div><p>重新加载</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>source</span> .bashrc
+</span></span></code></pre></div><h2 id=设置硬盘>设置硬盘</h2><h3 id=初始化硬盘>初始化硬盘</h3><p>用<code>lsblk</code>查看硬盘
 <figure class=gallery-image style=flex-grow:229;flex-basis:550px>
 <a href=/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/lsblk.jpg data-size=447x195>
 <img src=/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/lsblk.jpg width=447 height=195 srcset="/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/lsblk_hua0cdb4774893f6f917dd3b4db9886d6d_17338_480x0_resize_q75_box.jpg 480w, /p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/lsblk_hua0cdb4774893f6f917dd3b4db9886d6d_17338_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
 </a>
-</figure>
-分区并格式化硬盘</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo fdisk /dev/sdb
-sudo mkfs.ext4 /dev/sdb1
-
-sudo fdisk /dev/sdc
-sudo mkfs.ext4 /dev/sdc1
-
-sudo fdisk /dev/sdd
-sudo mkfs.ext4 /dev/sdd1
-
-sudo fdisk /dev/sde
-sudo mkfs.ext4 /dev/sde1
-</code></pre></div><h2 id=挂载硬盘>挂载硬盘</h2>
-<p>创建挂载点目录</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo mkdir /mnt/disk<span class=o>{</span>1,2,3,4<span class=o>}</span> 
-sudo mkdir /mnt/storage
-
-
-</code></pre></div><p>用<code>UUID</code>来挂载</p>
-<p>使用<code>blkid</code>命令查看硬盘<code>uuid</code>
+</figure>分区并格式化硬盘</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo fdisk /dev/sdb
+</span></span><span class=line><span class=cl>sudo mkfs.ext4 /dev/sdb1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo fdisk /dev/sdc
+</span></span><span class=line><span class=cl>sudo mkfs.ext4 /dev/sdc1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo fdisk /dev/sdd
+</span></span><span class=line><span class=cl>sudo mkfs.ext4 /dev/sdd1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo fdisk /dev/sde
+</span></span><span class=line><span class=cl>sudo mkfs.ext4 /dev/sde1
+</span></span></code></pre></div><h2 id=挂载硬盘>挂载硬盘</h2><p>创建挂载点目录</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo mkdir /mnt/disk<span class=o>{</span>1,2,3,4<span class=o>}</span> 
+</span></span><span class=line><span class=cl>sudo mkdir /mnt/storage
+</span></span></code></pre></div><p>用<code>UUID</code>来挂载</p><p>使用<code>blkid</code>命令查看硬盘<code>uuid</code>
 <figure class=gallery-image style=flex-grow:669;flex-basis:1606px>
 <a href=/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/blkid.jpg data-size=1131x169>
 <img src=/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/blkid.jpg width=1131 height=169 srcset="/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/blkid_hu22b539513430568cc6f04b798c1fc31e_54379_480x0_resize_q75_box.jpg 480w, /p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/blkid_hu22b539513430568cc6f04b798c1fc31e_54379_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
 </a>
-</figure></p>
-<p>备份<code>/etc/fstab</code></p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo cp /etc/fstab /etc/fstab.bak
-</code></pre></div><p>往<code>/etc/fstab</code>追加硬盘uuid信息方便后续修改</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo blkid <span class=p>|</span> grep <span class=s2>&#34;/dev/sd&#34;</span> <span class=p>|</span> sudo tee -a /etc/fstab
-</code></pre></div><p>修改<code>/etc/fstab</code>挂载硬盘</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo nano /etc/fstab
-</code></pre></div><p>编辑挂载信息</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># data disks</span>
-<span class=nv>UUID</span><span class=o>=</span>1daa1624-f850-4b99-8398-86058af157ab       /mnt/disk1      ext4    noatime,rw      <span class=m>0</span>       <span class=m>0</span>
-<span class=nv>UUID</span><span class=o>=</span>e8dafdfd-323a-40a4-97bc-139eaf0f544e       /mnt/disk2      ext4    noatime,rw      <span class=m>0</span>       <span class=m>0</span>
-<span class=nv>UUID</span><span class=o>=</span>dbbc75b7-9cf1-47f4-894b-5218e291832b       /mnt/disk3      ext4    noatime,rw      <span class=m>0</span>       <span class=m>0</span>
-<span class=nv>UUID</span><span class=o>=</span>ea136fb4-725a-4c45-aa2c-43f77751c66a       /mnt/disk4      ext4    noatime,rw      <span class=m>0</span>       <span class=m>0</span>
-</code></pre></div><p>挂载硬盘</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo mount -a
-</code></pre></div><p>检查挂载是否成功</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>df -h
-</code></pre></div><p><figure class=gallery-image style=flex-grow:193;flex-basis:464px>
+</figure></p><p>备份<code>/etc/fstab</code></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo cp /etc/fstab /etc/fstab.bak
+</span></span></code></pre></div><p>往<code>/etc/fstab</code>追加硬盘uuid信息方便后续修改</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo blkid <span class=p>|</span> grep <span class=s2>&#34;/dev/sd&#34;</span> <span class=p>|</span> sudo tee -a /etc/fstab
+</span></span></code></pre></div><p>修改<code>/etc/fstab</code>挂载硬盘</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo nano /etc/fstab
+</span></span></code></pre></div><p>编辑挂载信息</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># data disks</span>
+</span></span><span class=line><span class=cl><span class=nv>UUID</span><span class=o>=</span>1daa1624-f850-4b99-8398-86058af157ab       /mnt/disk1      ext4    noatime,rw      <span class=m>0</span>       <span class=m>0</span>
+</span></span><span class=line><span class=cl><span class=nv>UUID</span><span class=o>=</span>e8dafdfd-323a-40a4-97bc-139eaf0f544e       /mnt/disk2      ext4    noatime,rw      <span class=m>0</span>       <span class=m>0</span>
+</span></span><span class=line><span class=cl><span class=nv>UUID</span><span class=o>=</span>dbbc75b7-9cf1-47f4-894b-5218e291832b       /mnt/disk3      ext4    noatime,rw      <span class=m>0</span>       <span class=m>0</span>
+</span></span><span class=line><span class=cl><span class=nv>UUID</span><span class=o>=</span>ea136fb4-725a-4c45-aa2c-43f77751c66a       /mnt/disk4      ext4    noatime,rw      <span class=m>0</span>       <span class=m>0</span>
+</span></span></code></pre></div><p>挂载硬盘</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo mount -a
+</span></span></code></pre></div><p>检查挂载是否成功</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>df -h
+</span></span></code></pre></div><p><figure class=gallery-image style=flex-grow:193;flex-basis:464px>
 <a href=/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/mount.jpg data-size=499x258>
 <img src=/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/mount.jpg width=499 height=258 srcset="/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/mount_hu182eb5e86a61021d508c1783322a5e74_29953_480x0_resize_q75_box.jpg 480w, /p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/mount_hu182eb5e86a61021d508c1783322a5e74_29953_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
 </a>
-</figure></p>
-<h2 id=mergerfs>mergerfs</h2>
-<h3 id=安装>安装</h3>
-<p>安装依赖</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt install fuse
-</code></pre></div><p>安装mergerfs</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>wget https://github.com/trapexit/mergerfs/releases/download/2.33.3/mergerfs_2.33.3.debian-bullseye_amd64.deb
-sudo dpkg -i mergerfs_2.33.3.debian-bullseye_amd64.deb
-</code></pre></div><p>编辑<code>/etc/fstab</code>添加以下内容</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># mergerfs</span>
-/mnt/disk*      /mnt/storage    fuse.mergerfs   allow_other,use_ino,cache.files<span class=o>=</span>off,dropcacheonclose<span class=o>=</span>true,category.create<span class=o>=</span>mfs,ignorepponrename<span class=o>=</span>true,minfreespace<span class=o>=</span>1G     <span class=m>0</span>       <span class=m>0</span>
-</code></pre></div><p>挂载硬盘</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo mount -a
-</code></pre></div><p>检查挂载是否成功</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>df -h
-</code></pre></div><p>修改权限</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo chown -R vm:vm /mnt/disk1
-sudo chown -R vm:vm /mnt/disk2
-sudo chown -R vm:vm /mnt/disk3
-sudo chown -R vm:vm /mnt/disk4
-sudo chown -R vm:vm /mnt/storage
-</code></pre></div><h2 id=设置samba共享>设置samba共享</h2>
-<p>安装samba</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt update
-sudo apt install samba
-</code></pre></div><p>查看<code>smbd</code>服务是否开启</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo systemctl status smbd
-</code></pre></div><p>如果开启就关闭服务</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo systemctl stop smbd
-</code></pre></div><p>备份配置文件</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo mv /etc/samba/smb.conf /etc/samba/smb.conf.bak
-</code></pre></div><p>创建新的配置文件</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo nano /etc/samba/smb.conf
-</code></pre></div><p>编辑如下内容</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=o>[</span>global<span class=o>]</span>
-server <span class=nv>string</span> <span class=o>=</span> debian Server
-<span class=nv>workgroup</span> <span class=o>=</span> WORKGROUP
-<span class=nv>security</span> <span class=o>=</span> user
-map to <span class=nv>guest</span> <span class=o>=</span> Bad User
-name resolve <span class=nv>order</span> <span class=o>=</span> bcast host
-<span class=nv>include</span> <span class=o>=</span> /etc/samba/shares.conf
-</code></pre></div><p>创建单独的shares配置文件</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo nano /etc/samba/shares.conf
-</code></pre></div><p>编辑如下内容</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=o>[</span>storage<span class=o>]</span>
-<span class=nv>path</span> <span class=o>=</span> /mnt/storage
-<span class=c1># force user = vm</span>
-<span class=c1># force group = vm</span>
-valid <span class=nv>users</span> <span class=o>=</span> me
-create <span class=nv>mask</span> <span class=o>=</span> <span class=m>0664</span>
-force create <span class=nv>mode</span> <span class=o>=</span> <span class=m>0664</span>
-directory <span class=nv>mask</span> <span class=o>=</span> <span class=m>0775</span>
-force directory <span class=nv>mode</span> <span class=o>=</span> <span class=m>0775</span>
-<span class=nv>public</span> <span class=o>=</span> yes
-<span class=nv>writable</span> <span class=o>=</span> yes
-
-</code></pre></div><p>设置对应用户<code>vm</code>的samba登录密码</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo smbpasswd -a vm
-</code></pre></div><p>启动smbd服务</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell> sudo systemctl start smbd
-</code></pre></div><h2 id=安装docker>安装docker</h2>
-<p>安装https支持</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt install ca-certificates curl gnupg lsb-release
-</code></pre></div><p>添加docker官方GPG key</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>curl -fsSL https://download.docker.com/linux/debian/gpg <span class=p>|</span> sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-</code></pre></div><p>添加稳定版仓库</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=nb>echo</span> <span class=se>\
-</span><span class=se></span>  <span class=s2>&#34;deb [arch=</span><span class=k>$(</span>dpkg --print-architecture<span class=k>)</span><span class=s2> signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
-</span><span class=s2>  </span><span class=k>$(</span>lsb_release -cs<span class=k>)</span><span class=s2> stable&#34;</span> <span class=p>|</span> sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
-</code></pre></div><p>安装docker</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell> sudo apt update
- sudo apt install docker-ce docker-ce-cli containerd.io
-</code></pre></div><p>安装docker-compose</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo curl -L https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-<span class=sb>`</span>uname -m<span class=sb>`</span> &gt; ./docker-compose
-sudo chmod +x ./docker-compose
-sudo mv ./docker-compose /usr/local/bin/docker-compose
-</code></pre></div><p>添加vm用户docker启动权限</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo usermod -aG docker vm
-</code></pre></div><p>切换用户后生效</p>
-<h2 id=软件>软件</h2>
+</figure></p><h2 id=mergerfs>mergerfs</h2><h3 id=安装>安装</h3><p>安装依赖</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt install fuse
+</span></span></code></pre></div><p>安装mergerfs</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>wget https://github.com/trapexit/mergerfs/releases/download/2.33.3/mergerfs_2.33.3.debian-bullseye_amd64.deb
+</span></span><span class=line><span class=cl>sudo dpkg -i mergerfs_2.33.3.debian-bullseye_amd64.deb
+</span></span></code></pre></div><p>编辑<code>/etc/fstab</code>添加以下内容</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># mergerfs</span>
+</span></span><span class=line><span class=cl>/mnt/disk*      /mnt/storage    fuse.mergerfs   allow_other,use_ino,cache.files<span class=o>=</span>off,dropcacheonclose<span class=o>=</span>true,category.create<span class=o>=</span>mfs,ignorepponrename<span class=o>=</span>true,minfreespace<span class=o>=</span>1G     <span class=m>0</span>       <span class=m>0</span>
+</span></span></code></pre></div><p>挂载硬盘</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo mount -a
+</span></span></code></pre></div><p>检查挂载是否成功</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>df -h
+</span></span></code></pre></div><p>修改权限</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo chown -R vm:vm /mnt/disk1
+</span></span><span class=line><span class=cl>sudo chown -R vm:vm /mnt/disk2
+</span></span><span class=line><span class=cl>sudo chown -R vm:vm /mnt/disk3
+</span></span><span class=line><span class=cl>sudo chown -R vm:vm /mnt/disk4
+</span></span><span class=line><span class=cl>sudo chown -R vm:vm /mnt/storage
+</span></span></code></pre></div><h2 id=设置samba共享>设置samba共享</h2><p>安装samba</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt update
+</span></span><span class=line><span class=cl>sudo apt install samba
+</span></span></code></pre></div><p>查看<code>smbd</code>服务是否开启</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo systemctl status smbd
+</span></span></code></pre></div><p>如果开启就关闭服务</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo systemctl stop smbd
+</span></span></code></pre></div><p>备份配置文件</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo mv /etc/samba/smb.conf /etc/samba/smb.conf.bak
+</span></span></code></pre></div><p>创建新的配置文件</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo nano /etc/samba/smb.conf
+</span></span></code></pre></div><p>编辑如下内容</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=o>[</span>global<span class=o>]</span>
+</span></span><span class=line><span class=cl>server <span class=nv>string</span> <span class=o>=</span> debian Server
+</span></span><span class=line><span class=cl><span class=nv>workgroup</span> <span class=o>=</span> WORKGROUP
+</span></span><span class=line><span class=cl><span class=nv>security</span> <span class=o>=</span> user
+</span></span><span class=line><span class=cl>map to <span class=nv>guest</span> <span class=o>=</span> Bad User
+</span></span><span class=line><span class=cl>name resolve <span class=nv>order</span> <span class=o>=</span> bcast host
+</span></span><span class=line><span class=cl><span class=nv>include</span> <span class=o>=</span> /etc/samba/shares.conf
+</span></span></code></pre></div><p>创建单独的shares配置文件</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo nano /etc/samba/shares.conf
+</span></span></code></pre></div><p>编辑如下内容</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=o>[</span>storage<span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=nv>path</span> <span class=o>=</span> /mnt/storage
+</span></span><span class=line><span class=cl><span class=c1># force user = vm</span>
+</span></span><span class=line><span class=cl><span class=c1># force group = vm</span>
+</span></span><span class=line><span class=cl>valid <span class=nv>users</span> <span class=o>=</span> me
+</span></span><span class=line><span class=cl>create <span class=nv>mask</span> <span class=o>=</span> <span class=m>0664</span>
+</span></span><span class=line><span class=cl>force create <span class=nv>mode</span> <span class=o>=</span> <span class=m>0664</span>
+</span></span><span class=line><span class=cl>directory <span class=nv>mask</span> <span class=o>=</span> <span class=m>0775</span>
+</span></span><span class=line><span class=cl>force directory <span class=nv>mode</span> <span class=o>=</span> <span class=m>0775</span>
+</span></span><span class=line><span class=cl><span class=nv>public</span> <span class=o>=</span> yes
+</span></span><span class=line><span class=cl><span class=nv>writable</span> <span class=o>=</span> yes
+</span></span></code></pre></div><p>设置对应用户<code>vm</code>的samba登录密码</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo smbpasswd -a vm
+</span></span></code></pre></div><p>启动smbd服务</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl> sudo systemctl start smbd
+</span></span></code></pre></div><h2 id=安装docker>安装docker</h2><p>安装https支持</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt install ca-certificates curl gnupg lsb-release
+</span></span></code></pre></div><p>添加docker官方GPG key</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>curl -fsSL https://download.docker.com/linux/debian/gpg <span class=p>|</span> sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+</span></span></code></pre></div><p>添加稳定版仓库</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>echo</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  <span class=s2>&#34;deb [arch=</span><span class=k>$(</span>dpkg --print-architecture<span class=k>)</span><span class=s2> signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
+</span></span></span><span class=line><span class=cl><span class=s2>  </span><span class=k>$(</span>lsb_release -cs<span class=k>)</span><span class=s2> stable&#34;</span> <span class=p>|</span> sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</span></span></code></pre></div><p>安装docker</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl> sudo apt update
+</span></span><span class=line><span class=cl> sudo apt install docker-ce docker-ce-cli containerd.io
+</span></span></code></pre></div><p>安装docker-compose</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo curl -L https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-<span class=sb>`</span>uname -m<span class=sb>`</span> &gt; ./docker-compose
+</span></span><span class=line><span class=cl>sudo chmod +x ./docker-compose
+</span></span><span class=line><span class=cl>sudo mv ./docker-compose /usr/local/bin/docker-compose
+</span></span></code></pre></div><p>添加vm用户docker启动权限</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo usermod -aG docker vm
+</span></span></code></pre></div><p>切换用户后生效</p><h2 id=软件>软件</h2><ul>
+<li><a class=link href=https://github.com/photoview/photoview target=_blank rel=noopener>Photoview</a> 局域网相册</li><li><a class=link href=https://docs.photoprism.app/getting-started/docker-compose/ target=_blank rel=noopener>photoprism</a> 局域网相册
 <ul>
-<li><a class=link href=https://github.com/photoview/photoview target=_blank rel=noopener>Photoview</a> 局域网相册</li>
-<li><a class=link href=https://docs.photoprism.app/getting-started/docker-compose/ target=_blank rel=noopener>photoprism</a> 局域网相册
-<ul>
-<li>数据库密码不能小于6位数</li>
-</ul>
-</li>
-<li><a class=link href=https://hub.docker.com/r/linuxserver/jellyfin target=_blank rel=noopener>jellyfin</a> 局域网影音服务</li>
-<li><a class=link href=https://github.com/bastienwirtz/homer target=_blank rel=noopener>homer</a> 个性化控制台</li>
-<li><a class=link href=https://github.com/netdata/netdata target=_blank rel=noopener>netdata</a> 监控面版</li>
-</ul>
-</section>
-<footer class=article-footer>
+<li>数据库密码不能小于6位数</li></ul></li><li><a class=link href=https://hub.docker.com/r/linuxserver/jellyfin target=_blank rel=noopener>jellyfin</a> 局域网影音服务</li><li><a class=link href=https://github.com/bastienwirtz/homer target=_blank rel=noopener>homer</a> 个性化控制台</li><li><a class=link href=https://github.com/netdata/netdata target=_blank rel=noopener>netdata</a> 监控面版</li></ul></section><footer class=article-footer>
 <section class=article-tags>
 <a href=/tags/linux/>linux</a>
 <a href=/tags/nas/>nas</a>
 <a href=/tags/debian/>debian</a>
-</section>
-</footer>
-</article>
-<aside class=related-contents--wrapper>
-<h2 class=section-title>相关文章</h2>
-<div class=related-contents>
+</section></footer></article><aside class=related-contents--wrapper>
+<h2 class=section-title>相关文章</h2><div class=related-contents>
 <div class="flex article-list--tile">
 <article>
 <a href=/p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/>
 <div class=article-details>
-<h2 class=article-title>安装debian11后应该做的事</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>安装debian11后应该做的事</h2></div></a>
+</article><article>
 <a href=/p/linux-%E7%AC%94%E8%AE%B0/>
 <div class=article-details>
-<h2 class=article-title>Linux 笔记</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>Linux 笔记</h2></div></a>
+</article><article>
 <a href=/p/debian-apt-%E8%AE%BE%E7%BD%AE/>
 <div class=article-details>
-<h2 class=article-title>Debian APT 设置</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>Debian APT 设置</h2></div></a>
+</article><article>
 <a href=/p/ubuntu-server-20.04-lts-nas-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/>
 <div class=article-details>
-<h2 class=article-title>Ubuntu Server 20.04 LTS NAS 安装记录</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>Ubuntu Server 20.04 LTS NAS 安装记录</h2></div></a>
+</article><article>
 <a href=/p/%E8%A7%A3%E5%86%B3piwigo%E5%90%8C%E6%AD%A5%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%8D%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E7%9A%84%E9%97%AE%E9%A2%98/>
 <div class=article-details>
-<h2 class=article-title>解决piwigo同步文件名不支持中文的问题</h2>
-</div>
-</a>
-</article>
-</div>
-</div>
-</aside>
-<footer class=site-footer>
+<h2 class=article-title>解决piwigo同步文件名不支持中文的问题</h2></div></a>
+</article></div></div></aside><footer class=site-footer>
 <section class=copyright>
 &copy;
 2020 -
 2022 Syaofox's Elysion
-</section>
-<section class=powerby>
+</section><section class=powerby>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
 Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.7.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
-</section>
-</footer>
-<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
-<div class=pswp__bg></div>
-<div class=pswp__scroll-wrap>
+</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div><div class=pswp__scroll-wrap>
 <div class=pswp__container>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-</div>
-<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden">
 <div class=pswp__top-bar>
-<div class=pswp__counter></div>
-<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
 <div class=pswp__preloader>
 <div class=pswp__preloader__icn>
 <div class=pswp__preloader__cut>
-<div class=pswp__preloader__donut></div>
-</div>
-</div>
-</div>
-</div>
-<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-<div class=pswp__share-tooltip></div>
-</div>
-<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+<div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
 </button>
 <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
 </button>
 <div class=pswp__caption>
-<div class=pswp__caption__center></div>
-</div>
-</div>
-</div>
-</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
-</main>
-<aside class="sidebar right-sidebar sticky">
+<div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main><aside class="sidebar right-sidebar sticky">
 <section class="widget archives">
 <div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
-</div>
-<h2 class="widget-title section-title">目录</h2>
-<div class=widget--toc>
+</div><h2 class="widget-title section-title">目录</h2><div class=widget--toc>
 <nav id=TableOfContents>
 <ol>
-<li><a href=#安装sudo>安装sudo</a></li>
-<li><a href=#添加用户到sudo>添加用户到sudo</a></li>
-<li><a href=#设置静态ip>设置静态ip</a></li>
-<li><a href=#更换软件源>更换软件源</a></li>
-<li><a href=#增加别名>增加别名</a></li>
-<li><a href=#设置硬盘>设置硬盘</a>
+<li><a href=#安装sudo>安装sudo</a></li><li><a href=#添加用户到sudo>添加用户到sudo</a></li><li><a href=#设置静态ip>设置静态ip</a></li><li><a href=#更换软件源>更换软件源</a></li><li><a href=#增加别名>增加别名</a></li><li><a href=#设置硬盘>设置硬盘</a>
 <ol>
-<li><a href=#初始化硬盘>初始化硬盘</a></li>
-</ol>
-</li>
-<li><a href=#挂载硬盘>挂载硬盘</a></li>
-<li><a href=#mergerfs>mergerfs</a>
+<li><a href=#初始化硬盘>初始化硬盘</a></li></ol></li><li><a href=#挂载硬盘>挂载硬盘</a></li><li><a href=#mergerfs>mergerfs</a>
 <ol>
-<li><a href=#安装>安装</a></li>
-</ol>
-</li>
-<li><a href=#设置samba共享>设置samba共享</a></li>
-<li><a href=#安装docker>安装docker</a></li>
-<li><a href=#软件>软件</a></li>
-</ol>
-</nav>
-</div>
-</section>
-</aside>
-</div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
-<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
-</body>
-</html>
+<li><a href=#安装>安装</a></li></ol></li><li><a href=#设置samba共享>设置samba共享</a></li><li><a href=#安装docker>安装docker</a></li><li><a href=#软件>软件</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script>
+</body></html>

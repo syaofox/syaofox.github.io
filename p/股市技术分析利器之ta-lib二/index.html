@@ -1,7 +1,6 @@
 <!doctype html><html lang=zh-cn>
 <head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="不进行研究的投资，就像打扑克从来不看牌一样，必然失败——彼得·林奇 引言 TA-Lib，全称“Technical Analysis Library”, 即技术分析库"><title>股市技术分析利器之TA-Lib（二）</title>
-<link rel=canonical href=https://syaofox.github.io/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="不进行研究的投资，就像打扑克从来不看牌一样，必然失败——彼得·林奇 引言 TA-Lib，全称“Technical Analysis Library”, 即技术分析库"><title>股市技术分析利器之TA-Lib（二）</title><link rel=canonical href=https://syaofox.github.io/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/>
 <link rel=stylesheet href=/scss/style.min.1b3ac667198cb83edcc9c45e606a6f4dd6910b8ada6b74d7fd988f1b2dfd0c7c.css><meta property="og:title" content="股市技术分析利器之TA-Lib（二）">
 <meta property="og:description" content="不进行研究的投资，就像打扑克从来不看牌一样，必然失败——彼得·林奇 引言 TA-Lib，全称“Technical Analysis Library”, 即技术分析库">
 <meta property="og:url" content="https://syaofox.github.io/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/">
@@ -11,17 +10,15 @@
 <meta name=twitter:creator content="@syaofox"><meta name=twitter:title content="股市技术分析利器之TA-Lib（二）">
 <meta name=twitter:description content="不进行研究的投资，就像打扑克从来不看牌一样，必然失败——彼得·林奇 引言 TA-Lib，全称“Technical Analysis Library”, 即技术分析库">
 <link rel="shortcut icon" href=favicon.ico>
-</head>
-<body class="article-page has-toc">
-<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+</head><body class="article-page has-toc">
+<script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script>
 <div class="container main-container flex
 extended">
 <div id=article-toolbar>
 <a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
 <span>返回</span>
 </a>
-</div>
-<main class="main full-width">
+</div><main class="main full-width">
 <article class=main-article>
 <header class=article-header>
 <div class=article-details>
@@ -29,341 +26,238 @@ extended">
 <a href=/categories/investment/ style=background-color:#2a9d8f;color:#fff>
 Investment
 </a>
-</header>
-<h2 class=article-title>
+</header><h2 class=article-title>
 <a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/>股市技术分析利器之TA-Lib（二）</a>
-</h2>
-<footer class=article-time>
+</h2><footer class=article-time>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
 <time class=article-time--published>Dec 22, 2021</time>
-</div>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+</div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
 阅读时长: 5 分钟
 </time>
-</div>
-</footer>
-</div>
-</header>
-<section class=article-content>
+</div></footer></div></header><section class=article-content>
 <blockquote>
-<p>不进行研究的投资，就像打扑克从来不看牌一样，必然失败——彼得·林奇</p>
-</blockquote>
-<p><strong>引言</strong></p>
-<p><strong>TA-Lib</strong>，全称“Technical Analysis Library”, 即技术分析库，是Python金融量化的高级库，涵盖了150多种股票、期货交易软件中常用的技术分析指标，如MACD、RSI、KDJ、动量指标、布林带等等。TA-Lib可分为10个子板块：Overlap Studies(重叠指标)，Momentum Indicators(动量指标)，Volume Indicators(交易量指标)，Cycle Indicators(周期指标)，Price Transform(价格变换)，Volatility Indicators(波动率指标)，Pattern Recognition(模式识别)，Statistic Functions(统计函数)，Math Transform(数学变换)和Math Operators(数学运算)，见下图。<a class=link href=https://mp.weixin.qq.com/s/nLOCNim0XRjqs_2iLDMO8Q target=_blank rel=noopener>【手把手教你】股市技术分析利器之TA-Lib（一）</a>，主要探讨了重叠指标的相关原理与Python实现，本文将着重介绍TA-Lib中强大的数学运算、数学变换、统计函数、价格变换、周期指标和波动率指标函数及其应用实例。</p>
-<p><figure class=gallery-image style=flex-grow:302;flex-basis:725px>
+<p>不进行研究的投资，就像打扑克从来不看牌一样，必然失败——彼得·林奇</p></blockquote><p><strong>引言</strong></p><p><strong>TA-Lib</strong>，全称“Technical Analysis Library”, 即技术分析库，是Python金融量化的高级库，涵盖了150多种股票、期货交易软件中常用的技术分析指标，如MACD、RSI、KDJ、动量指标、布林带等等。TA-Lib可分为10个子板块：Overlap Studies(重叠指标)，Momentum Indicators(动量指标)，Volume Indicators(交易量指标)，Cycle Indicators(周期指标)，Price Transform(价格变换)，Volatility Indicators(波动率指标)，Pattern Recognition(模式识别)，Statistic Functions(统计函数)，Math Transform(数学变换)和Math Operators(数学运算)，见下图。<a class=link href=https://mp.weixin.qq.com/s/nLOCNim0XRjqs_2iLDMO8Q target=_blank rel=noopener>【手把手教你】股市技术分析利器之TA-Lib（一）</a>，主要探讨了重叠指标的相关原理与Python实现，本文将着重介绍TA-Lib中强大的数学运算、数学变换、统计函数、价格变换、周期指标和波动率指标函数及其应用实例。</p><p><figure class=gallery-image style=flex-grow:302;flex-basis:725px>
 <a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-a59efd9b4d4b6dcb2ccc4cc87c519550.jpg data-size=553x183>
 <img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-a59efd9b4d4b6dcb2ccc4cc87c519550.jpg width=553 height=183 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-a59efd9b4d4b6dcb2ccc4cc87c519550_huc3f56866a282fa70b3310a18ff4040eb_12189_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-a59efd9b4d4b6dcb2ccc4cc87c519550_huc3f56866a282fa70b3310a18ff4040eb_12189_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
 </a>
-</figure></p>
-<p><strong>安装与使用</strong></p>
-<p><strong>安装</strong>：在cmd上使用“pip install talib”命令一般会报错，正确安装方法是，进入<a class=link href=https://www.lfd.uci.edu/~gohlke/pythonlibs/ target=_blank rel=noopener>https://www.lfd.uci.edu/~gohlke/pythonlibs/</a>，下拉选择TA_Lib-0.4.17-cp37-cp37m-win_amd64.whl（win系统64位，python3.7版本，根据自己系统和python版本选择相应的安装包），将下载包放在当前工作路径中，然后在Anaconda Prompt（或windows的cmd）里面输入命令：pip install TA_Lib-0.4.17-cp27-cp27m-win_amd64.whl。</p>
-<p><strong>使用</strong>：import talib as ta</p>
-<h2 id=01-price-transform-价格转换>01 Price Transform 价格转换</h2>
-<p>TA-Lib模块中提供的价格转换函数有四个，主要用于计算开盘价、收盘价、最高价、最低价之间的均值，具体如下表所示。</p>
-<p><figure class=gallery-image style=flex-grow:394;flex-basis:946px>
+</figure></p><p><strong>安装与使用</strong></p><p><strong>安装</strong>：在cmd上使用“pip install talib”命令一般会报错，正确安装方法是，进入<a class=link href=https://www.lfd.uci.edu/~gohlke/pythonlibs/ target=_blank rel=noopener>https://www.lfd.uci.edu/~gohlke/pythonlibs/</a>，下拉选择TA_Lib-0.4.17-cp37-cp37m-win_amd64.whl（win系统64位，python3.7版本，根据自己系统和python版本选择相应的安装包），将下载包放在当前工作路径中，然后在Anaconda Prompt（或windows的cmd）里面输入命令：pip install TA_Lib-0.4.17-cp27-cp27m-win_amd64.whl。</p><p><strong>使用</strong>：import talib as ta</p><h2 id=01-price-transform-价格转换>01 Price Transform 价格转换</h2><p>TA-Lib模块中提供的价格转换函数有四个，主要用于计算开盘价、收盘价、最高价、最低价之间的均值，具体如下表所示。</p><p><figure class=gallery-image style=flex-grow:394;flex-basis:946px>
 <a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-6f5ab91131d96a07774a7f879cbec4b3.jpg data-size=998x253>
 <img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-6f5ab91131d96a07774a7f879cbec4b3.jpg width=998 height=253 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-6f5ab91131d96a07774a7f879cbec4b3_huca503a873f355fd25c7bcdff0e3f27b5_34252_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-6f5ab91131d96a07774a7f879cbec4b3_huca503a873f355fd25c7bcdff0e3f27b5_34252_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
 </a>
-</figure></p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=c1>#先引入后面可能用到的包（package）</span>
-
-<span class=kn>import</span> <span class=nn>pandas</span> <span class=k>as</span> <span class=nn>pd</span>  
-<span class=kn>import</span> <span class=nn>numpy</span> <span class=k>as</span> <span class=nn>np</span>
-<span class=kn>import</span> <span class=nn>matplotlib.pyplot</span> <span class=k>as</span> <span class=nn>plt</span>
-<span class=o>%</span><span class=n>matplotlib</span> <span class=n>inline</span>   
-
-<span class=c1>#正常显示画图时出现的中文和负号</span>
-<span class=kn>from</span> <span class=nn>pylab</span> <span class=kn>import</span> <span class=n>mpl</span>
-<span class=n>mpl</span><span class=o>.</span><span class=n>rcParams</span><span class=p>[</span><span class=s1>&#39;font.sans-serif&#39;</span><span class=p>]</span><span class=o>=</span><span class=p>[</span><span class=s1>&#39;SimHei&#39;</span><span class=p>]</span>
-<span class=n>mpl</span><span class=o>.</span><span class=n>rcParams</span><span class=p>[</span><span class=s1>&#39;axes.unicode_minus&#39;</span><span class=p>]</span><span class=o>=</span><span class=kc>False</span>
-
-<span class=c1>#引入TA-Lib库</span>
-<span class=kn>import</span> <span class=nn>talib</span> <span class=k>as</span> <span class=nn>ta</span>
-
-<span class=c1>#获取交易数据用于示例分析</span>
-<span class=kn>import</span> <span class=nn>tushare</span> <span class=k>as</span> <span class=nn>ts</span>
-<span class=k>def</span> <span class=nf>get_data</span><span class=p>(</span><span class=n>code</span><span class=p>,</span><span class=n>start</span><span class=o>=</span><span class=s1>&#39;2015-01-01&#39;</span><span class=p>):</span>
-    <span class=n>df</span><span class=o>=</span><span class=n>ts</span><span class=o>.</span><span class=n>get_k_data</span><span class=p>(</span><span class=n>code</span><span class=p>,</span><span class=n>start</span><span class=p>)</span>
-    <span class=n>df</span><span class=o>.</span><span class=n>index</span><span class=o>=</span><span class=n>pd</span><span class=o>.</span><span class=n>to_datetime</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>date</span><span class=p>)</span>
-    <span class=n>df</span><span class=o>=</span><span class=n>df</span><span class=o>.</span><span class=n>sort_index</span><span class=p>()</span>
-    <span class=k>return</span> <span class=n>df</span>
-
-<span class=c1>#获取上证指数收盘价、最高、最低价格</span>
-<span class=n>df</span><span class=o>=</span><span class=n>get_data</span><span class=p>(</span><span class=s1>&#39;sh&#39;</span><span class=p>)[[</span><span class=s1>&#39;open&#39;</span><span class=p>,</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;high&#39;</span><span class=p>,</span><span class=s1>&#39;low&#39;</span><span class=p>]]</span>
-
-<span class=c1>#开盘价，最高价，最低价，收盘价的均值</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;average&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>AVGPRICE</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>open</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
-<span class=c1>#最高价，最低价的均值</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;median&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>MEDPRICE</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>)</span>
-<span class=c1>#最高价，最低价，收盘价的均值</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;typical&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>TYPPRICE</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
-<span class=c1>#最高价，最低价，收盘价的加权</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;weight&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>WCLPRICE</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
-<span class=n>df</span><span class=o>.</span><span class=n>head</span><span class=p>()</span>
-
-<span class=n>df</span><span class=o>.</span><span class=n>loc</span><span class=p>[</span><span class=s1>&#39;2019-01-08&#39;</span><span class=p>:,[</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;average&#39;</span><span class=p>,</span><span class=s1>&#39;median&#39;</span><span class=p>,</span><span class=s1>&#39;typical&#39;</span><span class=p>,</span><span class=s1>&#39;weight&#39;</span><span class=p>]]</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>12</span><span class=p>,</span><span class=mi>6</span><span class=p>))</span>
-<span class=n>ax</span> <span class=o>=</span> <span class=n>plt</span><span class=o>.</span><span class=n>gca</span><span class=p>()</span>  
-<span class=n>ax</span><span class=o>.</span><span class=n>spines</span><span class=p>[</span><span class=s1>&#39;right&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>set_color</span><span class=p>(</span><span class=s1>&#39;none&#39;</span><span class=p>)</span> 
-<span class=n>ax</span><span class=o>.</span><span class=n>spines</span><span class=p>[</span><span class=s1>&#39;top&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>set_color</span><span class=p>(</span><span class=s1>&#39;none&#39;</span><span class=p>)</span>   
-<span class=n>plt</span><span class=o>.</span><span class=n>title</span><span class=p>(</span><span class=s1>&#39;上证指数及其价格转换&#39;</span><span class=p>,</span><span class=n>fontsize</span><span class=o>=</span><span class=mi>15</span><span class=p>)</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>xlabel</span><span class=p>(</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>show</span><span class=p>()</span>
-</code></pre></div><p><figure class=gallery-image style=flex-grow:195;flex-basis:469px>
+</figure></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1>#先引入后面可能用到的包（package）</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>pandas</span> <span class=k>as</span> <span class=nn>pd</span>  
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>numpy</span> <span class=k>as</span> <span class=nn>np</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>matplotlib.pyplot</span> <span class=k>as</span> <span class=nn>plt</span>
+</span></span><span class=line><span class=cl><span class=o>%</span><span class=n>matplotlib</span> <span class=n>inline</span>   
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#正常显示画图时出现的中文和负号</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>pylab</span> <span class=kn>import</span> <span class=n>mpl</span>
+</span></span><span class=line><span class=cl><span class=n>mpl</span><span class=o>.</span><span class=n>rcParams</span><span class=p>[</span><span class=s1>&#39;font.sans-serif&#39;</span><span class=p>]</span><span class=o>=</span><span class=p>[</span><span class=s1>&#39;SimHei&#39;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=n>mpl</span><span class=o>.</span><span class=n>rcParams</span><span class=p>[</span><span class=s1>&#39;axes.unicode_minus&#39;</span><span class=p>]</span><span class=o>=</span><span class=kc>False</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#引入TA-Lib库</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>talib</span> <span class=k>as</span> <span class=nn>ta</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#获取交易数据用于示例分析</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>tushare</span> <span class=k>as</span> <span class=nn>ts</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>get_data</span><span class=p>(</span><span class=n>code</span><span class=p>,</span><span class=n>start</span><span class=o>=</span><span class=s1>&#39;2015-01-01&#39;</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>df</span><span class=o>=</span><span class=n>ts</span><span class=o>.</span><span class=n>get_k_data</span><span class=p>(</span><span class=n>code</span><span class=p>,</span><span class=n>start</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>df</span><span class=o>.</span><span class=n>index</span><span class=o>=</span><span class=n>pd</span><span class=o>.</span><span class=n>to_datetime</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>date</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>df</span><span class=o>=</span><span class=n>df</span><span class=o>.</span><span class=n>sort_index</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>df</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#获取上证指数收盘价、最高、最低价格</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=o>=</span><span class=n>get_data</span><span class=p>(</span><span class=s1>&#39;sh&#39;</span><span class=p>)[[</span><span class=s1>&#39;open&#39;</span><span class=p>,</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;high&#39;</span><span class=p>,</span><span class=s1>&#39;low&#39;</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#开盘价，最高价，最低价，收盘价的均值</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;average&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>AVGPRICE</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>open</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1>#最高价，最低价的均值</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;median&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>MEDPRICE</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1>#最高价，最低价，收盘价的均值</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;typical&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>TYPPRICE</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1>#最高价，最低价，收盘价的加权</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;weight&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>WCLPRICE</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=o>.</span><span class=n>head</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=o>.</span><span class=n>loc</span><span class=p>[</span><span class=s1>&#39;2019-01-08&#39;</span><span class=p>:,[</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;average&#39;</span><span class=p>,</span><span class=s1>&#39;median&#39;</span><span class=p>,</span><span class=s1>&#39;typical&#39;</span><span class=p>,</span><span class=s1>&#39;weight&#39;</span><span class=p>]]</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>12</span><span class=p>,</span><span class=mi>6</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=n>ax</span> <span class=o>=</span> <span class=n>plt</span><span class=o>.</span><span class=n>gca</span><span class=p>()</span>  
+</span></span><span class=line><span class=cl><span class=n>ax</span><span class=o>.</span><span class=n>spines</span><span class=p>[</span><span class=s1>&#39;right&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>set_color</span><span class=p>(</span><span class=s1>&#39;none&#39;</span><span class=p>)</span> 
+</span></span><span class=line><span class=cl><span class=n>ax</span><span class=o>.</span><span class=n>spines</span><span class=p>[</span><span class=s1>&#39;top&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>set_color</span><span class=p>(</span><span class=s1>&#39;none&#39;</span><span class=p>)</span>   
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>title</span><span class=p>(</span><span class=s1>&#39;上证指数及其价格转换&#39;</span><span class=p>,</span><span class=n>fontsize</span><span class=o>=</span><span class=mi>15</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>xlabel</span><span class=p>(</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>show</span><span class=p>()</span>
+</span></span></code></pre></div><p><figure class=gallery-image style=flex-grow:195;flex-basis:469px>
 <a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-e58cec635b814c1b6e215df67701a243.jpg data-size=714x365>
 <img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-e58cec635b814c1b6e215df67701a243.jpg width=714 height=365 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-e58cec635b814c1b6e215df67701a243_huf2f964c5eeb4b43de445c0ecfd9b08c8_12949_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-e58cec635b814c1b6e215df67701a243_huf2f964c5eeb4b43de445c0ecfd9b08c8_12949_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
 </a>
-</figure></p>
-<h2 id=02-cycle-indicator-functions周期指标函数>02 Cycle Indicator Functions周期指标函数</h2>
-<p><strong>希尔伯特变换</strong>(Hilbert Transform)是积分变换中的一种，在信号处理领域得到了广泛的应用，而在工程中常用于窄带数字信号的处理。金融市场的波动是非周期、不规律的，但只要存在波动，就可以通过希尔伯特变换寻找其“周期性”。对于股价走势，一般可将其分解为：长期趋势、中短期周期性波动和噪声。在去除长期趋势的情况下，可以利用希尔伯特变换对中短期的周期性波动进行分析。关于希尔伯特变换原理及其在短线择时中的应用可参考广发证券金融工程专题报告《希尔伯特变换下的短线择时策略》（公众号<strong>Python金融量化</strong>后台回复：“<strong>希尔伯特</strong>”，获取免费下载地址）</p>
-<p><figure class=gallery-image style=flex-grow:171;flex-basis:412px>
+</figure></p><h2 id=02-cycle-indicator-functions周期指标函数>02 Cycle Indicator Functions周期指标函数</h2><p><strong>希尔伯特变换</strong>(Hilbert Transform)是积分变换中的一种，在信号处理领域得到了广泛的应用，而在工程中常用于窄带数字信号的处理。金融市场的波动是非周期、不规律的，但只要存在波动，就可以通过希尔伯特变换寻找其“周期性”。对于股价走势，一般可将其分解为：长期趋势、中短期周期性波动和噪声。在去除长期趋势的情况下，可以利用希尔伯特变换对中短期的周期性波动进行分析。关于希尔伯特变换原理及其在短线择时中的应用可参考广发证券金融工程专题报告《希尔伯特变换下的短线择时策略》（公众号<strong>Python金融量化</strong>后台回复：“<strong>希尔伯特</strong>”，获取免费下载地址）</p><p><figure class=gallery-image style=flex-grow:171;flex-basis:412px>
 <a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-14a85b10f327398b521f3d445db97c4a.jpg data-size=963x560>
 <img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-14a85b10f327398b521f3d445db97c4a.jpg width=963 height=560 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-14a85b10f327398b521f3d445db97c4a_hu63725502a1b917c2b2def480be90a144_63662_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-14a85b10f327398b521f3d445db97c4a_hu63725502a1b917c2b2def480be90a144_63662_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
 </a>
-</figure></p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>df</span><span class=o>=</span><span class=n>get_data</span><span class=p>(</span><span class=s1>&#39;sh&#39;</span><span class=p>)[[</span><span class=s1>&#39;open&#39;</span><span class=p>,</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;high&#39;</span><span class=p>,</span><span class=s1>&#39;low&#39;</span><span class=p>]]</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;dcperiod&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>HT_DCPERIOD</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;dcphase&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>HT_DCPHASE</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;inhpase&#39;</span><span class=p>],</span><span class=n>df</span><span class=p>[</span><span class=s1>&#39;quadrature&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>HT_PHASOR</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;sine&#39;</span><span class=p>],</span><span class=n>df</span><span class=p>[</span><span class=s1>&#39;leadsine&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>sine</span><span class=p>,</span> <span class=n>leadsine</span> <span class=o>=</span> <span class=n>ta</span><span class=o>.</span><span class=n>HT_SINE</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;trendmode&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>HT_TRENDMODE</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
-
-<span class=c1>#将上述函数计算得到的结果进行可视化</span>
-<span class=n>df</span><span class=p>[[</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;dcperiod&#39;</span><span class=p>,</span><span class=s1>&#39;dcphase&#39;</span><span class=p>,</span><span class=s1>&#39;inhpase&#39;</span><span class=p>,</span><span class=s1>&#39;quadrature&#39;</span><span class=p>,</span><span class=s1>&#39;sine&#39;</span><span class=p>,</span><span class=s1>&#39;leadsine&#39;</span><span class=p>,</span><span class=s1>&#39;trendmode&#39;</span><span class=p>]]</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>20</span><span class=p>,</span><span class=mi>18</span><span class=p>),</span>
-       <span class=n>subplots</span> <span class=o>=</span> <span class=kc>True</span><span class=p>,</span><span class=n>layout</span><span class=o>=</span><span class=p>(</span><span class=mi>4</span><span class=p>,</span> <span class=mi>2</span><span class=p>))</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>subplots_adjust</span><span class=p>(</span><span class=n>wspace</span><span class=o>=</span><span class=mi>0</span><span class=p>,</span><span class=n>hspace</span><span class=o>=</span><span class=mf>0.2</span><span class=p>)</span>
-</code></pre></div><p>上证指数走势及其周期变换</p>
-<p><figure class=gallery-image style=flex-grow:123;flex-basis:297px>
+</figure></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>df</span><span class=o>=</span><span class=n>get_data</span><span class=p>(</span><span class=s1>&#39;sh&#39;</span><span class=p>)[[</span><span class=s1>&#39;open&#39;</span><span class=p>,</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;high&#39;</span><span class=p>,</span><span class=s1>&#39;low&#39;</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;dcperiod&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>HT_DCPERIOD</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;dcphase&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>HT_DCPHASE</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;inhpase&#39;</span><span class=p>],</span><span class=n>df</span><span class=p>[</span><span class=s1>&#39;quadrature&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>HT_PHASOR</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;sine&#39;</span><span class=p>],</span><span class=n>df</span><span class=p>[</span><span class=s1>&#39;leadsine&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>sine</span><span class=p>,</span> <span class=n>leadsine</span> <span class=o>=</span> <span class=n>ta</span><span class=o>.</span><span class=n>HT_SINE</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;trendmode&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>HT_TRENDMODE</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#将上述函数计算得到的结果进行可视化</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[[</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;dcperiod&#39;</span><span class=p>,</span><span class=s1>&#39;dcphase&#39;</span><span class=p>,</span><span class=s1>&#39;inhpase&#39;</span><span class=p>,</span><span class=s1>&#39;quadrature&#39;</span><span class=p>,</span><span class=s1>&#39;sine&#39;</span><span class=p>,</span><span class=s1>&#39;leadsine&#39;</span><span class=p>,</span><span class=s1>&#39;trendmode&#39;</span><span class=p>]]</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>20</span><span class=p>,</span><span class=mi>18</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>       <span class=n>subplots</span> <span class=o>=</span> <span class=kc>True</span><span class=p>,</span><span class=n>layout</span><span class=o>=</span><span class=p>(</span><span class=mi>4</span><span class=p>,</span> <span class=mi>2</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>subplots_adjust</span><span class=p>(</span><span class=n>wspace</span><span class=o>=</span><span class=mi>0</span><span class=p>,</span><span class=n>hspace</span><span class=o>=</span><span class=mf>0.2</span><span class=p>)</span>
+</span></span></code></pre></div><p>上证指数走势及其周期变换</p><p><figure class=gallery-image style=flex-grow:123;flex-basis:297px>
 <a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-0e49cb3b01f8518fe4c5cf1120c6786d.jpg data-size=1166x942>
 <img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-0e49cb3b01f8518fe4c5cf1120c6786d.jpg width=1166 height=942 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-0e49cb3b01f8518fe4c5cf1120c6786d_hue1dcbd6e02aba3c4bcc2c34ac32e8d5c_104280_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-0e49cb3b01f8518fe4c5cf1120c6786d_hue1dcbd6e02aba3c4bcc2c34ac32e8d5c_104280_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
 </a>
-</figure></p>
-<h2 id=03-volatility-indicator-functions-波动率指标函数>03 Volatility Indicator Functions 波动率指标函数</h2>
-<p>当前交易日最高价与最低价差值，前一交易日收盘价与当前交易日最高价间的差值，前一交易日收盘价与当前交易日最低价的差值，这三者中的最大值为真实波幅。即真实波动幅度 = max(最大值,昨日收盘价) − min(最小值,昨日收盘价)，平均真实波动幅度等于真实波动幅度的N日指数移动平均数。波动幅度可以显示出<strong>交易者的期望和热情</strong>。波动幅度的急剧增加表示交易者在当天可能准备持续买进或卖出股票，波动幅度的减少则表示交易者对股市没有太大的兴趣。波动率指标可用于衡量价格的波动情况，辅助判断趋势改变的可能性，市场的交易氛围，也可以利用波动性指标来帮助<strong>止损止盈</strong>。</p>
-<p><figure class=gallery-image style=flex-grow:304;flex-basis:730px>
+</figure></p><h2 id=03-volatility-indicator-functions-波动率指标函数>03 Volatility Indicator Functions 波动率指标函数</h2><p>当前交易日最高价与最低价差值，前一交易日收盘价与当前交易日最高价间的差值，前一交易日收盘价与当前交易日最低价的差值，这三者中的最大值为真实波幅。即真实波动幅度 = max(最大值,昨日收盘价) − min(最小值,昨日收盘价)，平均真实波动幅度等于真实波动幅度的N日指数移动平均数。波动幅度可以显示出<strong>交易者的期望和热情</strong>。波动幅度的急剧增加表示交易者在当天可能准备持续买进或卖出股票，波动幅度的减少则表示交易者对股市没有太大的兴趣。波动率指标可用于衡量价格的波动情况，辅助判断趋势改变的可能性，市场的交易氛围，也可以利用波动性指标来帮助<strong>止损止盈</strong>。</p><p><figure class=gallery-image style=flex-grow:304;flex-basis:730px>
 <a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-10ea8af5080f8c0a1c45301f89c87a7e.jpg data-size=968x318>
 <img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-10ea8af5080f8c0a1c45301f89c87a7e.jpg width=968 height=318 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-10ea8af5080f8c0a1c45301f89c87a7e_hua29f4505ec91e73073a1c13a83d446f6_31055_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-10ea8af5080f8c0a1c45301f89c87a7e_hua29f4505ec91e73073a1c13a83d446f6_31055_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
 </a>
-</figure></p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>df</span><span class=o>=</span><span class=n>get_data</span><span class=p>(</span><span class=s1>&#39;sh&#39;</span><span class=p>)[[</span><span class=s1>&#39;open&#39;</span><span class=p>,</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;high&#39;</span><span class=p>,</span><span class=s1>&#39;low&#39;</span><span class=p>]]</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;atr&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>ATR</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span> <span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>,</span> <span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>,</span> <span class=n>timeperiod</span><span class=o>=</span><span class=mi>14</span><span class=p>)</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;natr&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>NATR</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span> <span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>,</span> <span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>,</span> <span class=n>timeperiod</span><span class=o>=</span><span class=mi>14</span><span class=p>)</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;trange&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>TRANGE</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span> <span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>,</span> <span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
-<span class=n>df</span><span class=o>.</span><span class=n>tail</span><span class=p>()</span>
-</code></pre></div><p>上证指数走势及波动率指标</p>
-<p><figure class=gallery-image style=flex-grow:231;flex-basis:555px>
+</figure></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>df</span><span class=o>=</span><span class=n>get_data</span><span class=p>(</span><span class=s1>&#39;sh&#39;</span><span class=p>)[[</span><span class=s1>&#39;open&#39;</span><span class=p>,</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;high&#39;</span><span class=p>,</span><span class=s1>&#39;low&#39;</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;atr&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>ATR</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span> <span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>,</span> <span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>,</span> <span class=n>timeperiod</span><span class=o>=</span><span class=mi>14</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;natr&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>NATR</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span> <span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>,</span> <span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>,</span> <span class=n>timeperiod</span><span class=o>=</span><span class=mi>14</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;trange&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>TRANGE</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span> <span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>,</span> <span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=o>.</span><span class=n>tail</span><span class=p>()</span>
+</span></span></code></pre></div><p>上证指数走势及波动率指标</p><p><figure class=gallery-image style=flex-grow:231;flex-basis:555px>
 <a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-2d123dc0741f39aabeb1189c535bf7ba.jpg data-size=1049x453>
 <img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-2d123dc0741f39aabeb1189c535bf7ba.jpg width=1049 height=453 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-2d123dc0741f39aabeb1189c535bf7ba_huc158b6cf0e78c3ab5b156dba772f5078_34132_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-2d123dc0741f39aabeb1189c535bf7ba_huc158b6cf0e78c3ab5b156dba772f5078_34132_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
 </a>
-</figure></p>
-<h2 id=04-math-operator-functions数学运算>04 Math Operator Functions数学运算</h2>
-<p>TA-Lib提供了向量（数组）的加减乘除、在某个周期内求和、最大最小值及其索引等计算函数，注意与Numpy和Pandas数学运算函数的联系与区别，TA-Lib的向量计算功能类似于pandas的moving window（移动窗口），得到的是一个新的序列（不是某个值），具体如下表所示。</p>
-<p><figure class=gallery-image style=flex-grow:101;flex-basis:243px>
+</figure></p><h2 id=04-math-operator-functions数学运算>04 Math Operator Functions数学运算</h2><p>TA-Lib提供了向量（数组）的加减乘除、在某个周期内求和、最大最小值及其索引等计算函数，注意与Numpy和Pandas数学运算函数的联系与区别，TA-Lib的向量计算功能类似于pandas的moving window（移动窗口），得到的是一个新的序列（不是某个值），具体如下表所示。</p><p><figure class=gallery-image style=flex-grow:101;flex-basis:243px>
 <a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-9ff1e85a45187b9930c096fdd40d5a85.jpg data-size=728x719>
 <img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-9ff1e85a45187b9930c096fdd40d5a85.jpg width=728 height=719 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-9ff1e85a45187b9930c096fdd40d5a85_hudee55b142acc86f0377c944a70310089_69890_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-9ff1e85a45187b9930c096fdd40d5a85_hudee55b142acc86f0377c944a70310089_69890_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
 </a>
-</figure></p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>df</span><span class=o>=</span><span class=n>get_data</span><span class=p>(</span><span class=s1>&#39;sh&#39;</span><span class=p>)[[</span><span class=s1>&#39;open&#39;</span><span class=p>,</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;high&#39;</span><span class=p>,</span><span class=s1>&#39;low&#39;</span><span class=p>]]</span>
-<span class=c1>#最高价与最低价之和</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;add&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>ADD</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>)</span>
-<span class=c1>#最高价与最低价之差</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;sub&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>SUB</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>)</span>
-<span class=c1>#最高价与最低价之乘</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;mult&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>MULT</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>)</span>
-<span class=c1>#最高价与最低价之除</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;div&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>DIV</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>)</span>
-<span class=c1>#收盘价的每30日移动求和</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;sum&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>SUM</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>,</span> <span class=n>timeperiod</span><span class=o>=</span><span class=mi>30</span><span class=p>)</span>
-<span class=c1>#收盘价的每30日内的最大最小值</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;min&#39;</span><span class=p>],</span> <span class=n>df</span><span class=p>[</span><span class=s1>&#39;max&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=n>ta</span><span class=o>.</span><span class=n>MINMAX</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>,</span> <span class=n>timeperiod</span><span class=o>=</span><span class=mi>30</span><span class=p>)</span>
-<span class=c1>#收盘价的每30日内的最大最小值对应的索引值（第N行）</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;minidx&#39;</span><span class=p>],</span> <span class=n>df</span><span class=p>[</span><span class=s1>&#39;maxidx&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=n>ta</span><span class=o>.</span><span class=n>MINMAXINDEX</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>,</span> <span class=n>timeperiod</span><span class=o>=</span><span class=mi>30</span><span class=p>)</span>
-<span class=n>df</span><span class=o>.</span><span class=n>tail</span><span class=p>()</span>
-
-<span class=c1>#将上述函数计算得到的结果进行可视化</span>
-<span class=n>df</span><span class=p>[[</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;add&#39;</span><span class=p>,</span><span class=s1>&#39;sub&#39;</span><span class=p>,</span><span class=s1>&#39;mult&#39;</span><span class=p>,</span><span class=s1>&#39;div&#39;</span><span class=p>,</span><span class=s1>&#39;sum&#39;</span><span class=p>,</span><span class=s1>&#39;min&#39;</span><span class=p>,</span><span class=s1>&#39;max&#39;</span><span class=p>]]</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>20</span><span class=p>,</span><span class=mi>18</span><span class=p>),</span>
-       <span class=n>subplots</span> <span class=o>=</span> <span class=kc>True</span><span class=p>,</span>
-       <span class=n>layout</span><span class=o>=</span><span class=p>(</span><span class=mi>4</span><span class=p>,</span> <span class=mi>2</span><span class=p>))</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>subplots_adjust</span><span class=p>(</span><span class=n>wspace</span><span class=o>=</span><span class=mi>0</span><span class=p>,</span><span class=n>hspace</span><span class=o>=</span><span class=mf>0.2</span><span class=p>)</span>
-</code></pre></div><p>上证指数走势及数学运算</p>
-<p><figure class=gallery-image style=flex-grow:123;flex-basis:295px>
+</figure></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>df</span><span class=o>=</span><span class=n>get_data</span><span class=p>(</span><span class=s1>&#39;sh&#39;</span><span class=p>)[[</span><span class=s1>&#39;open&#39;</span><span class=p>,</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;high&#39;</span><span class=p>,</span><span class=s1>&#39;low&#39;</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl><span class=c1>#最高价与最低价之和</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;add&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>ADD</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1>#最高价与最低价之差</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;sub&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>SUB</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1>#最高价与最低价之乘</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;mult&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>MULT</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1>#最高价与最低价之除</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;div&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>DIV</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1>#收盘价的每30日移动求和</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;sum&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>SUM</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>,</span> <span class=n>timeperiod</span><span class=o>=</span><span class=mi>30</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1>#收盘价的每30日内的最大最小值</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;min&#39;</span><span class=p>],</span> <span class=n>df</span><span class=p>[</span><span class=s1>&#39;max&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=n>ta</span><span class=o>.</span><span class=n>MINMAX</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>,</span> <span class=n>timeperiod</span><span class=o>=</span><span class=mi>30</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1>#收盘价的每30日内的最大最小值对应的索引值（第N行）</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;minidx&#39;</span><span class=p>],</span> <span class=n>df</span><span class=p>[</span><span class=s1>&#39;maxidx&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=n>ta</span><span class=o>.</span><span class=n>MINMAXINDEX</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>,</span> <span class=n>timeperiod</span><span class=o>=</span><span class=mi>30</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=o>.</span><span class=n>tail</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#将上述函数计算得到的结果进行可视化</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[[</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;add&#39;</span><span class=p>,</span><span class=s1>&#39;sub&#39;</span><span class=p>,</span><span class=s1>&#39;mult&#39;</span><span class=p>,</span><span class=s1>&#39;div&#39;</span><span class=p>,</span><span class=s1>&#39;sum&#39;</span><span class=p>,</span><span class=s1>&#39;min&#39;</span><span class=p>,</span><span class=s1>&#39;max&#39;</span><span class=p>]]</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>20</span><span class=p>,</span><span class=mi>18</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>       <span class=n>subplots</span> <span class=o>=</span> <span class=kc>True</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>       <span class=n>layout</span><span class=o>=</span><span class=p>(</span><span class=mi>4</span><span class=p>,</span> <span class=mi>2</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>subplots_adjust</span><span class=p>(</span><span class=n>wspace</span><span class=o>=</span><span class=mi>0</span><span class=p>,</span><span class=n>hspace</span><span class=o>=</span><span class=mf>0.2</span><span class=p>)</span>
+</span></span></code></pre></div><p>上证指数走势及数学运算</p><p><figure class=gallery-image style=flex-grow:123;flex-basis:295px>
 <a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-ce9df6bc4a3197eb8f5d9c671428bc48.jpg data-size=1161x942>
 <img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-ce9df6bc4a3197eb8f5d9c671428bc48.jpg width=1161 height=942 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-ce9df6bc4a3197eb8f5d9c671428bc48_hu8c05ca893a8cd329bcd7beea0fa3196d_65702_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-ce9df6bc4a3197eb8f5d9c671428bc48_hu8c05ca893a8cd329bcd7beea0fa3196d_65702_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
 </a>
-</figure></p>
-<h2 id=05-statistic-functions-统计学函数>05 Statistic Functions 统计学函数</h2>
-<p>TA-Lib提供了常用的基础统计学函数，基于时间序列移动窗口进行计算。注意TA-Lib的beta，示例中是求某只股票的最高价与最低价序列的移动beta值，默认时间周期为5日，而资本资产定价中一般是分析某只股票相对于市场（大盘指数）的波动情况。具体指标如下表所示。</p>
-<p><figure class=gallery-image style=flex-grow:105;flex-basis:253px>
+</figure></p><h2 id=05-statistic-functions-统计学函数>05 Statistic Functions 统计学函数</h2><p>TA-Lib提供了常用的基础统计学函数，基于时间序列移动窗口进行计算。注意TA-Lib的beta，示例中是求某只股票的最高价与最低价序列的移动beta值，默认时间周期为5日，而资本资产定价中一般是分析某只股票相对于市场（大盘指数）的波动情况。具体指标如下表所示。</p><p><figure class=gallery-image style=flex-grow:105;flex-basis:253px>
 <a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-c19a40b6ff6b675627bf6948968be8dd.jpg data-size=729x691>
 <img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-c19a40b6ff6b675627bf6948968be8dd.jpg width=729 height=691 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-c19a40b6ff6b675627bf6948968be8dd_hu818aebeb29ed6993df0e2327ef88cfb1_69424_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-c19a40b6ff6b675627bf6948968be8dd_hu818aebeb29ed6993df0e2327ef88cfb1_69424_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
 </a>
-</figure></p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>df</span><span class=o>=</span><span class=n>get_data</span><span class=p>(</span><span class=s1>&#39;sh&#39;</span><span class=p>)[[</span><span class=s1>&#39;open&#39;</span><span class=p>,</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;high&#39;</span><span class=p>,</span><span class=s1>&#39;low&#39;</span><span class=p>]]</span>
-<span class=c1>#收盘价对时间t的线性回归预测值</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;linearreg&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>LINEARREG</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>,</span> <span class=n>timeperiod</span><span class=o>=</span><span class=mi>14</span><span class=p>)</span>
-<span class=c1>#时间序列预测值</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;tsf&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>TSF</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>,</span> <span class=n>timeperiod</span><span class=o>=</span><span class=mi>14</span><span class=p>)</span>
-<span class=c1>#画图</span>
-<span class=n>df</span><span class=o>.</span><span class=n>loc</span><span class=p>[</span><span class=s1>&#39;2018-08-01&#39;</span><span class=p>:,[</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;linearreg&#39;</span><span class=p>,</span><span class=s1>&#39;tsf&#39;</span><span class=p>]]</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>12</span><span class=p>,</span><span class=mi>6</span><span class=p>))</span>
-</code></pre></div><p><figure class=gallery-image style=flex-grow:200;flex-basis:480px>
+</figure></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>df</span><span class=o>=</span><span class=n>get_data</span><span class=p>(</span><span class=s1>&#39;sh&#39;</span><span class=p>)[[</span><span class=s1>&#39;open&#39;</span><span class=p>,</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;high&#39;</span><span class=p>,</span><span class=s1>&#39;low&#39;</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl><span class=c1>#收盘价对时间t的线性回归预测值</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;linearreg&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>LINEARREG</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>,</span> <span class=n>timeperiod</span><span class=o>=</span><span class=mi>14</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1>#时间序列预测值</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;tsf&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>TSF</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>,</span> <span class=n>timeperiod</span><span class=o>=</span><span class=mi>14</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1>#画图</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=o>.</span><span class=n>loc</span><span class=p>[</span><span class=s1>&#39;2018-08-01&#39;</span><span class=p>:,[</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;linearreg&#39;</span><span class=p>,</span><span class=s1>&#39;tsf&#39;</span><span class=p>]]</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>12</span><span class=p>,</span><span class=mi>6</span><span class=p>))</span>
+</span></span></code></pre></div><p><figure class=gallery-image style=flex-grow:200;flex-basis:480px>
 <a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-e5c1d880bc1b1bd6133a4305c2c22a6d.jpg data-size=714x357>
 <img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-e5c1d880bc1b1bd6133a4305c2c22a6d.jpg width=714 height=357 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-e5c1d880bc1b1bd6133a4305c2c22a6d_huf269c2b8f8da5598630bb926bf44be2e_15310_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-e5c1d880bc1b1bd6133a4305c2c22a6d_huf269c2b8f8da5598630bb926bf44be2e_15310_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
 </a>
-</figure></p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>df</span><span class=p>[</span><span class=s1>&#39;beta&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>BETA</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>,</span><span class=n>timeperiod</span><span class=o>=</span><span class=mi>5</span><span class=p>)</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;correl&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>CORREL</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span> <span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>,</span> <span class=n>timeperiod</span><span class=o>=</span><span class=mi>30</span><span class=p>)</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;stdev&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>STDDEV</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>,</span> <span class=n>timeperiod</span><span class=o>=</span><span class=mi>5</span><span class=p>,</span> <span class=n>nbdev</span><span class=o>=</span><span class=mi>1</span><span class=p>)</span>
-<span class=c1>#将上述函数计算得到的结果进行可视化</span>
-<span class=n>df</span><span class=p>[[</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;beta&#39;</span><span class=p>,</span><span class=s1>&#39;correl&#39;</span><span class=p>,</span><span class=s1>&#39;stdev&#39;</span><span class=p>]]</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>18</span><span class=p>,</span><span class=mi>8</span><span class=p>),</span>
-       <span class=n>subplots</span> <span class=o>=</span> <span class=kc>True</span><span class=p>,</span><span class=n>layout</span><span class=o>=</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=mi>2</span><span class=p>))</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>subplots_adjust</span><span class=p>(</span><span class=n>wspace</span><span class=o>=</span><span class=mi>0</span><span class=p>,</span><span class=n>hspace</span><span class=o>=</span><span class=mf>0.2</span><span class=p>)</span>
-</code></pre></div><p><figure class=gallery-image style=flex-grow:231;flex-basis:555px>
+</figure></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;beta&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>BETA</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span><span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>,</span><span class=n>timeperiod</span><span class=o>=</span><span class=mi>5</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;correl&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>CORREL</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>high</span><span class=p>,</span> <span class=n>df</span><span class=o>.</span><span class=n>low</span><span class=p>,</span> <span class=n>timeperiod</span><span class=o>=</span><span class=mi>30</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;stdev&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>STDDEV</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>,</span> <span class=n>timeperiod</span><span class=o>=</span><span class=mi>5</span><span class=p>,</span> <span class=n>nbdev</span><span class=o>=</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1>#将上述函数计算得到的结果进行可视化</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[[</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;beta&#39;</span><span class=p>,</span><span class=s1>&#39;correl&#39;</span><span class=p>,</span><span class=s1>&#39;stdev&#39;</span><span class=p>]]</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>18</span><span class=p>,</span><span class=mi>8</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>       <span class=n>subplots</span> <span class=o>=</span> <span class=kc>True</span><span class=p>,</span><span class=n>layout</span><span class=o>=</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=mi>2</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>subplots_adjust</span><span class=p>(</span><span class=n>wspace</span><span class=o>=</span><span class=mi>0</span><span class=p>,</span><span class=n>hspace</span><span class=o>=</span><span class=mf>0.2</span><span class=p>)</span>
+</span></span></code></pre></div><p><figure class=gallery-image style=flex-grow:231;flex-basis:555px>
 <a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-8ad38c733963dec20b875bc6fa02ed59.jpg data-size=1049x453>
 <img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-8ad38c733963dec20b875bc6fa02ed59.jpg width=1049 height=453 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-8ad38c733963dec20b875bc6fa02ed59_hu974a9cb696be543e5f0b7cc539a093d0_41295_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-8ad38c733963dec20b875bc6fa02ed59_hu974a9cb696be543e5f0b7cc539a093d0_41295_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
 </a>
-</figure></p>
-<h2 id=06-math-transform-functions数学转换函数>06 Math Transform Functions数学转换函数</h2>
-<p>TA-Lib提供了三角函数（正余弦、正余切、双曲）、取整、对数、平方根等数学转换函数，均是基于时间序列的向量变换。三角函数的应用比较复杂，可结合傅里叶变换和小波分析进行学习，此处不再详细展开。具体指标如下表所示。</p>
-<p><figure class=gallery-image style=flex-grow:159;flex-basis:383px>
+</figure></p><h2 id=06-math-transform-functions数学转换函数>06 Math Transform Functions数学转换函数</h2><p>TA-Lib提供了三角函数（正余弦、正余切、双曲）、取整、对数、平方根等数学转换函数，均是基于时间序列的向量变换。三角函数的应用比较复杂，可结合傅里叶变换和小波分析进行学习，此处不再详细展开。具体指标如下表所示。</p><p><figure class=gallery-image style=flex-grow:159;flex-basis:383px>
 <a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-d18ff3ff239472c996020e800478b619.jpg data-size=723x453>
 <img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-d18ff3ff239472c996020e800478b619.jpg width=723 height=453 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-d18ff3ff239472c996020e800478b619_hu52d3424780308e3af18d669b3c51ecf0_60876_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-d18ff3ff239472c996020e800478b619_hu52d3424780308e3af18d669b3c51ecf0_60876_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
 </a>
-</figure></p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>df</span><span class=o>=</span><span class=n>get_data</span><span class=p>(</span><span class=s1>&#39;sh&#39;</span><span class=p>)[[</span><span class=s1>&#39;open&#39;</span><span class=p>,</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;high&#39;</span><span class=p>,</span><span class=s1>&#39;low&#39;</span><span class=p>]]</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;sin&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>SIN</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;cos&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>COS</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
-<span class=n>df</span><span class=p>[</span><span class=s1>&#39;ln&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>LN</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
-<span class=c1>#将上述函数计算得到的结果进行可视化</span>
-<span class=n>df</span><span class=p>[[</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;sin&#39;</span><span class=p>,</span><span class=s1>&#39;cos&#39;</span><span class=p>,</span><span class=s1>&#39;ln&#39;</span><span class=p>]]</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>18</span><span class=p>,</span><span class=mi>8</span><span class=p>),</span>
-       <span class=n>subplots</span> <span class=o>=</span> <span class=kc>True</span><span class=p>,</span><span class=n>layout</span><span class=o>=</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=mi>2</span><span class=p>))</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>subplots_adjust</span><span class=p>(</span><span class=n>wspace</span><span class=o>=</span><span class=mi>0</span><span class=p>,</span><span class=n>hspace</span><span class=o>=</span><span class=mf>0.2</span><span class=p>)</span>
-</code></pre></div><p><figure class=gallery-image style=flex-grow:231;flex-basis:555px>
+</figure></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>df</span><span class=o>=</span><span class=n>get_data</span><span class=p>(</span><span class=s1>&#39;sh&#39;</span><span class=p>)[[</span><span class=s1>&#39;open&#39;</span><span class=p>,</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;high&#39;</span><span class=p>,</span><span class=s1>&#39;low&#39;</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;sin&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>SIN</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;cos&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>COS</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[</span><span class=s1>&#39;ln&#39;</span><span class=p>]</span><span class=o>=</span><span class=n>ta</span><span class=o>.</span><span class=n>LN</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>close</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1>#将上述函数计算得到的结果进行可视化</span>
+</span></span><span class=line><span class=cl><span class=n>df</span><span class=p>[[</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=s1>&#39;sin&#39;</span><span class=p>,</span><span class=s1>&#39;cos&#39;</span><span class=p>,</span><span class=s1>&#39;ln&#39;</span><span class=p>]]</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>18</span><span class=p>,</span><span class=mi>8</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>       <span class=n>subplots</span> <span class=o>=</span> <span class=kc>True</span><span class=p>,</span><span class=n>layout</span><span class=o>=</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=mi>2</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>subplots_adjust</span><span class=p>(</span><span class=n>wspace</span><span class=o>=</span><span class=mi>0</span><span class=p>,</span><span class=n>hspace</span><span class=o>=</span><span class=mf>0.2</span><span class=p>)</span>
+</span></span></code></pre></div><p><figure class=gallery-image style=flex-grow:231;flex-basis:555px>
 <a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-6b24a2f3f41e537fa3a93497f74bff9f.jpg data-size=1049x453>
 <img src=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-6b24a2f3f41e537fa3a93497f74bff9f.jpg width=1049 height=453 srcset="/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-6b24a2f3f41e537fa3a93497f74bff9f_huf90c6c0a6ed0ac46dc56abccb5cb79e9_54030_480x0_resize_q75_box.jpg 480w, /p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%BA%8C/1640140226-6b24a2f3f41e537fa3a93497f74bff9f_huf90c6c0a6ed0ac46dc56abccb5cb79e9_54030_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
 </a>
-</figure></p>
-</section>
-<footer class=article-footer>
+</figure></p></section><footer class=article-footer>
 <section class=article-tags>
 <a href=/tags/python/>python</a>
 <a href=/tags/%E9%87%8F%E5%8C%96/>量化</a>
-</section>
-</footer>
-</article>
-<aside class=related-contents--wrapper>
-<h2 class=section-title>相关文章</h2>
-<div class=related-contents>
+</section></footer></article><aside class=related-contents--wrapper>
+<h2 class=section-title>相关文章</h2><div class=related-contents>
 <div class="flex article-list--tile">
 <article>
 <a href=/p/%E8%82%A1%E5%B8%82%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8%E4%B9%8Bta-lib%E4%B8%80/>
 <div class=article-details>
-<h2 class=article-title>股市技术分析利器之TA-Lib（一）</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>股市技术分析利器之TA-Lib（一）</h2></div></a>
+</article><article>
 <a href=/p/%E5%A4%AE%E8%A1%8C%E5%AE%8F%E8%A7%82%E8%B0%83%E8%8A%82%E5%B7%A5%E5%85%B7%E4%B8%AD-slfslomlfpsl-%E5%90%84%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9%E5%A4%AE%E8%A1%8C%E6%98%AF%E5%A6%82%E4%BD%95%E9%80%89%E5%8F%96%E8%BF%99%E4%BA%9B%E5%B7%A5%E5%85%B7%E8%BF%9B%E8%A1%8C%E5%AE%8F%E8%A7%82%E8%B0%83%E6%8E%A7%E7%9A%84/>
 <div class=article-details>
-<h2 class=article-title>央行宏观调节工具中 SLF、SLO、MLF、PSL 各有什么特点？央行是如何选取这些工具进行宏观调控的？</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>央行宏观调节工具中 SLF、SLO、MLF、PSL 各有什么特点？央行是如何选取这些工具进行宏观调控的？</h2></div></a>
+</article><article>
 <a href=/p/%E4%BB%80%E4%B9%88%E6%98%AF%E7%BB%BF%E9%9E%8B%E6%9C%BA%E5%88%B6/>
 <div class=article-details>
-<h2 class=article-title>什么是绿鞋机制</h2>
-</div>
-</a>
-</article>
-<article class=has-image>
+<h2 class=article-title>什么是绿鞋机制</h2></div></a>
+</article><article class=has-image>
 <a href=/p/%E7%B4%A2%E7%BD%97%E6%96%AF%E7%94%A8%E5%AF%B9%E5%86%B2%E6%89%8B%E6%B3%95%E5%81%9A%E7%A9%BA%E4%B8%80%E4%B8%AA%E5%9B%BD%E5%AE%B6%E7%9A%84%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88/>
 <div class=article-image>
 <img src=/p/%E7%B4%A2%E7%BD%97%E6%96%AF%E7%94%A8%E5%AF%B9%E5%86%B2%E6%89%8B%E6%B3%95%E5%81%9A%E7%A9%BA%E4%B8%80%E4%B8%AA%E5%9B%BD%E5%AE%B6%E7%9A%84%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88/cover.39b0857cc717928e31658c44e76787d5_hu816abf456dd96277cf7f1d7e0e6c615e_32909_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post 索罗斯用对冲手法做空一个国家的底层原理是什么？" data-hash="md5-ObCFfMcXko4xZYxE52eH1Q==">
-</div>
-<div class=article-details>
-<h2 class=article-title>索罗斯用对冲手法做空一个国家的底层原理是什么？</h2>
-</div>
-</a>
-</article>
-<article>
+</div><div class=article-details>
+<h2 class=article-title>索罗斯用对冲手法做空一个国家的底层原理是什么？</h2></div></a>
+</article><article>
 <a href=/p/%E8%82%A1%E7%A5%A8%CE%B2%E7%B3%BB%E6%95%B0%E8%B4%9D%E5%A1%94beta%E6%98%AF%E4%BB%80%E4%B9%88%E4%B8%9C%E8%A5%BF/>
 <div class=article-details>
-<h2 class=article-title>股票β系数（贝塔、beta）是什么东西？</h2>
-</div>
-</a>
-</article>
-</div>
-</div>
-</aside>
-<footer class=site-footer>
+<h2 class=article-title>股票β系数（贝塔、beta）是什么东西？</h2></div></a>
+</article></div></div></aside><footer class=site-footer>
 <section class=copyright>
 &copy;
 2020 -
 2022 Syaofox's Elysion
-</section>
-<section class=powerby>
+</section><section class=powerby>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
 Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.7.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
-</section>
-</footer>
-<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
-<div class=pswp__bg></div>
-<div class=pswp__scroll-wrap>
+</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div><div class=pswp__scroll-wrap>
 <div class=pswp__container>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-</div>
-<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden">
 <div class=pswp__top-bar>
-<div class=pswp__counter></div>
-<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
 <div class=pswp__preloader>
 <div class=pswp__preloader__icn>
 <div class=pswp__preloader__cut>
-<div class=pswp__preloader__donut></div>
-</div>
-</div>
-</div>
-</div>
-<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-<div class=pswp__share-tooltip></div>
-</div>
-<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+<div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
 </button>
 <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
 </button>
 <div class=pswp__caption>
-<div class=pswp__caption__center></div>
-</div>
-</div>
-</div>
-</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
-</main>
-<aside class="sidebar right-sidebar sticky">
+<div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main><aside class="sidebar right-sidebar sticky">
 <section class="widget archives">
 <div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
-</div>
-<h2 class="widget-title section-title">目录</h2>
-<div class=widget--toc>
+</div><h2 class="widget-title section-title">目录</h2><div class=widget--toc>
 <nav id=TableOfContents>
 <ol>
-<li><a href=#01-price-transform-价格转换>01 Price Transform 价格转换</a></li>
-<li><a href=#02-cycle-indicator-functions周期指标函数>02 Cycle Indicator Functions周期指标函数</a></li>
-<li><a href=#03-volatility-indicator-functions-波动率指标函数>03 Volatility Indicator Functions 波动率指标函数</a></li>
-<li><a href=#04-math-operator-functions数学运算>04 Math Operator Functions数学运算</a></li>
-<li><a href=#05-statistic-functions-统计学函数>05 Statistic Functions 统计学函数</a></li>
-<li><a href=#06-math-transform-functions数学转换函数>06 Math Transform Functions数学转换函数</a></li>
-</ol>
-</nav>
-</div>
-</section>
-</aside>
-</div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
-<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
-</body>
-</html>
+<li><a href=#01-price-transform-价格转换>01 Price Transform 价格转换</a></li><li><a href=#02-cycle-indicator-functions周期指标函数>02 Cycle Indicator Functions周期指标函数</a></li><li><a href=#03-volatility-indicator-functions-波动率指标函数>03 Volatility Indicator Functions 波动率指标函数</a></li><li><a href=#04-math-operator-functions数学运算>04 Math Operator Functions数学运算</a></li><li><a href=#05-statistic-functions-统计学函数>05 Statistic Functions 统计学函数</a></li><li><a href=#06-math-transform-functions数学转换函数>06 Math Transform Functions数学转换函数</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script>
+</body></html>

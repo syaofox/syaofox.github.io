@@ -1,7 +1,6 @@
 <!doctype html><html lang=zh-cn>
 <head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="添加用户到sudo组 切换到root su - 注意-不可忽略，否则可能出现部分命令无法执行的情况 添加syaofox用户到sudo组 usermod -aG sudo syaofox 升级为si"><title>安装debian11后应该做的事</title>
-<link rel=canonical href=https://syaofox.github.io/p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="添加用户到sudo组 切换到root su - 注意-不可忽略，否则可能出现部分命令无法执行的情况 添加syaofox用户到sudo组 usermod -aG sudo syaofox 升级为si"><title>安装debian11后应该做的事</title><link rel=canonical href=https://syaofox.github.io/p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/>
 <link rel=stylesheet href=/scss/style.min.1b3ac667198cb83edcc9c45e606a6f4dd6910b8ada6b74d7fd988f1b2dfd0c7c.css><meta property="og:title" content="安装debian11后应该做的事">
 <meta property="og:description" content="添加用户到sudo组 切换到root su - 注意-不可忽略，否则可能出现部分命令无法执行的情况 添加syaofox用户到sudo组 usermod -aG sudo syaofox 升级为si">
 <meta property="og:url" content="https://syaofox.github.io/p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/">
@@ -11,17 +10,15 @@
 <meta name=twitter:creator content="@syaofox"><meta name=twitter:title content="安装debian11后应该做的事">
 <meta name=twitter:description content="添加用户到sudo组 切换到root su - 注意-不可忽略，否则可能出现部分命令无法执行的情况 添加syaofox用户到sudo组 usermod -aG sudo syaofox 升级为si">
 <link rel="shortcut icon" href=favicon.ico>
-</head>
-<body class="article-page has-toc">
-<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+</head><body class="article-page has-toc">
+<script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script>
 <div class="container main-container flex
 extended">
 <div id=article-toolbar>
 <a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
 <span>返回</span>
 </a>
-</div>
-<main class="main full-width">
+</div><main class="main full-width">
 <article class=main-article>
 <header class=article-header>
 <div class=article-details>
@@ -29,135 +26,79 @@ extended">
 <a href=/categories/tips/>
 Tips
 </a>
-</header>
-<h2 class=article-title>
+</header><h2 class=article-title>
 <a href=/p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/>安装debian11后应该做的事</a>
-</h2>
-<footer class=article-time>
+</h2><footer class=article-time>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
 <time class=article-time--published>Feb 16, 2022</time>
-</div>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+</div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
 阅读时长: 4 分钟
 </time>
-</div>
-</footer>
-</div>
-</header>
-<section class=article-content>
-<h2 id=添加用户到sudo组>添加用户到sudo组</h2>
-<p>切换到root</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>su -
-</code></pre></div><blockquote>
-<p>注意<code>-</code>不可忽略，否则可能出现部分命令无法执行的情况</p>
-</blockquote>
-<p>添加<code>syaofox</code>用户到<code>sudo</code>组</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>usermod -aG sudo syaofox
-</code></pre></div><h2 id=升级为sid>升级为sid</h2>
-<p>修改软件源为</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>deb http://repo.huaweicloud.com/debian/ sid main non-free contrib
-deb-src http://repo.huaweicloud.com/debian/ sid main non-free contrib
-</code></pre></div><p>更新后重启</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt update
-sudo apt dist-upgrade
-</code></pre></div><p>重启后登录时切换到xorg显示模式</p>
-<h2 id=安装synaptic包管理工具>安装Synaptic包管理工具</h2>
-<p>作为系统自带软件商店的补充,可以看作apt的gui版</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt install synaptic
-</code></pre></div><h2 id=启用snap-和-flatpak>启用Snap 和 FlatPak</h2>
-<p>打开<code>software</code> > 查找 <code>gnome software</code> > 进入第一个结果 > 下拉找到开关启用 > 重新启动software</p>
-<p>重启确保snap path正确更新</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo snap install core
-</code></pre></div><h2 id=显卡驱动>显卡驱动</h2>
-<h3 id=amd>AMD</h3>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt install firmware-linux firmware-linux-nonfree libdrm-amdgpu1 xserver-xorg-video-amdgpu
-</code></pre></div><p>如果是游戏玩家,还可以安装vulkan</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt install mesa-vulkan-drivers libvulkan1 vulkan-tools vulkan-validationlayers
-</code></pre></div><h3 id=nvida>Nvida</h3>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># Install tool for hardware detection</span>
-sudo apt install nvidia-detect
-
-<span class=c1># Perform the scan</span>
-sudo nvidia-detect
-
-<span class=c1># Install recommended driver. It is nvidia-driver for me. Yours could be different.</span>
-sudo apt install nvidia-driver
-</code></pre></div><h2 id=安装微代码>安装微代码</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># amd</span>
-sudo apt install amd64-microcode
-
-<span class=c1># intel </span>
-sudo apt install intel-microcode
-</code></pre></div><h2 id=安装-build-essential>安装 build-essential</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt install build-essential dkms linux-headers-<span class=k>$(</span>uname -r<span class=k>)</span>
-</code></pre></div><h2 id=安装-restricted-extras>安装 restricted-extras</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt install ttf-mscorefonts-installer rar unrar libavcodec-extra gstreamer1.0-libav gstreamer1.0-plugins-ugly gstreamer1.0-vaapi
-</code></pre></div><h2 id=设置swappiness>设置Swappiness</h2>
-<p>让操作系统更多的使用内存而不是交换区</p>
-<p>查看</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>cat /proc/sys/vm/swappiness <span class=c1># 60 (default)</span>
-</code></pre></div><p>修改配置文件</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo nano /etc/sysctl.conf
-</code></pre></div><p>在最后面追加</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>vm.swappiness<span class=o>=</span><span class=m>10</span> 
-</code></pre></div><p>重启后生效</p>
-<h2 id=修改grub菜单启动等待时间>修改grub菜单启动等待时间</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo nano /etc/default/grub
-
-sudo update-grub
-</code></pre></div><p>修改<code>GRUB_TIMEOUT</code>时间为0</p>
-<p>当需要选择菜单的时候可以在启动时按住<code>shift</code>键</p>
-<h2 id=安装中文输入法>安装中文输入法</h2>
-<p>卸载可能存在的输入法框架</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt purge fcitx* ibus*
-</code></pre></div><p>如果存在卸载就重启后继续</p>
-<p>安装fcitx5输入法框架</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>apt install --install-recommends fcitx5 fcitx5-chinese-addons
-</code></pre></div><p>在应用程序面板启动<code>fcitx5</code>,并启动<code>fcitx5 configuration</code>添加拼音输入法</p>
-<p>重启</p>
-<h2 id=调整鼠标滚轮>调整鼠标滚轮</h2>
-<p>安装</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt install imwheel
-</code></pre></div><p>创建配置文件</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo nano ~/.imwheelrc
-</code></pre></div><p>编辑如下内容</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-nginx data-lang=nginx><span class=k>&#34;.*&#34;</span>
-<span class=s>None,</span>      <span class=s>Up,</span>   <span class=s>Button4,</span> <span class=mi>3</span>
-<span class=s>None,</span>      <span class=s>Down,</span> <span class=s>Button5,</span> <span class=mi>3</span>
-<span class=s>Control_L,</span> <span class=s>Up,</span>   <span class=s>Control_L|Button4</span>
-<span class=s>Control_L,</span> <span class=s>Down,</span> <span class=s>Control_L|Button5</span>
-<span class=s>Shift_L,</span>   <span class=s>Up,</span>   <span class=s>Shift_L|Button4</span>
-<span class=s>Shift_L,</span>   <span class=s>Down,</span> <span class=s>Shift_L|Button5</span>
-</code></pre></div><p><code>3</code>就是鼠标滚轮的速度,可以自行调节</p>
-<p>重新加载配置</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>imwheel -kill
-</code></pre></div><p>添加一个登录运行脚本</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>nano ~/.config/autostart/imwheel.desktop 
-</code></pre></div><p>编辑内容如下</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-nginx data-lang=nginx><span class=k>[Desktop</span> <span class=s>Entry]</span>
-<span class=s>Name=imwheel</span>
-<span class=s>Exec=/usr/bin/imwheel</span>
-<span class=s>Terminal=false</span>
-<span class=s>Type=Application</span>
-<span class=s>Comment=custum</span> <span class=s>mouse</span> <span class=s>wheel</span> <span class=s>speed</span>
-<span class=s>Categories=System</span><span class=p>;</span>
-</code></pre></div><h2 id=设置常用快捷键>设置常用快捷键</h2>
-<p>Settings > Keyboard
-Launchers</p>
-<p><figure class=gallery-image style=flex-grow:98;flex-basis:236px>
+</div></footer></div></header><section class=article-content>
+<h2 id=添加用户到sudo组>添加用户到sudo组</h2><p>切换到root</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>su -
+</span></span></code></pre></div><blockquote>
+<p>注意<code>-</code>不可忽略，否则可能出现部分命令无法执行的情况</p></blockquote><p>添加<code>syaofox</code>用户到<code>sudo</code>组</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>usermod -aG sudo syaofox
+</span></span></code></pre></div><h2 id=升级为sid>升级为sid</h2><p>修改软件源为</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>deb http://repo.huaweicloud.com/debian/ sid main non-free contrib
+</span></span><span class=line><span class=cl>deb-src http://repo.huaweicloud.com/debian/ sid main non-free contrib
+</span></span></code></pre></div><p>更新后重启</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt update
+</span></span><span class=line><span class=cl>sudo apt dist-upgrade
+</span></span></code></pre></div><p>重启后登录时切换到xorg显示模式</p><h2 id=安装synaptic包管理工具>安装Synaptic包管理工具</h2><p>作为系统自带软件商店的补充,可以看作apt的gui版</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt install synaptic
+</span></span></code></pre></div><h2 id=启用snap-和-flatpak>启用Snap 和 FlatPak</h2><p>打开<code>software</code> > 查找 <code>gnome software</code> > 进入第一个结果 > 下拉找到开关启用 > 重新启动software</p><p>重启确保snap path正确更新</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo snap install core
+</span></span></code></pre></div><h2 id=显卡驱动>显卡驱动</h2><h3 id=amd>AMD</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt install firmware-linux firmware-linux-nonfree libdrm-amdgpu1 xserver-xorg-video-amdgpu
+</span></span></code></pre></div><p>如果是游戏玩家,还可以安装vulkan</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt install mesa-vulkan-drivers libvulkan1 vulkan-tools vulkan-validationlayers
+</span></span></code></pre></div><h3 id=nvida>Nvida</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># Install tool for hardware detection</span>
+</span></span><span class=line><span class=cl>sudo apt install nvidia-detect
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Perform the scan</span>
+</span></span><span class=line><span class=cl>sudo nvidia-detect
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Install recommended driver. It is nvidia-driver for me. Yours could be different.</span>
+</span></span><span class=line><span class=cl>sudo apt install nvidia-driver
+</span></span></code></pre></div><h2 id=安装微代码>安装微代码</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># amd</span>
+</span></span><span class=line><span class=cl>sudo apt install amd64-microcode
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># intel </span>
+</span></span><span class=line><span class=cl>sudo apt install intel-microcode
+</span></span></code></pre></div><h2 id=安装-build-essential>安装 build-essential</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt install build-essential dkms linux-headers-<span class=k>$(</span>uname -r<span class=k>)</span>
+</span></span></code></pre></div><h2 id=安装-restricted-extras>安装 restricted-extras</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt install ttf-mscorefonts-installer rar unrar libavcodec-extra gstreamer1.0-libav gstreamer1.0-plugins-ugly gstreamer1.0-vaapi
+</span></span></code></pre></div><h2 id=设置swappiness>设置Swappiness</h2><p>让操作系统更多的使用内存而不是交换区</p><p>查看</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>cat /proc/sys/vm/swappiness <span class=c1># 60 (default)</span>
+</span></span></code></pre></div><p>修改配置文件</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo nano /etc/sysctl.conf
+</span></span></code></pre></div><p>在最后面追加</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>vm.swappiness<span class=o>=</span><span class=m>10</span> 
+</span></span></code></pre></div><p>重启后生效</p><h2 id=修改grub菜单启动等待时间>修改grub菜单启动等待时间</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo nano /etc/default/grub
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo update-grub
+</span></span></code></pre></div><p>修改<code>GRUB_TIMEOUT</code>时间为0</p><p>当需要选择菜单的时候可以在启动时按住<code>shift</code>键</p><h2 id=安装中文输入法>安装中文输入法</h2><p>卸载可能存在的输入法框架</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt purge fcitx* ibus*
+</span></span></code></pre></div><p>如果存在卸载就重启后继续</p><p>安装fcitx5输入法框架</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt install --install-recommends fcitx5 fcitx5-chinese-addons fcitx5-material-color
+</span></span></code></pre></div><p>gnome</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt install gnome-shell-extension-kimpanel
+</span></span></code></pre></div><p>在应用程序面板启动<code>fcitx5</code>,并启动<code>fcitx5 configuration</code>添加拼音输入法</p><p>重启</p><h2 id=调整鼠标滚轮>调整鼠标滚轮</h2><p>安装</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt install imwheel
+</span></span></code></pre></div><p>创建配置文件</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo nano ~/.imwheelrc
+</span></span></code></pre></div><p>编辑如下内容</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-nginx data-lang=nginx><span class=line><span class=cl><span class=k>&#34;.*&#34;</span>
+</span></span><span class=line><span class=cl><span class=s>None,</span>      <span class=s>Up,</span>   <span class=s>Button4,</span> <span class=mi>3</span>
+</span></span><span class=line><span class=cl><span class=s>None,</span>      <span class=s>Down,</span> <span class=s>Button5,</span> <span class=mi>3</span>
+</span></span><span class=line><span class=cl><span class=s>Control_L,</span> <span class=s>Up,</span>   <span class=s>Control_L|Button4</span>
+</span></span><span class=line><span class=cl><span class=s>Control_L,</span> <span class=s>Down,</span> <span class=s>Control_L|Button5</span>
+</span></span><span class=line><span class=cl><span class=s>Shift_L,</span>   <span class=s>Up,</span>   <span class=s>Shift_L|Button4</span>
+</span></span><span class=line><span class=cl><span class=s>Shift_L,</span>   <span class=s>Down,</span> <span class=s>Shift_L|Button5</span>
+</span></span></code></pre></div><p><code>3</code>就是鼠标滚轮的速度,可以自行调节</p><p>重新加载配置</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>imwheel -kill
+</span></span></code></pre></div><p>添加一个登录运行脚本</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>nano ~/.config/autostart/imwheel.desktop 
+</span></span></code></pre></div><p>编辑内容如下</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-nginx data-lang=nginx><span class=line><span class=cl><span class=k>[Desktop</span> <span class=s>Entry]</span>
+</span></span><span class=line><span class=cl><span class=s>Name=imwheel</span>
+</span></span><span class=line><span class=cl><span class=s>Exec=/usr/bin/imwheel</span>
+</span></span><span class=line><span class=cl><span class=s>Terminal=false</span>
+</span></span><span class=line><span class=cl><span class=s>Type=Application</span>
+</span></span><span class=line><span class=cl><span class=s>Comment=custum</span> <span class=s>mouse</span> <span class=s>wheel</span> <span class=s>speed</span>
+</span></span><span class=line><span class=cl><span class=s>Categories=System</span><span class=p>;</span>
+</span></span></code></pre></div><h2 id=设置常用快捷键>设置常用快捷键</h2><p>Settings > Keyboard
+Launchers</p><p><figure class=gallery-image style=flex-grow:98;flex-basis:236px>
 <a href=/p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/assets/2022-02-16-15-01-29.png data-size=538x547>
 <img src=/p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/assets/2022-02-16-15-01-29.png width=538 height=547 srcset="/p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/assets/2022-02-16-15-01-29_hu8ab8c824c1a0ea5c90a2b4ec9b3ae536_23390_480x0_resize_box_3.png 480w, /p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/assets/2022-02-16-15-01-29_hu8ab8c824c1a0ea5c90a2b4ec9b3ae536_23390_1024x0_resize_box_3.png 1024w" loading=lazy>
 </a>
-</figure></p>
-<p>screenshots</p>
-<p><figure class=gallery-image style=flex-grow:99;flex-basis:239px>
+</figure></p><p>screenshots</p><p><figure class=gallery-image style=flex-grow:99;flex-basis:239px>
 <a href=/p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/assets/2022-02-16-15-02-07.png data-size=540x542>
 <img src=/p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/assets/2022-02-16-15-02-07.png width=540 height=542 srcset="/p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/assets/2022-02-16-15-02-07_hu3bb57eb2a1cc9be8f17d968381fabba4_29557_480x0_resize_box_3.png 480w, /p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/assets/2022-02-16-15-02-07_hu3bb57eb2a1cc9be8f17d968381fabba4_29557_1024x0_resize_box_3.png 1024w" loading=lazy>
 </a>
-</figure></p>
-<p>view and customize Shortcuts</p>
-<p><figure class=gallery-image style=flex-grow:175;flex-basis:422px>
+</figure></p><p>view and customize Shortcuts</p><p><figure class=gallery-image style=flex-grow:175;flex-basis:422px>
 <a href=/p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/assets/2022-02-16-15-03-14.png data-size=445x253>
 <img src=/p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/assets/2022-02-16-15-03-14.png width=445 height=253 srcset="/p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/assets/2022-02-16-15-03-14_hu041d4f3b9d9596e2a294c919fa99fc74_10915_480x0_resize_box_3.png 480w, /p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/assets/2022-02-16-15-03-14_hu041d4f3b9d9596e2a294c919fa99fc74_10915_1024x0_resize_box_3.png 1024w" loading=lazy>
 </a>
@@ -165,329 +106,170 @@ Launchers</p>
 <a href=/p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/assets/1.png data-size=448x246>
 <img src=/p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/assets/1.png width=448 height=246 srcset="/p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/assets/1_huad1c6814c27dd7b331730122790b8649_14100_480x0_resize_box_3.png 480w, /p/%E5%AE%89%E8%A3%85debian11%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/assets/1_huad1c6814c27dd7b331730122790b8649_14100_1024x0_resize_box_3.png 1024w" loading=lazy>
 </a>
-</figure></p>
-<h2 id=设置人脸解锁>设置人脸解锁</h2>
-<p>安装<a class=link href=https://github.com/boltgolt/howdy target=_blank rel=noopener>howdy</a></p>
-<p>下载deb包 <code>howdy_2.6.1.deb</code>
-安装</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo dpkg -i howdy_2.6.1.deb
-</code></pre></div><p>出现依赖错误后执行一下命令修复并安装</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt install -f
-</code></pre></div><p>安装辅助包</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt install v4l-utils
-</code></pre></div><p>查看摄像头设备</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>v4l2-ctl --list-devices
-</code></pre></div><p>得到自己的涉嫌头设备路径</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>Integrated Camera: Integrated C <span class=o>(</span>usb-0000:03:00.3-3<span class=o>)</span>:
-	/dev/video0
-	/dev/video1
-	/dev/video2
-	/dev/video3
-	/dev/media0
-	/dev/media1
-
-</code></pre></div><p>配置摄像头</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo howdy config
-</code></pre></div><p>修改为自己的设备地址</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># The path of the device to capture frames from</span>
-<span class=c1># Should be set automatically by an installer if your distro has one</span>
-<span class=nv>device_path</span> <span class=o>=</span> /dev/video0
-
-</code></pre></div><p>添加脸部</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo howdy add
-</code></pre></div><p>给脸部取一个名字后按提示完成操作即可</p>
-<h2 id=安装-gnome-extensions>安装 Gnome Extensions</h2>
-<p>访问<a class=link href=https://extensions.gnome.org/ target=_blank rel=noopener>GNOME Extensions website</a></p>
-<h2 id=安装-extension-manager>安装 Extension manager</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>flatpak install flathub com.mattjakeman.ExtensionManager
-</code></pre></div><h2 id=通过-gnome-extensions-安装一些插件>通过 Gnome Extensions 安装一些插件</h2>
-<ul>
-<li>Dash to Dock 让dock一直显示</li>
-<li>internet Speed Monitor 在toppanel显示网速</li>
-<li>TopIconsFix 常用应用程序状态栏图标</li>
-<li>User Themes 开启,设置主题</li>
-</ul>
-<h2 id=安装主题>安装主题</h2>
-<p>访问 <a class=link href=https://www.gnome-look.org/browse/ target=_blank rel=noopener>GNOME Look</a> 挑选
-好看的图标Papirus</p>
-<p><strong>主题的安装方法</strong>
+</figure></p><h2 id=设置人脸解锁>设置人脸解锁</h2><p>安装<a class=link href=https://github.com/boltgolt/howdy target=_blank rel=noopener>howdy</a></p><p>下载deb包 <code>howdy_2.6.1.deb</code>
+安装</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo dpkg -i howdy_2.6.1.deb
+</span></span></code></pre></div><p>出现依赖错误后执行一下命令修复并安装</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt install -f
+</span></span></code></pre></div><p>安装辅助包</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt install v4l-utils
+</span></span></code></pre></div><p>查看摄像头设备</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>v4l2-ctl --list-devices
+</span></span></code></pre></div><p>得到自己的涉嫌头设备路径</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>Integrated Camera: Integrated C <span class=o>(</span>usb-0000:03:00.3-3<span class=o>)</span>:
+</span></span><span class=line><span class=cl>	/dev/video0
+</span></span><span class=line><span class=cl>	/dev/video1
+</span></span><span class=line><span class=cl>	/dev/video2
+</span></span><span class=line><span class=cl>	/dev/video3
+</span></span><span class=line><span class=cl>	/dev/media0
+</span></span><span class=line><span class=cl>	/dev/media1
+</span></span></code></pre></div><p>配置摄像头</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo howdy config
+</span></span></code></pre></div><p>修改为自己的设备地址</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># The path of the device to capture frames from</span>
+</span></span><span class=line><span class=cl><span class=c1># Should be set automatically by an installer if your distro has one</span>
+</span></span><span class=line><span class=cl><span class=nv>device_path</span> <span class=o>=</span> /dev/video0
+</span></span></code></pre></div><p>添加脸部</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo howdy add
+</span></span></code></pre></div><p>给脸部取一个名字后按提示完成操作即可</p><h2 id=安装-gnome-extensions>安装 Gnome Extensions</h2><p>访问<a class=link href=https://extensions.gnome.org/ target=_blank rel=noopener>GNOME Extensions website</a></p><h2 id=安装-extension-manager>安装 Extension manager</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>flatpak install flathub com.mattjakeman.ExtensionManager
+</span></span></code></pre></div><h2 id=通过-gnome-extensions-安装一些插件>通过 Gnome Extensions 安装一些插件</h2><ul>
+<li>Dash to Dock 让dock一直显示</li><li>internet Speed Monitor 在toppanel显示网速</li><li>TopIconsFix 常用应用程序状态栏图标</li><li>User Themes 开启,设置主题</li></ul><h2 id=安装主题>安装主题</h2><p>访问 <a class=link href=https://www.gnome-look.org/browse/ target=_blank rel=noopener>GNOME Look</a> 挑选
+好看的图标Papirus</p><p><strong>主题的安装方法</strong>
 将下载的主题解压后放入<code>~/.themes</code>,文件夹不存在就创建
 将下载的图标解压后放入<code>~/.icons</code>,文件夹不存在就创建
-然后在<code>tweaks</code>的<code>appearance</code>中启用</p>
-<h2 id=找回标题栏最小化按钮>找回标题栏最小化按钮</h2>
-<p>Tweaks > Window Titlebars > Enable Minimize</p>
-<h2 id=安装hugo>安装hugo</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>snap install hugo --channel<span class=o>=</span>extended
-</code></pre></div><h2 id=安装htop>安装htop</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt install htop
-</code></pre></div><h2 id=安装nerd字体>安装nerd字体</h2>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt install fonts-firacode
-</code></pre></div><h2 id=安装git并设置github>安装git并设置github</h2>
-<p>安装git</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudp apt install git
-</code></pre></div><p>设置git信息</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># 用户名</span>
-git config --global user.name <span class=s2>&#34;syaofox&#34;</span>
-
-<span class=c1># 密码</span>
-git config --global user.email <span class=s2>&#34;syaofox@gmail.com&#34;</span>
-
-<span class=c1># pull 默认合并</span>
-git config --global pull.rebase <span class=nb>false</span>
-
-<span class=c1># 大小写敏感</span>
-git config --global core.ignorecase <span class=nb>false</span> 
-</code></pre></div><p>创建ssh密钥</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>ssh-keygen -t rsa -b <span class=m>4096</span> -C <span class=s2>&#34;syaofox@gmail.com&#34;</span>
-</code></pre></div><p>密钥文件默认保存在<code>~/.ssh</code>目录下</p>
-<p>配置github</p>
-<ul>
-<li>打开<a class=link href=https://github.com/settings/keys target=_blank rel=noopener>github ssh key设置页面</a></li>
-<li>添加SSHKey</li>
-<li>取个名字，填入公钥<code>~/.ssh/id_rsa.pub</code>的内容
-测试github是否配置成功</li>
-</ul>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>ssh -T git@github.com
-</code></pre></div><h2 id=设置nas上的ssh免密码登录>设置nas上的ssh免密码登录</h2>
-<p>通常免密码访问的公钥是添加在登录用户的 <code>$HOME/.ssh/authorized_keys</code> 文件中的，但第一次配置时 <code>$HOME/.ssh</code> 目录可能不存在，手工创建<code>.ssh</code> 目录又可能因目录权限问题导致免密码配置失败。</p>
-<p>因此，简单方法就是让系统生成<code>.ssh</code> 目录，方法是让系统生成一个 RSA 密钥对时会自动创建<code>.ssh</code> 目录，具体操作命令如下：</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>ssh-keygen -C <span class=s2>&#34;syaofox_dnas&#34;</span> -b <span class=m>1024</span> -f <span class=nv>$HOME</span>/.ssh/id_rsa -N <span class=s2>&#34;&#34;</span> -t rsa
-
-<span class=c1># 内容为本地公钥~/.ssh/id_rsa.pub内容</span>
-<span class=nb>echo</span> <span class=s2>&#34;内容&#34;</span> &gt;&gt; <span class=nv>$HOME</span>/.ssh/authorized_keys
-
-<span class=c1># 修改权限</span>
-chmod <span class=m>644</span> <span class=nv>$HOME</span>/.ssh/authorized_keys
-</code></pre></div><h2 id=安装微软软件>安装微软软件</h2>
-<p>安装必要依赖</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt install apt-transport-https ca-certificates curl software-properties-common wget -y
-</code></pre></div><p>导入微软GPGKey和Repository</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># edge</span>
-curl https://packages.microsoft.com/keys/microsoft.asc <span class=p>|</span> gpg --dearmor &gt; microsoft.gpg
-sudo install -o root -g root -m <span class=m>644</span> microsoft.gpg /etc/apt/trusted.gpg.d/
-
-sudo sh -c <span class=s1>&#39;echo &#34;deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main&#34; &gt; /etc/apt/sources.list.d/microsoft-edge-dev.list&#39;</span>
-sudo rm microsoft.gpg
-
-<span class=c1># code</span>
-curl https://packages.microsoft.com/keys/microsoft.asc <span class=p>|</span> gpg --dearmor &gt; microsoft.gpg
-sudo install -o root -g root -m <span class=m>644</span> microsoft.gpg /usr/share/keyrings/microsoft-archive-keyring.gpg
-sudo sh -c <span class=s1>&#39;echo &#34;deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main&#34; &gt; /etc/apt/sources.list.d/vscode.list&#39;</span>
-
-</code></pre></div><p>更新仓库</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt update
-</code></pre></div><p>安装edge</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt install microsoft-edge-stable
-</code></pre></div><p>安装vscode</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt install -y code
-</code></pre></div><h2 id=安装utools>安装utools</h2>
-<p><a class=link href=https://u.tools/ target=_blank rel=noopener>tools</a></p>
-<h2 id=安装fdm>安装fdm</h2>
-<p><a class=link href=https://www.freedownloadmanager.org/zh/download.htm target=_blank rel=noopener>freedownloadmanager.org/</a></p>
-<h2 id=安装kvm虚拟机>安装kvm虚拟机</h2>
-<p>现实虚拟核心数,越高越好</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>egrep -c <span class=s1>&#39;(vmx|svm)&#39;</span> /proc/cpuinfo
-</code></pre></div><p>更新缓存</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt update
-</code></pre></div><p>安装包</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt install qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon
-</code></pre></div><p>安装GUI</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt install virt-manager -y
-</code></pre></div><p>查看并开启虚拟网络</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo virsh net-list --all
-
-sudo virsh net-start default
-sudo virsh net-autostart default
-</code></pre></div><p>设置加载虚拟模块</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo modprobe vhost_net
-</code></pre></div><p>确认是否加载</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>lsmod <span class=p>|</span> grep vhost
-</code></pre></div><p>创建桥接网络(可选)</p>
-<p>查看ip</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>ip a
-</code></pre></div><p>编辑ip配置文件</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo nano /etc/network/interfaces
-</code></pre></div><p>固定ip</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1>#Configure bridge and give it a static ip</span>
-auto br0
-iface br0 inet static
-        address 10.10.10.100
-        netmask 255.255.255.0
-        network 10.10.10.1
-        broadcast 10.10.10.255
-        gateway 10.10.10.1
-       bridge_ports enp0s3
-        bridge_stp off
-        bridge_fd <span class=m>0</span>
-        bridge_maxwait <span class=m>0</span>
-        dns-nameservers 10.10.10.1
-
-</code></pre></div><p>动态ip</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1>## DHCP ip config file for br0 ##</span>
-auto br0
- 
-<span class=c1># Bridge setup</span>
-iface br0 inet dhcp
-bridge_ports enp0s3
-</code></pre></div><p>重启网络管理让配置生效</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo systemctl restart networking.service
-or
-sudo /etc/init.d/networking restart
-</code></pre></div><p>用<code>ip a</code>查看可以看到<code>br0</code>的桥接网络</p>
-<p>gui创建虚拟机安装windows
-用virt-io提高虚拟机性能,参考</p>
-<div class=video-wrapper>
+然后在<code>tweaks</code>的<code>appearance</code>中启用</p><h2 id=找回标题栏最小化按钮>找回标题栏最小化按钮</h2><p>Tweaks > Window Titlebars > Enable Minimize</p><h2 id=安装hugo>安装hugo</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>snap install hugo --channel<span class=o>=</span>extended
+</span></span></code></pre></div><h2 id=安装htop>安装htop</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt install htop
+</span></span></code></pre></div><h2 id=安装nerd字体>安装nerd字体</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt install fonts-firacode
+</span></span></code></pre></div><h2 id=安装git并设置github>安装git并设置github</h2><p>安装git</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudp apt install git
+</span></span></code></pre></div><p>设置git信息</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># 用户名</span>
+</span></span><span class=line><span class=cl>git config --global user.name <span class=s2>&#34;syaofox&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 密码</span>
+</span></span><span class=line><span class=cl>git config --global user.email <span class=s2>&#34;syaofox@gmail.com&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># pull 默认合并</span>
+</span></span><span class=line><span class=cl>git config --global pull.rebase <span class=nb>false</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 大小写敏感</span>
+</span></span><span class=line><span class=cl>git config --global core.ignorecase <span class=nb>false</span> 
+</span></span></code></pre></div><p>创建ssh密钥</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>ssh-keygen -t rsa -b <span class=m>4096</span> -C <span class=s2>&#34;syaofox@gmail.com&#34;</span>
+</span></span></code></pre></div><p>密钥文件默认保存在<code>~/.ssh</code>目录下</p><p>配置github</p><ul>
+<li>打开<a class=link href=https://github.com/settings/keys target=_blank rel=noopener>github ssh key设置页面</a></li><li>添加SSHKey</li><li>取个名字，填入公钥<code>~/.ssh/id_rsa.pub</code>的内容
+测试github是否配置成功</li></ul><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>ssh -T git@github.com
+</span></span></code></pre></div><h2 id=设置nas上的ssh免密码登录>设置nas上的ssh免密码登录</h2><p>通常免密码访问的公钥是添加在登录用户的 <code>$HOME/.ssh/authorized_keys</code> 文件中的，但第一次配置时 <code>$HOME/.ssh</code> 目录可能不存在，手工创建<code>.ssh</code> 目录又可能因目录权限问题导致免密码配置失败。</p><p>因此，简单方法就是让系统生成<code>.ssh</code> 目录，方法是让系统生成一个 RSA 密钥对时会自动创建<code>.ssh</code> 目录，具体操作命令如下：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>ssh-keygen -C <span class=s2>&#34;syaofox_dnas&#34;</span> -b <span class=m>1024</span> -f <span class=nv>$HOME</span>/.ssh/id_rsa -N <span class=s2>&#34;&#34;</span> -t rsa
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 内容为本地公钥~/.ssh/id_rsa.pub内容</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;内容&#34;</span> &gt;&gt; <span class=nv>$HOME</span>/.ssh/authorized_keys
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 修改权限</span>
+</span></span><span class=line><span class=cl>chmod <span class=m>644</span> <span class=nv>$HOME</span>/.ssh/authorized_keys
+</span></span></code></pre></div><h2 id=安装微软软件>安装微软软件</h2><p>安装必要依赖</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt install apt-transport-https ca-certificates curl software-properties-common wget -y
+</span></span></code></pre></div><p>导入微软GPGKey和Repository</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># edge</span>
+</span></span><span class=line><span class=cl>curl https://packages.microsoft.com/keys/microsoft.asc <span class=p>|</span> gpg --dearmor &gt; microsoft.gpg
+</span></span><span class=line><span class=cl>sudo install -o root -g root -m <span class=m>644</span> microsoft.gpg /etc/apt/trusted.gpg.d/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo sh -c <span class=s1>&#39;echo &#34;deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main&#34; &gt; /etc/apt/sources.list.d/microsoft-edge-dev.list&#39;</span>
+</span></span><span class=line><span class=cl>sudo rm microsoft.gpg
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># code</span>
+</span></span><span class=line><span class=cl>curl https://packages.microsoft.com/keys/microsoft.asc <span class=p>|</span> gpg --dearmor &gt; microsoft.gpg
+</span></span><span class=line><span class=cl>sudo install -o root -g root -m <span class=m>644</span> microsoft.gpg /usr/share/keyrings/microsoft-archive-keyring.gpg
+</span></span><span class=line><span class=cl>sudo sh -c <span class=s1>&#39;echo &#34;deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main&#34; &gt; /etc/apt/sources.list.d/vscode.list&#39;</span>
+</span></span></code></pre></div><p>更新仓库</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt update
+</span></span></code></pre></div><p>安装edge</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt install microsoft-edge-stable
+</span></span></code></pre></div><p>安装vscode</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt install -y code
+</span></span></code></pre></div><h2 id=安装utools>安装utools</h2><p><a class=link href=https://u.tools/ target=_blank rel=noopener>tools</a></p><h2 id=安装fdm>安装fdm</h2><p><a class=link href=https://www.freedownloadmanager.org/zh/download.htm target=_blank rel=noopener>freedownloadmanager.org/</a></p><h2 id=安装kvm虚拟机>安装kvm虚拟机</h2><p>现实虚拟核心数,越高越好</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>egrep -c <span class=s1>&#39;(vmx|svm)&#39;</span> /proc/cpuinfo
+</span></span></code></pre></div><p>更新缓存</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt update
+</span></span></code></pre></div><p>安装包</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt install qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon
+</span></span></code></pre></div><p>安装GUI</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt install virt-manager -y
+</span></span></code></pre></div><p>查看并开启虚拟网络</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo virsh net-list --all
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo virsh net-start default
+</span></span><span class=line><span class=cl>sudo virsh net-autostart default
+</span></span></code></pre></div><p>设置加载虚拟模块</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo modprobe vhost_net
+</span></span></code></pre></div><p>确认是否加载</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>lsmod <span class=p>|</span> grep vhost
+</span></span></code></pre></div><p>创建桥接网络(可选)</p><p>查看ip</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>ip a
+</span></span></code></pre></div><p>编辑ip配置文件</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo nano /etc/network/interfaces
+</span></span></code></pre></div><p>固定ip</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1>#Configure bridge and give it a static ip</span>
+</span></span><span class=line><span class=cl>auto br0
+</span></span><span class=line><span class=cl>iface br0 inet static
+</span></span><span class=line><span class=cl>        address 10.10.10.100
+</span></span><span class=line><span class=cl>        netmask 255.255.255.0
+</span></span><span class=line><span class=cl>        network 10.10.10.1
+</span></span><span class=line><span class=cl>        broadcast 10.10.10.255
+</span></span><span class=line><span class=cl>        gateway 10.10.10.1
+</span></span><span class=line><span class=cl>       bridge_ports enp0s3
+</span></span><span class=line><span class=cl>        bridge_stp off
+</span></span><span class=line><span class=cl>        bridge_fd <span class=m>0</span>
+</span></span><span class=line><span class=cl>        bridge_maxwait <span class=m>0</span>
+</span></span><span class=line><span class=cl>        dns-nameservers 10.10.10.1
+</span></span></code></pre></div><p>动态ip</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1>## DHCP ip config file for br0 ##</span>
+</span></span><span class=line><span class=cl>auto br0
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl><span class=c1># Bridge setup</span>
+</span></span><span class=line><span class=cl>iface br0 inet dhcp
+</span></span><span class=line><span class=cl>bridge_ports enp0s3
+</span></span></code></pre></div><p>重启网络管理让配置生效</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo systemctl restart networking.service
+</span></span><span class=line><span class=cl>or
+</span></span><span class=line><span class=cl>sudo /etc/init.d/networking restart
+</span></span></code></pre></div><p>用<code>ip a</code>查看可以看到<code>br0</code>的桥接网络</p><p>gui创建虚拟机安装windows
+用virt-io提高虚拟机性能,参考</p><div class=video-wrapper>
 <iframe src="https://player.bilibili.com/player.html?as_wide=1&high_quality=1&page=1&bvid=BV1wS4y1V7Q9" scrolling=no frameborder=no framespacing=0 allowfullscreen></iframe>
-</div>
-<p>安装remmina远程链接虚拟机创建共享目录</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>flatpat install remmina
-</code></pre></div>
-</section>
-<footer class=article-footer>
+</div><p>安装remmina远程链接虚拟机创建共享目录</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>flatpat install remmina
+</span></span></code></pre></div></section><footer class=article-footer>
 <section class=article-tags>
 <a href=/tags/linux/>linux</a>
 <a href=/tags/debian/>debian</a>
-</section>
-</footer>
-</article>
-<aside class=related-contents--wrapper>
-<h2 class=section-title>相关文章</h2>
-<div class=related-contents>
+</section></footer></article><aside class=related-contents--wrapper>
+<h2 class=section-title>相关文章</h2><div class=related-contents>
 <div class="flex article-list--tile">
 <article>
 <a href=/p/%E5%AE%89%E8%A3%85%E4%B8%80%E5%8F%B0%E5%9F%BA%E4%BA%8Edebian%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8/>
 <div class=article-details>
-<h2 class=article-title>安装一台基于debian的家庭服务器</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>安装一台基于debian的家庭服务器</h2></div></a>
+</article><article>
 <a href=/p/linux-%E7%AC%94%E8%AE%B0/>
 <div class=article-details>
-<h2 class=article-title>Linux 笔记</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>Linux 笔记</h2></div></a>
+</article><article>
 <a href=/p/debian-apt-%E8%AE%BE%E7%BD%AE/>
 <div class=article-details>
-<h2 class=article-title>Debian APT 设置</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>Debian APT 设置</h2></div></a>
+</article><article>
 <a href=/p/%E8%A7%A3%E5%86%B3piwigo%E5%90%8C%E6%AD%A5%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%8D%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E7%9A%84%E9%97%AE%E9%A2%98/>
 <div class=article-details>
-<h2 class=article-title>解决piwigo同步文件名不支持中文的问题</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>解决piwigo同步文件名不支持中文的问题</h2></div></a>
+</article><article>
 <a href=/p/virtual-machine-setup-in-linunx/>
 <div class=article-details>
-<h2 class=article-title>Virtual Machine Setup in Linunx</h2>
-</div>
-</a>
-</article>
-</div>
-</div>
-</aside>
-<footer class=site-footer>
+<h2 class=article-title>Virtual Machine Setup in Linunx</h2></div></a>
+</article></div></div></aside><footer class=site-footer>
 <section class=copyright>
 &copy;
 2020 -
 2022 Syaofox's Elysion
-</section>
-<section class=powerby>
+</section><section class=powerby>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
 Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.7.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
-</section>
-</footer>
-<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
-<div class=pswp__bg></div>
-<div class=pswp__scroll-wrap>
+</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div><div class=pswp__scroll-wrap>
 <div class=pswp__container>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-</div>
-<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden">
 <div class=pswp__top-bar>
-<div class=pswp__counter></div>
-<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
 <div class=pswp__preloader>
 <div class=pswp__preloader__icn>
 <div class=pswp__preloader__cut>
-<div class=pswp__preloader__donut></div>
-</div>
-</div>
-</div>
-</div>
-<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-<div class=pswp__share-tooltip></div>
-</div>
-<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+<div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
 </button>
 <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
 </button>
 <div class=pswp__caption>
-<div class=pswp__caption__center></div>
-</div>
-</div>
-</div>
-</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
-</main>
-<aside class="sidebar right-sidebar sticky">
+<div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main><aside class="sidebar right-sidebar sticky">
 <section class="widget archives">
 <div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
-</div>
-<h2 class="widget-title section-title">目录</h2>
-<div class=widget--toc>
+</div><h2 class="widget-title section-title">目录</h2><div class=widget--toc>
 <nav id=TableOfContents>
 <ol>
-<li><a href=#添加用户到sudo组>添加用户到sudo组</a></li>
-<li><a href=#升级为sid>升级为sid</a></li>
-<li><a href=#安装synaptic包管理工具>安装Synaptic包管理工具</a></li>
-<li><a href=#启用snap-和-flatpak>启用Snap 和 FlatPak</a></li>
-<li><a href=#显卡驱动>显卡驱动</a>
+<li><a href=#添加用户到sudo组>添加用户到sudo组</a></li><li><a href=#升级为sid>升级为sid</a></li><li><a href=#安装synaptic包管理工具>安装Synaptic包管理工具</a></li><li><a href=#启用snap-和-flatpak>启用Snap 和 FlatPak</a></li><li><a href=#显卡驱动>显卡驱动</a>
 <ol>
-<li><a href=#amd>AMD</a></li>
-<li><a href=#nvida>Nvida</a></li>
-</ol>
-</li>
-<li><a href=#安装微代码>安装微代码</a></li>
-<li><a href=#安装-build-essential>安装 build-essential</a></li>
-<li><a href=#安装-restricted-extras>安装 restricted-extras</a></li>
-<li><a href=#设置swappiness>设置Swappiness</a></li>
-<li><a href=#修改grub菜单启动等待时间>修改grub菜单启动等待时间</a></li>
-<li><a href=#安装中文输入法>安装中文输入法</a></li>
-<li><a href=#调整鼠标滚轮>调整鼠标滚轮</a></li>
-<li><a href=#设置常用快捷键>设置常用快捷键</a></li>
-<li><a href=#设置人脸解锁>设置人脸解锁</a></li>
-<li><a href=#安装-gnome-extensions>安装 Gnome Extensions</a></li>
-<li><a href=#安装-extension-manager>安装 Extension manager</a></li>
-<li><a href=#通过-gnome-extensions-安装一些插件>通过 Gnome Extensions 安装一些插件</a></li>
-<li><a href=#安装主题>安装主题</a></li>
-<li><a href=#找回标题栏最小化按钮>找回标题栏最小化按钮</a></li>
-<li><a href=#安装hugo>安装hugo</a></li>
-<li><a href=#安装htop>安装htop</a></li>
-<li><a href=#安装nerd字体>安装nerd字体</a></li>
-<li><a href=#安装git并设置github>安装git并设置github</a></li>
-<li><a href=#设置nas上的ssh免密码登录>设置nas上的ssh免密码登录</a></li>
-<li><a href=#安装微软软件>安装微软软件</a></li>
-<li><a href=#安装utools>安装utools</a></li>
-<li><a href=#安装fdm>安装fdm</a></li>
-<li><a href=#安装kvm虚拟机>安装kvm虚拟机</a></li>
-</ol>
-</nav>
-</div>
-</section>
-</aside>
-</div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
-<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
-</body>
-</html>
+<li><a href=#amd>AMD</a></li><li><a href=#nvida>Nvida</a></li></ol></li><li><a href=#安装微代码>安装微代码</a></li><li><a href=#安装-build-essential>安装 build-essential</a></li><li><a href=#安装-restricted-extras>安装 restricted-extras</a></li><li><a href=#设置swappiness>设置Swappiness</a></li><li><a href=#修改grub菜单启动等待时间>修改grub菜单启动等待时间</a></li><li><a href=#安装中文输入法>安装中文输入法</a></li><li><a href=#调整鼠标滚轮>调整鼠标滚轮</a></li><li><a href=#设置常用快捷键>设置常用快捷键</a></li><li><a href=#设置人脸解锁>设置人脸解锁</a></li><li><a href=#安装-gnome-extensions>安装 Gnome Extensions</a></li><li><a href=#安装-extension-manager>安装 Extension manager</a></li><li><a href=#通过-gnome-extensions-安装一些插件>通过 Gnome Extensions 安装一些插件</a></li><li><a href=#安装主题>安装主题</a></li><li><a href=#找回标题栏最小化按钮>找回标题栏最小化按钮</a></li><li><a href=#安装hugo>安装hugo</a></li><li><a href=#安装htop>安装htop</a></li><li><a href=#安装nerd字体>安装nerd字体</a></li><li><a href=#安装git并设置github>安装git并设置github</a></li><li><a href=#设置nas上的ssh免密码登录>设置nas上的ssh免密码登录</a></li><li><a href=#安装微软软件>安装微软软件</a></li><li><a href=#安装utools>安装utools</a></li><li><a href=#安装fdm>安装fdm</a></li><li><a href=#安装kvm虚拟机>安装kvm虚拟机</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script>
+</body></html>
