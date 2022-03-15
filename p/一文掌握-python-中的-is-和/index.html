@@ -1,42 +1,5 @@
-<!doctype html><html lang=zh-cn>
-<head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="引言 Python 的 &amp;ldquo;is&amp;rdquo; 和 &amp;ldquo;==&amp;rdquo; 想必大家都不陌生，我们在比较变量和字面量时常常用到它们，可是它们的区别在哪里？什么情况下该用 is？什么情况下该用 ==？这成了不"><title>一文掌握 Python 中的 "is" 和 "=="</title><link rel=canonical href=https://syaofox.github.io/p/%E4%B8%80%E6%96%87%E6%8E%8C%E6%8F%A1-python-%E4%B8%AD%E7%9A%84-is-%E5%92%8C/>
-<link rel=stylesheet href=/scss/style.min.1b3ac667198cb83edcc9c45e606a6f4dd6910b8ada6b74d7fd988f1b2dfd0c7c.css><meta property="og:title" content="一文掌握 Python 中的 &#34;is&#34; 和 &#34;==&#34;">
-<meta property="og:description" content="引言 Python 的 &amp;ldquo;is&amp;rdquo; 和 &amp;ldquo;==&amp;rdquo; 想必大家都不陌生，我们在比较变量和字面量时常常用到它们，可是它们的区别在哪里？什么情况下该用 is？什么情况下该用 ==？这成了不">
-<meta property="og:url" content="https://syaofox.github.io/p/%E4%B8%80%E6%96%87%E6%8E%8C%E6%8F%A1-python-%E4%B8%AD%E7%9A%84-is-%E5%92%8C/">
-<meta property="og:site_name" content="Syaofox's Elysion">
-<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="python"><meta property="article:published_time" content="2022-01-07T18:30:50+08:00"><meta property="article:modified_time" content="2022-01-07T18:30:50+08:00">
-<meta name=twitter:site content="@syaofox">
-<meta name=twitter:creator content="@syaofox"><meta name=twitter:title content="一文掌握 Python 中的 &#34;is&#34; 和 &#34;==&#34;">
-<meta name=twitter:description content="引言 Python 的 &amp;ldquo;is&amp;rdquo; 和 &amp;ldquo;==&amp;rdquo; 想必大家都不陌生，我们在比较变量和字面量时常常用到它们，可是它们的区别在哪里？什么情况下该用 is？什么情况下该用 ==？这成了不">
-<link rel="shortcut icon" href=favicon.ico>
-</head><body class="article-page has-toc">
-<script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script>
-<div class="container main-container flex
-extended">
-<div id=article-toolbar>
-<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
-<span>返回</span>
-</a>
-</div><main class="main full-width">
-<article class=main-article>
-<header class=article-header>
-<div class=article-details>
-<header class=article-category>
-<a href=/categories/coding/ style=background-color:#2a9d8f;color:#fff>
-Coding
-</a>
-</header><h2 class=article-title>
-<a href=/p/%E4%B8%80%E6%96%87%E6%8E%8C%E6%8F%A1-python-%E4%B8%AD%E7%9A%84-is-%E5%92%8C/>一文掌握 Python 中的 "is" 和 "=="</a>
-</h2><footer class=article-time>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
-<time class=article-time--published>Jan 07, 2022</time>
-</div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-<time class=article-time--reading>
-阅读时长: 3 分钟
-</time>
-</div></footer></div></header><section class=article-content>
-<h2 id=引言><strong>引言</strong></h2><p>Python 的 &ldquo;is&rdquo; 和 &ldquo;==&rdquo; 想必大家都不陌生，我们在比较变量和字面量时常常用到它们，可是它们的区别在哪里？什么情况下该用 <code>is</code>？什么情况下该用 <code>==</code>？这成了不少人心中的困惑。</p><p>当我们判断一个变量是否为 <code>None</code> 时，通常会用 <code>is</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=o>&gt;&gt;&gt;</span> <span class=n>a</span> <span class=o>=</span> <span class=kc>None</span>
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="引言 Python 的 &amp;ldquo;is&amp;rdquo; 和 &amp;ldquo;==&amp;rdquo; 想必大家都不陌生，我们在比较变量和字面量时常常用到它们，可是它们的区别在哪里？什么情况下该用 is？什么情况下该用 ==？这成了不"><title>一文掌握 Python 中的 "is" 和 "=="</title><link rel=canonical href=https://syaofox.github.io/p/%E4%B8%80%E6%96%87%E6%8E%8C%E6%8F%A1-python-%E4%B8%AD%E7%9A%84-is-%E5%92%8C/><link rel=stylesheet href=/scss/style.min.1b3ac667198cb83edcc9c45e606a6f4dd6910b8ada6b74d7fd988f1b2dfd0c7c.css><meta property="og:title" content="一文掌握 Python 中的 &#34;is&#34; 和 &#34;==&#34;"><meta property="og:description" content="引言 Python 的 &amp;ldquo;is&amp;rdquo; 和 &amp;ldquo;==&amp;rdquo; 想必大家都不陌生，我们在比较变量和字面量时常常用到它们，可是它们的区别在哪里？什么情况下该用 is？什么情况下该用 ==？这成了不"><meta property="og:url" content="https://syaofox.github.io/p/%E4%B8%80%E6%96%87%E6%8E%8C%E6%8F%A1-python-%E4%B8%AD%E7%9A%84-is-%E5%92%8C/"><meta property="og:site_name" content="Syaofox's Elysion"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="python"><meta property="article:published_time" content="2022-01-07T18:30:50+08:00"><meta property="article:modified_time" content="2022-01-07T18:30:50+08:00"><meta name=twitter:site content="@syaofox"><meta name=twitter:creator content="@syaofox"><meta name=twitter:title content="一文掌握 Python 中的 &#34;is&#34; 和 &#34;==&#34;"><meta name=twitter:description content="引言 Python 的 &amp;ldquo;is&amp;rdquo; 和 &amp;ldquo;==&amp;rdquo; 想必大家都不陌生，我们在比较变量和字面量时常常用到它们，可是它们的区别在哪里？什么情况下该用 is？什么情况下该用 ==？这成了不"><link rel="shortcut icon" href=favicon.ico></head><body class="article-page has-toc"><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex
+extended"><div id=article-toolbar><a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg><span>返回</span></a></div><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/coding/ style=background-color:#2a9d8f;color:#fff>Coding</a></header><h2 class=article-title><a href=/p/%E4%B8%80%E6%96%87%E6%8E%8C%E6%8F%A1-python-%E4%B8%AD%E7%9A%84-is-%E5%92%8C/>一文掌握 Python 中的 "is" 和 "=="</a></h2><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>Jan 07, 2022</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>阅读时长: 3 分钟</time></div></footer></div></header><section class=article-content><h2 id=引言><strong>引言</strong></h2><p>Python 的 &ldquo;is&rdquo; 和 &ldquo;==&rdquo; 想必大家都不陌生，我们在比较变量和字面量时常常用到它们，可是它们的区别在哪里？什么情况下该用 <code>is</code>？什么情况下该用 <code>==</code>？这成了不少人心中的困惑。</p><p>当我们判断一个变量是否为 <code>None</code> 时，通常会用 <code>is</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=o>&gt;&gt;&gt;</span> <span class=n>a</span> <span class=o>=</span> <span class=kc>None</span>
 </span></span><span class=line><span class=cl><span class=o>&gt;&gt;&gt;</span> <span class=n>a</span> <span class=ow>is</span> <span class=kc>None</span>
 </span></span><span class=line><span class=cl><span class=kc>True</span>
 </span></span><span class=line><span class=cl><span class=o>&gt;&gt;&gt;</span> <span class=n>b</span> <span class=o>=</span> <span class=mi>1</span>
@@ -84,8 +47,7 @@ Coding
 </span></span><span class=line><span class=cl><span class=o>&gt;&gt;&gt;</span> <span class=n>a</span> <span class=ow>is</span> <span class=n>b</span>  <span class=c1># 表明指向不同对象</span>
 </span></span><span class=line><span class=cl><span class=kc>False</span>
 </span></span><span class=line><span class=cl><span class=o>&gt;&gt;&gt;</span>
-</span></span></code></pre></div><p>通常来说，两个变量指向字面量，它们的比较应该使用 <code>==</code>，而非 <code>is</code>，否则就可能有类似上述示例中的困惑。</p><p>在 Python 的交互解释器中，把可能频繁使用的整数对象规定在范围 <code>[-5, 256]</code> 之间，当它们创建好后就会被缓存下来。但凡是需要再用到它们时，就会从缓存中取，而不是重新创建对象。</p><ul>
-<li>当 <code>a</code> 和 <code>b</code> 都指向同一个字面量 <code>256</code> 时，<code>a is b</code> 返回 <code>True</code>。这是因为声明 <code>b = 256</code> 时，<code>256</code> 整数对象是从缓存中取的，而非重新创建，所以 <code>a</code> 和 <code>b</code> 指向同一个整数对象。</li><li>当 <code>a</code> 和 <code>b</code> 都指向同一个字面量 <code>257</code> 时，<code>a is b</code> 返回 <code>False</code>。这是因为声明 <code>b = 257</code> 时，<code>257</code> 整数对象没被缓存，是重新创建的，所以 <code>a</code> 和 <code>b</code> 指向不同的整数对象。</li></ul><p>同理，如果字面量是字符串，结果也类似。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=o>&gt;&gt;&gt;</span> <span class=n>a</span> <span class=o>=</span> <span class=s1>&#39;python.org&#39;</span>
+</span></span></code></pre></div><p>通常来说，两个变量指向字面量，它们的比较应该使用 <code>==</code>，而非 <code>is</code>，否则就可能有类似上述示例中的困惑。</p><p>在 Python 的交互解释器中，把可能频繁使用的整数对象规定在范围 <code>[-5, 256]</code> 之间，当它们创建好后就会被缓存下来。但凡是需要再用到它们时，就会从缓存中取，而不是重新创建对象。</p><ul><li>当 <code>a</code> 和 <code>b</code> 都指向同一个字面量 <code>256</code> 时，<code>a is b</code> 返回 <code>True</code>。这是因为声明 <code>b = 256</code> 时，<code>256</code> 整数对象是从缓存中取的，而非重新创建，所以 <code>a</code> 和 <code>b</code> 指向同一个整数对象。</li><li>当 <code>a</code> 和 <code>b</code> 都指向同一个字面量 <code>257</code> 时，<code>a is b</code> 返回 <code>False</code>。这是因为声明 <code>b = 257</code> 时，<code>257</code> 整数对象没被缓存，是重新创建的，所以 <code>a</code> 和 <code>b</code> 指向不同的整数对象。</li></ul><p>同理，如果字面量是字符串，结果也类似。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=o>&gt;&gt;&gt;</span> <span class=n>a</span> <span class=o>=</span> <span class=s1>&#39;python.org&#39;</span>
 </span></span><span class=line><span class=cl><span class=o>&gt;&gt;&gt;</span> <span class=n>b</span> <span class=o>=</span> <span class=s1>&#39;python.org&#39;</span>
 </span></span><span class=line><span class=cl><span class=o>&gt;&gt;&gt;</span> <span class=n>a</span> <span class=ow>is</span> <span class=n>b</span>
 </span></span><span class=line><span class=cl><span class=kc>False</span>
@@ -97,78 +59,16 @@ Coding
 </span></span><span class=line><span class=cl><span class=kc>True</span>
 </span></span><span class=line><span class=cl><span class=o>&gt;&gt;&gt;</span> <span class=n>a</span> <span class=o>==</span> <span class=n>b</span>
 </span></span><span class=line><span class=cl><span class=kc>True</span>
-</span></span></code></pre></div><h2 id=python-38-引入-is-比较字面量时报-syntaxwarning><strong>Python 3.8 引入 <code>is</code> 比较字面量时报 SyntaxWarning</strong></h2><p>鉴于使用 <code>is</code> 比较字面量其实是不正确的，在 Python 3.8 的 <strong>release notes[1]</strong> 中，引入如下内容：</p><blockquote>
-<p>The compiler now produces a SyntaxWarning when identity checks (is and is not) are used with certain types of literals (e.g. strings, numbers). These can often work by accident in CPython, but are not guaranteed by the language spec. The warning advises users to use equality tests (== and !=) instead. (Contributed by Serhiy Storchaka in <strong>bpo-34850[2]</strong>.)</p></blockquote><p>因此，当我们使用 <code>is</code> 去比较数字、字符串等字面量时，就会报 <code>SyntaxWarning</code>：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=o>&gt;&gt;&gt;</span> <span class=n>x</span> <span class=o>=</span> <span class=mi>200</span>
+</span></span></code></pre></div><h2 id=python-38-引入-is-比较字面量时报-syntaxwarning><strong>Python 3.8 引入 <code>is</code> 比较字面量时报 SyntaxWarning</strong></h2><p>鉴于使用 <code>is</code> 比较字面量其实是不正确的，在 Python 3.8 的 <strong>release notes[1]</strong> 中，引入如下内容：</p><blockquote><p>The compiler now produces a SyntaxWarning when identity checks (is and is not) are used with certain types of literals (e.g. strings, numbers). These can often work by accident in CPython, but are not guaranteed by the language spec. The warning advises users to use equality tests (== and !=) instead. (Contributed by Serhiy Storchaka in <strong>bpo-34850[2]</strong>.)</p></blockquote><p>因此，当我们使用 <code>is</code> 去比较数字、字符串等字面量时，就会报 <code>SyntaxWarning</code>：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=o>&gt;&gt;&gt;</span> <span class=n>x</span> <span class=o>=</span> <span class=mi>200</span>
 </span></span><span class=line><span class=cl><span class=o>&gt;&gt;&gt;</span> <span class=n>x</span> <span class=ow>is</span> <span class=mi>200</span>
 </span></span><span class=line><span class=cl><span class=n>Traceback</span> <span class=p>(</span><span class=n>most</span> <span class=n>recent</span> <span class=n>call</span> <span class=n>last</span><span class=p>):</span>
 </span></span><span class=line><span class=cl>  <span class=n>File</span> <span class=s2>&#34;&lt;stdin&gt;&#34;</span><span class=p>,</span> <span class=n>line</span> <span class=mi>1</span><span class=p>,</span> <span class=ow>in</span> <span class=o>&lt;</span><span class=n>module</span><span class=o>&gt;</span>
 </span></span><span class=line><span class=cl><span class=ne>SyntaxWarning</span><span class=p>:</span> <span class=s2>&#34;is&#34;</span> <span class=k>with</span> <span class=n>a</span> <span class=n>literal</span><span class=o>.</span> <span class=n>Did</span> <span class=n>you</span> <span class=n>mean</span> <span class=s2>&#34;==&#34;</span><span class=err>?</span>
-</span></span></code></pre></div><h2 id=总结><strong>总结</strong></h2><p>说了这么多，其实我们只需要记住如下两点：</p><ul>
-<li>当要比较值是否相等时，请用 <code>==</code>。</li><li>当要比较是否是同一个对象时，请用 <code>is</code>。</li></ul><h3 id=参考资料><strong>参考资料</strong></h3><p>[1]</p><p>Python 3.8 release notes: <em><a class=link href=https://docs.python.org/3.8/whatsnew/3.8.html#changes-in-python-behavior target=_blank rel=noopener>https://docs.python.org/3.8/whatsnew/3.8.html#changes-in-python-behavior</a></em></p><p>[2]</p><p>bpo-34850: <em><a class=link href=https://bugs.python.org/issue34850 target=_blank rel=noopener>https://bugs.python.org/issue34850</a></em></p></section><footer class=article-footer>
-<section class=article-tags>
-<a href=/tags/python/>python</a>
-</section></footer></article><aside class=related-contents--wrapper>
-<h2 class=section-title>相关文章</h2><div class=related-contents>
-<div class="flex article-list--tile">
-<article>
-<a href=/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/>
-<div class=article-details>
-<h2 class=article-title>docker python_Docker极简实战之python项目安装部署</h2></div></a>
-</article><article>
-<a href=/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/>
-<div class=article-details>
-<h2 class=article-title>Python学习笔记 容易忽略的知识点</h2></div></a>
-</article><article>
-<a href=/p/%E4%BD%BF%E7%94%A8propertysetterdeleter/>
-<div class=article-details>
-<h2 class=article-title>使用@property、setter、deleter</h2></div></a>
-</article><article>
-<a href=/p/__init__.py%E7%9A%84%E7%A5%9E%E5%A5%87%E7%94%A8%E6%B3%95/>
-<div class=article-details>
-<h2 class=article-title>__init__.py的神奇用法</h2></div></a>
-</article><article>
-<a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85argparsedocoptclick-%E5%92%8C-fire-%E6%80%BB%E7%BB%93%E7%AF%87/>
-<div class=article-details>
-<h2 class=article-title>Python 命令行之旅：argparse、docopt、click 和 fire 总结篇</h2></div></a>
-</article></div></div></aside><footer class=site-footer>
-<section class=copyright>
-&copy;
+</span></span></code></pre></div><h2 id=总结><strong>总结</strong></h2><p>说了这么多，其实我们只需要记住如下两点：</p><ul><li>当要比较值是否相等时，请用 <code>==</code>。</li><li>当要比较是否是同一个对象时，请用 <code>is</code>。</li></ul><h3 id=参考资料><strong>参考资料</strong></h3><p>[1]</p><p>Python 3.8 release notes: <em><a class=link href=https://docs.python.org/3.8/whatsnew/3.8.html#changes-in-python-behavior target=_blank rel=noopener>https://docs.python.org/3.8/whatsnew/3.8.html#changes-in-python-behavior</a></em></p><p>[2]</p><p>bpo-34850: <em><a class=link href=https://bugs.python.org/issue34850 target=_blank rel=noopener>https://bugs.python.org/issue34850</a></em></p></section><footer class=article-footer><section class=article-tags><a href=/tags/python/>python</a></section></footer></article><aside class=related-contents--wrapper><h2 class=section-title>相关文章</h2><div class=related-contents><div class="flex article-list--tile"><article><a href=/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/><div class=article-details><h2 class=article-title>docker python_Docker极简实战之python项目安装部署</h2></div></a></article><article><a href=/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/><div class=article-details><h2 class=article-title>Python学习笔记 容易忽略的知识点</h2></div></a></article><article><a href=/p/%E4%BD%BF%E7%94%A8propertysetterdeleter/><div class=article-details><h2 class=article-title>使用@property、setter、deleter</h2></div></a></article><article><a href=/p/__init__.py%E7%9A%84%E7%A5%9E%E5%A5%87%E7%94%A8%E6%B3%95/><div class=article-details><h2 class=article-title>__init__.py的神奇用法</h2></div></a></article><article><a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85argparsedocoptclick-%E5%92%8C-fire-%E6%80%BB%E7%BB%93%E7%AF%87/><div class=article-details><h2 class=article-title>Python 命令行之旅：argparse、docopt、click 和 fire 总结篇</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
 2020 -
-2022 Syaofox's Elysion
-</section><section class=powerby>
-Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.7.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
-</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true>
-<div class=pswp__bg></div><div class=pswp__scroll-wrap>
-<div class=pswp__container>
-<div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden">
-<div class=pswp__top-bar>
-<div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+2022 Syaofox's Elysion</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.7.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-<div class=pswp__preloader>
-<div class=pswp__preloader__icn>
-<div class=pswp__preloader__cut>
-<div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-<div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-</button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-</button>
-<div class=pswp__caption>
-<div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
-</main><aside class="sidebar right-sidebar sticky">
-<section class="widget archives">
-<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
-</div><h2 class="widget-title section-title">目录</h2><div class=widget--toc>
-<nav id=TableOfContents>
-<ol>
-<li><a href=#引言><strong>引言</strong></a></li><li><a href=#is-和--是什么><strong>&ldquo;is&rdquo; 和 &ldquo;==&rdquo; 是什么</strong></a>
-<ol>
-<li><a href=#__eq__-魔法方法><strong>__eq__ 魔法方法</strong></a></li></ol></li><li><a href=#场景示例><strong>场景示例</strong></a>
-<ol>
-<li><a href=#示例一指向同一个对象的变量比较><strong>示例一：指向同一个对象的变量比较</strong></a></li><li><a href=#示例二指向不同对象但值相同的变量比较><strong>示例二：指向不同对象（但值相同）的变量比较</strong></a></li><li><a href=#示例三指向字面量的变量比较><strong>示例三：指向字面量的变量比较</strong></a></li></ol></li><li><a href=#python-38-引入-is-比较字面量时报-syntaxwarning><strong>Python 3.8 引入 <code>is</code> 比较字面量时报 SyntaxWarning</strong></a></li><li><a href=#总结><strong>总结</strong></a>
-<ol>
-<li><a href=#参考资料><strong>参考资料</strong></a></li></ol></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
-<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script>
-</body></html>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#引言><strong>引言</strong></a></li><li><a href=#is-和--是什么><strong>&ldquo;is&rdquo; 和 &ldquo;==&rdquo; 是什么</strong></a><ol><li><a href=#__eq__-魔法方法><strong>__eq__ 魔法方法</strong></a></li></ol></li><li><a href=#场景示例><strong>场景示例</strong></a><ol><li><a href=#示例一指向同一个对象的变量比较><strong>示例一：指向同一个对象的变量比较</strong></a></li><li><a href=#示例二指向不同对象但值相同的变量比较><strong>示例二：指向不同对象（但值相同）的变量比较</strong></a></li><li><a href=#示例三指向字面量的变量比较><strong>示例三：指向字面量的变量比较</strong></a></li></ol></li><li><a href=#python-38-引入-is-比较字面量时报-syntaxwarning><strong>Python 3.8 引入 <code>is</code> 比较字面量时报 SyntaxWarning</strong></a></li><li><a href=#总结><strong>总结</strong></a><ol><li><a href=#参考资料><strong>参考资料</strong></a></li></ol></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

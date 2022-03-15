@@ -6,6 +6,13 @@
 &lt;/blockquote>
 &lt;p>添加&lt;code>syaofox&lt;/code>用户到&lt;code>sudo&lt;/code>组&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">usermod -aG sudo syaofox
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="安装wifi驱动">安装wifi驱动&lt;/h2>
+&lt;p>在仓库源中开启non-free&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">sudo apt update
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt install firmware-iwlwifi
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo modprobe -r iwlwifi
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo modprobe iwlwifi
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="升级为sid">升级为sid&lt;/h2>
 &lt;p>修改软件源为&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">deb http://repo.huaweicloud.com/debian/ sid main non-free contrib

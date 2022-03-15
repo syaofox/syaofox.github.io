@@ -1,47 +1,8 @@
-<!doctype html><html lang=zh-cn>
-<head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="一、前言 在本系列前面所有文章中，我们分别介绍了 argparse、docopt 和 click 的主要功能和用法。它们各具特色，都能出色地完成命令行任务。a"><title>Python 命令行之旅：初探 fire</title><link rel=canonical href=https://syaofox.github.io/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E5%88%9D%E6%8E%A2-fire/>
-<link rel=stylesheet href=/scss/style.min.1b3ac667198cb83edcc9c45e606a6f4dd6910b8ada6b74d7fd988f1b2dfd0c7c.css><meta property="og:title" content="Python 命令行之旅：初探 fire">
-<meta property="og:description" content="一、前言 在本系列前面所有文章中，我们分别介绍了 argparse、docopt 和 click 的主要功能和用法。它们各具特色，都能出色地完成命令行任务。a">
-<meta property="og:url" content="https://syaofox.github.io/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E5%88%9D%E6%8E%A2-fire/">
-<meta property="og:site_name" content="Syaofox's Elysion">
-<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="python"><meta property="article:tag" content="fire"><meta property="article:published_time" content="2022-01-07T14:43:38+08:00"><meta property="article:modified_time" content="2022-01-07T14:43:38+08:00">
-<meta name=twitter:site content="@syaofox">
-<meta name=twitter:creator content="@syaofox"><meta name=twitter:title content="Python 命令行之旅：初探 fire">
-<meta name=twitter:description content="一、前言 在本系列前面所有文章中，我们分别介绍了 argparse、docopt 和 click 的主要功能和用法。它们各具特色，都能出色地完成命令行任务。a">
-<link rel="shortcut icon" href=favicon.ico>
-</head><body class="article-page has-toc">
-<script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script>
-<div class="container main-container flex
-extended">
-<div id=article-toolbar>
-<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
-<span>返回</span>
-</a>
-</div><main class="main full-width">
-<article class=main-article>
-<header class=article-header>
-<div class=article-details>
-<header class=article-category>
-<a href=/categories/coding/ style=background-color:#2a9d8f;color:#fff>
-Coding
-</a>
-</header><h2 class=article-title>
-<a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E5%88%9D%E6%8E%A2-fire/>Python 命令行之旅：初探 fire</a>
-</h2><footer class=article-time>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
-<time class=article-time--published>Jan 07, 2022</time>
-</div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-<time class=article-time--reading>
-阅读时长: 3 分钟
-</time>
-</div></footer></div></header><section class=article-content>
-<h2 id=一前言>一、前言</h2><p>在本系列前面所有文章中，我们分别介绍了 <code>argparse</code>、<code>docopt</code> 和 <code>click</code> 的主要功能和用法。它们各具特色，都能出色地完成命令行任务。<code>argparse</code> 是面向过程的，需要先设置解析器，再定义参数，再解析命令行，最后实现业务逻辑。<code>docopt</code> 先用声明式的语法定义出参数，再过程式地解析命令行和实现业务逻辑。<code>click</code> 则是用装饰器的方式进一步简化显式的命令调用逻辑，但仍然不够面向对象。</p><p>而今天要介绍的 <a class=link href=https://github.com/google/python-fire target=_blank rel=noopener>fire</a> 则是用一种面向广义对象的方式来玩转命令行，这种对象可以是类、函数、字典、列表等，它更加灵活，也更加简单。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>本系列文章默认使用 Python 3 作为解释器进行讲解。
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="一、前言 在本系列前面所有文章中，我们分别介绍了 argparse、docopt 和 click 的主要功能和用法。它们各具特色，都能出色地完成命令行任务。a"><title>Python 命令行之旅：初探 fire</title><link rel=canonical href=https://syaofox.github.io/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E5%88%9D%E6%8E%A2-fire/><link rel=stylesheet href=/scss/style.min.1b3ac667198cb83edcc9c45e606a6f4dd6910b8ada6b74d7fd988f1b2dfd0c7c.css><meta property="og:title" content="Python 命令行之旅：初探 fire"><meta property="og:description" content="一、前言 在本系列前面所有文章中，我们分别介绍了 argparse、docopt 和 click 的主要功能和用法。它们各具特色，都能出色地完成命令行任务。a"><meta property="og:url" content="https://syaofox.github.io/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E5%88%9D%E6%8E%A2-fire/"><meta property="og:site_name" content="Syaofox's Elysion"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="python"><meta property="article:tag" content="fire"><meta property="article:published_time" content="2022-01-07T14:43:38+08:00"><meta property="article:modified_time" content="2022-01-07T14:43:38+08:00"><meta name=twitter:site content="@syaofox"><meta name=twitter:creator content="@syaofox"><meta name=twitter:title content="Python 命令行之旅：初探 fire"><meta name=twitter:description content="一、前言 在本系列前面所有文章中，我们分别介绍了 argparse、docopt 和 click 的主要功能和用法。它们各具特色，都能出色地完成命令行任务。a"><link rel="shortcut icon" href=favicon.ico></head><body class="article-page has-toc"><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex
+extended"><div id=article-toolbar><a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg><span>返回</span></a></div><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/coding/ style=background-color:#2a9d8f;color:#fff>Coding</a></header><h2 class=article-title><a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E5%88%9D%E6%8E%A2-fire/>Python 命令行之旅：初探 fire</a></h2><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>Jan 07, 2022</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>阅读时长: 3 分钟</time></div></footer></div></header><section class=article-content><h2 id=一前言>一、前言</h2><p>在本系列前面所有文章中，我们分别介绍了 <code>argparse</code>、<code>docopt</code> 和 <code>click</code> 的主要功能和用法。它们各具特色，都能出色地完成命令行任务。<code>argparse</code> 是面向过程的，需要先设置解析器，再定义参数，再解析命令行，最后实现业务逻辑。<code>docopt</code> 先用声明式的语法定义出参数，再过程式地解析命令行和实现业务逻辑。<code>click</code> 则是用装饰器的方式进一步简化显式的命令调用逻辑，但仍然不够面向对象。</p><p>而今天要介绍的 <a class=link href=https://github.com/google/python-fire target=_blank rel=noopener>fire</a> 则是用一种面向广义对象的方式来玩转命令行，这种对象可以是类、函数、字典、列表等，它更加灵活，也更加简单。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>本系列文章默认使用 Python 3 作为解释器进行讲解。
 </span></span><span class=line><span class=cl>若你仍在使用 Python 2，请注意两者之间语法和库的使用差异哦~
-</span></span></code></pre></div><h2 id=二介绍>二、介绍</h2><p><a class=link href=https://github.com/google/python-fire target=_blank rel=noopener>fire</a> 可以根据任何 Python 对象自动生成命令行接口。它有如下特性：</p><ul>
-<li>能以简单的方式生成 CLI</li><li>是一个开发和调试 Python 代码的实用工具</li><li>能将现存代码或别人的代码转换为 CLI</li><li>使得在 Bash 和 Python 间的转换变得更容易</li><li>通过预先为 REPL 设置所需的模块和变量，使得实用 REPL 更加容易</li></ul><p>通过如下命令可快速安装 <code>fire</code> 库：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>pip install fire
-</span></span></code></pre></div><h2 id=三快速开始>三、快速开始</h2><p>回忆下使用 <code>argparse</code>、<code>docopt</code> 和 <code>click</code> 实现命令行程序的步骤：</p><ul>
-<li>对于 <code>argparse</code> 来说，要先设置解析器，再定义参数，再解析命令行，最后实现业务逻辑（四步）</li><li>对于 <code>docopt</code> 来说，要先定义定义接口描述，再解析命令行，最后实现业务逻辑（三步）</li><li>对于 <code>click</code> 来说，就是实现业务逻辑和通过装饰器的方式定义参数（两步）</li></ul><p>它们的实现步骤越来越简单，从四步简化到了两步。而今天的主角 <code>fire</code> <strong>只需一步，现业务逻辑就够了。</strong></p><p>这简直简单的不可思议，为什么这样做就够了？我们不妨考虑下 Python 中的函数，函数是不是可以对应一个命令行程序，而函数的参数可以对应命令行程序的参数和选项呢？再看看 Python 中的类，一个类是不是可以对应一个命令行程序，而类中的每个实例方法就可以对应子命令，实例方法中的参数就是对应子命令的参数和选项。</p><p>这么一想，理论上确实是可以实现的，我们不妨通过下面的示例来看看 <code>fire</code> 是如何让我们通过简单的方式实现命令行程序。</p><h3 id=31-使用函数>3.1 使用函数</h3><p>来看这么一个例子：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>fire</span>
+</span></span></code></pre></div><h2 id=二介绍>二、介绍</h2><p><a class=link href=https://github.com/google/python-fire target=_blank rel=noopener>fire</a> 可以根据任何 Python 对象自动生成命令行接口。它有如下特性：</p><ul><li>能以简单的方式生成 CLI</li><li>是一个开发和调试 Python 代码的实用工具</li><li>能将现存代码或别人的代码转换为 CLI</li><li>使得在 Bash 和 Python 间的转换变得更容易</li><li>通过预先为 REPL 设置所需的模块和变量，使得实用 REPL 更加容易</li></ul><p>通过如下命令可快速安装 <code>fire</code> 库：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>pip install fire
+</span></span></code></pre></div><h2 id=三快速开始>三、快速开始</h2><p>回忆下使用 <code>argparse</code>、<code>docopt</code> 和 <code>click</code> 实现命令行程序的步骤：</p><ul><li>对于 <code>argparse</code> 来说，要先设置解析器，再定义参数，再解析命令行，最后实现业务逻辑（四步）</li><li>对于 <code>docopt</code> 来说，要先定义定义接口描述，再解析命令行，最后实现业务逻辑（三步）</li><li>对于 <code>click</code> 来说，就是实现业务逻辑和通过装饰器的方式定义参数（两步）</li></ul><p>它们的实现步骤越来越简单，从四步简化到了两步。而今天的主角 <code>fire</code> <strong>只需一步，现业务逻辑就够了。</strong></p><p>这简直简单的不可思议，为什么这样做就够了？我们不妨考虑下 Python 中的函数，函数是不是可以对应一个命令行程序，而函数的参数可以对应命令行程序的参数和选项呢？再看看 Python 中的类，一个类是不是可以对应一个命令行程序，而类中的每个实例方法就可以对应子命令，实例方法中的参数就是对应子命令的参数和选项。</p><p>这么一想，理论上确实是可以实现的，我们不妨通过下面的示例来看看 <code>fire</code> 是如何让我们通过简单的方式实现命令行程序。</p><h3 id=31-使用函数>3.1 使用函数</h3><p>来看这么一个例子：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>fire</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>hello</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=s2>&#34;World&#34;</span><span class=p>):</span>
 </span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=s1>&#39;Hello </span><span class=si>{name}</span><span class=s1>!&#39;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>name</span><span class=o>=</span><span class=n>name</span><span class=p>)</span>
@@ -94,68 +55,12 @@ Coding
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>NOTES
 </span></span><span class=line><span class=cl>    You can also use flags syntax for POSITIONAL ARGUMENTS
-</span></span></code></pre></div><h2 id=四小结>四、小结</h2><p><code>fire</code> 的使用方式非常简单，定一个 Python 对象，剩下的就交给 <code>fire</code> 来处理，可谓是非常的 Pythonic，这也是它会如此受欢迎的原因。</p><p>除了上面展示的内容，<code>fire</code> 还支持更多种类的 Python 对象，也拥有很多强大的功能，我们将在接下来几节中逐步走近它。</p></section><footer class=article-footer>
-<section class=article-tags>
-<a href=/tags/python/>python</a>
-<a href=/tags/fire/>fire</a>
-</section></footer></article><aside class=related-contents--wrapper>
-<h2 class=section-title>相关文章</h2><div class=related-contents>
-<div class="flex article-list--tile">
-<article>
-<a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85fire-%E5%AE%9E%E7%8E%B0-git-%E5%91%BD%E4%BB%A4/>
-<div class=article-details>
-<h2 class=article-title>Python 命令行之旅：fire 实现 git 命令</h2></div></a>
-</article><article>
-<a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E6%B7%B1%E5%85%A5-fire%E4%BA%8C/>
-<div class=article-details>
-<h2 class=article-title>Python 命令行之旅：深入 fire（二）</h2></div></a>
-</article><article>
-<a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E6%B7%B1%E5%85%A5-fire%E4%B8%80/>
-<div class=article-details>
-<h2 class=article-title>Python 命令行之旅：深入 fire（一）</h2></div></a>
-</article><article>
-<a href=/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/>
-<div class=article-details>
-<h2 class=article-title>docker python_Docker极简实战之python项目安装部署</h2></div></a>
-</article><article>
-<a href=/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/>
-<div class=article-details>
-<h2 class=article-title>Python学习笔记 容易忽略的知识点</h2></div></a>
-</article></div></div></aside><footer class=site-footer>
-<section class=copyright>
-&copy;
+</span></span></code></pre></div><h2 id=四小结>四、小结</h2><p><code>fire</code> 的使用方式非常简单，定一个 Python 对象，剩下的就交给 <code>fire</code> 来处理，可谓是非常的 Pythonic，这也是它会如此受欢迎的原因。</p><p>除了上面展示的内容，<code>fire</code> 还支持更多种类的 Python 对象，也拥有很多强大的功能，我们将在接下来几节中逐步走近它。</p></section><footer class=article-footer><section class=article-tags><a href=/tags/python/>python</a>
+<a href=/tags/fire/>fire</a></section></footer></article><aside class=related-contents--wrapper><h2 class=section-title>相关文章</h2><div class=related-contents><div class="flex article-list--tile"><article><a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85fire-%E5%AE%9E%E7%8E%B0-git-%E5%91%BD%E4%BB%A4/><div class=article-details><h2 class=article-title>Python 命令行之旅：fire 实现 git 命令</h2></div></a></article><article><a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E6%B7%B1%E5%85%A5-fire%E4%BA%8C/><div class=article-details><h2 class=article-title>Python 命令行之旅：深入 fire（二）</h2></div></a></article><article><a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E6%B7%B1%E5%85%A5-fire%E4%B8%80/><div class=article-details><h2 class=article-title>Python 命令行之旅：深入 fire（一）</h2></div></a></article><article><a href=/p/docker-python_docker%E6%9E%81%E7%AE%80%E5%AE%9E%E6%88%98%E4%B9%8Bpython%E9%A1%B9%E7%9B%AE%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/><div class=article-details><h2 class=article-title>docker python_Docker极简实战之python项目安装部署</h2></div></a></article><article><a href=/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/><div class=article-details><h2 class=article-title>Python学习笔记 容易忽略的知识点</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
 2020 -
-2022 Syaofox's Elysion
-</section><section class=powerby>
-Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.7.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
-</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true>
-<div class=pswp__bg></div><div class=pswp__scroll-wrap>
-<div class=pswp__container>
-<div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden">
-<div class=pswp__top-bar>
-<div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+2022 Syaofox's Elysion</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.7.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-<div class=pswp__preloader>
-<div class=pswp__preloader__icn>
-<div class=pswp__preloader__cut>
-<div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-<div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-</button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-</button>
-<div class=pswp__caption>
-<div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
-</main><aside class="sidebar right-sidebar sticky">
-<section class="widget archives">
-<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
-</div><h2 class="widget-title section-title">目录</h2><div class=widget--toc>
-<nav id=TableOfContents>
-<ol>
-<li><a href=#一前言>一、前言</a></li><li><a href=#二介绍>二、介绍</a></li><li><a href=#三快速开始>三、快速开始</a>
-<ol>
-<li><a href=#31-使用函数>3.1 使用函数</a></li><li><a href=#32-使用类>3.2 使用类</a></li></ol></li><li><a href=#四小结>四、小结</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
-<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script>
-</body></html>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#一前言>一、前言</a></li><li><a href=#二介绍>二、介绍</a></li><li><a href=#三快速开始>三、快速开始</a><ol><li><a href=#31-使用函数>3.1 使用函数</a></li><li><a href=#32-使用类>3.2 使用类</a></li></ol></li><li><a href=#四小结>四、小结</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
