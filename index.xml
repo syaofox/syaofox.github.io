@@ -1,4 +1,52 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Syaofox's Elysion</title><link>https://syaofox.github.io/</link><description>Recent content on Syaofox's Elysion</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 28 Mar 2022 13:50:46 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>数字人民币为什么能让美国害怕？</title><link>https://syaofox.github.io/p/%E6%95%B0%E5%AD%97%E4%BA%BA%E6%B0%91%E5%B8%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E8%AE%A9%E7%BE%8E%E5%9B%BD%E5%AE%B3%E6%80%95/</link><pubDate>Mon, 28 Mar 2022 13:50:46 +0800</pubDate><guid>https://syaofox.github.io/p/%E6%95%B0%E5%AD%97%E4%BA%BA%E6%B0%91%E5%B8%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E8%AE%A9%E7%BE%8E%E5%9B%BD%E5%AE%B3%E6%80%95/</guid><description>&lt;p>这次俄罗斯被踢出SWIFT系统，说是欧美在金融领域扔下了一枚核弹，如果说SWIFT是原子弹的话，那数字人民币就是氢弹。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Syaofox's Elysion</title><link>https://syaofox.github.io/</link><description>Recent content on Syaofox's Elysion</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 29 Mar 2022 21:22:48 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>18个命令将永远改变你使用Linux的方式</title><link>https://syaofox.github.io/p/18%E4%B8%AA%E5%91%BD%E4%BB%A4%E5%B0%86%E6%B0%B8%E8%BF%9C%E6%94%B9%E5%8F%98%E4%BD%A0%E4%BD%BF%E7%94%A8linux%E7%9A%84%E6%96%B9%E5%BC%8F/</link><pubDate>Tue, 29 Mar 2022 21:22:48 +0800</pubDate><guid>https://syaofox.github.io/p/18%E4%B8%AA%E5%91%BD%E4%BB%A4%E5%B0%86%E6%B0%B8%E8%BF%9C%E6%94%B9%E5%8F%98%E4%BD%A0%E4%BD%BF%E7%94%A8linux%E7%9A%84%E6%96%B9%E5%BC%8F/</guid><description>&lt;h2 id="cd">cd&lt;/h2>
+&lt;p>cd － 回到上一个目录
+cd ~ 回到主目录 /home/user&lt;/p>
+&lt;h2 id="clear">clear&lt;/h2>
+&lt;p>reset 清空屏幕，删除内容，内容无法找回。&lt;/p>
+&lt;p>clear 等价于Ctrl + L,清空屏幕，内容没有删除，鼠标滚轮向上滚动会再次出现&lt;/p>
+&lt;h2 id="pushd">pushd&lt;/h2>
+&lt;p>(记住一个目录，且在你想回来时，回到这个特定的目录)&lt;/p>
+&lt;p>这个被记住的目录，通常是输入pushd时所在的目录，即出现pushd时，所在的目录。&lt;/p>
+&lt;p>popd 回到 输入pushd时所在的目录&lt;/p>
+&lt;h2 id="后台操作">后台操作&lt;/h2>
+&lt;p>Ctrl + Z 暂停程序，切换到命令行输入窗口&lt;/p>
+&lt;p>fg 回到之前被放在后台的程序&lt;/p>
+&lt;h2 id="heading">!!&lt;/h2>
+&lt;p>两个感叹号等价于最近一次运行的命令，可以减少重复输入&lt;/p>
+&lt;h2 id="ctrl--r">Ctrl + R&lt;/h2>
+&lt;p>根据字符匹配历史命令，输入某些字符就可找到包含有这些字符的所有历史命令。&lt;/p>
+&lt;p>字符数越多，匹配出的历史命令就会越少，即限制条件越多，结果越精确。&lt;/p>
+&lt;p>(切换到下一个可以通过再次按 Ctrl + R)&lt;/p>
+&lt;h2 id="history">history&lt;/h2>
+&lt;p>列出历史命令，且从远到近依次编号&lt;/p>
+&lt;h2 id="编号">!+编号&lt;/h2>
+&lt;p>运行与此编号相关联的历史命令&lt;/p>
+&lt;h2 id="histtimeformaty-m-d-t-">HISTTIMEFORMAT=&amp;quot;%Y-%M-%D %T &amp;quot;&lt;/h2>
+&lt;p>对history命令进行格式化，即展示历史命令时，历史命令的运行时间会一并输出。&lt;/p>
+&lt;p>(如果希望默认输出命令的运行时间，而不用每次都输入这条格式化命令，需要将 HISTTIMEFORMAT=&amp;quot;%Y-%M-%D %T &amp;ldquo;写入规则文件.bashrc中。该文件目录是/home/user/.bashrc，所以通过nano或者vim方法可以编辑该文件规则)&lt;/p>
+&lt;h2 id="histcontrolignoreboth">HISTCONTROL=ignoreboth&lt;/h2>
+&lt;p>这是一条存在于.bashrc文件中的规则。
+如果我希望某些命令不被人通过history命令展示，可以通过在命令前面加入空格，那么这条命令将不会出现在history命令列出的历史命令中。
+前提是.bashrc文件中存在下面这条规则HISTCONTROL=ignoreboth&lt;/p>
+&lt;h2 id="cmatrix">cmatrix&lt;/h2>
+&lt;p>这是一个类似于屏保的库，毫无用处，但是很cool&lt;/p>
+&lt;p>记得运行后按F11，你的电脑会变的更酷…&lt;/p>
+&lt;h2 id="fonts-size">fonts size&lt;/h2>
+&lt;p>Ctrl + shift + plus (+) 命令行文字变大&lt;/p>
+&lt;p>Ctrl + miuns (-) 命令行文字变小&lt;/p>
+&lt;h2 id="鼠标移动">鼠标移动&lt;/h2>
+&lt;p>Ctrl + u 删除命令行中正在输入的文字&lt;/p>
+&lt;p>Ctrl + a 光标放到首位(类似windows系统中home)&lt;/p>
+&lt;p>Ctrl + e 光标放到最后一位(类似微软系统中end)&lt;/p>
+&lt;h2 id="命令链接">命令链接&lt;/h2>
+&lt;p>; 遇到错误，继续执行程序段。利用 ; 链接多条命令行，可以输入一个程序段。不用输入一条命令，按一次确定。&lt;/p>
+&lt;p>&amp;amp;&amp;amp; 遇到错误，停止执行程序段。利用 &amp;amp;&amp;amp; 链接多条命令行，可以输入一个程序段。不用输入一条命令，按一次确定。&lt;/p>
+&lt;h2 id="tail--f">tail -f&lt;/h2>
+&lt;p>查看日志文件，即使系统正在对其进行修改，实时观察文件内容。&lt;/p>
+&lt;h2 id="truncate--s-0-filename">truncate -s 0 filename&lt;/h2>
+&lt;p>通过设置文件大小为0的方法达到，将某个文件的内容清空。&lt;/p>
+&lt;h2 id="mount--column--t">mount | column -t&lt;/h2>
+&lt;p>使信息以列的方式呈现，易于阅读。可以搭配任何产生输出的命令。(column列命令非常强大)&lt;/p></description></item><item><title>数字人民币为什么能让美国害怕？</title><link>https://syaofox.github.io/p/%E6%95%B0%E5%AD%97%E4%BA%BA%E6%B0%91%E5%B8%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E8%AE%A9%E7%BE%8E%E5%9B%BD%E5%AE%B3%E6%80%95/</link><pubDate>Mon, 28 Mar 2022 13:50:46 +0800</pubDate><guid>https://syaofox.github.io/p/%E6%95%B0%E5%AD%97%E4%BA%BA%E6%B0%91%E5%B8%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E8%AE%A9%E7%BE%8E%E5%9B%BD%E5%AE%B3%E6%80%95/</guid><description>&lt;p>这次俄罗斯被踢出SWIFT系统，说是欧美在金融领域扔下了一枚核弹，如果说SWIFT是原子弹的话，那数字人民币就是氢弹。&lt;/p>
 &lt;p>关于数字人民币，有很多解释，但是我感觉都没解释清楚，没有把这玩意的厉害之处点名。&lt;/p>
 &lt;p>数字人民币有三个特点：&lt;strong>流通&lt;/strong>，&lt;strong>标记&lt;/strong>，&lt;strong>离线&lt;/strong>。&lt;/p>
 &lt;p>&lt;strong>▶流通：&lt;/strong> 数字人民币对应的是M0，也就是流通货币，要深刻理解这个概念，因为这个概念是在颠覆美元。&lt;/p>
