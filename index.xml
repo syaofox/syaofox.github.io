@@ -1,4 +1,271 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Syaofox's Elysion</title><link>https://syaofox.github.io/</link><description>Recent content on Syaofox's Elysion</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 31 Mar 2022 14:57:59 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>利用fastgit加速aur软件安装下载速度</title><link>https://syaofox.github.io/p/%E5%88%A9%E7%94%A8fastgit%E5%8A%A0%E9%80%9Faur%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6/</link><pubDate>Thu, 31 Mar 2022 14:57:59 +0800</pubDate><guid>https://syaofox.github.io/p/%E5%88%A9%E7%94%A8fastgit%E5%8A%A0%E9%80%9Faur%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6/</guid><description>&lt;h2 id="安装多线程下载工具">安装多线程下载工具&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Syaofox's Elysion</title><link>https://syaofox.github.io/</link><description>Recent content on Syaofox's Elysion</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 29 Apr 2022 16:34:21 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>playwright 爬虫使用</title><link>https://syaofox.github.io/p/playwright-%E7%88%AC%E8%99%AB%E4%BD%BF%E7%94%A8/</link><pubDate>Fri, 29 Apr 2022 16:34:21 +0800</pubDate><guid>https://syaofox.github.io/p/playwright-%E7%88%AC%E8%99%AB%E4%BD%BF%E7%94%A8/</guid><description>&lt;h1 id="8条消息-playwright-爬虫使用_木下瞳的博客-csdn博客_playwright爬虫">(8条消息) playwright 爬虫使用_木下瞳的博客-CSDN博客_playwright爬虫&lt;/h1>
+&lt;p>官方文档：&lt;a class="link" href="https://playwright.dev/python/docs/intro" title="Getting started | Playwright Python"
+target="_blank" rel="noopener"
+>Getting started | Playwright Python&lt;/a>&lt;/p>
+&lt;p>参考链接：&lt;a class="link" href="https://mp.weixin.qq.com/s/LBjf2natwOPhvhpKYIrlvw" title="强大易用！新一代爬虫利器 Playwright 的介绍"
+target="_blank" rel="noopener"
+>强大易用！新一代爬虫利器 Playwright 的介绍&lt;/a>&lt;/p>
+&lt;h1 id="安装">安装&lt;/h1>
+&lt;p>Playwrigth 会安装 Chromium, Firefox and &lt;a class="link" href="https://so.csdn.net/so/search?q=WebKit&amp;amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener"
+>WebKit&lt;/a> 浏览器并配置一些驱动，我们不必关心中间配置的过程，Playwright 会为我们配置好。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">pip&lt;/span> &lt;span class="n">install&lt;/span> &lt;span class="n">playwright&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 安装完后初始化&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">playwright&lt;/span> &lt;span class="n">install&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="基本使用">基本使用&lt;/h1>
+&lt;p>打开浏览器，跳转到百度网页，打印标题；设置了 headless 参数为 False，代表显示浏览器界面。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">playwright.sync_api&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Playwright&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">sync_playwright&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">with&lt;/span> &lt;span class="n">sync_playwright&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">p&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">rowser&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">playwright&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">chromium&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">launch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">headless&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">False&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">browser&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new_page&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">goto&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;https://www.baidu.com&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">title&lt;/span>&lt;span class="p">())&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">browser&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="代码生成">代码生成&lt;/h1>
+&lt;p>可以录制我们在浏览器中的操作并将代码自动生成出来，在&lt;a class="link" href="https://so.csdn.net/so/search?q=%E7%88%AC%E8%99%AB&amp;amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener"
+>爬虫&lt;/a>中对于一些点击，跳转，鼠标移动等自动化操作，可以使用。&lt;/p>
+&lt;p>方便在一些步骤不知道怎么写时，可以自动生成代码参考。&lt;/p>
+&lt;p>在指定路径下输入命令，会弹出对应窗口，就可以开始人工操作，会生成代码，但对于有点复杂的操作好像自动生成不成功。&lt;/p>
+&lt;pre tabindex="0">&lt;code class="language-undefined" data-lang="undefined">playwright codegen -o script.py
+&lt;/code>&lt;/pre>&lt;p>启动一个谷歌浏览器，然后将操作结果输出到 script.py 文件，下面生成一个代码看看。&lt;/p>
+&lt;p>下面这段代码，打开茶语网，点击【茶评】，会打开一个新窗口跳转过去。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">playwright.sync_api&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Playwright&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">sync_playwright&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">run&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">playwright&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Playwright&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="kc">None&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">browser&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">playwright&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">chromium&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">launch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">headless&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">False&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">context&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">browser&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new_context&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Open new page&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">context&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new_page&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Go to https://www.chayu.com/&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">goto&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;https://www.chayu.com/&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Click #sub-nav &amp;gt;&amp;gt; text=茶评&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 由于弹出新窗口，需要等待，这里就是自动等待页面加载&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 点击茶评，等待页面加载&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">with&lt;/span> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">expect_popup&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">popup_info&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 就页面的操作都可以在这里面继续加&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;#sub-nav &amp;gt;&amp;gt; text=茶评&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">popup_info&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">value&lt;/span> &lt;span class="c1"># 赋值新窗口对象&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Close page&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Close page&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># ---------------------&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">context&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">browser&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">with&lt;/span> &lt;span class="n">sync_playwright&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">playwright&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">run&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">playwright&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="ajaxhttpssocsdnnetsosearchqajaxspm1001210130017020-动态加载数据获取">&lt;a class="link" href="https://so.csdn.net/so/search?q=AJAX&amp;amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener"
+>AJAX&lt;/a> 动态加载数据获取&lt;/h1>
+&lt;p>对于获取动态加载的数据，需要及其注意的一点，需要浏览器把动态加载的页面显示在上面，才能提取，例如：&lt;a class="link" href="https://chaping.chayu.com/tea/3266" title="https://chaping.chayu.com/tea/3266"
+target="_blank" rel="noopener"
+>https://chaping.chayu.com/tea/3266&lt;/a>，获取评论数据，ajax 加载的，打开页面：&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 166;
+flex-basis: 400px"
+>
+&lt;a href="https://syaofox.github.io/p/playwright-%E7%88%AC%E8%99%AB%E4%BD%BF%E7%94%A8/assets/1651221261-7b428e604755f2441604bab4e4b6e42f.png" data-size="1540x924">
+&lt;img src="https://syaofox.github.io/p/playwright-%E7%88%AC%E8%99%AB%E4%BD%BF%E7%94%A8/assets/1651221261-7b428e604755f2441604bab4e4b6e42f.png"
+width="1540"
+height="924"
+srcset="https://syaofox.github.io/p/playwright-%E7%88%AC%E8%99%AB%E4%BD%BF%E7%94%A8/assets/1651221261-7b428e604755f2441604bab4e4b6e42f_hu4391361439fa1216015199a4001498dc_498303_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/playwright-%E7%88%AC%E8%99%AB%E4%BD%BF%E7%94%A8/assets/1651221261-7b428e604755f2441604bab4e4b6e42f_hu4391361439fa1216015199a4001498dc_498303_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p>
+&lt;p> 如果打开页面直接提取评论数据，是提取不到的，需要吧数据滑动到页面上后，再提取（坑死了）&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 143;
+flex-basis: 345px"
+>
+&lt;a href="https://syaofox.github.io/p/playwright-%E7%88%AC%E8%99%AB%E4%BD%BF%E7%94%A8/assets/1651221261-558e9c8c5b4267172d5d8b82f6ecca72.png" data-size="1050x730">
+&lt;img src="https://syaofox.github.io/p/playwright-%E7%88%AC%E8%99%AB%E4%BD%BF%E7%94%A8/assets/1651221261-558e9c8c5b4267172d5d8b82f6ecca72.png"
+width="1050"
+height="730"
+srcset="https://syaofox.github.io/p/playwright-%E7%88%AC%E8%99%AB%E4%BD%BF%E7%94%A8/assets/1651221261-558e9c8c5b4267172d5d8b82f6ecca72_hu007368110bf0d00086071cc38aec66e6_132391_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/playwright-%E7%88%AC%E8%99%AB%E4%BD%BF%E7%94%A8/assets/1651221261-558e9c8c5b4267172d5d8b82f6ecca72_hu007368110bf0d00086071cc38aec66e6_132391_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p>
+&lt;h1 id="事件监听httpssocsdnnetsosearchqe79b91e590acspm1001210130017020">事件&lt;a class="link" href="https://so.csdn.net/so/search?q=%E7%9B%91%E5%90%AC&amp;amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener"
+>监听&lt;/a>&lt;/h1>
+&lt;p>Page 对象提供了一个 on 方法，它可以用来监听页面中发生的各个事件，比如 close、console、load、request、response 等等。&lt;/p>
+&lt;p>可以监听 response 事件，response 事件可以在每次网络请求得到响应的时候触发，我们可以设置对应的回调方法。&lt;/p>
+&lt;p>可以结合 ajax 获取数据使用 ，截获 Ajax 请求，输出对应的 JSON 结果。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">playwright.sync_api&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">sync_playwright&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">on_response&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">response&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="s1">&amp;#39;/api/movie/&amp;#39;&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">response&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">url&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">response&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">status&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">200&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">response&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">json&lt;/span>&lt;span class="p">())&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">with&lt;/span> &lt;span class="n">sync_playwright&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">p&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">browser&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">p&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">chromium&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">launch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">headless&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">False&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">browser&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new_page&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">on&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;response&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">on_response&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">goto&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;https://spa6.scrape.center/&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">wait_for_load_state&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;networkidle&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">browser&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="不加载图片">不加载图片&lt;/h1>
+&lt;p>调用了 route 方法，第一个参数通过正则表达式传入了匹配的 URL 路径，这里代表的是任何包含 &lt;code>.png&lt;/code> 或 &lt;code>.jpg&lt;/code>  的链接，遇到这样的请求，会回调 cancel_request 方法处理，cancel_request 方法可以接收两个参数，一个是 route，代表一个 CallableRoute 对象，另外一个是 request，代表 Request 对象。这里我们直接调用了 route 的 abort 方法，取消了这次请求，所以最终导致的结果就是图片的加载全部取消了&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">playwright.sync_api&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">sync_playwright&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">re&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">with&lt;/span> &lt;span class="n">sync_playwright&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">p&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">browser&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">p&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">chromium&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">launch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">headless&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">False&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">browser&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new_page&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 不加载图片&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="nf">cancel_request&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">route&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">request&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">route&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">abort&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">route&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">re&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">compile&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">r&lt;/span>&lt;span class="s2">&amp;#34;(\.png)|(\.jpg)&amp;#34;&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">cancel_request&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">goto&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;https://spa6.scrape.center/&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">wait_for_load_state&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;networkidle&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">screenshot&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;no_picture.png&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">browser&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="css-选择器文本选择器click">CSS 选择器、文本选择器、click()&lt;/h3>
+&lt;p>click 方法里面接选择器表达式，提取后点击，可设置 timeout 超时时间，默认 30秒，设置以毫秒为单位，如等待 5 秒未点击成功，这报错 timeout=5000&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 选择文本是 Log in 的节点，并点击&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;text=Log in&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">timeout&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">5000&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 选择 id 为 nav-bar 子孙节点 class 属性值为 contact-us-item，并点击&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;#nav-bar .contact-us-item&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 选择文本中包含 Playwright 的 article 节点&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;article:has-text(&amp;#39;Playwright&amp;#39;)&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 选择 id 为 nav-bar 节点中文本值等于 Contact us 的节点&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;#nav-bar :text(&amp;#39;Contact us&amp;#39;)&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 选择 class 为 item-description 的节点，且该节点还要包含 class 为 item-promo-banner 的子节点&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;.item-description:has(.item-promo-banner)&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 择的就是一个 input 节点，并且该 input 节点要位于文本值为 Username 的节点的右侧&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;input:right-of(:text(&amp;#39;Username&amp;#39;))&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="xpath-选择器">xpath 选择器&lt;/h1>
+&lt;p>需要在开头指定 &lt;code>xpath=&lt;/code> 字符串，代表后面是一个 XPath 表达式&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;xpath=//button&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="获取网页源代码">获取网页源代码&lt;/h1>
+&lt;p>这里获取的网页源代码，不管网页是 ajax 加载的，都是获取最终的 html。&lt;/p>
+&lt;p>凡是需要对 html 中的元素进行操作的 page.wait_for_load_state(&amp;rsquo;networkidle&amp;rsquo;) 必写，用于等待 html 加载。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">wait_for_load_state&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;networkidle&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">html&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">content&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="文本输入">文本输入&lt;/h1>
+&lt;p>一般文本输入会先清空原来的，但 playwright 没有像 selenium 一样的方法，只能先定位到文本框，然后填充空字符串后再输入&lt;/p>
+&lt;p>在 input 标签 name 属性为 wd 的输入 nba&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">fill&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;input[name=&lt;/span>&lt;span class="se">\&amp;#34;&lt;/span>&lt;span class="s2">wd&lt;/span>&lt;span class="se">\&amp;#34;&lt;/span>&lt;span class="s2">]&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">fill&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;input[name=&lt;/span>&lt;span class="se">\&amp;#34;&lt;/span>&lt;span class="s2">wd&lt;/span>&lt;span class="se">\&amp;#34;&lt;/span>&lt;span class="s2">]&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;nba&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="选择提取标签">选择提取标签&lt;/h1>
+&lt;p>提取所有 div 标签 class 属性为 list 的 &lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">elements&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">query_selector_all&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;div.list&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>提取 span 标签 class 属性为 score 的，如匹配到多个，则取第一个&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">score&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">element&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">query_selector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;span.score&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="提取文本">提取文本&lt;/h1>
+&lt;p>提取文本为【品牌：】的标签，在提取标签下的所有文本&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">brand&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">element&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">query_selector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;text=品牌：&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text_content&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="提取标签中的属性">提取标签中的属性&lt;/h1>
+&lt;p>提取 h5 标签下的 a 标签，获取 a 标签中的 href 属性取值&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl"> &lt;span class="n">link&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">element&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">query_selector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;h5 a&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_attribute&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;href&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="鼠标滚动">鼠标滚动&lt;/h1>
+&lt;p>向右滚动 0，向下滚动 7000，可用于下拉滚动条功能&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">page1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">mouse&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">wheel&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">7000&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="下拉滚动条">下拉滚动条&lt;/h1>
+&lt;p>执行 js 代码，下拉滚动条，15000 可以根据情况设置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">page1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">evaluate&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;var q=document.documentElement.scrollTop=15000&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="cookie-登录">cookie 登录&lt;/h1>
+&lt;p>参考：&lt;a class="link" href="https://yifei.me/category/computer-science/search/crawler/" title="crawler – 逸飞的技术日志"
+target="_blank" rel="noopener"
+>crawler – 逸飞的技术日志&lt;/a>&lt;/p>
+&lt;p>登录获得保存 cookie&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">playwright.sync_api&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Playwright&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">sync_playwright&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">json&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">run&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">playwright&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Playwright&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="kc">None&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">browser&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">playwright&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">chromium&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">launch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">headless&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">False&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">context&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">browser&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new_context&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Open new page&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">context&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new_page&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Go to http://www.glidedsky.com/login&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">goto&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;http://www.glidedsky.com/login&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Click input[name=&amp;#34;email&amp;#34;]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;input[name=&lt;/span>&lt;span class="se">\&amp;#34;&lt;/span>&lt;span class="s2">email&lt;/span>&lt;span class="se">\&amp;#34;&lt;/span>&lt;span class="s2">]&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Fill input[name=&amp;#34;email&amp;#34;]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">fill&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;input[name=&lt;/span>&lt;span class="se">\&amp;#34;&lt;/span>&lt;span class="s2">email&lt;/span>&lt;span class="se">\&amp;#34;&lt;/span>&lt;span class="s2">]&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;账号&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Click input[name=&amp;#34;password&amp;#34;]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;input[name=&lt;/span>&lt;span class="se">\&amp;#34;&lt;/span>&lt;span class="s2">password&lt;/span>&lt;span class="se">\&amp;#34;&lt;/span>&lt;span class="s2">]&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Fill input[name=&amp;#34;password&amp;#34;]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">fill&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;input[name=&lt;/span>&lt;span class="se">\&amp;#34;&lt;/span>&lt;span class="s2">password&lt;/span>&lt;span class="se">\&amp;#34;&lt;/span>&lt;span class="s2">]&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;密码&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Click button:has-text(&amp;#34;Login&amp;#34;)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;button:has-text(&lt;/span>&lt;span class="se">\&amp;#34;&lt;/span>&lt;span class="s2">Login&lt;/span>&lt;span class="se">\&amp;#34;&lt;/span>&lt;span class="s2">)&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># assert page.url == &amp;#34;http://www.glidedsky.com/&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 获得登录后 cookie&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">storage&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">context&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">storage_state&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">with&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;state.json&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;w&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">f&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">json&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">dumps&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">storage&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Close page&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># ---------------------&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">context&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">browser&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">with&lt;/span> &lt;span class="n">sync_playwright&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">playwright&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">run&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">playwright&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>使用 cookie 进行登录&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">playwright.sync_api&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Playwright&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">sync_playwright&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">json&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">run&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">playwright&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Playwright&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="kc">None&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">browser&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">playwright&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">chromium&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">launch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">headless&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">False&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 加载状态&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">with&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;state.json&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">storage_state&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">json&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">loads&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">read&lt;/span>&lt;span class="p">())&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">context&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">browser&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new_context&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">storage_state&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">storage_state&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Open new page&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">context&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new_page&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Go to http://www.glidedsky.com/login&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">goto&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;http://www.glidedsky.com/&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Close page&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># ---------------------&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">context&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">browser&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">with&lt;/span> &lt;span class="n">sync_playwright&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">playwright&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">run&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">playwright&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>利用fastgit加速aur软件安装下载速度</title><link>https://syaofox.github.io/p/%E5%88%A9%E7%94%A8fastgit%E5%8A%A0%E9%80%9Faur%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6/</link><pubDate>Thu, 31 Mar 2022 14:57:59 +0800</pubDate><guid>https://syaofox.github.io/p/%E5%88%A9%E7%94%A8fastgit%E5%8A%A0%E9%80%9Faur%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6/</guid><description>&lt;h2 id="安装多线程下载工具">安装多线程下载工具&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">sudo pacman -S axel
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="创建脚本">创建脚本&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">sudo vi /usr/local/bin/fake_axel_for_makepkg
@@ -29242,7 +29509,68 @@ loading="lazy"
 &lt;p>埃特：「同一时间带?是不可以存在两个相同的人的&amp;hellip;（指主角必须为了连续时间的一致性而牺牲，这样历史才会导向正确的结局）超越时空而来的人，最后等著他的只有消失的命运。这句话的意思，玛尔蕾妮你应该会明白。将会消失的人，是没有喜欢别人的资格的&amp;hellip;即使我对你抱著特别的那种感情&amp;hellip;也是一样不行的&amp;hellip;。」&lt;/p>
 &lt;p>以精确的时空设定和感人的对话而成为史上名作的『龙骑士四』虽然创造了游戏史上当年的最高峰，这项冲击是继『美少女梦工厂』这类养成游戏的出现而导致从不玩游戏的女性人口加入市场以来最大的震撼。许多一直认为美少女游戏只是非主流游戏的人，在『龙骑士四』后也不得不承认在任何方面美少女游戏已经超越了一般游戏，成为连小说都无法模仿的新媒体型态。不过这项高度荣耀，却也导致elf之后好几年无法更加超越这部作品，而导致公司的成员纷纷求去。&lt;/p>
 &lt;p>ELF在当年靠著&lt;a class="link" href="../%e5%90%8c%e7%ba%a7%e7%94%9f2%e5%85%a8%e6%94%bb%e7%95%a5/" >同级生&lt;/a>、龙骑士、&lt;a class="link" href="../%e5%90%8c%e7%ba%a7%e7%94%9f2%e5%85%a8%e6%94%bb%e7%95%a5/" >下级生&lt;/a>、伊头家系列（遗作、臭作、鬼作三兄弟～）在日本HGAME界打出一片江山，其功劳几乎都落在原画家竹井正树和社长兼编剧蛭田昌人身上，连横田守也是ELF的。&lt;/p>
-&lt;p>不过竹井先离开ELF（似乎是不合还是啥的），2000年的时候蛭田昌人也把老板的位置让给下田笃（另一个创社元老阿比留寿浩反而跑到 MINK当老板），於是ELF转型成另一个样子，同级生三与龙骑士五成了（应该已经列名）永远的梦幻。&lt;/p></description></item><item><title>夏日的回忆~同级生2</title><link>https://syaofox.github.io/p/%E5%A4%8F%E6%97%A5%E7%9A%84%E5%9B%9E%E5%BF%86~%E5%90%8C%E7%BA%A7%E7%94%9F2/</link><pubDate>Sun, 19 Dec 2021 16:05:47 +0800</pubDate><guid>https://syaofox.github.io/p/%E5%A4%8F%E6%97%A5%E7%9A%84%E5%9B%9E%E5%BF%86~%E5%90%8C%E7%BA%A7%E7%94%9F2/</guid><description>&lt;img src="https://syaofox.github.io/p/%E5%A4%8F%E6%97%A5%E7%9A%84%E5%9B%9E%E5%BF%86~%E5%90%8C%E7%BA%A7%E7%94%9F2/Doukyuusei2.jpg" alt="Featured image of post 夏日的回忆~同级生2" />&lt;h2 id="游戏简介">游戏简介&lt;/h2>
+&lt;p>不过竹井先离开ELF（似乎是不合还是啥的），2000年的时候蛭田昌人也把老板的位置让给下田笃（另一个创社元老阿比留寿浩反而跑到 MINK当老板），於是ELF转型成另一个样子，同级生三与龙骑士五成了（应该已经列名）永远的梦幻。&lt;/p></description></item><item><title>迷走都市~完美结局~</title><link>https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/</link><pubDate>Sun, 19 Dec 2021 16:05:47 +0800</pubDate><guid>https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/</guid><description>&lt;img src="https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/MeisouToshi.jpg" alt="Featured image of post 迷走都市~完美结局~" />&lt;h2 id="游戏介绍">游戏介绍&lt;/h2>
+&lt;p>《迷走都市》是一款经典的PC98 AVG游戏，曾被移植到DOS，有繁体中文版和英文版，后来还出了WINDOWS的英文复制版，音乐和CG全面加强。因此对于一个AVG游戏来说，这足以证明它的地位。&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 133;
+flex-basis: 320px"
+>
+&lt;a href="https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/gJe2KSI.jpg" data-size="640x480">
+&lt;img src="https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/gJe2KSI.jpg"
+width="640"
+height="480"
+srcset="https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/gJe2KSI_hu4961876741a075c93030a7b518663d24_50951_480x0_resize_q75_box.jpg 480w, https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/gJe2KSI_hu4961876741a075c93030a7b518663d24_50951_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p>
+&lt;p>《迷走都市》是一个很优秀的AVG游戏，各种类型的女孩子都在游戏中出现，萝莉、熟女、御姐、痴女、SM、男人婆甚至还有人妖。作为一个古董级的游戏，《迷走都市》无疑是相当超前的。游戏的画面也非常绚丽和漂亮，人物的风格也比较唯美，精雕细琢。
+另外，《迷走都市》并非是一个很纯粹的AVG游戏，如果你只为看一些图片，那实在是糟蹋了它。《迷走都市》是一个非常好的启蒙游戏，它对于人生和社会的刻画是比较深刻的，年轻人究竟应该怎样决定自己的未来，如何去面对和处理亲情、友情、爱情，在游戏中都会找到答案。而且由于日本的发展比中国快，因此游戏中的时代和中国目前的状态很接近，很有参考的意义。
+&lt;figure
+class="gallery-image"
+style="
+flex-grow: 133;
+flex-basis: 320px"
+>
+&lt;a href="https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/pxnrgAK.jpg" data-size="640x480">
+&lt;img src="https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/pxnrgAK.jpg"
+width="640"
+height="480"
+srcset="https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/pxnrgAK_huabd077fe66dfd27cb663da63540e3467_55529_480x0_resize_q75_box.jpg 480w, https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/pxnrgAK_huabd077fe66dfd27cb663da63540e3467_55529_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 133;
+flex-basis: 320px"
+>
+&lt;a href="https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/L0XUb1K.jpg" data-size="640x480">
+&lt;img src="https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/L0XUb1K.jpg"
+width="640"
+height="480"
+srcset="https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/L0XUb1K_hu251b0f4ac2d246eb6b66f9272ec60967_44751_480x0_resize_q75_box.jpg 480w, https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/L0XUb1K_hu251b0f4ac2d246eb6b66f9272ec60967_44751_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p>
+&lt;h2 id="happy-ending">Happy Ending&lt;/h2>
+&lt;p>前面只要按剧情走就可以了&lt;/p>
+&lt;p>到后期
+对万里子要选“我就是要成为人类的指导者”，&lt;br>
+对博士要选“既然他能使犯罪者改过向善，这种力量是足够为这世界做一点事的吧”，&lt;br>
+对小梦姐妹是单线下去，&lt;br>
+最后对刺客阿雪要选“侵犯”-“放弃”-“侵犯”-“放弃”-再选“救助”3次就达成Happy Ending了，记住绝对不能选择“使用能力”！&lt;/p>
+&lt;p>看见不二子的时候绝对不能选&amp;quot;看&amp;quot;,要思考思考再思考,最后就转到万里子
+万里子的时候选'有&amp;quot;\和认同,到博士那里选的是&amp;quot;错误&amp;quot;不能&amp;quot;看情况&amp;quot;点太多,要不然也完蛋的,差不多就要&amp;quot;出场&amp;quot;
+彩佳场景&amp;quot;犯错&amp;quot; \放弃\&amp;quot;行不通&amp;quot;
+H两姐妹的时候多选罢手,关键是到2人执行的时候绝对不能让执行人动,出选项要马上选择&amp;quot;罢手&amp;quot;让刺客出来.否则后面是无法救助的!
+成功的情况下抓住刺客后问话的话,她是会回答前几句的,这样在脱了后
+“侵犯”-“放弃”-“侵犯”-“放弃”-再选“救助”*3就成功了!
+OVER&lt;/p></description></item><item><title>夏日的回忆~同级生2</title><link>https://syaofox.github.io/p/%E5%A4%8F%E6%97%A5%E7%9A%84%E5%9B%9E%E5%BF%86~%E5%90%8C%E7%BA%A7%E7%94%9F2/</link><pubDate>Sun, 19 Dec 2021 16:05:47 +0800</pubDate><guid>https://syaofox.github.io/p/%E5%A4%8F%E6%97%A5%E7%9A%84%E5%9B%9E%E5%BF%86~%E5%90%8C%E7%BA%A7%E7%94%9F2/</guid><description>&lt;img src="https://syaofox.github.io/p/%E5%A4%8F%E6%97%A5%E7%9A%84%E5%9B%9E%E5%BF%86~%E5%90%8C%E7%BA%A7%E7%94%9F2/Doukyuusei2.jpg" alt="Featured image of post 夏日的回忆~同级生2" />&lt;h2 id="游戏简介">游戏简介&lt;/h2>
 &lt;p>《同级生2》是由elf公司开发的一款冒险游戏，于1995年发行。本作是《同级生1》的续集，玩家在游戏中可以追求15个女孩（年龄范围从18~38)。&lt;/p>
 &lt;p>在某个场合上见了美女，上去搭讪，然后，hehe……估计很多人也只有在游戏里YY的份。但92年《同级生》一代的出现却把这种YY的梦想变成了现实。绝对是H-game史上的一个里程碑，不夸张，一点都不夸张。当时顶级的CG水平，极高的自由度，相当不错的人设，青春的校园背景，尤其是完全创新的游戏方式，一下子让沉浸在电子小说方式的玩家们发现了新大陆。即使到了今天，仍然能够通过卖同级生1周边来赚钱！
 &lt;figure
@@ -31855,68 +32183,7 @@ loading="lazy"
 &lt;/ul>
 &lt;blockquote>
 &lt;p>在网球场的树木Click一下亦有以上的提示&lt;/p>
-&lt;/blockquote></description></item><item><title>迷走都市~完美结局~</title><link>https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/</link><pubDate>Sun, 19 Dec 2021 16:05:47 +0800</pubDate><guid>https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/</guid><description>&lt;img src="https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/MeisouToshi.jpg" alt="Featured image of post 迷走都市~完美结局~" />&lt;h2 id="游戏介绍">游戏介绍&lt;/h2>
-&lt;p>《迷走都市》是一款经典的PC98 AVG游戏，曾被移植到DOS，有繁体中文版和英文版，后来还出了WINDOWS的英文复制版，音乐和CG全面加强。因此对于一个AVG游戏来说，这足以证明它的地位。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 133;
-flex-basis: 320px"
->
-&lt;a href="https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/gJe2KSI.jpg" data-size="640x480">
-&lt;img src="https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/gJe2KSI.jpg"
-width="640"
-height="480"
-srcset="https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/gJe2KSI_hu4961876741a075c93030a7b518663d24_50951_480x0_resize_q75_box.jpg 480w, https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/gJe2KSI_hu4961876741a075c93030a7b518663d24_50951_1024x0_resize_q75_box.jpg 1024w"
-loading="lazy"
->
-&lt;/a>
-&lt;/figure>&lt;/p>
-&lt;p>《迷走都市》是一个很优秀的AVG游戏，各种类型的女孩子都在游戏中出现，萝莉、熟女、御姐、痴女、SM、男人婆甚至还有人妖。作为一个古董级的游戏，《迷走都市》无疑是相当超前的。游戏的画面也非常绚丽和漂亮，人物的风格也比较唯美，精雕细琢。
-另外，《迷走都市》并非是一个很纯粹的AVG游戏，如果你只为看一些图片，那实在是糟蹋了它。《迷走都市》是一个非常好的启蒙游戏，它对于人生和社会的刻画是比较深刻的，年轻人究竟应该怎样决定自己的未来，如何去面对和处理亲情、友情、爱情，在游戏中都会找到答案。而且由于日本的发展比中国快，因此游戏中的时代和中国目前的状态很接近，很有参考的意义。
-&lt;figure
-class="gallery-image"
-style="
-flex-grow: 133;
-flex-basis: 320px"
->
-&lt;a href="https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/pxnrgAK.jpg" data-size="640x480">
-&lt;img src="https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/pxnrgAK.jpg"
-width="640"
-height="480"
-srcset="https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/pxnrgAK_huabd077fe66dfd27cb663da63540e3467_55529_480x0_resize_q75_box.jpg 480w, https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/pxnrgAK_huabd077fe66dfd27cb663da63540e3467_55529_1024x0_resize_q75_box.jpg 1024w"
-loading="lazy"
->
-&lt;/a>
-&lt;/figure>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 133;
-flex-basis: 320px"
->
-&lt;a href="https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/L0XUb1K.jpg" data-size="640x480">
-&lt;img src="https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/L0XUb1K.jpg"
-width="640"
-height="480"
-srcset="https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/L0XUb1K_hu251b0f4ac2d246eb6b66f9272ec60967_44751_480x0_resize_q75_box.jpg 480w, https://syaofox.github.io/p/%E8%BF%B7%E8%B5%B0%E9%83%BD%E5%B8%82~%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%B1%80~/assets/L0XUb1K_hu251b0f4ac2d246eb6b66f9272ec60967_44751_1024x0_resize_q75_box.jpg 1024w"
-loading="lazy"
->
-&lt;/a>
-&lt;/figure>&lt;/p>
-&lt;h2 id="happy-ending">Happy Ending&lt;/h2>
-&lt;p>前面只要按剧情走就可以了&lt;/p>
-&lt;p>到后期
-对万里子要选“我就是要成为人类的指导者”，&lt;br>
-对博士要选“既然他能使犯罪者改过向善，这种力量是足够为这世界做一点事的吧”，&lt;br>
-对小梦姐妹是单线下去，&lt;br>
-最后对刺客阿雪要选“侵犯”-“放弃”-“侵犯”-“放弃”-再选“救助”3次就达成Happy Ending了，记住绝对不能选择“使用能力”！&lt;/p>
-&lt;p>看见不二子的时候绝对不能选&amp;quot;看&amp;quot;,要思考思考再思考,最后就转到万里子
-万里子的时候选'有&amp;quot;\和认同,到博士那里选的是&amp;quot;错误&amp;quot;不能&amp;quot;看情况&amp;quot;点太多,要不然也完蛋的,差不多就要&amp;quot;出场&amp;quot;
-彩佳场景&amp;quot;犯错&amp;quot; \放弃\&amp;quot;行不通&amp;quot;
-H两姐妹的时候多选罢手,关键是到2人执行的时候绝对不能让执行人动,出选项要马上选择&amp;quot;罢手&amp;quot;让刺客出来.否则后面是无法救助的!
-成功的情况下抓住刺客后问话的话,她是会回答前几句的,这样在脱了后
-“侵犯”-“放弃”-“侵犯”-“放弃”-再选“救助”*3就成功了!
-OVER&lt;/p></description></item><item><title>利用EverAver Emby Kodi打造本地AV库</title><link>https://syaofox.github.io/p/%E5%88%A9%E7%94%A8everaver-emby-kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0av%E5%BA%93/</link><pubDate>Thu, 18 Jun 2020 08:19:45 +0800</pubDate><guid>https://syaofox.github.io/p/%E5%88%A9%E7%94%A8everaver-emby-kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0av%E5%BA%93/</guid><description>&lt;img src="https://syaofox.github.io/p/%E5%88%A9%E7%94%A8everaver-emby-kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0av%E5%BA%93/banner.jpg" alt="Featured image of post 利用EverAver Emby Kodi打造本地AV库" />&lt;p>&lt;strong>W A R N I N G ！&lt;/strong>&lt;/p>
+&lt;/blockquote></description></item><item><title>利用EverAver Emby Kodi打造本地AV库</title><link>https://syaofox.github.io/p/%E5%88%A9%E7%94%A8everaver-emby-kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0av%E5%BA%93/</link><pubDate>Thu, 18 Jun 2020 08:19:45 +0800</pubDate><guid>https://syaofox.github.io/p/%E5%88%A9%E7%94%A8everaver-emby-kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0av%E5%BA%93/</guid><description>&lt;img src="https://syaofox.github.io/p/%E5%88%A9%E7%94%A8everaver-emby-kodi%E6%89%93%E9%80%A0%E6%9C%AC%E5%9C%B0av%E5%BA%93/banner.jpg" alt="Featured image of post 利用EverAver Emby Kodi打造本地AV库" />&lt;p>&lt;strong>W A R N I N G ！&lt;/strong>&lt;/p>
 &lt;ul>
 &lt;li>&lt;strong>※阅读正文前请保持房间明亮，并年满18岁。&lt;/strong>&lt;/li>
 &lt;/ul>
