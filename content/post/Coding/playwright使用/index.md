@@ -6,9 +6,6 @@ categories: [Codings]
 tags: [playwright]
 ---
 
-
-# (8条消息) playwright 爬虫使用_木下瞳的博客-CSDN博客_playwright爬虫
-
 官方文档：[Getting started | Playwright Python](https://playwright.dev/python/docs/intro "Getting started | Playwright Python")
 
 参考链接：[强大易用！新一代爬虫利器 Playwright 的介绍](https://mp.weixin.qq.com/s/LBjf2natwOPhvhpKYIrlvw "强大易用！新一代爬虫利器 Playwright 的介绍")
