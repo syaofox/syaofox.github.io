@@ -11,7 +11,7 @@ tags: [playwright]
 参考链接：[强大易用！新一代爬虫利器 Playwright 的介绍](https://mp.weixin.qq.com/s/LBjf2natwOPhvhpKYIrlvw "强大易用！新一代爬虫利器 Playwright 的介绍")
 
 
-# 安装
+## 安装
 
 Playwrigth 会安装 Chromium, Firefox and [WebKit](https://so.csdn.net/so/search?q=WebKit&spm=1001.2101.3001.7020) 浏览器并配置一些驱动，我们不必关心中间配置的过程，Playwright 会为我们配置好。
 
@@ -22,7 +22,7 @@ pip install playwright
 playwright install
 ```
 
-# 基本使用
+## 基本使用
 
 打开浏览器，跳转到百度网页，打印标题；设置了 headless 参数为 False，代表显示浏览器界面。
 
@@ -37,7 +37,7 @@ with sync_playwright() as p:
     browser.close()
 ```
 
-# 代码生成
+## 代码生成
 
 可以录制我们在浏览器中的操作并将代码自动生成出来，在[爬虫](https://so.csdn.net/so/search?q=%E7%88%AC%E8%99%AB&spm=1001.2101.3001.7020)中对于一些点击，跳转，鼠标移动等自动化操作，可以使用。
 
@@ -90,7 +90,7 @@ with sync_playwright() as playwright:
     run(playwright)
 ```
 
-# [AJAX](https://so.csdn.net/so/search?q=AJAX&spm=1001.2101.3001.7020) 动态加载数据获取
+## [AJAX](https://so.csdn.net/so/search?q=AJAX&spm=1001.2101.3001.7020) 动态加载数据获取
 
 对于获取动态加载的数据，需要及其注意的一点，需要浏览器把动态加载的页面显示在上面，才能提取，例如：[https://chaping.chayu.com/tea/3266](https://chaping.chayu.com/tea/3266 "https://chaping.chayu.com/tea/3266")，获取评论数据，ajax 加载的，打开页面：
 
@@ -100,7 +100,7 @@ with sync_playwright() as playwright:
 
 ![](assets/1651221261-558e9c8c5b4267172d5d8b82f6ecca72.png)
 
-# 事件[监听](https://so.csdn.net/so/search?q=%E7%9B%91%E5%90%AC&spm=1001.2101.3001.7020)
+## 事件[监听](https://so.csdn.net/so/search?q=%E7%9B%91%E5%90%AC&spm=1001.2101.3001.7020)
 
 Page 对象提供了一个 on 方法，它可以用来监听页面中发生的各个事件，比如 close、console、load、request、response 等等。
 
@@ -124,7 +124,7 @@ with sync_playwright() as p:
     browser.close()
 ```
 
-# 不加载图片
+## 不加载图片
 
 调用了 route 方法，第一个参数通过正则表达式传入了匹配的 URL 路径，这里代表的是任何包含 `.png` 或 `.jpg`  的链接，遇到这样的请求，会回调 cancel\_request 方法处理，cancel\_request 方法可以接收两个参数，一个是 route，代表一个 CallableRoute 对象，另外一个是 request，代表 Request 对象。这里我们直接调用了 route 的 abort 方法，取消了这次请求，所以最终导致的结果就是图片的加载全部取消了
 
@@ -147,7 +147,7 @@ with sync_playwright() as p:
     browser.close()
 ```
 
-### CSS 选择器、文本选择器、click()
+## CSS 选择器、文本选择器、click()
 
 click 方法里面接选择器表达式，提取后点击，可设置 timeout 超时时间，默认 30秒，设置以毫秒为单位，如等待 5 秒未点击成功，这报错 timeout=5000
 
@@ -171,7 +171,7 @@ page.click(".item-description:has(.item-promo-banner)")
 page.click("input:right-of(:text('Username'))")
 ```
 
-# xpath 选择器
+## xpath 选择器
 
 需要在开头指定 `xpath=` 字符串，代表后面是一个 XPath 表达式
 
@@ -179,7 +179,7 @@ page.click("input:right-of(:text('Username'))")
 page.click("xpath=//button")
 ```
 
-# 获取网页源代码
+## 获取网页源代码
 
 这里获取的网页源代码，不管网页是 ajax 加载的，都是获取最终的 html。
 
@@ -190,7 +190,7 @@ page.wait_for_load_state('networkidle')
 html = page.content()
 ```
 
-# 文本输入
+## 文本输入
 
 一般文本输入会先清空原来的，但 playwright 没有像 selenium 一样的方法，只能先定位到文本框，然后填充空字符串后再输入
 
@@ -201,7 +201,7 @@ page.fill("input[name=\"wd\"]", "")
 page.fill("input[name=\"wd\"]", "nba")
 ```
 
-# 选择提取标签
+## 选择提取标签
 
 提取所有 div 标签 class 属性为 list 的 
 
@@ -215,7 +215,7 @@ elements = page.query_selector_all('div.list')
 score = element.query_selector('span.score')
 ```
 
-# 提取文本
+## 提取文本
 
 提取文本为【品牌：】的标签，在提取标签下的所有文本
 
@@ -223,7 +223,7 @@ score = element.query_selector('span.score')
 brand = element.query_selector('text=品牌：').text_content()
 ```
 
-# 提取标签中的属性
+## 提取标签中的属性
 
 提取 h5 标签下的 a 标签，获取 a 标签中的 href 属性取值
 
@@ -231,7 +231,7 @@ brand = element.query_selector('text=品牌：').text_content()
  link = element.query_selector('h5 a').get_attribute('href')
 ```
 
-# 鼠标滚动
+## 鼠标滚动
 
 向右滚动 0，向下滚动 7000，可用于下拉滚动条功能
 
@@ -239,7 +239,7 @@ brand = element.query_selector('text=品牌：').text_content()
 page1.mouse.wheel(0,7000)
 ```
 
-# 下拉滚动条
+## 下拉滚动条
 
 执行 js 代码，下拉滚动条，15000 可以根据情况设置
 
@@ -247,7 +247,7 @@ page1.mouse.wheel(0,7000)
 page1.evaluate("var q=document.documentElement.scrollTop=15000")
 ```
 
-# cookie 登录
+## cookie 登录
 
 参考：[crawler – 逸飞的技术日志](https://yifei.me/category/computer-science/search/crawler/ "crawler – 逸飞的技术日志")
 
