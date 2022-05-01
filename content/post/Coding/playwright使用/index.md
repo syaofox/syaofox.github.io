@@ -1,5 +1,5 @@
 ---
-title: "playwright 爬虫使用"
+title: "Playwright 爬虫使用"
 date: 2022-04-29 16:34:21+08:00
 draft: false
 categories: [Codings]
@@ -39,7 +39,7 @@ with sync_playwright() as p:
 
 ## 代码生成
 
-可以录制我们在浏览器中的操作并将代码自动生成出来，在[爬虫](https://so.csdn.net/so/search?q=%E7%88%AC%E8%99%AB&spm=1001.2101.3001.7020)中对于一些点击，跳转，鼠标移动等自动化操作，可以使用。
+可以录制我们在浏览器中的操作并将代码自动生成出来，在爬虫中对于一些点击，跳转，鼠标移动等自动化操作，可以使用。
 
 方便在一些步骤不知道怎么写时，可以自动生成代码参考。
 
@@ -90,7 +90,7 @@ with sync_playwright() as playwright:
     run(playwright)
 ```
 
-## [AJAX](https://so.csdn.net/so/search?q=AJAX&spm=1001.2101.3001.7020) 动态加载数据获取
+## AJAX 动态加载数据获取
 
 对于获取动态加载的数据，需要及其注意的一点，需要浏览器把动态加载的页面显示在上面，才能提取，例如：[https://chaping.chayu.com/tea/3266](https://chaping.chayu.com/tea/3266 "https://chaping.chayu.com/tea/3266")，获取评论数据，ajax 加载的，打开页面：
 
@@ -100,7 +100,7 @@ with sync_playwright() as playwright:
 
 ![](assets/1651221261-558e9c8c5b4267172d5d8b82f6ecca72.png)
 
-## 事件[监听](https://so.csdn.net/so/search?q=%E7%9B%91%E5%90%AC&spm=1001.2101.3001.7020)
+## 事件监听
 
 Page 对象提供了一个 on 方法，它可以用来监听页面中发生的各个事件，比如 close、console、load、request、response 等等。
 
