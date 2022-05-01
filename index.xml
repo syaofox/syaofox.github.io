@@ -154,7 +154,7 @@
 &lt;h2 id="尾声">尾声：&lt;/h2>
 &lt;p>之后的事已经不属于商战，甚至不属于战，已经没有人能抵抗自力。张自力在家虐打田宁，对外赶尽杀绝，先后杀死霍景良和高水根（霍死得壮烈、高死得曲折，这一段还是蛮有看头），而荣添以高水根的死换回了STANLEY签名的证据使孝勤释放出来。此时叶荣添已经心力交瘁，完全失去战斗力，LISA却挺身而出，联系政府高官曾先生和董先生（那个演曾先生的真与曾荫权有几分相似，至于曾先生口中的董先生，不说也知道是谁了），终于，单凭LISA的关系已经令政府把赌城计划搁置。田宁自杀，自力迁怒于LISA，派人杀LISA不遂，后查出其父秦锦向叶荣添通风报信，良心发现下又杀死许大豪，最后劫持叶荣添却遇上沙泥倾泻，叶、张二人同时遭活埋，叶荣添长期昏迷，许文彪的鬼魂出现，将自力带离这个世界。 “如果可以的话，我愿意用我的命换回阿宁的命”，早知如此，何必当初？随着“像我这一种男人”的歌声，这位复仇魔神终于随他哥哥走了……&lt;/p>
 &lt;p>该死的都死了，该走的也走了，只余下马志强一人独撑力天，既要说服高官，又要天天认尸，幸亏田宁终于回来，荣添也终于醒来。&lt;/p>
-&lt;p>2010年，无烟城终于建成，叶荣添以一代伟人的姿态走出来发表讲话，但他深知无烟城不是他一个人的，因此讲词也先后出现许文彪和叶雅汶的姓名，而无烟城则以岑颖欣的英文名IVY来命名！——创世纪完！&lt;/p></description></item><item><title>playwright 爬虫使用</title><link>https://syaofox.github.io/p/playwright-%E7%88%AC%E8%99%AB%E4%BD%BF%E7%94%A8/</link><pubDate>Fri, 29 Apr 2022 16:34:21 +0800</pubDate><guid>https://syaofox.github.io/p/playwright-%E7%88%AC%E8%99%AB%E4%BD%BF%E7%94%A8/</guid><description>&lt;p>官方文档：&lt;a class="link" href="https://playwright.dev/python/docs/intro" title="Getting started | Playwright Python"
+&lt;p>2010年，无烟城终于建成，叶荣添以一代伟人的姿态走出来发表讲话，但他深知无烟城不是他一个人的，因此讲词也先后出现许文彪和叶雅汶的姓名，而无烟城则以岑颖欣的英文名IVY来命名！——创世纪完！&lt;/p></description></item><item><title>Playwright 爬虫使用</title><link>https://syaofox.github.io/p/playwright-%E7%88%AC%E8%99%AB%E4%BD%BF%E7%94%A8/</link><pubDate>Fri, 29 Apr 2022 16:34:21 +0800</pubDate><guid>https://syaofox.github.io/p/playwright-%E7%88%AC%E8%99%AB%E4%BD%BF%E7%94%A8/</guid><description>&lt;p>官方文档：&lt;a class="link" href="https://playwright.dev/python/docs/intro" title="Getting started | Playwright Python"
 target="_blank" rel="noopener"
 >Getting started | Playwright Python&lt;/a>&lt;/p>
 &lt;p>参考链接：&lt;a class="link" href="https://mp.weixin.qq.com/s/LBjf2natwOPhvhpKYIrlvw" title="强大易用！新一代爬虫利器 Playwright 的介绍"
@@ -178,8 +178,7 @@ target="_blank" rel="noopener"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">title&lt;/span>&lt;span class="p">())&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">browser&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="代码生成">代码生成&lt;/h2>
-&lt;p>可以录制我们在浏览器中的操作并将代码自动生成出来，在&lt;a class="link" href="https://so.csdn.net/so/search?q=%E7%88%AC%E8%99%AB&amp;amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener"
->爬虫&lt;/a>中对于一些点击，跳转，鼠标移动等自动化操作，可以使用。&lt;/p>
+&lt;p>可以录制我们在浏览器中的操作并将代码自动生成出来，在爬虫中对于一些点击，跳转，鼠标移动等自动化操作，可以使用。&lt;/p>
 &lt;p>方便在一些步骤不知道怎么写时，可以自动生成代码参考。&lt;/p>
 &lt;p>在指定路径下输入命令，会弹出对应窗口，就可以开始人工操作，会生成代码，但对于有点复杂的操作好像自动生成不成功。&lt;/p>
 &lt;pre tabindex="0">&lt;code class="language-undefined" data-lang="undefined">playwright codegen -o script.py
@@ -219,8 +218,7 @@ target="_blank" rel="noopener"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">with&lt;/span> &lt;span class="n">sync_playwright&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">playwright&lt;/span>&lt;span class="p">:&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">run&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">playwright&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="ajaxhttpssocsdnnetsosearchqajaxspm1001210130017020-动态加载数据获取">&lt;a class="link" href="https://so.csdn.net/so/search?q=AJAX&amp;amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener"
->AJAX&lt;/a> 动态加载数据获取&lt;/h2>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="ajax-动态加载数据获取">AJAX 动态加载数据获取&lt;/h2>
 &lt;p>对于获取动态加载的数据，需要及其注意的一点，需要浏览器把动态加载的页面显示在上面，才能提取，例如：&lt;a class="link" href="https://chaping.chayu.com/tea/3266" title="https://chaping.chayu.com/tea/3266"
 target="_blank" rel="noopener"
 >https://chaping.chayu.com/tea/3266&lt;/a>，获取评论数据，ajax 加载的，打开页面：&lt;/p>
@@ -255,8 +253,7 @@ loading="lazy"
 >
 &lt;/a>
 &lt;/figure>&lt;/p>
-&lt;h2 id="事件监听httpssocsdnnetsosearchqe79b91e590acspm1001210130017020">事件&lt;a class="link" href="https://so.csdn.net/so/search?q=%E7%9B%91%E5%90%AC&amp;amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener"
->监听&lt;/a>&lt;/h2>
+&lt;h2 id="事件监听">事件监听&lt;/h2>
 &lt;p>Page 对象提供了一个 on 方法，它可以用来监听页面中发生的各个事件，比如 close、console、load、request、response 等等。&lt;/p>
 &lt;p>可以监听 response 事件，response 事件可以在每次网络请求得到响应的时候触发，我们可以设置对应的回调方法。&lt;/p>
 &lt;p>可以结合 ajax 获取数据使用 ，截获 Ajax 请求，输出对应的 JSON 结果。&lt;/p>
