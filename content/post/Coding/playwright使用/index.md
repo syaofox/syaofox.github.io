@@ -169,6 +169,29 @@ page.click(".item-description:has(.item-promo-banner)")
  
 # 择的就是一个 input 节点，并且该 input 节点要位于文本值为 Username 的节点的右侧
 page.click("input:right-of(:text('Username'))")
+
+
+# 通过 CSS 选择元素
+page.click("#search")
+
+# 除了常用的 CSS 表达式外，Playwright 还支持了几个新的伪类
+# :has 表示包含某个元素的元素
+page.click("article:has(div.prome)")
+
+# :is 用来对自身做断言
+page.click("button:is(:text('sign in'), :text('log in'))")
+
+# :text 表示包含某个文本的元素
+page.click("button:text('Sign in')")  # 包含
+page.click("button:text-is('Sign is')")  # 严格匹配
+page.click("button:text-matches('\w+')")  # 正则
+
+# 还可以根据方位匹配
+page.click("button:right-of(#search)")  # 右边
+page.click("button:left-of(#search)")  # 左边
+page.click("button:above(#search)")  # 上边
+page.click("button:below(#search)")  # 下边
+page.click("button:near(#search)")  # 50px 之内的元素
 ```
 
 ## xpath 选择器
