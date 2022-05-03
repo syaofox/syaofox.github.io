@@ -307,6 +307,29 @@ loading="lazy"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 择的就是一个 input 节点，并且该 input 节点要位于文本值为 Username 的节点的右侧&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;input:right-of(:text(&amp;#39;Username&amp;#39;))&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 通过 CSS 选择元素&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;#search&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 除了常用的 CSS 表达式外，Playwright 还支持了几个新的伪类&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># :has 表示包含某个元素的元素&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;article:has(div.prome)&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># :is 用来对自身做断言&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;button:is(:text(&amp;#39;sign in&amp;#39;), :text(&amp;#39;log in&amp;#39;))&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># :text 表示包含某个文本的元素&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;button:text(&amp;#39;Sign in&amp;#39;)&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 包含&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;button:text-is(&amp;#39;Sign is&amp;#39;)&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 严格匹配&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;button:text-matches(&amp;#39;\w+&amp;#39;)&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 正则&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 还可以根据方位匹配&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;button:right-of(#search)&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 右边&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;button:left-of(#search)&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 左边&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;button:above(#search)&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 上边&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;button:below(#search)&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 下边&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;button:near(#search)&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 50px 之内的元素&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="xpath-选择器">xpath 选择器&lt;/h2>
 &lt;p>需要在开头指定 &lt;code>xpath=&lt;/code> 字符串，代表后面是一个 XPath 表达式&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">page&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;xpath=//button&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
