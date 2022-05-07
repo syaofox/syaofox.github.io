@@ -2,7 +2,7 @@
 title: "Playwright 爬虫使用"
 date: 2022-04-29 16:34:21+08:00
 draft: false
-categories: [Codings]
+categories: [Coding]
 tags: [playwright]
 ---
 
