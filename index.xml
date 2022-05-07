@@ -1,4 +1,352 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Syaofox's Elysion</title><link>https://syaofox.github.io/</link><description>Recent content on Syaofox's Elysion</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 01 May 2022 14:11:33 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>TVB经典《创世纪》的二十场商战全记录</title><link>https://syaofox.github.io/p/tvb%E7%BB%8F%E5%85%B8%E5%88%9B%E4%B8%96%E7%BA%AA%E7%9A%84%E4%BA%8C%E5%8D%81%E5%9C%BA%E5%95%86%E6%88%98%E5%85%A8%E8%AE%B0%E5%BD%95/</link><pubDate>Sun, 01 May 2022 14:11:33 +0800</pubDate><guid>https://syaofox.github.io/p/tvb%E7%BB%8F%E5%85%B8%E5%88%9B%E4%B8%96%E7%BA%AA%E7%9A%84%E4%BA%8C%E5%8D%81%E5%9C%BA%E5%95%86%E6%88%98%E5%85%A8%E8%AE%B0%E5%BD%95/</guid><description>&lt;p>创世纪的商战，无论从实际操作的详细程度、事件的复杂程度都是其他商战片无法比拟的，当然这也是当年创世纪1收视不如预期的原因，因为丝奶们看不明，“整天看着他们在斗，不知道他们在斗什么” 。因此后来TVB再也没在商战片上下工夫，02年的流金侧重点有所改变，而之后几年都没有商战片，当然罗嘉良、陈锦鸿、古天乐的离开也是一大原因，直至2005年夏天，TVB夜间剧场重播创世纪，竟打破夜间收视记录（原因是观众由丝奶转为很晚睡觉的白领），哈哈。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Syaofox's Elysion</title><link>https://syaofox.github.io/</link><description>Recent content on Syaofox's Elysion</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 07 May 2022 14:52:28 +0800</lastBuildDate><atom:link href="https://syaofox.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>tqdm</title><link>https://syaofox.github.io/p/tqdm/</link><pubDate>Sat, 07 May 2022 14:52:28 +0800</pubDate><guid>https://syaofox.github.io/p/tqdm/</guid><description>&lt;h1 id="1tqdm包安装">1、&lt;code>tqdm&lt;/code>包安装&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">pip&lt;/span> &lt;span class="n">install&lt;/span> &lt;span class="n">tqdm&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="2引用">2、引用&lt;/h1>
+&lt;p>引用包的时候注意细节，不是直接引用，而是引用里面的一个类&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">tqdm&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">tqdm&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">或者&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">tqdm&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">trange&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="3使用方法1tpdm和trange最简单方法">3、使用方法1：&lt;code>tpdm&lt;/code>和&lt;code>trange&lt;/code>最简单方法&lt;/h1>
+&lt;h2 id="主要方式1使用tqdm">主要方式1：使用&lt;code>tqdm&lt;/code>&lt;/h2>
+&lt;p>是使用&lt;code>tqdm&lt;/code>封装任意&lt;a class="link" href="https://so.csdn.net/so/search?q=%E8%BF%AD%E4%BB%A3%E5%99%A8&amp;amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener"
+>迭代器&lt;/a>&lt;/p>
+&lt;p>&lt;strong>代码1演示如下&lt;/strong>（包装range）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">tqdm&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">tqdm&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">tqdm&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">)):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>代码2演示如下&lt;/strong>（包装list）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">tqdm&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">tqdm&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">tqdm&lt;/span>&lt;span class="p">([&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">5&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">6&lt;/span>&lt;span class="p">]):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>运行结果如下&lt;/strong>&lt;/p>
+&lt;p>具体的信息含义&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">进度百分比&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="n">进度条&lt;/span>&lt;span class="o">|&lt;/span> &lt;span class="n">当前迭代数&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">总迭代个数&lt;/span>&lt;span class="err">，&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">消耗时间&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">剩余时间&lt;/span>&lt;span class="err">，&lt;/span>&lt;span class="n">迭代的速度&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 3122;
+flex-basis: 7494px"
+>
+&lt;a href="https://syaofox.github.io/p/tqdm/assets/1651906348-d0edfa7f3762f42fec558b70bfcc291e.png" data-size="2061x66">
+&lt;img src="https://syaofox.github.io/p/tqdm/assets/1651906348-d0edfa7f3762f42fec558b70bfcc291e.png"
+width="2061"
+height="66"
+srcset="https://syaofox.github.io/p/tqdm/assets/1651906348-d0edfa7f3762f42fec558b70bfcc291e_huc818d7b3bf44495d1698c95a0e97bf73_19014_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/tqdm/assets/1651906348-d0edfa7f3762f42fec558b70bfcc291e_huc818d7b3bf44495d1698c95a0e97bf73_19014_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p>
+&lt;h2 id="主要方式2使用trange">主要方式2：使用&lt;code>trange&lt;/code>&lt;/h2>
+&lt;p>同时也可以使用&lt;code>trange&lt;/code>，这个封装是&lt;code>tqdm&lt;/code>针对&lt;code>range&lt;/code>所做的封装，代码演示如下&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">tqdm&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">trange&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">trange&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 1538;
+flex-basis: 3691px"
+>
+&lt;a href="https://syaofox.github.io/p/tqdm/assets/1651906348-b6371f614d5d5433f9fb21fb27e5d67a.png" data-size="1246x81">
+&lt;img src="https://syaofox.github.io/p/tqdm/assets/1651906348-b6371f614d5d5433f9fb21fb27e5d67a.png"
+width="1246"
+height="81"
+srcset="https://syaofox.github.io/p/tqdm/assets/1651906348-b6371f614d5d5433f9fb21fb27e5d67a_hu530d4829796f17b0e10099b65271374c_10758_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/tqdm/assets/1651906348-b6371f614d5d5433f9fb21fb27e5d67a_hu530d4829796f17b0e10099b65271374c_10758_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="image-20210526153928391">
+&lt;/a>
+&lt;figcaption>image-20210526153928391&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;h1 id="4使用方法2tqdm进度条固定长度设置">4、使用方法2：&lt;code>tqdm&lt;/code>进度条固定长度设置&lt;/h1>
+&lt;h2 id="讲解说明">讲解说明：&lt;/h2>
+&lt;p>可以看到使用方法一种的例子会出现如下情况&lt;/p>
+&lt;blockquote>
+&lt;p>自适应进度条的长度会占据整个终端的长度&lt;/p>
+&lt;p>并且当你改变终端长度的时候，长度变小就会出现串行，长度变大就会自适应的到新的最长终端长度（虽然没啥大问题，但是很难受）&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 533;
+flex-basis: 1280px"
+>
+&lt;a href="https://syaofox.github.io/p/tqdm/assets/1651906348-335f6971435c78ca09b2662bec53c7f1.png" data-size="1094x205">
+&lt;img src="https://syaofox.github.io/p/tqdm/assets/1651906348-335f6971435c78ca09b2662bec53c7f1.png"
+width="1094"
+height="205"
+srcset="https://syaofox.github.io/p/tqdm/assets/1651906348-335f6971435c78ca09b2662bec53c7f1_hu0651ce5aa4e4844cc76ba4280e444795_36943_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/tqdm/assets/1651906348-335f6971435c78ca09b2662bec53c7f1_hu0651ce5aa4e4844cc76ba4280e444795_36943_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="image-20210526154852805">
+&lt;/a>
+&lt;figcaption>image-20210526154852805&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="代码案例">代码案例：&lt;/h2>
+&lt;p>发现了一个参数&lt;code>ncols&lt;/code>，大家可以使用如下设置（在之后的所有方法5,6,7…中都可以这么设置，设置这个参数只是对&lt;a class="link" href="https://so.csdn.net/so/search?q=tqdm&amp;amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener"
+>tqdm&lt;/a>类进行初始化的时候传入进去），tqdm总长度就会固定，代码案例如下&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">tqdm&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">tqdm&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">tqdm&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="n">ncols&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">50&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 1850;
+flex-basis: 4442px"
+>
+&lt;a href="https://syaofox.github.io/p/tqdm/assets/1651906348-17b8ee10a125b35febbde9e7983d7f1e.png" data-size="1092x59">
+&lt;img src="https://syaofox.github.io/p/tqdm/assets/1651906348-17b8ee10a125b35febbde9e7983d7f1e.png"
+width="1092"
+height="59"
+srcset="https://syaofox.github.io/p/tqdm/assets/1651906348-17b8ee10a125b35febbde9e7983d7f1e_hu03099d5f159b8109b7b2ee34f6aa796a_20868_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/tqdm/assets/1651906348-17b8ee10a125b35febbde9e7983d7f1e_hu03099d5f159b8109b7b2ee34f6aa796a_20868_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="image-20210526155111283">
+&lt;/a>
+&lt;figcaption>image-20210526155111283&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;h2 id="备注说明">备注说明：&lt;/h2>
+&lt;p>在&lt;code>ncols&lt;/code>参数控制的时候，代表的是字符数量，如果想要显示的字符数比你设置的多，就会出现显示不全，结果如下（设置为10的时候），如果想要显示的字符数小于你的设置，就会用进度条的拉长补全，结果如下（设置为80的时候）&lt;/p>
+&lt;p>设置为10时候&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 1616;
+flex-basis: 3879px"
+>
+&lt;a href="https://syaofox.github.io/p/tqdm/assets/1651906348-801bb3f71921e99bc6f0a4391b5e2fa6.png" data-size="1083x67">
+&lt;img src="https://syaofox.github.io/p/tqdm/assets/1651906348-801bb3f71921e99bc6f0a4391b5e2fa6.png"
+width="1083"
+height="67"
+srcset="https://syaofox.github.io/p/tqdm/assets/1651906348-801bb3f71921e99bc6f0a4391b5e2fa6_hu92da120b57bbe54d7678a58710d037ff_14777_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/tqdm/assets/1651906348-801bb3f71921e99bc6f0a4391b5e2fa6_hu92da120b57bbe54d7678a58710d037ff_14777_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="image-20210526155415870">
+&lt;/a>
+&lt;figcaption>image-20210526155415870&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;p>设置为80时候&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 1471;
+flex-basis: 3531px"
+>
+&lt;a href="https://syaofox.github.io/p/tqdm/assets/1651906348-dca922a3cb10cae20444530798b29f48.png" data-size="1133x77">
+&lt;img src="https://syaofox.github.io/p/tqdm/assets/1651906348-dca922a3cb10cae20444530798b29f48.png"
+width="1133"
+height="77"
+srcset="https://syaofox.github.io/p/tqdm/assets/1651906348-dca922a3cb10cae20444530798b29f48_hud5a46949e5d4a7aee374c9460ba55ebe_10107_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/tqdm/assets/1651906348-dca922a3cb10cae20444530798b29f48_hud5a46949e5d4a7aee374c9460ba55ebe_10107_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="image-20210526155511370">
+&lt;/a>
+&lt;figcaption>image-20210526155511370&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;h1 id="5tqdm设置自定义的更新步长和前后缀显示主要适用于深度学习训练中的监督具体见举例">5、&lt;code>tqdm&lt;/code>设置自定义的更新步长和前后缀显示（主要适用于深度学习训练中的监督，具体见举例）&lt;/h1>
+&lt;h2 id="主要目标">主要目标：&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>主要目标1：实现tpdm的前缀后缀显示为自己想要的信息&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>主要目标2：实现按照自己设置的步长进行进度条更新&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>主要目标3：如果想要在迭代过程中打印某个数值的时候，避免进度条串行（如下）&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 195;
+flex-basis: 469px"
+>
+&lt;a href="https://syaofox.github.io/p/tqdm/assets/1651906348-5ecd26b958e920f575110b6540f8e412.png" data-size="1111x568">
+&lt;img src="https://syaofox.github.io/p/tqdm/assets/1651906348-5ecd26b958e920f575110b6540f8e412.png"
+width="1111"
+height="568"
+srcset="https://syaofox.github.io/p/tqdm/assets/1651906348-5ecd26b958e920f575110b6540f8e412_hu53c57f643d8e728a1f44e0734d94074c_70331_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/tqdm/assets/1651906348-5ecd26b958e920f575110b6540f8e412_hu53c57f643d8e728a1f44e0734d94074c_70331_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="image-20210526160629507">
+&lt;/a>
+&lt;figcaption>image-20210526160629507&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="代码案例-1">代码案例：&lt;/h2>
+&lt;p>为了可以运行，我抽象了dataloader和epoch&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">tqdm&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">tqdm&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">total_epoch&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">10&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">data_loader&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">100&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> &lt;span class="n">epoch&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">total_epoch&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">with&lt;/span> &lt;span class="n">tqdm&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">total&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">data_loader&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">_tqdm&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="c1"># 使用需要的参数对tqdm进行初始化&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">_tqdm&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set_description&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;epoch: &lt;/span>&lt;span class="si">{}&lt;/span>&lt;span class="s1">/&lt;/span>&lt;span class="si">{}&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">format&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">epoch&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">total_epoch&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="c1"># 设置前缀 一般为epoch的信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">data&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">data_loader&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mf">0.01&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">_tqdm&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set_postfix&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">loss&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="si">{:.6f}&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">format&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="c1"># 设置你想要在本次循环内实时监视的变量 可以作为后缀打印出来&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">_tqdm&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">update&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 设置你每一次想让进度条更新的iteration 大小&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 756;
+flex-basis: 1816px"
+>
+&lt;a href="https://syaofox.github.io/p/tqdm/assets/1651906348-bd9d40b4a02c6053629cb1146448c7ae.png" data-size="1105x146">
+&lt;img src="https://syaofox.github.io/p/tqdm/assets/1651906348-bd9d40b4a02c6053629cb1146448c7ae.png"
+width="1105"
+height="146"
+srcset="https://syaofox.github.io/p/tqdm/assets/1651906348-bd9d40b4a02c6053629cb1146448c7ae_huaec172cbcbf02cbfd3dcd8b1d61f2011_33153_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/tqdm/assets/1651906348-bd9d40b4a02c6053629cb1146448c7ae_huaec172cbcbf02cbfd3dcd8b1d61f2011_33153_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="image-20210526160425773">
+&lt;/a>
+&lt;figcaption>image-20210526160425773&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;h2 id="实际使用中的代码案例">实际使用中的代码案例：&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> &lt;span class="n">epoch&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">opt&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">total_epoch&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">with&lt;/span> &lt;span class="n">tqdm&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">total&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">dataset&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">dataset&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">%&lt;/span> &lt;span class="n">opt&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">batch_size&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">,&lt;/span> &lt;span class="n">ncols&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">80&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">_tqdm&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="c1">#总长度是data的长度&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">_tqdm&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set_description&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;epoch: &lt;/span>&lt;span class="si">{}&lt;/span>&lt;span class="s1">/&lt;/span>&lt;span class="si">{}&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">format&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">epoch&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">opt&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">total_epoch&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="c1">#前缀设置一些想要的更新信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">model&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">train&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">data&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">dataloader&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">inputs&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">labels&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">data&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">inputs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">inputs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">to&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">device&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">labels&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">labels&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">to&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">device&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">preds&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">model&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">inputs&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">loss&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">criterion&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">preds&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">labels&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">optimizer&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">zero_grad&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">loss&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">backward&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">optimizer&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">step&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">_tqdm&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set_postfix&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">loss&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="si">{:.6f}&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">format&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">loss&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">item&lt;/span>&lt;span class="p">()))&lt;/span>&lt;span class="c1">#后缀设置一些想要的监控信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">_tqdm&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">update&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">inputs&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="c1">#更新步长为一个batchsize长度&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="6tqdm的自定义显示信息设置">6、&lt;code>tqdm&lt;/code>的自定义显示信息设置&lt;/h1>
+&lt;h2 id="问题的起因">问题的起因：&lt;/h2>
+&lt;p>我需要监控的信息比较多，一行有的时候显示不下，在显示信息中有一个我不需要的信息就是单位时间迭代数量，我就想把他去掉，找了所有的网站我都没有找到怎么去掉，并没有这个开关，这一部分主要解决这个问题，完成tqdm进度条所有信息的自定义显示（就是你想显示啥显示啥hhh）&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 328;
+flex-basis: 787px"
+>
+&lt;a href="https://syaofox.github.io/p/tqdm/assets/1651906348-60bc652dc942f5b2898a601e11cf87e8.png" data-size="151x46">
+&lt;img src="https://syaofox.github.io/p/tqdm/assets/1651906348-60bc652dc942f5b2898a601e11cf87e8.png"
+width="151"
+height="46"
+srcset="https://syaofox.github.io/p/tqdm/assets/1651906348-60bc652dc942f5b2898a601e11cf87e8_hufdaa01f014168e69ae45cd2b6078d42f_2656_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/tqdm/assets/1651906348-60bc652dc942f5b2898a601e11cf87e8_hufdaa01f014168e69ae45cd2b6078d42f_2656_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="image-20210526164113964">
+&lt;/a>
+&lt;figcaption>image-20210526164113964&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;h2 id="源码分析">源码分析：&lt;/h2>
+&lt;p>太长我就不放全部的代码了 大家看一下截图我只显示部分的源码 整理一下他的注释解释一下&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>这一个属性主要用来定义显示的内容，为可选参数，不定义的时候自动初始化为&lt;code>'{l_bar}{bar}{r_bar}'&lt;/code>分为三个内容&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>可以选的显示内容有很多可先随便选择你想要的内容放进去作为一个控制字符串，传给&lt;code>bar_format&lt;/code>即可&lt;/p>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 329;
+flex-basis: 789px"
+>
+&lt;a href="https://syaofox.github.io/p/tqdm/assets/1651906348-0cf158b0e59e725a69b9693f1265b22d.png" data-size="1395x424">
+&lt;img src="https://syaofox.github.io/p/tqdm/assets/1651906348-0cf158b0e59e725a69b9693f1265b22d.png"
+width="1395"
+height="424"
+srcset="https://syaofox.github.io/p/tqdm/assets/1651906348-0cf158b0e59e725a69b9693f1265b22d_hu5f2a7bfe8fb6d4296e20f4df4f816fe0_53878_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/tqdm/assets/1651906348-0cf158b0e59e725a69b9693f1265b22d_hu5f2a7bfe8fb6d4296e20f4df4f816fe0_53878_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="image-20210526165403461">
+&lt;/a>
+&lt;figcaption>image-20210526165403461&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">bar_format&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">optional&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">Specify&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="n">custom&lt;/span> &lt;span class="n">bar&lt;/span> &lt;span class="n">string&lt;/span> &lt;span class="n">formatting&lt;/span>&lt;span class="o">.&lt;/span> &lt;span class="n">May&lt;/span> &lt;span class="n">impact&lt;/span> &lt;span class="n">performance&lt;/span>&lt;span class="o">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="n">default&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="si">{l_bar}{bar}{r_bar}&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="n">where&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">l_bar&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="si">{desc}&lt;/span>&lt;span class="s1">: &lt;/span>&lt;span class="si">{percentage:3.0f}&lt;/span>&lt;span class="s1">%|&amp;#39;&lt;/span> &lt;span class="ow">and&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">r_bar&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;| &lt;/span>&lt;span class="si">{n_fmt}&lt;/span>&lt;span class="s1">/&lt;/span>&lt;span class="si">{total_fmt}&lt;/span>&lt;span class="s1"> [&lt;/span>&lt;span class="si">{elapsed}&lt;/span>&lt;span class="s1">&amp;lt;&lt;/span>&lt;span class="si">{remaining}&lt;/span>&lt;span class="s1">, &lt;/span>&lt;span class="si">{rate_fmt}{postfix}&lt;/span>&lt;span class="s1">]&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">Possible&lt;/span> &lt;span class="nb">vars&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">l_bar&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">bar&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">r_bar&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">n&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">n_fmt&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">total&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">total_fmt&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">percentage&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">elapsed&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">elapsed_s&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">ncols&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">desc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">unit&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">rate&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">rate_fmt&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">rate_noinv&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">rate_noinv_fmt&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">rate_inv&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">rate_inv_fmt&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">postfix&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">unit_divisor&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">remaining&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">remaining_s&lt;/span>&lt;span class="o">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">Note&lt;/span> &lt;span class="n">that&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="n">trailing&lt;/span> &lt;span class="s2">&amp;#34;: &amp;#34;&lt;/span> &lt;span class="ow">is&lt;/span> &lt;span class="n">automatically&lt;/span> &lt;span class="n">removed&lt;/span> &lt;span class="n">after&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="n">desc&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">the&lt;/span> &lt;span class="n">latter&lt;/span> &lt;span class="ow">is&lt;/span> &lt;span class="n">empty&lt;/span>&lt;span class="o">.&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 131;
+flex-basis: 316px"
+>
+&lt;a href="https://syaofox.github.io/p/tqdm/assets/1651906348-194e4e935b47c674d0ddbceb2111f392.png" data-size="1272x966">
+&lt;img src="https://syaofox.github.io/p/tqdm/assets/1651906348-194e4e935b47c674d0ddbceb2111f392.png"
+width="1272"
+height="966"
+srcset="https://syaofox.github.io/p/tqdm/assets/1651906348-194e4e935b47c674d0ddbceb2111f392_hua9aeacaf92038b89df58d4b5c18ab4cb_202066_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/tqdm/assets/1651906348-194e4e935b47c674d0ddbceb2111f392_hua9aeacaf92038b89df58d4b5c18ab4cb_202066_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="image-20210526164341161">
+&lt;/a>
+&lt;figcaption>image-20210526164341161&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;h2 id="代码案例-2">代码案例：&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">bar_format&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="si">{desc}{percentage:3.0f}&lt;/span>&lt;span class="s1">%|&lt;/span>&lt;span class="si">{bar}&lt;/span>&lt;span class="s1">|&lt;/span>&lt;span class="si">{n_fmt}&lt;/span>&lt;span class="s1">/&lt;/span>&lt;span class="si">{total_fmt}&lt;/span>&lt;span class="s1">[&lt;/span>&lt;span class="si">{elapsed}&lt;/span>&lt;span class="s1">&amp;lt;&lt;/span>&lt;span class="si">{remaining}{postfix}&lt;/span>&lt;span class="s1">]&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">total&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">100&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ncols&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">80&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">with&lt;/span> &lt;span class="n">tqdm&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">total&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">total&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">ncols&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">ncols&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">bar_format&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">bar_format&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">_tqdm&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">_tqdm&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set_description&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="si">{}&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">format&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;呆呆象&amp;#34;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">100&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">_tqdm&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set_postfix&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">number&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">_tqdm&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">update&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 1952;
+flex-basis: 4686px"
+>
+&lt;a href="https://syaofox.github.io/p/tqdm/assets/1651906348-cc8b1ba08ea29cff218ddc4254722e88.png" data-size="1074x55">
+&lt;img src="https://syaofox.github.io/p/tqdm/assets/1651906348-cc8b1ba08ea29cff218ddc4254722e88.png"
+width="1074"
+height="55"
+srcset="https://syaofox.github.io/p/tqdm/assets/1651906348-cc8b1ba08ea29cff218ddc4254722e88_huc5bff066ed8ae6d190f32183831f0da0_12001_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/tqdm/assets/1651906348-cc8b1ba08ea29cff218ddc4254722e88_huc5bff066ed8ae6d190f32183831f0da0_12001_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="image-20210526170206357">
+&lt;/a>
+&lt;figcaption>image-20210526170206357&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;h1 id="7关于后缀的两种设置方式">7、关于后缀的两种设置方式&lt;/h1>
+&lt;h2 id="方法1不可变后缀字符串输入">方法1：不可变后缀（字符串输入）&lt;/h2>
+&lt;p>在初始化的时候进行设置这个就跟设置前缀一样，传入的是一个字符串，但是在所有的迭代过程中是固定显示这个后缀的&lt;/p>
+&lt;p>代码举例&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">tqdm&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">tqdm&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">tqdm&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="n">ncols&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">80&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">postfix&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;呆呆象&amp;#34;&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 1624;
+flex-basis: 3898px"
+>
+&lt;a href="https://syaofox.github.io/p/tqdm/assets/1651906348-bcefc2d2a07505d7e01af621272496f6.png" data-size="1072x66">
+&lt;img src="https://syaofox.github.io/p/tqdm/assets/1651906348-bcefc2d2a07505d7e01af621272496f6.png"
+width="1072"
+height="66"
+srcset="https://syaofox.github.io/p/tqdm/assets/1651906348-bcefc2d2a07505d7e01af621272496f6_hu15aa4345e5b45cc5ba5ece6214b26a77_11530_480x0_resize_box_3.png 480w, https://syaofox.github.io/p/tqdm/assets/1651906348-bcefc2d2a07505d7e01af621272496f6_hu15aa4345e5b45cc5ba5ece6214b26a77_11530_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="image-20210526170615981">
+&lt;/a>
+&lt;figcaption>image-20210526170615981&lt;/figcaption>
+&lt;/figure>&lt;/p>
+&lt;h2 id="方法2可变化后缀字典输入因为更实用所以在第5点和第6点中已经讲解过">方法2：可变化后缀（字典输入）（因为更实用所以在第5点和第6点中已经讲解过）&lt;/h2>
+&lt;p>需要强调的是，在迭代过程中使用&lt;code>tpdm.set_postfix()&lt;/code>设置需要传入的是一个字典，在显示的时候会把字典的每一个关键字和内容都显示出来&lt;/p></description></item><item><title>TVB经典《创世纪》的二十场商战全记录</title><link>https://syaofox.github.io/p/tvb%E7%BB%8F%E5%85%B8%E5%88%9B%E4%B8%96%E7%BA%AA%E7%9A%84%E4%BA%8C%E5%8D%81%E5%9C%BA%E5%95%86%E6%88%98%E5%85%A8%E8%AE%B0%E5%BD%95/</link><pubDate>Sun, 01 May 2022 14:11:33 +0800</pubDate><guid>https://syaofox.github.io/p/tvb%E7%BB%8F%E5%85%B8%E5%88%9B%E4%B8%96%E7%BA%AA%E7%9A%84%E4%BA%8C%E5%8D%81%E5%9C%BA%E5%95%86%E6%88%98%E5%85%A8%E8%AE%B0%E5%BD%95/</guid><description>&lt;p>创世纪的商战，无论从实际操作的详细程度、事件的复杂程度都是其他商战片无法比拟的，当然这也是当年创世纪1收视不如预期的原因，因为丝奶们看不明，“整天看着他们在斗，不知道他们在斗什么” 。因此后来TVB再也没在商战片上下工夫，02年的流金侧重点有所改变，而之后几年都没有商战片，当然罗嘉良、陈锦鸿、古天乐的离开也是一大原因，直至2005年夏天，TVB夜间剧场重播创世纪，竟打破夜间收视记录（原因是观众由丝奶转为很晚睡觉的白领），哈哈。&lt;/p>
 &lt;h2 id="第一场叶荣添vs叶荣晋">&lt;strong>第一场：叶荣添VS叶荣晋&lt;/strong>&lt;/h2>
 &lt;p>这一战是叶荣添的出道之作。之前荣添的各种小动作，如骗学校的钱等都不算，因为规模小，且并非集团与集团之争。所以这个算第一场。这时荣添的力天只是一个小小的承建商，而明大是发展商，两者根本不同级数。但荣添能注意细节，以改变地的用途逼使叶荣晋以近乎亏本的高价买回那块地。应了叶孝勤的那句话：谁用地用得好，谁就是赢家。荣添在这次小战役中充分显露其在地产的天份，也在这场小战役中与他的堂兄弟初次交手，使自视过高的荣晋尝试到了吃亏的滋味。要补充一下的是，从之后的数十集可以看出，叶荣晋并非庸手，并非传统的纨绔子弟。许多人觉得他窝囊，只是他所遇到的都是超级高手，没有机会让他发挥，如果他的对手是其他剧集的高手，他是稳赢的。诚然，在政治权术（如夺权、讨好爸爸等）斗争方面叶荣晋不如其二弟&lt;a class="link" href="https://www.zhihu.com/search?q=%E5%8F%B6%E8%8D%A3%E6%AF%85&amp;amp;search_source=Entity&amp;amp;hybrid_search_source=Entity&amp;amp;hybrid_search_extra=%7B%22sourceType%22%3A%22article%22%2C%22sourceId%22%3A%22352589757%22%7D" target="_blank" rel="noopener"
 >叶荣毅&lt;/a>，但他的业务能力（指地产、商业买卖、投资等）是三兄弟中最强，在荣添杀死荣毅的两年内，是荣晋主持明大，结果是蒸蒸日上，之后为什么又陷入困境呢？很简单，因为又有绝顶高手来了（叶荣添重出江湖，张自力入侵明大），在人才辈出的年代，叶荣晋自大、好色本性不改，焉有不败之理？&lt;/p>
