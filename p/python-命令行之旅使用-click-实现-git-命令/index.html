@@ -13,7 +13,7 @@ extended"><div id=article-toolbar><a href=/ class=back-home><svg xmlns="http://w
 </span></span><span class=line><span class=cl><span class=n>git</span> <span class=o>=</span> <span class=n>Git</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>getcwd</span><span class=p>())</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=nd>@click</span><span class=o>.</span><span class=n>group</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=nd>@click.group</span><span class=p>()</span>
 </span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>cli</span><span class=p>():</span>
 </span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;
 </span></span></span><span class=line><span class=cl><span class=s2>    git 命令行
@@ -21,7 +21,7 @@ extended"><div id=article-toolbar><a href=/ class=back-home><svg xmlns="http://w
 </span></span><span class=line><span class=cl>    <span class=k>pass</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=nd>@cli</span><span class=o>.</span><span class=n>command</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=nd>@cli.command</span><span class=p>()</span>
 </span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>status</span><span class=p>():</span>
 </span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;
 </span></span></span><span class=line><span class=cl><span class=s2>    处理 status 命令
@@ -29,8 +29,8 @@ extended"><div id=article-toolbar><a href=/ class=back-home><svg xmlns="http://w
 </span></span><span class=line><span class=cl>    <span class=k>pass</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=nd>@cli</span><span class=o>.</span><span class=n>command</span><span class=p>()</span>
-</span></span><span class=line><span class=cl><span class=nd>@click</span><span class=o>.</span><span class=n>argument</span><span class=p>(</span><span class=s1>&#39;pathspec&#39;</span><span class=p>,</span> <span class=n>nargs</span><span class=o>=-</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nd>@cli.command</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=nd>@click.argument</span><span class=p>(</span><span class=s1>&#39;pathspec&#39;</span><span class=p>,</span> <span class=n>nargs</span><span class=o>=-</span><span class=mi>1</span><span class=p>)</span>
 </span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>add</span><span class=p>(</span><span class=n>pathspec</span><span class=p>):</span>
 </span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;
 </span></span></span><span class=line><span class=cl><span class=s2>    处理 add 命令
@@ -38,8 +38,8 @@ extended"><div id=article-toolbar><a href=/ class=back-home><svg xmlns="http://w
 </span></span><span class=line><span class=cl>    <span class=k>pass</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=nd>@cli</span><span class=o>.</span><span class=n>command</span><span class=p>()</span>
-</span></span><span class=line><span class=cl><span class=nd>@click</span><span class=o>.</span><span class=n>option</span><span class=p>(</span><span class=s1>&#39;-m&#39;</span><span class=p>,</span> <span class=s1>&#39;msg&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nd>@cli.command</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=nd>@click.option</span><span class=p>(</span><span class=s1>&#39;-m&#39;</span><span class=p>,</span> <span class=s1>&#39;msg&#39;</span><span class=p>)</span>
 </span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>commit</span><span class=p>(</span><span class=n>msg</span><span class=p>):</span>
 </span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;
 </span></span></span><span class=line><span class=cl><span class=s2>    处理 -m &lt;msg&gt; 命令
@@ -47,7 +47,7 @@ extended"><div id=article-toolbar><a href=/ class=back-home><svg xmlns="http://w
 </span></span><span class=line><span class=cl>    <span class=k>pass</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=nd>@cli</span><span class=o>.</span><span class=n>command</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=nd>@cli.command</span><span class=p>()</span>
 </span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>push</span><span class=p>():</span>
 </span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;
 </span></span></span><span class=line><span class=cl><span class=s2>    处理 push 命令
@@ -57,7 +57,7 @@ extended"><div id=article-toolbar><a href=/ class=back-home><svg xmlns="http://w
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>    <span class=n>cli</span><span class=p>()</span>
-</span></span></code></pre></div><p>下面我们将一步步地实现我们的 <code>git</code> 程序。</p><h2 id=五实现>五、实现</h2><p>假定我们在 <a class=link href=https://github.com/HelloGitHub-Team/Article/blob/master/contents/Python/cmdline/click-git.py target=_blank rel=noopener>click-git.py</a> 文件中实现我们的 <code>git</code> 程序。</p><h3 id=51-status-子命令>5.1 status 子命令</h3><p><code>status</code> 子命令不接受任何参数和选项，因此其实现函数只需 <code>cli.command()</code> 装饰。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=nd>@cli</span><span class=o>.</span><span class=n>command</span><span class=p>()</span>
+</span></span></code></pre></div><p>下面我们将一步步地实现我们的 <code>git</code> 程序。</p><h2 id=五实现>五、实现</h2><p>假定我们在 <a class=link href=https://github.com/HelloGitHub-Team/Article/blob/master/contents/Python/cmdline/click-git.py target=_blank rel=noopener>click-git.py</a> 文件中实现我们的 <code>git</code> 程序。</p><h3 id=51-status-子命令>5.1 status 子命令</h3><p><code>status</code> 子命令不接受任何参数和选项，因此其实现函数只需 <code>cli.command()</code> 装饰。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=nd>@cli.command</span><span class=p>()</span>
 </span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>status</span><span class=p>():</span>
 </span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;
 </span></span></span><span class=line><span class=cl><span class=s2>    处理 status 命令
@@ -65,8 +65,8 @@ extended"><div id=article-toolbar><a href=/ class=back-home><svg xmlns="http://w
 </span></span><span class=line><span class=cl>    <span class=n>cmd</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;git&#39;</span><span class=p>,</span> <span class=s1>&#39;status&#39;</span><span class=p>]</span>
 </span></span><span class=line><span class=cl>    <span class=n>output</span> <span class=o>=</span> <span class=n>git</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=n>cmd</span><span class=p>)</span>
 </span></span><span class=line><span class=cl>    <span class=n>click</span><span class=o>.</span><span class=n>echo</span><span class=p>(</span><span class=n>output</span><span class=p>)</span>
-</span></span></code></pre></div><p>不难看出，我们最后调用了真正的 <code>git status</code> 来实现，并打印了输出。</p><h3 id=52-add-子命令>5.2 add 子命令</h3><p><code>add</code> 子命令相对于 <code>status</code> 子命令，需要接受任意个 pathspec 参数，因此增加一个 <code>click.argument</code> 装饰器，并且在 <code>add</code> 函数中需要增加同名的 <code>pathspec</code> 入参。 经 <code>click</code> 处理后的 <code>pathspec</code> 其实是个元组，和列表相加前，需要先转换为列表。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=nd>@cli</span><span class=o>.</span><span class=n>command</span><span class=p>()</span>
-</span></span><span class=line><span class=cl><span class=nd>@click</span><span class=o>.</span><span class=n>argument</span><span class=p>(</span><span class=s1>&#39;pathspec&#39;</span><span class=p>,</span> <span class=n>nargs</span><span class=o>=-</span><span class=mi>1</span><span class=p>)</span>
+</span></span></code></pre></div><p>不难看出，我们最后调用了真正的 <code>git status</code> 来实现，并打印了输出。</p><h3 id=52-add-子命令>5.2 add 子命令</h3><p><code>add</code> 子命令相对于 <code>status</code> 子命令，需要接受任意个 pathspec 参数，因此增加一个 <code>click.argument</code> 装饰器，并且在 <code>add</code> 函数中需要增加同名的 <code>pathspec</code> 入参。 经 <code>click</code> 处理后的 <code>pathspec</code> 其实是个元组，和列表相加前，需要先转换为列表。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=nd>@cli.command</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=nd>@click.argument</span><span class=p>(</span><span class=s1>&#39;pathspec&#39;</span><span class=p>,</span> <span class=n>nargs</span><span class=o>=-</span><span class=mi>1</span><span class=p>)</span>
 </span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>add</span><span class=p>(</span><span class=n>pathspec</span><span class=p>):</span>
 </span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;
 </span></span></span><span class=line><span class=cl><span class=s2>    处理 add 命令
@@ -80,8 +80,8 @@ extended"><div id=article-toolbar><a href=/ class=back-home><svg xmlns="http://w
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=n>Options</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>  <span class=o>--</span><span class=n>help</span>  <span class=n>Show</span> <span class=n>this</span> <span class=n>message</span> <span class=ow>and</span> <span class=n>exit</span><span class=o>.</span>
-</span></span></code></pre></div><p>既然 <code>git add</code> 能接受任意多个 <code>pathspec</code>，那么 <code>add(pathspec)</code> 的参数其实改为复数形式更为合适，但我们又希望帮助信息中是单数形式，这就需要额外指定 <code>metavar</code>，则有：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=nd>@cli</span><span class=o>.</span><span class=n>command</span><span class=p>()</span>
-</span></span><span class=line><span class=cl><span class=nd>@click</span><span class=o>.</span><span class=n>argument</span><span class=p>(</span><span class=s1>&#39;pathspecs&#39;</span><span class=p>,</span> <span class=n>nargs</span><span class=o>=-</span><span class=mi>1</span><span class=p>,</span> <span class=n>metavar</span><span class=o>=</span><span class=s1>&#39;[PATHSPEC]...&#39;</span><span class=p>)</span>
+</span></span></code></pre></div><p>既然 <code>git add</code> 能接受任意多个 <code>pathspec</code>，那么 <code>add(pathspec)</code> 的参数其实改为复数形式更为合适，但我们又希望帮助信息中是单数形式，这就需要额外指定 <code>metavar</code>，则有：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=nd>@cli.command</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=nd>@click.argument</span><span class=p>(</span><span class=s1>&#39;pathspecs&#39;</span><span class=p>,</span> <span class=n>nargs</span><span class=o>=-</span><span class=mi>1</span><span class=p>,</span> <span class=n>metavar</span><span class=o>=</span><span class=s1>&#39;[PATHSPEC]...&#39;</span><span class=p>)</span>
 </span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>add</span><span class=p>(</span><span class=n>pathspecs</span><span class=p>):</span>
 </span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;
 </span></span></span><span class=line><span class=cl><span class=s2>    处理 add 命令
@@ -89,8 +89,8 @@ extended"><div id=article-toolbar><a href=/ class=back-home><svg xmlns="http://w
 </span></span><span class=line><span class=cl>    <span class=n>cmd</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;git&#39;</span><span class=p>,</span> <span class=s1>&#39;add&#39;</span><span class=p>]</span> <span class=o>+</span> <span class=nb>list</span><span class=p>(</span><span class=n>pathspecs</span><span class=p>)</span>
 </span></span><span class=line><span class=cl>    <span class=n>output</span> <span class=o>=</span> <span class=n>git</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=n>cmd</span><span class=p>)</span>
 </span></span><span class=line><span class=cl>    <span class=n>click</span><span class=o>.</span><span class=n>echo</span><span class=p>(</span><span class=n>output</span><span class=p>)</span>
-</span></span></code></pre></div><h3 id=53-commit-子命令>5.3 commit 子命令</h3><p><code>add</code> 子命令相对于 <code>status</code> 子命令，需要接受 <code>-m</code> 选项，因此增加一个 <code>click.option</code> 装饰器，指定选项名称 <code>msg</code>，并且在 <code>commit</code> 函数中增加同名入参。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=nd>@cli</span><span class=o>.</span><span class=n>command</span><span class=p>()</span>
-</span></span><span class=line><span class=cl><span class=nd>@click</span><span class=o>.</span><span class=n>option</span><span class=p>(</span><span class=s1>&#39;-m&#39;</span><span class=p>,</span> <span class=s1>&#39;msg&#39;</span><span class=p>)</span>
+</span></span></code></pre></div><h3 id=53-commit-子命令>5.3 commit 子命令</h3><p><code>add</code> 子命令相对于 <code>status</code> 子命令，需要接受 <code>-m</code> 选项，因此增加一个 <code>click.option</code> 装饰器，指定选项名称 <code>msg</code>，并且在 <code>commit</code> 函数中增加同名入参。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=nd>@cli.command</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=nd>@click.option</span><span class=p>(</span><span class=s1>&#39;-m&#39;</span><span class=p>,</span> <span class=s1>&#39;msg&#39;</span><span class=p>)</span>
 </span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>commit</span><span class=p>(</span><span class=n>msg</span><span class=p>):</span>
 </span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;
 </span></span></span><span class=line><span class=cl><span class=s2>    处理 -m &lt;msg&gt; 命令
@@ -98,7 +98,7 @@ extended"><div id=article-toolbar><a href=/ class=back-home><svg xmlns="http://w
 </span></span><span class=line><span class=cl>    <span class=n>cmd</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;git&#39;</span><span class=p>,</span> <span class=s1>&#39;commit&#39;</span><span class=p>,</span> <span class=s1>&#39;-m&#39;</span><span class=p>,</span> <span class=n>msg</span><span class=p>]</span>
 </span></span><span class=line><span class=cl>    <span class=n>output</span> <span class=o>=</span> <span class=n>git</span><span class=o>.</span><span class=n>execute</span><span class=p>(</span><span class=n>cmd</span><span class=p>)</span>
 </span></span><span class=line><span class=cl>    <span class=n>click</span><span class=o>.</span><span class=n>echo</span><span class=p>(</span><span class=n>output</span><span class=p>)</span>
-</span></span></code></pre></div><h3 id=54-push-子命令>5.4 push 子命令</h3><p><code>push</code> 子命令同 <code>status</code> 子命令一样，不接受任何参数和选项，因此其实现函数只需 <code>cli.command()</code> 装饰。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=nd>@cli</span><span class=o>.</span><span class=n>command</span><span class=p>()</span>
+</span></span></code></pre></div><h3 id=54-push-子命令>5.4 push 子命令</h3><p><code>push</code> 子命令同 <code>status</code> 子命令一样，不接受任何参数和选项，因此其实现函数只需 <code>cli.command()</code> 装饰。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=nd>@cli.command</span><span class=p>()</span>
 </span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>push</span><span class=p>():</span>
 </span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;
 </span></span></span><span class=line><span class=cl><span class=s2>    处理 push 命令
@@ -121,7 +121,7 @@ extended"><div id=article-toolbar><a href=/ class=back-home><svg xmlns="http://w
 </span></span></code></pre></div><p>想看整个源码，请戳 <a class=link href=https://github.com/HelloGitHub-Team/Article/blob/master/contents/Python/cmdline/click-git.py target=_blank rel=noopener>click-git.py</a> 。</p><h2 id=六小结>六、小结</h2><p>本文简单介绍了日常工作中常用的 <code>git</code> 命令，然后提出实现它的思路，最终一步步地使用 <code>click</code> 和 <code>gitpython</code> 实现了 <code>git</code> 程序。</p><p>对比 <code>argparse</code> 和 <code>click</code> 的实现版本，你会发现使用 <code>click</code> 来实现变得特定简单：</p><ul><li>相较于 <code>argparse</code>，子解析器、参数类型什么的统统不需要关心</li><li>相较于 <code>docopt</code>，参数解析和命令调用处理也不需要关心</li></ul><p>这无疑是 <code>click</code> 最大的优势了。</p><p>关于 <code>click</code> 的讲解将告一段落，回顾下 <code>click</code> 的至简之道，你会爱上它。</p><p>现在，你已学会了三个命令行解析库的使用了。但你以为这就够了吗？<code>click</code> 已经够简单了吧，够直接了吧？但它仍然不是最简单的。</p><p>在下篇文章中，将为大家介绍一个由谷歌出品的在 Python 界很火的命令行库 —— <code>fire</code>。</p></section><footer class=article-footer><section class=article-tags><a href=/tags/python/>python</a>
 <a href=/tags/click/>click</a></section></footer></article><aside class=related-contents--wrapper><h2 class=section-title>相关文章</h2><div class=related-contents><div class="flex article-list--tile"><article><a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E6%B7%B1%E5%85%A5-click-%E4%B9%8B%E5%A2%9E%E5%BC%BA%E5%8A%9F%E8%83%BD/><div class=article-details><h2 class=article-title>Python 命令行之旅：深入 click 之增强功能</h2></div></a></article><article><a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E6%B7%B1%E5%85%A5-click-%E4%B9%8B%E5%91%BD%E4%BB%A4%E7%AF%87/><div class=article-details><h2 class=article-title>Python 命令行之旅：深入 click 之命令篇</h2></div></a></article><article><a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E6%B7%B1%E5%85%A5-click-%E4%B9%8B%E9%80%89%E9%A1%B9%E7%AF%87/><div class=article-details><h2 class=article-title>Python 命令行之旅：深入 click 之选项篇</h2></div></a></article><article><a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E6%B7%B1%E5%85%A5-click-%E4%B9%8B%E5%8F%82%E6%95%B0%E7%AF%87/><div class=article-details><h2 class=article-title>Python 命令行之旅：深入 click 之参数篇</h2></div></a></article><article><a href=/p/python-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B9%8B%E6%97%85%E5%88%9D%E6%8E%A2-click/><div class=article-details><h2 class=article-title>Python 命令行之旅：初探 click</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
 2020 -
-2022 Syaofox's Elysion</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.7.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+2023 Syaofox's Elysion</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.7.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
