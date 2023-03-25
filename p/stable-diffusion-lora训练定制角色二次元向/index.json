@@ -1,0 +1,40 @@
+{
+  "version": "2.0",
+  "clipId": "1679782418",
+  "format": "md",
+  "title": "Stable Diffusion Lora训练定制角色（二次元向）",
+  "link": "https://zhuanlan.zhihu.com/p/616500728",
+  "category": "Coding",
+  "tags": [
+    "SDWebUI"
+  ],
+  "created_at": "2023-03-26 06:13:38",
+  "mainPath": "index.md",
+  "paths": [
+    "index.json",
+    "a-title_Stable-Diffusion-Lora训练定制角色-二次元向",
+    "assets/1679782418-c87a8c66fd026f432c5d53b306c18ded.webp",
+    "assets/1679782418-37f88cd98385b00b8f83631a6117821a.webp",
+    "assets/1679782418-44f141ab3b891a88b04ca558fb8ae578.webp",
+    "assets/1679782418-a9be2c6210e44cc30fc9e20f5286b4a1.webp",
+    "assets/1679782418-a52f9e63762e1a4b728bc5b0aab7d96d.webp",
+    "assets/1679782418-33635e19a512cf0b54544fb106f6f550.webp",
+    "assets/1679782418-edfea698d917be28b5b03116c39441f2.webp",
+    "assets/1679782418-ea29ac6958edc78cc3e566c52fcf41b0.webp",
+    "assets/1679782418-07879187f51742b774ccccc26f1be76f.webp",
+    "assets/1679782418-6d052caca281ce1272d183ab2c08513f.webp",
+    "assets/1679782418-932a8d1e25f6e1dd81946524aca0bc83.webp",
+    "assets/1679782418-402881c33add520fc2e2572fec528f12.webp",
+    "assets/1679782418-ad380744cc901b969eaba3e8021ea68f.webp",
+    "assets/1679782418-a59e4c9c4a8e187c5e91e43478c489b1.webp",
+    "assets/1679782418-2022ac5e143e8e887f70c730915860bd.webp",
+    "assets/1679782418-91256ab33860492fc9c8baf324c6fab2.webp",
+    "assets/1679782418-9bd4b445778737e6f49e7fef1685f722.webp",
+    "assets/1679782418-819dc99aaf806364d4c69ba0c509e8a9.webp",
+    "assets/1679782418-96b24d13adfeea3f7706b4de7068142f.webp",
+    "assets/1679782418-62e2e9064ebab1c23d874b0bacf653f9.webp",
+    "assets/1679782418-7a7a068d0e80f0bf40e6572c077a5274.webp",
+    "assets/1679782418-7100d007f48185be547aafc77c8de8b3.webp",
+    "index.md"
+  ]
+}
