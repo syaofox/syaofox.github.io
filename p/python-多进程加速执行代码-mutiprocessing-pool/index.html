@@ -1,0 +1,150 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="使用多进程可以高效利用自己的cpu, 绕过python的全局解释器锁 下面将对比接受Pool 常见一个方法：apply, apply_async, map, mapasync ,imap, imap_unordered 总结： apply"><title>python 多进程加速执行代码 mutiprocessing Pool</title><link rel=canonical href=https://syaofox.github.io/p/python-%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%8A%A0%E9%80%9F%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81-mutiprocessing-pool/><link rel=stylesheet href=/scss/style.min.1b3ac667198cb83edcc9c45e606a6f4dd6910b8ada6b74d7fd988f1b2dfd0c7c.css><meta property="og:title" content="python 多进程加速执行代码 mutiprocessing Pool"><meta property="og:description" content="使用多进程可以高效利用自己的cpu, 绕过python的全局解释器锁 下面将对比接受Pool 常见一个方法：apply, apply_async, map, mapasync ,imap, imap_unordered 总结： apply"><meta property="og:url" content="https://syaofox.github.io/p/python-%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%8A%A0%E9%80%9F%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81-mutiprocessing-pool/"><meta property="og:site_name" content="Syaofox's Elysion"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="python"><meta property="article:tag" content="并发"><meta property="article:published_time" content="2023-04-14T10:39:29+08:00"><meta property="article:modified_time" content="2023-04-14T10:39:29+08:00"><meta name=twitter:site content="@syaofox"><meta name=twitter:creator content="@syaofox"><meta name=twitter:title content="python 多进程加速执行代码 mutiprocessing Pool"><meta name=twitter:description content="使用多进程可以高效利用自己的cpu, 绕过python的全局解释器锁 下面将对比接受Pool 常见一个方法：apply, apply_async, map, mapasync ,imap, imap_unordered 总结： apply"><link rel="shortcut icon" href=favicon.ico></head><body class="article-page has-toc"><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex
+extended"><div id=article-toolbar><a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg><span>返回</span></a></div><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/coding/ style=background-color:#2a9d8f;color:#fff>Coding</a></header><h2 class=article-title><a href=/p/python-%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%8A%A0%E9%80%9F%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81-mutiprocessing-pool/>python 多进程加速执行代码 mutiprocessing Pool</a></h2><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>Apr 14, 2023</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>阅读时长: 2 分钟</time></div></footer></div></header><section class=article-content><h3 id=使用多进程可以高效利用自己的cpu-绕过python的全局解释器锁>使用多进程可以高效利用自己的cpu, 绕过python的全局解释器锁</h3><h3 id=下面将对比接受pool-常见一个方法apply-apply__async-map-mapasync-imap-imap_unordered_>下面将对比接受Pool 常见一个方法：apply, apply_<em>async, map, mapasync ,imap, imap_unordered</em></h3><p><em>总结： apply因为是阻塞，所以没有加速效果，其他都有。</em></p><p><em>而imap_unorderd 获取的结果是无序的，相对比较高效和方便。</em></p><h3 id=apply_func__args__kwds_><code>apply</code>(<em>func</em>[,<em>args</em>[,<em>kwds</em>]])</h3><p>因为apply是阻塞的，需要等待上一个进程结束，下一个进程才开始，<strong>所以无法加速</strong>，除非你自己再结合线程使用，不过这样就麻烦了。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain><span class=line><span class=cl>from multiprocessing import Pool
+</span></span><span class=line><span class=cl>import time
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>def target(x, y):
+</span></span><span class=line><span class=cl>    time.sleep(2)
+</span></span><span class=line><span class=cl>    print(x, y, &#34;----&#34;)
+</span></span><span class=line><span class=cl>    return x + y
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>if __name__ == &#39;__main__&#39;:
+</span></span><span class=line><span class=cl>    p = Pool(2)
+</span></span><span class=line><span class=cl>    args = [(1, 2), (3, 4)]
+</span></span><span class=line><span class=cl>    start = time.time()
+</span></span><span class=line><span class=cl>    for arg in args:
+</span></span><span class=line><span class=cl>        ret = p.apply(target, arg)  # 会阻塞的
+</span></span><span class=line><span class=cl>        print(ret)
+</span></span><span class=line><span class=cl>    print(f&#34;It takes {time.time() - start} seconds!&#34;)
+</span></span></code></pre></div><p>运行结果：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-console data-lang=console><span class=line><span class=cl><span class=go>1 2 ----
+</span></span></span><span class=line><span class=cl><span class=go>3
+</span></span></span><span class=line><span class=cl><span class=go>3 4 ----
+</span></span></span><span class=line><span class=cl><span class=go>7
+</span></span></span><span class=line><span class=cl><span class=go>It takes 4.085192918777466 seconds!
+</span></span></span></code></pre></div><h3 id=apply_async_func__args__kwds__callback__error_callback_><code>apply_async</code>(<em>func</em>[,<em>args</em>[,<em>kwds</em>[,<em>callback</em>[,<em>error_callback</em>]]]])</h3><p>同相比apply这个是异步的，返回一个异步对象，可以使用.get方法等待结果 ， 如果不需结果不必获取。因为异步<strong>有加速效果。</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-plain data-lang=plain><span class=line><span class=cl>from multiprocessing import Pool
+</span></span><span class=line><span class=cl>import time
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>def target(x, y):
+</span></span><span class=line><span class=cl>    time.sleep(2)
+</span></span><span class=line><span class=cl>    print(x, y, &#34;----&#34;)
+</span></span><span class=line><span class=cl>    return x + y
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>if __name__ == &#39;__main__&#39;:
+</span></span><span class=line><span class=cl>    p = Pool(2)
+</span></span><span class=line><span class=cl>    args = [(1, 2), (3, 4)]
+</span></span><span class=line><span class=cl>    start = time.time()
+</span></span><span class=line><span class=cl>    rets = []
+</span></span><span class=line><span class=cl>    for arg in args:
+</span></span><span class=line><span class=cl>        ret = p.apply_async(target, arg)
+</span></span><span class=line><span class=cl>        rets.append(ret)
+</span></span><span class=line><span class=cl>    for ret in rets:
+</span></span><span class=line><span class=cl>        print(ret.get())  # get 会阻塞
+</span></span><span class=line><span class=cl>    print(f&#34;It takes {time.time() - start} seconds!&#34;)
+</span></span></code></pre></div><p>运行结果：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>3 41  2---- 
+</span></span><span class=line><span class=cl>----
+</span></span><span class=line><span class=cl>3
+</span></span><span class=line><span class=cl>7
+</span></span><span class=line><span class=cl>It takes 2.079228639602661 seconds!
+</span></span></code></pre></div><h3 id=map_func__iterable__chunksize_><code>map</code>(<em>func</em>,<em>iterable</em>[,<em>chunksize</em>])</h3><p>可以加速</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>def target(arg):  # map 的话只接受一次参数
+</span></span><span class=line><span class=cl>    x, y = arg
+</span></span><span class=line><span class=cl>    time.sleep(2)
+</span></span><span class=line><span class=cl>    print(x, y, &#34;----&#34;)
+</span></span><span class=line><span class=cl>    return x + y
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>if __name__ == &#39;__main__&#39;:
+</span></span><span class=line><span class=cl>    p = Pool(2)
+</span></span><span class=line><span class=cl>    args = [(1, 2), (3, 4)]
+</span></span><span class=line><span class=cl>    start = time.time()
+</span></span><span class=line><span class=cl>    ret = p.map(target, args)  # 会阻塞
+</span></span><span class=line><span class=cl>    print(ret)
+</span></span><span class=line><span class=cl>    print(f&#34;It takes {time.time() - start} seconds!&#34;)
+</span></span></code></pre></div><p>运行结果</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>1 2 ----
+</span></span><span class=line><span class=cl>3 4 ----
+</span></span><span class=line><span class=cl>[3, 7]
+</span></span><span class=line><span class=cl>It takes 2.0831923484802246 seconds!
+</span></span></code></pre></div><h3 id=map_async_func__iterable__chunksize__callback__error_callback_><code>map_async</code>(<em>func</em>,<em>iterable</em>[,<em>chunksize</em>[,<em>callback</em>[,<em>error_callback</em>]]])</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>from multiprocessing import Pool
+</span></span><span class=line><span class=cl>import time
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>def target(arg):  # map 的话只接受一次参数
+</span></span><span class=line><span class=cl>    x, y = arg
+</span></span><span class=line><span class=cl>    time.sleep(2)
+</span></span><span class=line><span class=cl>    print(x, y, &#34;----&#34;)
+</span></span><span class=line><span class=cl>    return x + y
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>if __name__ == &#39;__main__&#39;:
+</span></span><span class=line><span class=cl>    p = Pool(2)
+</span></span><span class=line><span class=cl>    args = [(1, 2), (3, 4)]
+</span></span><span class=line><span class=cl>    start = time.time()
+</span></span><span class=line><span class=cl>    ret = p.map_async(target, args)
+</span></span><span class=line><span class=cl>    print(ret.get())  # 在这里阻塞
+</span></span><span class=line><span class=cl>    print(f&#34;It takes {time.time() - start} seconds!&#34;)
+</span></span></code></pre></div><p>运行结果</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>31  2 4---- ----
+</span></span><span class=line><span class=cl>[3, 7]
+</span></span><span class=line><span class=cl>It takes 2.0892012119293213 seconds!
+</span></span></code></pre></div><h3 id=imap_func__iterable__chunksize_><code>imap</code>(<em>func</em>,<em>iterable</em>[,<em>chunksize</em>])</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>from multiprocessing import Pool
+</span></span><span class=line><span class=cl>import time
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>def target(arg):  # map 的话只接受一次参数
+</span></span><span class=line><span class=cl>    x, y = arg
+</span></span><span class=line><span class=cl>    time.sleep(2)
+</span></span><span class=line><span class=cl>    print(x, y, &#34;----&#34;)
+</span></span><span class=line><span class=cl>    return x + y
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>if __name__ == &#39;__main__&#39;:
+</span></span><span class=line><span class=cl>    p = Pool(2)
+</span></span><span class=line><span class=cl>    args = [(1, 2), (3, 4)]
+</span></span><span class=line><span class=cl>    start = time.time()
+</span></span><span class=line><span class=cl>    ret = p.imap(target, args)  # 不会阻塞
+</span></span><span class=line><span class=cl>    print(ret)
+</span></span><span class=line><span class=cl>    for i in ret:  # 这里会阻塞
+</span></span><span class=line><span class=cl>        print(i)
+</span></span><span class=line><span class=cl>    print(f&#34;It takes {time.time() - start} seconds!&#34;)
+</span></span></code></pre></div><p>运行结果</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>&lt;multiprocessing.pool.IMapIterator object at 0x00000204DA485EC8&gt;
+</span></span><span class=line><span class=cl>3 41  2---- 
+</span></span><span class=line><span class=cl>----
+</span></span><span class=line><span class=cl>3
+</span></span><span class=line><span class=cl>7
+</span></span><span class=line><span class=cl>It takes 2.091893434524536 seconds!
+</span></span></code></pre></div><h3 id=imap_unordered_func__iterable__chunksize_><code>imap_unordered</code>(<em>func</em>,<em>iterable</em>[,<em>chunksize</em>])</h3><p><strong>注意</strong>： 这相对imap的话，结果是无序的，那个进程先结束，结果就先获得。而imap结果是有序的。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>from multiprocessing import Pool
+</span></span><span class=line><span class=cl>import time
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>def target(arg):  # map 的话只接受一次参数
+</span></span><span class=line><span class=cl>    x, y = arg
+</span></span><span class=line><span class=cl>    time.sleep(5 - x)
+</span></span><span class=line><span class=cl>    print(x, y, &#34;----&#34;)
+</span></span><span class=line><span class=cl>    return x + y
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>if __name__ == &#39;__main__&#39;:
+</span></span><span class=line><span class=cl>    p = Pool(2)
+</span></span><span class=line><span class=cl>    args = [(1, 2), (3, 4)]
+</span></span><span class=line><span class=cl>    start = time.time()
+</span></span><span class=line><span class=cl>    ret = p.imap_unordered(target, args)  # 不会阻塞
+</span></span><span class=line><span class=cl>    print(ret)
+</span></span><span class=line><span class=cl>    for i in ret:  # 这里会阻塞
+</span></span><span class=line><span class=cl>        print(i)
+</span></span><span class=line><span class=cl>    print(f&#34;It takes {time.time() - start} seconds!&#34;)
+</span></span></code></pre></div><p>运行结果：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>&lt;multiprocessing.pool.IMapUnorderedIterator object at 0x0000027499E45E48&gt;
+</span></span><span class=line><span class=cl>3 4 ----
+</span></span><span class=line><span class=cl>7
+</span></span><span class=line><span class=cl>1 2 ----
+</span></span><span class=line><span class=cl>3
+</span></span><span class=line><span class=cl>It takes 4.084959506988525 seconds!
+</span></span></code></pre></div></section><footer class=article-footer><section class=article-tags><a href=/tags/python/>python</a>
+<a href=/tags/%E5%B9%B6%E5%8F%91/>并发</a></section></footer></article><aside class=related-contents--wrapper><h2 class=section-title>相关文章</h2><div class=related-contents><div class="flex article-list--tile"><article><a href=/p/%E7%94%A8-python-%E7%BB%99%E4%BB%A3%E7%A0%81%E5%AE%89%E4%B8%AA%E8%BF%9B%E5%BA%A6%E6%9D%A1%E5%A4%AA%E9%A6%99%E4%BA%86%E5%90%A7/><div class=article-details><h2 class=article-title>用 Python 给代码安个进度条，太香了吧！</h2></div></a></article><article><a href=/p/torch.cuda.is_available%E8%BF%94%E5%9B%9Efalse%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/><div class=article-details><h2 class=article-title>torch.cuda.is_available()返回false——解决办法</h2></div></a></article><article><a href=/p/%E5%AE%89%E8%A3%85cudacudnnpytorch%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B%E4%B8%80%E6%B0%94%E5%91%B5%E6%88%90/><div class=article-details><h2 class=article-title>安装CUDA，cuDNN，Pytorch的详细教程，一气呵成！</h2></div></a></article><article><a href=/p/downloading-images-with-playwright-headless-browser-using-multithreading-python/><div class=article-details><h2 class=article-title>Downloading Images with playwright headless browser using Multithreading | Python</h2></div></a></article><article><a href=/p/tqdm/><div class=article-details><h2 class=article-title>tqdm</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2023 Syaofox's Elysion</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.7.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><ol><li><a href=#使用多进程可以高效利用自己的cpu-绕过python的全局解释器锁>使用多进程可以高效利用自己的cpu, 绕过python的全局解释器锁</a></li><li><a href=#下面将对比接受pool-常见一个方法apply-apply__async-map-mapasync-imap-imap_unordered_>下面将对比接受Pool 常见一个方法：apply, apply_<em>async, map, mapasync ,imap, imap_unordered</em></a></li><li><a href=#apply_func__args__kwds_><code>apply</code>(<em>func</em>[,<em>args</em>[,<em>kwds</em>]])</a></li><li><a href=#apply_async_func__args__kwds__callback__error_callback_><code>apply_async</code>(<em>func</em>[,<em>args</em>[,<em>kwds</em>[,<em>callback</em>[,<em>error_callback</em>]]]])</a></li><li><a href=#map_func__iterable__chunksize_><code>map</code>(<em>func</em>,<em>iterable</em>[,<em>chunksize</em>])</a></li><li><a href=#map_async_func__iterable__chunksize__callback__error_callback_><code>map_async</code>(<em>func</em>,<em>iterable</em>[,<em>chunksize</em>[,<em>callback</em>[,<em>error_callback</em>]]])</a></li><li><a href=#imap_func__iterable__chunksize_><code>imap</code>(<em>func</em>,<em>iterable</em>[,<em>chunksize</em>])</a></li><li><a href=#imap_unordered_func__iterable__chunksize_><code>imap_unordered</code>(<em>func</em>,<em>iterable</em>[,<em>chunksize</em>])</a></li></ol></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
