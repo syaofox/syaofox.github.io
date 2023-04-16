@@ -1,0 +1,21 @@
+{
+  "version": "2.0",
+  "clipId": "1681612775",
+  "format": "md",
+  "title": "python+playwright 学习-24 判断页面元素状态的几种方式",
+  "link": "https://www.cnblogs.com/yoyoketang/p/17197275.html",
+  "category": "Coding",
+  "tags": [
+    "playwright",
+    "python"
+  ],
+  "created_at": "2023-04-16 10:39:35",
+  "mainPath": "index.md",
+  "paths": [
+    "index.json",
+    "a-title_python-playwright-学习-24-判断页面元素状态的几种方式",
+    "assets/1681612775-2214c2fe00b03353790ed8ddb7e4f5b7.png",
+    "assets/1681612775-570a9ce3948fa801e767328fac6d402b.png",
+    "index.md"
+  ]
+}

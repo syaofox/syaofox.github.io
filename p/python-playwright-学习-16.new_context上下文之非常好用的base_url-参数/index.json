@@ -1,0 +1,20 @@
+{
+  "version": "2.0",
+  "clipId": "1681612655",
+  "format": "md",
+  "title": "python+playwright 学习-16.new_context上下文之非常好用的base_url 参数",
+  "link": "https://www.cnblogs.com/yoyoketang/p/17163625.html",
+  "category": "Coding",
+  "tags": [
+    "playwright",
+    "python"
+  ],
+  "created_at": "2023-04-16 10:37:35",
+  "mainPath": "index.md",
+  "paths": [
+    "index.json",
+    "a-title_python-playwright-学习-16-new_context上下文之非常好用的base_url-参数",
+    "assets/1681612655-570a9ce3948fa801e767328fac6d402b.png",
+    "index.md"
+  ]
+}

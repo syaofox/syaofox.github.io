@@ -1,0 +1,27 @@
+{
+  "version": "2.0",
+  "clipId": "1681613110",
+  "format": "md",
+  "title": "python+playwright 学习-36.如何对比2张图片的相似度",
+  "link": "https://www.cnblogs.com/yoyoketang/p/17236145.html",
+  "category": "Coding",
+  "tags": [
+    "playwright",
+    "python"
+  ],
+  "created_at": "2023-04-16 10:45:10",
+  "mainPath": "index.md",
+  "paths": [
+    "index.json",
+    "a-title_python-playwright-学习-36-如何对比2张图片的相似度",
+    "assets/1681613110-ce7893b18a6d181fbb9a0c6928092339.png",
+    "assets/1681613110-c344a24c7d9c55ad343e6d1aded92b50.png",
+    "assets/1681613110-20d9c4fcea192df1ce6b934a97ed192d.png",
+    "assets/1681613110-fe5e992dc93d9a53c047d2a058029356.png",
+    "assets/1681613110-fe197370f24e5d386bbf9477cec81bf8.png",
+    "assets/1681613110-85182b1681a48476b5ac52d224434110.png",
+    "assets/1681613110-c2dee77b1afb12512e0e4821d561553b.png",
+    "assets/1681613110-570a9ce3948fa801e767328fac6d402b.png",
+    "index.md"
+  ]
+}

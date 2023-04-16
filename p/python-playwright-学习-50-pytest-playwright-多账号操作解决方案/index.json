@@ -1,0 +1,25 @@
+{
+  "version": "2.0",
+  "clipId": "1681613287",
+  "format": "md",
+  "title": "python+playwright 学习-50 pytest-playwright 多账号操作解决方案",
+  "link": "https://www.cnblogs.com/yoyoketang/p/17295940.html",
+  "category": "Coding",
+  "tags": [
+    "playwright",
+    "python"
+  ],
+  "created_at": "2023-04-16 10:48:07",
+  "mainPath": "index.md",
+  "paths": [
+    "index.json",
+    "a-title_python-playwright-学习-50-pytest-playwright-多账号操作解决方案",
+    "assets/1681613287-f236c7332d913c3171ad89fc721d15ba.png",
+    "assets/1681613287-be482c74e4cc2a43a17e534e8ce63ef3.png",
+    "assets/1681613287-d917bbb311ccdc627f533daf1b87a7df.png",
+    "assets/1681613287-3212f7b914cc9773fb30bbf4656405fc.png",
+    "assets/1681613287-cb7153d1c13a5d9aef10ebab342f6f71.png",
+    "assets/1681613287-d7d2026bb708afc2cc33861ae17744d4.png",
+    "index.md"
+  ]
+}

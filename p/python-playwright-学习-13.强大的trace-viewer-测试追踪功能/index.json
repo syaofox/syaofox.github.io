@@ -1,0 +1,26 @@
+{
+  "version": "2.0",
+  "clipId": "1681612599",
+  "format": "md",
+  "title": "python+playwright 学习-13.强大的Trace Viewer 测试追踪功能",
+  "link": "https://www.cnblogs.com/yoyoketang/p/17158462.html",
+  "category": "Coding",
+  "tags": [
+    "playwright",
+    "python"
+  ],
+  "created_at": "2023-04-16 10:36:39",
+  "mainPath": "index.md",
+  "paths": [
+    "index.json",
+    "a-title_python-playwright-学习-13-强大的Trace-Viewer-测试追踪功能",
+    "assets/1681612599-3cdde0e3a118ec5770abec048fa43227.png",
+    "assets/1681612599-92f6565539050111231f1bbf3afc73eb.png",
+    "assets/1681612599-480c7b6e1b07c1356d4540a59ade2efb.png",
+    "assets/1681612599-79240e9ca72a5c8e93122ed01a5f5d5f.png",
+    "assets/1681612599-d5d4aa9d2ff87a69cc4a38614876b9c2.png",
+    "assets/1681612599-ed4034c418e7722aa125419b45a9d460.png",
+    "assets/1681612599-570a9ce3948fa801e767328fac6d402b.png",
+    "index.md"
+  ]
+}
