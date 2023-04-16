@@ -1,0 +1,21 @@
+{
+  "version": "2.0",
+  "clipId": "1681613016",
+  "format": "md",
+  "title": "python+playwright 学习-33.launch_persistent_context 启动本地 Google Chrome 并加载用户数据",
+  "link": "https://www.cnblogs.com/yoyoketang/p/17221364.html",
+  "category": "Coding",
+  "tags": [
+    "playwright",
+    "python"
+  ],
+  "created_at": "2023-04-16 10:43:36",
+  "mainPath": "index.md",
+  "paths": [
+    "index.json",
+    "a-title_python-playwright-学习-33-launch_persistent_context-启动本地-Google-Chrome-并加载用户数据",
+    "assets/1681613016-5ed3c4dd729186512f8be781cbad34ba.png",
+    "assets/1681613016-570a9ce3948fa801e767328fac6d402b.png",
+    "index.md"
+  ]
+}

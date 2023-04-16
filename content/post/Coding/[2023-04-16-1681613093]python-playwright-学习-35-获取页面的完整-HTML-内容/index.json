@@ -1,0 +1,25 @@
+{
+  "version": "2.0",
+  "clipId": "1681613093",
+  "format": "md",
+  "title": "python+playwright 学习-35.获取页面的完整 HTML 内容",
+  "link": "https://www.cnblogs.com/yoyoketang/p/17235708.html",
+  "category": "Coding",
+  "tags": [
+    "playwright",
+    "python"
+  ],
+  "created_at": "2023-04-16 10:44:53",
+  "mainPath": "index.md",
+  "paths": [
+    "index.json",
+    "a-title_python-playwright-学习-35-获取页面的完整-HTML-内容",
+    "assets/1681613093-96614fdc7dedeaee779a5e5376635ef6.png",
+    "assets/1681613093-5ef1f3c692fad7273d1fd689facee430.png",
+    "assets/1681613093-f94db9c50502d99878430f648cc57186.png",
+    "assets/1681613093-9a173b230d34b4dfbe3d93ad83789836.png",
+    "assets/1681613093-ed64703bc8589ddde764ff2a20068d6c.png",
+    "assets/1681613093-570a9ce3948fa801e767328fac6d402b.png",
+    "index.md"
+  ]
+}

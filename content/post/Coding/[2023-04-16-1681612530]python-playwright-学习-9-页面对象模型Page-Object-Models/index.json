@@ -1,0 +1,22 @@
+{
+  "version": "2.0",
+  "clipId": "1681612530",
+  "format": "md",
+  "title": "python+playwright 学习-9.页面对象模型Page Object Models",
+  "link": "https://www.cnblogs.com/yoyoketang/p/17146290.html",
+  "category": "Coding",
+  "tags": [
+    "playwright",
+    "python"
+  ],
+  "created_at": "2023-04-16 10:35:30",
+  "mainPath": "index.md",
+  "paths": [
+    "index.json",
+    "a-title_python-playwright-学习-9-页面对象模型Page-Object-Models",
+    "assets/1681612530-8aad5cd1d60df7cfbdd814fe641654b9.png",
+    "assets/1681612530-b012c62fe4b9bc080b0fdc0f09de8f14.png",
+    "assets/1681612530-570a9ce3948fa801e767328fac6d402b.png",
+    "index.md"
+  ]
+}

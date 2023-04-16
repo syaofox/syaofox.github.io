@@ -1,0 +1,21 @@
+{
+  "version": "2.0",
+  "clipId": "1681612376",
+  "format": "md",
+  "title": "python+playwright 学习-5.new_context上下文与新窗口操作",
+  "link": "https://www.cnblogs.com/yoyoketang/p/17142642.html",
+  "category": "Coding",
+  "tags": [
+    "playwright",
+    "python"
+  ],
+  "created_at": "2023-04-16 10:32:56",
+  "mainPath": "index.md",
+  "paths": [
+    "index.json",
+    "a-title_python-playwright-学习-5-new_context上下文与新窗口操作",
+    "assets/1681612376-199e5a3136b2ea6e87425427d1c4dbb8.png",
+    "assets/1681612376-570a9ce3948fa801e767328fac6d402b.png",
+    "index.md"
+  ]
+}

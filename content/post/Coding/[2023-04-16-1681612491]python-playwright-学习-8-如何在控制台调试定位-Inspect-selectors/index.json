@@ -1,0 +1,24 @@
+{
+  "version": "2.0",
+  "clipId": "1681612491",
+  "format": "md",
+  "title": "python+playwright 学习-8.如何在控制台调试定位(Inspect selectors)",
+  "link": "https://www.cnblogs.com/yoyoketang/p/17143389.html",
+  "category": "Coding",
+  "tags": [
+    "playwright",
+    "python"
+  ],
+  "created_at": "2023-04-16 10:34:51",
+  "mainPath": "index.md",
+  "paths": [
+    "index.json",
+    "a-title_python-playwright-学习-8-如何在控制台调试定位-Inspect-selectors",
+    "assets/1681612491-d76f1f492ff8814893a533b1ec517124.png",
+    "assets/1681612491-14238db2c19983e53ec674657069fa81.png",
+    "assets/1681612491-62d725d1891c49a63c75c35723abf576.png",
+    "assets/1681612491-fdffa1965be6c582ba99a2c264ac82ac.png",
+    "assets/1681612491-570a9ce3948fa801e767328fac6d402b.png",
+    "index.md"
+  ]
+}
