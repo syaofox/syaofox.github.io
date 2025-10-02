@@ -7,14 +7,20 @@ permalink: /categories/
 <h1>文章分类一览</h1>
 
 {% comment %}
-Jekyll 的 Liquid 语法 for 循环遍历所有分类
+使用标准的 Liquid 循环遍历 site.categories，这是 GitHub Pages 兼容的方式
 {% endcomment %}
 
 {% for category in site.categories %}
-  <h2>{{ category | first }} ({{ category | last | size }})</h2>
+  
+  {% assign category_name = category | first %}
+  {% assign posts_in_category = category | last %}
+
+  <h2>
+    {{ category_name }} ({{ posts_in_category | size }})
+  </h2>
   
   <ul>
-    {% for post in category | last %}
+    {% for post in posts_in_category %}
       <li>
         <a href="{{ post.url | relative_url }}">{{ post.title }}</a> 
         ({{ post.date | date: "%Y-%m-%d" }})
