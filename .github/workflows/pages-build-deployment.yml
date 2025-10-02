@@ -2,19 +2,15 @@
 name: Deploy Jekyll site to Pages
 
 on:
-  # 当推送到 'main' 分支时触发部署
   push:
     branches: ["main"]
-  # 允许在 GitHub Actions 页面手动运行工作流
   workflow_dispatch:
 
-# 设置必要的权限
 permissions:
-  contents: read
+  contents: write # 注意：为了能更新 Gemfile.lock，这里可能需要 'write' 权限
   pages: write
   id-token: write
 
-# 限制并发部署，确保只有一个工作流在运行
 concurrency:
   cancel-in-progress: true
   group: pages
@@ -27,30 +23,35 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup GitHub Pages configuration
-        # 这一步是 GitHub Pages 部署的标准配置
         uses: actions/configure-pages@v5
 
       - name: Setup Ruby environment
-        # 使用官方推荐的 Ruby setup action，解决兼容性问题
-        uses: ruby/setup-ruby@v1 
+        uses: ruby/setup-ruby@v1
         with:
-          # 明确指定 Ruby 版本为 3.1，与 GitHub Pages 环境兼容
           ruby-version: '3.1'
-          # 开启 Bundler 缓存，加速依赖安装，提高后续部署速度
-          bundler-cache: true
+          # 这里 bundler-cache 必须在锁平台前关闭，或者干脆不用
+          bundler-cache: false # 暂时关闭缓存，避免干扰平台锁定
+
+      - name: Lock Bundle to Linux Platform (KEY FIX)
+        run: |
+          bundle install # 第一次安装依赖
+          bundle lock --add-platform x86_64-linux
+          # 提交新的 Gemfile.lock，确保下次使用正确平台
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add Gemfile.lock
+          git commit -m "chore(deps): Lock Bundle platform for GH Actions" || echo "No changes to commit"
 
       - name: Install dependencies and build with Jekyll
-        # 运行 Jekyll 构建命令，生成静态文件到默认的 _site 目录
-        run: bundle exec jekyll build
+        # 再次运行 install，这次是基于已锁定的 Gemfile.lock
+        run: bundle install && bundle exec jekyll build
 
       - name: Upload artifact for deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          # 上传 Jekyll 生成的静态文件目录
           path: '_site'
 
   deploy:
-    # 部署步骤依赖于构建步骤成功完成
     needs: build
     environment:
       name: github-pages
