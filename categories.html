@@ -7,14 +7,18 @@ permalink: /categories/
 <h1>文章分类一览</h1>
 
 {% comment %}
-这个 Liquid 代码段将遍历所有文章，并按分类名称对文章进行分组显示。
+Jekyll 的 Liquid 语法 for 循环遍历所有分类
 {% endcomment %}
 
 {% for category in site.categories %}
-  <h2><a href="{{ site.baseurl }}/category/{{ category | first | slugify }}/">{{ category | first }}</a> ({{ category | last | size }})</h2>
+  <h2>{{ category | first }} ({{ category | last | size }})</h2>
+  
   <ul>
     {% for post in category | last %}
-      <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a> ({{ post.date | date: "%Y-%m-%d" }})</li>
+      <li>
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a> 
+        ({{ post.date | date: "%Y-%m-%d" }})
+      </li>
     {% endfor %}
   </ul>
 {% endfor %}
