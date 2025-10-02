@@ -2,19 +2,19 @@
 name: Deploy Jekyll site to Pages
 
 on:
-  # 当推送到 main 分支时触发
+  # 当推送到 'main' 分支时触发部署
   push:
     branches: ["main"]
-  # 允许在 Actions 页面手动运行工作流
+  # 允许在 GitHub Actions 页面手动运行工作流
   workflow_dispatch:
 
-# 设置权限，允许 Actions 写入 Pages
+# 设置必要的权限
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 仅允许一个并发部署
+# 限制并发部署，确保只有一个工作流在运行
 concurrency:
   cancel-in-progress: true
   group: pages
@@ -23,31 +23,39 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: ruby/setup-ruby@v1
-      - name: Setup Ruby
-        uses: actions/setup-ruby@v1
+
+      - name: Setup GitHub Pages configuration
+        # 这一步是 GitHub Pages 部署的标准配置
+        uses: actions/configure-pages@v5
+
+      - name: Setup Ruby environment
+        # 使用官方推荐的 Ruby setup action，解决兼容性问题
+        uses: ruby/setup-ruby@v1 
         with:
-          # GitHub Pages 环境默认使用 Ruby 3.1
+          # 明确指定 Ruby 版本为 3.1，与 GitHub Pages 环境兼容
           ruby-version: '3.1'
+          # 开启 Bundler 缓存，加速依赖安装，提高后续部署速度
           bundler-cache: true
-      - name: Build with Jekyll
-        # 运行 Jekyll 构建命令，生成静态文件到 _site 目录
+
+      - name: Install dependencies and build with Jekyll
+        # 运行 Jekyll 构建命令，生成静态文件到默认的 _site 目录
         run: bundle exec jekyll build
-      - name: Upload artifact
+
+      - name: Upload artifact for deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          # Jekyll 的默认输出目录
+          # 上传 Jekyll 生成的静态文件目录
           path: '_site'
 
   deploy:
+    # 部署步骤依赖于构建步骤成功完成
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
