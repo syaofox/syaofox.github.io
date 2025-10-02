@@ -1,0 +1,16 @@
+---
+layout: page
+title: 所有标签
+permalink: /tags/
+---
+
+<h1>文章标签一览</h1>
+
+{% for tag in site.tags %}
+  <h2>{{ tag | first }} ({{ tag | last | size }})</h2>
+  <ul>
+    {% for post in tag | last %}
+      <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a> ({{ post.date | date: "%Y-%m-%d" }})</li>
+    {% endfor %}
+  </ul>
+{% endfor %}

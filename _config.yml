@@ -14,3 +14,10 @@ theme: minima
 markdown: kramdown
 kramdown:
   input: GFM
+
+# 导航栏链接配置
+header_pages:
+  - categories.html  # <-- 添加分类页面
+  - tags.html        # <-- 添加标签页面
+  # - index.md       # 首页通常会自动包含，但你也可以显式添加
+  # - about.md       # 如果你有关于页面，也可以添加
