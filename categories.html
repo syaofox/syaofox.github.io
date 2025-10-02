@@ -12,8 +12,8 @@ permalink: /categories/
 
 {% for category in site.categories %}
   
-  {% assign category_name = category | first %}
-  {% assign posts_in_category = category | last %}
+  {% assign category_name = category[0] %}
+  {% assign posts_in_category = category[1] %}
 
   <h2>
     {{ category_name }} ({{ posts_in_category | size }})
@@ -22,7 +22,11 @@ permalink: /categories/
   <ul>
     {% for post in posts_in_category %}
       <li>
-        <a href="{{ post.url | relative_url }}">{{ post.title }}</a> 
+        {% assign link = post.url | relative_url %}
+        {% if link == "" %}
+          {% assign link = post.path | relative_url %}
+        {% endif %}
+        <a href="{{ link }}">{{ post.title | default: post.slug | default: "(未命名文章)" }}</a>
         ({{ post.date | date: "%Y-%m-%d" }})
       </li>
     {% endfor %}
