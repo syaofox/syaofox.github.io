@@ -1,0 +1,16 @@
+# _config.yml
+title: Syaofox's Blog
+email: syaofox@gmail.com
+description: >-
+  写点啥。
+baseurl: "" # 留空，除非你使用项目页面（如 /repo-name/）
+url: "" # 留空，GitHub Pages 会自动处理
+github_username: syaofox
+
+# 使用 minima 主题，GitHub Pages 默认支持
+theme: minima
+
+# 启用高亮
+markdown: kramdown
+kramdown:
+  input: GFM
