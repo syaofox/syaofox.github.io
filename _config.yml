@@ -14,3 +14,9 @@ theme: minima
 markdown: kramdown
 kramdown:
   input: GFM
+
+minima:
+  # 将主页布局的标题设置为其他东西，例如：
+  home_title: ""
+  # 或者你可以添加一行来控制页面标题在 HTML <title> 标签中的显示
+  # 这相对复杂，但可以控制浏览器标签页的显示
