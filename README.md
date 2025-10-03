@@ -1,7 +1,7 @@
 
 <p align='center'>
     <img src="https://badgen.net/github/issues/syaofox//syaofox.github.io"/>
-    <img src="https://badgen.net/badge/last-commit/2025-10-03 09:38:28"/>
+    <img src="https://badgen.net/badge/last-commit/2025-10-03 09:40:06"/>
     <img src="https://badgen.net/github/forks/syaofox//syaofox.github.io"/>
     <img src="https://badgen.net/github/stars/syaofox//syaofox.github.io"/>
     <img src="https://badgen.net/github/watchers/syaofox//syaofox.github.io"/>
@@ -18,8 +18,8 @@
 - 2025-10-03 [三国战纪2：群雄争霸详细攻](https://github.com/syaofox/syaofox.github.io/issues/16) 
 - 2025-10-03 [拳皇系列的各代剧情都在讲什么](https://github.com/syaofox/syaofox.github.io/issues/15) 
 - 2025-10-03 [圣斗士星矢~黄金传说完结篇攻略](https://github.com/syaofox/syaofox.github.io/issues/14) 
-- 2025-10-03 [我是谁~龙骑士4~](https://github.com/syaofox/syaofox.github.io/issues/13) 
-- 2025-10-03 [迷走都市~完美结局~](https://github.com/syaofox/syaofox.github.io/issues/12) 
+- 2025-10-03 [我是谁~龙骑士4攻略](https://github.com/syaofox/syaofox.github.io/issues/13) 
+- 2025-10-03 [迷走都市~完美结局](https://github.com/syaofox/syaofox.github.io/issues/12) 
 - 2025-10-03 [成人版大富翁~华丽人生2](https://github.com/syaofox/syaofox.github.io/issues/11) 
 - 2025-10-03 [夏日的回忆~同级生2](https://github.com/syaofox/syaofox.github.io/issues/10) 
 
