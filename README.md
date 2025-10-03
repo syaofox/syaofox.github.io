@@ -1,7 +1,7 @@
 
 <p align='center'>
     <img src="https://badgen.net/github/issues/syaofox//syaofox.github.io"/>
-    <img src="https://badgen.net/badge/last-commit/2025-10-03 08:23:40"/>
+    <img src="https://badgen.net/badge/last-commit/2025-10-03 08:29:52"/>
     <img src="https://badgen.net/github/forks/syaofox//syaofox.github.io"/>
     <img src="https://badgen.net/github/stars/syaofox//syaofox.github.io"/>
     <img src="https://badgen.net/github/watchers/syaofox//syaofox.github.io"/>
@@ -45,8 +45,9 @@
 </details>
             
 <details open>
-<summary>tips	[4篇]</summary>
+<summary>tips	[5篇]</summary>
 
+- 2025-10-03 [istoreos旁路由科学上网后，无法上内网的解决办法](https://github.com/syaofox/syaofox.github.io/issues/17) 
 - 2025-10-03 [Linux 调整 Swap 文件大小指南](https://github.com/syaofox/syaofox.github.io/issues/7) 
 - 2025-10-03 [设置ssh-key-免密登录github](https://github.com/syaofox/syaofox.github.io/issues/6) 
 - 2025-10-03 [linux mint nfs挂载](https://github.com/syaofox/syaofox.github.io/issues/4) 
