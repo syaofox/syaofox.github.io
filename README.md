@@ -1,7 +1,7 @@
 
 <p align='center'>
     <img src="https://badgen.net/github/issues/syaofox//syaofox.github.io"/>
-    <img src="https://badgen.net/badge/last-commit/2025-10-03 07:27:43"/>
+    <img src="https://badgen.net/badge/last-commit/2025-10-03 07:30:35"/>
     <img src="https://badgen.net/github/forks/syaofox//syaofox.github.io"/>
     <img src="https://badgen.net/github/stars/syaofox//syaofox.github.io"/>
     <img src="https://badgen.net/github/watchers/syaofox//syaofox.github.io"/>
@@ -22,9 +22,10 @@
 </details>
             
 <details open>
-<summary>docker	[1篇]</summary>
+<summary>docker	[2篇]</summary>
 
 - 2025-10-03 [导出本地 Docker 镜像并在另一台机器上导入](https://github.com/syaofox/syaofox.github.io/issues/9) 
+- 2025-10-03 [docker构建项目，并推送到dockerhub](https://github.com/syaofox/syaofox.github.io/issues/8) 
 
 
 </details>
