@@ -83,7 +83,8 @@ def bundle_list_by_labels_section():
     for label in all_labels:
         temp = ""
         count = 0
-        issues_in_label = blog_repo.get_issues(labels=(label,), state="open")
+        # 获取所有状态的 issues（包括 open 和 closed）
+        issues_in_label = blog_repo.get_issues(labels=(label,), state="all")
         for issue in issues_in_label:
             temp += format_issue(issue)
             count += 1

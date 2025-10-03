@@ -1,0 +1,60 @@
+name: manual-update-readme
+
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: '提交信息'
+        required: false
+        default: 'Manual update from GitHub Action'
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    concurrency: 
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: false
+    steps:
+    - uses: actions/checkout@master
+    - name: install dependencies
+      run: |
+        pip3 install setuptools --user
+        pip3 install PyGithub==1.57 --user
+        pip3 install wordcloud --user
+        pip3 install matplotlib --user
+    - name: run python script
+      env:
+        GITHUB_TOKEN: ${{ secrets.BLOG_SECRET }}
+      run: python3 main.py
+    - name: config git info
+      env:
+        USERNAME: ${{ secrets.GIT_USERNAME }}
+        EMAIL: ${{ secrets.GIT_EMAIL }}
+      run: |
+        git config --global user.name $USERNAME
+        git config --global user.email $EMAIL
+    - name: commit change
+      run: |
+        git checkout main
+        git pull origin main
+        git add .
+        git commit -m "${{ inputs.message }}"
+    - name: push change
+      env:
+        USERNAME: ${{ secrets.GIT_USERNAME }}
+        GITHUB_TOKEN: ${{ secrets.BLOG_SECRET }}
+      run: |
+        # 重试推送，最多3次
+        for i in {1..3}; do
+          if git push https://$USERNAME:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git; then
+            echo "Push successful on attempt $i"
+            break
+          else
+            echo "Push failed on attempt $i, pulling latest changes and retrying..."
+            git pull origin main
+            sleep 2
+          fi
+        done
+    - name: done
+      run: echo 'Manual update completed successfully!'
