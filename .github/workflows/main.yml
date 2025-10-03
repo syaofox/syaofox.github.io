@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     concurrency: 
       group: ${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: false
+      cancel-in-progress: true
     steps:
     - uses: actions/checkout@master
     - name: install dependencies
@@ -32,23 +32,33 @@ jobs:
       run: |
         git checkout main
         git pull origin main
-        git add .
-        git commit -m "Update from Github Action"
+        # 检查是否有更改需要提交
+        if git diff --quiet && git diff --cached --quiet; then
+          echo "No changes to commit"
+        else
+          git add .
+          git commit -m "Update from Github Action"
+        fi
     - name: push change
       env:
         USERNAME: ${{ secrets.GIT_USERNAME }}
         GITHUB_TOKEN: ${{ secrets.BLOG_SECRET }}
       run: |
-        # 重试推送，最多3次
-        for i in {1..3}; do
-          if git push https://$USERNAME:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git; then
-            echo "Push successful on attempt $i"
-            break
-          else
-            echo "Push failed on attempt $i, pulling latest changes and retrying..."
-            git pull origin main
-            sleep 2
-          fi
-        done
+        # 检查是否有提交需要推送
+        if git diff --quiet HEAD origin/main; then
+          echo "No changes to push"
+        else
+          # 重试推送，最多3次
+          for i in {1..3}; do
+            if git push https://$USERNAME:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git; then
+              echo "Push successful on attempt $i"
+              break
+            else
+              echo "Push failed on attempt $i, pulling latest changes and retrying..."
+              git pull origin main
+              sleep 2
+            fi
+          done
+        fi
     - name: done
       run: echo 'done'
