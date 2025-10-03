@@ -1,7 +1,7 @@
 
 <p align='center'>
     <img src="https://badgen.net/github/issues/syaofox//syaofox.github.io"/>
-    <img src="https://badgen.net/badge/last-commit/2025-10-03 08:07:18"/>
+    <img src="https://badgen.net/badge/last-commit/2025-10-03 08:07:56"/>
     <img src="https://badgen.net/github/forks/syaofox//syaofox.github.io"/>
     <img src="https://badgen.net/github/stars/syaofox//syaofox.github.io"/>
     <img src="https://badgen.net/github/watchers/syaofox//syaofox.github.io"/>
@@ -13,8 +13,9 @@
 </summary>  
 
 <details open>
-<summary>ACG	[4篇]</summary>
+<summary>ACG	[5篇]</summary>
 
+- 2025-10-03 [圣斗士星矢~黄金传说完结篇~攻略~](https://github.com/syaofox/syaofox.github.io/issues/14) 
 - 2025-10-03 [我是谁~龙骑士4~](https://github.com/syaofox/syaofox.github.io/issues/13) 
 - 2025-10-03 [迷走都市~完美结局~](https://github.com/syaofox/syaofox.github.io/issues/12) 
 - 2025-10-03 [成人版大富翁~华丽人生2](https://github.com/syaofox/syaofox.github.io/issues/11) 
