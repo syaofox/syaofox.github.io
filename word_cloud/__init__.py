@@ -19,8 +19,12 @@ class WordCloudGenerator(object):
             print(label)
             # 获取所有状态的 issues（包括 open 和 closed）
             issues_in_label = self._repo.get_issues(labels=(label,), state="all")
-            frequencies[label.name] = issues_in_label.totalCount
-            print(issues_in_label.totalCount)
+            # 实际计算 issues 数量，而不是使用 totalCount
+            count = 0
+            for issue in issues_in_label:
+                count += 1
+            frequencies[label.name] = count
+            print(f"Label {label.name}: {count} issues")
 
         print(frequencies)
         
