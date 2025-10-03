@@ -1,7 +1,7 @@
 
 <p align='center'>
     <img src="https://badgen.net/github/issues/syaofox//syaofox.github.io"/>
-    <img src="https://badgen.net/badge/last-commit/2025-10-03 05:22:49"/>
+    <img src="https://badgen.net/badge/last-commit/2025-10-03 05:26:14"/>
     <img src="https://badgen.net/github/forks/syaofox//syaofox.github.io"/>
     <img src="https://badgen.net/github/stars/syaofox//syaofox.github.io"/>
     <img src="https://badgen.net/github/watchers/syaofox//syaofox.github.io"/>
@@ -13,8 +13,9 @@
 </summary>  
 
 <details open>
-<summary>apps	[1篇]</summary>
+<summary>apps	[2篇]</summary>
 
+- 2025-10-03 [linux 常用软件存档](https://github.com/syaofox/syaofox.github.io/issues/5) 
 - 2025-10-03 [Timeshift 的备份选项](https://github.com/syaofox/syaofox.github.io/issues/2) 
 
 
