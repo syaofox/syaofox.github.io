@@ -38,11 +38,11 @@ def bundle_summary_section():
 
     summary_section = """
 <p align='center'>
-    <img src="https://badgen.net/github/issues/{0}/{1}"/>
+    <img src="https://badgen.net/github/issues/{0}{1}"/>
     <img src="https://badgen.net/badge/last-commit/{2}"/>
-    <img src="https://badgen.net/github/forks/{0}/{1}"/>
-    <img src="https://badgen.net/github/stars/{0}/{1}"/>
-    <img src="https://badgen.net/github/watchers/{0}/{1}"/>
+    <img src="https://badgen.net/github/forks/{0}{1}"/>
+    <img src="https://badgen.net/github/stars/{0}{1}"/>
+    <img src="https://badgen.net/github/watchers/{0}{1}"/>
 </p>
 
     """.format(user_name, blog_name, cur_time)
