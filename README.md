@@ -1,7 +1,7 @@
 
 <p align='center'>
     <img src="https://badgen.net/github/issues/syaofox//syaofox.github.io"/>
-    <img src="https://badgen.net/badge/last-commit/2025-10-03 07:53:31"/>
+    <img src="https://badgen.net/badge/last-commit/2025-10-03 08:04:53"/>
     <img src="https://badgen.net/github/forks/syaofox//syaofox.github.io"/>
     <img src="https://badgen.net/github/stars/syaofox//syaofox.github.io"/>
     <img src="https://badgen.net/github/watchers/syaofox//syaofox.github.io"/>
@@ -13,8 +13,9 @@
 </summary>  
 
 <details open>
-<summary>ACG	[1篇]</summary>
+<summary>ACG	[2篇]</summary>
 
+- 2025-10-03 [成人版大富翁~华丽人生2](https://github.com/syaofox/syaofox.github.io/issues/11) 
 - 2025-10-03 [夏日的回忆~同级生2](https://github.com/syaofox/syaofox.github.io/issues/10) 
 
 
