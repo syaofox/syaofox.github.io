@@ -1,7 +1,7 @@
 
 <p align='center'>
     <img src="https://badgen.net/github/issues/syaofox//syaofox.github.io"/>
-    <img src="https://badgen.net/badge/last-commit/2025-10-03 07:38:15"/>
+    <img src="https://badgen.net/badge/last-commit/2025-10-03 07:53:31"/>
     <img src="https://badgen.net/github/forks/syaofox//syaofox.github.io"/>
     <img src="https://badgen.net/github/stars/syaofox//syaofox.github.io"/>
     <img src="https://badgen.net/github/watchers/syaofox//syaofox.github.io"/>
@@ -12,6 +12,14 @@
     <a href="https://syaofox.github.io//syaofox.github.io/"><img src="assets/wordcloud.png" title="词云" alt="词云"></a>
 </summary>  
 
+<details open>
+<summary>ACG	[1篇]</summary>
+
+- 2025-10-03 [夏日的回忆~同级生2](https://github.com/syaofox/syaofox.github.io/issues/10) 
+
+
+</details>
+            
 <details open>
 <summary>apps	[2篇]</summary>
 
