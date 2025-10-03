@@ -6,6 +6,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    concurrency: 
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: false
     steps:
     - uses: actions/checkout@master
     - name: install dependencies
@@ -28,6 +31,7 @@ jobs:
     - name: commit change
       run: |
         git checkout main
+        git pull origin main
         git add .
         git commit -m "Update from Github Action"
     - name: push change
@@ -35,6 +39,16 @@ jobs:
         USERNAME: ${{ secrets.GIT_USERNAME }}
         GITHUB_TOKEN: ${{ secrets.BLOG_SECRET }}
       run: |
-        git push https://$USERNAME:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
+        # 重试推送，最多3次
+        for i in {1..3}; do
+          if git push https://$USERNAME:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git; then
+            echo "Push successful on attempt $i"
+            break
+          else
+            echo "Push failed on attempt $i, pulling latest changes and retrying..."
+            git pull origin main
+            sleep 2
+          fi
+        done
     - name: done
       run: echo 'done'
