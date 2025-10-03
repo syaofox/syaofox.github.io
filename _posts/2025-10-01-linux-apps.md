@@ -3,7 +3,7 @@ layout: post
 title: linux 常用软件存档
 date: 2025-10-01 23:30:00 +0800
 categories: [tips]
-tags: [linux]
+tags: [apps]
 ---
 
 ### 文件管理与同步
