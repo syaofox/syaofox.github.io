@@ -35,7 +35,7 @@ class WordCloudGenerator(object):
         
         # generate wordcount image to local dir
         # specify the font to support Chinese word
-        wc = WordCloud(font_path='lib/fonts/wqy-microhei.ttc', width=1920, height=400)
+        wc = WordCloud(font_path='lib/fonts/wqy-microhei.ttc', width=1920, height=400, background_color='white')
         wc.generate_from_frequencies(frequencies=frequencies)
         wc.to_file('assets/wordcloud.png')
 
