@@ -341,13 +341,8 @@ def save_article_html(issue: Issue, html_content: str):
     title_slug = title_to_slug(issue.title)
     filename = f"{date_str}-{title_slug}.html"
     
-    # 处理重名文件
+    # 直接使用原始文件名，覆盖已存在的文件
     filepath = os.path.join(articles_dir, filename)
-    counter = 1
-    while os.path.exists(filepath):
-        filename = f"{date_str}-{title_slug}-{counter}.html"
-        filepath = os.path.join(articles_dir, filename)
-        counter += 1
     
     # 写入文件
     with codecs.open(filepath, "w", encoding="utf-8") as f:
