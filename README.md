@@ -1,7 +1,7 @@
 
 <p align='center'>
     <img src="https://badgen.net/github/issues/syaofox/syaofox.github.io"/>
-    <img src="https://badgen.net/badge/last-commit/2025-10-09 11:20:38"/>
+    <img src="https://badgen.net/badge/last-commit/2025-10-11 11:51:25"/>
     <img src="https://badgen.net/github/forks/syaofox/syaofox.github.io"/>
     <img src="https://badgen.net/github/stars/syaofox/syaofox.github.io"/>
     <img src="https://badgen.net/github/watchers/syaofox/syaofox.github.io"/>
@@ -45,8 +45,9 @@
 </details>
             
 <details open>
-<summary>tips	[7篇]</summary>
+<summary>tips	[8篇]</summary>
 
+- 2025-10-11 [如何在 Linux Mint 22 上安装 VirtualBox（分步指南）](https://github.com/syaofox/syaofox.github.io/issues/20) 
 - 2025-10-07 [查看当前linux mint 基于ubuntu哪个版本](https://github.com/syaofox/syaofox.github.io/issues/19) 
 - 2025-10-03 [软路由科学上网白名单模式](https://github.com/syaofox/syaofox.github.io/issues/18) 
 - 2025-10-03 [istoreos旁路由科学上网后，无法上内网的解决办法](https://github.com/syaofox/syaofox.github.io/issues/17) 
