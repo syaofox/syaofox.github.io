@@ -401,14 +401,14 @@ def execute():
     list_by_labels_section = bundle_list_by_labels_section()
     print(list_by_labels_section)
 
+    # 4. generate README.md
     contents = [summary_section, list_by_labels_section]
     update_readme_md_file(contents)
+    print("README.md updated successfully!!!")
 
-    # 4. generate index.html
+    # 5. generate index.html
     html_content = bundle_html_content()
     update_index_html_file(html_content)
-
-    print("README.md updated successfully!!!")
     print("index.html generated successfully!!!")
 
 
