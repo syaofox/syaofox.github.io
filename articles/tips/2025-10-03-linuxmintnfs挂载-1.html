@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>linux mint nfs挂载 - syaofox 的博客</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            color: #2196F3;
+            text-decoration: none;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+        
+        .back-link:hover {
+            color: #1976d2;
+            text-decoration: underline;
+        }
+        
+        .article-title {
+            font-size: 2em;
+            font-weight: 600;
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+        
+        .article-meta {
+            color: #666666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        
+        .labels {
+            margin-top: 10px;
+        }
+        
+        .label {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-right: 5px;
+        }
+        
+        .article-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        
+        .article-content h1,
+        .article-content h2,
+        .article-content h3,
+        .article-content h4,
+        .article-content h5,
+        .article-content h6 {
+            color: #1976d2;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .article-content h1 {
+            font-size: 1.8em;
+        }
+        
+        .article-content h2 {
+            font-size: 1.5em;
+        }
+        
+        .article-content h3 {
+            font-size: 1.3em;
+        }
+        
+        .article-content p {
+            margin-bottom: 15px;
+        }
+        
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 15px 0;
+        }
+        
+        .article-content pre {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        .article-content code {
+            background: #f1f3f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .article-content pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        .article-content blockquote {
+            border-left: 4px solid #2196F3;
+            margin: 15px 0;
+            padding: 10px 20px;
+            background: #f8f9fa;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .article-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .article-content th,
+        .article-content td {
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .article-content th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .article-content ul,
+        .article-content ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        .article-content li {
+            margin-bottom: 5px;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            color: #666666;
+            font-size: 0.9em;
+        }
+        
+        .github-link {
+            color: #2196F3;
+            text-decoration: none;
+        }
+        
+        .github-link:hover {
+            color: #1976d2;
+            text-decoration: underline;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 767px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+                border-radius: 8px;
+            }
+            
+            .article-title {
+                font-size: 1.5em;
+            }
+            
+            .article-content {
+                font-size: 1em;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .article-content {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (min-width: 1440px) {
+            .article-content {
+                max-width: 900px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="../../index.html" class="back-link">← 返回首页</a>
+            <h1 class="article-title">linux mint nfs挂载</h1>
+            <div class="article-meta">
+                <div>创建时间：2025-10-03 05:22:28</div>
+                <div>更新时间：2025-10-03 05:22:28</div>
+            </div>
+            <div class="labels"><span class="label">tips</span></div>
+        </header>
+        
+        <main class="article-content">
+            <ol>
+<li>
+<p><strong>创建本地挂载点</strong><br />
+    这个目录是你在本地电脑上用来访问 NAS 文件的“入口”。</p>
+<p><code>bash
+sudo mkdir -p /mnt/mynas</code></p>
+</li>
+<li>
+<p><strong>执行挂载命令</strong><br />
+    在终端中运行下面的命令。<code>sudo</code> 是必需的，因为它通常需要管理员权限来挂载文件系统。</p>
+<p><code>bash
+sudo mount 10.10.10.2:/fs/1000/nfs /mnt/mynas</code></p>
+<ul>
+<li><code>10.10.10.2:/fs/1000/nfs</code>: 这部分指定了服务器的地址和共享路径。</li>
+<li><code>/mnt/mynas</code>: 这是你本地的挂载点。</li>
+</ul>
+</li>
+</ol>
+<p>如果挂载成功，你就可以通过 <code>/mnt/mynas</code> 这个目录来访问 NAS 上的文件了。</p>
+<p>如果挂载失败，最常见的原因是：</p>
+<ul>
+<li><strong>防火墙</strong>: NAS 或你的电脑的防火墙阻止了 NFS 端口（2049）。</li>
+<li><strong>权限问题</strong>: NAS 的 NFS 设置没有允许你电脑的 IP 地址访问该共享。</li>
+</ul>
+<p>如果遇到问题，请检查 NAS 上的 NFS 设置，确保你的 Linux Mint 电脑的 IP 地址被列入了访问白名单。</p>
+<h3 id="fstab">fstab 配置文件</h3>
+<p><code>fstab</code> (File System Table) 是 Linux 用来管理在系统启动时自动挂载的文件系统的一个配置文件。它的位置是 <code>/etc/fstab</code>。</p>
+<p>你需要用管理员权限来编辑这个文件。打开终端，输入：</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/fstab
+</code></pre></div>
+
+<p>或者，如果你喜欢用图形界面的文本编辑器，可以输入：</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>gedit<span class="w"> </span>/etc/fstab
+</code></pre></div>
+
+<hr />
+<h3 id="nfs">如何添加 NFS 挂载项</h3>
+<p>在 <code>fstab</code> 文件的末尾，添加一行来描述你的 NFS 共享。根据你之前成功挂载的命令，格式应该如下：</p>
+<div class="highlight"><pre><span></span><code><span class="mf">10.10.10.2</span><span class="p">:</span><span class="o">/</span><span class="n">fs</span><span class="o">/</span><span class="mf">1000</span><span class="o">/</span><span class="n">nfs</span><span class="w">  </span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">syaofox</span><span class="o">/</span><span class="n">dnas</span><span class="w">  </span><span class="n">nfs</span><span class="w">  </span><span class="kd">def</span><span class="n">aults</span><span class="w">  </span><span class="mf">0</span><span class="w">  </span><span class="mf">0</span>
+</code></pre></div>
+
+<p>让我们来分解一下这一行：</p>
+<ol>
+<li><strong><code>10.10.10.2:/fs/1000/nfs</code></strong>：这是你的 <strong>NFS 服务器地址</strong>和<strong>共享路径</strong>。</li>
+<li><strong><code>/home/syaofox/dnas</code></strong>：这是你本地的<strong>挂载点</strong>。</li>
+<li><strong><code>nfs</code></strong>：这是<strong>文件系统类型</strong>，表明这是一个 NFS 共享。</li>
+<li><strong><code>defaults</code></strong>：这是一个常用的<strong>挂载选项</strong>，它包含了许多默认设置，例如读写权限 (<code>rw</code>)、自动挂载 (<code>auto</code>) 等。对于大多数情况，这个选项就足够了。</li>
+<li><strong><code>0</code></strong>：这是**<code>dump</code>**选项，通常用于备份。设置为 <code>0</code> 表示不备份。</li>
+<li><strong><code>0</code></strong>：这是**<code>fsck</code>**（文件系统检查）选项。设置为 <code>0</code> 表示在启动时不检查这个文件系统。</li>
+</ol>
+<p>添加完这行后，保存文件并退出编辑器。</p>
+<hr />
+<h3 id="_1">验证和测试</h3>
+<p>为了确保 <code>fstab</code> 配置正确，并且下次重启时能正常工作，你可以先卸载 NFS 共享，然后用 <code>fstab</code> 进行测试。</p>
+<ol>
+<li>
+<p><strong>卸载 NFS 共享</strong>：</p>
+<p><code>bash
+sudo umount /home/syaofox/dnas</code></p>
+</li>
+<li>
+<p><strong>重新挂载所有 <code>fstab</code> 条目</strong>：</p>
+<p><code>bash
+sudo systemctl daemon-reload
+sudo mount -a</code></p>
+<p>这个命令会检查 <code>fstab</code> 文件中所有没有被挂载的条目，并尝试进行挂载。如果一切正常，它不会输出任何信息。</p>
+</li>
+</ol>
+<p>现在，你可以检查 <code>/home/syaofox/dnas</code> 目录，看看 NAS 上的文件是否已经可见。如果可以，那就说明你的 <code>fstab</code> 配置是正确的，下次系统启动时会自动挂载。</p>
+        </main>
+        
+        <footer class="footer">
+            <p>本文原始链接：<a href="https://github.com/syaofox/syaofox.github.io/issues/4" class="github-link" target="_blank">GitHub Issue #4</a></p>
+        </footer>
+    </div>
+</body>
+</html>

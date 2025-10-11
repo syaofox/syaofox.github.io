@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我是谁~龙骑士4攻略 - syaofox 的博客</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            color: #2196F3;
+            text-decoration: none;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+        
+        .back-link:hover {
+            color: #1976d2;
+            text-decoration: underline;
+        }
+        
+        .article-title {
+            font-size: 2em;
+            font-weight: 600;
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+        
+        .article-meta {
+            color: #666666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        
+        .labels {
+            margin-top: 10px;
+        }
+        
+        .label {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-right: 5px;
+        }
+        
+        .article-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        
+        .article-content h1,
+        .article-content h2,
+        .article-content h3,
+        .article-content h4,
+        .article-content h5,
+        .article-content h6 {
+            color: #1976d2;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .article-content h1 {
+            font-size: 1.8em;
+        }
+        
+        .article-content h2 {
+            font-size: 1.5em;
+        }
+        
+        .article-content h3 {
+            font-size: 1.3em;
+        }
+        
+        .article-content p {
+            margin-bottom: 15px;
+        }
+        
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 15px 0;
+        }
+        
+        .article-content pre {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        .article-content code {
+            background: #f1f3f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .article-content pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        .article-content blockquote {
+            border-left: 4px solid #2196F3;
+            margin: 15px 0;
+            padding: 10px 20px;
+            background: #f8f9fa;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .article-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .article-content th,
+        .article-content td {
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .article-content th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .article-content ul,
+        .article-content ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        .article-content li {
+            margin-bottom: 5px;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            color: #666666;
+            font-size: 0.9em;
+        }
+        
+        .github-link {
+            color: #2196F3;
+            text-decoration: none;
+        }
+        
+        .github-link:hover {
+            color: #1976d2;
+            text-decoration: underline;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 767px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+                border-radius: 8px;
+            }
+            
+            .article-title {
+                font-size: 1.5em;
+            }
+            
+            .article-content {
+                font-size: 1em;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .article-content {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (min-width: 1440px) {
+            .article-content {
+                max-width: 900px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="../../index.html" class="back-link">← 返回首页</a>
+            <h1 class="article-title">我是谁~龙骑士4攻略</h1>
+            <div class="article-meta">
+                <div>创建时间：2025-10-03 08:06:48</div>
+                <div>更新时间：2025-10-03 09:39:41</div>
+            </div>
+            <div class="labels"><span class="label">ACG</span></div>
+        </header>
+        
+        <main class="article-content">
+            <p><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/我是谁-龙骑士4/dr4.jpg" /></p>
+<h2 id="_1">剧情</h2>
+<p>剧情描写魔界四大天王之一的路西佛，受命欲杀死具有神族血统的卡凯尔，于是卡凯尔组队对抗路西佛，但却不幸失败，为改变此一结局，卡凯尔于是回到过去，协助自己消灭路西佛的故事。整个游戏的剧情还算蛮不错的，只是战斗上有点困难，特别是各关卡给的限制回合数并不多，强迫己方非得迅速主动出击不可，使得敌人得以以逸待劳。此外，当卡凯尔回到过去后，所有攻防属性会再重置一次，于是先前的练功所得完全付诸流水，虽然合理，但却让人觉得很不爽。</p>
+<h2 id="_2">人物介绍</h2>
+<table>
+<thead>
+<tr>
+<th>人物</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/我是谁-龙骑士4/b151f8198618367a1cab0cf82f738bd4b31ce5f1.jpg" /></td>
+<td>カケル继承了神之血的勇者タケル的儿子。现在正参与了打倒ルシフォン的冒险之旅。 　　跟父亲相似，拥有强烈的正义感、同时对H有着旺盛的好奇心的矛盾混合体。 [1]</td>
+</tr>
+<tr>
+<td><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/我是谁-龙骑士4/cb8065380cd79123b451e751ac345982b2b78065.jpg" /></td>
+<td>エト于レイモンド王国将カケル及セイル从黑雾中救出来的剑士。之后，成为了カケル军的副首领，向着ルシフォン所在进发。 　　很有女性缘，全身都是谜团的男人。</td>
+</tr>
+<tr>
+<td><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/我是谁-龙骑士4/314e251f95cad1c8d5c38f027e3e6709c93d519e.jpg" /></td>
+<td>セイルタケル的战友、龙骑士バーン的儿子。跟父亲不同，非常懦弱。 　　受跟タケル竞争的バーン的无理要求，开始了冒险之旅。</td>
+</tr>
+<tr>
+<td><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/我是谁-龙骑士4/d439b6003af33a87ff18733fc75c10385343b599.jpg" /></td>
+<td>マルレーネ于被ルシフォン军所攻击的トリアノンの村中，奇迹地被拯救的精灵。 　　为了复仇而与カケル他们同行。有时会察觉到她脸上悲伤的神色…。</td>
+</tr>
+<tr>
+<td><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/我是谁-龙骑士4/0823dd54564e92588ca4f5cb9d82d158ccbf4e06.jpg" /></td>
+<td>ナターシャカケル的童年玩伴。为了跟カケル在一起而踏上追踪之旅程，如今这份爱意依然埋藏于心底之中。 　　但是被跟カケル的感觉有点相似的エト所吸引…。</td>
+</tr>
+<tr>
+<td><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/我是谁-龙骑士4/d53f8794a4c27d1e59b448e11ad5ad6eddc43800.jpg" /></td>
+<td>ネレイド魔导师。在被ルシフォン军逮住的时候被カケル相救，加入了他的军团。 　　被エト所吸引，总想让他喜欢自己。</td>
+</tr>
+<tr>
+<td><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/我是谁-龙骑士4/f636afc379310a55007eadd1b64543a9822610b8.jpg" /></td>
+<td>ネプチューン生于シーボーズ的渔夫的女儿。家人被ルシフォン军所杀害，为了复仇而苦练剑术。 　　尽管外表看上去强如男子汉，实际上是个弱女子。</td>
+</tr>
+<tr>
+<td><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/我是谁-龙骑士4/e850352ac65c10384a4ebce7b3119313b07e89e6.jpg" /></td>
+<td>ビアンカ虽然打扮像骑士，其实是ロンボニ王国的公主。为了征求变成石头的ロンボニ王而踏上战争之旅程。 　　被エト所吸引，总是强迫他做自己的丈夫。</td>
+</tr>
+<tr>
+<td><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/我是谁-龙骑士4/38dbb6fd5266d0169fdded0d962bd40734fa35ca.jpg" /></td>
+<td>ロザリンド大炮盛行的小镇ミシエル的长老的孙女。 　　性格有点过于霸道，喜欢上セイル并开始接近他，在セイル面前一副小鸟依人的样子。</td>
+</tr>
+<tr>
+<td><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/我是谁-龙骑士4/b3fb43166d224f4ad26c003608f790529822d11a.jpg" /></td>
+<td>メイフェア从ルシフォン军中被カケル他们所救。 　　看似是个老老实实的女性，实际上非常健忘。因为是精灵，弓术一流。</td>
+</tr>
+<tr>
+<td><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/我是谁-龙骑士4/aa18972bd40735fa7cd53c9c9f510fb30f2408e9.jpg" /></td>
+<td>クラリスメイフェア的孪生妹妹。 　　恰恰与姐姐相反，性格如男性，但也有着平静地与完美的男性结婚、构筑一个幸福美满的家庭的梦想。</td>
+</tr>
+<tr>
+<td><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/我是谁-龙骑士4/5fdf8db1cb134954513f9a41574e9258d1094af5.jpg" /></td>
+<td>セイラ以快速见长的忍者队队长。 　　为自己双腿的线条美而自豪，但也因此有着「我以前很胖」的情结。</td>
+</tr>
+<tr>
+<td><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/我是谁-龙骑士4/342ac65c10385343e1edf5049213b07eca8088f0.jpg" /></td>
+<td>パンドラ家人被ルシフォン军所杀害，为了复仇，于シーボーズ的酒馆当舞女，以寻找战友。 　　带有坚定信念的大姐姐感觉的女性。</td>
+</tr>
+<tr>
+<td><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/我是谁-龙骑士4/42a98226cffc1e1733b4fe144b90f603738de988.jpg" /></td>
+<td>ヘレネレア的妹妹。为了救レア而被ルシフォン军捉住，最後被カケル他们所救。 　　拥有跟岁数不符的坚定信念的女生。</td>
+</tr>
+<tr>
+<td><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/我是谁-龙骑士4/79f0f736afc37931bb3ef40ceac4b74543a91144.jpg" /></td>
+<td>レア出身于ロンボニ王国。弓术国中第一。因此而被ルシフォン军以她的妹妹ヘレネ作为人质参与战争，ヘレネ被救出以后成为了カケル他们的同伴。</td>
+</tr>
+<tr>
+<td><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/我是谁-龙骑士4/902397dda144ad347cd3f5a2d1a20cf431ad85a2.jpg" /></td>
+<td>ジーナホビット一族的女生。不大擅长炸弹、为了帮上大家的忙而非常努力。体型虽小，但分外</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">游戏攻略</h2>
+<p>操作方法：控制移动，ENTER确认过关条件：完成关卡剧情过关妖精村的文化水准愈高，妖精可以从事的职业也会增加。当然如果妖精的殖民地愈大，就可能得到贵重的道具、玩玩小游戏等等，来增添各式各样的游戏乐趣。 故事中神秘大陆已分为东西两地，</p>
+<p>游戏当中，在每个城镇中或在战场上，都可找到力量、守卫种子，自己去找；而游戏存档，必须打完第一场战役之後，以後在每个城镇中就有个写书人罗伊顿可存档。把滑鼠在中下方珠子的下方点选，则出现游戏的功能选单及使用物品。Ctrl键－－迅速结束对话&amp;画面。</p>
+<p>在战场中，只要五位重要主角中其中一位阵亡或是超过限制回合数，就GAME　OVER。在限制回合内歼灭敌人或到达对面城镇，则结束战役。</p>
+<p>在游戏中不管所选的部队是那队，其最大的差别只是有无精彩画面而己，所以喜欢看图的就选女队友，这样剧情较丰富；但如果在战场上阵亡的人，则後面的剧情就不再出现了，所以要好自为之了。</p>
+<p>以下的攻略流程，主要是写在城镇中所要找的关键人物，必须与其谈话到无话可说为止；<em>而以《》括起的表示是精彩镜头或某些事，如不想浪费时间，可以不去理会。</em> 如有遗漏的剧情，就自己努力了。</p>
+<h3 id="_4">一：序言</h3>
+<p>经过多日的奋斗，终於说服母亲露娜，卡凯尔终代父出征，踏上冒险的旅程</p>
+<h3 id="_5">二：苏尼亚街</h3>
+<p><em>《在此处左下方的洛巴斯玩捉迷藏－－→躲在上方满屋都是床的右方草堆内，得到力量种子》</em></p>
+<p>进教堂找班；要你帮其去玛丽安之家赶走小色狼拉那斯；从右上方进到玛丽安之家找玛丽安，尝尝玛丽安的母爱就可气走拉那斯了（往後在每个城镇都可看到这位小色鬼拉那斯）。回去找班，则其子谢鲁加入；从右方出城到雷蒙多王国</p>
+<h3 id="_6">三：雷蒙多王国</h3>
+<p>进上方王宫内找国王谈话（直至有黑雾飘来）；到右方出城口找谢鲁，穿黑衣护甲男子埃特加入；出城进入第一场战场役：</p>
+<h3 id="_7">四：尤里西斯街</h3>
+<p>至上方屋救妮丽特；再至左下屋找多鲁黑斯，找军队加入，有2个军队可供选择，但只可选一队（选女子队伍，乐事较多）：</p>
+<p>1：剑士－卡鲁达斯（男）</p>
+<p>2：魔导师－妮丽特（女）－－&gt;如没先救妮丽特，此部队就不会出现。</p>
+<p>从右方出城，遇卡隆救回青梅竹马的魔导师娜塔夏（加入）；出城，进入第二场战役：（战场中卡隆加入）</p>
+<h3 id="_8">五：拉比亚街</h3>
+<p><em>《在左上可看见妮丽特》</em></p>
+<p>至左上屋找部队加入：</p>
+<p>1：骑士－可伦（男）</p>
+<p>2：剑士－妮布琼（女）</p>
+<p>从右方出城，被埃特叫回去睡；夜里见到埃特与娜塔夏幽会；翌日，出城进入第三场战役：</p>
+<h3 id="_9">六：特利安农村</h3>
+<p>一进农村即救得玛尔蕾妮；进右上屋找玛尔蕾妮（加入）；再到上方井边看玛尔蕾妮淋浴；出城进入第四场战役：</p>
+<p><em>《在战场上，可至右下小屋救救被蹂躏的梅伊菲雅》</em></p>
+<h3 id="_10">七：吉堡士後街</h3>
+<p><em>《左下看拉那斯&amp;妮丽特；左上屋看娜塔夏；右上看埃特&amp;妮布琼》</em></p>
+<p>至左下屋找军队加入：</p>
+<p>1：弓箭－梅伊菲雅（女）</p>
+<p>2：弓箭－克拉莉丝（女）</p>
+<p>再至中下方屋找潘德拉（加入）；上船找船长，乘船至卡拉布港街</p>
+<h3 id="_11">八：卡拉布港街</h3>
+<p>至中上屋找卡娜（直至卡娜走掉）；中下屋内找埃特&amp;梅伊菲雅，屋外找山达斯（直至山达斯走掉）；到右上找埃特、娜塔夏；出城进入第五场战役：</p>
+<h3 id="_12">九：隆波尼王国</h3>
+<p>《左上窗外看拉那斯&amp;妮布琼》</p>
+<p>一进城即见海丽娜来要求众人去救其姐蕾雅；至左上屋找军队：</p>
+<p>1：忍者－山达斯（男）</p>
+<p>2：大炮－卡力班（男）</p>
+<p>再进上方王宫内找国王；右方出城口找公主碧安卡（加入）；右下找埃特；右上找玛尔蕾妮（须与其谈话）；出城进入第六场战役：</p>
+<p><em>《在战场上，可至右上小屋救救被蹂躏的蕾雅》</em></p>
+<h3 id="_13">十：米谢尔街</h3>
+<p><em>《右上帮妮丽雅调查》</em></p>
+<p>进左上屋找军队加入：</p>
+<p>1：忍者－赛依拉（女）</p>
+<p>2：魔导师－娜曼莎（男）</p>
+<p>再至右方出城口找罗瑟琳德（加入）；出城进入第七场战役：</p>
+<h3 id="_14">十一：何毕特村</h3>
+<p><em>《左上看埃特&amp;碧安卡，看完後再与埃特谈话，玛尔蕾妮就来向你散播母爱；右下屋看拉那斯&amp;潘德拉；进右方的地洞内可找到10颗守卫种子》</em></p>
+<p>进左上屋找军队加入：</p>
+<p>1：工作－吉娜（女）</p>
+<p>2：工作－皮耶鲁（男）</p>
+<p>出城进入第八战役：</p>
+<p><strong>《在战场上，可至右上城堡救救海丽娜》</strong></p>
+<h3 id="_15">十二：布列斯港街</h3>
+<p><em>《右上屋看拉那斯&amp;梅伊菲雅；左上角找到神奇算盘，拿去给右下角的商人汉得鲁，得强力药，再至右下屋找海丽娜》</em></p>
+<p>进左下屋找军队加入：</p>
+<p>1：工作－拉比特（男）</p>
+<p>2：工作－帕威路（男）</p>
+<p>再至右方找船长乘船出海；一出海即遭龙骑士袭击，众人流落到荒岛。</p>
+<h2 id="_16">游戏修改</h2>
+<h3 id="_17">直接看图法：</h3>
+<p>将<code>DR4.BAT</code>中的：<br />
+<code>DRA4 start.mes HXC</code> 改成 <br />
+<code>H.MES</code> 出现选单，欣赏众美女<br />
+<code>TEST.MES</code>　秀出所有图片</p>
+<h3 id="_18">修改战斗数据</h3>
+<p>如觉得那非常容易ＧＡＭＥ ＯＶＥＲ的战役烦人，那就参考以下部分人物的修改：<br />
+  FILES: Unit<em>.dat(</em>=0~4,存档文件)<br />
+  TOOLS: (1) UEdit32 (2) PCTOOL</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">人物</th>
+<th style="text-align: center;">攻击力(1)</th>
+<th style="text-align: center;">防御力(1)</th>
+<th style="text-align: center;">防御力</th>
+<th style="text-align: center;">防御力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">卡凯尔</td>
+<td style="text-align: center;">2bH</td>
+<td style="text-align: center;">2cH</td>
+<td style="text-align: center;">43</td>
+<td style="text-align: center;">44</td>
+</tr>
+<tr>
+<td style="text-align: center;">埃特</td>
+<td style="text-align: center;">b7H</td>
+<td style="text-align: center;">b8H</td>
+<td style="text-align: center;">183</td>
+<td style="text-align: center;">184</td>
+</tr>
+<tr>
+<td style="text-align: center;">谢鲁</td>
+<td style="text-align: center;">71H</td>
+<td style="text-align: center;">72H</td>
+<td style="text-align: center;">113</td>
+<td style="text-align: center;">114</td>
+</tr>
+<tr>
+<td style="text-align: center;">娜塔夏</td>
+<td style="text-align: center;">2e7H</td>
+<td style="text-align: center;">2e8H</td>
+<td style="text-align: center;">* 231</td>
+<td style="text-align: center;">232</td>
+</tr>
+<tr>
+<td style="text-align: center;">玛尔蕾妮</td>
+<td style="text-align: center;">62fH</td>
+<td style="text-align: center;">630H</td>
+<td style="text-align: center;">*** 47</td>
+<td style="text-align: center;">48</td>
+</tr>
+<tr>
+<td style="text-align: center;">妮丽特</td>
+<td style="text-align: center;">32dH</td>
+<td style="text-align: center;">32eH</td>
+<td style="text-align: center;">* 301</td>
+<td style="text-align: center;">302</td>
+</tr>
+<tr>
+<td style="text-align: center;">妮布琼</td>
+<td style="text-align: center;">143H</td>
+<td style="text-align: center;">144H</td>
+<td style="text-align: center;">323</td>
+<td style="text-align: center;">324</td>
+</tr>
+<tr>
+<td style="text-align: center;">潘德拉</td>
+<td style="text-align: center;">189H</td>
+<td style="text-align: center;">18aH</td>
+<td style="text-align: center;">393</td>
+<td style="text-align: center;">394</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>数值最大改成<code>FF</code>即`,往后战役只要此8人上场杀敌，就可以打遍天下无敌手</p>
+</blockquote>
+<p>这里送上本人写的小工具，直接放入存档目录修改即可~</p>
+<p><a href="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/我是谁-龙骑士4/龙骑士4存档修改器.zip">龙骑士4存档修改器 本地下载</a></p>
+<p><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/我是谁-龙骑士4/龙骑士修改器.jpg" /></p>
+<h3 id="_19">我方人物一览</h3>
+<blockquote>
+<p>★表示重要角色</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">编号</th>
+<th style="text-align: center;">姓名</th>
+<th style="text-align: center;">性别</th>
+<th style="text-align: center;">部队类型</th>
+<th style="text-align: center;">加入地方</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">１</td>
+<td style="text-align: center;">★卡凯尔</td>
+<td style="text-align: center;">男</td>
+<td style="text-align: center;">剑士</td>
+<td style="text-align: center;">主角</td>
+</tr>
+<tr>
+<td style="text-align: center;">２</td>
+<td style="text-align: center;">★谢鲁</td>
+<td style="text-align: center;">男</td>
+<td style="text-align: center;">战斧(龙骑士)</td>
+<td style="text-align: center;">苏尼亚街</td>
+</tr>
+<tr>
+<td style="text-align: center;">３</td>
+<td style="text-align: center;">★埃特</td>
+<td style="text-align: center;">男</td>
+<td style="text-align: center;">剑士</td>
+<td style="text-align: center;">雷蒙多王国</td>
+</tr>
+<tr>
+<td style="text-align: center;">４</td>
+<td style="text-align: center;">妮丽特</td>
+<td style="text-align: center;">女</td>
+<td style="text-align: center;">魔导师</td>
+<td style="text-align: center;">尤里西斯街</td>
+</tr>
+<tr>
+<td style="text-align: center;">５</td>
+<td style="text-align: center;">卡鲁达斯</td>
+<td style="text-align: center;">男</td>
+<td style="text-align: center;">剑士</td>
+<td style="text-align: center;">尤里西斯街</td>
+</tr>
+<tr>
+<td style="text-align: center;">６</td>
+<td style="text-align: center;">★娜塔夏</td>
+<td style="text-align: center;">女</td>
+<td style="text-align: center;">魔导师</td>
+<td style="text-align: center;">尤里西斯街</td>
+</tr>
+<tr>
+<td style="text-align: center;">７</td>
+<td style="text-align: center;">卡隆</td>
+<td style="text-align: center;">男</td>
+<td style="text-align: center;">骑士</td>
+<td style="text-align: center;">第二场战役</td>
+</tr>
+<tr>
+<td style="text-align: center;">８</td>
+<td style="text-align: center;">可伦</td>
+<td style="text-align: center;">男</td>
+<td style="text-align: center;">骑士</td>
+<td style="text-align: center;">拉比亚街</td>
+</tr>
+<tr>
+<td style="text-align: center;">９</td>
+<td style="text-align: center;">妮布琼</td>
+<td style="text-align: center;">女</td>
+<td style="text-align: center;">剑士</td>
+<td style="text-align: center;">拉比亚街</td>
+</tr>
+<tr>
+<td style="text-align: center;">１０</td>
+<td style="text-align: center;">★玛尔蕾妮</td>
+<td style="text-align: center;">女</td>
+<td style="text-align: center;">弓箭</td>
+<td style="text-align: center;">特利安农村</td>
+</tr>
+<tr>
+<td style="text-align: center;">１１</td>
+<td style="text-align: center;">梅伊菲雅</td>
+<td style="text-align: center;">女</td>
+<td style="text-align: center;">弓箭</td>
+<td style="text-align: center;">吉堡士后街</td>
+</tr>
+<tr>
+<td style="text-align: center;">１２</td>
+<td style="text-align: center;">克拉莉丝</td>
+<td style="text-align: center;">女</td>
+<td style="text-align: center;">弓箭</td>
+<td style="text-align: center;">吉堡士后街</td>
+</tr>
+<tr>
+<td style="text-align: center;">１３</td>
+<td style="text-align: center;">潘德拉</td>
+<td style="text-align: center;">女</td>
+<td style="text-align: center;">剑士</td>
+<td style="text-align: center;">吉堡士后街</td>
+</tr>
+<tr>
+<td style="text-align: center;">１４</td>
+<td style="text-align: center;">山达斯</td>
+<td style="text-align: center;">男</td>
+<td style="text-align: center;">忍者</td>
+<td style="text-align: center;">隆波尼王国</td>
+</tr>
+<tr>
+<td style="text-align: center;">１５</td>
+<td style="text-align: center;">卡力班</td>
+<td style="text-align: center;">男</td>
+<td style="text-align: center;">大砲</td>
+<td style="text-align: center;">隆波尼王国</td>
+</tr>
+<tr>
+<td style="text-align: center;">１６</td>
+<td style="text-align: center;">碧安卡</td>
+<td style="text-align: center;">女</td>
+<td style="text-align: center;">骑士</td>
+<td style="text-align: center;">隆波尼王或</td>
+</tr>
+<tr>
+<td style="text-align: center;">１７</td>
+<td style="text-align: center;">赛依拉</td>
+<td style="text-align: center;">女</td>
+<td style="text-align: center;">忍者</td>
+<td style="text-align: center;">米谢尔街</td>
+</tr>
+<tr>
+<td style="text-align: center;">１８</td>
+<td style="text-align: center;">娜曼莎</td>
+<td style="text-align: center;">男</td>
+<td style="text-align: center;">魔导师</td>
+<td style="text-align: center;">米谢尔街</td>
+</tr>
+<tr>
+<td style="text-align: center;">１９</td>
+<td style="text-align: center;">罗瑟琳德</td>
+<td style="text-align: center;">女</td>
+<td style="text-align: center;">大砲</td>
+<td style="text-align: center;">米谢尔街</td>
+</tr>
+<tr>
+<td style="text-align: center;">２０</td>
+<td style="text-align: center;">吉娜</td>
+<td style="text-align: center;">女</td>
+<td style="text-align: center;">工作</td>
+<td style="text-align: center;">何毕特村</td>
+</tr>
+<tr>
+<td style="text-align: center;">２１</td>
+<td style="text-align: center;">皮耶鲁</td>
+<td style="text-align: center;">男</td>
+<td style="text-align: center;">工作</td>
+<td style="text-align: center;">何毕特村</td>
+</tr>
+<tr>
+<td style="text-align: center;">２２</td>
+<td style="text-align: center;">拉比特</td>
+<td style="text-align: center;">男</td>
+<td style="text-align: center;">工作</td>
+<td style="text-align: center;">布列斯港街</td>
+</tr>
+<tr>
+<td style="text-align: center;">２３</td>
+<td style="text-align: center;">帕威路</td>
+<td style="text-align: center;">男</td>
+<td style="text-align: center;">工作</td>
+<td style="text-align: center;">布列斯港街</td>
+</tr>
+<tr>
+<td style="text-align: center;">２４</td>
+<td style="text-align: center;">巴鲁卡</td>
+<td style="text-align: center;">男</td>
+<td style="text-align: center;">大砲</td>
+<td style="text-align: center;">达斯达港街</td>
+</tr>
+<tr>
+<td style="text-align: center;">２５</td>
+<td style="text-align: center;">塔妮亚</td>
+<td style="text-align: center;">女</td>
+<td style="text-align: center;">忍者</td>
+<td style="text-align: center;">达斯达港街</td>
+</tr>
+<tr>
+<td style="text-align: center;">２６</td>
+<td style="text-align: center;">多鲁鲁</td>
+<td style="text-align: center;">男</td>
+<td style="text-align: center;">龙骑士</td>
+<td style="text-align: center;">龙之堡</td>
+</tr>
+<tr>
+<td style="text-align: center;">２７</td>
+<td style="text-align: center;">罗伊顿</td>
+<td style="text-align: center;">男</td>
+<td style="text-align: center;">剑士</td>
+<td style="text-align: center;">丁诺港街</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_20">游戏评价</h2>
+<p>龙骑士四是elf巅峰期的最高杰作，以前作后代为主角的这套游戏，一反常态的变成了战略游戏（而且是难度很高的差劲战略游戏）。继承了前三代的世界观，『龙骑士四』有elf最引以为傲的心理分析和动人剧情，在当时感动了不少人的心灵。特别是最后一场战斗前，由badend里回到现代的主角エト面对著爱人マルレㄧネ的对话：</p>
+<p>玛尔蕾妮：「拜托...即使是谎言也好...请告诉我...喜欢我吧。」</p>
+<p>埃特：「...我喜欢你...玛尔蕾妮。」</p>
+<p>玛尔蕾妮：「啊啊...你在说谎...但我仍然高兴得发抖..。」</p>
+<p>埃特：「事实上...我是没有说这句话的资格的。」</p>
+<p>玛尔蕾妮：「为...为什么？」</p>
+<p>埃特：「同一时间带?是不可以存在两个相同的人的...（指主角必须为了连续时间的一致性而牺牲，这样历史才会导向正确的结局）超越时空而来的人，最后等著他的只有消失的命运。这句话的意思，玛尔蕾妮你应该会明白。将会消失的人，是没有喜欢别人的资格的...即使我对你抱著特别的那种感情...也是一样不行的...。」</p>
+<p>以精确的时空设定和感人的对话而成为史上名作的『龙骑士四』虽然创造了游戏史上当年的最高峰，这项冲击是继『美少女梦工厂』这类养成游戏的出现而导致从不玩游戏的女性人口加入市场以来最大的震撼。许多一直认为美少女游戏只是非主流游戏的人，在『龙骑士四』后也不得不承认在任何方面美少女游戏已经超越了一般游戏，成为连小说都无法模仿的新媒体型态。不过这项高度荣耀，却也导致elf之后好几年无法更加超越这部作品，而导致公司的成员纷纷求去。</p>
+<p>ELF在当年靠著同级生、龙骑士、下级生、伊头家系列（遗作、臭作、鬼作三兄弟～）在日本HGAME界打出一片江山，其功劳几乎都落在原画家竹井正树和社长兼编剧蛭田昌人身上，连横田守也是ELF的。</p>
+<p>不过竹井先离开ELF（似乎是不合还是啥的），2000年的时候蛭田昌人也把老板的位置让给下田笃（另一个创社元老阿比留寿浩反而跑到 MINK当老板），於是ELF转型成另一个样子，同级生三与龙骑士五成了（应该已经列名）永远的梦幻。</p>
+        </main>
+        
+        <footer class="footer">
+            <p>本文原始链接：<a href="https://github.com/syaofox/syaofox.github.io/issues/13" class="github-link" target="_blank">GitHub Issue #13</a></p>
+        </footer>
+    </div>
+</body>
+</html>

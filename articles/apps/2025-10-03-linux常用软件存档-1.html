@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>linux 常用软件存档 - syaofox 的博客</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            color: #2196F3;
+            text-decoration: none;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+        
+        .back-link:hover {
+            color: #1976d2;
+            text-decoration: underline;
+        }
+        
+        .article-title {
+            font-size: 2em;
+            font-weight: 600;
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+        
+        .article-meta {
+            color: #666666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        
+        .labels {
+            margin-top: 10px;
+        }
+        
+        .label {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-right: 5px;
+        }
+        
+        .article-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        
+        .article-content h1,
+        .article-content h2,
+        .article-content h3,
+        .article-content h4,
+        .article-content h5,
+        .article-content h6 {
+            color: #1976d2;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .article-content h1 {
+            font-size: 1.8em;
+        }
+        
+        .article-content h2 {
+            font-size: 1.5em;
+        }
+        
+        .article-content h3 {
+            font-size: 1.3em;
+        }
+        
+        .article-content p {
+            margin-bottom: 15px;
+        }
+        
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 15px 0;
+        }
+        
+        .article-content pre {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        .article-content code {
+            background: #f1f3f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .article-content pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        .article-content blockquote {
+            border-left: 4px solid #2196F3;
+            margin: 15px 0;
+            padding: 10px 20px;
+            background: #f8f9fa;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .article-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .article-content th,
+        .article-content td {
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .article-content th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .article-content ul,
+        .article-content ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        .article-content li {
+            margin-bottom: 5px;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            color: #666666;
+            font-size: 0.9em;
+        }
+        
+        .github-link {
+            color: #2196F3;
+            text-decoration: none;
+        }
+        
+        .github-link:hover {
+            color: #1976d2;
+            text-decoration: underline;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 767px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+                border-radius: 8px;
+            }
+            
+            .article-title {
+                font-size: 1.5em;
+            }
+            
+            .article-content {
+                font-size: 1em;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .article-content {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (min-width: 1440px) {
+            .article-content {
+                max-width: 900px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="../../index.html" class="back-link">← 返回首页</a>
+            <h1 class="article-title">linux 常用软件存档</h1>
+            <div class="article-meta">
+                <div>创建时间：2025-10-03 05:25:51</div>
+                <div>更新时间：2025-10-03 05:25:51</div>
+            </div>
+            <div class="labels"><span class="label">apps</span></div>
+        </header>
+        
+        <main class="article-content">
+            <h3 id="_1">文件管理与同步</h3>
+<ul>
+<li>
+<p><strong>Gigolo</strong>：一个简单的书签界面，用于更容易访问远程文件系统，支持挂载网络硬盘（如NAS），通过GVfs挂载SMB、FTP等协议的共享文件夹。 <a href="https://gitlab.gnome.org/GNOME/gigolo">官方地址</a></p>
+</li>
+<li>
+<p><strong>FreeFileSync</strong>：免费开源的文件同步和备份软件，支持Windows、macOS和Linux，用于比较和同步本地、网络驱动器、移动设备或云存储上的文件夹。 <a href="https://freefilesync.org/">官方地址</a></p>
+</li>
+<li>
+<p><strong>Syncthing</strong>：连续文件同步程序，支持实时在多台设备间安全同步文件，使用点对点方式，无需中央服务器，适用于Windows、macOS、Linux等平台。 <a href="https://syncthing.net/">官方地址</a></p>
+</li>
+<li>
+<p><strong>Czkawka</strong>：免费开源的多功能文件清理工具，用于查找和删除重复文件、临时文件、大文件等，帮助释放磁盘空间，支持快速扫描和GUI/CLI模式。 <a href="https://github.com/qarmin/czkawka">官方地址</a></p>
+</li>
+<li>
+<p><strong>DB Browser for SQLite</strong>：高质量的视觉化开源工具，用于创建、搜索和编辑SQLite或SQLCipher数据库文件，支持跨平台使用。 <a href="https://sqlitebrowser.org/">官方地址</a></p>
+</li>
+</ul>
+<h3 id="_2">系统工具</h3>
+<ul>
+<li>
+<p><strong>CopyQ</strong>：高级剪贴板管理器，支持监控系统剪贴板、保存历史内容、可搜索、可编辑，支持图像格式和命令行控制。 <a href="https://hluk.github.io/CopyQ/">官方地址</a></p>
+</li>
+<li>
+<p><strong>Clapgrep</strong>：开源Linux应用，用于搜索文本文件、PDF和Office文档，提供快速搜索并显示相关元数据如页码和行号。 <a href="https://github.com/luleyleo/clapgrep">官方地址</a></p>
+</li>
+<li>
+<p><strong>LocalSend</strong>：免费开源的跨平台应用，用于在本地网络中点对点分享文件，支持端到端加密，类似于AirDrop。 <a href="https://localsend.org/">官方地址</a></p>
+</li>
+<li>
+<p><strong>Resources</strong>：简单而强大的系统资源监视器，使用Rust和GTK 4编写，支持查看CPU、内存、磁盘使用情况和进程管理。 <a href="https://github.com/nokyan/resources">官方地址</a></p>
+</li>
+<li>
+<p><strong>Gear Lever</strong>：开源工具，用于轻松管理AppImage应用，支持安装、更新、组织AppImage文件并生成桌面入口。 <a href="https://github.com/mijorus/gearlever">官方地址</a></p>
+</li>
+<li>
+<p><strong>Warehouse</strong>：Flatpak应用的图形化管理工具箱，提供简单UI来管理已安装应用、远程源和残留数据，无需命令行。 <a href="https://github.com/flattool/warehouse">官方地址</a></p>
+</li>
+<li>
+<p><strong>KRename</strong>：强大的批量文件重命名工具，支持基于表达式重命名、复制/移动文件，并处理数百个文件。 <a href="https://apps.kde.org/krename/">官方地址</a></p>
+</li>
+<li>
+<p><strong>FileZilla</strong>：免费FTP解决方案，支持FTP、FTPS和SFTP，用于远程文件传输，跨平台可用。 <a href="https://filezilla-project.org/">官方地址</a></p>
+</li>
+</ul>
+<h3 id="_3">多媒体编辑</h3>
+<ul>
+<li>
+<p><strong>Audacity</strong>：免费开源的多轨音频编辑和录音软件，支持Windows、macOS和Linux，用于编辑、混音和增强音频轨道。 <a href="https://www.audacityteam.org/">官方地址</a></p>
+</li>
+<li>
+<p><strong>Kdenlive</strong>：免费开源的非线性视频编辑器，基于MLT框架，支持Linux、Windows和macOS，用于专业视频制作。 <a href="https://kdenlive.org/">官方地址</a></p>
+</li>
+<li>
+<p><strong>Shotcut</strong>：免费开源的跨平台视频编辑器，支持广泛格式，无需导入即可编辑视频、音频和图像。 <a href="https://www.shotcut.org/">官方地址</a></p>
+</li>
+<li>
+<p><strong>Video Trimmer</strong>：GNOME应用，用于简单无损剪辑视频，通过指定起始和结束时间戳切割视频片段，不进行重新编码以保持质量。 <a href="https://apps.gnome.org/VideoTrimmer/">官方地址</a></p>
+</li>
+<li>
+<p><strong>Pinta</strong>：免费开源的绘图和图像编辑程序，结合直观工具和强大功能，类似于简易版Paint.NET。 <a href="https://www.pinta-project.com/">官方地址</a></p>
+</li>
+<li>
+<p><strong>XnConvert</strong>：快速强大的跨平台批量图像转换器，支持自动化编辑照片集合，包括调整大小、水印和滤镜。 <a href="https://www.xnview.com/en/xnconvert/">官方地址</a></p>
+</li>
+<li>
+<p><strong>Upscayl</strong>：AI图像放大工具，使用高级算法将低分辨率图像放大并增强质量，支持Linux、Windows和macOS。 <a href="https://upscayl.org/">官方地址</a></p>
+</li>
+<li>
+<p><strong>HandBrake</strong>：开源视频转码工具，支持从几乎任何格式转换为现代编解码器，适用于DVD和数字视频文件。 <a href="https://handbrake.fr/">官方地址</a></p>
+</li>
+</ul>
+<h3 id="_4">下载工具</h3>
+<ul>
+<li><strong>Motrix</strong>：全功能下载管理器，支持HTTP、FTP、BitTorrent和Magnet链接，具有简洁界面和易用性。 <a href="https://motrix.app/">官方地址</a></li>
+</ul>
+<h3 id="shell">Shell</h3>
+<ul>
+<li><strong>nethogs</strong>：小型'net top'工具，按进程分组显示带宽使用，而不是按协议或子网，支持实时监控网络流量。 <a href="https://github.com/raboof/nethogs">官方地址</a></li>
+</ul>
+        </main>
+        
+        <footer class="footer">
+            <p>本文原始链接：<a href="https://github.com/syaofox/syaofox.github.io/issues/5" class="github-link" target="_blank">GitHub Issue #5</a></p>
+        </footer>
+    </div>
+</body>
+</html>
