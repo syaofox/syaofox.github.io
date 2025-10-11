@@ -95,7 +95,7 @@ def generate_article_html(issue: Issue):
         }}
         
         .container {{
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
             background: #ffffff;
@@ -282,6 +282,19 @@ def generate_article_html(issue: Issue):
             
             .article-content {{
                 font-size: 1em;
+            }}
+        }}
+        
+        @media (min-width: 1024px) {{
+            .article-content {{
+                max-width: 800px;
+                margin: 0 auto;
+            }}
+        }}
+        
+        @media (min-width: 1440px) {{
+            .article-content {{
+                max-width: 900px;
             }}
         }}
     </style>
@@ -583,7 +596,7 @@ def bundle_html_content(wordcloud_image_url):
         .categories-grid {{
             display: grid;
             gap: 20px;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
         }}
         
         .category-card {{
@@ -698,7 +711,19 @@ def bundle_html_content(wordcloud_image_url):
         
         @media (min-width: 1024px) {{
             .categories-grid {{
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: 1fr;
+                max-width: 800px;
+                margin: 0 auto;
+            }}
+            
+            .category-card {{
+                margin-bottom: 20px;
+            }}
+        }}
+        
+        @media (min-width: 1440px) {{
+            .categories-grid {{
+                max-width: 1000px;
             }}
         }}
     </style>

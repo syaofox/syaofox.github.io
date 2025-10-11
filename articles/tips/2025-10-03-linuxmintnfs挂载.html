@@ -19,7 +19,7 @@
         }
         
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
             background: #ffffff;
@@ -206,6 +206,19 @@
             
             .article-content {
                 font-size: 1em;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .article-content {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (min-width: 1440px) {
+            .article-content {
+                max-width: 900px;
             }
         }
     </style>

@@ -68,7 +68,7 @@
         .categories-grid {
             display: grid;
             gap: 20px;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
         }
         
         .category-card {
@@ -183,7 +183,19 @@
         
         @media (min-width: 1024px) {
             .categories-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: 1fr;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            
+            .category-card {
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (min-width: 1440px) {
+            .categories-grid {
+                max-width: 1000px;
             }
         }
     </style>
@@ -194,7 +206,7 @@
             
     <div class="badges">
         <img src="https://badgen.net/github/issues/syaofox/syaofox.github.io" alt="Issues"/>
-        <img src="https://badgen.net/badge/last-commit/2025-10-11 23:47:36" alt="Last Commit"/>
+        <img src="https://badgen.net/badge/last-commit/2025-10-11 23:53:43" alt="Last Commit"/>
         <img src="https://badgen.net/github/forks/syaofox/syaofox.github.io" alt="Forks"/>
         <img src="https://badgen.net/github/stars/syaofox/syaofox.github.io" alt="Stars"/>
         <img src="https://badgen.net/github/watchers/syaofox/syaofox.github.io" alt="Watchers"/>
@@ -331,7 +343,7 @@
         </main>
         
         <footer class="footer">
-            <p>最后更新：2025-10-11 23:47:36</p>
+            <p>最后更新：2025-10-11 23:53:43</p>
         </footer>
     </div>
 </body>
