@@ -19,6 +19,7 @@ jobs:
         pip3 install matplotlib --user
         pip3 install markdown>=3.4.0 --user
         pip3 install pymdown-extensions>=9.0 --user
+        pip3 install python-dotenv --user
     - name: run python script
       env:
         GITHUB_TOKEN: ${{ secrets.BLOG_SECRET }}
