@@ -8,8 +8,24 @@ import time
 from github import Github
 from github.Issue import Issue
 from github.Repository import Repository
+from dotenv import load_dotenv
 
 from word_cloud import WordCloudGenerator
+
+
+def load_env_file():
+    """加载 .env 文件中的环境变量（仅限本地开发）"""
+    # 检查是否在 GitHub Actions 环境中运行
+    if os.environ.get('GITHUB_ACTIONS') == 'true':
+        print("检测到 GitHub Actions 环境，跳过 .env 文件加载")
+        return
+    
+    env_file = ".env"
+    if os.path.exists(env_file):
+        load_dotenv(env_file)
+        print(f"已加载环境变量文件: {env_file}")
+    else:
+        print("未找到 .env 文件，使用系统环境变量")
 
 user: Github
 user_name: str
@@ -71,14 +87,11 @@ def update_index_html_file(html_content):
         f.close()
 
 
-def bundle_list_by_labels_section():
+def bundle_list_by_labels_section(wordcloud_image_url):
     global blog_repo
     global user
     global user_name
     global blog_name
-
-    # word cloud
-    wordcloud_image_url = WordCloudGenerator(blog_repo).generate()
 
     list_by_labels_section = """
 <summary>
@@ -108,11 +121,8 @@ def bundle_list_by_labels_section():
     return list_by_labels_section
 
 
-def bundle_html_content():
+def bundle_html_content(wordcloud_image_url):
     global blog_repo, user_name, blog_name, cur_time
-    
-    # 获取词云图
-    wordcloud_image_url = WordCloudGenerator(blog_repo).generate()
     
     # 构建徽章HTML
     badges_html = f"""
@@ -390,6 +400,9 @@ def execute():
     # common
     cur_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
+    # 0. 加载环境变量文件
+    load_env_file()
+
     # 1. login & init rope
     login()
 
@@ -397,17 +410,21 @@ def execute():
     summary_section = bundle_summary_section()
     print(summary_section)
 
-    # 3. list by labels section
-    list_by_labels_section = bundle_list_by_labels_section()
+    # 3. generate word cloud once
+    wordcloud_image_url = WordCloudGenerator(blog_repo).generate()
+    print(f"Word cloud generated: {wordcloud_image_url}")
+
+    # 4. list by labels section
+    list_by_labels_section = bundle_list_by_labels_section(wordcloud_image_url)
     print(list_by_labels_section)
 
-    # 4. generate README.md
+    # 5. generate README.md
     contents = [summary_section, list_by_labels_section]
     update_readme_md_file(contents)
     print("README.md updated successfully!!!")
 
-    # 5. generate index.html
-    html_content = bundle_html_content()
+    # 6. generate index.html
+    html_content = bundle_html_content(wordcloud_image_url)
     update_index_html_file(html_content)
     print("index.html generated successfully!!!")
 
