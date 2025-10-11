@@ -135,9 +135,21 @@ def bundle_html_content():
     # 构建标签分类HTML
     issues_html = ""
     all_labels = blog_repo.get_labels()
+    
+    # 收集所有标签和对应的文章数量，按文章数量排序
+    label_counts = []
     for label in all_labels:
-        temp = ""
         count = 0
+        issues_in_label = blog_repo.get_issues(labels=(label,), state="all")
+        for issue in issues_in_label:
+            count += 1
+        label_counts.append((label, count))
+    
+    # 按文章数量降序排序
+    label_counts.sort(key=lambda x: x[1], reverse=True)
+    
+    for label, count in label_counts:
+        temp = ""
         issues_in_label = blog_repo.get_issues(labels=(label,), state="all")
         for issue in issues_in_label:
             temp += f"""
@@ -145,7 +157,6 @@ def bundle_html_content():
                 <span class="issue-date">{issue.created_at.strftime("%Y-%m-%d")}</span>
                 <a href="{issue.html_url}" class="issue-link">{issue.title}</a>
             </div>"""
-            count += 1
         
         if count > 0:
             issues_html += f"""
