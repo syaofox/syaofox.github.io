@@ -4,13 +4,345 @@
 import codecs
 import os
 import time
+import re
+import urllib.parse
+from datetime import datetime
 
 from github import Github
 from github.Issue import Issue
 from github.Repository import Repository
 from dotenv import load_dotenv
+import markdown
 
 from word_cloud import WordCloudGenerator
+
+
+def title_to_slug(title):
+    """将标题转换为URL安全的slug"""
+    # 移除特殊字符，保留中文、英文、数字和连字符
+    slug = re.sub(r'[^\w\u4e00-\u9fff\-]', '', title)
+    # 将多个连字符替换为单个
+    slug = re.sub(r'-+', '-', slug)
+    # 移除首尾的连字符
+    slug = slug.strip('-')
+    return slug
+
+
+def get_article_url(issue: Issue):
+    """生成文章的本地URL路径"""
+    # 获取第一个标签，如果没有标签则使用 'uncategorized'
+    label = 'uncategorized'
+    if issue.labels:
+        label = issue.labels[0].name
+    
+    # 生成日期和标题slug
+    date_str = issue.created_at.strftime("%Y-%m-%d")
+    title_slug = title_to_slug(issue.title)
+    
+    # 生成文件名
+    filename = f"{date_str}-{title_slug}.html"
+    
+    # 返回相对路径
+    return f"articles/{label}/{filename}"
+
+
+def generate_article_html(issue: Issue):
+    """生成单个文章的HTML内容"""
+    # 配置 Markdown 扩展
+    md = markdown.Markdown(
+        extensions=[
+            'extra',
+            'codehilite',
+            'toc',
+            'fenced_code',
+            'tables',
+            'nl2br'
+        ],
+        extension_configs={
+            'codehilite': {
+                'css_class': 'highlight'
+            }
+        }
+    )
+    
+    # 转换 Markdown 内容为 HTML
+    content_html = md.convert(issue.body or '')
+    
+    # 获取标签信息
+    labels_html = ""
+    if issue.labels:
+        labels_html = " ".join([f'<span class="label">{label.name}</span>' for label in issue.labels])
+    
+    # 生成完整的HTML页面
+    html_content = f"""<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{issue.title} - syaofox 的博客</title>
+    <style>
+        * {{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }}
+        
+        body {{
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333333;
+            line-height: 1.6;
+        }}
+        
+        .container {{
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }}
+        
+        .header {{
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }}
+        
+        .back-link {{
+            display: inline-block;
+            color: #2196F3;
+            text-decoration: none;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }}
+        
+        .back-link:hover {{
+            color: #1976d2;
+            text-decoration: underline;
+        }}
+        
+        .article-title {{
+            font-size: 2em;
+            font-weight: 600;
+            color: #1976d2;
+            margin-bottom: 15px;
+        }}
+        
+        .article-meta {{
+            color: #666666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }}
+        
+        .labels {{
+            margin-top: 10px;
+        }}
+        
+        .label {{
+            display: inline-block;
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-right: 5px;
+        }}
+        
+        .article-content {{
+            font-size: 1.1em;
+            line-height: 1.8;
+        }}
+        
+        .article-content h1,
+        .article-content h2,
+        .article-content h3,
+        .article-content h4,
+        .article-content h5,
+        .article-content h6 {{
+            color: #1976d2;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }}
+        
+        .article-content h1 {{
+            font-size: 1.8em;
+        }}
+        
+        .article-content h2 {{
+            font-size: 1.5em;
+        }}
+        
+        .article-content h3 {{
+            font-size: 1.3em;
+        }}
+        
+        .article-content p {{
+            margin-bottom: 15px;
+        }}
+        
+        .article-content img {{
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 15px 0;
+        }}
+        
+        .article-content pre {{
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }}
+        
+        .article-content code {{
+            background: #f1f3f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }}
+        
+        .article-content pre code {{
+            background: none;
+            padding: 0;
+        }}
+        
+        .article-content blockquote {{
+            border-left: 4px solid #2196F3;
+            margin: 15px 0;
+            padding: 10px 20px;
+            background: #f8f9fa;
+            border-radius: 0 8px 8px 0;
+        }}
+        
+        .article-content table {{
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }}
+        
+        .article-content th,
+        .article-content td {{
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            text-align: left;
+        }}
+        
+        .article-content th {{
+            background: #f8f9fa;
+            font-weight: 600;
+        }}
+        
+        .article-content ul,
+        .article-content ol {{
+            margin: 15px 0;
+            padding-left: 30px;
+        }}
+        
+        .article-content li {{
+            margin-bottom: 5px;
+        }}
+        
+        .footer {{
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            color: #666666;
+            font-size: 0.9em;
+        }}
+        
+        .github-link {{
+            color: #2196F3;
+            text-decoration: none;
+        }}
+        
+        .github-link:hover {{
+            color: #1976d2;
+            text-decoration: underline;
+        }}
+        
+        /* 响应式设计 */
+        @media (max-width: 767px) {{
+            .container {{
+                margin: 10px;
+                padding: 15px;
+                border-radius: 8px;
+            }}
+            
+            .article-title {{
+                font-size: 1.5em;
+            }}
+            
+            .article-content {{
+                font-size: 1em;
+            }}
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="../../index.html" class="back-link">← 返回首页</a>
+            <h1 class="article-title">{issue.title}</h1>
+            <div class="article-meta">
+                <div>创建时间：{issue.created_at.strftime("%Y-%m-%d %H:%M:%S")}</div>
+                <div>更新时间：{issue.updated_at.strftime("%Y-%m-%d %H:%M:%S")}</div>
+            </div>
+            {f'<div class="labels">{labels_html}</div>' if labels_html else ''}
+        </header>
+        
+        <main class="article-content">
+            {content_html}
+        </main>
+        
+        <footer class="footer">
+            <p>本文原始链接：<a href="{issue.html_url}" class="github-link" target="_blank">GitHub Issue #{issue.number}</a></p>
+        </footer>
+    </div>
+</body>
+</html>"""
+    
+    return html_content
+
+
+def save_article_html(issue: Issue, html_content: str):
+    """保存文章HTML到指定目录"""
+    # 获取标签目录
+    label = 'uncategorized'
+    if issue.labels:
+        label = issue.labels[0].name
+    
+    # 创建目录
+    articles_dir = f"articles/{label}"
+    os.makedirs(articles_dir, exist_ok=True)
+    
+    # 生成文件名
+    date_str = issue.created_at.strftime("%Y-%m-%d")
+    title_slug = title_to_slug(issue.title)
+    filename = f"{date_str}-{title_slug}.html"
+    
+    # 处理重名文件
+    filepath = os.path.join(articles_dir, filename)
+    counter = 1
+    while os.path.exists(filepath):
+        filename = f"{date_str}-{title_slug}-{counter}.html"
+        filepath = os.path.join(articles_dir, filename)
+        counter += 1
+    
+    # 写入文件
+    with codecs.open(filepath, "w", encoding="utf-8") as f:
+        f.write(html_content)
+        f.flush()
+        f.close()
+    
+    return filepath
 
 
 def load_env_file():
@@ -165,7 +497,7 @@ def bundle_html_content(wordcloud_image_url):
             temp += f"""
             <div class="issue-item">
                 <span class="issue-date">{issue.created_at.strftime("%Y-%m-%d")}</span>
-                <a href="{issue.html_url}" class="issue-link">{issue.title}</a>
+                <a href="{get_article_url(issue)}" class="issue-link">{issue.title}</a>
             </div>"""
         
         if count > 0:
@@ -427,6 +759,23 @@ def execute():
     html_content = bundle_html_content(wordcloud_image_url)
     update_index_html_file(html_content)
     print("index.html generated successfully!!!")
+
+    # 7. generate article HTML files
+    print("开始生成文章 HTML 文件...")
+    all_issues = blog_repo.get_issues(state="all")
+    generated_count = 0
+    for issue in all_issues:
+        try:
+            # 生成文章 HTML
+            article_html = generate_article_html(issue)
+            # 保存文章 HTML
+            filepath = save_article_html(issue, article_html)
+            generated_count += 1
+            print(f"生成文章: {issue.title} -> {filepath}")
+        except Exception as e:
+            print(f"生成文章失败 {issue.title}: {str(e)}")
+    
+    print(f"文章 HTML 生成完成! 共生成 {generated_count} 篇文章")
 
 
 if __name__ == "__main__":

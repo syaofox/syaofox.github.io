@@ -133,7 +133,7 @@ def backup_all_issues():
     global blog_repo
     
     # 确保 articles 目录存在
-    articles_dir = "articles"
+    articles_dir = "articles_backup"
     if not os.path.exists(articles_dir):
         os.makedirs(articles_dir)
         print(f"创建目录: {articles_dir}")

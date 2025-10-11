@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux 调整 Swap 文件大小指南 - syaofox 的博客</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            color: #2196F3;
+            text-decoration: none;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+        
+        .back-link:hover {
+            color: #1976d2;
+            text-decoration: underline;
+        }
+        
+        .article-title {
+            font-size: 2em;
+            font-weight: 600;
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+        
+        .article-meta {
+            color: #666666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        
+        .labels {
+            margin-top: 10px;
+        }
+        
+        .label {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-right: 5px;
+        }
+        
+        .article-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        
+        .article-content h1,
+        .article-content h2,
+        .article-content h3,
+        .article-content h4,
+        .article-content h5,
+        .article-content h6 {
+            color: #1976d2;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .article-content h1 {
+            font-size: 1.8em;
+        }
+        
+        .article-content h2 {
+            font-size: 1.5em;
+        }
+        
+        .article-content h3 {
+            font-size: 1.3em;
+        }
+        
+        .article-content p {
+            margin-bottom: 15px;
+        }
+        
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 15px 0;
+        }
+        
+        .article-content pre {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        .article-content code {
+            background: #f1f3f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .article-content pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        .article-content blockquote {
+            border-left: 4px solid #2196F3;
+            margin: 15px 0;
+            padding: 10px 20px;
+            background: #f8f9fa;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .article-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .article-content th,
+        .article-content td {
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .article-content th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .article-content ul,
+        .article-content ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        .article-content li {
+            margin-bottom: 5px;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            color: #666666;
+            font-size: 0.9em;
+        }
+        
+        .github-link {
+            color: #2196F3;
+            text-decoration: none;
+        }
+        
+        .github-link:hover {
+            color: #1976d2;
+            text-decoration: underline;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 767px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+                border-radius: 8px;
+            }
+            
+            .article-title {
+                font-size: 1.5em;
+            }
+            
+            .article-content {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="../../index.html" class="back-link">← 返回首页</a>
+            <h1 class="article-title">Linux 调整 Swap 文件大小指南</h1>
+            <div class="article-meta">
+                <div>创建时间：2025-10-03 07:21:17</div>
+                <div>更新时间：2025-10-03 07:21:17</div>
+            </div>
+            <div class="labels"><span class="label">tips</span></div>
+        </header>
+        
+        <main class="article-content">
+            <h2 id="swap">查看当前 Swap 状态</h2>
+<p>调整前，建议先了解系统当前 swap 的使用情况。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">sudo</span><span class="w"> </span><span class="nv">swapon</span><span class="w"> </span><span class="o">--</span><span class="k">show</span><span class="w">        </span>#<span class="w"> </span>显示已启用的<span class="w"> </span><span class="nv">swap</span><span class="w"> </span>空间详细信息
+<span class="nv">free</span><span class="w"> </span><span class="o">-</span><span class="nv">h</span><span class="w">                   </span>#<span class="w"> </span>以人类可读格式显示内存和<span class="w"> </span><span class="nv">swap</span><span class="w"> </span>使用情况
+</code></pre></div>
+
+<h2 id="swap_1">调整 Swap 文件大小的步骤</h2>
+<p>以下是调整 <code>/swapfile</code> 大小的具体步骤，主要包括关闭现有交换文件、创建新大小的交换文件并重新启用。</p>
+<ol>
+<li>
+<p>​<strong>​禁用当前的 swap 文件​</strong>​：<br />
+    调整 swap 文件前，必须先禁用它。</p>
+<p><code>sudo swapoff -a</code></p>
+</li>
+<li>
+<p>​<strong>​删除现有的 swap 文件​</strong>​（通常为 <code>/swapfile</code>）：</p>
+<p><code>sudo rm /swapfile</code></p>
+</li>
+<li>
+<p>​<strong>​创建新的 swap 文件​</strong>​：<br />
+    使用 <code>fallocate</code> 命令创建指定大小的新文件（例如调整为 10G）：</p>
+<p><code>sudo fallocate -l 10G /swapfile</code></p>
+<p>​<strong>​替代方案​</strong>​：如果 <code>fallocate</code> 有问题（如在某些文件系统中），可以使用 <code>dd</code> 命令，但速度较慢：</p>
+<p><code>sudo dd if=/dev/zero of=/swapfile bs=1G count=10</code></p>
+</li>
+<li>
+<p>​<strong>​设置正确的文件权限​</strong>​：<br />
+    为确保安全，swap 文件应仅限 root 访问。</p>
+<p><code>sudo chmod 600 /swapfile</code></p>
+</li>
+<li>
+<p>​<strong>​将文件格式化为 swap 空间​</strong>​：</p>
+<p><code>sudo mkswap /swapfile</code></p>
+</li>
+<li>
+<p>​<strong>​启用新的 swap 文件​</strong>​：</p>
+<p><code>sudo swapon /swapfile</code></p>
+</li>
+<li>
+<p>​<strong>​验证新的 swap 是否启用​</strong>​：</p>
+<p><code>sudo swapon --show
+free -h</code></p>
+<p>检查输出，确认新大小的 swap 已显示并处于启用状态。</p>
+</li>
+</ol>
+<h2 id="_1">使调整永久生效</h2>
+<p>系统重启后，需要确保新的 swap 文件能自动启用。通过编辑 <code>/etc/fstab</code> 文件实现。</p>
+<ol>
+<li>
+<p>使用文本编辑器（如 <code>nano</code> 或 <code>vim</code>）打开 <code>/etc/fstab</code> 文件：</p>
+<p><code>sudo nano /etc/fstab</code></p>
+</li>
+<li>
+<p>确保文件中包含以下行（如果已有 swapfile 条目，请修改；如果没有，请添加）：</p>
+<p><code>/swapfile none swap defaults 0 0</code></p>
+</li>
+<li>
+<p>保存并退出编辑器（在 <code>nano</code> 中按 <code>Ctrl+X</code>，然后按 <code>Y</code> 确认，最后按 <code>Enter</code>）。</p>
+</li>
+</ol>
+<h2 id="_2">重要注意事项和建议</h2>
+<ul>
+<li>​<strong>​操作风险​</strong>​：调整 swap 文件大小需要​<strong>​禁用当前的 swap​</strong>​。如果系统正严重依赖 swap（物理内存几乎用尽），在此期间应用程序可能会因内存不足（OOM）而被终止，操作期间系统响应速度也可能下降。​<strong>​建议在系统负载较低、已保存好所有工作的情况下进行此操作​</strong>​。</li>
+<li>​<strong>​磁盘空间​</strong>​：确保你的根文件系统（或目标位置）有足够的​<strong>​可用空间​</strong>​来容纳新大小的 swap 文件。例如，创建 10G 的 swap 文件，就需要至少 10G 的空闲空间。</li>
+<li>
+<p>​<strong>​Swap 大小选择​</strong>​：</p>
+<ul>
+<li>传统建议是 swap 大小为物理内存的 1 到 2 倍，但这并非绝对。</li>
+<li>对于现代拥有大容量内存的系统（如 16G 以上），如果只是为了桌面用途且希望节省磁盘空间，可以设置较小的 swap（如 4G 或更小）。</li>
+<li>如果计划使用​<strong>​休眠（Hibernate）​</strong>​ 到磁盘的功能，​<strong>​swap 大小通常需要至少等于甚至大于物理内存大小​</strong>​，以便容纳内存中的所有数据。</li>
+</ul>
+</li>
+<li>
+<p>​<strong>​性能考虑​</strong>​：Swap 位于硬盘上，速度远慢于物理内存。​<strong>​频繁且大量地使用 swap 可能表明物理内存不足​</strong>​，并会导致系统性能下降。如果遇到这种情况，考虑增加物理内存是更根本的解决方法。</p>
+</li>
+<li>​<strong>​SSD 磨损​</strong>​：如果系统使用 SSD，创建 swap 文件可能会因其写入次数有限而​<strong>​影响寿命​</strong>​。但对于现代 SSD 来说，通常无需过度担心，但保持关注是好的做法。</li>
+</ul>
+<h2 id="swappiness">🔧 可选后续优化：调整 Swappiness</h2>
+<p><code>swappiness</code> 参数决定了系统使用 swap 的积极程度（范围 0-100）。值越高，内核越倾向于使用 swap；值越低，则越倾向于尽可能使用物理内存。</p>
+<ul>
+<li>
+<p>​<strong>​查看当前 swappiness 值​</strong>​：</p>
+<p><code>cat /proc/sys/vm/swappiness</code></p>
+<p>Linux Mint 或 Ubuntu 的默认值通常是 <code>60</code>。</p>
+</li>
+<li>
+<p>​<strong>​临时更改​</strong>​（重启后失效）：</p>
+<p><code>sudo sysctl vm.swappiness=30</code></p>
+</li>
+<li>
+<p>​<strong>​永久更改​</strong>​：</p>
+<ol>
+<li>
+<p>编辑 <code>/etc/sysctl.conf</code> 文件：</p>
+<p><code>sudo nano /etc/sysctl.conf</code></p>
+</li>
+<li>
+<p>在文件末尾添加或修改此行：</p>
+<p><code>vm.swappiness=30</code></p>
+</li>
+<li>
+<p>保存退出，并使更改生效：</p>
+<p><code>sudo sysctl -p</code></p>
+</li>
+</ol>
+</li>
+<li>
+<p>​<strong>​Swappiness 值参考​</strong>​：</p>
+<ul>
+<li>​<strong>​0-10​</strong>​：非常不愿意使用 swap，适用于服务器或内存非常充足的系统。</li>
+<li>​<strong>​30-50​</strong>​：对于多数桌面系统来说是一个比较平衡的值。</li>
+<li>​<strong>​60​</strong>​：默认值。</li>
+<li>​<strong>​80-100​</strong>​：积极使用 swap，通常不建议，除非有特定需求。</li>
+</ul>
+</li>
+</ul>
+        </main>
+        
+        <footer class="footer">
+            <p>本文原始链接：<a href="https://github.com/syaofox/syaofox.github.io/issues/7" class="github-link" target="_blank">GitHub Issue #7</a></p>
+        </footer>
+    </div>
+</body>
+</html>

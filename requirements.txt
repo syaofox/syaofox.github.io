@@ -2,3 +2,5 @@ PyGithub>=1.57
 wordcloud
 matplotlib
 python-dotenv>=1.0.0
+markdown>=3.4.0
+pymdown-extensions>=9.0
