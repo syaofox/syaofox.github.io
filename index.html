@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>syaofox 的博客</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .badges img {
+            height: 20px;
+            border-radius: 3px;
+            transition: transform 0.2s ease;
+        }
+        
+        .badges img:hover {
+            transform: translateY(-2px);
+        }
+        
+        .wordcloud-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .wordcloud-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .wordcloud-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .categories-grid {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        
+        .category-card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .category-header {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 15px 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .category-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #1976d2;
+            margin-bottom: 5px;
+        }
+        
+        .category-count {
+            color: #666666;
+            font-size: 0.9em;
+        }
+        
+        .issues-list {
+            padding: 20px;
+        }
+        
+        .issue-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .issue-item:last-child {
+            border-bottom: none;
+        }
+        
+        .issue-date {
+            color: #666666;
+            font-size: 0.9em;
+            min-width: 80px;
+            margin-right: 15px;
+        }
+        
+        .issue-link {
+            color: #2196F3;
+            text-decoration: none;
+            flex: 1;
+            transition: color 0.2s ease;
+        }
+        
+        .issue-link:hover {
+            color: #1976d2;
+            text-decoration: underline;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666666;
+            font-size: 0.9em;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 767px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .badges {
+                gap: 5px;
+            }
+            
+            .badges img {
+                height: 18px;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .issue-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            .issue-date {
+                min-width: auto;
+                margin-right: 0;
+            }
+        }
+        
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .categories-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            
+    <div class="badges">
+        <img src="https://badgen.net/github/issues/syaofox/syaofox.github.io" alt="Issues"/>
+        <img src="https://badgen.net/badge/last-commit/2025-10-11 22:54:01" alt="Last Commit"/>
+        <img src="https://badgen.net/github/forks/syaofox/syaofox.github.io" alt="Forks"/>
+        <img src="https://badgen.net/github/stars/syaofox/syaofox.github.io" alt="Stars"/>
+        <img src="https://badgen.net/github/watchers/syaofox/syaofox.github.io" alt="Watchers"/>
+    </div>
+        </header>
+        
+        <main>
+            
+    <div class="wordcloud-section">
+        <a href="https://syaofox.github.io/syaofox.github.io/">
+            <img src="assets/wordcloud.png" title="词云" alt="词云" class="wordcloud-img">
+        </a>
+    </div>
+            
+            <section class="categories-grid">
+                
+            <div class="category-card">
+                <div class="category-header">
+                    <h3 class="category-title">ACG</h3>
+                    <span class="category-count">[7篇]</span>
+                </div>
+                <div class="issues-list">
+                    
+            <div class="issue-item">
+                <span class="issue-date">2025-10-03</span>
+                <a href="https://github.com/syaofox/syaofox.github.io/issues/16" class="issue-link">三国战纪2：群雄争霸详细攻略</a>
+            </div>
+            <div class="issue-item">
+                <span class="issue-date">2025-10-03</span>
+                <a href="https://github.com/syaofox/syaofox.github.io/issues/15" class="issue-link">拳皇系列的各代剧情都在讲什么</a>
+            </div>
+            <div class="issue-item">
+                <span class="issue-date">2025-10-03</span>
+                <a href="https://github.com/syaofox/syaofox.github.io/issues/14" class="issue-link">圣斗士星矢~黄金传说完结篇攻略</a>
+            </div>
+            <div class="issue-item">
+                <span class="issue-date">2025-10-03</span>
+                <a href="https://github.com/syaofox/syaofox.github.io/issues/13" class="issue-link">我是谁~龙骑士4攻略</a>
+            </div>
+            <div class="issue-item">
+                <span class="issue-date">2025-10-03</span>
+                <a href="https://github.com/syaofox/syaofox.github.io/issues/12" class="issue-link">迷走都市~完美结局</a>
+            </div>
+            <div class="issue-item">
+                <span class="issue-date">2025-10-03</span>
+                <a href="https://github.com/syaofox/syaofox.github.io/issues/11" class="issue-link">成人版大富翁~华丽人生2</a>
+            </div>
+            <div class="issue-item">
+                <span class="issue-date">2025-10-03</span>
+                <a href="https://github.com/syaofox/syaofox.github.io/issues/10" class="issue-link">夏日的回忆~同级生2</a>
+            </div>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-header">
+                    <h3 class="category-title">apps</h3>
+                    <span class="category-count">[3篇]</span>
+                </div>
+                <div class="issues-list">
+                    
+            <div class="issue-item">
+                <span class="issue-date">2025-10-11</span>
+                <a href="https://github.com/syaofox/syaofox.github.io/issues/21" class="issue-link">我使用的mvp配置文件</a>
+            </div>
+            <div class="issue-item">
+                <span class="issue-date">2025-10-03</span>
+                <a href="https://github.com/syaofox/syaofox.github.io/issues/5" class="issue-link">linux 常用软件存档</a>
+            </div>
+            <div class="issue-item">
+                <span class="issue-date">2025-10-03</span>
+                <a href="https://github.com/syaofox/syaofox.github.io/issues/2" class="issue-link">Timeshift 的备份选项</a>
+            </div>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-header">
+                    <h3 class="category-title">docker</h3>
+                    <span class="category-count">[2篇]</span>
+                </div>
+                <div class="issues-list">
+                    
+            <div class="issue-item">
+                <span class="issue-date">2025-10-03</span>
+                <a href="https://github.com/syaofox/syaofox.github.io/issues/9" class="issue-link">导出本地 Docker 镜像并在另一台机器上导入</a>
+            </div>
+            <div class="issue-item">
+                <span class="issue-date">2025-10-03</span>
+                <a href="https://github.com/syaofox/syaofox.github.io/issues/8" class="issue-link">docker构建项目，并推送到dockerhub</a>
+            </div>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-header">
+                    <h3 class="category-title">tips</h3>
+                    <span class="category-count">[8篇]</span>
+                </div>
+                <div class="issues-list">
+                    
+            <div class="issue-item">
+                <span class="issue-date">2025-10-11</span>
+                <a href="https://github.com/syaofox/syaofox.github.io/issues/20" class="issue-link">如何在 Linux Mint 22 上安装 VirtualBox（分步指南）</a>
+            </div>
+            <div class="issue-item">
+                <span class="issue-date">2025-10-07</span>
+                <a href="https://github.com/syaofox/syaofox.github.io/issues/19" class="issue-link">查看当前linux mint 基于ubuntu哪个版本</a>
+            </div>
+            <div class="issue-item">
+                <span class="issue-date">2025-10-03</span>
+                <a href="https://github.com/syaofox/syaofox.github.io/issues/18" class="issue-link">软路由科学上网白名单模式</a>
+            </div>
+            <div class="issue-item">
+                <span class="issue-date">2025-10-03</span>
+                <a href="https://github.com/syaofox/syaofox.github.io/issues/17" class="issue-link">istoreos旁路由科学上网后，无法上内网的解决办法</a>
+            </div>
+            <div class="issue-item">
+                <span class="issue-date">2025-10-03</span>
+                <a href="https://github.com/syaofox/syaofox.github.io/issues/7" class="issue-link">Linux 调整 Swap 文件大小指南</a>
+            </div>
+            <div class="issue-item">
+                <span class="issue-date">2025-10-03</span>
+                <a href="https://github.com/syaofox/syaofox.github.io/issues/6" class="issue-link">设置ssh-key-免密登录github</a>
+            </div>
+            <div class="issue-item">
+                <span class="issue-date">2025-10-03</span>
+                <a href="https://github.com/syaofox/syaofox.github.io/issues/4" class="issue-link">linux mint nfs挂载</a>
+            </div>
+            <div class="issue-item">
+                <span class="issue-date">2025-10-03</span>
+                <a href="https://github.com/syaofox/syaofox.github.io/issues/3" class="issue-link">linux mint samba挂载</a>
+            </div>
+                </div>
+            </div>
+            </section>
+        </main>
+        
+        <footer class="footer">
+            <p>最后更新：2025-10-11 22:54:01</p>
+        </footer>
+    </div>
+</body>
+</html>

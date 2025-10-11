@@ -1,0 +1,37 @@
+---
+alwaysApply: true
+description: "项目结构指南 - GitHub Pages 博客自动更新系统"
+---
+
+# 项目结构指南
+
+这是一个基于 GitHub Pages 的个人博客项目，使用 Jekyll 构建，并通过 Python 脚本自动更新 README.md 文件。
+
+## 核心文件
+
+- [main.py](mdc:main.py) - 主程序入口，负责 GitHub API 集成和 README.md 自动更新
+- [_config.yml](mdc:_config.yml) - Jekyll 配置文件，使用 minima 主题
+- [README.md](mdc:README.md) - 自动生成的博客目录，包含词云和分类文章列表
+- [requirements.txt](mdc:requirements.txt) - Python 依赖包列表
+
+## 重要目录
+
+- `assets/` - 静态资源目录，包含图片和词云图片
+- `assets/images/` - 按文章分类存储的图片资源
+- `word_cloud/` - 词云生成模块
+- `lib/fonts/` - 中文字体文件，用于词云生成
+
+## 工作流程
+
+1. Python 脚本通过 GitHub API 获取仓库的 issues 和 labels
+2. 根据 labels 分类整理文章
+3. 生成词云图片
+4. 自动更新 README.md 文件
+5. GitHub Pages 自动部署更新后的内容
+
+## 注意事项
+
+- 所有文章以 GitHub Issues 形式管理
+- 使用 labels 对文章进行分类
+- 词云图片自动生成并存储在 `assets/wordcloud.png`
+- 支持中文字体渲染

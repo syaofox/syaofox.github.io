@@ -1,0 +1,70 @@
+---
+description: "GitHub API 集成和自动化规则"
+globs: *.py
+---
+
+# GitHub 集成规范
+
+## 环境变量配置
+
+项目依赖以下环境变量：
+
+- `GITHUB_REPOSITORY` - GitHub 仓库全名（格式：owner/repo）
+- `GITHUB_TOKEN` - GitHub 个人访问令牌，用于 API 认证
+
+## PyGithub 使用规范
+
+### 认证和初始化
+
+```python
+def login():
+    global user, user_name, blog_name, blog_repo
+    github_repo_env = os.environ.get("GITHUB_REPOSITORY")
+    user_name = github_repo_env[0 : github_repo_env.index("/")]
+    blog_name = github_repo_env[github_repo_env.index("/") :]
+    password = os.environ.get("GITHUB_TOKEN")
+    user = Github(user_name, password)
+    blog_repo = user.get_repo(github_repo_env)
+```
+
+### Issues 和 Labels 处理
+
+- 获取所有状态的 issues：`state="all"`
+- 按 label 过滤 issues：`labels=(label,)`
+- 遍历 issues 时使用生成器避免内存问题
+
+```python
+# 获取特定 label 的所有 issues
+issues_in_label = blog_repo.get_issues(labels=(label,), state="all")
+for issue in issues_in_label:
+    # 处理单个 issue
+    temp += format_issue(issue)
+    count += 1
+```
+
+### 数据格式化
+
+- Issue 日期格式：`%Y-%m-%d`
+- Markdown 链接格式：`[标题](URL)`
+- 使用 HTML 标签构建结构化内容
+
+## API 限制处理
+
+- GitHub API 有速率限制，避免频繁调用
+- 使用适当的延时和重试机制
+- 监控 API 使用情况
+
+## 自动化流程
+
+1. **登录验证** - 使用环境变量中的 token
+2. **数据获取** - 获取 labels 和 issues
+3. **内容生成** - 生成 README.md 内容
+4. **文件更新** - 写入本地文件系统
+5. **部署触发** - 通过 Git 提交触发 GitHub Pages 部署
+
+## 错误处理
+
+- 检查环境变量是否存在
+- 验证 GitHub token 有效性
+- 处理网络连接异常
+- 提供有意义的错误信息

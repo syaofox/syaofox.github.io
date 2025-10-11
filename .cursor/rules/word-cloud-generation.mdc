@@ -1,0 +1,68 @@
+---
+description: "词云生成模块使用规范"
+globs: word_cloud/*.py
+---
+
+# 词云生成规范
+
+## WordCloudGenerator 类
+
+位于 [word_cloud/__init__.py](mdc:word_cloud/__init__.py) 的词云生成器。
+
+### 基本用法
+
+```python
+from word_cloud import WordCloudGenerator
+
+# 初始化生成器
+generator = WordCloudGenerator(github_repo)
+
+# 生成词云图片
+image_path = generator.generate()
+```
+
+### 核心功能
+
+1. **数据收集** - 从 GitHub 仓库获取 labels 和对应的 issues 数量
+2. **频率计算** - 统计每个 label 下的文章数量作为词频
+3. **图片生成** - 使用 WordCloud 库生成词云图片
+4. **文件保存** - 保存到 `assets/wordcloud.png`
+
+### 中文字体支持
+
+```python
+# 指定中文字体路径
+wc = WordCloud(
+    font_path='lib/fonts/wqy-microhei.ttc',
+    width=1920,
+    height=400,
+    background_color='white'
+)
+```
+
+### 错误处理
+
+- 检查仓库对象是否为空
+- 验证是否有有效的 label 数据
+- 处理所有频率为零的情况
+- 提供降级方案（返回现有图片路径）
+
+### 图片规格
+
+- 宽度：1920 像素
+- 高度：400 像素
+- 背景色：白色
+- 格式：PNG
+- 存储位置：`assets/wordcloud.png`
+
+## 依赖包
+
+- `wordcloud` - 词云生成核心库
+- `matplotlib` - 图形处理支持
+
+## 使用注意事项
+
+- 确保字体文件 `wqy-microhei.ttc` 存在于 `lib/fonts/` 目录
+- 生成的图片会覆盖现有文件
+- 建议在生成前检查磁盘空间
+- 支持中文标签显示

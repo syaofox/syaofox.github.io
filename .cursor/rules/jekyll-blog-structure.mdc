@@ -1,0 +1,83 @@
+---
+description: "Jekyll 博客结构和内容管理规范"
+globs: *.md,*.yml,*.html
+---
+
+# Jekyll 博客结构规范
+
+## Jekyll 配置
+
+### _config.yml 配置
+
+```yaml
+theme: minima
+markdown: GFM
+```
+
+- 使用 `minima` 主题提供简洁的博客样式
+- 启用 GitHub Flavored Markdown 支持
+- 支持数学公式、表格、任务列表等扩展语法
+
+## 内容管理
+
+### Issues 作为文章管理
+
+- 所有博客文章以 GitHub Issues 形式创建
+- 使用 Labels 对文章进行分类（如：ACG、tips、apps、docker）
+- Issue 标题作为文章标题
+- Issue 内容作为文章正文
+
+### 分类系统
+
+当前支持的分类标签：
+- `ACG` - 游戏和动漫相关内容
+- `tips` - 技术技巧和教程
+- `apps` - 软件应用推荐
+- `docker` - Docker 相关技术
+
+### 图片资源管理
+
+- 图片按文章分类存储在 `assets/images/` 目录下
+- 每个分类创建独立的子目录
+- 支持多种图片格式：`.jpg`, `.png`, `.gif`
+- 词云图片统一存储在 `assets/wordcloud.png`
+
+## README.md 自动生成
+
+### 结构组成
+
+1. **统计信息区域** - 显示 issues 数量、最后提交时间、fork/star 数量
+2. **词云展示** - 点击可跳转到博客首页
+3. **分类文章列表** - 按 label 分组展示，支持折叠展开
+
+### 格式规范
+
+```markdown
+<p align='center'>
+    <img src="https://badgen.net/github/issues/{user}/{repo}"/>
+    <img src="https://badgen.net/badge/last-commit/{timestamp}"/>
+    <img src="https://badgen.net/github/forks/{user}/{repo}"/>
+    <img src="https://badgen.net/github/stars/{user}/{repo}"/>
+    <img src="https://badgen.net/github/watchers/{user}/{repo}"/>
+</p>
+
+<summary>
+    <a href="https://{user}.github.io/{repo}/">
+        <img src="assets/wordcloud.png" title="词云" alt="词云">
+    </a>
+</summary>
+
+<details open>
+<summary>{label_name}	[{count}篇]</summary>
+
+{issue_list}
+
+</details>
+```
+
+## 部署和更新
+
+- GitHub Pages 自动部署 `main` 分支
+- Python 脚本自动更新 README.md
+- 支持实时预览和版本控制
+- 通过 Git 提交触发自动部署
