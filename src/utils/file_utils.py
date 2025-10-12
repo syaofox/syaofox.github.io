@@ -114,7 +114,7 @@ def create_article_directory(label: str) -> Path:
     Returns:
         创建的目录路径
     """
-    articles_dir = config.articles_dir / label
+    articles_dir = config.html_articles_dir / label
     ensure_directory_exists(articles_dir)
     return articles_dir
 
@@ -148,7 +148,7 @@ def save_index_html(content: str) -> None:
     Args:
         content: index.html 内容
     """
-    index_path = config.project_root / "index.html"
+    index_path = config.html_dir / "index.html"
     write_text_file(index_path, content)
 
 
@@ -159,7 +159,7 @@ def cleanup_old_articles(articles: list) -> None:
     Args:
         articles: 当前文章列表
     """
-    if not config.articles_dir.exists():
+    if not config.html_articles_dir.exists():
         return
     
     # 获取所有当前文章的路径
@@ -167,11 +167,11 @@ def cleanup_old_articles(articles: list) -> None:
     for article in articles:
         # url_path 已经包含了 articles/ 前缀，所以需要移除它
         relative_path = article.url_path.replace("articles/", "")
-        article_path = config.articles_dir / relative_path
+        article_path = config.html_articles_dir / relative_path
         current_article_paths.add(article_path)
     
     # 删除不在当前列表中的文章文件
-    for article_file in config.articles_dir.rglob("*.html"):
+    for article_file in config.html_articles_dir.rglob("*.html"):
         if article_file not in current_article_paths:
             try:
                 article_file.unlink()
@@ -183,11 +183,11 @@ def cleanup_old_articles(articles: list) -> None:
 def copy_static_files() -> None:
     """
     复制静态文件到输出目录
-    将模板目录中的静态文件复制到项目根目录
+    将模板目录中的静态文件复制到 html 目录
     """
     try:
         src_static = config.templates_dir / 'static'
-        dst_static = config.project_root / 'static'
+        dst_static = config.html_static_dir
         
         if src_static.exists():
             if dst_static.exists():
@@ -199,4 +199,25 @@ def copy_static_files() -> None:
             
     except Exception as e:
         logger.error(f"复制静态文件失败: {str(e)}")
+        raise
+
+
+def copy_assets_to_html() -> None:
+    """
+    复制 assets 目录到 html 目录
+    """
+    try:
+        src_assets = config.assets_dir
+        dst_assets = config.html_assets_dir
+        
+        if src_assets.exists():
+            if dst_assets.exists():
+                shutil.rmtree(dst_assets)
+            shutil.copytree(src_assets, dst_assets)
+            logger.info(f"Assets 复制完成: {src_assets} -> {dst_assets}")
+        else:
+            logger.debug(f"源 assets 目录不存在: {src_assets}")
+            
+    except Exception as e:
+        logger.error(f"复制 assets 失败: {str(e)}")
         raise

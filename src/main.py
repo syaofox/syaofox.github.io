@@ -21,7 +21,8 @@ from .utils.file_utils import (
     save_article_html, 
     create_article_directory,
     cleanup_old_articles,
-    copy_static_files
+    copy_static_files,
+    copy_assets_to_html
 )
 
 # 配置日志
@@ -174,6 +175,10 @@ class BlogGenerator:
             # 复制静态文件（CSS 等）
             copy_static_files()
             logger.info("静态文件复制完成")
+            
+            # 复制 assets 到 html 目录
+            copy_assets_to_html()
+            logger.info("Assets 复制完成")
             
             logger.info("文件保存完成")
             

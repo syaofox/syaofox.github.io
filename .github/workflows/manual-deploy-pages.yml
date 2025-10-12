@@ -1,0 +1,70 @@
+name: Manual Deploy to GitHub Pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: '提交信息'
+        required: false
+        default: 'Manual update from GitHub Action'
+        type: string
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    concurrency: 
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+      
+      - name: Set up Python
+        run: uv python install
+      
+      - name: Install dependencies
+        run: uv sync
+      
+      - name: Generate HTML content
+        env:
+          GITHUB_TOKEN: ${{ secrets.BLOG_SECRET }}
+        run: uv run python main.py
+      
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./html
+          publish_branch: gh-pages
+          force_orphan: true
+      
+      - name: Commit README changes to main
+        env:
+          USERNAME: ${{ secrets.GIT_USERNAME }}
+          EMAIL: ${{ secrets.GIT_EMAIL }}
+          GITHUB_TOKEN: ${{ secrets.BLOG_SECRET }}
+        run: |
+          # 配置 git 信息
+          git config --global user.name $USERNAME
+          git config --global user.email $EMAIL
+          
+          # 检查 README.md 是否有更改
+          if git diff --quiet README.md; then
+            echo "No README changes to commit"
+          else
+            git add README.md
+            git commit -m "${{ inputs.message }}"
+            
+            # 推送 README 更改到 main 分支
+            git push https://$USERNAME:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git main
+            echo "README changes pushed to main branch"
+          fi
+      
+      - name: Done
+        run: echo 'Manual deployment completed successfully!'

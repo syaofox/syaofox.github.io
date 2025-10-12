@@ -73,7 +73,7 @@ class HTMLGenerator:
                 'article': article.to_dict(),
                 'user_name': github_client.user_name,
                 'blog_name': github_client.blog_name,
-                'css_base_path': '../../'  # 文章在子目录中，需要向上两级目录
+                'css_base_path': '../../'  # html/articles/分类/ -> html/
             }
             
             # 更新文章内容为转换后的 HTML
@@ -111,7 +111,7 @@ class HTMLGenerator:
                 'blog_name': github_client.blog_name,
                 'cur_time': cur_time,
                 'categories': [category.to_dict() for category in categories],
-                'css_base_path': ''  # 首页在根目录
+                'css_base_path': ''  # html/ -> html/
             }
             
             # 渲染模板

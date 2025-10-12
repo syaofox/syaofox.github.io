@@ -2,3 +2,6 @@ __pycache__/
 .env
 .venv/
 *.pyc
+
+# GitHub Pages 生成目录
+html/
