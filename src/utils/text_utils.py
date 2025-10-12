@@ -39,12 +39,14 @@ class MarkdownProcessor:
     
     def _setup_url_patterns(self) -> None:
         """设置 URL 替换模式"""
-        # 匹配 GitHub raw 链接
-        # https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/...
+        # 匹配 GitHub raw 链接的两种格式：
+        # 1. https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/...
+        # 2. https://raw.githubusercontent.com/syaofox/syaofox.github.io/refs/heads/main/assets/...
+        escaped_repo = re.escape(config.github_repository)
         self._github_raw_pattern = re.compile(
             r'https://raw\.githubusercontent\.com/'
-            + re.escape(config.github_repository)
-            + r'/main/(assets/[^"\s)]+)'
+            + escaped_repo
+            + r'/(?:main|refs/heads/main)/(assets/[^"\s)]+)'
         )
         logger.debug(f"URL 模式初始化完成，仓库: {config.github_repository}")
     
