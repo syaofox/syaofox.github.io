@@ -230,7 +230,7 @@
             <h1 class="article-title">如何在 Linux Mint 22 上安装 VirtualBox（分步指南）</h1>
             <div class="article-meta">
                 <div>创建时间：2025-10-11 11:51:02</div>
-                <div>更新时间：2025-10-11 12:14:25</div>
+                <div>更新时间：2025-10-12 01:12:29</div>
             </div>
             <div class="labels"><span class="label">tips</span></div>
         </header>
@@ -280,6 +280,91 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <p>这将把 VirtualBox 更新到最新版本，而不会删除您任何现有的虚拟机。</p>
 <h2 id="virtualbox_1">VirtualBox 已可使用</h2>
 <p>这就是您需要做的全部。您现在可以使用 VirtualBox 在您的 Linux Mint 桌面环境上运行虚拟机了。</p>
+<h2 id="_1">报错无法启动虚拟机的解决方法</h2>
+<p>如下报错</p>
+<div class="highlight"><pre><span></span><code>VT-x<span class="w"> </span>is<span class="w"> </span>being<span class="w"> </span>used<span class="w"> </span>by<span class="w"> </span>another<span class="w"> </span>hypervisor<span class="w"> </span><span class="o">(</span>VERR_VMX_IN_VMX_ROOT_MODE<span class="o">)</span>.
+
+VirtualBox<span class="w"> </span>can<span class="err">&#39;</span>t<span class="w"> </span>operate<span class="w"> </span><span class="k">in</span><span class="w"> </span>VMX<span class="w"> </span>root<span class="w"> </span>mode.<span class="w"> </span>Please<span class="w"> </span>disable<span class="w"> </span>the<span class="w"> </span>KVM<span class="w"> </span>kernel<span class="w"> </span>extension,<span class="w"> </span>recompile<span class="w"> </span>your<span class="w"> </span>kernel<span class="w"> </span>and<span class="w"> </span>reboot<span class="w"> </span><span class="o">(</span>VERR_VMX_IN_VMX_ROOT_MODE<span class="o">)</span>.
+</code></pre></div>
+
+<p>这是致命的启动错误，它明确地告诉您：VirtualBox 无法启动，因为它需要的 硬件虚拟化 功能（VT-x，在 Intel CPU 上）已经被主机系统上的 另一个 hypervisor (虚拟机管理器) 占用了。您需要确保 KVM 模块（Linux 的原生虚拟化模块）没有被加载或使用。</p>
+<h3 id="_2">临时解决方案</h3>
+<p>尝试命令：<code>sudo modprobe -r kvm_intel</code> 或 <code>sudo modprobe -r kvm_amd</code>（取决于 CPU 类型）。</p>
+<h3 id="_3">永久解决方案</h3>
+<h5 id="blacklist">方法一：创建 Blacklist 文件（推荐）</h5>
+<p>这是最标准和推荐的方法，用于阻止特定内核模块的自动加载。</p>
+<ol>
+<li>
+<p><strong>创建配置文件:</strong> 打开终端并使用文本编辑器（如 <code>nano</code> 或 <code>vim</code>）创建一个新的 <code>.conf</code> 文件。</p>
+<p><code>bash
+sudo nano /etc/modprobe.d/blacklist-kvm.conf</code></p>
+</li>
+<li>
+<p><strong>添加禁用指令:</strong> 在文件中添加以下两行内容，将 <code>kvm_intel</code> 和 <code>kvm</code> 本身都列入黑名单：</p>
+<p>```conf</p>
+<h1 id="kvm-virtualbox">阻止 KVM 模块自动加载，避免与 VirtualBox 冲突</h1>
+<p>blacklist kvm_intel<br />
+blacklist kvm<br />
+```</p>
+<p><em>（如果你是 AMD CPU，则应添加 <code>blacklist kvm_amd</code>）</em></p>
+</li>
+<li>
+<p><strong>保存并退出:</strong></p>
+<ul>
+<li>如果你使用的是 <code>nano</code>：按 $\text{Ctrl+O}$ 写入，然后按 $\text{Enter}$ 确认，最后按 $\text{Ctrl+X}$ 退出。</li>
+</ul>
+</li>
+<li>
+<p><strong>更新 Initramfs (重要步骤):</strong> 有些 Linux 发行版（如 Ubuntu/Debian）需要更新启动时的初始内存文件系统，才能使黑名单生效：</p>
+<p><code>bash
+sudo update-initramfs -u</code></p>
+</li>
+<li>
+<p><strong>重启系统:</strong></p>
+<p><code>bash
+sudo reboot</code></p>
+</li>
+</ol>
+<h5 id="grub">方法二：通过 GRUB 启动参数禁用（备用）</h5>
+<p>你可以修改 GRUB 配置文件，在内核启动时就指定不加载 KVM 模块。</p>
+<ol>
+<li>
+<p><strong>编辑 GRUB 配置文件:</strong></p>
+<p><code>bash
+sudo nano /etc/default/grub</code></p>
+</li>
+<li>
+<p><strong>修改 GRUB_CMDLINE_LINUX_DEFAULT:</strong><br />
+    在这一行中，添加 <code>modprobe.blacklist=kvm,kvm_intel</code> 到现有参数的<strong>引号内</strong>。</p>
+<p><strong>修改前示例：</strong></p>
+<p><code>conf
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"</code></p>
+<p><strong>修改后示例：</strong></p>
+<p><code>conf
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash modprobe.blacklist=kvm,kvm_intel"</code></p>
+<p><em>（AMD 用户将 <code>kvm_intel</code> 替换为 <code>kvm_amd</code>。）</em></p>
+</li>
+<li>
+<p><strong>保存并退出:</strong> (同上)</p>
+</li>
+<li>
+<p><strong>更新 GRUB 配置:</strong></p>
+<p><code>bash
+sudo update-grub</code></p>
+</li>
+<li>
+<p><strong>重启系统:</strong></p>
+<p><code>bash
+sudo reboot</code></p>
+</li>
+</ol>
+<hr />
+<p><strong>重启后验证:</strong></p>
+<p>系统重启后，你可以再次运行以下命令来确认 <code>kvm_intel</code> 是否已经被禁用了：</p>
+<div class="highlight"><pre><span></span><code>lsmod<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>kvm
+</code></pre></div>
+
+<p>如果这条命令没有输出任何结果，说明 <code>kvm</code> 模块没有被加载，此时你应该能够顺利启动你的 VirtualBox 虚拟机了。</p>
         </main>
         
         <footer class="footer">
