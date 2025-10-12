@@ -206,6 +206,44 @@
             }
         }
         
+        /* 代码块复制按钮样式 */
+        .code-block-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #f7f7f7;
+            border: 1px solid #e8e8e8;
+            color: #111;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            cursor: pointer;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+            z-index: 10;
+        }
+        
+        .copy-btn:hover {
+            opacity: 1;
+            background: #e8e8e8;
+        }
+        
+        .copy-btn.copied {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+        
+        .article-content pre:hover .copy-btn {
+            opacity: 1;
+        }
+        
         @media (min-width: 1024px) {
             .article-content {
                 max-width: 700px;
@@ -392,5 +430,86 @@
             <p>本文原始链接：<a href="https://github.com/syaofox/syaofox.github.io/issues/2" class="github-link" target="_blank">GitHub Issue #2</a></p>
         </footer>
     </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为所有代码块添加复制按钮
+            const codeBlocks = document.querySelectorAll('pre > code');
+            
+            codeBlocks.forEach(function(codeBlock) {
+                // 跳过已经包装的代码块
+                if (codeBlock.parentElement.classList.contains('code-block-wrapper')) {
+                    return;
+                }
+                
+                const pre = codeBlock.parentElement;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block-wrapper';
+                
+                // 创建复制按钮
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'copy-btn';
+                copyBtn.textContent = '复制';
+                
+                // 包装pre元素
+                pre.parentElement.insertBefore(wrapper, pre);
+                wrapper.appendChild(pre);
+                wrapper.appendChild(copyBtn);
+                
+                // 添加复制功能
+                copyBtn.addEventListener('click', function() {
+                    const text = codeBlock.textContent;
+                    
+                    // 使用现代Clipboard API
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).then(function() {
+                            showCopied(copyBtn);
+                        }).catch(function() {
+                            // 降级到传统方法
+                            fallbackCopy(text, copyBtn);
+                        });
+                    } else {
+                        // 降级到传统方法
+                        fallbackCopy(text, copyBtn);
+                    }
+                });
+            });
+            
+            function showCopied(btn) {
+                btn.textContent = '已复制';
+                btn.classList.add('copied');
+                
+                setTimeout(function() {
+                    btn.textContent = '复制';
+                    btn.classList.remove('copied');
+                }, 1500);
+            }
+            
+            function fallbackCopy(text, btn) {
+                // 创建临时文本区域
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+                document.body.appendChild(textArea);
+                
+                try {
+                    textArea.focus();
+                    textArea.select();
+                    document.execCommand('copy');
+                    showCopied(btn);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                    btn.textContent = '复制失败';
+                    setTimeout(function() {
+                        btn.textContent = '复制';
+                    }, 1500);
+                } finally {
+                    document.body.removeChild(textArea);
+                }
+            }
+        });
+    </script>
 </body>
 </html>
