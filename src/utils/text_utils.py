@@ -4,9 +4,12 @@
 封装 Markdown 转换和文本处理逻辑
 """
 
+import re
 import markdown
 import logging
 from typing import Optional
+
+from ..core.config import config
 
 logger = logging.getLogger(__name__)
 
@@ -31,14 +34,53 @@ class MarkdownProcessor:
                 }
             }
         )
+        self._setup_url_patterns()
         logger.debug("Markdown 处理器初始化完成")
     
-    def convert_to_html(self, markdown_text: str) -> str:
+    def _setup_url_patterns(self) -> None:
+        """设置 URL 替换模式"""
+        # 匹配 GitHub raw 链接
+        # https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/...
+        self._github_raw_pattern = re.compile(
+            r'https://raw\.githubusercontent\.com/'
+            + re.escape(config.github_repository)
+            + r'/main/(assets/[^"\s)]+)'
+        )
+        logger.debug(f"URL 模式初始化完成，仓库: {config.github_repository}")
+    
+    def _convert_github_urls_to_relative(self, html_content: str, article_category: str) -> str:
+        """
+        将 GitHub raw 链接转换为相对路径
+        
+        Args:
+            html_content: HTML 内容
+            article_category: 文章分类（用于计算相对路径）
+            
+        Returns:
+            转换后的 HTML 内容
+        """
+        # 从 html/articles/分类/ 到 html/assets/
+        # 需要向上两级：../../assets/
+        def replace_url(match):
+            asset_path = match.group(1)  # assets/images/xxx
+            return f'../../{asset_path}'
+        
+        converted = self._github_raw_pattern.sub(replace_url, html_content)
+        
+        # 统计转换数量
+        original_count = len(self._github_raw_pattern.findall(html_content))
+        if original_count > 0:
+            logger.info(f"URL 转换完成，分类: {article_category}，转换了 {original_count} 个链接")
+        
+        return converted
+    
+    def convert_to_html(self, markdown_text: str, article_category: str = '') -> str:
         """
         将 Markdown 文本转换为 HTML
         
         Args:
             markdown_text: Markdown 文本
+            article_category: 文章分类（用于 URL 转换）
             
         Returns:
             转换后的 HTML 文本
@@ -49,6 +91,10 @@ class MarkdownProcessor:
             
             # 转换 Markdown 内容为 HTML
             html_content = self._md_instance.convert(markdown_text or '')
+            
+            # 转换 GitHub raw 链接为相对路径
+            if article_category:
+                html_content = self._convert_github_urls_to_relative(html_content, article_category)
             
             logger.debug("Markdown 转换成功")
             return html_content

@@ -65,8 +65,11 @@ class HTMLGenerator:
             生成的 HTML 内容
         """
         try:
-            # 转换 Markdown 内容为 HTML
-            html_content = self._markdown_processor.convert_to_html(article.content)
+            # 转换 Markdown 内容为 HTML，传递分类信息用于 URL 转换
+            html_content = self._markdown_processor.convert_to_html(
+                article.content,
+                article_category=article.primary_label
+            )
             
             # 准备模板数据
             template_data = {
