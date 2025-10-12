@@ -1,0 +1,136 @@
+---
+alwaysApply: true
+description: "uv Python 虚拟环境管理规范"
+---
+
+# uv Python 虚拟环境管理规范
+
+## 项目环境管理
+
+本项目使用 [uv](https://github.com/astral-sh/uv) 作为 Python 包和虚拟环境管理器，提供快速、可靠的依赖管理。
+
+## 核心配置文件
+
+- [pyproject.toml](mdc:pyproject.toml) - 项目配置和依赖声明
+- [requirements.txt](mdc:requirements.txt) - 传统依赖列表（向后兼容）
+- [uv.lock](mdc:uv.lock) - 锁定的依赖版本文件
+
+## 虚拟环境管理
+
+### 初始化环境
+
+```bash
+# 创建虚拟环境并安装依赖
+uv venv
+
+# 激活虚拟环境
+source .venv/bin/activate  # Linux/macOS
+.venv\Scripts\activate     # Windows
+
+# 或者直接使用 uv 运行命令（推荐）
+uv run python main.py
+```
+
+### 依赖管理
+
+```bash
+# 安装项目依赖
+uv sync
+
+# 添加新依赖
+uv add package-name
+
+# 添加开发依赖
+uv add --dev package-name
+
+# 更新依赖
+uv lock --upgrade
+
+# 导出 requirements.txt（用于兼容性）
+uv export --format requirements-txt > requirements.txt
+```
+
+## 项目依赖结构
+
+### 生产依赖
+项目核心依赖在 [pyproject.toml](mdc:pyproject.toml) 中定义：
+- `pygithub==1.59.1` - GitHub API 集成
+- `wordcloud` - 词云生成
+- `matplotlib` - 图表绘制
+- `python-dotenv>=1.0.0` - 环境变量管理
+- `markdown>=3.4.0` - Markdown 处理
+- `pymdown-extensions>=9.0` - Markdown 扩展
+
+### 开发依赖
+开发工具在 `[tool.uv]` 部分配置：
+- `pytest>=6.0` - 测试框架
+- `black>=22.0` - 代码格式化
+- `flake8>=4.0` - 代码检查
+
+## 最佳实践
+
+### 1. 环境隔离
+- 始终在虚拟环境中运行项目
+- 使用 `uv run` 命令避免手动激活环境
+- 不要将 `.venv/` 目录提交到版本控制
+
+### 2. 依赖锁定
+- [uv.lock](mdc:uv.lock) 确保依赖版本一致性
+- 定期运行 `uv lock` 更新锁定文件
+- 在 CI/CD 中使用锁定文件确保环境一致性
+
+### 3. 版本兼容性
+- 项目要求 Python >= 3.9
+- 保持 [requirements.txt](mdc:requirements.txt) 更新以支持传统工具
+- 使用语义化版本控制依赖
+
+## GitHub Actions 集成
+
+在 CI/CD 工作流中使用 uv：
+
+```yaml
+- name: Set up Python with uv
+  uses: astral-sh/setup-uv@v1
+  with:
+    version: "latest"
+
+- name: Install dependencies
+  run: uv sync --frozen
+
+- name: Run application
+  run: uv run python main.py
+```
+
+## 常用命令速查
+
+```bash
+# 环境管理
+uv venv                    # 创建虚拟环境
+uv sync                    # 安装/同步依赖
+uv run <command>          # 在虚拟环境中运行命令
+
+# 依赖管理
+uv add <package>          # 添加依赖
+uv remove <package>       # 移除依赖
+uv lock                   # 锁定依赖版本
+uv export                 # 导出依赖列表
+
+# 项目管理
+uv init                   # 初始化新项目
+uv tree                   # 显示依赖树
+uv show                   # 显示包信息
+```
+
+## 故障排除
+
+### 常见问题
+
+1. **依赖冲突**：使用 `uv lock --upgrade` 重新解析依赖
+2. **环境不一致**：删除 `.venv/` 并重新运行 `uv sync`
+3. **权限问题**：确保有写入项目目录的权限
+
+### 性能优化
+
+- uv 比 pip 快 10-100 倍
+- 使用 `--frozen` 标志在 CI 中加快安装
+- 启用缓存以提高重复安装速度

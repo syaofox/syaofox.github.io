@@ -98,25 +98,17 @@ url: {issue.html_url}
 
 
 def save_issue_to_file(issue: Issue, articles_dir: str):
-    """保存 Issue 到 Markdown 文件"""
+    """保存 Issue 到 Markdown 文件（强制覆盖）"""
     # 创建文件名
     date_str = issue.created_at.strftime('%Y-%m-%d')
     title_clean = sanitize_filename(issue.title)
     filename = f"{date_str}-{title_clean}.md"
     filepath = os.path.join(articles_dir, filename)
     
-    # 检查文件是否已存在
-    if os.path.exists(filepath):
-        # 比较更新时间，如果 Issue 更新了则重新保存
-        file_mtime = datetime.fromtimestamp(os.path.getmtime(filepath))
-        if issue.updated_at.replace(tzinfo=None) <= file_mtime:
-            print(f"  跳过 {filename} (文件已是最新)")
-            return False
-    
     # 生成 Markdown 内容
     markdown_content = format_issue_to_markdown(issue)
     
-    # 保存文件
+    # 保存文件（强制覆盖）
     try:
         with codecs.open(filepath, "w", encoding="utf-8") as f:
             f.write(markdown_content)
@@ -145,7 +137,6 @@ def backup_all_issues():
     
     total_count = 0
     saved_count = 0
-    skipped_count = 0
     
     for issue in all_issues:
         # 跳过 Pull Request（GitHub API 会将 PR 也包含在 issues 中）
@@ -157,13 +148,12 @@ def backup_all_issues():
         
         if save_issue_to_file(issue, articles_dir):
             saved_count += 1
-        else:
-            skipped_count += 1
     
     print(f"\n备份完成!")
     print(f"总共处理: {total_count} 个 Issues")
-    print(f"新保存: {saved_count} 个文件")
-    print(f"跳过: {skipped_count} 个文件")
+    print(f"成功保存: {saved_count} 个文件")
+    if saved_count < total_count:
+        print(f"失败: {total_count - saved_count} 个文件")
 
 
 def main():

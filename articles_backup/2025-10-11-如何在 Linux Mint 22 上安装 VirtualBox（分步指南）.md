@@ -1,7 +1,7 @@
 ---
 title: "如何在 Linux Mint 22 上安装 VirtualBox（分步指南）"
 created_at: "2025-10-11 11:51:02"
-updated_at: "2025-10-11 12:14:25"
+updated_at: "2025-10-12 01:12:29"
 issue_number: 20
 state: open
 labels: ['tips']
@@ -82,11 +82,7 @@ sudo usermod -aG vboxusers $USER
 
 这就是您需要做的全部。您现在可以使用 VirtualBox 在您的 Linux Mint 桌面环境上运行虚拟机了。
 
----
 
-## 评论
-
-### syaofox - 2025-10-11 12:14:24
 
 ## 报错无法启动虚拟机的解决方法
 
@@ -196,6 +192,4 @@ lsmod | grep kvm
 ```
 
 如果这条命令没有输出任何结果，说明 `kvm` 模块没有被加载，此时你应该能够顺利启动你的 VirtualBox 虚拟机了。
-
----
 
