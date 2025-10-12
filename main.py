@@ -89,18 +89,17 @@ def generate_article_html(issue: Issue):
         
         body {{
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333333;
-            line-height: 1.6;
+            background-color: #fdfdfd;
+            color: #111;
+            line-height: 1.5;
         }}
         
         .container {{
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 20px;
             background: #ffffff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            border-radius: 12px;
+            border: 1px solid #e8e8e8;
             margin-top: 20px;
             margin-bottom: 20px;
         }}
@@ -108,31 +107,30 @@ def generate_article_html(issue: Issue):
         .header {{
             margin-bottom: 30px;
             padding-bottom: 20px;
-            border-bottom: 2px solid #e0e0e0;
+            border-bottom: 1px solid #e8e8e8;
         }}
         
         .back-link {{
             display: inline-block;
-            color: #2196F3;
+            color: #2a7ae2;
             text-decoration: none;
             margin-bottom: 15px;
             font-size: 0.9em;
         }}
         
         .back-link:hover {{
-            color: #1976d2;
             text-decoration: underline;
         }}
         
         .article-title {{
             font-size: 2em;
-            font-weight: 600;
-            color: #1976d2;
+            font-weight: 700;
+            color: #111;
             margin-bottom: 15px;
         }}
         
         .article-meta {{
-            color: #666666;
+            color: #828282;
             font-size: 0.9em;
             margin-bottom: 10px;
         }}
@@ -143,17 +141,17 @@ def generate_article_html(issue: Issue):
         
         .label {{
             display: inline-block;
-            background: #e3f2fd;
-            color: #1976d2;
+            background: #f7f7f7;
+            color: #111;
             padding: 4px 8px;
-            border-radius: 4px;
+            border: 1px solid #e8e8e8;
             font-size: 0.8em;
             margin-right: 5px;
         }}
         
         .article-content {{
-            font-size: 1.1em;
-            line-height: 1.8;
+            font-size: 1em;
+            line-height: 1.6;
         }}
         
         .article-content h1,
@@ -162,21 +160,24 @@ def generate_article_html(issue: Issue):
         .article-content h4,
         .article-content h5,
         .article-content h6 {{
-            color: #1976d2;
+            color: #111;
             margin-top: 30px;
             margin-bottom: 15px;
         }}
         
         .article-content h1 {{
             font-size: 1.8em;
+            font-weight: 700;
         }}
         
         .article-content h2 {{
             font-size: 1.5em;
+            font-weight: 700;
         }}
         
         .article-content h3 {{
             font-size: 1.3em;
+            font-weight: 700;
         }}
         
         .article-content p {{
@@ -186,39 +187,37 @@ def generate_article_html(issue: Issue):
         .article-content img {{
             max-width: 100%;
             height: auto;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e8e8e8;
             margin: 15px 0;
         }}
         
         .article-content pre {{
-            background: #f8f9fa;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
+            background: #f7f7f7;
+            border: 1px solid #e8e8e8;
             padding: 15px;
             overflow-x: auto;
             margin: 15px 0;
         }}
         
         .article-content code {{
-            background: #f1f3f4;
+            background: #f7f7f7;
             padding: 2px 6px;
-            border-radius: 4px;
+            border: 1px solid #e8e8e8;
             font-family: 'Courier New', monospace;
             font-size: 0.9em;
         }}
         
         .article-content pre code {{
             background: none;
+            border: none;
             padding: 0;
         }}
         
         .article-content blockquote {{
-            border-left: 4px solid #2196F3;
+            border-left: 4px solid #e8e8e8;
             margin: 15px 0;
             padding: 10px 20px;
-            background: #f8f9fa;
-            border-radius: 0 8px 8px 0;
+            background: #f7f7f7;
         }}
         
         .article-content table {{
@@ -229,13 +228,13 @@ def generate_article_html(issue: Issue):
         
         .article-content th,
         .article-content td {{
-            border: 1px solid #e0e0e0;
+            border: 1px solid #e8e8e8;
             padding: 10px;
             text-align: left;
         }}
         
         .article-content th {{
-            background: #f8f9fa;
+            background: #f7f7f7;
             font-weight: 600;
         }}
         
@@ -252,19 +251,18 @@ def generate_article_html(issue: Issue):
         .footer {{
             margin-top: 40px;
             padding-top: 20px;
-            border-top: 1px solid #e0e0e0;
+            border-top: 1px solid #e8e8e8;
             text-align: center;
-            color: #666666;
+            color: #828282;
             font-size: 0.9em;
         }}
         
         .github-link {{
-            color: #2196F3;
+            color: #2a7ae2;
             text-decoration: none;
         }}
         
         .github-link:hover {{
-            color: #1976d2;
             text-decoration: underline;
         }}
         
@@ -273,7 +271,6 @@ def generate_article_html(issue: Issue):
             .container {{
                 margin: 10px;
                 padding: 15px;
-                border-radius: 8px;
             }}
             
             .article-title {{
@@ -281,20 +278,14 @@ def generate_article_html(issue: Issue):
             }}
             
             .article-content {{
-                font-size: 1em;
+                font-size: 0.9em;
             }}
         }}
         
         @media (min-width: 1024px) {{
             .article-content {{
-                max-width: 800px;
+                max-width: 700px;
                 margin: 0 auto;
-            }}
-        }}
-        
-        @media (min-width: 1440px) {{
-            .article-content {{
-                max-width: 900px;
             }}
         }}
     </style>
@@ -536,13 +527,13 @@ def bundle_html_content(wordcloud_image_url):
         
         body {{
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333333;
-            line-height: 1.6;
+            background-color: #fdfdfd;
+            color: #111;
+            line-height: 1.5;
         }}
         
         .container {{
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 20px;
         }}
@@ -563,11 +554,6 @@ def bundle_html_content(wordcloud_image_url):
         .badges img {{
             height: 20px;
             border-radius: 3px;
-            transition: transform 0.2s ease;
-        }}
-        
-        .badges img:hover {{
-            transform: translateY(-2px);
         }}
         
         .wordcloud-section {{
@@ -578,50 +564,37 @@ def bundle_html_content(wordcloud_image_url):
         .wordcloud-img {{
             max-width: 100%;
             height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }}
-        
-        .wordcloud-img:hover {{
-            transform: scale(1.02);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            border: 1px solid #e8e8e8;
         }}
         
         .categories-grid {{
             display: grid;
             gap: 20px;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: 1fr;
         }}
         
         .category-card {{
             background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e8e8e8;
             overflow: hidden;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }}
-        
-        .category-card:hover {{
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
         }}
         
         .category-header {{
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            background: #f7f7f7;
             padding: 15px 20px;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e8e8e8;
         }}
         
         .category-title {{
-            font-size: 1.2em;
-            font-weight: 600;
-            color: #1976d2;
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #111;
             margin-bottom: 5px;
         }}
         
         .category-count {{
-            color: #666666;
+            color: #828282;
             font-size: 0.9em;
         }}
         
@@ -633,7 +606,7 @@ def bundle_html_content(wordcloud_image_url):
             display: flex;
             align-items: center;
             padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid #f7f7f7;
         }}
         
         .issue-item:last-child {{
@@ -641,21 +614,19 @@ def bundle_html_content(wordcloud_image_url):
         }}
         
         .issue-date {{
-            color: #666666;
+            color: #828282;
             font-size: 0.9em;
             min-width: 80px;
             margin-right: 15px;
         }}
         
         .issue-link {{
-            color: #2196F3;
+            color: #2a7ae2;
             text-decoration: none;
             flex: 1;
-            transition: color 0.2s ease;
         }}
         
         .issue-link:hover {{
-            color: #1976d2;
             text-decoration: underline;
         }}
         
@@ -663,7 +634,7 @@ def bundle_html_content(wordcloud_image_url):
             text-align: center;
             margin-top: 40px;
             padding: 20px;
-            color: #666666;
+            color: #828282;
             font-size: 0.9em;
         }}
         
@@ -682,7 +653,6 @@ def bundle_html_content(wordcloud_image_url):
             }}
             
             .categories-grid {{
-                grid-template-columns: 1fr;
                 gap: 15px;
             }}
             
@@ -707,18 +677,10 @@ def bundle_html_content(wordcloud_image_url):
         @media (min-width: 1024px) {{
             .categories-grid {{
                 grid-template-columns: 1fr;
-                max-width: 800px;
-                margin: 0 auto;
             }}
             
             .category-card {{
                 margin-bottom: 20px;
-            }}
-        }}
-        
-        @media (min-width: 1440px) {{
-            .categories-grid {{
-                max-width: 1000px;
             }}
         }}
     </style>
