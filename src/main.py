@@ -20,7 +20,8 @@ from .utils.file_utils import (
     save_index_html, 
     save_article_html, 
     create_article_directory,
-    cleanup_old_articles
+    cleanup_old_articles,
+    copy_static_files
 )
 
 # 配置日志
@@ -169,6 +170,10 @@ class BlogGenerator:
             
             # 清理旧文章（可选）
             cleanup_old_articles(self.articles)
+            
+            # 复制静态文件（CSS 等）
+            copy_static_files()
+            logger.info("静态文件复制完成")
             
             logger.info("文件保存完成")
             

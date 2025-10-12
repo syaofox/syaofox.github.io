@@ -6,6 +6,7 @@
 
 import os
 import codecs
+import shutil
 import logging
 from pathlib import Path
 from typing import Optional
@@ -177,3 +178,25 @@ def cleanup_old_articles(articles: list) -> None:
                 logger.info(f"删除旧文章文件: {article_file}")
             except Exception as e:
                 logger.warning(f"删除旧文章文件失败 {article_file}: {str(e)}")
+
+
+def copy_static_files() -> None:
+    """
+    复制静态文件到输出目录
+    将模板目录中的静态文件复制到项目根目录
+    """
+    try:
+        src_static = config.templates_dir / 'static'
+        dst_static = config.project_root / 'static'
+        
+        if src_static.exists():
+            if dst_static.exists():
+                shutil.rmtree(dst_static)
+            shutil.copytree(src_static, dst_static)
+            logger.info(f"静态文件复制完成: {src_static} -> {dst_static}")
+        else:
+            logger.debug(f"源静态目录不存在: {src_static}")
+            
+    except Exception as e:
+        logger.error(f"复制静态文件失败: {str(e)}")
+        raise
