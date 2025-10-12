@@ -326,6 +326,64 @@ def generate_article_html(issue: Issue):
                 margin: 0 auto;
             }}
         }}
+        
+        /* 滚动悬浮按钮样式 */
+        .scroll-buttons {{
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }}
+        
+        .scroll-btn {{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(42, 122, 226, 0.9);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }}
+        
+        .scroll-btn:hover {{
+            background: rgba(42, 122, 226, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }}
+        
+        .scroll-btn.visible {{
+            opacity: 1;
+            visibility: visible;
+        }}
+        
+        .scroll-btn:active {{
+            transform: translateY(0);
+        }}
+        
+        /* 移动端适配 */
+        @media (max-width: 767px) {{
+            .scroll-buttons {{
+                right: 15px;
+                bottom: 15px;
+            }}
+            
+            .scroll-btn {{
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }}
+        }}
     </style>
 </head>
 <body>
@@ -347,6 +405,12 @@ def generate_article_html(issue: Issue):
         <footer class="footer">
             <p>本文原始链接：<a href="{issue.html_url}" class="github-link" target="_blank">GitHub Issue #{issue.number}</a></p>
         </footer>
+    </div>
+    
+    <!-- 滚动悬浮按钮 -->
+    <div class="scroll-buttons">
+        <button class="scroll-btn" id="scroll-to-top" title="回到顶部">↑</button>
+        <button class="scroll-btn" id="scroll-to-bottom" title="滚到底部">↓</button>
     </div>
     
     <script>
@@ -427,6 +491,52 @@ def generate_article_html(issue: Issue):
                     document.body.removeChild(textArea);
                 }}
             }}
+            
+            // 滚动悬浮按钮功能
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+            const scrollToBottomBtn = document.getElementById('scroll-to-bottom');
+            
+            function updateScrollButtons() {{
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                
+                // 显示/隐藏回到顶部按钮
+                if (scrollTop > 300) {{
+                    scrollToTopBtn.classList.add('visible');
+                }} else {{
+                    scrollToTopBtn.classList.remove('visible');
+                }}
+                
+                // 显示/隐藏滚到底部按钮
+                if (scrollTop + windowHeight < documentHeight - 300) {{
+                    scrollToBottomBtn.classList.add('visible');
+                }} else {{
+                    scrollToBottomBtn.classList.remove('visible');
+                }}
+            }}
+            
+            // 监听滚动事件
+            window.addEventListener('scroll', updateScrollButtons);
+            
+            // 回到顶部按钮点击事件
+            scrollToTopBtn.addEventListener('click', function() {{
+                window.scrollTo({{
+                    top: 0,
+                    behavior: 'smooth'
+                }});
+            }});
+            
+            // 滚到底部按钮点击事件
+            scrollToBottomBtn.addEventListener('click', function() {{
+                window.scrollTo({{
+                    top: document.documentElement.scrollHeight,
+                    behavior: 'smooth'
+                }});
+            }});
+            
+            // 初始化时检查按钮状态
+            updateScrollButtons();
         }});
     </script>
 </body>
