@@ -5,6 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>成人版大富翁~华丽人生2 - syaofox 的博客</title>
     <style>
+        :root {
+            --bg-color: #fdfdfd;
+            --text-color: #111;
+            --border-color: #e8e8e8;
+            --card-bg: #ffffff;
+            --card-header-bg: #f7f7f7;
+            --link-color: #2a7ae2;
+            --muted-color: #828282;
+            --search-bg: #ffffff;
+            --search-border: #e8e8e8;
+        }
+        
+        body.dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --border-color: #333;
+            --card-bg: #2a2a2a;
+            --card-header-bg: #333;
+            --link-color: #4a9eff;
+            --muted-color: #999;
+            --search-bg: #2a2a2a;
+            --search-border: #333;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -13,33 +37,37 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: #fdfdfd;
-            color: #111;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.5;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background: #ffffff;
-            border: 1px solid #e8e8e8;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             margin-top: 20px;
             margin-bottom: 20px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
         
         .header {
             margin-bottom: 30px;
             padding-bottom: 20px;
-            border-bottom: 1px solid #e8e8e8;
+            border-bottom: 1px solid var(--border-color);
+            transition: border-color 0.3s ease;
         }
         
         .back-link {
             display: inline-block;
-            color: #2a7ae2;
+            color: var(--link-color);
             text-decoration: none;
             margin-bottom: 15px;
             font-size: 0.9em;
+            transition: color 0.3s ease;
         }
         
         .back-link:hover {
@@ -49,12 +77,12 @@
         .article-title {
             font-size: 2em;
             font-weight: 700;
-            color: #111;
+            color: var(--text-color);
             margin-bottom: 15px;
         }
         
         .article-meta {
-            color: #828282;
+            color: var(--muted-color);
             font-size: 0.9em;
             margin-bottom: 10px;
         }
@@ -65,12 +93,13 @@
         
         .label {
             display: inline-block;
-            background: #f7f7f7;
-            color: #111;
+            background: var(--card-header-bg);
+            color: var(--text-color);
             padding: 4px 8px;
-            border: 1px solid #e8e8e8;
+            border: 1px solid var(--border-color);
             font-size: 0.8em;
             margin-right: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
         
         .article-content {
@@ -84,7 +113,7 @@
         .article-content h4,
         .article-content h5,
         .article-content h6 {
-            color: #111;
+            color: var(--text-color);
             margin-top: 30px;
             margin-bottom: 15px;
         }
@@ -111,24 +140,27 @@
         .article-content img {
             max-width: 100%;
             height: auto;
-            border: 1px solid #e8e8e8;
+            border: 1px solid var(--border-color);
             margin: 15px 0;
+            transition: border-color 0.3s ease;
         }
         
         .article-content pre {
-            background: #f7f7f7;
-            border: 1px solid #e8e8e8;
+            background: var(--card-header-bg);
+            border: 1px solid var(--border-color);
             padding: 15px;
             overflow-x: auto;
             margin: 15px 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
         
         .article-content code {
-            background: #f7f7f7;
+            background: var(--card-header-bg);
             padding: 2px 6px;
-            border: 1px solid #e8e8e8;
+            border: 1px solid var(--border-color);
             font-family: 'Courier New', monospace;
             font-size: 0.9em;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
         
         .article-content pre code {
@@ -138,10 +170,11 @@
         }
         
         .article-content blockquote {
-            border-left: 4px solid #e8e8e8;
+            border-left: 4px solid var(--border-color);
             margin: 15px 0;
             padding: 10px 20px;
-            background: #f7f7f7;
+            background: var(--card-header-bg);
+            transition: background-color 0.3s ease, border-left-color 0.3s ease;
         }
         
         .article-content table {
@@ -152,14 +185,16 @@
         
         .article-content th,
         .article-content td {
-            border: 1px solid #e8e8e8;
+            border: 1px solid var(--border-color);
             padding: 10px;
             text-align: left;
+            transition: border-color 0.3s ease;
         }
         
         .article-content th {
-            background: #f7f7f7;
+            background: var(--card-header-bg);
             font-weight: 600;
+            transition: background-color 0.3s ease;
         }
         
         .article-content ul,
@@ -175,15 +210,17 @@
         .footer {
             margin-top: 40px;
             padding-top: 20px;
-            border-top: 1px solid #e8e8e8;
+            border-top: 1px solid var(--border-color);
             text-align: center;
-            color: #828282;
+            color: var(--muted-color);
             font-size: 0.9em;
+            transition: border-color 0.3s ease, color 0.3s ease;
         }
         
         .github-link {
-            color: #2a7ae2;
+            color: var(--link-color);
             text-decoration: none;
+            transition: color 0.3s ease;
         }
         
         .github-link:hover {
@@ -217,21 +254,21 @@
             position: absolute;
             top: 8px;
             right: 8px;
-            background: #f7f7f7;
-            border: 1px solid #e8e8e8;
-            color: #111;
+            background: var(--card-header-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
             padding: 4px 8px;
             font-size: 0.8em;
             cursor: pointer;
             border-radius: 3px;
             opacity: 0.7;
-            transition: opacity 0.2s ease;
+            transition: all 0.3s ease;
             z-index: 10;
         }
         
         .copy-btn:hover {
             opacity: 1;
-            background: #e8e8e8;
+            background: var(--border-color);
         }
         
         .copy-btn.copied {
@@ -308,6 +345,70 @@
                 font-size: 18px;
             }
         }
+        
+        /* 主题切换按钮样式 */
+        .theme-toggle {
+            position: fixed;
+            right: 20px;
+            bottom: 90px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background: var(--card-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .theme-toggle:active {
+            transform: translateY(0);
+        }
+        
+        .theme-icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-icon.moon-icon {
+            display: none;
+        }
+        
+        body.dark-mode .theme-icon.sun-icon {
+            display: none;
+        }
+        
+        body.dark-mode .theme-icon.moon-icon {
+            display: block;
+        }
+        
+        /* 移动端适配主题按钮 */
+        @media (max-width: 767px) {
+            .theme-toggle {
+                width: 45px;
+                height: 45px;
+                right: 15px;
+                bottom: 75px;
+            }
+            
+            .theme-icon {
+                width: 22px;
+                height: 22px;
+            }
+        }
+        
     </style>
 </head>
 <body>
@@ -410,6 +511,24 @@ windows计算器(程序员版) x 1</p>
             <p>本文原始链接：<a href="https://github.com/syaofox/syaofox.github.io/issues/11" class="github-link" target="_blank">GitHub Issue #11</a></p>
         </footer>
     </div>
+    
+    <!-- 主题切换按钮 -->
+    <button id="theme-toggle" class="theme-toggle" title="切换主题">
+        <svg class="theme-icon sun-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="theme-icon moon-icon" viewBox="0 0 24 24" style="display: none;">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+    </button>
     
     <!-- 滚动悬浮按钮 -->
     <div class="scroll-buttons">
@@ -541,6 +660,62 @@ windows计算器(程序员版) x 1</p>
             
             // 初始化时检查按钮状态
             updateScrollButtons();
+            
+            // 主题切换功能
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            
+            // 更新词云图片
+            function updateWordcloudImage(isDark) {
+                const wordcloudImg = document.getElementById('wordcloud-img');
+                if (wordcloudImg) {
+                    const newSrc = isDark ? 'assets/wordcloud-dark.png' : 'assets/wordcloud-light.png';
+                    if (wordcloudImg.src !== new URL(newSrc, window.location.href).href) {
+                        wordcloudImg.src = newSrc;
+                        console.log('词云图片已切换至:', newSrc);
+                    }
+                } else {
+                    console.warn('未找到词云图片元素');
+                }
+            }
+            
+            // 初始化主题
+            function initTheme() {
+                const savedTheme = localStorage.getItem('theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+                
+                if (isDark) {
+                    body.classList.add('dark-mode');
+                } else {
+                    body.classList.remove('dark-mode');
+                }
+                
+                updateWordcloudImage(isDark);
+            }
+            
+            // 切换主题
+            function toggleTheme() {
+                const isDarkMode = body.classList.contains('dark-mode');
+                
+                if (isDarkMode) {
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light');
+                    updateWordcloudImage(false);
+                } else {
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    updateWordcloudImage(true);
+                }
+            }
+            
+            // 监听主题切换按钮点击
+            themeToggle.addEventListener('click', toggleTheme);
+            
+            // 延迟初始化主题，确保 DOM 完全加载
+            setTimeout(function() {
+                initTheme();
+            }, 100);
         });
     </script>
 </body>

@@ -33,12 +33,35 @@ class WordCloudGenerator(object):
             print('No issues found with labels, skipping wordcloud generation')
             return 'assets/wordcloud.png'  # Return existing image path
         
-        # generate wordcount image to local dir
+        # generate wordcount images to local dir
         # specify the font to support Chinese word
-        wc = WordCloud(font_path='lib/fonts/wqy-microhei.ttc', width=1920, height=400, background_color='white')
-        wc.generate_from_frequencies(frequencies=frequencies)
-        wc.to_file('assets/wordcloud.png')
+        
+        # Generate light theme version (white background, dark text)
+        wc_light = WordCloud(
+            font_path='lib/fonts/wqy-microhei.ttc', 
+            width=1920, 
+            height=400, 
+            background_color='white',
+            colormap='viridis'
+        )
+        wc_light.generate_from_frequencies(frequencies=frequencies)
+        wc_light.to_file('assets/wordcloud-light.png')
+        
+        # Generate dark theme version (dark background, light text)
+        wc_dark = WordCloud(
+            font_path='lib/fonts/wqy-microhei.ttc', 
+            width=1920, 
+            height=400, 
+            background_color='#1a1a1a',
+            colormap='plasma',
+            relative_scaling=0.5
+        )
+        wc_dark.generate_from_frequencies(frequencies=frequencies)
+        wc_dark.to_file('assets/wordcloud-dark.png')
+        
+        # Keep backward compatibility - copy light version to old filename
+        wc_light.to_file('assets/wordcloud.png')
 
-        print('wordcloud picture generated successfully!')
+        print('wordcloud pictures generated successfully!')
 
-        return 'assets/wordcloud.png'
+        return 'assets/wordcloud-light.png'

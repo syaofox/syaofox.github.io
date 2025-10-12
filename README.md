@@ -1,7 +1,7 @@
 
 <p align='center'>
     <img src="https://badgen.net/github/issues/syaofox/syaofox.github.io"/>
-    <img src="https://badgen.net/badge/last-commit/2025-10-12 11:57:47"/>
+    <img src="https://badgen.net/badge/last-commit/2025-10-12 15:35:47"/>
     <img src="https://badgen.net/github/forks/syaofox/syaofox.github.io"/>
     <img src="https://badgen.net/github/stars/syaofox/syaofox.github.io"/>
     <img src="https://badgen.net/github/watchers/syaofox/syaofox.github.io"/>
@@ -9,7 +9,7 @@
 
     
 <summary>
-    <a href="https://syaofox.github.io//syaofox.github.io/"><img src="assets/wordcloud.png" title="词云" alt="词云"></a>
+    <a href="https://syaofox.github.io//syaofox.github.io/"><img src="assets/wordcloud-light.png" title="词云" alt="词云"></a>
 </summary>  
 
 <details open>

@@ -67,6 +67,30 @@ def generate_article_html(issue: Issue, md_instance):
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{issue.title} - syaofox 的博客</title>
     <style>
+        :root {{
+            --bg-color: #fdfdfd;
+            --text-color: #111;
+            --border-color: #e8e8e8;
+            --card-bg: #ffffff;
+            --card-header-bg: #f7f7f7;
+            --link-color: #2a7ae2;
+            --muted-color: #828282;
+            --search-bg: #ffffff;
+            --search-border: #e8e8e8;
+        }}
+        
+        body.dark-mode {{
+            --bg-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --border-color: #333;
+            --card-bg: #2a2a2a;
+            --card-header-bg: #333;
+            --link-color: #4a9eff;
+            --muted-color: #999;
+            --search-bg: #2a2a2a;
+            --search-border: #333;
+        }}
+        
         * {{
             margin: 0;
             padding: 0;
@@ -75,33 +99,37 @@ def generate_article_html(issue: Issue, md_instance):
         
         body {{
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: #fdfdfd;
-            color: #111;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.5;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }}
         
         .container {{
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background: #ffffff;
-            border: 1px solid #e8e8e8;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             margin-top: 20px;
             margin-bottom: 20px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }}
         
         .header {{
             margin-bottom: 30px;
             padding-bottom: 20px;
-            border-bottom: 1px solid #e8e8e8;
+            border-bottom: 1px solid var(--border-color);
+            transition: border-color 0.3s ease;
         }}
         
         .back-link {{
             display: inline-block;
-            color: #2a7ae2;
+            color: var(--link-color);
             text-decoration: none;
             margin-bottom: 15px;
             font-size: 0.9em;
+            transition: color 0.3s ease;
         }}
         
         .back-link:hover {{
@@ -111,12 +139,12 @@ def generate_article_html(issue: Issue, md_instance):
         .article-title {{
             font-size: 2em;
             font-weight: 700;
-            color: #111;
+            color: var(--text-color);
             margin-bottom: 15px;
         }}
         
         .article-meta {{
-            color: #828282;
+            color: var(--muted-color);
             font-size: 0.9em;
             margin-bottom: 10px;
         }}
@@ -127,12 +155,13 @@ def generate_article_html(issue: Issue, md_instance):
         
         .label {{
             display: inline-block;
-            background: #f7f7f7;
-            color: #111;
+            background: var(--card-header-bg);
+            color: var(--text-color);
             padding: 4px 8px;
-            border: 1px solid #e8e8e8;
+            border: 1px solid var(--border-color);
             font-size: 0.8em;
             margin-right: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }}
         
         .article-content {{
@@ -146,7 +175,7 @@ def generate_article_html(issue: Issue, md_instance):
         .article-content h4,
         .article-content h5,
         .article-content h6 {{
-            color: #111;
+            color: var(--text-color);
             margin-top: 30px;
             margin-bottom: 15px;
         }}
@@ -173,24 +202,27 @@ def generate_article_html(issue: Issue, md_instance):
         .article-content img {{
             max-width: 100%;
             height: auto;
-            border: 1px solid #e8e8e8;
+            border: 1px solid var(--border-color);
             margin: 15px 0;
+            transition: border-color 0.3s ease;
         }}
         
         .article-content pre {{
-            background: #f7f7f7;
-            border: 1px solid #e8e8e8;
+            background: var(--card-header-bg);
+            border: 1px solid var(--border-color);
             padding: 15px;
             overflow-x: auto;
             margin: 15px 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }}
         
         .article-content code {{
-            background: #f7f7f7;
+            background: var(--card-header-bg);
             padding: 2px 6px;
-            border: 1px solid #e8e8e8;
+            border: 1px solid var(--border-color);
             font-family: 'Courier New', monospace;
             font-size: 0.9em;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }}
         
         .article-content pre code {{
@@ -200,10 +232,11 @@ def generate_article_html(issue: Issue, md_instance):
         }}
         
         .article-content blockquote {{
-            border-left: 4px solid #e8e8e8;
+            border-left: 4px solid var(--border-color);
             margin: 15px 0;
             padding: 10px 20px;
-            background: #f7f7f7;
+            background: var(--card-header-bg);
+            transition: background-color 0.3s ease, border-left-color 0.3s ease;
         }}
         
         .article-content table {{
@@ -214,14 +247,16 @@ def generate_article_html(issue: Issue, md_instance):
         
         .article-content th,
         .article-content td {{
-            border: 1px solid #e8e8e8;
+            border: 1px solid var(--border-color);
             padding: 10px;
             text-align: left;
+            transition: border-color 0.3s ease;
         }}
         
         .article-content th {{
-            background: #f7f7f7;
+            background: var(--card-header-bg);
             font-weight: 600;
+            transition: background-color 0.3s ease;
         }}
         
         .article-content ul,
@@ -237,15 +272,17 @@ def generate_article_html(issue: Issue, md_instance):
         .footer {{
             margin-top: 40px;
             padding-top: 20px;
-            border-top: 1px solid #e8e8e8;
+            border-top: 1px solid var(--border-color);
             text-align: center;
-            color: #828282;
+            color: var(--muted-color);
             font-size: 0.9em;
+            transition: border-color 0.3s ease, color 0.3s ease;
         }}
         
         .github-link {{
-            color: #2a7ae2;
+            color: var(--link-color);
             text-decoration: none;
+            transition: color 0.3s ease;
         }}
         
         .github-link:hover {{
@@ -279,21 +316,21 @@ def generate_article_html(issue: Issue, md_instance):
             position: absolute;
             top: 8px;
             right: 8px;
-            background: #f7f7f7;
-            border: 1px solid #e8e8e8;
-            color: #111;
+            background: var(--card-header-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
             padding: 4px 8px;
             font-size: 0.8em;
             cursor: pointer;
             border-radius: 3px;
             opacity: 0.7;
-            transition: opacity 0.2s ease;
+            transition: all 0.3s ease;
             z-index: 10;
         }}
         
         .copy-btn:hover {{
             opacity: 1;
-            background: #e8e8e8;
+            background: var(--border-color);
         }}
         
         .copy-btn.copied {{
@@ -370,6 +407,70 @@ def generate_article_html(issue: Issue, md_instance):
                 font-size: 18px;
             }}
         }}
+        
+        /* 主题切换按钮样式 */
+        .theme-toggle {{
+            position: fixed;
+            right: 20px;
+            bottom: 90px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background: var(--card-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }}
+        
+        .theme-toggle:hover {{
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }}
+        
+        .theme-toggle:active {{
+            transform: translateY(0);
+        }}
+        
+        .theme-icon {{
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+            transition: all 0.3s ease;
+        }}
+        
+        .theme-icon.moon-icon {{
+            display: none;
+        }}
+        
+        body.dark-mode .theme-icon.sun-icon {{
+            display: none;
+        }}
+        
+        body.dark-mode .theme-icon.moon-icon {{
+            display: block;
+        }}
+        
+        /* 移动端适配主题按钮 */
+        @media (max-width: 767px) {{
+            .theme-toggle {{
+                width: 45px;
+                height: 45px;
+                right: 15px;
+                bottom: 75px;
+            }}
+            
+            .theme-icon {{
+                width: 22px;
+                height: 22px;
+            }}
+        }}
+        
     </style>
 </head>
 <body>
@@ -392,6 +493,24 @@ def generate_article_html(issue: Issue, md_instance):
             <p>本文原始链接：<a href="{issue.html_url}" class="github-link" target="_blank">GitHub Issue #{issue.number}</a></p>
         </footer>
     </div>
+    
+    <!-- 主题切换按钮 -->
+    <button id="theme-toggle" class="theme-toggle" title="切换主题">
+        <svg class="theme-icon sun-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="theme-icon moon-icon" viewBox="0 0 24 24" style="display: none;">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+    </button>
     
     <!-- 滚动悬浮按钮 -->
     <div class="scroll-buttons">
@@ -523,6 +642,62 @@ def generate_article_html(issue: Issue, md_instance):
             
             // 初始化时检查按钮状态
             updateScrollButtons();
+            
+            // 主题切换功能
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            
+            // 更新词云图片
+            function updateWordcloudImage(isDark) {{
+                const wordcloudImg = document.getElementById('wordcloud-img');
+                if (wordcloudImg) {{
+                    const newSrc = isDark ? 'assets/wordcloud-dark.png' : 'assets/wordcloud-light.png';
+                    if (wordcloudImg.src !== new URL(newSrc, window.location.href).href) {{
+                        wordcloudImg.src = newSrc;
+                        console.log('词云图片已切换至:', newSrc);
+                    }}
+                }} else {{
+                    console.warn('未找到词云图片元素');
+                }}
+            }}
+            
+            // 初始化主题
+            function initTheme() {{
+                const savedTheme = localStorage.getItem('theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+                
+                if (isDark) {{
+                    body.classList.add('dark-mode');
+                }} else {{
+                    body.classList.remove('dark-mode');
+                }}
+                
+                updateWordcloudImage(isDark);
+            }}
+            
+            // 切换主题
+            function toggleTheme() {{
+                const isDarkMode = body.classList.contains('dark-mode');
+                
+                if (isDarkMode) {{
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light');
+                    updateWordcloudImage(false);
+                }} else {{
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    updateWordcloudImage(true);
+                }}
+            }}
+            
+            // 监听主题切换按钮点击
+            themeToggle.addEventListener('click', toggleTheme);
+            
+            // 延迟初始化主题，确保 DOM 完全加载
+            setTimeout(function() {{
+                initTheme();
+            }}, 100);
         }});
     </script>
 </body>
@@ -679,7 +854,7 @@ def bundle_list_by_labels_section(wordcloud_image_url, all_labels, all_issues):
     return list_by_labels_section
 
 
-def bundle_html_content(wordcloud_image_url, all_labels, all_issues):
+def bundle_html_content(all_labels, all_issues):
     global blog_repo, user_name, blog_name, cur_time
     
     # 构建徽章HTML
@@ -696,7 +871,7 @@ def bundle_html_content(wordcloud_image_url, all_labels, all_issues):
     wordcloud_html = f"""
     <div class="wordcloud-banner">
         <a href="https://{user_name}.github.io/{blog_name}/">
-            <img src="{wordcloud_image_url}" title="词云" alt="词云" class="wordcloud-img">
+            <img id="wordcloud-img" src="assets/wordcloud-light.png" title="词云" alt="词云" class="wordcloud-img">
         </a>
     </div>"""
     
@@ -765,6 +940,30 @@ def bundle_html_content(wordcloud_image_url, all_labels, all_issues):
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{user_name} 的博客</title>
     <style>
+        :root {{
+            --bg-color: #fdfdfd;
+            --text-color: #111;
+            --border-color: #e8e8e8;
+            --card-bg: #ffffff;
+            --card-header-bg: #f7f7f7;
+            --link-color: #2a7ae2;
+            --muted-color: #828282;
+            --search-bg: #ffffff;
+            --search-border: #e8e8e8;
+        }}
+        
+        body.dark-mode {{
+            --bg-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --border-color: #333;
+            --card-bg: #2a2a2a;
+            --card-header-bg: #333;
+            --link-color: #4a9eff;
+            --muted-color: #999;
+            --search-bg: #2a2a2a;
+            --search-border: #333;
+        }}
+        
         * {{
             margin: 0;
             padding: 0;
@@ -773,9 +972,10 @@ def bundle_html_content(wordcloud_image_url, all_labels, all_issues):
         
         body {{
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: #fdfdfd;
-            color: #111;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.5;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }}
         
         .container {{
@@ -824,14 +1024,17 @@ def bundle_html_content(wordcloud_image_url, all_labels, all_issues):
             width: 100%;
             padding: 12px 40px 12px 20px;
             font-size: 1em;
-            border: 1px solid #e8e8e8;
+            border: 1px solid var(--search-border);
             border-radius: 4px;
             outline: none;
             box-sizing: border-box;
+            background-color: var(--search-bg);
+            color: var(--text-color);
+            transition: border-color 0.3s ease, background-color 0.3s ease;
         }}
         
         .search-input:focus {{
-            border-color: #2a7ae2;
+            border-color: var(--link-color);
         }}
         
         .clear-button {{
@@ -842,7 +1045,7 @@ def bundle_html_content(wordcloud_image_url, all_labels, all_issues):
             background: none;
             border: none;
             font-size: 18px;
-            color: #999;
+            color: var(--muted-color);
             cursor: pointer;
             padding: 4px;
             line-height: 1;
@@ -852,11 +1055,12 @@ def bundle_html_content(wordcloud_image_url, all_labels, all_issues):
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }}
         
         .clear-button:hover {{
-            background-color: #f0f0f0;
-            color: #666;
+            background-color: var(--border-color);
+            color: var(--text-color);
         }}
         
         .hidden {{
@@ -870,26 +1074,28 @@ def bundle_html_content(wordcloud_image_url, all_labels, all_issues):
         }}
         
         .category-card {{
-            background: #ffffff;
-            border: 1px solid #e8e8e8;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             overflow: hidden;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }}
         
         .category-header {{
-            background: #f7f7f7;
+            background: var(--card-header-bg);
             padding: 15px 20px;
-            border-bottom: 1px solid #e8e8e8;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }}
         
         .category-title {{
             font-size: 1.1em;
             font-weight: 700;
-            color: #111;
+            color: var(--text-color);
             margin-bottom: 5px;
         }}
         
         .category-count {{
-            color: #828282;
+            color: var(--muted-color);
             font-size: 0.9em;
         }}
         
@@ -901,7 +1107,7 @@ def bundle_html_content(wordcloud_image_url, all_labels, all_issues):
             display: flex;
             align-items: center;
             padding: 8px 0;
-            border-bottom: 1px solid #f7f7f7;
+            border-bottom: 1px solid var(--border-color);
         }}
         
         .issue-item:last-child {{
@@ -909,16 +1115,17 @@ def bundle_html_content(wordcloud_image_url, all_labels, all_issues):
         }}
         
         .issue-date {{
-            color: #828282;
+            color: var(--muted-color);
             font-size: 0.9em;
             min-width: 80px;
             margin-right: 15px;
         }}
         
         .issue-link {{
-            color: #2a7ae2;
+            color: var(--link-color);
             text-decoration: none;
             flex: 1;
+            transition: color 0.3s ease;
         }}
         
         .issue-link:hover {{
@@ -929,7 +1136,7 @@ def bundle_html_content(wordcloud_image_url, all_labels, all_issues):
             text-align: center;
             margin-top: 40px;
             padding: 20px;
-            color: #828282;
+            color: var(--muted-color);
             font-size: 0.9em;
         }}
         
@@ -990,6 +1197,69 @@ def bundle_html_content(wordcloud_image_url, all_labels, all_issues):
                 margin-bottom: 20px;
             }}
         }}
+        
+        /* 主题切换按钮样式 */
+        .theme-toggle {{
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background: var(--card-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }}
+        
+        .theme-toggle:hover {{
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }}
+        
+        .theme-toggle:active {{
+            transform: translateY(0);
+        }}
+        
+        .theme-icon {{
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+            transition: all 0.3s ease;
+        }}
+        
+        .theme-icon.moon-icon {{
+            display: none;
+        }}
+        
+        body.dark-mode .theme-icon.sun-icon {{
+            display: none;
+        }}
+        
+        body.dark-mode .theme-icon.moon-icon {{
+            display: block;
+        }}
+        
+        /* 移动端适配 */
+        @media (max-width: 767px) {{
+            .theme-toggle {{
+                width: 45px;
+                height: 45px;
+                right: 15px;
+                bottom: 15px;
+            }}
+            
+            .theme-icon {{
+                width: 22px;
+                height: 22px;
+            }}
+        }}
     </style>
 </head>
 <body>
@@ -1008,6 +1278,24 @@ def bundle_html_content(wordcloud_image_url, all_labels, all_issues):
             <p>最后更新：{cur_time}</p>
         </footer>
     </div>
+    
+    <!-- 主题切换按钮 -->
+    <button id="theme-toggle" class="theme-toggle" title="切换主题">
+        <svg class="theme-icon sun-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="theme-icon moon-icon" viewBox="0 0 24 24" style="display: none;">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+    </button>
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {{
@@ -1063,6 +1351,62 @@ def bundle_html_content(wordcloud_image_url, all_labels, all_issues):
             
             // 初始化时检查是否需要显示清空按钮
             toggleClearButton();
+            
+            // 主题切换功能
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            
+            // 更新词云图片
+            function updateWordcloudImage(isDark) {{
+                const wordcloudImg = document.getElementById('wordcloud-img');
+                if (wordcloudImg) {{
+                    const newSrc = isDark ? 'assets/wordcloud-dark.png' : 'assets/wordcloud-light.png';
+                    if (wordcloudImg.src !== new URL(newSrc, window.location.href).href) {{
+                        wordcloudImg.src = newSrc;
+                        console.log('词云图片已切换至:', newSrc);
+                    }}
+                }} else {{
+                    console.warn('未找到词云图片元素');
+                }}
+            }}
+            
+            // 初始化主题
+            function initTheme() {{
+                const savedTheme = localStorage.getItem('theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+                
+                if (isDark) {{
+                    body.classList.add('dark-mode');
+                }} else {{
+                    body.classList.remove('dark-mode');
+                }}
+                
+                updateWordcloudImage(isDark);
+            }}
+            
+            // 切换主题
+            function toggleTheme() {{
+                const isDarkMode = body.classList.contains('dark-mode');
+                
+                if (isDarkMode) {{
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light');
+                    updateWordcloudImage(false);
+                }} else {{
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    updateWordcloudImage(true);
+                }}
+            }}
+            
+            // 监听主题切换按钮点击
+            themeToggle.addEventListener('click', toggleTheme);
+            
+            // 延迟初始化主题，确保 DOM 完全加载
+            setTimeout(function() {{
+                initTheme();
+            }}, 100);
         }});
     </script>
 </body>
@@ -1128,12 +1472,12 @@ def execute():
     summary_section = bundle_summary_section()
     print(summary_section)
 
-    # 3. generate word cloud once
-    wordcloud_image_url = WordCloudGenerator(blog_repo).generate()
-    print(f"Word cloud generated: {wordcloud_image_url}")
+    # 3. generate word cloud once (now generates both light and dark versions)
+    wordcloud_light_url = WordCloudGenerator(blog_repo).generate()
+    print(f"Word cloud generated: {wordcloud_light_url}")
 
     # 4. list by labels section
-    list_by_labels_section = bundle_list_by_labels_section(wordcloud_image_url, all_labels, all_issues)
+    list_by_labels_section = bundle_list_by_labels_section(wordcloud_light_url, all_labels, all_issues)
     print(list_by_labels_section)
 
     # 5. generate README.md
@@ -1142,7 +1486,7 @@ def execute():
     print("README.md updated successfully!!!")
 
     # 6. generate index.html
-    html_content = bundle_html_content(wordcloud_image_url, all_labels, all_issues)
+    html_content = bundle_html_content(all_labels, all_issues)
     update_index_html_file(html_content)
     print("index.html generated successfully!!!")
 
