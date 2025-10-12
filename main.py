@@ -584,12 +584,21 @@ def bundle_html_content(wordcloud_image_url):
         <img src="https://badgen.net/github/watchers/{user_name}{blog_name}" alt="Watchers"/>
     </div>"""
     
-    # 构建词云HTML
+    # 构建词云HTML (作为banner)
     wordcloud_html = f"""
-    <div class="wordcloud-section">
+    <div class="wordcloud-banner">
         <a href="https://{user_name}.github.io/{blog_name}/">
             <img src="{wordcloud_image_url}" title="词云" alt="词云" class="wordcloud-img">
         </a>
+    </div>"""
+    
+    # 构建搜索框HTML
+    search_html = f"""
+    <div class="search-section">
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="搜索文章标题...">
+            <button type="button" id="clearButton" class="clear-button" style="display: none;">×</button>
+        </div>
     </div>"""
     
     # 构建标签分类HTML
@@ -657,9 +666,15 @@ def bundle_html_content(wordcloud_image_url):
             padding: 20px;
         }}
         
-        .header {{
+        .wordcloud-banner {{
             text-align: center;
-            margin-bottom: 30px;
+            margin: 0 0 20px 0;
+        }}
+        
+        .wordcloud-img {{
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
         }}
         
         .badges {{
@@ -675,16 +690,59 @@ def bundle_html_content(wordcloud_image_url):
             border-radius: 3px;
         }}
         
-        .wordcloud-section {{
+        .search-section {{
             text-align: center;
-            margin: 30px 0;
+            margin: 20px 0 30px 0;
         }}
         
-        .wordcloud-img {{
-            max-width: 100%;
-            height: auto;
-            border-radius: 4px;
+        .search-container {{
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            max-width: 600px;
+        }}
+        
+        .search-input {{
+            width: 100%;
+            padding: 12px 40px 12px 20px;
+            font-size: 1em;
             border: 1px solid #e8e8e8;
+            border-radius: 4px;
+            outline: none;
+            box-sizing: border-box;
+        }}
+        
+        .search-input:focus {{
+            border-color: #2a7ae2;
+        }}
+        
+        .clear-button {{
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #999;
+            cursor: pointer;
+            padding: 4px;
+            line-height: 1;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }}
+        
+        .clear-button:hover {{
+            background-color: #f0f0f0;
+            color: #666;
+        }}
+        
+        .hidden {{
+            display: none !important;
         }}
         
         .categories-grid {{
@@ -771,6 +829,18 @@ def bundle_html_content(wordcloud_image_url):
                 height: 18px;
             }}
             
+            .search-input {{
+                padding: 10px 35px 10px 15px;
+                font-size: 0.9em;
+            }}
+            
+            .clear-button {{
+                right: 6px;
+                font-size: 16px;
+                width: 22px;
+                height: 22px;
+            }}
+            
             .categories-grid {{
                 gap: 15px;
             }}
@@ -806,12 +876,10 @@ def bundle_html_content(wordcloud_image_url):
 </head>
 <body>
     <div class="container">
-        <header class="header">
-            {badges_html}
-        </header>
-        
         <main>
+            {badges_html}
             {wordcloud_html}
+            {search_html}
             
             <section class="categories-grid">
                 {issues_html}
@@ -822,6 +890,63 @@ def bundle_html_content(wordcloud_image_url):
             <p>最后更新：{cur_time}</p>
         </footer>
     </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {{
+            const searchInput = document.getElementById('searchInput');
+            const clearButton = document.getElementById('clearButton');
+            const categoryCards = document.querySelectorAll('.category-card');
+            
+            function toggleClearButton() {{
+                if (searchInput.value.trim() !== '') {{
+                    clearButton.style.display = 'flex';
+                }} else {{
+                    clearButton.style.display = 'none';
+                }}
+            }}
+            
+            function performSearch() {{
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                
+                categoryCards.forEach(card => {{
+                    const issueItems = card.querySelectorAll('.issue-item');
+                    let hasVisibleItems = false;
+                    
+                    issueItems.forEach(item => {{
+                        const title = item.querySelector('.issue-link').textContent.toLowerCase();
+                        if (searchTerm === '' || title.includes(searchTerm)) {{
+                            item.classList.remove('hidden');
+                            hasVisibleItems = true;
+                        }} else {{
+                            item.classList.add('hidden');
+                        }}
+                    }});
+                    
+                    // 隐藏没有匹配项的分类卡片
+                    if (hasVisibleItems) {{
+                        card.classList.remove('hidden');
+                    }} else {{
+                        card.classList.add('hidden');
+                    }}
+                }});
+            }}
+            
+            searchInput.addEventListener('input', function() {{
+                toggleClearButton();
+                performSearch();
+            }});
+            
+            clearButton.addEventListener('click', function() {{
+                searchInput.value = '';
+                searchInput.focus();
+                toggleClearButton();
+                performSearch();
+            }});
+            
+            // 初始化时检查是否需要显示清空按钮
+            toggleClearButton();
+        }});
+    </script>
 </body>
 </html>"""
     
