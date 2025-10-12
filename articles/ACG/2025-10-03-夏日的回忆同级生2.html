@@ -296,18 +296,18 @@
             z-index: 1000;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
         
         .scroll-btn {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: rgba(42, 122, 226, 0.9);
             color: white;
             border: none;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -340,44 +340,43 @@
             }
             
             .scroll-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
+                width: 36px;
+                height: 36px;
+                font-size: 14px;
             }
         }
         
         /* 主题切换按钮样式 */
         .theme-toggle {
-            position: fixed;
-            right: 20px;
-            bottom: 90px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
             background: var(--card-bg);
             color: var(--text-color);
             cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
-            z-index: 1000;
+            margin-left: 8px;
+            vertical-align: middle;
         }
         
         .theme-toggle:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: scale(1.05);
         }
         
         .theme-toggle:active {
-            transform: translateY(0);
+            transform: scale(0.95);
         }
         
         .theme-icon {
-            width: 24px;
-            height: 24px;
+            width: 16px;
+            height: 16px;
             fill: currentColor;
             transition: all 0.3s ease;
         }
@@ -397,34 +396,54 @@
         /* 移动端适配主题按钮 */
         @media (max-width: 767px) {
             .theme-toggle {
-                width: 45px;
-                height: 45px;
-                right: 15px;
-                bottom: 75px;
+                width: 20px;
+                height: 20px;
+                margin-left: 6px;
             }
             
             .theme-icon {
-                width: 22px;
-                height: 22px;
+                width: 14px;
+                height: 14px;
             }
         }
         
+        
     </style>
+    <script>
+        // 立即设置主题，避免闪烁
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+            
+            if (isDark) {
+                document.documentElement.classList.add('dark-mode');
+                document.body.classList.add('dark-mode');
+            }
+        })();
+    </script>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <a href="../../index.html" class="back-link">← 返回首页</a>
-            <h1 class="article-title">夏日的回忆~同级生2</h1>
-            <div class="article-meta">
-                <div>创建时间：2025-10-03 07:53:07</div>
-                <div>更新时间：2025-10-03 07:53:07</div>
-            </div>
-            <div class="labels"><span class="label">ACG</span></div>
-        </header>
+    
+<div class="container">
+    <header class="header">
+        <a href="../../index.html" class="back-link">← 返回首页</a>
+        <h1 class="article-title">夏日的回忆~同级生2</h1>
+        <div class="article-meta">
+            <div>创建时间：2025-10-03 07:53:07</div>
+            <div>更新时间：2025-10-03 07:53:07</div>
+        </div>
         
-        <main class="article-content">
-            <p><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/夏日的回忆_同级生2/Doukyuusei2.jpg" /></p>
+        <div class="labels">
+            
+            <span class="label">ACG</span>
+            
+        </div>
+        
+    </header>
+    
+    <main class="article-content">
+        <p><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/夏日的回忆_同级生2/Doukyuusei2.jpg" /></p>
 <h2 id="_1">游戏简介</h2>
 <p>《同级生2》是由elf公司开发的一款冒险游戏，于1995年发行。本作是《同级生1》的续集，玩家在游戏中可以追求15个女孩（年龄范围从18~38)。 </p>
 <p>在某个场合上见了美女，上去搭讪，然后，hehe……估计很多人也只有在游戏里YY的份。但92年《同级生》一代的出现却把这种YY的梦想变成了现实。绝对是H-game史上的一个里程碑，不夸张，一点都不夸张。当时顶级的CG水平，极高的自由度，相当不错的人设，青春的校园背景，尤其是完全创新的游戏方式，一下子让沉浸在电子小说方式的玩家们发现了新大陆。即使到了今天，仍然能够通过卖同级生1周边来赚钱！<br />
@@ -2969,30 +2988,30 @@
 <blockquote>
 <p>在网球场的树木Click一下亦有以上的提示</p>
 </blockquote>
-        </main>
-        
-        <footer class="footer">
-            <p>本文原始链接：<a href="https://github.com/syaofox/syaofox.github.io/issues/10" class="github-link" target="_blank">GitHub Issue #10</a></p>
-        </footer>
-    </div>
+    </main>
     
-    <!-- 主题切换按钮 -->
-    <button id="theme-toggle" class="theme-toggle" title="切换主题">
-        <svg class="theme-icon sun-icon" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="5"/>
-            <line x1="12" y1="1" x2="12" y2="3"/>
-            <line x1="12" y1="21" x2="12" y2="23"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-            <line x1="1" y1="12" x2="3" y2="12"/>
-            <line x1="21" y1="12" x2="23" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-        </svg>
-        <svg class="theme-icon moon-icon" viewBox="0 0 24 24" style="display: none;">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
-    </button>
+    <footer class="footer">
+        <p>本文原始链接：<a href="https://github.com/syaofox/syaofox.github.io/issues/10" class="github-link" target="_blank">GitHub Issue #10</a>
+        <button id="theme-toggle" class="theme-toggle" title="切换主题">
+            <svg class="theme-icon sun-icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg class="theme-icon moon-icon" viewBox="0 0 24 24" style="display: none;">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+        </button></p>
+    </footer>
+</div>
+
+    
     
     <!-- 滚动悬浮按钮 -->
     <div class="scroll-buttons">
@@ -3149,10 +3168,14 @@
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                 const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
                 
-                if (isDark) {
-                    body.classList.add('dark-mode');
-                } else {
-                    body.classList.remove('dark-mode');
+                // 避免重复设置主题
+                const currentIsDark = body.classList.contains('dark-mode');
+                if (currentIsDark !== isDark) {
+                    if (isDark) {
+                        body.classList.add('dark-mode');
+                    } else {
+                        body.classList.remove('dark-mode');
+                    }
                 }
                 
                 updateWordcloudImage(isDark);
@@ -3176,10 +3199,10 @@
             // 监听主题切换按钮点击
             themeToggle.addEventListener('click', toggleTheme);
             
-            // 延迟初始化主题，确保 DOM 完全加载
-            setTimeout(function() {
-                initTheme();
-            }, 100);
+            // 立即初始化主题，避免闪烁
+            initTheme();
+            
+            
         });
     </script>
 </body>

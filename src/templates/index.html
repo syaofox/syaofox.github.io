@@ -1,0 +1,332 @@
+{% extends "base.html" %}
+
+{% block title %}{{ user_name }} 的博客{% endblock %}
+
+{% block extra_styles %}
+.wordcloud-banner {
+    text-align: center;
+    margin: 0 0 20px 0;
+}
+
+.wordcloud-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.badges {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.badges img {
+    height: 20px;
+    border-radius: 3px;
+}
+
+.search-section {
+    text-align: center;
+    margin: 20px 0 30px 0;
+}
+
+.search-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 600px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 40px 12px 20px;
+    font-size: 1em;
+    border: 1px solid var(--search-border);
+    border-radius: 4px;
+    outline: none;
+    box-sizing: border-box;
+    background-color: var(--search-bg);
+    color: var(--text-color);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: var(--link-color);
+}
+
+.clear-button {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: var(--muted-color);
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.clear-button:hover {
+    background-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.categories-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+}
+
+.category-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.category-header {
+    background: var(--card-header-bg);
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.category-title {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+.category-count {
+    color: var(--muted-color);
+    font-size: 0.9em;
+}
+
+.issues-list {
+    padding: 20px;
+}
+
+.issue-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.issue-item:last-child {
+    border-bottom: none;
+}
+
+.issue-date {
+    color: var(--muted-color);
+    font-size: 0.9em;
+    min-width: 80px;
+    margin-right: 15px;
+}
+
+.issue-link {
+    color: var(--link-color);
+    text-decoration: none;
+    flex: 1;
+    transition: color 0.3s ease;
+}
+
+.issue-link:hover {
+    text-decoration: underline;
+}
+
+/* 响应式设计 */
+@media (max-width: 767px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .badges {
+        gap: 5px;
+    }
+    
+    .badges img {
+        height: 18px;
+    }
+    
+    .search-input {
+        padding: 10px 35px 10px 15px;
+        font-size: 0.9em;
+    }
+    
+    .clear-button {
+        right: 6px;
+        font-size: 16px;
+        width: 22px;
+        height: 22px;
+    }
+    
+    .categories-grid {
+        gap: 15px;
+    }
+    
+    .issue-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .issue-date {
+        min-width: auto;
+        margin-right: 0;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .category-card {
+        margin-bottom: 20px;
+    }
+}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <main>
+        <div class="badges">
+            <img src="https://badgen.net/github/issues/{{ user_name }}/{{ blog_name }}" alt="Issues"/>
+            <img src="https://badgen.net/badge/last-commit/{{ cur_time }}" alt="Last Commit"/>
+            <img src="https://badgen.net/github/forks/{{ user_name }}/{{ blog_name }}" alt="Forks"/>
+            <img src="https://badgen.net/github/stars/{{ user_name }}/{{ blog_name }}" alt="Stars"/>
+            <img src="https://badgen.net/github/watchers/{{ user_name }}/{{ blog_name }}" alt="Watchers"/>
+        </div>
+        
+        <div class="wordcloud-banner">
+            <a href="https://{{ user_name }}.github.io/{{ blog_name }}/">
+                <img id="wordcloud-img" src="assets/wordcloud-light.png" title="词云" alt="词云" class="wordcloud-img">
+            </a>
+        </div>
+        
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="搜索文章标题...">
+                <button type="button" id="clearButton" class="clear-button" style="display: none;">×</button>
+            </div>
+        </div>
+        
+        <section class="categories-grid">
+            {% for category in categories %}
+            <div class="category-card">
+                <div class="category-header">
+                    <h3 class="category-title">{{ category.name }}</h3>
+                    <span class="category-count">[{{ category.count }}篇]</span>
+                </div>
+                <div class="issues-list">
+                    {% for article in category.articles %}
+                    <div class="issue-item">
+                        <span class="issue-date">{{ article.created_at }}</span>
+                        <a href="{{ article.url }}" class="issue-link">{{ article.title }}</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <p>最后更新：{{ cur_time }}
+        <button id="theme-toggle" class="theme-toggle" title="切换主题">
+            <svg class="theme-icon sun-icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg class="theme-icon moon-icon" viewBox="0 0 24 24" style="display: none;">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+        </button></p>
+    </footer>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+const searchInput = document.getElementById('searchInput');
+const clearButton = document.getElementById('clearButton');
+const categoryCards = document.querySelectorAll('.category-card');
+
+function toggleClearButton() {
+    if (searchInput.value.trim() !== '') {
+        clearButton.style.display = 'flex';
+    } else {
+        clearButton.style.display = 'none';
+    }
+}
+
+function performSearch() {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    
+    categoryCards.forEach(card => {
+        const issueItems = card.querySelectorAll('.issue-item');
+        let hasVisibleItems = false;
+        
+        issueItems.forEach(item => {
+            const title = item.querySelector('.issue-link').textContent.toLowerCase();
+            if (searchTerm === '' || title.includes(searchTerm)) {
+                item.classList.remove('hidden');
+                hasVisibleItems = true;
+            } else {
+                item.classList.add('hidden');
+            }
+        });
+        
+        // 隐藏没有匹配项的分类卡片
+        if (hasVisibleItems) {
+            card.classList.remove('hidden');
+        } else {
+            card.classList.add('hidden');
+        }
+    });
+}
+
+searchInput.addEventListener('input', function() {
+    toggleClearButton();
+    performSearch();
+});
+
+clearButton.addEventListener('click', function() {
+    searchInput.value = '';
+    searchInput.focus();
+    toggleClearButton();
+    performSearch();
+});
+
+// 初始化时检查是否需要显示清空按钮
+toggleClearButton();
+{% endblock %}

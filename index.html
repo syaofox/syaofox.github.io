@@ -47,254 +47,336 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-        }
-        
-        .wordcloud-banner {
-            text-align: center;
-            margin: 0 0 20px 0;
-        }
-        
-        .wordcloud-img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-        
-        .badges {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .badges img {
-            height: 20px;
-            border-radius: 3px;
-        }
-        
-        .search-section {
-            text-align: center;
-            margin: 20px 0 30px 0;
-        }
-        
-        .search-container {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-            max-width: 600px;
-        }
-        
-        .search-input {
-            width: 100%;
-            padding: 12px 40px 12px 20px;
-            font-size: 1em;
-            border: 1px solid var(--search-border);
-            border-radius: 4px;
-            outline: none;
-            box-sizing: border-box;
-            background-color: var(--search-bg);
-            color: var(--text-color);
-            transition: border-color 0.3s ease, background-color 0.3s ease;
-        }
-        
-        .search-input:focus {
-            border-color: var(--link-color);
-        }
-        
-        .clear-button {
-            position: absolute;
-            right: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            font-size: 18px;
-            color: var(--muted-color);
-            cursor: pointer;
-            padding: 4px;
-            line-height: 1;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        
-        .clear-button:hover {
-            background-color: var(--border-color);
-            color: var(--text-color);
-        }
-        
-        .hidden {
-            display: none !important;
-        }
-        
-        .categories-grid {
-            display: grid;
-            gap: 20px;
-            grid-template-columns: 1fr;
-        }
-        
-        .category-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
         
-        .category-header {
-            background: var(--card-header-bg);
-            padding: 15px 20px;
+        .header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
             border-bottom: 1px solid var(--border-color);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+            transition: border-color 0.3s ease;
         }
         
-        .category-title {
-            font-size: 1.1em;
-            font-weight: 700;
-            color: var(--text-color);
-            margin-bottom: 5px;
-        }
-        
-        .category-count {
-            color: var(--muted-color);
-            font-size: 0.9em;
-        }
-        
-        .issues-list {
-            padding: 20px;
-        }
-        
-        .issue-item {
-            display: flex;
-            align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .issue-item:last-child {
-            border-bottom: none;
-        }
-        
-        .issue-date {
-            color: var(--muted-color);
-            font-size: 0.9em;
-            min-width: 80px;
-            margin-right: 15px;
-        }
-        
-        .issue-link {
+        .back-link {
+            display: inline-block;
             color: var(--link-color);
             text-decoration: none;
-            flex: 1;
+            margin-bottom: 15px;
+            font-size: 0.9em;
             transition: color 0.3s ease;
         }
         
-        .issue-link:hover {
+        .back-link:hover {
             text-decoration: underline;
         }
         
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
+        .article-title {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+        
+        .article-meta {
             color: var(--muted-color);
             font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        
+        .labels {
+            margin-top: 10px;
+        }
+        
+        .label {
+            display: inline-block;
+            background: var(--card-header-bg);
+            color: var(--text-color);
+            padding: 4px 8px;
+            border: 1px solid var(--border-color);
+            font-size: 0.8em;
+            margin-right: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .article-content {
+            font-size: 1em;
+            line-height: 1.6;
+        }
+        
+        .article-content h1,
+        .article-content h2,
+        .article-content h3,
+        .article-content h4,
+        .article-content h5,
+        .article-content h6 {
+            color: var(--text-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .article-content h1 {
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+        
+        .article-content h2 {
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+        
+        .article-content h3 {
+            font-size: 1.3em;
+            font-weight: 700;
+        }
+        
+        .article-content p {
+            margin-bottom: 15px;
+        }
+        
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            margin: 15px 0;
+            transition: border-color 0.3s ease;
+        }
+        
+        .article-content pre {
+            background: var(--card-header-bg);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            overflow-x: auto;
+            margin: 15px 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .article-content code {
+            background: var(--card-header-bg);
+            padding: 2px 6px;
+            border: 1px solid var(--border-color);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .article-content pre code {
+            background: none;
+            border: none;
+            padding: 0;
+        }
+        
+        .article-content blockquote {
+            border-left: 4px solid var(--border-color);
+            margin: 15px 0;
+            padding: 10px 20px;
+            background: var(--card-header-bg);
+            transition: background-color 0.3s ease, border-left-color 0.3s ease;
+        }
+        
+        .article-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .article-content th,
+        .article-content td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: left;
+            transition: border-color 0.3s ease;
+        }
+        
+        .article-content th {
+            background: var(--card-header-bg);
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .article-content ul,
+        .article-content ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        .article-content li {
+            margin-bottom: 5px;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--muted-color);
+            font-size: 0.9em;
+            transition: border-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .github-link {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .github-link:hover {
+            text-decoration: underline;
         }
         
         /* 响应式设计 */
         @media (max-width: 767px) {
             .container {
+                margin: 10px;
                 padding: 15px;
             }
             
-            .badges {
-                gap: 5px;
+            .article-title {
+                font-size: 1.5em;
             }
             
-            .badges img {
-                height: 18px;
-            }
-            
-            .search-input {
-                padding: 10px 35px 10px 15px;
+            .article-content {
                 font-size: 0.9em;
-            }
-            
-            .clear-button {
-                right: 6px;
-                font-size: 16px;
-                width: 22px;
-                height: 22px;
-            }
-            
-            .categories-grid {
-                gap: 15px;
-            }
-            
-            .issue-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
-            }
-            
-            .issue-date {
-                min-width: auto;
-                margin-right: 0;
             }
         }
         
-        @media (min-width: 768px) and (max-width: 1023px) {
-            .categories-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        /* 代码块复制按钮样式 */
+        .code-block-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--card-header-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 4px 8px;
+            font-size: 0.8em;
+            cursor: pointer;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .copy-btn:hover {
+            opacity: 1;
+            background: var(--border-color);
+        }
+        
+        .copy-btn.copied {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+        
+        .article-content pre:hover .copy-btn {
+            opacity: 1;
         }
         
         @media (min-width: 1024px) {
-            .categories-grid {
-                grid-template-columns: 1fr;
+            .article-content {
+                max-width: 700px;
+                margin: 0 auto;
+            }
+        }
+        
+        /* 滚动悬浮按钮样式 */
+        .scroll-buttons {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .scroll-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(42, 122, 226, 0.9);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .scroll-btn:hover {
+            background: rgba(42, 122, 226, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .scroll-btn.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-btn:active {
+            transform: translateY(0);
+        }
+        
+        /* 移动端适配 */
+        @media (max-width: 767px) {
+            .scroll-buttons {
+                right: 15px;
+                bottom: 15px;
             }
             
-            .category-card {
-                margin-bottom: 20px;
+            .scroll-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 14px;
             }
         }
         
         /* 主题切换按钮样式 */
         .theme-toggle {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
             background: var(--card-bg);
             color: var(--text-color);
             cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
-            z-index: 1000;
+            margin-left: 8px;
+            vertical-align: middle;
         }
         
         .theme-toggle:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: scale(1.05);
         }
         
         .theme-toggle:active {
-            transform: translateY(0);
+            transform: scale(0.95);
         }
         
         .theme-icon {
-            width: 24px;
-            height: 24px;
+            width: 16px;
+            height: 16px;
             fill: currentColor;
             transition: all 0.3s ease;
         }
@@ -311,49 +393,269 @@
             display: block;
         }
         
-        /* 移动端适配 */
+        /* 移动端适配主题按钮 */
         @media (max-width: 767px) {
             .theme-toggle {
-                width: 45px;
-                height: 45px;
-                right: 15px;
-                bottom: 15px;
+                width: 20px;
+                height: 20px;
+                margin-left: 6px;
             }
             
             .theme-icon {
-                width: 22px;
-                height: 22px;
+                width: 14px;
+                height: 14px;
             }
         }
+        
+        
+.wordcloud-banner {
+    text-align: center;
+    margin: 0 0 20px 0;
+}
+
+.wordcloud-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.badges {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.badges img {
+    height: 20px;
+    border-radius: 3px;
+}
+
+.search-section {
+    text-align: center;
+    margin: 20px 0 30px 0;
+}
+
+.search-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 600px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 40px 12px 20px;
+    font-size: 1em;
+    border: 1px solid var(--search-border);
+    border-radius: 4px;
+    outline: none;
+    box-sizing: border-box;
+    background-color: var(--search-bg);
+    color: var(--text-color);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: var(--link-color);
+}
+
+.clear-button {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: var(--muted-color);
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.clear-button:hover {
+    background-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.categories-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+}
+
+.category-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.category-header {
+    background: var(--card-header-bg);
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.category-title {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+.category-count {
+    color: var(--muted-color);
+    font-size: 0.9em;
+}
+
+.issues-list {
+    padding: 20px;
+}
+
+.issue-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.issue-item:last-child {
+    border-bottom: none;
+}
+
+.issue-date {
+    color: var(--muted-color);
+    font-size: 0.9em;
+    min-width: 80px;
+    margin-right: 15px;
+}
+
+.issue-link {
+    color: var(--link-color);
+    text-decoration: none;
+    flex: 1;
+    transition: color 0.3s ease;
+}
+
+.issue-link:hover {
+    text-decoration: underline;
+}
+
+/* 响应式设计 */
+@media (max-width: 767px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .badges {
+        gap: 5px;
+    }
+    
+    .badges img {
+        height: 18px;
+    }
+    
+    .search-input {
+        padding: 10px 35px 10px 15px;
+        font-size: 0.9em;
+    }
+    
+    .clear-button {
+        right: 6px;
+        font-size: 16px;
+        width: 22px;
+        height: 22px;
+    }
+    
+    .categories-grid {
+        gap: 15px;
+    }
+    
+    .issue-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .issue-date {
+        min-width: auto;
+        margin-right: 0;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .category-card {
+        margin-bottom: 20px;
+    }
+}
+
     </style>
+    <script>
+        // 立即设置主题，避免闪烁
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+            
+            if (isDark) {
+                document.documentElement.classList.add('dark-mode');
+                document.body.classList.add('dark-mode');
+            }
+        })();
+    </script>
 </head>
 <body>
-    <div class="container">
-        <main>
-            
-    <div class="badges">
-        <img src="https://badgen.net/github/issues/syaofox/syaofox.github.io" alt="Issues"/>
-        <img src="https://badgen.net/badge/last-commit/2025-10-12 15:35:47" alt="Last Commit"/>
-        <img src="https://badgen.net/github/forks/syaofox/syaofox.github.io" alt="Forks"/>
-        <img src="https://badgen.net/github/stars/syaofox/syaofox.github.io" alt="Stars"/>
-        <img src="https://badgen.net/github/watchers/syaofox/syaofox.github.io" alt="Watchers"/>
-    </div>
-            
-    <div class="wordcloud-banner">
-        <a href="https://syaofox.github.io//syaofox.github.io/">
-            <img id="wordcloud-img" src="assets/wordcloud-light.png" title="词云" alt="词云" class="wordcloud-img">
-        </a>
-    </div>
-            
-    <div class="search-section">
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="搜索文章标题...">
-            <button type="button" id="clearButton" class="clear-button" style="display: none;">×</button>
+    
+<div class="container">
+    <main>
+        <div class="badges">
+            <img src="https://badgen.net/github/issues/syaofox/syaofox.github.io" alt="Issues"/>
+            <img src="https://badgen.net/badge/last-commit/2025-10-12 16:11:21" alt="Last Commit"/>
+            <img src="https://badgen.net/github/forks/syaofox/syaofox.github.io" alt="Forks"/>
+            <img src="https://badgen.net/github/stars/syaofox/syaofox.github.io" alt="Stars"/>
+            <img src="https://badgen.net/github/watchers/syaofox/syaofox.github.io" alt="Watchers"/>
         </div>
-    </div>
+        
+        <div class="wordcloud-banner">
+            <a href="https://syaofox.github.io/syaofox.github.io/">
+                <img id="wordcloud-img" src="assets/wordcloud-light.png" title="词云" alt="词云" class="wordcloud-img">
+            </a>
+        </div>
+        
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="搜索文章标题...">
+                <button type="button" id="clearButton" class="clear-button" style="display: none;">×</button>
+            </div>
+        </div>
+        
+        <section class="categories-grid">
             
-            <section class="categories-grid">
-                
             <div class="category-card">
                 <div class="category-header">
                     <h3 class="category-title">tips</h3>
@@ -361,40 +663,49 @@
                 </div>
                 <div class="issues-list">
                     
-            <div class="issue-item">
-                <span class="issue-date">2025-10-11</span>
-                <a href="articles/tips/2025-10-11-如何在LinuxMint22上安装VirtualBox分步指南.html" class="issue-link">如何在 Linux Mint 22 上安装 VirtualBox（分步指南）</a>
-            </div>
-            <div class="issue-item">
-                <span class="issue-date">2025-10-07</span>
-                <a href="articles/tips/2025-10-07-查看当前linuxmint基于ubuntu哪个版本.html" class="issue-link">查看当前linux mint 基于ubuntu哪个版本</a>
-            </div>
-            <div class="issue-item">
-                <span class="issue-date">2025-10-03</span>
-                <a href="articles/tips/2025-10-03-软路由科学上网白名单模式.html" class="issue-link">软路由科学上网白名单模式</a>
-            </div>
-            <div class="issue-item">
-                <span class="issue-date">2025-10-03</span>
-                <a href="articles/tips/2025-10-03-istoreos旁路由科学上网后无法上内网的解决办法.html" class="issue-link">istoreos旁路由科学上网后，无法上内网的解决办法</a>
-            </div>
-            <div class="issue-item">
-                <span class="issue-date">2025-10-03</span>
-                <a href="articles/tips/2025-10-03-Linux调整Swap文件大小指南.html" class="issue-link">Linux 调整 Swap 文件大小指南</a>
-            </div>
-            <div class="issue-item">
-                <span class="issue-date">2025-10-03</span>
-                <a href="articles/tips/2025-10-03-设置ssh-key-免密登录github.html" class="issue-link">设置ssh-key-免密登录github</a>
-            </div>
-            <div class="issue-item">
-                <span class="issue-date">2025-10-03</span>
-                <a href="articles/tips/2025-10-03-linuxmintnfs挂载.html" class="issue-link">linux mint nfs挂载</a>
-            </div>
-            <div class="issue-item">
-                <span class="issue-date">2025-10-03</span>
-                <a href="articles/tips/2025-10-03-linuxmintsamba挂载.html" class="issue-link">linux mint samba挂载</a>
-            </div>
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-11 11:51:02</span>
+                        <a href="articles/tips/2025-10-11-如何在LinuxMint22上安装VirtualBox分步指南.html" class="issue-link">如何在 Linux Mint 22 上安装 VirtualBox（分步指南）</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-07 00:00:35</span>
+                        <a href="articles/tips/2025-10-07-查看当前linuxmint基于ubuntu哪个版本.html" class="issue-link">查看当前linux mint 基于ubuntu哪个版本</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 10:20:51</span>
+                        <a href="articles/tips/2025-10-03-软路由科学上网白名单模式.html" class="issue-link">软路由科学上网白名单模式</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 08:29:27</span>
+                        <a href="articles/tips/2025-10-03-istoreos旁路由科学上网后无法上内网的解决办法.html" class="issue-link">istoreos旁路由科学上网后，无法上内网的解决办法</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 07:21:17</span>
+                        <a href="articles/tips/2025-10-03-Linux调整Swap文件大小指南.html" class="issue-link">Linux 调整 Swap 文件大小指南</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 07:10:19</span>
+                        <a href="articles/tips/2025-10-03-设置ssh-key-免密登录github.html" class="issue-link">设置ssh-key-免密登录github</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 05:22:28</span>
+                        <a href="articles/tips/2025-10-03-linuxmintnfs挂载.html" class="issue-link">linux mint nfs挂载</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 05:21:56</span>
+                        <a href="articles/tips/2025-10-03-linuxmintsamba挂载.html" class="issue-link">linux mint samba挂载</a>
+                    </div>
+                    
                 </div>
             </div>
+            
             <div class="category-card">
                 <div class="category-header">
                     <h3 class="category-title">ACG</h3>
@@ -402,36 +713,44 @@
                 </div>
                 <div class="issues-list">
                     
-            <div class="issue-item">
-                <span class="issue-date">2025-10-03</span>
-                <a href="articles/ACG/2025-10-03-三国战纪2群雄争霸详细攻.html" class="issue-link">三国战纪2：群雄争霸详细攻</a>
-            </div>
-            <div class="issue-item">
-                <span class="issue-date">2025-10-03</span>
-                <a href="articles/ACG/2025-10-03-拳皇系列的各代剧情都在讲什么.html" class="issue-link">拳皇系列的各代剧情都在讲什么</a>
-            </div>
-            <div class="issue-item">
-                <span class="issue-date">2025-10-03</span>
-                <a href="articles/ACG/2025-10-03-圣斗士星矢黄金传说完结篇攻略.html" class="issue-link">圣斗士星矢~黄金传说完结篇攻略</a>
-            </div>
-            <div class="issue-item">
-                <span class="issue-date">2025-10-03</span>
-                <a href="articles/ACG/2025-10-03-我是谁龙骑士4攻略.html" class="issue-link">我是谁~龙骑士4攻略</a>
-            </div>
-            <div class="issue-item">
-                <span class="issue-date">2025-10-03</span>
-                <a href="articles/ACG/2025-10-03-迷走都市完美结局.html" class="issue-link">迷走都市~完美结局</a>
-            </div>
-            <div class="issue-item">
-                <span class="issue-date">2025-10-03</span>
-                <a href="articles/ACG/2025-10-03-成人版大富翁华丽人生2.html" class="issue-link">成人版大富翁~华丽人生2</a>
-            </div>
-            <div class="issue-item">
-                <span class="issue-date">2025-10-03</span>
-                <a href="articles/ACG/2025-10-03-夏日的回忆同级生2.html" class="issue-link">夏日的回忆~同级生2</a>
-            </div>
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 08:13:07</span>
+                        <a href="articles/ACG/2025-10-03-三国战纪2群雄争霸详细攻.html" class="issue-link">三国战纪2：群雄争霸详细攻</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 08:11:30</span>
+                        <a href="articles/ACG/2025-10-03-拳皇系列的各代剧情都在讲什么.html" class="issue-link">拳皇系列的各代剧情都在讲什么</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 08:07:30</span>
+                        <a href="articles/ACG/2025-10-03-圣斗士星矢黄金传说完结篇攻略.html" class="issue-link">圣斗士星矢~黄金传说完结篇攻略</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 08:06:48</span>
+                        <a href="articles/ACG/2025-10-03-我是谁龙骑士4攻略.html" class="issue-link">我是谁~龙骑士4攻略</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 08:05:55</span>
+                        <a href="articles/ACG/2025-10-03-迷走都市完美结局.html" class="issue-link">迷走都市~完美结局</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 08:04:25</span>
+                        <a href="articles/ACG/2025-10-03-成人版大富翁华丽人生2.html" class="issue-link">成人版大富翁~华丽人生2</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 07:53:07</span>
+                        <a href="articles/ACG/2025-10-03-夏日的回忆同级生2.html" class="issue-link">夏日的回忆~同级生2</a>
+                    </div>
+                    
                 </div>
             </div>
+            
             <div class="category-card">
                 <div class="category-header">
                     <h3 class="category-title">apps</h3>
@@ -439,20 +758,24 @@
                 </div>
                 <div class="issues-list">
                     
-            <div class="issue-item">
-                <span class="issue-date">2025-10-11</span>
-                <a href="articles/apps/2025-10-11-我使用的mvp配置文件.html" class="issue-link">我使用的mvp配置文件</a>
-            </div>
-            <div class="issue-item">
-                <span class="issue-date">2025-10-03</span>
-                <a href="articles/apps/2025-10-03-linux常用软件存档.html" class="issue-link">linux 常用软件存档</a>
-            </div>
-            <div class="issue-item">
-                <span class="issue-date">2025-10-03</span>
-                <a href="articles/apps/2025-10-03-Timeshift的备份选项.html" class="issue-link">Timeshift 的备份选项</a>
-            </div>
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-11 14:32:31</span>
+                        <a href="articles/apps/2025-10-11-我使用的mvp配置文件.html" class="issue-link">我使用的mvp配置文件</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 05:25:51</span>
+                        <a href="articles/apps/2025-10-03-linux常用软件存档.html" class="issue-link">linux 常用软件存档</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 05:12:57</span>
+                        <a href="articles/apps/2025-10-03-Timeshift的备份选项.html" class="issue-link">Timeshift 的备份选项</a>
+                    </div>
+                    
                 </div>
             </div>
+            
             <div class="category-card">
                 <div class="category-header">
                     <h3 class="category-title">docker</h3>
@@ -460,96 +783,190 @@
                 </div>
                 <div class="issues-list">
                     
-            <div class="issue-item">
-                <span class="issue-date">2025-10-03</span>
-                <a href="articles/docker/2025-10-03-导出本地Docker镜像并在另一台机器上导入.html" class="issue-link">导出本地 Docker 镜像并在另一台机器上导入</a>
-            </div>
-            <div class="issue-item">
-                <span class="issue-date">2025-10-03</span>
-                <a href="articles/docker/2025-10-03-docker构建项目并推送到dockerhub.html" class="issue-link">docker构建项目，并推送到dockerhub</a>
-            </div>
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 07:27:17</span>
+                        <a href="articles/docker/2025-10-03-导出本地Docker镜像并在另一台机器上导入.html" class="issue-link">导出本地 Docker 镜像并在另一台机器上导入</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 07:25:14</span>
+                        <a href="articles/docker/2025-10-03-docker构建项目并推送到dockerhub.html" class="issue-link">docker构建项目，并推送到dockerhub</a>
+                    </div>
+                    
                 </div>
             </div>
-            </section>
-        </main>
-        
-        <footer class="footer">
-            <p>最后更新：2025-10-12 15:35:47</p>
-        </footer>
-    </div>
+            
+            <div class="category-card">
+                <div class="category-header">
+                    <h3 class="category-title">uncategorized</h3>
+                    <span class="category-count">[1篇]</span>
+                </div>
+                <div class="issues-list">
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2022-01-26 05:29:18</span>
+                        <a href="articles/uncategorized/2022-01-26-Eureka.html" class="issue-link">Eureka</a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </section>
+    </main>
     
-    <!-- 主题切换按钮 -->
-    <button id="theme-toggle" class="theme-toggle" title="切换主题">
-        <svg class="theme-icon sun-icon" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="5"/>
-            <line x1="12" y1="1" x2="12" y2="3"/>
-            <line x1="12" y1="21" x2="12" y2="23"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-            <line x1="1" y1="12" x2="3" y2="12"/>
-            <line x1="21" y1="12" x2="23" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-        </svg>
-        <svg class="theme-icon moon-icon" viewBox="0 0 24 24" style="display: none;">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
-    </button>
+    <footer class="footer">
+        <p>最后更新：2025-10-12 16:11:21
+        <button id="theme-toggle" class="theme-toggle" title="切换主题">
+            <svg class="theme-icon sun-icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg class="theme-icon moon-icon" viewBox="0 0 24 24" style="display: none;">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+        </button></p>
+    </footer>
+</div>
+
+    
+    
+    <!-- 滚动悬浮按钮 -->
+    <div class="scroll-buttons">
+        <button class="scroll-btn" id="scroll-to-top" title="回到顶部">↑</button>
+        <button class="scroll-btn" id="scroll-to-bottom" title="滚到底部">↓</button>
+    </div>
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('searchInput');
-            const clearButton = document.getElementById('clearButton');
-            const categoryCards = document.querySelectorAll('.category-card');
+            // 为所有代码块添加复制按钮
+            const codeBlocks = document.querySelectorAll('pre > code');
             
-            function toggleClearButton() {
-                if (searchInput.value.trim() !== '') {
-                    clearButton.style.display = 'flex';
-                } else {
-                    clearButton.style.display = 'none';
+            codeBlocks.forEach(function(codeBlock) {
+                // 跳过已经包装的代码块
+                if (codeBlock.parentElement.classList.contains('code-block-wrapper')) {
+                    return;
+                }
+                
+                const pre = codeBlock.parentElement;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block-wrapper';
+                
+                // 创建复制按钮
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'copy-btn';
+                copyBtn.textContent = '复制';
+                
+                // 包装pre元素
+                pre.parentElement.insertBefore(wrapper, pre);
+                wrapper.appendChild(pre);
+                wrapper.appendChild(copyBtn);
+                
+                // 添加复制功能
+                copyBtn.addEventListener('click', function() {
+                    const text = codeBlock.textContent;
+                    
+                    // 使用现代Clipboard API
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).then(function() {
+                            showCopied(copyBtn);
+                        }).catch(function() {
+                            // 降级到传统方法
+                            fallbackCopy(text, copyBtn);
+                        });
+                    } else {
+                        // 降级到传统方法
+                        fallbackCopy(text, copyBtn);
+                    }
+                });
+            });
+            
+            function showCopied(btn) {
+                btn.textContent = '已复制';
+                btn.classList.add('copied');
+                
+                setTimeout(function() {
+                    btn.textContent = '复制';
+                    btn.classList.remove('copied');
+                }, 1500);
+            }
+            
+            function fallbackCopy(text, btn) {
+                // 创建临时文本区域
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+                document.body.appendChild(textArea);
+                
+                try {
+                    textArea.focus();
+                    textArea.select();
+                    document.execCommand('copy');
+                    showCopied(btn);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                    btn.textContent = '复制失败';
+                    setTimeout(function() {
+                        btn.textContent = '复制';
+                    }, 1500);
+                } finally {
+                    document.body.removeChild(textArea);
                 }
             }
             
-            function performSearch() {
-                const searchTerm = searchInput.value.toLowerCase().trim();
+            // 滚动悬浮按钮功能
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+            const scrollToBottomBtn = document.getElementById('scroll-to-bottom');
+            
+            function updateScrollButtons() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
                 
-                categoryCards.forEach(card => {
-                    const issueItems = card.querySelectorAll('.issue-item');
-                    let hasVisibleItems = false;
-                    
-                    issueItems.forEach(item => {
-                        const title = item.querySelector('.issue-link').textContent.toLowerCase();
-                        if (searchTerm === '' || title.includes(searchTerm)) {
-                            item.classList.remove('hidden');
-                            hasVisibleItems = true;
-                        } else {
-                            item.classList.add('hidden');
-                        }
-                    });
-                    
-                    // 隐藏没有匹配项的分类卡片
-                    if (hasVisibleItems) {
-                        card.classList.remove('hidden');
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                });
+                // 显示/隐藏回到顶部按钮
+                if (scrollTop > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+                
+                // 显示/隐藏滚到底部按钮
+                if (scrollTop + windowHeight < documentHeight - 300) {
+                    scrollToBottomBtn.classList.add('visible');
+                } else {
+                    scrollToBottomBtn.classList.remove('visible');
+                }
             }
             
-            searchInput.addEventListener('input', function() {
-                toggleClearButton();
-                performSearch();
+            // 监听滚动事件
+            window.addEventListener('scroll', updateScrollButtons);
+            
+            // 回到顶部按钮点击事件
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
             
-            clearButton.addEventListener('click', function() {
-                searchInput.value = '';
-                searchInput.focus();
-                toggleClearButton();
-                performSearch();
+            // 滚到底部按钮点击事件
+            scrollToBottomBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: document.documentElement.scrollHeight,
+                    behavior: 'smooth'
+                });
             });
             
-            // 初始化时检查是否需要显示清空按钮
-            toggleClearButton();
+            // 初始化时检查按钮状态
+            updateScrollButtons();
             
             // 主题切换功能
             const themeToggle = document.getElementById('theme-toggle');
@@ -575,10 +992,14 @@
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                 const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
                 
-                if (isDark) {
-                    body.classList.add('dark-mode');
-                } else {
-                    body.classList.remove('dark-mode');
+                // 避免重复设置主题
+                const currentIsDark = body.classList.contains('dark-mode');
+                if (currentIsDark !== isDark) {
+                    if (isDark) {
+                        body.classList.add('dark-mode');
+                    } else {
+                        body.classList.remove('dark-mode');
+                    }
                 }
                 
                 updateWordcloudImage(isDark);
@@ -602,10 +1023,63 @@
             // 监听主题切换按钮点击
             themeToggle.addEventListener('click', toggleTheme);
             
-            // 延迟初始化主题，确保 DOM 完全加载
-            setTimeout(function() {
-                initTheme();
-            }, 100);
+            // 立即初始化主题，避免闪烁
+            initTheme();
+            
+            
+const searchInput = document.getElementById('searchInput');
+const clearButton = document.getElementById('clearButton');
+const categoryCards = document.querySelectorAll('.category-card');
+
+function toggleClearButton() {
+    if (searchInput.value.trim() !== '') {
+        clearButton.style.display = 'flex';
+    } else {
+        clearButton.style.display = 'none';
+    }
+}
+
+function performSearch() {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    
+    categoryCards.forEach(card => {
+        const issueItems = card.querySelectorAll('.issue-item');
+        let hasVisibleItems = false;
+        
+        issueItems.forEach(item => {
+            const title = item.querySelector('.issue-link').textContent.toLowerCase();
+            if (searchTerm === '' || title.includes(searchTerm)) {
+                item.classList.remove('hidden');
+                hasVisibleItems = true;
+            } else {
+                item.classList.add('hidden');
+            }
+        });
+        
+        // 隐藏没有匹配项的分类卡片
+        if (hasVisibleItems) {
+            card.classList.remove('hidden');
+        } else {
+            card.classList.add('hidden');
+        }
+    });
+}
+
+searchInput.addEventListener('input', function() {
+    toggleClearButton();
+    performSearch();
+});
+
+clearButton.addEventListener('click', function() {
+    searchInput.value = '';
+    searchInput.focus();
+    toggleClearButton();
+    performSearch();
+});
+
+// 初始化时检查是否需要显示清空按钮
+toggleClearButton();
+
         });
     </script>
 </body>

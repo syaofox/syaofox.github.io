@@ -296,18 +296,18 @@
             z-index: 1000;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
         
         .scroll-btn {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: rgba(42, 122, 226, 0.9);
             color: white;
             border: none;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -340,44 +340,43 @@
             }
             
             .scroll-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
+                width: 36px;
+                height: 36px;
+                font-size: 14px;
             }
         }
         
         /* 主题切换按钮样式 */
         .theme-toggle {
-            position: fixed;
-            right: 20px;
-            bottom: 90px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
             background: var(--card-bg);
             color: var(--text-color);
             cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
-            z-index: 1000;
+            margin-left: 8px;
+            vertical-align: middle;
         }
         
         .theme-toggle:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: scale(1.05);
         }
         
         .theme-toggle:active {
-            transform: translateY(0);
+            transform: scale(0.95);
         }
         
         .theme-icon {
-            width: 24px;
-            height: 24px;
+            width: 16px;
+            height: 16px;
             fill: currentColor;
             transition: all 0.3s ease;
         }
@@ -397,34 +396,54 @@
         /* 移动端适配主题按钮 */
         @media (max-width: 767px) {
             .theme-toggle {
-                width: 45px;
-                height: 45px;
-                right: 15px;
-                bottom: 75px;
+                width: 20px;
+                height: 20px;
+                margin-left: 6px;
             }
             
             .theme-icon {
-                width: 22px;
-                height: 22px;
+                width: 14px;
+                height: 14px;
             }
         }
         
+        
     </style>
+    <script>
+        // 立即设置主题，避免闪烁
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+            
+            if (isDark) {
+                document.documentElement.classList.add('dark-mode');
+                document.body.classList.add('dark-mode');
+            }
+        })();
+    </script>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <a href="../../index.html" class="back-link">← 返回首页</a>
-            <h1 class="article-title">我是谁~龙骑士4攻略</h1>
-            <div class="article-meta">
-                <div>创建时间：2025-10-03 08:06:48</div>
-                <div>更新时间：2025-10-03 09:39:41</div>
-            </div>
-            <div class="labels"><span class="label">ACG</span></div>
-        </header>
+    
+<div class="container">
+    <header class="header">
+        <a href="../../index.html" class="back-link">← 返回首页</a>
+        <h1 class="article-title">我是谁~龙骑士4攻略</h1>
+        <div class="article-meta">
+            <div>创建时间：2025-10-03 08:06:48</div>
+            <div>更新时间：2025-10-03 09:39:41</div>
+        </div>
         
-        <main class="article-content">
-            <p><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/我是谁-龙骑士4/dr4.jpg" /></p>
+        <div class="labels">
+            
+            <span class="label">ACG</span>
+            
+        </div>
+        
+    </header>
+    
+    <main class="article-content">
+        <p><img alt="" src="https://raw.githubusercontent.com/syaofox/syaofox.github.io/main/assets/images/我是谁-龙骑士4/dr4.jpg" /></p>
 <h2 id="_1">剧情</h2>
 <p>剧情描写魔界四大天王之一的路西佛，受命欲杀死具有神族血统的卡凯尔，于是卡凯尔组队对抗路西佛，但却不幸失败，为改变此一结局，卡凯尔于是回到过去，协助自己消灭路西佛的故事。整个游戏的剧情还算蛮不错的，只是战斗上有点困难，特别是各关卡给的限制回合数并不多，强迫己方非得迅速主动出击不可，使得敌人得以以逸待劳。此外，当卡凯尔回到过去后，所有攻防属性会再重置一次，于是先前的练功所得完全付诸流水，虽然合理，但却让人觉得很不爽。</p>
 <h2 id="_2">人物介绍</h2>
@@ -865,30 +884,30 @@
 <p>以精确的时空设定和感人的对话而成为史上名作的『龙骑士四』虽然创造了游戏史上当年的最高峰，这项冲击是继『美少女梦工厂』这类养成游戏的出现而导致从不玩游戏的女性人口加入市场以来最大的震撼。许多一直认为美少女游戏只是非主流游戏的人，在『龙骑士四』后也不得不承认在任何方面美少女游戏已经超越了一般游戏，成为连小说都无法模仿的新媒体型态。不过这项高度荣耀，却也导致elf之后好几年无法更加超越这部作品，而导致公司的成员纷纷求去。</p>
 <p>ELF在当年靠著同级生、龙骑士、下级生、伊头家系列（遗作、臭作、鬼作三兄弟～）在日本HGAME界打出一片江山，其功劳几乎都落在原画家竹井正树和社长兼编剧蛭田昌人身上，连横田守也是ELF的。</p>
 <p>不过竹井先离开ELF（似乎是不合还是啥的），2000年的时候蛭田昌人也把老板的位置让给下田笃（另一个创社元老阿比留寿浩反而跑到 MINK当老板），於是ELF转型成另一个样子，同级生三与龙骑士五成了（应该已经列名）永远的梦幻。</p>
-        </main>
-        
-        <footer class="footer">
-            <p>本文原始链接：<a href="https://github.com/syaofox/syaofox.github.io/issues/13" class="github-link" target="_blank">GitHub Issue #13</a></p>
-        </footer>
-    </div>
+    </main>
     
-    <!-- 主题切换按钮 -->
-    <button id="theme-toggle" class="theme-toggle" title="切换主题">
-        <svg class="theme-icon sun-icon" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="5"/>
-            <line x1="12" y1="1" x2="12" y2="3"/>
-            <line x1="12" y1="21" x2="12" y2="23"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-            <line x1="1" y1="12" x2="3" y2="12"/>
-            <line x1="21" y1="12" x2="23" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-        </svg>
-        <svg class="theme-icon moon-icon" viewBox="0 0 24 24" style="display: none;">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
-    </button>
+    <footer class="footer">
+        <p>本文原始链接：<a href="https://github.com/syaofox/syaofox.github.io/issues/13" class="github-link" target="_blank">GitHub Issue #13</a>
+        <button id="theme-toggle" class="theme-toggle" title="切换主题">
+            <svg class="theme-icon sun-icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg class="theme-icon moon-icon" viewBox="0 0 24 24" style="display: none;">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+        </button></p>
+    </footer>
+</div>
+
+    
     
     <!-- 滚动悬浮按钮 -->
     <div class="scroll-buttons">
@@ -1045,10 +1064,14 @@
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                 const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
                 
-                if (isDark) {
-                    body.classList.add('dark-mode');
-                } else {
-                    body.classList.remove('dark-mode');
+                // 避免重复设置主题
+                const currentIsDark = body.classList.contains('dark-mode');
+                if (currentIsDark !== isDark) {
+                    if (isDark) {
+                        body.classList.add('dark-mode');
+                    } else {
+                        body.classList.remove('dark-mode');
+                    }
                 }
                 
                 updateWordcloudImage(isDark);
@@ -1072,10 +1095,10 @@
             // 监听主题切换按钮点击
             themeToggle.addEventListener('click', toggleTheme);
             
-            // 延迟初始化主题，确保 DOM 完全加载
-            setTimeout(function() {
-                initTheme();
-            }, 100);
+            // 立即初始化主题，避免闪烁
+            initTheme();
+            
+            
         });
     </script>
 </body>
