@@ -1,4 +1,4 @@
-PyGithub>=1.57
+PyGithub==1.59.1
 wordcloud
 matplotlib
 python-dotenv>=1.0.0

@@ -554,7 +554,7 @@ def bundle_list_by_labels_section(wordcloud_image_url):
         temp = ""
         count = 0
         # 获取所有状态的 issues（包括 open 和 closed）
-        issues_in_label = blog_repo.get_issues(labels=(label.name,), state="all")
+        issues_in_label = blog_repo.get_issues(labels=[str(label.name)], state="all")
         for issue in issues_in_label:
             temp += format_issue(issue)
             count += 1
@@ -600,7 +600,7 @@ def bundle_html_content(wordcloud_image_url):
     label_counts = []
     for label in all_labels:
         count = 0
-        issues_in_label = blog_repo.get_issues(labels=(label.name,), state="all")
+        issues_in_label = blog_repo.get_issues(labels=[str(label.name)], state="all")
         for issue in issues_in_label:
             count += 1
         label_counts.append((label, count))
@@ -610,7 +610,7 @@ def bundle_html_content(wordcloud_image_url):
     
     for label, count in label_counts:
         temp = ""
-        issues_in_label = blog_repo.get_issues(labels=(label.name,), state="all")
+        issues_in_label = blog_repo.get_issues(labels=[str(label.name)], state="all")
         for issue in issues_in_label:
             temp += f"""
             <div class="issue-item">

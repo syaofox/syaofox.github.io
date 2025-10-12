@@ -18,7 +18,7 @@ class WordCloudGenerator(object):
         for label in labels:
             print(label)
             # 获取所有状态的 issues（包括 open 和 closed）
-            issues_in_label = self._repo.get_issues(labels=(label.name,), state="all")
+            issues_in_label = self._repo.get_issues(labels=[str(label.name)], state="all")
             # 实际计算 issues 数量，而不是使用 totalCount
             count = 0
             for issue in issues_in_label:
