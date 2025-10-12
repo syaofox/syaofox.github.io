@@ -8,7 +8,7 @@ import re
 import urllib.parse
 from datetime import datetime
 
-from github import Github
+from github import Github, Auth
 from github.Issue import Issue
 from github.Repository import Repository
 from dotenv import load_dotenv
@@ -490,7 +490,7 @@ def login():
     user_name = github_repo_env[0 : github_repo_env.index("/")]
     blog_name = github_repo_env[github_repo_env.index("/") :]
     password = os.environ.get("GITHUB_TOKEN")
-    user = Github(user_name, password)
+    user = Github(auth=Auth.Token(password))
     blog_repo = user.get_repo(github_repo_env)
     print(blog_repo)
 
@@ -554,7 +554,7 @@ def bundle_list_by_labels_section(wordcloud_image_url):
         temp = ""
         count = 0
         # 获取所有状态的 issues（包括 open 和 closed）
-        issues_in_label = blog_repo.get_issues(labels=(label,), state="all")
+        issues_in_label = blog_repo.get_issues(labels=(label.name,), state="all")
         for issue in issues_in_label:
             temp += format_issue(issue)
             count += 1
@@ -600,7 +600,7 @@ def bundle_html_content(wordcloud_image_url):
     label_counts = []
     for label in all_labels:
         count = 0
-        issues_in_label = blog_repo.get_issues(labels=(label,), state="all")
+        issues_in_label = blog_repo.get_issues(labels=(label.name,), state="all")
         for issue in issues_in_label:
             count += 1
         label_counts.append((label, count))
@@ -610,7 +610,7 @@ def bundle_html_content(wordcloud_image_url):
     
     for label, count in label_counts:
         temp = ""
-        issues_in_label = blog_repo.get_issues(labels=(label,), state="all")
+        issues_in_label = blog_repo.get_issues(labels=(label.name,), state="all")
         for issue in issues_in_label:
             temp += f"""
             <div class="issue-item">
