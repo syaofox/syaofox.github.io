@@ -46,27 +46,13 @@ def get_article_url(issue: Issue):
     return f"articles/{label}/{filename}"
 
 
-def generate_article_html(issue: Issue):
+def generate_article_html(issue: Issue, md_instance):
     """生成单个文章的HTML内容"""
-    # 配置 Markdown 扩展
-    md = markdown.Markdown(
-        extensions=[
-            'extra',
-            'codehilite',
-            'toc',
-            'fenced_code',
-            'tables',
-            'nl2br'
-        ],
-        extension_configs={
-            'codehilite': {
-                'css_class': 'highlight'
-            }
-        }
-    )
+    # 重置 Markdown 实例状态（如果需要）
+    md_instance.reset()
     
     # 转换 Markdown 内容为 HTML
-    content_html = md.convert(issue.body or '')
+    content_html = md_instance.convert(issue.body or '')
     
     # 获取标签信息
     labels_html = ""
@@ -647,7 +633,7 @@ def update_index_html_file(html_content):
         f.close()
 
 
-def bundle_list_by_labels_section(wordcloud_image_url):
+def bundle_list_by_labels_section(wordcloud_image_url, all_labels, all_issues):
     global blog_repo
     global user
     global user_name
@@ -659,15 +645,27 @@ def bundle_list_by_labels_section(wordcloud_image_url):
 </summary>  
 """ % (user_name, blog_name, wordcloud_image_url)
 
-    all_labels = blog_repo.get_labels()
+    # 使用缓存数据按 label 分组 issues
+    label_issues_map = {}
+    for issue in all_issues:
+        if issue.labels:
+            for label in issue.labels:
+                if label.name not in label_issues_map:
+                    label_issues_map[label.name] = []
+                label_issues_map[label.name].append(issue)
+        else:
+            # 没有标签的 issues 归类到 uncategorized
+            if 'uncategorized' not in label_issues_map:
+                label_issues_map['uncategorized'] = []
+            label_issues_map['uncategorized'].append(issue)
+
     for label in all_labels:
         temp = ""
-        count = 0
-        # 获取所有状态的 issues（包括 open 和 closed）
-        issues_in_label = blog_repo.get_issues(labels=[str(label.name)], state="all")
+        issues_in_label = label_issues_map.get(label.name, [])
+        count = len(issues_in_label)
         for issue in issues_in_label:
             temp += format_issue(issue)
-            count += 1
+        
         if count > 0:
             list_by_labels_section += """
 <details open>
@@ -681,7 +679,7 @@ def bundle_list_by_labels_section(wordcloud_image_url):
     return list_by_labels_section
 
 
-def bundle_html_content(wordcloud_image_url):
+def bundle_html_content(wordcloud_image_url, all_labels, all_issues):
     global blog_repo, user_name, blog_name, cur_time
     
     # 构建徽章HTML
@@ -711,33 +709,43 @@ def bundle_html_content(wordcloud_image_url):
         </div>
     </div>"""
     
-    # 构建标签分类HTML
-    issues_html = ""
-    all_labels = blog_repo.get_labels()
+    # 使用缓存数据按 label 分组 issues
+    label_issues_map = {}
+    for issue in all_issues:
+        if issue.labels:
+            for label in issue.labels:
+                if label.name not in label_issues_map:
+                    label_issues_map[label.name] = []
+                label_issues_map[label.name].append(issue)
+        else:
+            # 没有标签的 issues 归类到 uncategorized
+            if 'uncategorized' not in label_issues_map:
+                label_issues_map['uncategorized'] = []
+            label_issues_map['uncategorized'].append(issue)
     
     # 收集所有标签和对应的文章数量，按文章数量排序
     label_counts = []
     for label in all_labels:
-        count = 0
-        issues_in_label = blog_repo.get_issues(labels=[str(label.name)], state="all")
-        for issue in issues_in_label:
-            count += 1
+        label_name = label.name
+        count = len(label_issues_map.get(label_name, []))
         label_counts.append((label, count))
     
     # 按文章数量降序排序
     label_counts.sort(key=lambda x: x[1], reverse=True)
     
+    # 构建标签分类HTML
+    issues_html = ""
     for label, count in label_counts:
-        temp = ""
-        issues_in_label = blog_repo.get_issues(labels=[str(label.name)], state="all")
-        for issue in issues_in_label:
-            temp += f"""
+        if count > 0:
+            temp = ""
+            issues_in_label = label_issues_map.get(label.name, [])
+            for issue in issues_in_label:
+                temp += f"""
             <div class="issue-item">
                 <span class="issue-date">{issue.created_at.strftime("%Y-%m-%d")}</span>
                 <a href="{get_article_url(issue)}" class="issue-link">{issue.title}</a>
             </div>"""
-        
-        if count > 0:
+            
             issues_html += f"""
             <div class="category-card">
                 <div class="category-header">
@@ -1063,6 +1071,22 @@ def bundle_html_content(wordcloud_image_url):
     return html_content
 
 
+def check_rate_limit():
+    """检查 GitHub API 速率限制并处理"""
+    try:
+        rate_limit = user.get_rate_limit()
+        remaining = rate_limit.core.remaining
+        if remaining < 100:
+            reset_time = rate_limit.core.reset
+            wait_seconds = (reset_time - datetime.now()).total_seconds()
+            if wait_seconds > 0:
+                print(f"API 配额不足 (剩余: {remaining})，等待 {wait_seconds:.0f} 秒...")
+                time.sleep(wait_seconds)
+                print("API 配额已重置，继续执行...")
+    except Exception as e:
+        print(f"检查 API 速率限制时出错: {str(e)}")
+
+
 def execute():
     global cur_time
     # common
@@ -1073,6 +1097,32 @@ def execute():
 
     # 1. login & init rope
     login()
+    
+    # 1.1 检查 API 速率限制
+    check_rate_limit()
+
+    # 1.2 一次性获取所有数据（缓存）
+    print("正在获取所有 labels 和 issues...")
+    all_labels = list(blog_repo.get_labels())
+    all_issues = list(blog_repo.get_issues(state="all"))
+    print(f"获取到 {len(all_labels)} 个 labels 和 {len(all_issues)} 个 issues")
+    
+    # 1.3 创建全局 Markdown 实例
+    global_md = markdown.Markdown(
+        extensions=[
+            'extra',
+            'codehilite',
+            'toc',
+            'fenced_code',
+            'tables',
+            'nl2br'
+        ],
+        extension_configs={
+            'codehilite': {
+                'css_class': 'highlight'
+            }
+        }
+    )
 
     # 2. summary section
     summary_section = bundle_summary_section()
@@ -1083,7 +1133,7 @@ def execute():
     print(f"Word cloud generated: {wordcloud_image_url}")
 
     # 4. list by labels section
-    list_by_labels_section = bundle_list_by_labels_section(wordcloud_image_url)
+    list_by_labels_section = bundle_list_by_labels_section(wordcloud_image_url, all_labels, all_issues)
     print(list_by_labels_section)
 
     # 5. generate README.md
@@ -1092,18 +1142,17 @@ def execute():
     print("README.md updated successfully!!!")
 
     # 6. generate index.html
-    html_content = bundle_html_content(wordcloud_image_url)
+    html_content = bundle_html_content(wordcloud_image_url, all_labels, all_issues)
     update_index_html_file(html_content)
     print("index.html generated successfully!!!")
 
     # 7. generate article HTML files
     print("开始生成文章 HTML 文件...")
-    all_issues = blog_repo.get_issues(state="all")
     generated_count = 0
     for issue in all_issues:
         try:
             # 生成文章 HTML
-            article_html = generate_article_html(issue)
+            article_html = generate_article_html(issue, global_md)
             # 保存文章 HTML
             filepath = save_article_html(issue, article_html)
             generated_count += 1
