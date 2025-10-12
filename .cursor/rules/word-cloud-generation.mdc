@@ -1,68 +1,171 @@
 ---
-description: "词云生成模块使用规范"
-globs: word_cloud/*.py
+description: "词云生成模块使用规范（重构后模块化架构）"
+globs: src/generators/wordcloud_generator.py
 ---
 
 # 词云生成规范
 
 ## WordCloudGenerator 类
 
-位于 [word_cloud/__init__.py](mdc:word_cloud/__init__.py) 的词云生成器。
+位于 [src/generators/wordcloud_generator.py](mdc:src/generators/wordcloud_generator.py) 的词云生成器。
 
 ### 基本用法
 
 ```python
-from word_cloud import WordCloudGenerator
+from src.generators.wordcloud_generator import WordCloudGenerator
 
-# 初始化生成器
-generator = WordCloudGenerator(github_repo)
+# 使用缓存的文章数据初始化生成器
+generator = WordCloudGenerator(articles_data)
 
 # 生成词云图片
 image_path = generator.generate()
 ```
 
+### 集成到 BlogGenerator
+
+```python
+from src.main import BlogGenerator
+
+# 初始化博客生成器
+blog_gen = BlogGenerator()
+blog_gen.initialize()
+
+# 词云生成器会自动使用缓存的文章数据
+blog_gen.generate_wordcloud()
+```
+
 ### 核心功能
 
-1. **数据收集** - 从 GitHub 仓库获取 labels 和对应的 issues 数量
+1. **数据收集** - 使用缓存的文章数据，避免重复 API 调用
 2. **频率计算** - 统计每个 label 下的文章数量作为词频
 3. **图片生成** - 使用 WordCloud 库生成词云图片
 4. **文件保存** - 保存到 `assets/wordcloud.png`
 
+### 性能优化
+
+```python
+class WordCloudGenerator:
+    """词云生成器（优化版）"""
+    
+    def __init__(self, articles_data: Dict[str, List[Article]]):
+        """使用缓存的文章数据初始化
+        
+        Args:
+            articles_data: 按 label 分组的文章数据字典
+        """
+        self.articles_data = articles_data
+        self.config = config
+    
+    def generate(self) -> str:
+        """生成词云图片"""
+        try:
+            # 计算词频（使用缓存数据）
+            word_freq = self._calculate_word_frequency()
+            
+            # 生成词云
+            return self._create_wordcloud(word_freq)
+        except Exception as e:
+            logger.error(f"词云生成失败: {e}")
+            return self._get_fallback_image()
+```
+
 ### 中文字体支持
 
 ```python
-# 指定中文字体路径
-wc = WordCloud(
-    font_path='lib/fonts/wqy-microhei.ttc',
-    width=1920,
-    height=400,
-    background_color='white'
-)
+def _create_wordcloud(self, word_freq: Dict[str, int]) -> str:
+    """创建词云图片"""
+    wc = WordCloud(
+        font_path=config.font_path,  # 从配置获取字体路径
+        width=1920,
+        height=400,
+        background_color='white',
+        max_words=100,
+        relative_scaling=0.5
+    ).generate_from_frequencies(word_freq)
 ```
 
-### 错误处理
+### 错误处理和降级
 
-- 检查仓库对象是否为空
-- 验证是否有有效的 label 数据
-- 处理所有频率为零的情况
-- 提供降级方案（返回现有图片路径）
+```python
+def _get_fallback_image(self) -> str:
+    """获取降级图片路径"""
+    fallback_path = config.assets_dir / "wordcloud.png"
+    if fallback_path.exists():
+        logger.info("使用现有词云图片作为降级方案")
+        return str(fallback_path)
+    else:
+        logger.warning("未找到降级图片，返回默认路径")
+        return str(fallback_path)
+```
+
+### 配置管理
+
+```python
+from src.core.config import config
+
+# 字体路径自动从配置获取
+font_path = config.font_path  # lib/fonts/wqy-microhei.ttc
+
+# 图片保存路径
+image_path = config.assets_dir / "wordcloud.png"
+```
 
 ### 图片规格
 
-- 宽度：1920 像素
-- 高度：400 像素
-- 背景色：白色
-- 格式：PNG
-- 存储位置：`assets/wordcloud.png`
+- **宽度**：1920 像素
+- **高度**：400 像素
+- **背景色**：白色
+- **格式**：PNG
+- **存储位置**：`assets/wordcloud.png`
+- **最大词数**：100
+- **相对缩放**：0.5
 
 ## 依赖包
 
 - `wordcloud` - 词云生成核心库
 - `matplotlib` - 图形处理支持
 
+## 运行方式
+
+**重要**：必须使用 uv 运行脚本：
+
+```bash
+# 运行主程序（包含词云生成）
+uv run python main.py
+
+# 或直接运行模块
+uv run python src/main.py
+```
+
 ## 使用注意事项
 
-- 确保字体文件 `wqy-microhei.ttc` 存在于 `lib/fonts/` 目录
-- 生成的图片会覆盖现有文件
-- 建议在生成前检查磁盘空间
-- 支持中文标签显示
+- **字体文件**：确保 `wqy-microhei.ttc` 存在于 `lib/fonts/` 目录
+- **缓存优化**：使用缓存的文章数据，避免重复 API 调用
+- **错误恢复**：生成失败时自动使用现有图片作为降级方案
+- **磁盘空间**：建议在生成前检查磁盘空间
+- **中文支持**：完全支持中文标签显示
+- **性能提升**：相比原版本，减少了 API 调用次数，提高生成速度
+
+## 集成示例
+
+```python
+# 在 BlogGenerator 中的使用
+class BlogGenerator:
+    def __init__(self):
+        self.wordcloud_generator = None
+    
+    def initialize(self):
+        # 初始化词云生成器（稍后设置数据）
+        self.wordcloud_generator = WordCloudGenerator({})
+    
+    def generate_wordcloud(self):
+        """生成词云"""
+        if self.articles:
+            # 按 label 分组文章
+            grouped_articles = self._group_articles_by_label()
+            
+            # 使用分组数据生成词云
+            generator = WordCloudGenerator(grouped_articles)
+            image_path = generator.generate()
+            logger.info(f"词云生成完成: {image_path}")
+```

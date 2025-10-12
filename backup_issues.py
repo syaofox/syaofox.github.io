@@ -132,17 +132,14 @@ def backup_all_issues():
     
     print("开始备份 Issues...")
     
-    # 获取所有状态的 issues
-    all_issues = blog_repo.get_issues(state="all", sort="created", direction="desc")
+    # 获取所有状态的 issues，过滤掉 PR
+    all_issues = [issue for issue in blog_repo.get_issues(state="all", sort="created", direction="desc")
+                  if not issue.pull_request]
     
     total_count = 0
     saved_count = 0
     
     for issue in all_issues:
-        # 跳过 Pull Request（GitHub API 会将 PR 也包含在 issues 中）
-        if issue.pull_request:
-            continue
-            
         total_count += 1
         print(f"处理 Issue #{issue.number}: {issue.title}")
         

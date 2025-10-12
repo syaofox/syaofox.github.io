@@ -1,33 +1,83 @@
 ---
 alwaysApply: true
-description: "项目结构指南 - GitHub Pages 博客自动更新系统"
+description: "项目结构指南 - GitHub Pages 博客自动更新系统（重构后模块化架构）"
 ---
 
 # 项目结构指南
 
-这是一个基于 GitHub Pages 的个人博客项目，使用 Jekyll 构建，并通过 Python 脚本自动更新 README.md 文件。
+这是一个基于 GitHub Pages 的个人博客项目，使用 Jekyll 构建，并通过模块化的 Python 脚本自动更新 README.md 文件。
+
+## 重构后的模块化架构
+
+```
+src/
+├── core/                    # 核心模块
+│   ├── config.py           # 配置管理（环境变量、路径）
+│   └── github_client.py    # GitHub API 交互（单例模式）
+├── models/                  # 数据模型
+│   └── article.py          # 文章数据模型
+├── generators/              # 生成器模块
+│   ├── html_generator.py   # HTML 生成器（Jinja2 模板）
+│   ├── readme_generator.py # README 生成器
+│   └── wordcloud_generator.py # 词云生成器
+├── utils/                   # 工具模块
+│   ├── file_utils.py       # 文件操作工具
+│   └── text_utils.py       # 文本处理工具
+├── templates/               # HTML 模板
+│   ├── base.html           # 基础模板
+│   ├── article.html        # 文章页面模板
+│   └── index.html          # 首页模板
+└── main.py                 # 主程序入口
+```
 
 ## 核心文件
 
-- [main.py](mdc:main.py) - 主程序入口，负责 GitHub API 集成和 README.md 自动更新
+- [main.py](mdc:main.py) - **兼容入口文件**，导入重构后的模块
+- [src/main.py](mdc:src/main.py) - **主程序入口**，BlogGenerator 类
 - [_config.yml](mdc:_config.yml) - Jekyll 配置文件，使用 minima 主题
 - [README.md](mdc:README.md) - 自动生成的博客目录，包含词云和分类文章列表
-- [requirements.txt](mdc:requirements.txt) - Python 依赖包列表
+- [pyproject.toml](mdc:pyproject.toml) - **项目配置和依赖声明**
+- [requirements.txt](mdc:requirements.txt) - Python 依赖包列表（向后兼容）
 
 ## 重要目录
 
 - `assets/` - 静态资源目录，包含图片和词云图片
 - `assets/images/` - 按文章分类存储的图片资源
-- `word_cloud/` - 词云生成模块
+- `articles/` - 生成的 HTML 文章目录（按分类组织）
 - `lib/fonts/` - 中文字体文件，用于词云生成
+- `src/templates/` - **Jinja2 模板文件**，管理 HTML/CSS/JS 代码
+
+## 运行方式
+
+**重要**：项目使用 uv 管理虚拟环境，所有 Python 脚本必须通过 `uv run` 执行：
+
+```bash
+# 推荐运行方式
+uv run python main.py
+
+# 或直接运行重构后的模块
+uv run python src/main.py
+```
 
 ## 工作流程
 
-1. Python 脚本通过 GitHub API 获取仓库的 issues 和 labels
-2. 根据 labels 分类整理文章
-3. 生成词云图片
-4. 自动更新 README.md 文件
-5. GitHub Pages 自动部署更新后的内容
+1. **初始化**：BlogGenerator 初始化各个组件（配置、GitHub 客户端、生成器）
+2. **数据获取**：通过 GitHub API 获取仓库的 issues 和 labels
+3. **文章处理**：根据 labels 分类整理文章，生成 Article 对象
+4. **内容生成**：
+   - 使用 Jinja2 模板生成 HTML 文章页面
+   - 生成词云图片（优化：使用缓存数据减少 API 调用）
+   - 更新 README.md 文件
+5. **文件保存**：保存到相应目录
+6. **部署**：GitHub Pages 自动部署更新后的内容
+
+## 主要改进
+
+- **模块化架构**：从 1512 行单文件重构为清晰的模块结构
+- **模板分离**：700+ 行 HTML/CSS/JS 提取到 Jinja2 模板
+- **配置集中**：统一在 `src/core/config.py` 管理
+- **错误处理**：完善的异常捕获和日志记录
+- **性能优化**：减少 API 调用，批量处理数据
 
 ## 注意事项
 
@@ -35,3 +85,4 @@ description: "项目结构指南 - GitHub Pages 博客自动更新系统"
 - 使用 labels 对文章进行分类
 - 词云图片自动生成并存储在 `assets/wordcloud.png`
 - 支持中文字体渲染
+- **必须使用 `uv run` 运行脚本**

@@ -1,6 +1,6 @@
 ---
 globs: *.py
-description: "Python 编码规范和最佳实践"
+description: "Python 编码规范和最佳实践（重构后模块化架构）"
 ---
 
 # Python 编码规范
@@ -12,61 +12,240 @@ description: "Python 编码规范和最佳实践"
 - 行长度限制为 88 字符（Black 格式）
 - 使用中文注释和文档字符串
 
+## 模块化架构规范
+
+### 模块职责分离
+
+- **core/** - 核心功能：配置管理、GitHub 客户端
+- **models/** - 数据模型：定义数据结构和方法
+- **generators/** - 生成器：HTML、README、词云生成
+- **utils/** - 工具函数：文件操作、文本处理
+- **templates/** - 模板文件：Jinja2 HTML 模板
+
+### 类设计原则
+
+```python
+# 数据模型类
+class Article:
+    """文章数据模型"""
+    
+    def __init__(self, title: str, url: str, created_at: datetime, content: str):
+        self.title = title
+        self.url = url
+        self.created_at = created_at
+        self.content = content
+    
+    @classmethod
+    def from_issue(cls, issue) -> 'Article':
+        """从 GitHub Issue 创建 Article 对象"""
+        return cls(
+            title=issue.title,
+            url=issue.html_url,
+            created_at=issue.created_at,
+            content=issue.body or ""
+        )
+
+# 生成器类
+class HTMLGenerator:
+    """HTML 生成器"""
+    
+    def __init__(self, templates_dir: Path):
+        self.env = Environment(loader=FileSystemLoader(templates_dir))
+    
+    def generate_article_html(self, article: Article) -> str:
+        """生成文章 HTML"""
+        template = self.env.get_template('article.html')
+        return template.render(article=article)
+```
+
 ## 导入规范
 
 - 导入顺序：标准库 → 第三方库 → 本地模块
-- 使用绝对导入路径
-- 每个导入语句独占一行
+- 使用相对导入（在模块内部）
+- 使用绝对导入（跨模块调用）
 
 ```python
+# 标准库导入
 import os
 import time
+from pathlib import Path
+from typing import List, Optional
 
+# 第三方库导入
 from github import Github
-from github.Issue import Issue
+from jinja2 import Environment, FileSystemLoader
 
-from word_cloud import WordCloudGenerator
+# 本地模块导入
+from .core.config import config
+from .models.article import Article
 ```
 
-## 变量命名
+## Jinja2 模板使用规范
 
-- 使用下划线命名法（snake_case）
-- 全局变量使用小写字母
-- 常量使用大写字母
-- 类名使用大驼峰命名法（PascalCase）
+### 模板继承
 
-## 函数规范
+```html
+<!-- base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}默认标题{% endblock %}</title>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    {% block content %}{% endblock %}
+</body>
+</html>
 
-- 函数名使用动词，清晰表达功能
-- 添加类型注解（Type Hints）
-- 使用中文文档字符串说明函数用途
-- 函数参数使用有意义的名称
+<!-- article.html -->
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+<article>
+    <h1>{{ article.title }}</h1>
+    <p class="date">{{ article.created_at.strftime('%Y-%m-%d') }}</p>
+    <div class="content">{{ article.content | safe }}</div>
+</article>
+{% endblock %}
+```
+
+### 模板渲染
 
 ```python
-def format_issue(issue: Issue) -> str:
-    """格式化单个 issue 为 markdown 格式
-    
-    Args:
-        issue: GitHub Issue 对象
-        
-    Returns:
-        格式化后的 markdown 字符串
-    """
-    return "- %s [%s](%s) \n" % (
-        issue.created_at.strftime("%Y-%m-%d"),
-        issue.title,
-        issue.html_url,
-    )
+from jinja2 import Environment, FileSystemLoader
+
+# 初始化模板环境
+env = Environment(loader=FileSystemLoader('src/templates'))
+
+# 渲染模板
+template = env.get_template('article.html')
+html_content = template.render(article=article)
 ```
 
-## 错误处理
+## 类型注解规范
 
-- 使用 try-except 处理可能的异常
-- 提供有意义的错误信息
-- 记录错误日志便于调试
+### 函数类型注解
 
-## GitHub API 集成
+```python
+def process_articles(articles: List[Article]) -> Dict[str, List[Article]]:
+    """按分类处理文章列表
+    
+    Args:
+        articles: 文章列表
+        
+    Returns:
+        按分类分组的文章字典
+    """
+    grouped = {}
+    for article in articles:
+        # 处理逻辑
+        pass
+    return grouped
+```
 
-- 使用环境变量存储敏感信息（GITHUB_TOKEN）
-- 合理处理 API 限制和网络异常
-- 添加适当的延时避免触发速率限制
+### 类属性类型注解
+
+```python
+class BlogGenerator:
+    """博客生成器主类"""
+    
+    def __init__(self):
+        self.articles: List[Article] = []
+        self.html_generator: Optional[HTMLGenerator] = None
+        self.readme_generator: Optional[ReadmeGenerator] = None
+```
+
+## 日志记录规范
+
+```python
+import logging
+
+# 配置日志
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+class BlogGenerator:
+    def initialize(self) -> None:
+        """初始化各个组件"""
+        try:
+            logger.info("博客生成器初始化开始")
+            # 初始化逻辑
+            logger.info("博客生成器初始化完成")
+        except Exception as e:
+            logger.error(f"初始化失败: {e}")
+            raise
+```
+
+## 错误处理规范
+
+### 异常处理模式
+
+```python
+def generate_article_html(self, article: Article) -> Optional[str]:
+    """生成文章 HTML"""
+    try:
+        template = self.env.get_template('article.html')
+        return template.render(article=article)
+    except Exception as e:
+        logger.error(f"生成文章 HTML 失败: {article.title}, 错误: {e}")
+        return None
+```
+
+### 资源管理
+
+```python
+def process_with_cleanup():
+    """带资源清理的处理函数"""
+    github_client = None
+    try:
+        github_client = GitHubClient()
+        # 处理逻辑
+    finally:
+        if github_client:
+            github_client.close()
+```
+
+## 运行方式规范
+
+**重要**：所有 Python 脚本必须通过 `uv run` 执行：
+
+```bash
+# 运行主程序
+uv run python main.py
+
+# 运行测试
+uv run pytest
+
+# 代码格式化
+uv run black src/
+
+# 代码检查
+uv run flake8 src/
+```
+
+## 配置管理规范
+
+```python
+from src.core.config import config
+
+# 使用配置对象
+repo_name = config.github_repository
+font_path = config.font_path
+
+# 确保目录存在
+config.ensure_directories()
+```
+
+## 最佳实践
+
+- **单一职责**：每个模块和类只负责一个功能
+- **依赖注入**：通过构造函数注入依赖
+- **错误恢复**：单个操作失败不影响整体流程
+- **资源管理**：正确关闭连接和清理资源
+- **类型安全**：使用类型注解提高代码可读性
+- **日志记录**：记录关键操作和错误信息

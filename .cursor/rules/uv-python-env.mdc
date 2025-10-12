@@ -31,6 +31,27 @@ source .venv/bin/activate  # Linux/macOS
 uv run python main.py
 ```
 
+### 重构后的项目运行
+
+**重要**：项目已重构为模块化架构，必须使用 `uv run` 运行：
+
+```bash
+# 运行主程序（推荐）
+uv run python main.py
+
+# 或直接运行重构后的模块
+uv run python src/main.py
+
+# 运行测试
+uv run pytest
+
+# 代码格式化
+uv run black src/
+
+# 代码检查
+uv run flake8 src/
+```
+
 ### 依赖管理
 
 ```bash
@@ -60,6 +81,7 @@ uv export --format requirements-txt > requirements.txt
 - `python-dotenv>=1.0.0` - 环境变量管理
 - `markdown>=3.4.0` - Markdown 处理
 - `pymdown-extensions>=9.0` - Markdown 扩展
+- `jinja2>=3.0.0` - **模板引擎**（重构后新增）
 
 ### 开发依赖
 开发工具在 `[tool.uv]` 部分配置：
@@ -71,8 +93,9 @@ uv export --format requirements-txt > requirements.txt
 
 ### 1. 环境隔离
 - 始终在虚拟环境中运行项目
-- 使用 `uv run` 命令避免手动激活环境
+- **强制使用 `uv run` 命令**避免手动激活环境
 - 不要将 `.venv/` 目录提交到版本控制
+- **重构后项目必须通过 `uv run` 运行**
 
 ### 2. 依赖锁定
 - [uv.lock](mdc:uv.lock) 确保依赖版本一致性
@@ -119,6 +142,13 @@ uv export                 # 导出依赖列表
 uv init                   # 初始化新项目
 uv tree                   # 显示依赖树
 uv show                   # 显示包信息
+
+# 重构后项目运行（重要）
+uv run python main.py     # 运行主程序
+uv run python src/main.py # 直接运行模块
+uv run pytest            # 运行测试
+uv run black src/         # 代码格式化
+uv run flake8 src/        # 代码检查
 ```
 
 ## 故障排除

@@ -1,7 +1,7 @@
 
 <p align='center'>
     <img src="https://badgen.net/github/issues/syaofoxsyaofox.github.io"/>
-    <img src="https://badgen.net/badge/last-commit/2025-10-12 16:11:21"/>
+    <img src="https://badgen.net/badge/last-commit/2025-10-12 16:24:09"/>
     <img src="https://badgen.net/github/forks/syaofoxsyaofox.github.io"/>
     <img src="https://badgen.net/github/stars/syaofoxsyaofox.github.io"/>
     <img src="https://badgen.net/github/watchers/syaofoxsyaofox.github.io"/>
@@ -56,14 +56,6 @@
 
 - 2025-10-03 [导出本地 Docker 镜像并在另一台机器上导入](https://github.com/syaofox/syaofox.github.io/issues/9) 
 - 2025-10-03 [docker构建项目，并推送到dockerhub](https://github.com/syaofox/syaofox.github.io/issues/8) 
-
-
-</details>
-
-<details open>
-<summary>uncategorized	[1篇]</summary>
-
-- 2022-01-26 [Eureka](https://github.com/syaofox/syaofox.github.io/pull/1) 
 
 
 </details>

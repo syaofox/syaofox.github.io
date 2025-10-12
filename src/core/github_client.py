@@ -120,11 +120,24 @@ class GitHubClient:
             raise
     
     def get_all_issues(self) -> List[Issue]:
-        """获取所有 issues（包括 open 和 closed）"""
+        """获取所有 open 状态的 issues（不包括 PR）"""
         try:
             self.check_rate_limit()
-            issues = list(self.repo.get_issues(state="all"))
-            logger.info(f"获取到 {len(issues)} 个 issues")
+            issues = [issue for issue in self.repo.get_issues(state="open") 
+                      if not issue.pull_request]
+            logger.info(f"获取到 {len(issues)} 个 open issues")
+            return issues
+        except Exception as e:
+            logger.error(f"获取 issues 失败: {str(e)}")
+            raise
+    
+    def get_all_issues_for_backup(self) -> List[Issue]:
+        """获取所有状态的 issues（不包括 PR），用于备份"""
+        try:
+            self.check_rate_limit()
+            issues = [issue for issue in self.repo.get_issues(state="all") 
+                      if not issue.pull_request]
+            logger.info(f"获取到 {len(issues)} 个 issues（所有状态）")
             return issues
         except Exception as e:
             logger.error(f"获取 issues 失败: {str(e)}")
