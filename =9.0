@@ -1,8 +1,0 @@
-Collecting pymdown-extensions
-  Downloading pymdown_extensions-10.16.1-py3-none-any.whl.metadata (3.1 kB)
-Requirement already satisfied: markdown>=3.6 in /home/runner/.local/lib/python3.12/site-packages (from pymdown-extensions) (3.9)
-Requirement already satisfied: pyyaml in /usr/lib/python3/dist-packages (from pymdown-extensions) (6.0.1)
-Downloading pymdown_extensions-10.16.1-py3-none-any.whl (266 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 266.2/266.2 kB 12.2 MB/s eta 0:00:00
-Installing collected packages: pymdown-extensions
-Successfully installed pymdown-extensions-10.16.1

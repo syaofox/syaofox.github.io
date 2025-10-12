@@ -13,13 +13,8 @@ jobs:
     - uses: actions/checkout@master
     - name: install dependencies
       run: |
-        pip3 install setuptools --user
-        pip3 install PyGithub==1.57 --user
-        pip3 install wordcloud --user
-        pip3 install matplotlib --user
-        pip3 install markdown>=3.4.0 --user
-        pip3 install pymdown-extensions>=9.0 --user
-        pip3 install python-dotenv --user
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
     - name: run python script
       env:
         GITHUB_TOKEN: ${{ secrets.BLOG_SECRET }}
