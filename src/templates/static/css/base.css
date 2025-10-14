@@ -287,8 +287,9 @@ body {
     opacity: 1;
 }
 
+/* 有目录时，限制内容宽度以提高可读性 */
 @media (min-width: 1024px) {
-    .article-content {
+    .article-layout:has(.toc-sidebar) .article-content {
         max-width: 700px;
         margin: 0 auto;
     }
@@ -417,9 +418,14 @@ body.dark-mode .theme-icon.moon-icon {
 .article-layout {
     display: flex;
     gap: 30px;
-    max-width: 1200px;
+    max-width: 1200px; /* 有目录时的宽度 */
     margin: 0 auto;
     padding: 30px;
+}
+
+/* 当没有目录侧边栏时，使用与首页一致的宽度 */
+.article-layout:not(:has(.toc-sidebar)) {
+    max-width: 800px;
 }
 
 .article-main {
@@ -428,6 +434,11 @@ body.dark-mode .theme-icon.moon-icon {
     background: var(--card-bg);
     padding: 30px;
     transition: background-color 0.3s ease;
+}
+
+/* 没有目录时，主内容区占满整个容器 */
+.article-layout:not(:has(.toc-sidebar)) .article-main {
+    max-width: 100%;
 }
 
 .toc-sidebar {
