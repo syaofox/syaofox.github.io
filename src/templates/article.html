@@ -48,7 +48,10 @@
     
     {% if toc_items %}
     <aside class="toc-sidebar">
-        <h3 class="toc-title">目录</h3>
+        <h3 class="toc-title">
+            目录
+            <span class="toc-toggle">▼</span>
+        </h3>
         <ul class="toc-list">
             {% for item in toc_items %}
             <li class="toc-item level-{{ item.level }}">

@@ -486,6 +486,37 @@ body.dark-mode .theme-icon.moon-icon {
     .article-main {
         padding: 20px;
     }
+    
+    /* 移动端目录折叠功能 */
+    .toc-title {
+        cursor: pointer;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+    }
+    
+    .toc-toggle {
+        font-size: 14px;
+        color: var(--muted-color);
+        transition: transform 0.3s ease;
+        margin-left: 8px;
+    }
+    
+    .toc-list {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    
+    .toc-sidebar.expanded .toc-list {
+        max-height: 500px;
+    }
+    
+    .toc-sidebar.expanded .toc-toggle {
+        transform: rotate(180deg);
+    }
 }
 
 @media (max-width: 767px) {
