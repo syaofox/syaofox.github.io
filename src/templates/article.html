@@ -9,16 +9,14 @@
             <a href="../../index.html" class="back-link">← 返回首页</a>
             <h1 class="article-title">{{ article.title }}</h1>
             <div class="article-meta">
-                <div>创建时间：{{ article.created_at }}</div>
-                <div>更新时间：{{ article.updated_at }}</div>
+                <span>创建时间：{{ article.created_at }}</span>
+                <span class="separator">|</span>
+                <span>更新时间：{{ article.updated_at }}</span>
+                {% if article.labels %}
+                <span class="separator">|</span>
+                <span>分类：{% for label in article.labels %}{{ label }}{% if not loop.last %}, {% endif %}{% endfor %}</span>
+                {% endif %}
             </div>
-            {% if article.labels %}
-            <div class="labels">
-                {% for label in article.labels %}
-                <span class="label">{{ label }}</span>
-                {% endfor %}
-            </div>
-            {% endif %}
         </header>
         
         <div class="article-content">

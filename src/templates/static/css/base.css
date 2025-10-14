@@ -77,6 +77,20 @@ body {
     color: var(--muted-color);
     font-size: 0.9em;
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.article-meta .separator {
+    color: var(--muted-color);
+    opacity: 0.6;
+    margin: 0 4px;
+}
+
+.article-meta span {
+    white-space: nowrap;
 }
 
 .labels {
@@ -223,6 +237,15 @@ body {
     
     .article-content {
         font-size: 0.9em;
+    }
+    
+    .article-meta {
+        font-size: 0.85em;
+        gap: 6px;
+    }
+    
+    .article-meta .separator {
+        margin: 0 2px;
     }
 }
 
