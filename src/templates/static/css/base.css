@@ -1,11 +1,11 @@
 :root {
-    --bg-color: #fdfdfd;
-    --text-color: #111;
+    --bg-color: #f5f5f5;
+    --text-color: #333333;
     --border-color: #e8e8e8;
     --card-bg: #ffffff;
-    --card-header-bg: #f7f7f7;
-    --link-color: #2a7ae2;
-    --muted-color: #828282;
+    --card-header-bg: #fafafa;
+    --link-color: #1890ff;
+    --muted-color: #999999;
     --search-bg: #ffffff;
     --search-border: #e8e8e8;
 }
@@ -32,25 +32,24 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
-    line-height: 1.5;
+    font-size: 14px;
+    line-height: 1.8;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 30px;
     background: var(--card-bg);
-    border: 1px solid var(--border-color);
     margin-top: 20px;
     margin-bottom: 20px;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .header {
     margin-bottom: 30px;
     padding-bottom: 20px;
-    border-bottom: 1px solid var(--border-color);
     transition: border-color 0.3s ease;
 }
 
@@ -68,7 +67,7 @@ body {
 }
 
 .article-title {
-    font-size: 2em;
+    font-size: 1.8em;
     font-weight: 700;
     color: var(--text-color);
     margin-bottom: 15px;
@@ -89,10 +88,9 @@ body {
     background: var(--card-header-bg);
     color: var(--text-color);
     padding: 4px 8px;
-    border: 1px solid var(--border-color);
     font-size: 0.8em;
     margin-right: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .article-content {
@@ -112,17 +110,17 @@ body {
 }
 
 .article-content h1 {
-    font-size: 1.8em;
+    font-size: 1.6em;
     font-weight: 700;
 }
 
 .article-content h2 {
-    font-size: 1.5em;
+    font-size: 1.4em;
     font-weight: 700;
 }
 
 .article-content h3 {
-    font-size: 1.3em;
+    font-size: 1.2em;
     font-weight: 700;
 }
 
@@ -133,41 +131,36 @@ body {
 .article-content img {
     max-width: 100%;
     height: auto;
-    border: 1px solid var(--border-color);
     margin: 15px 0;
-    transition: border-color 0.3s ease;
 }
 
 .article-content pre {
     background: var(--card-header-bg);
-    border: 1px solid var(--border-color);
     padding: 15px;
     overflow-x: auto;
     margin: 15px 0;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .article-content code {
     background: var(--card-header-bg);
     padding: 2px 6px;
-    border: 1px solid var(--border-color);
     font-family: 'Courier New', monospace;
     font-size: 0.9em;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .article-content pre code {
     background: none;
-    border: none;
     padding: 0;
 }
 
 .article-content blockquote {
-    border-left: 4px solid var(--border-color);
+    border-left: 4px solid var(--link-color);
     margin: 15px 0;
     padding: 10px 20px;
     background: var(--card-header-bg);
-    transition: background-color 0.3s ease, border-left-color 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .article-content table {
@@ -178,10 +171,8 @@ body {
 
 .article-content th,
 .article-content td {
-    border: 1px solid var(--border-color);
     padding: 10px;
     text-align: left;
-    transition: border-color 0.3s ease;
 }
 
 .article-content th {
@@ -203,11 +194,10 @@ body {
 .footer {
     margin-top: 40px;
     padding-top: 20px;
-    border-top: 1px solid var(--border-color);
     text-align: center;
     color: var(--muted-color);
     font-size: 0.9em;
-    transition: border-color 0.3s ease, color 0.3s ease;
+    transition: color 0.3s ease;
 }
 
 .github-link {
@@ -397,5 +387,117 @@ body.dark-mode .theme-icon.moon-icon {
     .theme-icon {
         width: 14px;
         height: 14px;
+    }
+}
+
+/* 文章布局样式 */
+.article-layout {
+    display: flex;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.article-main {
+    flex: 1;
+    min-width: 0;
+    background: var(--card-bg);
+    padding: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.toc-sidebar {
+    width: 280px;
+    position: sticky;
+    top: 30px;
+    height: fit-content;
+    background: var(--card-bg);
+    padding: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.toc-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-item {
+    margin: 0;
+}
+
+.toc-item a {
+    display: block;
+    color: var(--muted-color);
+    text-decoration: none;
+    padding: 4px 0;
+    font-size: 13px;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+    border-left: 2px solid transparent;
+    padding-left: 8px;
+    margin-left: 0;
+}
+
+.toc-item a:hover {
+    color: var(--link-color);
+}
+
+.toc-item.active a {
+    color: var(--link-color);
+    border-left-color: var(--link-color);
+}
+
+.toc-item.level-2 a {
+    margin-left: 12px;
+}
+
+.toc-item.level-3 a {
+    margin-left: 24px;
+}
+
+.toc-item.level-4 a {
+    margin-left: 36px;
+}
+
+/* 响应式设计 */
+@media (max-width: 1023px) {
+    .article-layout {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .toc-sidebar {
+        width: 100%;
+        position: static;
+        order: -1;
+        margin-bottom: 20px;
+    }
+    
+    .article-main {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .toc-sidebar {
+        padding: 15px;
+    }
+    
+    .article-main {
+        padding: 15px;
+    }
+    
+    .toc-item a {
+        font-size: 12px;
     }
 }

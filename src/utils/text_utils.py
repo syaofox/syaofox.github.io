@@ -31,6 +31,12 @@ class MarkdownProcessor:
             extension_configs={
                 'codehilite': {
                     'css_class': 'highlight'
+                },
+                'toc': {
+                    'anchorlink': True,
+                    'permalink': False,
+                    'baselevel': 1,
+                    'slugify': self._slugify
                 }
             }
         )
@@ -104,6 +110,70 @@ class MarkdownProcessor:
         except Exception as e:
             logger.error(f"Markdown 转换失败: {str(e)}")
             raise
+    
+    def extract_toc(self, markdown_text: str) -> list:
+        """
+        提取文章的目录结构
+        
+        Args:
+            markdown_text: Markdown 文本
+            
+        Returns:
+            目录列表，每个元素包含 level, title, anchor
+        """
+        try:
+            import re
+            
+            toc_items = []
+            lines = markdown_text.split('\n')
+            
+            for line in lines:
+                # 匹配标题行 (# ## ### 等)
+                match = re.match(r'^(#{1,6})\s+(.+)$', line.strip())
+                if match:
+                    level = len(match.group(1))  # 标题级别
+                    title = match.group(2).strip()  # 标题文本
+                    
+                    # 生成锚点ID（与markdown-toc扩展保持一致）
+                    # 使用与 markdown-toc 相同的 slugify 函数
+                    anchor = self._slugify(title)
+                    
+                    toc_items.append({
+                        'level': level,
+                        'title': title,
+                        'anchor': anchor
+                    })
+            
+            logger.debug(f"提取到 {len(toc_items)} 个目录项")
+            return toc_items
+            
+        except Exception as e:
+            logger.error(f"提取目录失败: {str(e)}")
+            return []
+    
+    def _slugify(self, text: str, separator: str = '-') -> str:
+        """
+        生成与 markdown-toc 扩展一致的锚点ID
+        与 markdown-toc 的默认 slugify 函数保持一致
+        """
+        import re
+        
+        # 转换为小写
+        text = text.lower()
+        
+        # 替换空格为分隔符
+        text = text.replace(' ', separator)
+        
+        # 移除特殊字符，只保留字母、数字和连字符
+        text = re.sub(r'[^\w\-]', '', text)
+        
+        # 移除连续的分隔符
+        text = re.sub(r'-+', separator, text)
+        
+        # 移除首尾分隔符
+        text = text.strip(separator)
+        
+        return text
     
     def close(self) -> None:
         """清理资源"""

@@ -71,9 +71,13 @@ class HTMLGenerator:
                 article_category=article.primary_label
             )
             
+            # 提取目录结构
+            toc_items = self._markdown_processor.extract_toc(article.content)
+            
             # 准备模板数据
             template_data = {
                 'article': article.to_dict(),
+                'toc_items': toc_items,
                 'user_name': github_client.user_name,
                 'blog_name': github_client.blog_name,
                 'css_base_path': '../../'  # html/articles/分类/ -> html/
@@ -86,7 +90,7 @@ class HTMLGenerator:
             template = self._jinja_env.get_template('article.html')
             html = template.render(**template_data)
             
-            logger.debug(f"文章 HTML 生成成功: {article.title}")
+            logger.debug(f"文章 HTML 生成成功: {article.title}, 目录项: {len(toc_items)}")
             return html
             
         except Exception as e:

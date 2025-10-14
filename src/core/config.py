@@ -37,7 +37,6 @@ class Config:
         self.project_root = Path(__file__).parent.parent.parent
         self.templates_dir = self.project_root / "src" / "templates"
         self.assets_dir = self.project_root / "assets"
-        self.articles_dir = self.project_root / "articles"
         self.fonts_dir = self.project_root / "lib" / "fonts"
         
         # HTML 输出目录配置
@@ -85,7 +84,6 @@ class Config:
     def ensure_directories(self) -> None:
         """确保必要的目录存在"""
         directories = [
-            self.articles_dir,
             self.assets_dir,
             self.html_dir,
             self.html_articles_dir,
