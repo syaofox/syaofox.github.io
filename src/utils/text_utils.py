@@ -33,7 +33,7 @@ class MarkdownProcessor:
                     'css_class': 'highlight'
                 },
                 'toc': {
-                    'anchorlink': True,
+                    'anchorlink': False,
                     'permalink': False,
                     'baselevel': 1,
                     'slugify': self._slugify
