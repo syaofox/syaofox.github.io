@@ -136,13 +136,20 @@ class HTMLGenerator:
             url_map = {}
             success_count = 0
             
-            for i, url in enumerate(image_urls, 1):
+            for url in image_urls:
                 try:
+                    # 从 URL 中提取 UUID
+                    uuid = processor._extract_uuid_from_url(url)
+                    if not uuid:
+                        logger.warning(f"无法从 URL 中提取 UUID: {url}")
+                        url_map[url] = url
+                        continue
+                    
                     # 获取文件扩展名
                     extension = processor._get_image_extension(url)
                     
-                    # 生成文件名
-                    filename = f"image-{i}{extension}"
+                    # 生成文件名：使用 UUID
+                    filename = f"{uuid}{extension}"
                     save_path = image_dir / filename
                     
                     # 下载图片

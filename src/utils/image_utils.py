@@ -32,6 +32,26 @@ class ImageProcessor:
         )
         logger.debug("图片处理器初始化完成")
     
+    def _extract_uuid_from_url(self, url: str) -> str:
+        """
+        从 GitHub 附件 URL 中提取 UUID
+        
+        Args:
+            url: GitHub 附件 URL
+            
+        Returns:
+            UUID 字符串，如果提取失败返回空字符串
+        """
+        try:
+            # GitHub 附件 URL 格式: https://github.com/user-attachments/assets/{uuid}
+            match = re.search(r'/assets/([a-f0-9\-]+)', url)
+            if match:
+                return match.group(1)
+            return ""
+        except Exception as e:
+            logger.warning(f"提取 UUID 失败 {url}: {str(e)}")
+            return ""
+    
     def extract_github_image_urls(self, content: str) -> List[str]:
         """
         从内容中提取 GitHub 附件图片 URL（支持 Markdown 和 HTML 格式）
@@ -126,16 +146,20 @@ class ImageProcessor:
             url_map = {}
             success_count = 0
             
-            for i, url in enumerate(image_urls, 1):
+            for url in image_urls:
                 try:
+                    # 从 URL 中提取 UUID
+                    uuid = self._extract_uuid_from_url(url)
+                    if not uuid:
+                        logger.warning(f"无法从 URL 中提取 UUID: {url}")
+                        url_map[url] = url
+                        continue
+                    
                     # 获取文件扩展名
-                    parsed_url = urlparse(url)
-                    # GitHub 附件通常没有扩展名，我们根据内容类型判断
-                    # 这里先尝试从 URL 获取，如果没有则使用默认扩展名
                     extension = self._get_image_extension(url)
                     
-                    # 生成文件名
-                    filename = f"image-{i}{extension}"
+                    # 生成文件名：使用 UUID
+                    filename = f"{uuid}{extension}"
                     save_path = image_dir / filename
                     
                     # 下载图片
