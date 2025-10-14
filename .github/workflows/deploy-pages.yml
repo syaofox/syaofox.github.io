@@ -32,6 +32,30 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.BLOG_SECRET }}
         run: uv run python main.py
       
+      - name: Commit changes to main
+        env:
+          USERNAME: ${{ secrets.GIT_USERNAME }}
+          EMAIL: ${{ secrets.GIT_EMAIL }}
+          GITHUB_TOKEN: ${{ secrets.BLOG_SECRET }}
+        run: |
+          # 配置 git 信息
+          git config --global user.name $USERNAME
+          git config --global user.email $EMAIL
+          
+          # 添加所有更改的文件
+          git add README.md assets/
+          
+          # 检查是否有更改需要提交
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Auto update: $(date '+%Y-%m-%d %H:%M:%S')"
+            
+            # 推送更改到 main 分支
+            git push https://$USERNAME:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git main
+            echo "Changes pushed to main branch"
+          fi
+      
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:

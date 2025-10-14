@@ -44,7 +44,7 @@ jobs:
           publish_branch: gh-pages
           force_orphan: true
       
-      - name: Commit README changes to main
+      - name: Commit changes to main
         env:
           USERNAME: ${{ secrets.GIT_USERNAME }}
           EMAIL: ${{ secrets.GIT_EMAIL }}
@@ -54,16 +54,18 @@ jobs:
           git config --global user.name $USERNAME
           git config --global user.email $EMAIL
           
-          # 检查 README.md 是否有更改
-          if git diff --quiet README.md; then
-            echo "No README changes to commit"
+          # 添加所有更改的文件
+          git add README.md assets/
+          
+          # 检查是否有更改需要提交
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
           else
-            git add README.md
             git commit -m "${{ inputs.message }}"
             
-            # 推送 README 更改到 main 分支
+            # 推送更改到 main 分支
             git push https://$USERNAME:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git main
-            echo "README changes pushed to main branch"
+            echo "Changes pushed to main branch"
           fi
       
       - name: Done
