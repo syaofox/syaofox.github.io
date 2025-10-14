@@ -11,10 +11,16 @@ jobs:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
       cancel-in-progress: true
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
     
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       
       - name: Install uv
         uses: astral-sh/setup-uv@v4
@@ -42,16 +48,26 @@ jobs:
           git config --global user.name $USERNAME
           git config --global user.email $EMAIL
           
+          # 显示当前状态
+          echo "Checking for changes..."
+          git status
+          
           # 添加所有更改的文件
           git add README.md assets/
+          
+          # 显示暂存的文件
+          echo "Staged files:"
+          git diff --staged --name-only
           
           # 检查是否有更改需要提交
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
+            echo "Committing changes..."
             git commit -m "Auto update: $(date '+%Y-%m-%d %H:%M:%S')"
             
             # 推送更改到 main 分支
+            echo "Pushing to main branch..."
             git push https://$USERNAME:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git main
             echo "Changes pushed to main branch"
           fi

@@ -104,6 +104,7 @@ class ImageProcessor:
             
             # 确保图片目录存在
             image_dir = article.local_images_dir
+            logger.info(f"图片保存目录: {image_dir.absolute()}")
             image_dir.mkdir(parents=True, exist_ok=True)
             
             url_map = {}
@@ -126,6 +127,7 @@ class ImageProcessor:
                         # 生成相对路径（从 html/articles/{分类}/ 到图片）
                         relative_path = f"../../../assets/images/{article.image_dir_name}/{filename}"
                         url_map[url] = relative_path
+                        logger.info(f"图片下载成功: {url} -> {save_path.absolute()}")
                         success_count += 1
                     else:
                         # 下载失败，保留原始 URL

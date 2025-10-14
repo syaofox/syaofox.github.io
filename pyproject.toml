@@ -24,9 +24,9 @@ Issues = "https://github.com/syaofox/syaofox.github.io/issues"
 
 [tool.uv]
 dev-dependencies = [
-    "pytest>=6.0",
-    "black>=22.0",
-    "flake8>=4.0",
+    "pytest",
+    "black", 
+    "flake8"
 ]
 
 
