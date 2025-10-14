@@ -22,27 +22,43 @@ class ImageProcessor:
     
     def __init__(self):
         """初始化图片处理器"""
-        # GitHub 附件 URL 正则模式
-        self._github_attachment_pattern = re.compile(
+        # GitHub 附件 URL 正则模式 - Markdown 格式
+        self._github_attachment_markdown_pattern = re.compile(
             r'!\[([^\]]*)\]\((https://github\.com/user-attachments/assets/[a-f0-9\-]+)\)'
+        )
+        # GitHub 附件 URL 正则模式 - HTML 格式
+        self._github_attachment_html_pattern = re.compile(
+            r'<img[^>]*src="(https://github\.com/user-attachments/assets/[a-f0-9\-]+)"[^>]*>'
         )
         logger.debug("图片处理器初始化完成")
     
     def extract_github_image_urls(self, content: str) -> List[str]:
         """
-        从 Markdown 内容中提取 GitHub 附件图片 URL
+        从内容中提取 GitHub 附件图片 URL（支持 Markdown 和 HTML 格式）
         
         Args:
-            content: Markdown 内容
+            content: Markdown 或 HTML 内容
             
         Returns:
             GitHub 附件图片 URL 列表
         """
         try:
-            matches = self._github_attachment_pattern.findall(content)
-            urls = [match[1] for match in matches]  # match[1] 是 URL 部分
+            urls = []
             
-            logger.debug(f"提取到 {len(urls)} 个 GitHub 附件图片 URL")
+            # 提取 Markdown 格式的图片链接
+            markdown_matches = self._github_attachment_markdown_pattern.findall(content)
+            markdown_urls = [match[1] for match in markdown_matches]  # match[1] 是 URL 部分
+            urls.extend(markdown_urls)
+            
+            # 提取 HTML 格式的图片链接
+            html_matches = self._github_attachment_html_pattern.findall(content)
+            html_urls = list(html_matches)
+            urls.extend(html_urls)
+            
+            # 去重
+            urls = list(set(urls))
+            
+            logger.debug(f"提取到 {len(urls)} 个 GitHub 附件图片 URL (Markdown: {len(markdown_urls)}, HTML: {len(html_urls)})")
             return urls
             
         except Exception as e:
