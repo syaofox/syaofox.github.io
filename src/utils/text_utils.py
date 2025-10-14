@@ -7,7 +7,7 @@
 import re
 import markdown
 import logging
-from typing import Optional
+from typing import Optional, Dict
 
 from ..core.config import config
 
@@ -82,13 +82,43 @@ class MarkdownProcessor:
         
         return converted
     
-    def convert_to_html(self, markdown_text: str, article_category: str = '') -> str:
+    def _convert_github_attachment_urls(self, content: str, url_map: Dict[str, str]) -> str:
+        """
+        将 GitHub 附件 URL 替换为本地相对路径
+        
+        Args:
+            content: Markdown 内容
+            url_map: URL 映射表 {原始URL: 本地相对路径}
+            
+        Returns:
+            转换后的内容
+        """
+        if not url_map:
+            return content
+        
+        converted_content = content
+        
+        for original_url, local_path in url_map.items():
+            # 替换 Markdown 图片链接
+            pattern = f'!\\[([^\\]]*)\\]\\({re.escape(original_url)}\\)'
+            replacement = f'![\\1]({local_path})'
+            converted_content = re.sub(pattern, replacement, converted_content)
+        
+        # 统计转换数量
+        converted_count = len([url for url in url_map.keys() if url != url_map[url]])
+        if converted_count > 0:
+            logger.info(f"GitHub 附件 URL 转换完成，转换了 {converted_count} 个链接")
+        
+        return converted_content
+    
+    def convert_to_html(self, markdown_text: str, article_category: str = '', url_map: Dict[str, str] = None) -> str:
         """
         将 Markdown 文本转换为 HTML
         
         Args:
             markdown_text: Markdown 文本
             article_category: 文章分类（用于 URL 转换）
+            url_map: GitHub 附件 URL 映射表
             
         Returns:
             转换后的 HTML 文本
@@ -97,8 +127,13 @@ class MarkdownProcessor:
             # 重置 Markdown 实例状态
             self._md_instance.reset()
             
+            # 如果有 URL 映射，先替换 GitHub 附件 URL
+            processed_content = markdown_text
+            if url_map:
+                processed_content = self._convert_github_attachment_urls(markdown_text, url_map)
+            
             # 转换 Markdown 内容为 HTML
-            html_content = self._md_instance.convert(markdown_text or '')
+            html_content = self._md_instance.convert(processed_content or '')
             
             # 转换 GitHub raw 链接为相对路径
             if article_category:

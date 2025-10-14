@@ -1877,6 +1877,7 @@ dependencies = [
     { name = "pygithub" },
     { name = "pymdown-extensions" },
     { name = "python-dotenv" },
+    { name = "requests" },
     { name = "wordcloud" },
 ]
 
@@ -1895,6 +1896,7 @@ requires-dist = [
     { name = "pygithub", specifier = "==1.59.1" },
     { name = "pymdown-extensions", specifier = ">=9.0" },
     { name = "python-dotenv", specifier = ">=1.0.0" },
+    { name = "requests", specifier = ">=2.25.0" },
     { name = "wordcloud" },
 ]
 

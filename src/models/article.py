@@ -8,6 +8,7 @@ import re
 from datetime import datetime
 from typing import List, Optional
 from dataclasses import dataclass
+from pathlib import Path
 
 from github.Issue import Issue
 
@@ -72,6 +73,16 @@ class Article:
     def url_path(self) -> str:
         """生成相对URL路径"""
         return f"articles/{self.primary_label}/{self.filename}"
+    
+    @property
+    def image_dir_name(self) -> str:
+        """获取清理后的文章标题用作图片目录名"""
+        return title_to_slug(self.title)
+    
+    @property
+    def local_images_dir(self) -> Path:
+        """获取图片保存的完整路径"""
+        return Path("assets/images") / self.image_dir_name
     
     def to_dict(self) -> dict:
         """转换为字典格式（用于模板渲染）"""

@@ -14,6 +14,7 @@ from ..core.config import config
 from ..core.github_client import github_client
 from ..models.article import Article, Category, group_articles_by_category
 from ..utils.text_utils import MarkdownProcessor
+from ..utils.image_utils import download_article_images
 
 logger = logging.getLogger(__name__)
 
@@ -65,10 +66,15 @@ class HTMLGenerator:
             生成的 HTML 内容
         """
         try:
-            # 转换 Markdown 内容为 HTML，传递分类信息用于 URL 转换
+            # 下载文章图片并获取 URL 映射表
+            logger.debug(f"开始处理文章图片: {article.title}")
+            url_map = download_article_images(article)
+            
+            # 转换 Markdown 内容为 HTML，传递分类信息和 URL 映射表
             html_content = self._markdown_processor.convert_to_html(
                 article.content,
-                article_category=article.primary_label
+                article_category=article.primary_label,
+                url_map=url_map
             )
             
             # 提取目录结构
@@ -90,7 +96,7 @@ class HTMLGenerator:
             template = self._jinja_env.get_template('article.html')
             html = template.render(**template_data)
             
-            logger.debug(f"文章 HTML 生成成功: {article.title}, 目录项: {len(toc_items)}")
+            logger.debug(f"文章 HTML 生成成功: {article.title}, 目录项: {len(toc_items)}, 图片: {len(url_map)}")
             return html
             
         except Exception as e:

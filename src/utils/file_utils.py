@@ -202,6 +202,21 @@ def copy_static_files() -> None:
         raise
 
 
+def ensure_image_directory(article) -> Path:
+    """
+    确保文章图片目录存在
+    
+    Args:
+        article: 文章对象
+        
+    Returns:
+        图片目录路径
+    """
+    image_dir = article.local_images_dir
+    ensure_directory_exists(image_dir)
+    return image_dir
+
+
 def copy_assets_to_html() -> None:
     """
     复制 assets 目录到 html 目录
