@@ -143,15 +143,12 @@ class WordCloudGenerator:
             raise
 
 
-def generate_wordcloud(articles: Optional[List[Article]] = None) -> str:
+def generate_wordcloud(articles: Optional[List[Article]] = None) -> None:
     """
     便捷函数：生成词云
     
     Args:
         articles: 文章列表
-        
-    Returns:
-        词云图片路径
     """
     generator = WordCloudGenerator()
-    return generator.generate(articles)
+    generator.generate(articles)

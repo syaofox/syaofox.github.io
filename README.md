@@ -1,67 +1,182 @@
+# syaofox's Blog
+
+> 🎯 **心似白云常自在，意如流水任东西。**  
+> 一个基于 GitHub Issues 的自动化博客系统，使用 GitHub Pages 托管
 
 <p align='center'>
-    <img src="https://badgen.net/github/issues/syaofoxsyaofox.github.io"/>
-    <img src="https://badgen.net/badge/last-commit/2025-10-15 19:35:10"/>
-    <img src="https://badgen.net/github/forks/syaofoxsyaofox.github.io"/>
-    <img src="https://badgen.net/github/stars/syaofoxsyaofox.github.io"/>
-    <img src="https://badgen.net/github/watchers/syaofoxsyaofox.github.io"/>
+    <img src="https://badgen.net/github/issues/syaofox/syaofox.github.io"/>
+    <img src="https://badgen.net/badge/last-commit/2025-10-15"/>
+    <img src="https://badgen.net/github/forks/syaofox/syaofox.github.io"/>
+    <img src="https://badgen.net/github/stars/syaofox/syaofox.github.io"/>
+    <img src="https://badgen.net/github/watchers/syaofox/syaofox.github.io"/>
 </p>
 
+## 🌐 快速访问
 
-<summary>
-    <a href="https://syaofox.github.io/syaofox.github.io/"><img src="None" title="心似白云常自在，意如流水任东西。" alt="syaofox的博客标签云"></a>
-</summary>  
+- **博客地址**: [https://syaofox.github.io](https://syaofox.github.io)
+- **项目仓库**: [https://github.com/syaofox/syaofox.github.io](https://github.com/syaofox/syaofox.github.io)
 
-<details open>
-<summary>tips	[11篇]</summary>
+### ✨ 博客特色
 
-- 2025-10-15 [Linux Mint 22.2 Btrfs + 交换文件 全新安装流程](https://github.com/syaofox/syaofox.github.io/issues/27) 
-- 2025-10-15 [Linux Mint 安装 Btrfs 并使用交换文件（Swap File）](https://github.com/syaofox/syaofox.github.io/issues/26) 
-- 2025-10-14 [Git Tag 的理解和使用方法](https://github.com/syaofox/syaofox.github.io/issues/22) 
-- 2025-10-11 [如何在 Linux Mint 22 上安装 VirtualBox（分步指南）](https://github.com/syaofox/syaofox.github.io/issues/20) 
-- 2025-10-07 [查看当前linux mint 基于ubuntu哪个版本](https://github.com/syaofox/syaofox.github.io/issues/19) 
-- 2025-10-03 [软路由科学上网白名单模式](https://github.com/syaofox/syaofox.github.io/issues/18) 
-- 2025-10-03 [istoreos旁路由科学上网后，无法上内网的解决办法](https://github.com/syaofox/syaofox.github.io/issues/17) 
-- 2025-10-03 [Linux 调整 Swap 文件大小指南](https://github.com/syaofox/syaofox.github.io/issues/7) 
-- 2025-10-03 [设置ssh-key-免密登录github](https://github.com/syaofox/syaofox.github.io/issues/6) 
-- 2025-10-03 [linux mint nfs挂载](https://github.com/syaofox/syaofox.github.io/issues/4) 
-- 2025-10-03 [linux mint samba挂载](https://github.com/syaofox/syaofox.github.io/issues/3) 
+- 📝 **GitHub Issues 作为 CMS** - 用 Issue 管理博客文章，支持 Markdown 格式
+- 🏷️ **标签分类管理** - 通过 Labels 自动分类文章（tips、ACG、docker、apps）
+- ☁️ **自动生成词云** - 基于文章内容智能生成词云图片
+- 🤖 **全自动部署** - Issues 变更自动触发 GitHub Actions 部署
+- 📱 **响应式设计** - 支持桌面和移动端访问
 
+---
 
-</details>
+## 🚀 Fork 搭建指南
 
-<details open>
-<summary>ACG	[8篇]</summary>
+想要搭建自己的博客？按照以下步骤操作：
 
-- 2025-10-14 [《进击的巨人》到底讲了一个怎么样的故事？](https://github.com/syaofox/syaofox.github.io/issues/24) 
-- 2025-10-03 [三国战纪2：群雄争霸详细攻略](https://github.com/syaofox/syaofox.github.io/issues/16) 
-- 2025-10-03 [拳皇系列的各代剧情都在讲什么](https://github.com/syaofox/syaofox.github.io/issues/15) 
-- 2025-10-03 [圣斗士星矢~黄金传说完结篇攻略](https://github.com/syaofox/syaofox.github.io/issues/14) 
-- 2025-10-03 [我是谁~龙骑士4攻略](https://github.com/syaofox/syaofox.github.io/issues/13) 
-- 2025-10-03 [迷走都市~完美结局](https://github.com/syaofox/syaofox.github.io/issues/12) 
-- 2025-10-03 [成人版大富翁~华丽人生2](https://github.com/syaofox/syaofox.github.io/issues/11) 
-- 2025-10-03 [夏日的回忆~同级生2](https://github.com/syaofox/syaofox.github.io/issues/10) 
+### Step 1: Fork 仓库
 
+1. 点击右上角的 **Fork** 按钮
+2. 选择你的 GitHub 账户作为目标
+3. 仓库名称建议使用 `你的用户名.github.io`
 
-</details>
+### Step 2: 启用 GitHub Pages
 
-<details open>
-<summary>docker	[4篇]</summary>
+1. 进入你的 Fork 仓库
+2. 点击 **Settings** → **Pages**
+3. 在 **Source** 中选择 **Deploy from a branch**
+4. 选择 **gh-pages** 分支，**/ (root)** 目录
+5. 点击 **Save** 保存配置
 
-- 2025-10-15 [Docker的日常使用](https://github.com/syaofox/syaofox.github.io/issues/25) 
-- 2025-10-14 [GitHub Actions 托管 Docker 镜像](https://github.com/syaofox/syaofox.github.io/issues/23) 
-- 2025-10-03 [导出本地 Docker 镜像并在另一台机器上导入](https://github.com/syaofox/syaofox.github.io/issues/9) 
-- 2025-10-03 [docker构建项目，并推送到dockerhub](https://github.com/syaofox/syaofox.github.io/issues/8) 
+### Step 3: 配置 GitHub Secrets
 
+在仓库 **Settings** → **Secrets and variables** → **Actions** 中添加以下 Secrets：
 
-</details>
+#### `BLOG_SECRET`
+- 创建 GitHub Personal Access Token
+- 访问：[GitHub Settings](https://github.com/settings/tokens) → **Developer settings** → **Personal access tokens** → **Tokens (classic)**
+- 权限选择：`repo`（完整仓库访问）、`workflow`（更新 GitHub Actions 工作流）
+- 将生成的 token 复制到 `BLOG_SECRET`
 
-<details open>
-<summary>apps	[3篇]</summary>
+#### `GIT_USERNAME`
+- 你的 GitHub 用户名
 
-- 2025-10-11 [我使用的mvp配置文件](https://github.com/syaofox/syaofox.github.io/issues/21) 
-- 2025-10-03 [linux 常用软件存档](https://github.com/syaofox/syaofox.github.io/issues/5) 
-- 2025-10-03 [Timeshift 的备份选项](https://github.com/syaofox/syaofox.github.io/issues/2) 
+#### `GIT_EMAIL`
+- 你的 GitHub 邮箱地址
 
+### Step 4: 修改仓库配置
 
-</details>
+1. 编辑 `env.example` 文件，将仓库名改为你的：
+   ```bash
+   GITHUB_REPOSITORY=你的用户名/你的仓库名
+   ```
+
+2. 本地测试时，复制 `env.example` 为 `.env` 并填入真实值
+
+### Step 5: 触发首次部署
+
+1. 创建任意一个 Issue 并添加标签（如 `tips`）
+2. 系统会自动触发 GitHub Actions 部署
+3. 几分钟后访问 `https://你的用户名.github.io/你的仓库名/` 查看效果
+
+---
+
+## 📖 使用说明
+
+### 创建文章
+
+1. 在仓库中点击 **Issues** → **New issue**
+2. 标题作为文章标题，内容支持完整的 Markdown 语法
+3. 添加对应的标签进行分类：
+   - `tips` - 技术技巧和教程
+   - `ACG` - 游戏和动漫相关内容
+   - `docker` - Docker 相关技术
+   - `apps` - 软件应用推荐
+
+### 上传图片
+
+1. 将图片上传到 `assets/images/分类名/` 目录
+2. 在 Issue 中使用相对路径引用：`![描述](assets/images/分类名/图片名.jpg)`
+
+### 自动部署
+
+- Issues 的任何变更（创建、编辑、添加标签等）都会自动触发部署
+- 部署过程通常在 2-5 分钟内完成
+- 可以在 **Actions** 标签页查看部署状态
+
+---
+
+## 💻 本地开发
+
+### 环境要求
+
+- Python >= 3.9
+- [uv](https://github.com/astral-sh/uv) 包管理器
+
+### 安装依赖
+
+```bash
+# 克隆仓库
+git clone https://github.com/你的用户名/你的仓库名.git
+cd 你的仓库名
+
+# 安装依赖
+uv sync
+```
+
+### 运行脚本
+
+```bash
+# 生成博客内容
+uv run python main.py
+
+# 或运行重构后的模块
+uv run python src/main.py
+```
+
+### 生成内容说明
+
+脚本会自动：
+- 从 GitHub API 获取所有 Issues 和 Labels
+- 根据标签分类整理文章
+- 使用 Jinja2 模板生成 HTML 文章页面
+- 基于文章内容生成词云图片
+- 更新 README.md 文件（如果启用了自动更新）
+
+---
+
+## 🛠️ 技术栈
+
+| 技术 | 用途 | 说明 |
+|------|------|------|
+| **GitHub Issues** | 内容管理 | 作为 CMS 管理博客文章 |
+| **GitHub Actions** | 自动化部署 | 监听 Issues 变更，自动构建部署 |
+| **GitHub Pages** | 静态托管 | 免费托管静态网站 |
+| **Python** | 后端逻辑 | 处理数据获取和内容生成 |
+| **Jinja2** | 模板引擎 | 生成 HTML 页面 |
+| **WordCloud** | 词云生成 | 基于文章内容生成词云图片 |
+| **uv** | 包管理 | 快速的 Python 包管理器 |
+
+## 📁 项目结构
+
+```
+├── src/                    # 核心代码模块
+│   ├── core/              # 核心模块（配置、GitHub 客户端）
+│   ├── models/            # 数据模型
+│   ├── generators/        # 生成器（HTML、词云）
+│   ├── utils/             # 工具模块
+│   └── templates/         # Jinja2 模板
+├── html/                  # 生成的静态网站
+├── assets/                # 静态资源（图片、词云）
+├── .github/workflows/     # GitHub Actions 工作流
+├── pyproject.toml         # 项目配置和依赖
+└── main.py               # 主程序入口
+```
+
+## 📄 许可证
+
+本项目基于 [MIT License](LICENSE) 开源协议。
+
+---
+
+## 🤝 贡献
+
+欢迎提交 Issue 和 Pull Request 来改进这个项目！
+
+如果你觉得这个项目对你有帮助，请给它一个 ⭐ Star！

@@ -13,10 +13,8 @@ from .core.config import config
 from .core.github_client import github_client
 from .models.article import Article
 from .generators.html_generator import HTMLGenerator
-from .generators.readme_generator import ReadmeGenerator
 from .generators.wordcloud_generator import WordCloudGenerator
 from .utils.file_utils import (
-    save_readme_md, 
     save_index_html, 
     save_article_html, 
     create_article_directory,
@@ -39,7 +37,6 @@ class BlogGenerator:
     def __init__(self):
         """初始化博客生成器"""
         self.html_generator = None
-        self.readme_generator = None
         self.wordcloud_generator = None
         self.articles: List[Article] = []
         
@@ -53,7 +50,6 @@ class BlogGenerator:
             
             # 初始化生成器
             self.html_generator = HTMLGenerator()
-            self.readme_generator = ReadmeGenerator()
             self.wordcloud_generator = WordCloudGenerator()
             
             logger.info("博客生成器初始化完成")
@@ -79,12 +75,12 @@ class BlogGenerator:
             logger.error(f"获取数据失败: {str(e)}")
             raise
     
-    def generate_content(self) -> tuple[str, str, str]:
+    def generate_content(self) -> str:
         """
         生成内容
         
         Returns:
-            (README 内容, index.html 内容, 词云路径)
+            index.html 内容
         """
         try:
             cur_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
@@ -93,20 +89,14 @@ class BlogGenerator:
             
             # 生成词云
             logger.info("生成词云...")
-            wordcloud_path = self.wordcloud_generator.generate(self.articles)
-            
-            # 生成 README
-            logger.info("生成 README.md...")
-            readme_content = self.readme_generator.generate_readme_content(
-                self.articles, cur_time, wordcloud_path
-            )
+            self.wordcloud_generator.generate(self.articles)
             
             # 生成首页 HTML
             logger.info("生成 index.html...")
             index_html = self.html_generator.generate_index_html(self.articles, cur_time)
             
             logger.info("内容生成完成")
-            return readme_content, index_html, wordcloud_path
+            return index_html
             
         except Exception as e:
             logger.error(f"生成内容失败: {str(e)}")
@@ -150,20 +140,15 @@ class BlogGenerator:
             logger.error(f"生成文章失败: {str(e)}")
             raise
     
-    def save_files(self, readme_content: str, index_html: str) -> None:
+    def save_files(self, index_html: str) -> None:
         """
         保存文件
         
         Args:
-            readme_content: README 内容
             index_html: index.html 内容
         """
         try:
             logger.info("开始保存文件...")
-            
-            # 保存 README.md
-            save_readme_md(readme_content)
-            logger.info("README.md 保存成功")
             
             # 保存 index.html
             save_index_html(index_html)
@@ -208,9 +193,9 @@ class BlogGenerator:
             # 执行流程
             self.initialize()
             self.fetch_data()
-            readme_content, index_html, wordcloud_path = self.generate_content()
+            index_html = self.generate_content()
             article_count = self.generate_articles()
-            self.save_files(readme_content, index_html)
+            self.save_files(index_html)
             
             # 统计信息
             end_time = time.time()
@@ -219,7 +204,6 @@ class BlogGenerator:
             logger.info(f"博客生成器运行完成!")
             logger.info(f"处理时间: {duration:.2f} 秒")
             logger.info(f"生成文章: {article_count} 篇")
-            logger.info(f"词云路径: {wordcloud_path}")
             
         except Exception as e:
             logger.error(f"博客生成器运行失败: {str(e)}")

@@ -130,17 +130,6 @@ def save_article_html(article_path: Path, html_content: str) -> None:
     write_text_file(article_path, html_content)
 
 
-def save_readme_md(content: str) -> None:
-    """
-    保存 README.md 文件
-    
-    Args:
-        content: README 内容
-    """
-    readme_path = config.project_root / "README.md"
-    write_text_file(readme_path, content)
-
-
 def save_index_html(content: str) -> None:
     """
     保存 index.html 文件
