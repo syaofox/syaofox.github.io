@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{{ user_name }} 的博客{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ css_base_path|default('') }}assets/favicon.ico">
     <link rel="stylesheet" href="{{ css_base_path|default('') }}static/css/base.css">
     {% block extra_styles %}{% endblock %}
     
