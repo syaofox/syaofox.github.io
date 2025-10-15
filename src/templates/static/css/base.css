@@ -59,6 +59,9 @@ body {
 
 .back-link {
     display: inline-block;
+    background: var(--card-header-bg);
+    padding: 4px 8px;
+    border-radius: 4px;
     color: var(--link-color);
     text-decoration: none;
     margin-bottom: 15px;
@@ -67,7 +70,9 @@ body {
 }
 
 .back-link:hover {
-    text-decoration: underline;
+    background: var(--border-color);
+    color:
+    text-decoration: none;
 }
 
 .article-title {
