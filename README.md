@@ -1,7 +1,7 @@
 
 <p align='center'>
     <img src="https://badgen.net/github/issues/syaofoxsyaofox.github.io"/>
-    <img src="https://badgen.net/badge/last-commit/2025-10-15 09:45:49"/>
+    <img src="https://badgen.net/badge/last-commit/2025-10-15 01:50:50"/>
     <img src="https://badgen.net/github/forks/syaofoxsyaofox.github.io"/>
     <img src="https://badgen.net/github/stars/syaofoxsyaofox.github.io"/>
     <img src="https://badgen.net/github/watchers/syaofoxsyaofox.github.io"/>
@@ -32,7 +32,7 @@
 <summary>ACG	[8篇]</summary>
 
 - 2025-10-14 [《进击的巨人》到底讲了一个怎么样的故事？](https://github.com/syaofox/syaofox.github.io/issues/24) 
-- 2025-10-03 [三国战纪2：群雄争霸详细攻](https://github.com/syaofox/syaofox.github.io/issues/16) 
+- 2025-10-03 [三国战纪2：群雄争霸详细攻略](https://github.com/syaofox/syaofox.github.io/issues/16) 
 - 2025-10-03 [拳皇系列的各代剧情都在讲什么](https://github.com/syaofox/syaofox.github.io/issues/15) 
 - 2025-10-03 [圣斗士星矢~黄金传说完结篇攻略](https://github.com/syaofox/syaofox.github.io/issues/14) 
 - 2025-10-03 [我是谁~龙骑士4攻略](https://github.com/syaofox/syaofox.github.io/issues/13) 
