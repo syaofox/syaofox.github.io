@@ -71,7 +71,7 @@ body {
 
 .back-link:hover {
     background: var(--border-color);
-    color:
+    color:var(--link-color);
     text-decoration: none;
 }
 
@@ -307,12 +307,27 @@ body {
 /* 滚动悬浮按钮样式 */
 .scroll-buttons {
     position: fixed;
-    right: calc(50% - 300px + 20px); /* 相对于 article-main 右边 20px */
+    right: -20px;
     bottom: 20px;
     z-index: 1000;
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+
+/* 首页定位 - 基于 .container */
+body.page-home .scroll-buttons {
+    right: calc(50% - 400px - 60px); 
+}
+
+/* 无目录文章页定位 - 基于 .article-layout 但没有 .toc-sidebar */
+body.page-article-no-toc .scroll-buttons {
+    right: calc(50% - 400px - 30px); 
+}
+
+/* 有目录文章页定位 - 基于 .article-layout 且有 .toc-sidebar */
+body.page-article-with-toc .scroll-buttons {
+    right: calc(50% - 400px + 140px - 20px); /* 基于 容器：(800/2) + 目录 (280/2) + 20 */
 }
 
 .scroll-btn {
@@ -347,6 +362,7 @@ body {
 .scroll-btn:active {
     transform: translateY(0);
 }
+
 
 /* 移动端适配 */
 @media (max-width: 767px) {

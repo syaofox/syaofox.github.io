@@ -2,6 +2,8 @@
 
 {% block title %}{{ user_name }} 的博客{% endblock %}
 
+{% block body_class %}page-home{% endblock %}
+
 {% block extra_styles %}
 <link rel="stylesheet" href="{{ css_base_path|default('') }}static/css/index.css">
 {% endblock %}

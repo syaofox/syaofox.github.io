@@ -118,12 +118,18 @@
         if (headings.length === 0) {
             tocContainer.style.display = 'none';
             articleLayout.classList.remove('has-toc');
+            // 添加无目录文章页类名
+            document.body.classList.add('page-article-no-toc');
+            document.body.classList.remove('page-article-with-toc');
             console.log('文章没有标题，隐藏 TOC');
             return;
         }
         
         // 有目录时添加类名
         articleLayout.classList.add('has-toc');
+        // 添加有目录文章页类名
+        document.body.classList.add('page-article-with-toc');
+        document.body.classList.remove('page-article-no-toc');
         
         // 清空现有 TOC
         tocList.innerHTML = '';
