@@ -115,17 +115,17 @@ class HTMLGenerator:
             markdown_matches = re.findall(markdown_pattern, markdown_content)
             html_matches = re.findall(html_pattern, markdown_content)
             
-            # 提取所有 GitHub 图片 URL
+            # 提取所有 GitHub 图片 URL（包括附件和 raw.githubusercontent.com）
             image_urls = []
             
             # Markdown 格式图片
             for alt, url in markdown_matches:
-                if 'github.com/user-attachments/assets/' in url:
+                if 'github.com/user-attachments/assets/' in url or 'raw.githubusercontent.com' in url:
                     image_urls.append(url)
             
             # HTML 格式图片
             for url in html_matches:
-                if 'github.com/user-attachments/assets/' in url:
+                if 'github.com/user-attachments/assets/' in url or 'raw.githubusercontent.com' in url:
                     image_urls.append(url)
             
             if not image_urls:
@@ -142,17 +142,24 @@ class HTMLGenerator:
             
             for url in image_urls:
                 try:
-                    # 从 URL 中提取 UUID
-                    uuid = processor._extract_uuid_from_url(url)
-                    if not uuid:
-                        logger.warning(f"无法从 URL 中提取 UUID: {url}")
-                        continue
+                    # 判断 URL 类型并提取文件名
+                    if 'raw.githubusercontent.com' in url:
+                        # raw.githubusercontent.com URL - 提取原始文件名
+                        filename = processor._extract_filename_from_raw_url(url)
+                        if not filename:
+                            logger.warning(f"无法从 raw URL 中提取文件名: {url}")
+                            continue
+                    else:
+                        # GitHub 附件 URL - 使用 UUID 作为文件名
+                        uuid = processor._extract_uuid_from_url(url)
+                        if not uuid:
+                            logger.warning(f"无法从 URL 中提取 UUID: {url}")
+                            continue
+                        
+                        # 获取文件扩展名
+                        extension = processor._get_image_extension(url)
+                        filename = f"{uuid}{extension}"
                     
-                    # 获取文件扩展名
-                    extension = processor._get_image_extension(url)
-                    
-                    # 生成文件名：使用 UUID
-                    filename = f"{uuid}{extension}"
                     save_path = image_dir / filename
                     
                     # 下载图片
@@ -211,18 +218,26 @@ class HTMLGenerator:
             
             for url in image_urls:
                 try:
-                    # 从 URL 中提取 UUID
-                    uuid = processor._extract_uuid_from_url(url)
-                    if not uuid:
-                        logger.warning(f"无法从 URL 中提取 UUID: {url}")
-                        url_map[url] = url
-                        continue
+                    # 判断 URL 类型并提取文件名
+                    if 'raw.githubusercontent.com' in url:
+                        # raw.githubusercontent.com URL - 提取原始文件名
+                        filename = processor._extract_filename_from_raw_url(url)
+                        if not filename:
+                            logger.warning(f"无法从 raw URL 中提取文件名: {url}")
+                            url_map[url] = url
+                            continue
+                    else:
+                        # GitHub 附件 URL - 使用 UUID 作为文件名
+                        uuid = processor._extract_uuid_from_url(url)
+                        if not uuid:
+                            logger.warning(f"无法从 URL 中提取 UUID: {url}")
+                            url_map[url] = url
+                            continue
+                        
+                        # 获取文件扩展名
+                        extension = processor._get_image_extension(url)
+                        filename = f"{uuid}{extension}"
                     
-                    # 获取文件扩展名
-                    extension = processor._get_image_extension(url)
-                    
-                    # 生成文件名：使用 UUID
-                    filename = f"{uuid}{extension}"
                     save_path = image_dir / filename
                     
                     # 下载图片

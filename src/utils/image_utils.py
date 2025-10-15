@@ -30,6 +30,16 @@ class ImageProcessor:
         self._github_attachment_html_pattern = re.compile(
             r'<img[^>]*src="(https://github\.com/user-attachments/assets/[a-f0-9\-]+)"[^>]*>'
         )
+        # raw.githubusercontent.com URL 正则模式 - Markdown 格式（宽松匹配所有图片）
+        self._raw_github_markdown_pattern = re.compile(
+            r'!\[([^\]]*)\]\((https://raw\.githubusercontent\.com/[^)]+\.(?:jpg|jpeg|png|gif|webp|svg|bmp))\)',
+            re.IGNORECASE
+        )
+        # raw.githubusercontent.com URL 正则模式 - HTML 格式（宽松匹配所有图片）
+        self._raw_github_html_pattern = re.compile(
+            r'<img[^>]*src="(https://raw\.githubusercontent\.com/[^"]+\.(?:jpg|jpeg|png|gif|webp|svg|bmp))"[^>]*>',
+            re.IGNORECASE
+        )
         logger.debug("图片处理器初始化完成")
     
     def _extract_uuid_from_url(self, url: str) -> str:
@@ -52,33 +62,73 @@ class ImageProcessor:
             logger.warning(f"提取 UUID 失败 {url}: {str(e)}")
             return ""
     
+    def _extract_filename_from_raw_url(self, url: str) -> str:
+        """
+        从 raw.githubusercontent.com URL 中提取文件名
+        
+        Args:
+            url: raw.githubusercontent.com URL
+            
+        Returns:
+            文件名，如果提取失败返回空字符串
+        """
+        try:
+            from urllib.parse import urlparse, unquote
+            
+            # 解析 URL
+            parsed = urlparse(url)
+            # 获取路径的最后一部分
+            path = parsed.path
+            filename = path.split('/')[-1]
+            
+            # URL 解码（处理中文等字符）
+            filename = unquote(filename)
+            
+            if filename:
+                logger.debug(f"从 raw URL 提取文件名: {filename}")
+                return filename
+            
+            return ""
+        except Exception as e:
+            logger.warning(f"从 raw URL 提取文件名失败 {url}: {str(e)}")
+            return ""
+    
     def extract_github_image_urls(self, content: str) -> List[str]:
         """
-        从内容中提取 GitHub 附件图片 URL（支持 Markdown 和 HTML 格式）
+        从内容中提取 GitHub 图片 URL（支持 Markdown 和 HTML 格式）
+        包括：GitHub 附件 URL 和 raw.githubusercontent.com URL
         
         Args:
             content: Markdown 或 HTML 内容
             
         Returns:
-            GitHub 附件图片 URL 列表
+            GitHub 图片 URL 列表
         """
         try:
             urls = []
             
-            # 提取 Markdown 格式的图片链接
-            markdown_matches = self._github_attachment_markdown_pattern.findall(content)
-            markdown_urls = [match[1] for match in markdown_matches]  # match[1] 是 URL 部分
-            urls.extend(markdown_urls)
+            # 提取 GitHub 附件 URL - Markdown 格式
+            attachment_markdown_matches = self._github_attachment_markdown_pattern.findall(content)
+            attachment_markdown_urls = [match[1] for match in attachment_markdown_matches]  # match[1] 是 URL 部分
+            urls.extend(attachment_markdown_urls)
             
-            # 提取 HTML 格式的图片链接
-            html_matches = self._github_attachment_html_pattern.findall(content)
-            html_urls = list(html_matches)
-            urls.extend(html_urls)
+            # 提取 GitHub 附件 URL - HTML 格式
+            attachment_html_matches = self._github_attachment_html_pattern.findall(content)
+            urls.extend(attachment_html_matches)
+            
+            # 提取 raw.githubusercontent.com URL - Markdown 格式
+            raw_markdown_matches = self._raw_github_markdown_pattern.findall(content)
+            raw_markdown_urls = [match[1] for match in raw_markdown_matches]  # match[1] 是 URL 部分
+            urls.extend(raw_markdown_urls)
+            
+            # 提取 raw.githubusercontent.com URL - HTML 格式
+            raw_html_matches = self._raw_github_html_pattern.findall(content)
+            urls.extend(raw_html_matches)
             
             # 去重
             urls = list(set(urls))
             
-            logger.debug(f"提取到 {len(urls)} 个 GitHub 附件图片 URL (Markdown: {len(markdown_urls)}, HTML: {len(html_urls)})")
+            logger.debug(f"提取到 {len(urls)} 个图片 URL (附件: {len(attachment_markdown_urls) + len(attachment_html_matches)}, raw: {len(raw_markdown_urls) + len(raw_html_matches)})")
             return urls
             
         except Exception as e:
@@ -148,18 +198,26 @@ class ImageProcessor:
             
             for url in image_urls:
                 try:
-                    # 从 URL 中提取 UUID
-                    uuid = self._extract_uuid_from_url(url)
-                    if not uuid:
-                        logger.warning(f"无法从 URL 中提取 UUID: {url}")
-                        url_map[url] = url
-                        continue
+                    # 判断 URL 类型并提取文件名
+                    if 'raw.githubusercontent.com' in url:
+                        # raw.githubusercontent.com URL - 提取原始文件名
+                        filename = self._extract_filename_from_raw_url(url)
+                        if not filename:
+                            logger.warning(f"无法从 raw URL 中提取文件名: {url}")
+                            url_map[url] = url
+                            continue
+                    else:
+                        # GitHub 附件 URL - 使用 UUID 作为文件名
+                        uuid = self._extract_uuid_from_url(url)
+                        if not uuid:
+                            logger.warning(f"无法从 URL 中提取 UUID: {url}")
+                            url_map[url] = url
+                            continue
+                        
+                        # 获取文件扩展名
+                        extension = self._get_image_extension(url)
+                        filename = f"{uuid}{extension}"
                     
-                    # 获取文件扩展名
-                    extension = self._get_image_extension(url)
-                    
-                    # 生成文件名：使用 UUID
-                    filename = f"{uuid}{extension}"
                     save_path = image_dir / filename
                     
                     # 下载图片
