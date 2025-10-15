@@ -424,7 +424,7 @@ body.dark-mode .theme-icon.moon-icon {
 }
 
 /* 当没有目录侧边栏时，使用与首页一致的宽度 */
-.article-layout:not(:has(.toc-sidebar)) {
+.article-layout:not(.has-toc) {
     max-width: 800px;
 }
 

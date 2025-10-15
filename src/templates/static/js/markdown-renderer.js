@@ -106,6 +106,7 @@
         const content = document.getElementById('markdown-content');
         const tocContainer = document.getElementById('toc-container');
         const tocList = document.getElementById('toc-list');
+        const articleLayout = document.querySelector('.article-layout');
         
         if (!content || !tocContainer || !tocList) {
             console.warn('未找到 TOC 容器元素');
@@ -116,9 +117,13 @@
         
         if (headings.length === 0) {
             tocContainer.style.display = 'none';
+            articleLayout.classList.remove('has-toc');
             console.log('文章没有标题，隐藏 TOC');
             return;
         }
+        
+        // 有目录时添加类名
+        articleLayout.classList.add('has-toc');
         
         // 清空现有 TOC
         tocList.innerHTML = '';
