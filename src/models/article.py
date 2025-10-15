@@ -23,11 +23,20 @@ class Article:
     updated_at: datetime
     labels: List[str]
     github_url: str
+    comments: List = None
     
     @classmethod
-    def from_github_issue(cls, issue: Issue) -> 'Article':
+    def from_github_issue(cls, issue: Issue, include_comments: bool = False) -> 'Article':
         """从 GitHub Issue 创建文章实例"""
         labels = [label.name for label in issue.labels] if issue.labels else []
+        
+        # 获取评论（如果需要）
+        comments = None
+        if include_comments:
+            try:
+                comments = list(issue.get_comments())
+            except Exception:
+                comments = []
         
         return cls(
             number=issue.number,
@@ -36,7 +45,8 @@ class Article:
             created_at=issue.created_at,
             updated_at=issue.updated_at,
             labels=labels,
-            github_url=issue.html_url
+            github_url=issue.html_url,
+            comments=comments
         )
     
     @property
@@ -96,6 +106,14 @@ class Article:
             'github_url': self.github_url,
             'url': self.url_path
         }
+    
+    def to_markdown(self) -> str:
+        """转换为 Markdown 格式（用于备份）"""
+        from .backup import ArticleBackup
+        
+        # 使用备份模块的格式化方法
+        backup = ArticleBackup(Path("."))  # 临时实例，只用于格式化
+        return backup._format_article_to_markdown(self, self.comments)
 
 
 def title_to_slug(title: str) -> str:

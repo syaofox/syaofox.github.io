@@ -3,7 +3,6 @@ title: "docker构建项目，并推送到dockerhub"
 created_at: "2025-10-03 07:25:14"
 updated_at: "2025-10-09 11:20:13"
 issue_number: 8
-state: open
 labels: ['docker']
 url: https://github.com/syaofox/syaofox.github.io/issues/8
 ---

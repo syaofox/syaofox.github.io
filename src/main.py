@@ -12,6 +12,7 @@ from typing import List
 from .core.config import config
 from .core.github_client import github_client
 from .models.article import Article
+from .models.backup import ArticleBackup
 from .generators.html_generator import HTMLGenerator
 from .generators.wordcloud_generator import WordCloudGenerator
 from .utils.file_utils import (
@@ -38,6 +39,7 @@ class BlogGenerator:
         """初始化博客生成器"""
         self.html_generator = None
         self.wordcloud_generator = None
+        self.article_backup = None
         self.articles: List[Article] = []
         
         logger.info("博客生成器初始化开始")
@@ -51,6 +53,7 @@ class BlogGenerator:
             # 初始化生成器
             self.html_generator = HTMLGenerator()
             self.wordcloud_generator = WordCloudGenerator()
+            self.article_backup = ArticleBackup(config.backup_dir)
             
             logger.info("博客生成器初始化完成")
             
@@ -66,14 +69,41 @@ class BlogGenerator:
             # 获取所有 issues
             issues = github_client.get_all_issues()
             
-            # 转换为 Article 对象
-            self.articles = [Article.from_github_issue(issue) for issue in issues]
+            # 转换为 Article 对象（包含评论）
+            self.articles = [Article.from_github_issue(issue, include_comments=True) for issue in issues]
             
             logger.info(f"数据获取完成，共 {len(self.articles)} 篇文章")
             
         except Exception as e:
             logger.error(f"获取数据失败: {str(e)}")
             raise
+    
+    def backup_articles(self) -> int:
+        """
+        备份文章到 Markdown 文件
+        
+        Returns:
+            备份的文章数量
+        """
+        try:
+            logger.info("开始备份文章...")
+            
+            # 构建评论映射（如果需要的话）
+            issue_comments_map = {}
+            for article in self.articles:
+                if article.comments:
+                    issue_comments_map[article.number] = article.comments
+            
+            # 执行备份
+            backup_count = self.article_backup.backup_all_articles(self.articles, issue_comments_map)
+            
+            logger.info(f"文章备份完成! 共备份 {backup_count} 篇文章")
+            return backup_count
+            
+        except Exception as e:
+            logger.error(f"备份文章失败: {str(e)}")
+            # 备份失败不影响主流程，只记录错误
+            return 0
     
     def generate_content(self) -> str:
         """
@@ -193,6 +223,7 @@ class BlogGenerator:
             # 执行流程
             self.initialize()
             self.fetch_data()
+            backup_count = self.backup_articles()
             index_html = self.generate_content()
             article_count = self.generate_articles()
             self.save_files(index_html)
@@ -203,6 +234,7 @@ class BlogGenerator:
             
             logger.info(f"博客生成器运行完成!")
             logger.info(f"处理时间: {duration:.2f} 秒")
+            logger.info(f"备份文章: {backup_count} 篇")
             logger.info(f"生成文章: {article_count} 篇")
             
         except Exception as e:

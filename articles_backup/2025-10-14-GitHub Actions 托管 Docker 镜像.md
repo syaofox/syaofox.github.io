@@ -3,7 +3,6 @@ title: "GitHub Actions 托管 Docker 镜像"
 created_at: "2025-10-14 10:00:31"
 updated_at: "2025-10-14 10:00:31"
 issue_number: 23
-state: open
 labels: ['docker']
 url: https://github.com/syaofox/syaofox.github.io/issues/23
 ---

@@ -3,7 +3,6 @@ title: "linux mint samba挂载"
 created_at: "2025-10-03 05:21:56"
 updated_at: "2025-10-03 05:21:56"
 issue_number: 3
-state: open
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/3
 ---

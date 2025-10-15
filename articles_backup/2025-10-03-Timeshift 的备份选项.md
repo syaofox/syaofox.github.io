@@ -3,7 +3,6 @@ title: "Timeshift 的备份选项"
 created_at: "2025-10-03 05:12:57"
 updated_at: "2025-10-03 05:15:27"
 issue_number: 2
-state: open
 labels: ['apps']
 url: https://github.com/syaofox/syaofox.github.io/issues/2
 ---

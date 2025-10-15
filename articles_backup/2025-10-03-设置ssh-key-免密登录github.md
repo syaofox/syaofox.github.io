@@ -3,7 +3,6 @@ title: "设置ssh-key-免密登录github"
 created_at: "2025-10-03 07:10:19"
 updated_at: "2025-10-03 07:10:19"
 issue_number: 6
-state: open
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/6
 ---

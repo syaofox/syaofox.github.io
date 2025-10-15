@@ -3,7 +3,6 @@ title: "Linux 调整 Swap 文件大小指南"
 created_at: "2025-10-03 07:21:17"
 updated_at: "2025-10-03 07:21:17"
 issue_number: 7
-state: open
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/7
 ---

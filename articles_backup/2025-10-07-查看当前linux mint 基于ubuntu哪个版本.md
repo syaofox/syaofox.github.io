@@ -3,7 +3,6 @@ title: "查看当前linux mint 基于ubuntu哪个版本"
 created_at: "2025-10-07 00:00:35"
 updated_at: "2025-10-07 00:00:35"
 issue_number: 19
-state: open
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/19
 ---

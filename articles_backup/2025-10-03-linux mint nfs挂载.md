@@ -3,7 +3,6 @@ title: "linux mint nfs挂载"
 created_at: "2025-10-03 05:22:28"
 updated_at: "2025-10-03 05:22:28"
 issue_number: 4
-state: open
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/4
 ---

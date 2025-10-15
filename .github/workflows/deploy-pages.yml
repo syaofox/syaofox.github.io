@@ -55,6 +55,7 @@ jobs:
           
           # 添加所有更改的文件
           git add assets/
+          git add articles_backup/
           
           # 显示暂存的文件
           echo "Staged files:"
@@ -65,7 +66,7 @@ jobs:
             echo "No changes to commit"
           else
             echo "Committing changes..."
-            git commit -m "Auto update: $(date '+%Y-%m-%d %H:%M:%S')"
+            git commit -m "Auto update with backup: $(date '+%Y-%m-%d %H:%M:%S')"
             
             # 推送更改到 main 分支
             echo "Pushing to main branch..."

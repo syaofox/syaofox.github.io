@@ -44,6 +44,9 @@ class Config:
         self.html_articles_dir = self.html_dir / "articles"
         self.html_assets_dir = self.html_dir / "assets"
         self.html_static_dir = self.html_dir / "static"
+        
+        # 备份目录配置
+        self.backup_dir = self.project_root / "articles_backup"
     
     @property
     def github_repository(self) -> str:
@@ -89,6 +92,7 @@ class Config:
             self.html_articles_dir,
             self.html_assets_dir,
             self.html_static_dir,
+            self.backup_dir,
         ]
         
         for directory in directories:

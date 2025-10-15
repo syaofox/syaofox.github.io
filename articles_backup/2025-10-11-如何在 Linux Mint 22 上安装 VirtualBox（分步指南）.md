@@ -3,7 +3,6 @@ title: "如何在 Linux Mint 22 上安装 VirtualBox（分步指南）"
 created_at: "2025-10-11 11:51:02"
 updated_at: "2025-10-12 01:12:29"
 issue_number: 20
-state: open
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/20
 ---
