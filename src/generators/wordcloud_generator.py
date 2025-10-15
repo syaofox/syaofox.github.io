@@ -28,7 +28,7 @@ class WordCloudGenerator:
         
         logger.debug("词云生成器初始化完成")
     
-    def generate(self, articles: Optional[List[Article]] = None) -> str:
+    def generate(self, articles: Optional[List[Article]] = None) -> None:
         """
         生成词云图片
         
@@ -36,7 +36,7 @@ class WordCloudGenerator:
             articles: 文章列表，如果为 None 则从 GitHub 获取
             
         Returns:
-            生成的词云图片路径
+            None
         """
         try:
             # 计算标签频率
@@ -44,12 +44,12 @@ class WordCloudGenerator:
             
             if not frequencies or all(freq == 0 for freq in frequencies.values()):
                 logger.warning("没有找到带标签的文章，跳过词云生成")
-                return 'assets/wordcloud.png'
+                return 
             
             logger.info(f"标签频率: {frequencies}")
             
             # 生成浅色主题词云
-            light_path = self._generate_wordcloud(
+            self._generate_wordcloud(
                 frequencies, 
                 'white', 
                 'viridis',
@@ -57,28 +57,20 @@ class WordCloudGenerator:
             )
             
             # 生成深色主题词云
-            dark_path = self._generate_wordcloud(
+            self._generate_wordcloud(
                 frequencies, 
                 '#1a1a1a', 
                 'plasma',
                 self._assets_dir / 'wordcloud-dark.png'
             )
-            
-            # 生成默认词云（兼容性）
-            default_path = self._generate_wordcloud(
-                frequencies, 
-                'white', 
-                'viridis',
-                self._assets_dir / 'wordcloud.png'
-            )
-            
+           
             logger.info("词云图片生成成功")
-            return 'assets/wordcloud-light.png'
+            return 
             
         except Exception as e:
             logger.error(f"词云生成失败: {str(e)}")
-            # 返回默认路径，避免程序中断
-            return 'assets/wordcloud.png'
+
+            return
     
     def _calculate_label_frequencies(self, articles: Optional[List[Article]] = None) -> Dict[str, int]:
         """
@@ -133,8 +125,8 @@ class WordCloudGenerator:
         try:
             wc = WordCloud(
                 font_path=self._font_path,
-                width=1920,
-                height=400,
+                width=800,
+                height=200,
                 background_color=background_color,
                 colormap=colormap,
                 relative_scaling=0.5 if background_color == '#1a1a1a' else 1.0

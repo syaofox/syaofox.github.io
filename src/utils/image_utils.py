@@ -149,7 +149,7 @@ class ImageProcessor:
         try:
             # 检查文件是否已存在（缓存机制）
             if save_path.exists():
-                logger.debug(f"图片已存在，跳过下载: {save_path}")
+                logger.info(f"图片已存在，跳过下载: {save_path}")
                 return True
             
             # 确保目录存在

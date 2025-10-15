@@ -120,7 +120,7 @@ class ReadmeGenerator:
         """
         return f"""
 <summary>
-    <a href="https://{github_client.user_name}.github.io/{github_client.blog_name}/"><img src="{wordcloud_url}" title="词云" alt="词云"></a>
+    <a href="https://{github_client.user_name}.github.io/{github_client.blog_name}/"><img src="{wordcloud_url}" title="心似白云常自在，意如流水任东西。" alt="syaofox的博客标签云"></a>
 </summary>  
 """
 

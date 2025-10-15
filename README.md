@@ -1,7 +1,7 @@
 
 <p align='center'>
     <img src="https://badgen.net/github/issues/syaofoxsyaofox.github.io"/>
-    <img src="https://badgen.net/badge/last-commit/2025-10-15 02:01:52"/>
+    <img src="https://badgen.net/badge/last-commit/2025-10-15 10:46:35"/>
     <img src="https://badgen.net/github/forks/syaofoxsyaofox.github.io"/>
     <img src="https://badgen.net/github/stars/syaofoxsyaofox.github.io"/>
     <img src="https://badgen.net/github/watchers/syaofoxsyaofox.github.io"/>
@@ -9,7 +9,7 @@
 
 
 <summary>
-    <a href="https://syaofox.github.io/syaofox.github.io/"><img src="assets/wordcloud-light.png" title="词云" alt="词云"></a>
+    <a href="https://syaofox.github.io/syaofox.github.io/"><img src="None" title="心似白云常自在，意如流水任东西。" alt="syaofox的博客标签云"></a>
 </summary>  
 
 <details open>
