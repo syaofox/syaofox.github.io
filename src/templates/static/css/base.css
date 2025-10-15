@@ -8,6 +8,8 @@
     --muted-color: #999999;
     --search-bg: #ffffff;
     --search-border: #e8e8e8;
+    --scroll-btn-bg: rgba(42, 122, 226, 0.7);
+    --scroll-btn-bg-hover: rgba(42, 122, 226, 1);
 }
 
 body.dark-mode {
@@ -20,6 +22,8 @@ body.dark-mode {
     --muted-color: #999;
     --search-bg: #2a2a2a;
     --search-border: #333;
+    --scroll-btn-bg: rgba(129, 182, 250, 0.7);
+    --scroll-btn-bg-hover: rgb(129, 182, 250,1);
 }
 
 * {
@@ -298,7 +302,7 @@ body {
 /* 滚动悬浮按钮样式 */
 .scroll-buttons {
     position: fixed;
-    right: 20px;
+    right: calc(50% - 300px + 20px); /* 相对于 article-main 右边 20px */
     bottom: 20px;
     z-index: 1000;
     display: flex;
@@ -309,8 +313,8 @@ body {
 .scroll-btn {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    background: rgba(42, 122, 226, 0.9);
+    border-radius: 2%;
+    background: var(--scroll-btn-bg);
     color: white;
     border: none;
     cursor: pointer;
@@ -325,7 +329,7 @@ body {
 }
 
 .scroll-btn:hover {
-    background: rgba(42, 122, 226, 1);
+    background: var(--scroll-btn-bg);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
@@ -350,6 +354,14 @@ body {
         width: 36px;
         height: 36px;
         font-size: 14px;
+    }
+}
+
+/* 中等屏幕适配 */
+@media (max-width: 1023px) {
+    .scroll-buttons {
+        right: 20px;
+        bottom: 20px;
     }
 }
 

@@ -1,7 +1,7 @@
 
 <p align='center'>
     <img src="https://badgen.net/github/issues/syaofoxsyaofox.github.io"/>
-    <img src="https://badgen.net/badge/last-commit/2025-10-15 10:46:35"/>
+    <img src="https://badgen.net/badge/last-commit/2025-10-15 19:35:10"/>
     <img src="https://badgen.net/github/forks/syaofoxsyaofox.github.io"/>
     <img src="https://badgen.net/github/stars/syaofoxsyaofox.github.io"/>
     <img src="https://badgen.net/github/watchers/syaofoxsyaofox.github.io"/>
@@ -13,8 +13,10 @@
 </summary>  
 
 <details open>
-<summary>tips	[9篇]</summary>
+<summary>tips	[11篇]</summary>
 
+- 2025-10-15 [Linux Mint 22.2 Btrfs + 交换文件 全新安装流程](https://github.com/syaofox/syaofox.github.io/issues/27) 
+- 2025-10-15 [Linux Mint 安装 Btrfs 并使用交换文件（Swap File）](https://github.com/syaofox/syaofox.github.io/issues/26) 
 - 2025-10-14 [Git Tag 的理解和使用方法](https://github.com/syaofox/syaofox.github.io/issues/22) 
 - 2025-10-11 [如何在 Linux Mint 22 上安装 VirtualBox（分步指南）](https://github.com/syaofox/syaofox.github.io/issues/20) 
 - 2025-10-07 [查看当前linux mint 基于ubuntu哪个版本](https://github.com/syaofox/syaofox.github.io/issues/19) 
@@ -44,8 +46,9 @@
 </details>
 
 <details open>
-<summary>docker	[3篇]</summary>
+<summary>docker	[4篇]</summary>
 
+- 2025-10-15 [Docker的日常使用](https://github.com/syaofox/syaofox.github.io/issues/25) 
 - 2025-10-14 [GitHub Actions 托管 Docker 镜像](https://github.com/syaofox/syaofox.github.io/issues/23) 
 - 2025-10-03 [导出本地 Docker 镜像并在另一台机器上导入](https://github.com/syaofox/syaofox.github.io/issues/9) 
 - 2025-10-03 [docker构建项目，并推送到dockerhub](https://github.com/syaofox/syaofox.github.io/issues/8) 
