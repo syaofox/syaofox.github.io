@@ -73,6 +73,7 @@
 {% endblock %}
 
 {% block extra_scripts %}
+<script>
 const searchInput = document.getElementById('searchInput');
 const clearButton = document.getElementById('clearButton');
 const categoryCards = document.querySelectorAll('.category-card');
@@ -125,4 +126,5 @@ clearButton.addEventListener('click', function() {
 
 // 初始化时检查是否需要显示清空按钮
 toggleClearButton();
+</script>
 {% endblock %}

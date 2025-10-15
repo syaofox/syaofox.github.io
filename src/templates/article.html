@@ -20,7 +20,12 @@
         </header>
         
         <div class="article-content">
-            {{ article.content | safe }}
+            <!-- 原始 Markdown 存储（JSON 格式避免转义问题） -->
+            <script type="application/json" id="article-markdown">
+{{ article.content | tojson }}
+            </script>
+            <!-- 渲染目标容器 -->
+            <div id="markdown-content"></div>
         </div>
         
         <footer class="footer">
@@ -44,20 +49,17 @@
         </footer>
     </main>
     
-    {% if toc_items %}
-    <aside class="toc-sidebar">
+    <!-- TOC 容器（由 JS 动态生成） -->
+    <aside class="toc-sidebar" id="toc-container">
         <h3 class="toc-title">
             目录
             <span class="toc-toggle">▼</span>
         </h3>
-        <ul class="toc-list">
-            {% for item in toc_items %}
-            <li class="toc-item level-{{ item.level }}">
-                <a href="#{{ item.anchor }}">{{ item.title }}</a>
-            </li>
-            {% endfor %}
-        </ul>
+        <ul class="toc-list" id="toc-list"></ul>
     </aside>
-    {% endif %}
 </div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ css_base_path }}static/js/markdown-renderer.js"></script>
 {% endblock %}

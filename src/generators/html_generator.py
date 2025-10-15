@@ -14,8 +14,6 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from ..core.config import config
 from ..core.github_client import github_client
 from ..models.article import Article, Category, group_articles_by_category
-from ..utils.text_utils import MarkdownProcessor
-from ..utils.image_utils import download_article_images
 
 logger = logging.getLogger(__name__)
 
@@ -26,7 +24,6 @@ class HTMLGenerator:
     def __init__(self):
         """初始化 HTML 生成器"""
         self._setup_jinja_env()
-        self._markdown_processor = MarkdownProcessor()
         logger.debug("HTML 生成器初始化完成")
     
     def _setup_jinja_env(self) -> None:
@@ -67,45 +64,121 @@ class HTMLGenerator:
             生成的 HTML 内容
         """
         try:
-            # 先转换 Markdown 内容为 HTML
-            html_content = self._markdown_processor.convert_to_html(
-                article.content,
-                article_category=article.primary_label
-            )
-            
-            # 从转换后的 HTML 中提取图片 URL 并下载
+            # 处理文章内容中的图片（在 Markdown 中替换 URL）
             logger.debug(f"开始处理文章图片: {article.title}")
-            url_map = self._process_html_images(article, html_content)
-            
-            # 替换 HTML 中的图片链接
-            if url_map:
-                html_content = self._replace_html_image_urls(html_content, url_map, article.image_dir_name)
-            
-            # 提取目录结构
-            toc_items = self._markdown_processor.extract_toc(article.content)
+            processed_markdown = self._process_markdown_images(article)
             
             # 准备模板数据
             template_data = {
                 'article': article.to_dict(),
-                'toc_items': toc_items,
                 'user_name': github_client.user_name,
                 'blog_name': github_client.blog_name,
                 'css_base_path': '../../'  # html/articles/分类/ -> html/
             }
             
-            # 更新文章内容为转换后的 HTML
-            template_data['article']['content'] = html_content
+            # 更新文章内容为处理后的 Markdown
+            template_data['article']['content'] = processed_markdown
             
             # 渲染模板
             template = self._jinja_env.get_template('article.html')
             html = template.render(**template_data)
             
-            logger.debug(f"文章 HTML 生成成功: {article.title}, 目录项: {len(toc_items)}, 图片: {len(url_map)}")
+            logger.debug(f"文章 HTML 生成成功: {article.title}")
             return html
             
         except Exception as e:
             logger.error(f"生成文章 HTML 失败 {article.title}: {str(e)}")
             raise
+    
+    def _process_markdown_images(self, article: Article) -> str:
+        """
+        从 Markdown 内容中处理图片
+        
+        Args:
+            article: 文章对象
+            
+        Returns:
+            处理后的 Markdown 内容（图片 URL 已替换为本地路径）
+        """
+        try:
+            from ..utils.image_utils import ImageProcessor
+            
+            markdown_content = article.content
+            processor = ImageProcessor()
+            
+            # 从 Markdown 和 HTML 中提取图片 URL
+            # 匹配 Markdown 格式: ![alt](url)
+            markdown_pattern = r'!\[([^\]]*)\]\(([^)]+)\)'
+            # 匹配 HTML 格式: <img src="url">
+            html_pattern = r'<img[^>]*src="([^"]+)"[^>]*>'
+            
+            markdown_matches = re.findall(markdown_pattern, markdown_content)
+            html_matches = re.findall(html_pattern, markdown_content)
+            
+            # 提取所有 GitHub 图片 URL
+            image_urls = []
+            
+            # Markdown 格式图片
+            for alt, url in markdown_matches:
+                if 'github.com/user-attachments/assets/' in url:
+                    image_urls.append(url)
+            
+            # HTML 格式图片
+            for url in html_matches:
+                if 'github.com/user-attachments/assets/' in url:
+                    image_urls.append(url)
+            
+            if not image_urls:
+                logger.debug(f"文章 {article.title} 没有 GitHub 附件图片")
+                return markdown_content
+            
+            # 确保图片目录存在
+            image_dir = article.local_images_dir
+            logger.info(f"图片保存目录: {image_dir.absolute()}")
+            image_dir.mkdir(parents=True, exist_ok=True)
+            
+            url_map = {}
+            success_count = 0
+            
+            for url in image_urls:
+                try:
+                    # 从 URL 中提取 UUID
+                    uuid = processor._extract_uuid_from_url(url)
+                    if not uuid:
+                        logger.warning(f"无法从 URL 中提取 UUID: {url}")
+                        continue
+                    
+                    # 获取文件扩展名
+                    extension = processor._get_image_extension(url)
+                    
+                    # 生成文件名：使用 UUID
+                    filename = f"{uuid}{extension}"
+                    save_path = image_dir / filename
+                    
+                    # 下载图片
+                    if processor.download_image(url, save_path):
+                        # 生成相对路径（从 html/articles/{分类}/ 到图片）
+                        relative_path = f"../../../assets/images/{article.image_dir_name}/{filename}"
+                        url_map[url] = relative_path
+                        logger.info(f"图片下载成功: {url} -> {save_path.absolute()}")
+                        success_count += 1
+                        
+                except Exception as e:
+                    logger.warning(f"处理图片失败 {url}: {str(e)}")
+            
+            logger.info(f"文章 {article.title} 图片处理完成: {success_count}/{len(image_urls)} 成功")
+            
+            # 替换 Markdown 和 HTML 中的图片 URL
+            processed_content = markdown_content
+            for original_url, local_path in url_map.items():
+                # 替换所有出现的 URL（无论是 Markdown 还是 HTML 格式）
+                processed_content = processed_content.replace(original_url, local_path)
+            
+            return processed_content
+            
+        except Exception as e:
+            logger.error(f"处理 Markdown 图片失败 {article.title}: {str(e)}")
+            return article.content  # 返回原始内容
     
     def _process_html_images(self, article: Article, html_content: str) -> Dict[str, str]:
         """
@@ -244,8 +317,6 @@ class HTMLGenerator:
     
     def close(self) -> None:
         """清理资源"""
-        if self._markdown_processor:
-            self._markdown_processor.close()
         logger.debug("HTML 生成器已清理")
 
 
