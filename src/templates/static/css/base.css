@@ -418,7 +418,7 @@ body.dark-mode .theme-icon.moon-icon {
 .article-layout {
     display: flex;
     gap: 30px;
-    max-width: 1200px; /* 有目录时的宽度 */
+    max-width: 1100px; /* 有目录时的宽度 */
     margin: 0 auto;
     padding: 30px;
 }
