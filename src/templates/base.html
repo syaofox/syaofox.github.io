@@ -1,5 +1,22 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+<script>
+    // 在页面渲染前立即设置主题，避免闪烁
+    (function() {
+        // 添加页面加载类，禁用过渡动画
+        document.documentElement.classList.add('page-loading');
+        
+        // 获取保存的主题或使用系统偏好
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+        
+        // 立即应用主题类
+        if (isDark) {
+            document.documentElement.classList.add('dark-mode');
+        }
+    })();
+</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,24 +32,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github.min.css" id="highlight-theme-light">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github-dark.min.css" id="highlight-theme-dark" disabled>
     <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/lib/index.min.js"></script>
-    <script>
-        // 立即设置主题，避免闪烁
-        (function() {
-            const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
-            
-            if (isDark) {
-                document.documentElement.classList.add('dark-mode');
-                document.body.classList.add('dark-mode');
-                // 初始化代码高亮主题
-                const lightTheme = document.getElementById('highlight-theme-light');
-                const darkTheme = document.getElementById('highlight-theme-dark');
-                if (lightTheme) lightTheme.disabled = true;
-                if (darkTheme) darkTheme.disabled = false;
-            }
-        })();
-    </script>
 </head>
 <body class="{% block body_class %}{% endblock %}">
     {% block content %}{% endblock %}
@@ -46,6 +45,11 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // 页面加载完成后，延迟移除 page-loading 类，启用过渡动画
+            setTimeout(function() {
+                document.documentElement.classList.remove('page-loading');
+            }, 50);
+            
             // 为所有代码块添加复制按钮
             const codeBlocks = document.querySelectorAll('pre > code');
             
@@ -187,20 +191,15 @@
                 }
             }
             
-            // 初始化主题
+            // 初始化主题（同步 body 类和其他主题相关元素）
             function initTheme() {
-                const savedTheme = localStorage.getItem('theme');
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+                const isDark = document.documentElement.classList.contains('dark-mode');
                 
-                // 避免重复设置主题
-                const currentIsDark = body.classList.contains('dark-mode');
-                if (currentIsDark !== isDark) {
-                    if (isDark) {
-                        body.classList.add('dark-mode');
-                    } else {
-                        body.classList.remove('dark-mode');
-                    }
+                // 同步 body 的 dark-mode 类
+                if (isDark) {
+                    body.classList.add('dark-mode');
+                } else {
+                    body.classList.remove('dark-mode');
                 }
                 
                 // 初始化代码高亮主题
@@ -219,11 +218,13 @@
             
             // 切换主题
             function toggleTheme() {
-                const isDarkMode = body.classList.contains('dark-mode');
+                const isDarkMode = document.documentElement.classList.contains('dark-mode');
                 const lightTheme = document.getElementById('highlight-theme-light');
                 const darkTheme = document.getElementById('highlight-theme-dark');
                 
                 if (isDarkMode) {
+                    // 切换到亮色模式
+                    document.documentElement.classList.remove('dark-mode');
                     body.classList.remove('dark-mode');
                     localStorage.setItem('theme', 'light');
                     updateWordcloudImage(false);
@@ -231,6 +232,8 @@
                     if (lightTheme) lightTheme.disabled = false;
                     if (darkTheme) darkTheme.disabled = true;
                 } else {
+                    // 切换到暗色模式
+                    document.documentElement.classList.add('dark-mode');
                     body.classList.add('dark-mode');
                     localStorage.setItem('theme', 'dark');
                     updateWordcloudImage(true);

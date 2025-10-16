@@ -26,6 +26,15 @@ body.dark-mode {
     --scroll-btn-bg-hover: rgb(129, 182, 250,1);
 }
 
+/* 禁用页面加载时的过渡效果，避免主题切换闪烁 */
+html.page-loading,
+html.page-loading *,
+html.page-loading *::before,
+html.page-loading *::after {
+    transition: none !important;
+    animation-duration: 0s !important;
+}
+
 * {
     margin: 0;
     padding: 0;
