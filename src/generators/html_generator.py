@@ -115,21 +115,21 @@ class HTMLGenerator:
             markdown_matches = re.findall(markdown_pattern, markdown_content)
             html_matches = re.findall(html_pattern, markdown_content)
             
-            # 提取所有 GitHub 图片 URL（包括附件和 raw.githubusercontent.com）
+            # 提取所有图片 URL（包括 GitHub 附件、raw.githubusercontent.com 和知乎图片）
             image_urls = []
             
             # Markdown 格式图片
             for alt, url in markdown_matches:
-                if 'github.com/user-attachments/assets/' in url or 'raw.githubusercontent.com' in url:
+                if 'github.com/user-attachments/assets/' in url or 'raw.githubusercontent.com' in url or 'zhimg.com' in url:
                     image_urls.append(url)
             
             # HTML 格式图片
             for url in html_matches:
-                if 'github.com/user-attachments/assets/' in url or 'raw.githubusercontent.com' in url:
+                if 'github.com/user-attachments/assets/' in url or 'raw.githubusercontent.com' in url or 'zhimg.com' in url:
                     image_urls.append(url)
             
             if not image_urls:
-                logger.debug(f"文章 {article.title} 没有 GitHub 附件图片")
+                logger.debug(f"文章 {article.title} 没有需要处理的图片")
                 return markdown_content
             
             # 确保图片目录存在
@@ -148,6 +148,12 @@ class HTMLGenerator:
                         filename = processor._extract_filename_from_raw_url(url)
                         if not filename:
                             logger.warning(f"无法从 raw URL 中提取文件名: {url}")
+                            continue
+                    elif 'zhimg.com' in url:
+                        # 知乎图片 URL - 提取原始文件名
+                        filename = processor._extract_filename_from_zhihu_url(url)
+                        if not filename:
+                            logger.warning(f"无法从知乎 URL 中提取文件名: {url}")
                             continue
                     else:
                         # GitHub 附件 URL - 使用 UUID 作为文件名
@@ -205,7 +211,7 @@ class HTMLGenerator:
             image_urls = processor.extract_github_image_urls(html_content)
             
             if not image_urls:
-                logger.debug(f"文章 {article.title} 没有 GitHub 附件图片")
+                logger.debug(f"文章 {article.title} 没有需要处理的图片")
                 return {}
             
             # 确保图片目录存在
@@ -224,6 +230,13 @@ class HTMLGenerator:
                         filename = processor._extract_filename_from_raw_url(url)
                         if not filename:
                             logger.warning(f"无法从 raw URL 中提取文件名: {url}")
+                            url_map[url] = url
+                            continue
+                    elif 'zhimg.com' in url:
+                        # 知乎图片 URL - 提取原始文件名
+                        filename = processor._extract_filename_from_zhihu_url(url)
+                        if not filename:
+                            logger.warning(f"无法从知乎 URL 中提取文件名: {url}")
                             url_map[url] = url
                             continue
                     else:

@@ -40,6 +40,16 @@ class ImageProcessor:
             r'<img[^>]*src="(https://raw\.githubusercontent\.com/[^"]+\.(?:jpg|jpeg|png|gif|webp|svg|bmp))"[^>]*>',
             re.IGNORECASE
         )
+        # 知乎图片 URL 正则模式 - Markdown 格式
+        self._zhihu_markdown_pattern = re.compile(
+            r'!\[([^\]]*)\]\((https?://pic[^.]*\.zhimg\.com/[^)]+\.(?:jpg|jpeg|png|gif|webp)(?:\?[^)]*)?)\)',
+            re.IGNORECASE
+        )
+        # 知乎图片 URL 正则模式 - HTML 格式
+        self._zhihu_html_pattern = re.compile(
+            r'<img[^>]*src="(https?://pic[^.]*\.zhimg\.com/[^"]+\.(?:jpg|jpeg|png|gif|webp)(?:\?[^"]*)?)"[^>]*>',
+            re.IGNORECASE
+        )
         logger.debug("图片处理器初始化完成")
     
     def _extract_uuid_from_url(self, url: str) -> str:
@@ -93,16 +103,48 @@ class ImageProcessor:
             logger.warning(f"从 raw URL 提取文件名失败 {url}: {str(e)}")
             return ""
     
+    def _extract_filename_from_zhihu_url(self, url: str) -> str:
+        """
+        从知乎图片 URL 中提取文件名
+        URL 格式: https://pic1.zhimg.com/50/v2-xxx_720w.jpg?source=xxx
+        
+        Args:
+            url: 知乎图片 URL
+            
+        Returns:
+            文件名，如果提取失败返回空字符串
+        """
+        try:
+            from urllib.parse import urlparse, unquote
+            
+            # 解析 URL，移除查询参数
+            parsed = urlparse(url)
+            # 获取路径的最后一部分
+            path = parsed.path
+            filename = path.split('/')[-1]
+            
+            # URL 解码（处理中文等字符）
+            filename = unquote(filename)
+            
+            if filename:
+                logger.debug(f"从知乎 URL 提取文件名: {filename}")
+                return filename
+            
+            return ""
+        except Exception as e:
+            logger.warning(f"从知乎 URL 提取文件名失败 {url}: {str(e)}")
+            return ""
+    
     def extract_github_image_urls(self, content: str) -> List[str]:
         """
-        从内容中提取 GitHub 图片 URL（支持 Markdown 和 HTML 格式）
-        包括：GitHub 附件 URL 和 raw.githubusercontent.com URL
+        从内容中提取图片 URL（支持 Markdown 和 HTML 格式）
+        包括：GitHub 附件 URL、raw.githubusercontent.com URL 和知乎图片 URL
         
         Args:
             content: Markdown 或 HTML 内容
             
         Returns:
-            GitHub 图片 URL 列表
+            图片 URL 列表
         """
         try:
             urls = []
@@ -125,10 +167,19 @@ class ImageProcessor:
             raw_html_matches = self._raw_github_html_pattern.findall(content)
             urls.extend(raw_html_matches)
             
+            # 提取知乎图片 URL - Markdown 格式
+            zhihu_markdown_matches = self._zhihu_markdown_pattern.findall(content)
+            zhihu_markdown_urls = [match[1] for match in zhihu_markdown_matches]  # match[1] 是 URL 部分
+            urls.extend(zhihu_markdown_urls)
+            
+            # 提取知乎图片 URL - HTML 格式
+            zhihu_html_matches = self._zhihu_html_pattern.findall(content)
+            urls.extend(zhihu_html_matches)
+            
             # 去重
             urls = list(set(urls))
             
-            logger.debug(f"提取到 {len(urls)} 个图片 URL (附件: {len(attachment_markdown_urls) + len(attachment_html_matches)}, raw: {len(raw_markdown_urls) + len(raw_html_matches)})")
+            logger.debug(f"提取到 {len(urls)} 个图片 URL (GitHub附件: {len(attachment_markdown_urls) + len(attachment_html_matches)}, raw: {len(raw_markdown_urls) + len(raw_html_matches)}, 知乎: {len(zhihu_markdown_urls) + len(zhihu_html_matches)})")
             return urls
             
         except Exception as e:
@@ -204,6 +255,13 @@ class ImageProcessor:
                         filename = self._extract_filename_from_raw_url(url)
                         if not filename:
                             logger.warning(f"无法从 raw URL 中提取文件名: {url}")
+                            url_map[url] = url
+                            continue
+                    elif 'zhimg.com' in url:
+                        # 知乎图片 URL - 提取原始文件名
+                        filename = self._extract_filename_from_zhihu_url(url)
+                        if not filename:
+                            logger.warning(f"无法从知乎 URL 中提取文件名: {url}")
                             url_map[url] = url
                             continue
                     else:
