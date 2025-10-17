@@ -1,7 +1,7 @@
 ---
 title: "linux mint nfs挂载"
 created_at: "2025-10-03 05:22:28"
-updated_at: "2025-10-03 05:22:28"
+updated_at: "2025-10-17 09:54:30"
 issue_number: 4
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/4
@@ -80,19 +80,26 @@ sudo gedit /etc/fstab
 
 为了确保 `fstab` 配置正确，并且下次重启时能正常工作，你可以先卸载 NFS 共享，然后用 `fstab` 进行测试。
 
-1.  **卸载 NFS 共享**：
+1. **安装依赖**
+
+    ```bash
+    sudo apt update
+    sudo apt install nfs-common
+    ```
+
+2.  **卸载 NFS 共享**：
 
     ```bash
     sudo umount /home/syaofox/dnas
     ```
 
-2.  **重新挂载所有 `fstab` 条目**：
-
+3.  **重新挂载所有 `fstab` 条目**：
+    
     ```bash
     sudo systemctl daemon-reload
     sudo mount -a
     ```
-
+    
     这个命令会检查 `fstab` 文件中所有没有被挂载的条目，并尝试进行挂载。如果一切正常，它不会输出任何信息。
 
 现在，你可以检查 `/home/syaofox/dnas` 目录，看看 NAS 上的文件是否已经可见。如果可以，那就说明你的 `fstab` 配置是正确的，下次系统启动时会自动挂载。
