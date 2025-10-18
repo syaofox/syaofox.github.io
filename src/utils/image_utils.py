@@ -30,6 +30,14 @@ class ImageProcessor:
         self._github_attachment_html_pattern = re.compile(
             r'<img[^>]*src="(https://github\.com/user-attachments/assets/[a-f0-9\-]+)"[^>]*>'
         )
+        # GitHub files 附件 URL 正则模式 - Markdown 格式
+        self._github_files_markdown_pattern = re.compile(
+            r'\[([^\]]+)\]\((https://github\.com/user-attachments/files/\d+/[^)]+)\)'
+        )
+        # GitHub files 附件 URL 正则模式 - HTML 格式
+        self._github_files_html_pattern = re.compile(
+            r'<a[^>]*href="(https://github\.com/user-attachments/files/\d+/[^"]+)"[^>]*>'
+        )
         # raw.githubusercontent.com URL 正则模式 - Markdown 格式（宽松匹配所有图片）
         self._raw_github_markdown_pattern = re.compile(
             r'!\[([^\]]*)\]\((https://raw\.githubusercontent\.com/[^)]+\.(?:jpg|jpeg|png|gif|webp|svg|bmp))\)',
@@ -71,6 +79,32 @@ class ImageProcessor:
         except Exception as e:
             logger.warning(f"提取 UUID 失败 {url}: {str(e)}")
             return ""
+    
+    def _extract_file_id_and_name(self, url: str) -> tuple:
+        """
+        从 user-attachments/files URL 中提取文件 ID 和原始文件名
+        
+        Args:
+            url: user-attachments/files URL
+            格式: https://github.com/user-attachments/files/{id}/{filename}
+            
+        Returns:
+            (file_id, filename) 元组，失败返回 ("", "")
+        """
+        try:
+            from urllib.parse import unquote
+            
+            # 提取文件 ID 和文件名
+            match = re.search(r'/files/(\d+)/([^/?#]+)', url)
+            if match:
+                file_id = match.group(1)
+                filename = unquote(match.group(2))  # URL 解码
+                logger.debug(f"从 files URL 提取: ID={file_id}, 文件名={filename}")
+                return file_id, filename
+            return "", ""
+        except Exception as e:
+            logger.warning(f"提取文件 ID 和文件名失败 {url}: {str(e)}")
+            return "", ""
     
     def _extract_filename_from_raw_url(self, url: str) -> str:
         """
@@ -137,26 +171,35 @@ class ImageProcessor:
     
     def extract_github_image_urls(self, content: str) -> List[str]:
         """
-        从内容中提取图片 URL（支持 Markdown 和 HTML 格式）
-        包括：GitHub 附件 URL、raw.githubusercontent.com URL 和知乎图片 URL
+        从内容中提取图片和附件 URL（支持 Markdown 和 HTML 格式）
+        包括：GitHub 附件 URL (assets/files)、raw.githubusercontent.com URL 和知乎图片 URL
         
         Args:
             content: Markdown 或 HTML 内容
             
         Returns:
-            图片 URL 列表
+            图片和附件 URL 列表
         """
         try:
             urls = []
             
-            # 提取 GitHub 附件 URL - Markdown 格式
+            # 提取 GitHub 附件 URL (assets) - Markdown 格式
             attachment_markdown_matches = self._github_attachment_markdown_pattern.findall(content)
             attachment_markdown_urls = [match[1] for match in attachment_markdown_matches]  # match[1] 是 URL 部分
             urls.extend(attachment_markdown_urls)
             
-            # 提取 GitHub 附件 URL - HTML 格式
+            # 提取 GitHub 附件 URL (assets) - HTML 格式
             attachment_html_matches = self._github_attachment_html_pattern.findall(content)
             urls.extend(attachment_html_matches)
+            
+            # 提取 GitHub files 附件 URL - Markdown 格式
+            files_markdown_matches = self._github_files_markdown_pattern.findall(content)
+            files_markdown_urls = [match[1] for match in files_markdown_matches]  # match[1] 是 URL 部分
+            urls.extend(files_markdown_urls)
+            
+            # 提取 GitHub files 附件 URL - HTML 格式
+            files_html_matches = self._github_files_html_pattern.findall(content)
+            urls.extend(files_html_matches)
             
             # 提取 raw.githubusercontent.com URL - Markdown 格式
             raw_markdown_matches = self._raw_github_markdown_pattern.findall(content)
@@ -179,11 +222,17 @@ class ImageProcessor:
             # 去重
             urls = list(set(urls))
             
-            logger.debug(f"提取到 {len(urls)} 个图片 URL (GitHub附件: {len(attachment_markdown_urls) + len(attachment_html_matches)}, raw: {len(raw_markdown_urls) + len(raw_html_matches)}, 知乎: {len(zhihu_markdown_urls) + len(zhihu_html_matches)})")
+            # 统计数量
+            assets_count = len(attachment_markdown_urls) + len(attachment_html_matches)
+            files_count = len(files_markdown_urls) + len(files_html_matches)
+            raw_count = len(raw_markdown_urls) + len(raw_html_matches)
+            zhihu_count = len(zhihu_markdown_urls) + len(zhihu_html_matches)
+            
+            logger.debug(f"提取到 {len(urls)} 个附件 URL (GitHub assets: {assets_count}, GitHub files: {files_count}, raw: {raw_count}, 知乎: {zhihu_count})")
             return urls
             
         except Exception as e:
-            logger.error(f"提取图片 URL 失败: {str(e)}")
+            logger.error(f"提取附件 URL 失败: {str(e)}")
             return []
     
     def download_image(self, url: str, save_path: Path) -> bool:
@@ -223,7 +272,7 @@ class ImageProcessor:
     
     def download_article_images(self, article: Article) -> Dict[str, str]:
         """
-        下载文章的所有图片
+        下载文章的所有图片和附件
         
         Args:
             article: 文章对象
@@ -232,16 +281,16 @@ class ImageProcessor:
             URL 映射表 {原始URL: 本地相对路径}
         """
         try:
-            # 提取图片 URL
+            # 提取图片和附件 URL
             image_urls = self.extract_github_image_urls(article.content)
             
             if not image_urls:
-                logger.debug(f"文章 {article.title} 没有 GitHub 附件图片")
+                logger.debug(f"文章 {article.title} 没有需要处理的附件")
                 return {}
             
-            # 确保图片目录存在
+            # 确保附件目录存在
             image_dir = article.local_images_dir
-            logger.info(f"图片保存目录: {image_dir.absolute()}")
+            logger.info(f"附件保存目录: {image_dir.absolute()}")
             image_dir.mkdir(parents=True, exist_ok=True)
             
             url_map = {}
@@ -250,7 +299,15 @@ class ImageProcessor:
             for url in image_urls:
                 try:
                     # 判断 URL 类型并提取文件名
-                    if 'raw.githubusercontent.com' in url:
+                    if 'user-attachments/files/' in url:
+                        # GitHub files 附件 - 使用 ID-原始文件名
+                        file_id, original_name = self._extract_file_id_and_name(url)
+                        if not file_id or not original_name:
+                            logger.warning(f"无法从 files URL 中提取文件信息: {url}")
+                            url_map[url] = url
+                            continue
+                        filename = f"{file_id}-{original_name}"
+                    elif 'raw.githubusercontent.com' in url:
                         # raw.githubusercontent.com URL - 提取原始文件名
                         filename = self._extract_filename_from_raw_url(url)
                         if not filename:
@@ -265,7 +322,7 @@ class ImageProcessor:
                             url_map[url] = url
                             continue
                     else:
-                        # GitHub 附件 URL - 使用 UUID 作为文件名
+                        # GitHub 附件 URL (assets) - 使用 UUID 作为文件名
                         uuid = self._extract_uuid_from_url(url)
                         if not uuid:
                             logger.warning(f"无法从 URL 中提取 UUID: {url}")
@@ -278,26 +335,26 @@ class ImageProcessor:
                     
                     save_path = image_dir / filename
                     
-                    # 下载图片
+                    # 下载附件
                     if self.download_image(url, save_path):
-                        # 生成相对路径（从 html/articles/{分类}/ 到图片）
+                        # 生成相对路径（从 html/articles/{分类}/ 到附件）
                         relative_path = f"../../../assets/images/{article.image_dir_name}/{filename}"
                         url_map[url] = relative_path
-                        logger.info(f"图片下载成功: {url} -> {save_path.absolute()}")
+                        logger.info(f"附件下载成功: {url} -> {save_path.absolute()}")
                         success_count += 1
                     else:
                         # 下载失败，保留原始 URL
                         url_map[url] = url
                         
                 except Exception as e:
-                    logger.warning(f"处理图片失败 {url}: {str(e)}")
+                    logger.warning(f"处理附件失败 {url}: {str(e)}")
                     url_map[url] = url  # 保留原始 URL
             
-            logger.info(f"文章 {article.title} 图片处理完成: {success_count}/{len(image_urls)} 成功")
+            logger.info(f"文章 {article.title} 附件处理完成: {success_count}/{len(image_urls)} 成功")
             return url_map
             
         except Exception as e:
-            logger.error(f"下载文章图片失败 {article.title}: {str(e)}")
+            logger.error(f"下载文章附件失败 {article.title}: {str(e)}")
             return {}
     
     def _get_image_extension(self, url: str) -> str:
