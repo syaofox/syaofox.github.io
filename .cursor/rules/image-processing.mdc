@@ -1,0 +1,370 @@
+---
+description: "图片处理模块使用规范（GitHub 附件和外部图源处理）"
+globs: src/utils/image_utils.py
+---
+
+# 图片处理模块使用规范
+
+## ImageProcessor 类
+
+位于 [src/utils/image_utils.py](mdc:src/utils/image_utils.py) 的图片处理器，负责下载和管理文章中的图片资源。
+
+## 基本用法
+
+```python
+from src.utils.image_utils import ImageProcessor
+
+# 初始化图片处理器
+processor = ImageProcessor()
+
+# 批量处理所有文章的图片
+result_map = processor.batch_process_articles(articles)
+
+# 处理单篇文章的图片
+processed_content = processor.download_and_replace_images(article)
+```
+
+## 支持的图片源
+
+### 1. GitHub 附件（user-attachments）
+
+**Markdown 格式**：
+```markdown
+![alt text](https://github.com/user-attachments/assets/{uuid})
+```
+
+**HTML 格式**：
+```html
+<img src="https://github.com/user-attachments/assets/{uuid}">
+```
+
+处理后转换为：
+```markdown
+![alt text](assets/images/{article_title}/{uuid}.{ext})
+```
+
+### 2. GitHub Files 附件
+
+**Markdown 格式**：
+```markdown
+[filename](https://github.com/user-attachments/files/{id}/{filename})
+```
+
+**HTML 格式**：
+```html
+<a href="https://github.com/user-attachments/files/{id}/{filename}">
+```
+
+### 3. Raw GitHub Content
+
+**Markdown 图片格式**：
+```markdown
+![alt](https://raw.githubusercontent.com/{user}/{repo}/{branch}/{path}.jpg)
+```
+
+**Markdown 链接格式**：
+```markdown
+[filename](https://raw.githubusercontent.com/{user}/{repo}/{branch}/{path}.ext)
+```
+
+### 4. 知乎图片
+
+**Markdown 格式**：
+```markdown
+![alt](https://pic1.zhimg.com/xxx.jpg?param=value)
+```
+
+**HTML 格式**：
+```html
+<img src="https://pic1.zhimg.com/xxx.jpg?param=value">
+```
+
+## 核心功能
+
+### 批量处理文章
+
+```python
+def batch_process_articles(self, articles: List[Article]) -> Dict[str, str]:
+    """
+    批量处理多篇文章的图片
+    
+    Args:
+        articles: 文章列表
+        
+    Returns:
+        文章标题到处理后内容的映射字典
+    """
+    result = {}
+    for article in articles:
+        processed_content = self.download_and_replace_images(article)
+        result[article.title] = processed_content
+    return result
+```
+
+### 下载并替换图片
+
+```python
+def download_and_replace_images(self, article: Article) -> str:
+    """
+    下载文章中的图片并替换 URL
+    
+    工作流程：
+    1. 提取所有图片 URL（支持 Markdown 和 HTML 格式）
+    2. 下载图片到本地目录
+    3. 替换原始 URL 为本地相对路径
+    
+    Args:
+        article: 文章对象
+        
+    Returns:
+        处理后的文章内容
+    """
+    pass
+```
+
+### 图片下载
+
+```python
+def _download_image(self, url: str, save_path: Path) -> bool:
+    """
+    下载单张图片
+    
+    特性：
+    - 自动跳过已存在的文件
+    - 设置 30 秒超时
+    - 自动重试机制
+    - 错误日志记录
+    
+    Args:
+        url: 图片 URL
+        save_path: 保存路径
+        
+    Returns:
+        下载是否成功
+    """
+    pass
+```
+
+## 目录结构管理
+
+### 图片存储位置
+
+```
+assets/images/
+├── {文章标题1}/
+│   ├── {uuid1}.jpg
+│   ├── {uuid2}.png
+│   └── {filename}.gif
+├── {文章标题2}/
+│   └── {uuid3}.jpg
+└── ...
+```
+
+### 标题清理规则
+
+```python
+def _sanitize_title(self, title: str) -> str:
+    """
+    清理文章标题作为目录名
+    
+    规则：
+    - 移除或替换特殊字符：< > : " / \ | ? *
+    - 替换空格为空字符
+    - 移除多余的点
+    - 限制长度为 100 字符
+    """
+    pass
+```
+
+## URL 转换规则
+
+### Markdown 图片
+
+**原始**：
+```markdown
+![描述](https://github.com/user-attachments/assets/abc-123)
+```
+
+**转换后**：
+```markdown
+![描述](assets/images/文章标题/abc-123.jpg)
+```
+
+### HTML 图片
+
+**原始**：
+```html
+<img src="https://github.com/user-attachments/assets/abc-123" alt="描述">
+```
+
+**转换后**：
+```html
+<img src="assets/images/文章标题/abc-123.jpg" alt="描述">
+```
+
+### Markdown 链接（非图片附件）
+
+**原始**：
+```markdown
+[下载文件](https://github.com/user-attachments/files/123/file.zip)
+```
+
+**转换后**：
+```markdown
+[下载文件](assets/images/文章标题/file.zip)
+```
+
+## 错误处理和降级
+
+### 下载失败处理
+
+```python
+# 下载失败时保留原始 URL
+if not self._download_image(url, save_path):
+    logger.warning(f"图片下载失败，保留原 URL: {url}")
+    return original_url
+```
+
+### 文件扩展名检测
+
+```python
+def _detect_image_extension(self, url: str, content: bytes) -> str:
+    """
+    检测图片格式
+    
+    优先级：
+    1. URL 中的扩展名
+    2. Content-Type 响应头
+    3. 图片内容的魔术数字（文件头）
+    4. 默认使用 .jpg
+    """
+    pass
+```
+
+## 性能优化
+
+### 去重机制
+
+```python
+# 检查文件是否已存在
+if save_path.exists():
+    logger.debug(f"图片已存在，跳过下载: {save_path.name}")
+    return True
+```
+
+### 批量处理优化
+
+```python
+# 使用字典缓存处理结果
+processed_cache = {}
+
+# 相同内容不重复处理
+if article.content in processed_cache:
+    return processed_cache[article.content]
+```
+
+### 超时设置
+
+```python
+# 设置合理的超时时间
+response = requests.get(url, timeout=30, stream=True)
+```
+
+## 集成到 BlogGenerator
+
+```python
+class BlogGenerator:
+    def process_images(self):
+        """处理所有文章的图片"""
+        logger.info("开始处理图片...")
+        
+        # 初始化图片处理器
+        processor = ImageProcessor()
+        
+        # 批量处理
+        result_map = processor.batch_process_articles(self.articles)
+        
+        # 更新文章内容
+        for article in self.articles:
+            if article.title in result_map:
+                article.content = result_map[article.title]
+        
+        logger.info("图片处理完成")
+```
+
+## 日志记录
+
+### 日志级别使用
+
+```python
+# INFO：重要操作
+logger.info(f"开始处理文章图片: {article.title}")
+
+# DEBUG：详细信息
+logger.debug(f"提取到 {count} 个图片 URL")
+
+# WARNING：非关键错误
+logger.warning(f"图片下载失败: {url}")
+
+# ERROR：严重错误
+logger.error(f"创建目录失败: {str(e)}")
+```
+
+## 最佳实践
+
+### 1. 目录管理
+- 自动创建必要的目录结构
+- 清理文件名中的非法字符
+- 避免目录名过长
+
+### 2. 错误恢复
+- 下载失败时保留原始 URL
+- 单个图片失败不影响其他图片
+- 记录详细的错误日志
+
+### 3. 性能考虑
+- 检查文件是否已存在，避免重复下载
+- 设置合理的超时时间
+- 使用流式下载处理大文件
+
+### 4. 兼容性
+- 同时支持 Markdown 和 HTML 格式
+- 支持多种图片源（GitHub、知乎等）
+- 自动检测图片格式
+
+## 使用注意事项
+
+- **网络依赖**：下载图片需要网络连接
+- **磁盘空间**：确保有足够的磁盘空间存储图片
+- **文件权限**：确保有写入 `assets/images/` 目录的权限
+- **超时设置**：大文件下载可能需要更长的超时时间
+- **URL 格式**：确保支持的 URL 格式与正则表达式匹配
+
+## 扩展支持
+
+### 添加新的图片源
+
+```python
+# 1. 添加正则表达式模式
+self._custom_pattern = re.compile(r'pattern')
+
+# 2. 实现提取方法
+def _extract_custom_images(self, content: str) -> List[Tuple[str, str]]:
+    """提取自定义图片源"""
+    pass
+
+# 3. 在 download_and_replace_images 中调用
+custom_images = self._extract_custom_images(content)
+```
+
+## 运行方式
+
+**重要**：必须使用 uv 运行脚本：
+
+```bash
+# 运行主程序（包含图片处理）
+uv run python main.py
+
+# 或直接运行模块
+uv run python src/main.py
+```

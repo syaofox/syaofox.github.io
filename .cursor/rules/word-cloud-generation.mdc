@@ -72,15 +72,29 @@ class WordCloudGenerator:
 ### 中文字体支持
 
 ```python
-def _create_wordcloud(self, word_freq: Dict[str, int]) -> str:
-    """创建词云图片"""
+def _create_wordcloud(self, word_freq: Dict[str, int], theme: str = 'light') -> str:
+    """创建词云图片
+    
+    Args:
+        word_freq: 词频字典
+        theme: 主题类型，'light' 或 'dark'
+    """
+    # 根据主题设置颜色
+    if theme == 'dark':
+        bg_color = 'black'
+        color_func = lambda *args, **kwargs: 'white'
+    else:
+        bg_color = 'white'
+        color_func = None
+    
     wc = WordCloud(
         font_path=config.font_path,  # 从配置获取字体路径
         width=1920,
         height=400,
-        background_color='white',
+        background_color=bg_color,
         max_words=100,
-        relative_scaling=0.5
+        relative_scaling=0.5,
+        color_func=color_func  # 深色主题使用白色文字
     ).generate_from_frequencies(word_freq)
 ```
 
@@ -114,9 +128,11 @@ image_path = config.assets_dir / "wordcloud.png"
 
 - **宽度**：1920 像素
 - **高度**：400 像素
-- **背景色**：白色
+- **背景色**：白色（浅色主题）、黑色（深色主题）
 - **格式**：PNG
-- **存储位置**：`assets/wordcloud.png`
+- **存储位置**：
+  - 浅色主题：`assets/wordcloud-light.png`
+  - 深色主题：`assets/wordcloud-dark.png`
 - **最大词数**：100
 - **相对缩放**：0.5
 
@@ -137,14 +153,47 @@ uv run python main.py
 uv run python src/main.py
 ```
 
+## 主题支持
+
+### 浅色主题（Light）
+
+- **背景色**：白色
+- **文字颜色**：默认颜色（渐变）
+- **文件名**：`wordcloud-light.png`
+- **用途**：README.md 默认显示
+
+### 深色主题（Dark）
+
+- **背景色**：黑色
+- **文字颜色**：白色
+- **文件名**：`wordcloud-dark.png`
+- **用途**：支持深色模式的界面
+
+### 生成两个主题
+
+```python
+def generate_both_themes(self) -> Tuple[str, str]:
+    """生成深色和浅色两个主题的词云"""
+    word_freq = self._calculate_word_frequency()
+    
+    # 生成浅色主题
+    light_path = self._create_wordcloud(word_freq, theme='light')
+    
+    # 生成深色主题
+    dark_path = self._create_wordcloud(word_freq, theme='dark')
+    
+    return light_path, dark_path
+```
+
 ## 使用注意事项
 
 - **字体文件**：确保 `wqy-microhei.ttc` 存在于 `lib/fonts/` 目录
 - **缓存优化**：使用缓存的文章数据，避免重复 API 调用
 - **错误恢复**：生成失败时自动使用现有图片作为降级方案
-- **磁盘空间**：建议在生成前检查磁盘空间
+- **磁盘空间**：建议在生成前检查磁盘空间（需要存储两个版本）
 - **中文支持**：完全支持中文标签显示
 - **性能提升**：相比原版本，减少了 API 调用次数，提高生成速度
+- **主题切换**：支持生成深色和浅色两个主题版本
 
 ## 集成示例
 

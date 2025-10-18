@@ -37,10 +37,27 @@ markdown: GFM
 
 ### 图片资源管理
 
-- 图片按文章分类存储在 `assets/images/` 目录下
-- 每个分类创建独立的子目录
-- 支持多种图片格式：`.jpg`, `.png`, `.gif`
-- 词云图片统一存储在 `assets/wordcloud.png`
+- 图片按文章标题存储在 `assets/images/` 目录下
+- 每篇文章创建独立的子目录（基于文章标题）
+- 支持多种图片格式：`.jpg`, `.png`, `.gif`, `.webp`, `.svg`
+- GitHub 附件图片自动下载到本地
+- 词云图片存储为 `assets/wordcloud-light.png` 和 `assets/wordcloud-dark.png`
+
+### 文章备份管理
+
+- 文章备份到 `articles_backup/` 目录
+- 备份格式为 Markdown 文件
+- 文件命名格式：`YYYY-MM-DD-标题.md`
+- 包含文章内容和评论
+- 每次运行自动更新备份
+
+### HTML 网站生成
+
+- 完整 HTML 网站生成到 `html/` 目录
+- 包含首页、文章页和静态资源
+- 文章按分类组织在 `html/articles/{label}/` 目录
+- 所有图片和静态资源复制到 `html/assets/` 目录
+- 可独立部署的完整网站
 
 ## README.md 自动生成
 
@@ -78,6 +95,29 @@ markdown: GFM
 ## 部署和更新
 
 - GitHub Pages 自动部署 `main` 分支
-- Python 脚本自动更新 README.md
+- Python 脚本自动更新 README.md 和生成 HTML 网站
 - 支持实时预览和版本控制
 - 通过 Git 提交触发自动部署
+- 支持通过 GitHub Actions 自动备份文章
+
+## GitHub Actions 工作流
+
+### backup-articles.yml
+
+手动触发的文章备份工作流：
+
+```yaml
+name: Backup Articles
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Commit message (optional)'
+```
+
+工作流功能：
+1. 使用 uv 安装 Python 依赖
+2. 运行备份脚本
+3. 自动提交并推送更改
+4. 支持自定义提交消息
+5. 包含重试机制确保推送成功

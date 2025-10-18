@@ -76,14 +76,19 @@ for issue in issues_in_label:
 ```python
 from src.models.article import Article
 
-# 从 GitHub Issue 创建 Article 对象
-article = Article.from_issue(issue)
+# 从 GitHub Issue 创建 Article 对象（包含评论）
+article = Article.from_github_issue(issue, include_comments=True)
 
 # 访问文章属性
 title = article.title
 url = article.url
 date = article.created_at
 content = article.content
+labels = article.labels
+comments = article.comments  # 评论列表
+
+# 获取主标签（第一个非隐藏标签）
+main_label = article.get_main_label()
 ```
 
 ## 错误处理和恢复
@@ -112,15 +117,71 @@ except Exception as e:
     # 继续处理其他数据
 ```
 
+## 文章备份功能
+
+使用 `src/models/backup.py` 中的 ArticleBackup 类：
+
+```python
+from src.models.backup import ArticleBackup
+
+# 初始化备份器
+backup = ArticleBackup(backup_dir)
+
+# 备份单个文章（包含评论）
+backup.backup_article(article, comments=article.comments)
+
+# 批量备份所有文章
+issue_comments_map = {article.number: article.comments for article in articles}
+backup_count = backup.backup_all_articles(articles, issue_comments_map)
+```
+
+### 备份特性
+
+- **Markdown 格式**：备份为标准 Markdown 文件
+- **评论包含**：自动附加评论到文件末尾
+- **文件命名**：格式为 `YYYY-MM-DD-标题.md`
+- **特殊字符处理**：自动清理文件名中的非法字符
+- **强制覆盖**：每次备份强制覆盖旧文件
+
+## 图片处理功能
+
+使用 `src/utils/image_utils.py` 中的 ImageProcessor 类：
+
+```python
+from src.utils.image_utils import ImageProcessor
+
+# 初始化图片处理器
+processor = ImageProcessor()
+
+# 批量处理文章图片
+processor.batch_process_articles(articles)
+
+# 下载单篇文章的图片
+local_content = processor.download_and_replace_images(article)
+```
+
+### 图片处理特性
+
+- **自动下载**：自动下载 GitHub 附件图片到本地
+- **URL 转换**：将远程 URL 替换为本地相对路径
+- **多源支持**：支持 GitHub 附件、知乎图片等多种图源
+- **分类存储**：按文章标题分类存储图片
+- **去重机制**：相同图片不重复下载
+
 ## 自动化流程
 
-1. **初始化**：BlogGenerator 初始化 GitHub 客户端
-2. **数据获取**：批量获取 labels 和 issues
-3. **数据处理**：转换为 Article 对象
-4. **内容生成**：使用生成器创建 HTML 和 README
-5. **文件保存**：保存到本地文件系统
-6. **资源清理**：安全关闭 GitHub 连接
-7. **部署触发**：通过 Git 提交触发 GitHub Pages 部署
+1. **初始化**：BlogGenerator 初始化 GitHub 客户端和各个生成器
+2. **数据获取**：批量获取 labels、issues 和评论
+3. **图片处理**：下载 GitHub 附件图片到本地
+4. **数据处理**：转换为 Article 对象（包含评论）
+5. **内容生成**：
+   - 生成 HTML 文章页面（输出到 `html/` 目录）
+   - 生成词云图片（深色和浅色主题）
+   - 更新 README.md 文件
+6. **文章备份**：备份为 Markdown 文件（包含评论）
+7. **文件保存**：保存到本地文件系统
+8. **资源清理**：安全关闭 GitHub 连接
+9. **部署触发**：通过 Git 提交触发 GitHub Pages 部署
 
 ## 性能优化
 

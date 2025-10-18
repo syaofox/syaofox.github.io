@@ -15,18 +15,20 @@ src/
 │   ├── config.py           # 配置管理（环境变量、路径）
 │   └── github_client.py    # GitHub API 交互（单例模式）
 ├── models/                  # 数据模型
-│   └── article.py          # 文章数据模型
+│   ├── article.py          # 文章数据模型
+│   └── backup.py           # 文章备份模型
 ├── generators/              # 生成器模块
 │   ├── html_generator.py   # HTML 生成器（Jinja2 模板）
-│   ├── readme_generator.py # README 生成器
 │   └── wordcloud_generator.py # 词云生成器
 ├── utils/                   # 工具模块
 │   ├── file_utils.py       # 文件操作工具
-│   └── text_utils.py       # 文本处理工具
+│   ├── text_utils.py       # 文本处理工具
+│   └── image_utils.py      # 图片下载和处理工具
 ├── templates/               # HTML 模板
 │   ├── base.html           # 基础模板
 │   ├── article.html        # 文章页面模板
-│   └── index.html          # 首页模板
+│   ├── index.html          # 首页模板
+│   └── static/             # 静态资源（CSS/JS）
 └── main.py                 # 主程序入口
 ```
 
@@ -42,8 +44,10 @@ src/
 ## 重要目录
 
 - `assets/` - 静态资源目录，包含图片和词云图片
-- `assets/images/` - 按文章分类存储的图片资源
-- `articles/` - 生成的 HTML 文章目录（按分类组织）
+- `assets/images/` - 按文章分类存储的图片资源（支持自动下载 GitHub 附件）
+- `articles_backup/` - 文章备份目录，存储 Markdown 格式的文章副本
+- `html/` - **生成的独立 HTML 网站目录**（包含首页、文章页和静态资源）
+- `html/articles/` - 生成的 HTML 文章目录（按分类组织）
 - `lib/fonts/` - 中文字体文件，用于词云生成
 - `src/templates/` - **Jinja2 模板文件**，管理 HTML/CSS/JS 代码
 
@@ -62,14 +66,18 @@ uv run python src/main.py
 ## 工作流程
 
 1. **初始化**：BlogGenerator 初始化各个组件（配置、GitHub 客户端、生成器）
-2. **数据获取**：通过 GitHub API 获取仓库的 issues 和 labels
-3. **文章处理**：根据 labels 分类整理文章，生成 Article 对象
+2. **数据获取**：通过 GitHub API 获取仓库的 issues、labels 和评论
+3. **文章处理**：
+   - 根据 labels 分类整理文章，生成 Article 对象
+   - 提取并下载 GitHub 附件图片到本地
+   - 转换图片 URL 为本地相对路径
 4. **内容生成**：
-   - 使用 Jinja2 模板生成 HTML 文章页面
-   - 生成词云图片（优化：使用缓存数据减少 API 调用）
-   - 更新 README.md 文件
-5. **文件保存**：保存到相应目录
-6. **部署**：GitHub Pages 自动部署更新后的内容
+   - 使用 Jinja2 模板生成 HTML 文章页面（输出到 `html/` 目录）
+   - 生成词云图片（支持深色和浅色主题）
+   - 更新 README.md 文件（包含统计信息和分类列表）
+5. **文章备份**：将文章备份为 Markdown 文件到 `articles_backup/` 目录
+6. **文件保存**：保存 HTML、图片和静态资源到相应目录
+7. **部署**：GitHub Pages 自动部署更新后的内容
 
 ## 主要改进
 
@@ -78,11 +86,17 @@ uv run python src/main.py
 - **配置集中**：统一在 `src/core/config.py` 管理
 - **错误处理**：完善的异常捕获和日志记录
 - **性能优化**：减少 API 调用，批量处理数据
+- **图片管理**：自动下载 GitHub 附件图片，支持知乎图片等外部图源
+- **文章备份**：自动备份文章为 Markdown 文件，包含评论
+- **独立网站**：生成完整的 HTML 网站到 `html/` 目录，可独立部署
 
 ## 注意事项
 
 - 所有文章以 GitHub Issues 形式管理
 - 使用 labels 对文章进行分类
-- 词云图片自动生成并存储在 `assets/wordcloud.png`
+- 词云图片自动生成并存储在 `assets/wordcloud-light.png` 和 `assets/wordcloud-dark.png`
 - 支持中文字体渲染
+- GitHub 附件图片会自动下载到本地 `assets/images/` 目录
+- 文章备份包含评论信息，存储在 `articles_backup/` 目录
 - **必须使用 `uv run` 运行脚本**
+- HTML 网站输出到 `html/` 目录，包含所有必要的静态资源

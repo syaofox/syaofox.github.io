@@ -17,10 +17,10 @@ description: "Python 编码规范和最佳实践（重构后模块化架构）"
 ### 模块职责分离
 
 - **core/** - 核心功能：配置管理、GitHub 客户端
-- **models/** - 数据模型：定义数据结构和方法
-- **generators/** - 生成器：HTML、README、词云生成
-- **utils/** - 工具函数：文件操作、文本处理
-- **templates/** - 模板文件：Jinja2 HTML 模板
+- **models/** - 数据模型：Article（文章）、ArticleBackup（备份）
+- **generators/** - 生成器：HTML 生成、词云生成
+- **utils/** - 工具函数：文件操作、文本处理、图片处理
+- **templates/** - 模板文件：Jinja2 HTML 模板和静态资源
 
 ### 类设计原则
 
@@ -236,10 +236,108 @@ from src.core.config import config
 # 使用配置对象
 repo_name = config.github_repository
 font_path = config.font_path
+backup_dir = config.backup_dir
+html_dir = config.html_dir
 
 # 确保目录存在
 config.ensure_directories()
 ```
+
+## 图片处理规范
+
+### ImageProcessor 类使用
+
+```python
+from src.utils.image_utils import ImageProcessor
+
+class ImageProcessor:
+    """图片处理器"""
+    
+    def __init__(self):
+        """初始化图片处理器"""
+        # 编译正则表达式模式
+        self._github_attachment_markdown_pattern = re.compile(...)
+        self._zhihu_markdown_pattern = re.compile(...)
+    
+    def batch_process_articles(self, articles: List[Article]) -> Dict[str, str]:
+        """
+        批量处理文章图片
+        
+        Args:
+            articles: 文章列表
+            
+        Returns:
+            文章标题到处理后内容的映射
+        """
+        # 批量下载和替换图片
+        pass
+    
+    def download_and_replace_images(self, article: Article) -> str:
+        """
+        下载并替换单篇文章的图片
+        
+        Args:
+            article: 文章对象
+            
+        Returns:
+            处理后的文章内容
+        """
+        # 处理图片
+        pass
+```
+
+### 图片下载最佳实践
+
+- **错误处理**：下载失败时保留原 URL
+- **去重机制**：检查本地文件是否已存在
+- **目录管理**：按文章标题创建子目录
+- **超时设置**：设置合理的下载超时时间
+- **日志记录**：记录下载成功和失败的图片
+
+## 文章备份规范
+
+### ArticleBackup 类使用
+
+```python
+from src.models.backup import ArticleBackup
+
+class ArticleBackup:
+    """文章备份类"""
+    
+    def __init__(self, backup_dir: Path):
+        """初始化备份器"""
+        self.backup_dir = backup_dir
+        self.backup_dir.mkdir(parents=True, exist_ok=True)
+    
+    @staticmethod
+    def sanitize_filename(title: str) -> str:
+        """清理文件名，移除特殊字符"""
+        # 移除文件名中不允许的字符
+        filename = re.sub(r'[<>:"/\\|?*]', '_', title)
+        return filename
+    
+    def backup_article(self, article: Article, comments: Optional[List] = None) -> bool:
+        """
+        备份单个文章
+        
+        Args:
+            article: 文章对象
+            comments: 评论列表
+            
+        Returns:
+            备份是否成功
+        """
+        # 生成 Markdown 内容并保存
+        pass
+```
+
+### 备份最佳实践
+
+- **文件命名**：使用日期前缀，避免文件名冲突
+- **编码处理**：使用 UTF-8 编码保存文件
+- **强制覆盖**：每次备份覆盖旧文件，确保内容最新
+- **评论处理**：将评论附加到文章末尾
+- **特殊字符**：清理文件名中的非法字符
 
 ## 最佳实践
 
