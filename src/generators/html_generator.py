@@ -103,105 +103,17 @@ class HTMLGenerator:
         try:
             from ..utils.image_utils import ImageProcessor
             
-            markdown_content = article.content
             processor = ImageProcessor()
             
-            # 从 Markdown 和 HTML 中提取图片和附件 URL
-            # 匹配 Markdown 图片格式: ![alt](url)
-            image_markdown_pattern = r'!\[([^\]]*)\]\(([^)]+)\)'
-            # 匹配 Markdown 链接格式: [text](url) - 用于附件
-            link_markdown_pattern = r'(?<!!)\[([^\]]+)\]\(([^)]+)\)'
-            # 匹配 HTML 格式: <img src="url">
-            html_pattern = r'<img[^>]*src="([^"]+)"[^>]*>'
+            # 使用 ImageProcessor 下载图片并获取 URL 映射
+            url_map = processor.download_article_images(article)
             
-            image_markdown_matches = re.findall(image_markdown_pattern, markdown_content)
-            link_markdown_matches = re.findall(link_markdown_pattern, markdown_content)
-            html_matches = re.findall(html_pattern, markdown_content)
-            
-            # 合并所有 Markdown 格式的匹配
-            markdown_matches = image_markdown_matches + link_markdown_matches
-            
-            # 提取所有附件 URL（包括 GitHub 附件、raw.githubusercontent.com 和知乎图片）
-            image_urls = []
-            
-            # Markdown 格式图片和附件
-            for alt, url in markdown_matches:
-                if ('github.com/user-attachments/assets/' in url or 
-                    'github.com/user-attachments/files/' in url or 
-                    'raw.githubusercontent.com' in url or 
-                    'zhimg.com' in url):
-                    image_urls.append(url)
-            
-            # HTML 格式图片和附件
-            for url in html_matches:
-                if ('github.com/user-attachments/assets/' in url or 
-                    'github.com/user-attachments/files/' in url or 
-                    'raw.githubusercontent.com' in url or 
-                    'zhimg.com' in url):
-                    image_urls.append(url)
-            
-            if not image_urls:
+            if not url_map:
                 logger.debug(f"文章 {article.title} 没有需要处理的附件")
-                return markdown_content
-            
-            # 确保附件目录存在
-            image_dir = article.local_images_dir
-            logger.info(f"附件保存目录: {image_dir.absolute()}")
-            image_dir.mkdir(parents=True, exist_ok=True)
-            
-            url_map = {}
-            success_count = 0
-            
-            for url in image_urls:
-                try:
-                    # 判断 URL 类型并提取文件名
-                    if 'user-attachments/files/' in url:
-                        # GitHub files 附件 - 使用 ID-原始文件名
-                        file_id, original_name = processor._extract_file_id_and_name(url)
-                        if not file_id or not original_name:
-                            logger.warning(f"无法从 files URL 中提取文件信息: {url}")
-                            continue
-                        filename = f"{file_id}-{original_name}"
-                    elif 'raw.githubusercontent.com' in url:
-                        # raw.githubusercontent.com URL - 提取原始文件名
-                        filename = processor._extract_filename_from_raw_url(url)
-                        if not filename:
-                            logger.warning(f"无法从 raw URL 中提取文件名: {url}")
-                            continue
-                    elif 'zhimg.com' in url:
-                        # 知乎图片 URL - 提取原始文件名
-                        filename = processor._extract_filename_from_zhihu_url(url)
-                        if not filename:
-                            logger.warning(f"无法从知乎 URL 中提取文件名: {url}")
-                            continue
-                    else:
-                        # GitHub 附件 URL (assets) - 使用 UUID 作为文件名
-                        uuid = processor._extract_uuid_from_url(url)
-                        if not uuid:
-                            logger.warning(f"无法从 URL 中提取 UUID: {url}")
-                            continue
-                        
-                        # 获取文件扩展名
-                        extension = processor._get_image_extension(url)
-                        filename = f"{uuid}{extension}"
-                    
-                    save_path = image_dir / filename
-                    
-                    # 下载附件
-                    if processor.download_image(url, save_path):
-                        # 生成相对路径（从 html/articles/{分类}/ 到附件）
-                        relative_path = f"../../../assets/images/{article.image_dir_name}/{filename}"
-                        url_map[url] = relative_path
-                        logger.info(f"附件下载成功: {url} -> {save_path.absolute()}")
-                        success_count += 1
-                        
-                except Exception as e:
-                    logger.warning(f"处理附件失败 {url}: {str(e)}")
-            
-            logger.info(f"文章 {article.title} 附件处理完成: {success_count}/{len(image_urls)} 成功")
+                return article.content
             
             # 替换 Markdown 和 HTML 中的附件 URL
-            processed_content = markdown_content
+            processed_content = article.content
             for original_url, local_path in url_map.items():
                 # 替换所有出现的 URL（无论是 Markdown 还是 HTML 格式）
                 processed_content = processed_content.replace(original_url, local_path)
@@ -211,129 +123,6 @@ class HTMLGenerator:
         except Exception as e:
             logger.error(f"处理 Markdown 附件失败 {article.title}: {str(e)}")
             return article.content  # 返回原始内容
-    
-    def _process_html_images(self, article: Article, html_content: str) -> Dict[str, str]:
-        """
-        从 HTML 内容中处理图片和附件
-        
-        Args:
-            article: 文章对象
-            html_content: HTML 内容
-            
-        Returns:
-            URL 映射表
-        """
-        try:
-            from ..utils.image_utils import ImageProcessor
-            
-            processor = ImageProcessor()
-            image_urls = processor.extract_github_image_urls(html_content)
-            
-            if not image_urls:
-                logger.debug(f"文章 {article.title} 没有需要处理的附件")
-                return {}
-            
-            # 确保附件目录存在
-            image_dir = article.local_images_dir
-            logger.info(f"附件保存目录: {image_dir.absolute()}")
-            image_dir.mkdir(parents=True, exist_ok=True)
-            
-            url_map = {}
-            success_count = 0
-            
-            for url in image_urls:
-                try:
-                    # 判断 URL 类型并提取文件名
-                    if 'user-attachments/files/' in url:
-                        # GitHub files 附件 - 使用 ID-原始文件名
-                        file_id, original_name = processor._extract_file_id_and_name(url)
-                        if not file_id or not original_name:
-                            logger.warning(f"无法从 files URL 中提取文件信息: {url}")
-                            url_map[url] = url
-                            continue
-                        filename = f"{file_id}-{original_name}"
-                    elif 'raw.githubusercontent.com' in url:
-                        # raw.githubusercontent.com URL - 提取原始文件名
-                        filename = processor._extract_filename_from_raw_url(url)
-                        if not filename:
-                            logger.warning(f"无法从 raw URL 中提取文件名: {url}")
-                            url_map[url] = url
-                            continue
-                    elif 'zhimg.com' in url:
-                        # 知乎图片 URL - 提取原始文件名
-                        filename = processor._extract_filename_from_zhihu_url(url)
-                        if not filename:
-                            logger.warning(f"无法从知乎 URL 中提取文件名: {url}")
-                            url_map[url] = url
-                            continue
-                    else:
-                        # GitHub 附件 URL (assets) - 使用 UUID 作为文件名
-                        uuid = processor._extract_uuid_from_url(url)
-                        if not uuid:
-                            logger.warning(f"无法从 URL 中提取 UUID: {url}")
-                            url_map[url] = url
-                            continue
-                        
-                        # 获取文件扩展名
-                        extension = processor._get_image_extension(url)
-                        filename = f"{uuid}{extension}"
-                    
-                    save_path = image_dir / filename
-                    
-                    # 下载附件
-                    if processor.download_image(url, save_path):
-                        # 生成相对路径（从 html/articles/{分类}/ 到附件）
-                        relative_path = f"../../../assets/images/{article.image_dir_name}/{filename}"
-                        url_map[url] = relative_path
-                        logger.info(f"附件下载成功: {url} -> {save_path.absolute()}")
-                        success_count += 1
-                    else:
-                        # 下载失败，保留原始 URL
-                        url_map[url] = url
-                        
-                except Exception as e:
-                    logger.warning(f"处理附件失败 {url}: {str(e)}")
-                    url_map[url] = url  # 保留原始 URL
-            
-            logger.info(f"文章 {article.title} 附件处理完成: {success_count}/{len(image_urls)} 成功")
-            return url_map
-            
-        except Exception as e:
-            logger.error(f"处理 HTML 附件失败 {article.title}: {str(e)}")
-            return {}
-    
-    def _replace_html_image_urls(self, html_content: str, url_map: Dict[str, str], image_dir_name: str) -> str:
-        """
-        替换 HTML 中的图片 URL
-        
-        Args:
-            html_content: HTML 内容
-            url_map: URL 映射表
-            image_dir_name: 图片目录名
-            
-        Returns:
-            替换后的 HTML 内容
-        """
-        try:
-            converted_content = html_content
-            
-            for original_url, local_path in url_map.items():
-                if original_url != local_path:  # 只替换成功下载的图片
-                    # 替换 HTML img 标签中的 src 属性
-                    pattern = f'<img([^>]*)src="{re.escape(original_url)}"([^>]*)>'
-                    replacement = f'<img\\1src="{local_path}"\\2>'
-                    converted_content = re.sub(pattern, replacement, converted_content)
-            
-            # 统计转换数量
-            converted_count = len([url for url in url_map.keys() if url != url_map[url]])
-            if converted_count > 0:
-                logger.info(f"HTML 图片 URL 转换完成，转换了 {converted_count} 个链接")
-            
-            return converted_content
-            
-        except Exception as e:
-            logger.error(f"替换 HTML 图片 URL 失败: {str(e)}")
-            return html_content
     
     def generate_index_html(self, articles: List[Article], cur_time: str) -> str:
         """

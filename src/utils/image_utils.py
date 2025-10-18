@@ -38,7 +38,7 @@ class ImageProcessor:
         self._github_files_html_pattern = re.compile(
             r'<a[^>]*href="(https://github\.com/user-attachments/files/\d+/[^"]+)"[^>]*>'
         )
-        # raw.githubusercontent.com URL 正则模式 - Markdown 格式（宽松匹配所有图片）
+        # raw.githubusercontent.com URL 正则模式 - Markdown 图片格式
         self._raw_github_markdown_pattern = re.compile(
             r'!\[([^\]]*)\]\((https://raw\.githubusercontent\.com/[^)]+\.(?:jpg|jpeg|png|gif|webp|svg|bmp))\)',
             re.IGNORECASE
@@ -46,6 +46,11 @@ class ImageProcessor:
         # raw.githubusercontent.com URL 正则模式 - HTML 格式（宽松匹配所有图片）
         self._raw_github_html_pattern = re.compile(
             r'<img[^>]*src="(https://raw\.githubusercontent\.com/[^"]+\.(?:jpg|jpeg|png|gif|webp|svg|bmp))"[^>]*>',
+            re.IGNORECASE
+        )
+        # raw.githubusercontent.com URL 正则模式 - Markdown 链接格式（所有附件类型）
+        self._raw_github_link_pattern = re.compile(
+            r'(?<!!)\[([^\]]+)\]\((https://raw\.githubusercontent\.com/[^)]+\.[a-zA-Z0-9]+)\)',
             re.IGNORECASE
         )
         # 知乎图片 URL 正则模式 - Markdown 格式
@@ -201,7 +206,7 @@ class ImageProcessor:
             files_html_matches = self._github_files_html_pattern.findall(content)
             urls.extend(files_html_matches)
             
-            # 提取 raw.githubusercontent.com URL - Markdown 格式
+            # 提取 raw.githubusercontent.com URL - Markdown 图片格式
             raw_markdown_matches = self._raw_github_markdown_pattern.findall(content)
             raw_markdown_urls = [match[1] for match in raw_markdown_matches]  # match[1] 是 URL 部分
             urls.extend(raw_markdown_urls)
@@ -209,6 +214,11 @@ class ImageProcessor:
             # 提取 raw.githubusercontent.com URL - HTML 格式
             raw_html_matches = self._raw_github_html_pattern.findall(content)
             urls.extend(raw_html_matches)
+            
+            # 提取 raw.githubusercontent.com URL - Markdown 链接格式（所有附件类型）
+            raw_link_matches = self._raw_github_link_pattern.findall(content)
+            raw_link_urls = [match[1] for match in raw_link_matches]  # match[1] 是 URL 部分
+            urls.extend(raw_link_urls)
             
             # 提取知乎图片 URL - Markdown 格式
             zhihu_markdown_matches = self._zhihu_markdown_pattern.findall(content)
@@ -225,7 +235,7 @@ class ImageProcessor:
             # 统计数量
             assets_count = len(attachment_markdown_urls) + len(attachment_html_matches)
             files_count = len(files_markdown_urls) + len(files_html_matches)
-            raw_count = len(raw_markdown_urls) + len(raw_html_matches)
+            raw_count = len(raw_markdown_urls) + len(raw_html_matches) + len(raw_link_urls)
             zhihu_count = len(zhihu_markdown_urls) + len(zhihu_html_matches)
             
             logger.debug(f"提取到 {len(urls)} 个附件 URL (GitHub assets: {assets_count}, GitHub files: {files_count}, raw: {raw_count}, 知乎: {zhihu_count})")
@@ -249,7 +259,7 @@ class ImageProcessor:
         try:
             # 检查文件是否已存在（缓存机制）
             if save_path.exists():
-                logger.info(f"图片已存在，跳过下载: {save_path}")
+                logger.debug(f"附件已存在，跳过下载: {save_path}")
                 return True
             
             # 确保目录存在
@@ -263,7 +273,7 @@ class ImageProcessor:
             with open(save_path, 'wb') as f:
                 f.write(response.content)
             
-            logger.debug(f"图片下载成功: {url} -> {save_path}")
+            logger.info(f"附件下载成功: {url} -> {save_path}")
             return True
             
         except Exception as e:
@@ -335,12 +345,11 @@ class ImageProcessor:
                     
                     save_path = image_dir / filename
                     
-                    # 下载附件
+                    # 下载附件（download_image 方法会打印详细日志）
                     if self.download_image(url, save_path):
                         # 生成相对路径（从 html/articles/{分类}/ 到附件）
                         relative_path = f"../../../assets/images/{article.image_dir_name}/{filename}"
                         url_map[url] = relative_path
-                        logger.info(f"附件下载成功: {url} -> {save_path.absolute()}")
                         success_count += 1
                     else:
                         # 下载失败，保留原始 URL
