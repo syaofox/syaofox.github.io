@@ -1,7 +1,7 @@
 ---
 title: "linux mint on btrfs 安装记录"
 created_at: "2025-10-27 04:23:12"
-updated_at: "2025-10-27 07:19:12"
+updated_at: "2025-10-27 07:30:11"
 issue_number: 51
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/51
@@ -37,7 +37,27 @@ chmod +x configure_btrfs.sh
 sudo ./configure_btrfs.sh
 ```
 
-## 必备包
+
+## 挂载nas上的文件(nfs)
+
+必备包
+```bash
+sudo apt update && sudo apt install nfs-common
+```
+
+编辑`/etc/fstab`加入挂载信息
+
+```bash
+10.10.10.2:/fs/1000/nfs /mnt/dnas nfs _netdev,auto 0 0
+```
+测试
+
+```bash
+sudo mount -a
+```
+
+
+## 开发环境
 
 **python 环境**
 
