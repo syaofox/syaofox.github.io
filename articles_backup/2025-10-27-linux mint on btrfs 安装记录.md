@@ -1,7 +1,7 @@
 ---
 title: "linux mint on btrfs 安装记录"
 created_at: "2025-10-27 04:23:12"
-updated_at: "2025-10-27 09:21:01"
+updated_at: "2025-10-27 11:54:53"
 issue_number: 51
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/51
@@ -134,6 +134,8 @@ bash -c "rofi -show drun -config $HOME/.dotfiles/rofi/rofi.rasi"
 * **lazydocker** : 一个在终端中运行的 UI 工具，用于管理 Docker 和 Docker Compose。它通过提供简洁的界面和键盘快捷键，让用户不必记住复杂的命令行，就能轻松完成容器、镜像、网络和卷的查看、启动、停止、重启、删除等操作。 [地址](https://github.com/jesseduffield/lazydocker)
 * **Video-downloader** : 下载视频,yt-dlp套皮 [地址](https://github.com/Unrud/video-downloader)
 *  **xfce4-clipman**: 剪贴板管理,绑定快捷键 win+v  xfce4-clipman-history
+* **bottles**: 跑windows程序 [地址](https://usebottles.com/)
+* **btop**:现代且多彩的命令行资源监视器，显示使用情况和统计数据 [地址](https://usebottles.com/)
 
 ## nemo插件
 
