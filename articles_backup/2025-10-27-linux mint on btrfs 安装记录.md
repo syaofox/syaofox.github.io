@@ -1,7 +1,7 @@
 ---
 title: "linux mint on btrfs 安装记录"
 created_at: "2025-10-27 04:23:12"
-updated_at: "2025-10-27 07:06:02"
+updated_at: "2025-10-27 07:09:37"
 issue_number: 51
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/51
@@ -108,7 +108,7 @@ nvcc --version
 
 这是最常见和最推荐的方法，因为它允许您通过更改一个指向实际版本的软链接来全局切换系统环境。
 
-#### 1\. 确认已安装多个版本
+1\. 确认已安装多个版本
 
 官方安装程序通常会将每个版本的 CUDA Toolkit 安装到各自独立的目录中，例如：
 
@@ -123,7 +123,7 @@ ls -l /usr/local/
 # 查找类似 cuda-11.8, cuda-12.1, 以及 cuda -> cuda-xx.y 的链接
 ```
 
-#### 2\. 切换操作
+ 2\. 切换操作
 
 假设您想从 CUDA 11.8 切换到 CUDA 12.1：
 
@@ -147,7 +147,7 @@ ls -l /usr/local/
     # 输出应该显示 CUDA 12.1 的版本信息
     ```
 
-#### 3\. 环境变量设置（前提）
+3\. 环境变量设置（前提）
 
 要使此方法生效，您的环境变量（在您的 `~/.bashrc` 中）**必须** 指向通用路径 `/usr/local/cuda`：
 
@@ -165,7 +165,7 @@ export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
 
 如果您不想改变系统的默认 CUDA 版本，而只是想在 **当前终端会话** 或 **特定项目** 中使用特定版本，可以通过直接设置环境变量来实现。
 
-#### 1\. 临时切换操作
+1\. 临时切换操作
 
 假设您的系统默认是 CUDA 12.1，但您想在当前终端编译 DeepSpeed 时使用 **CUDA 11.8**：
 
@@ -182,7 +182,7 @@ nvcc --version
 uv pip install deepspeed==0.17.1
 ```
 
-#### 2\. 项目级切换 (虚拟环境脚本)
+2\. 项目级切换 (虚拟环境脚本)
 
 如果您使用 Python 虚拟环境 (`venv`)，可以修改虚拟环境的 `bin/activate` 脚本，在激活环境时自动设置这些变量。
 
@@ -191,7 +191,7 @@ uv pip install deepspeed==0.17.1
 
 -----
 
-### 总结与建议
+总结与建议
 
 | 切换方式 | 优点 | 缺点 | 适用场景 |
 | :--- | :--- | :--- | :--- |
