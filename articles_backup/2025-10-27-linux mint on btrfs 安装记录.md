@@ -1,7 +1,7 @@
 ---
 title: "linux mint on btrfs 安装记录"
 created_at: "2025-10-27 04:23:12"
-updated_at: "2025-10-27 06:36:22"
+updated_at: "2025-10-27 07:06:02"
 issue_number: 51
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/51
@@ -35,6 +35,12 @@ url: https://github.com/syaofox/syaofox.github.io/issues/51
 ```bash
 chmod +x configure_btrfs.sh
 sudo ./configure_btrfs.sh
+```
+
+## 必备包
+
+```bash
+sudo apt install build-essential python3-dev git
 ```
 
 ## CUDA Toolkit
