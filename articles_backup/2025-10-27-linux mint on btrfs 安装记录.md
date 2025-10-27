@@ -1,7 +1,7 @@
 ---
 title: "linux mint on btrfs 安装记录"
 created_at: "2025-10-27 04:23:12"
-updated_at: "2025-10-27 07:50:43"
+updated_at: "2025-10-27 07:55:14"
 issue_number: 51
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/51
@@ -111,7 +111,14 @@ sudo apt update
 sudo apt install zip xclip ffmpeg xdotool
 ```
 
+## applets
 
+- **Color Picker** 屏幕取色器
+- **Simplified System Monitor** 显示温度占用
+
+## extensions
+
+- **Workspace Scroller** 鼠标滚动切换工作区
 
 ## 开发环境
 
