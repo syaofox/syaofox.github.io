@@ -1,7 +1,7 @@
 ---
 title: "linux mint on btrfs 安装记录"
 created_at: "2025-10-27 04:23:12"
-updated_at: "2025-10-27 07:09:37"
+updated_at: "2025-10-27 07:19:12"
 issue_number: 51
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/51
@@ -11,18 +11,18 @@ url: https://github.com/syaofox/syaofox.github.io/issues/51
 
 ## 运行 Linux Mint 安装程序
 
-分区设置
+**分区设置**
 
 - 选择 Something else（手动分区）。
 
-配置挂载点：
+**配置挂载点：**
 
 - EFI 分区：选择 FAT32 分区，设置为 EFI System Partition，挂载点 /boot/efi，无需格式化（若已有数据）。
 - Btrfs 分区：选择 Btrfs 分区，设置为 Btrfs journaling file system，勾选 Format，挂载点 /。
 
 *确认“引导加载程序安装设备”为目标磁盘（例如 /dev/nvme0n1）。*
 
-完成安装
+**完成安装**
 
 - 设置用户名、密码、时区等。
 - 点击 Install Now，等待安装完成。
@@ -39,9 +39,43 @@ sudo ./configure_btrfs.sh
 
 ## 必备包
 
+**python 环境**
+
 ```bash
-sudo apt install build-essential python3-dev git
+sudo apt install build-essential python3-dev python3-pip git
 ```
+**uv包管理器**
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+**修改缓存位置**
+
+```bash
+# 查看当前位置
+uv cache dir
+```
+`~/.bashrc`最后添加
+
+```bash
+export UV_CACHE_DIR="/path/to/new/uv_cache"
+```
+加载生效
+
+```bash
+source ~/.bashrc
+```
+
+*新位置要位于安装uv的同一个分区下*
+
+**清理缓存**
+
+uv 提供了几种不同的机制来移除缓存中的条目：
+
+`uv cache clean` 会删除缓存目录中的 所有 缓存条目，彻底清空缓存。
+`uv cache clean ruff` 会删除 ruff 包的所有缓存条目，适用于使特定包或有限集合的包缓存失效。
+`uv cache prune` 会删除所有 未使用 的缓存条目。例如，缓存目录可能包含以前版本的 uv 创建的条目，这些条目不再需要并且可以安全移除。`uv cache prune` 可以定期运行，用于保持缓存目录的清洁。
+
 
 ## CUDA Toolkit
 
