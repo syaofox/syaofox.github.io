@@ -1,7 +1,7 @@
 ---
 title: "linux mint on btrfs 安装记录"
 created_at: "2025-10-27 04:23:12"
-updated_at: "2025-10-27 08:17:01"
+updated_at: "2025-10-27 08:53:27"
 issue_number: 51
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/51
@@ -70,6 +70,49 @@ sudo apt update && sudo apt install nfs-common
 ```bash
 sudo mount -a
 ```
+
+## rofi
+
+安装
+
+```bash
+sudo apt install rofi
+```
+获取配置文件
+
+```bash
+cd
+git clone https://github.com/syaofox/.dotfiles
+```
+创建电源菜单软连接
+
+```bash
+# 1. 定义源文件路径 (集中管理的位置)
+SOURCE_FILE="$HOME/.dotfiles/rofi/rofi-power-menu.desktop"
+
+# 2. 定义目标链接路径 (系统查找 .desktop 文件的地方)
+LINK_PATH="$HOME/.local/share/applications/rofi-power-menu.desktop"
+
+# 3. 创建软链接
+ln -s "$SOURCE_FILE" "$LINK_PATH"
+
+# 4. 更新桌面文件数据库
+update-desktop-database "$HOME/.local/share/applications/"
+````
+
+绑定快捷键命令
+
+```bash
+bash -c "rofi -show drun -config $HOME/.dotfiles/rofi/rofi.rasi"
+```
+
+如果要绑定 win + space ,必须先关闭系统占用
+位置在 keybord -> layouts -> options -> Switching to another layout
+
+
+
+
+
 
 ## 必备软件
 
