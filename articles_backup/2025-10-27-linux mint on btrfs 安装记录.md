@@ -1,7 +1,7 @@
 ---
 title: "linux mint on btrfs 安装记录"
 created_at: "2025-10-27 04:23:12"
-updated_at: "2025-10-27 09:07:52"
+updated_at: "2025-10-27 09:21:01"
 issue_number: 51
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/51
@@ -84,6 +84,9 @@ sudo apt install rofi
 cd
 git clone https://github.com/syaofox/.dotfiles
 ```
+或者直接下载 [.dotfiles.zip](https://github.com/user-attachments/files/23160884/default.dotfiles.zip) 解压到home目录
+
+
 创建电源菜单软连接
 
 ```bash
