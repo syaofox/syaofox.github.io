@@ -1,7 +1,7 @@
 ---
 title: "linux mint on btrfs 安装记录"
 created_at: "2025-10-27 04:23:12"
-updated_at: "2025-10-27 07:30:11"
+updated_at: "2025-10-27 07:50:43"
 issue_number: 51
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/51
@@ -40,7 +40,7 @@ sudo ./configure_btrfs.sh
 
 ## 挂载nas上的文件(nfs)
 
-必备包
+依赖
 ```bash
 sudo apt update && sudo apt install nfs-common
 ```
@@ -55,6 +55,62 @@ sudo apt update && sudo apt install nfs-common
 ```bash
 sudo mount -a
 ```
+
+## 必备软件
+
+* **brave**：去广告浏览器 [地址](https://brave.com/linux/)
+
+* **FreeFileSync**：免费开源的文件同步和备份软件，支持Windows、macOS和Linux，用于比较和同步本地、网络驱动器、移动设备或云存储上的文件夹。 [地址](https://freefilesync.org/)
+
+* **Czkawka**：免费开源的多功能文件清理工具，用于查找和删除重复文件、临时文件、大文件等，帮助释放磁盘空间，支持快速扫描和GUI/CLI模式。 [地址](https://github.com/qarmin/czkawka)
+
+* **FSearch**：基于GTK3的快速文件搜索工具，适用于Unix-like系统。 [地址](https://github.com/cboxdoerfer/fsearch/wiki/Search-syntax)
+
+* **Clapgrep**：开源Linux应用，用于搜索文本文件、PDF和Office文档，提供快速搜索并显示相关元数据如页码和行号。 [地址](https://github.com/luleyleo/clapgrep)
+
+* **KRename**：强大的批量文件重命名工具，支持基于表达式重命名、复制/移动文件，并处理数百个文件。 [地址](https://apps.kde.org/krename/)
+
+* **LocalSend**：免费开源的跨平台应用，用于在本地网络中点对点分享文件，支持端到端加密，类似于AirDrop。 [地址](https://localsend.org/)
+
+* **Gear Lever**：开源工具，用于轻松管理AppImage应用，支持安装、更新、组织AppImage文件并生成桌面入口。 [地址](https://github.com/mijorus/gearlever)
+
+* **FileZilla**：免费FTP解决方案，支持FTP、FTPS和SFTP，用于远程文件传输，跨平台可用。 [地址](https://filezilla-project.org/)
+
+* **Pinta**：免费开源的绘图和图像编辑程序，结合直观工具和强大功能，类似于简易版Paint.NET。 [地址](https://www.pinta-project.com/)
+
+* **XnConvert**：快速强大的跨平台批量图像转换器，支持自动化编辑照片集合，包括调整大小、水印和滤镜。 [地址](https://www.xnview.com/en/xnconvert/)
+
+* **HandBrake**：开源视频转码工具，支持从几乎任何格式转换为现代编解码器，适用于DVD和数字视频文件。 [地址](https://handbrake.fr/)
+
+* **lazydocker** : 一个在终端中运行的 UI 工具，用于管理 Docker 和 Docker Compose。它通过提供简洁的界面和键盘快捷键，让用户不必记住复杂的命令行，就能轻松完成容器、镜像、网络和卷的查看、启动、停止、重启、删除等操作。 [地址](https://github.com/jesseduffield/lazydocker)
+
+* **Video-downloader** : 下载视频,yt-dlp套皮 [地址](https://github.com/Unrud/video-downloader)
+
+## nemo插件
+
+* **Nemo Mediainfo Tab**：显示媒体分辨率等信息。 [地址](https://github.com/linux-man/nemo-mediainfo-tab/releases)
+
+* **Copy  Path To Clipborad**：复制文件路径
+
+* **Move into a new folder**：将选定的文件、文件夹和其他项目移动到新目录中
+
+自定义的一些插件 [nemo_actions.zip](https://github.com/user-attachments/files/23159130/nemo_actions.zip)
+
+安装位置:`/home/syaofox/.local/share/nemo`,包括:
+- 批量压缩为ZIP文件
+- 复制完整路径到剪贴板
+- 合并视频音频为mp4
+- 拼接MP4视频
+- 从剪贴板粘贴图像到文件(PNG)
+- 刷新
+
+依赖
+
+```bash
+sudo apt update
+sudo apt install zip xclip ffmpeg xdotool
+```
+
 
 
 ## 开发环境
