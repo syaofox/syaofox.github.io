@@ -1,7 +1,7 @@
 ---
 title: "linux mint on btrfs 安装记录"
 created_at: "2025-10-27 04:23:12"
-updated_at: "2025-10-27 07:55:14"
+updated_at: "2025-10-27 08:17:01"
 issue_number: 51
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/51
@@ -36,6 +36,21 @@ url: https://github.com/syaofox/syaofox.github.io/issues/51
 chmod +x configure_btrfs.sh
 sudo ./configure_btrfs.sh
 ```
+## 字体
+
+[Google Inter](https://fonts.google.com/?query=inter)
+
+
+## 升级fcixt5
+
+安装依赖
+
+```bash
+sudo apt install fcitx5 fcitx5-chinese-addons fcitx5-frontend-gtk3 fcitx5-frontend-gtk4 fcitx5-frontend-qt5  fcitx5-rime
+```
+
+打开【系统设置】【输入法】，输入法框架选择fcitx5，然后注销用户重新登录或重启电脑。
+
 
 
 ## 挂载nas上的文件(nfs)
