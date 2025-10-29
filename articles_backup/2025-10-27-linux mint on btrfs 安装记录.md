@@ -1,7 +1,7 @@
 ---
 title: "linux mint on btrfs 安装记录"
 created_at: "2025-10-27 04:23:12"
-updated_at: "2025-10-29 10:08:28"
+updated_at: "2025-10-29 12:38:26"
 issue_number: 51
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/51
@@ -160,7 +160,7 @@ bash -c "rofi -show drun -config $HOME/.dotfiles/rofi/rofi.rasi"
 
 ```bash
 sudo apt update
-sudo apt install zip xclip ffmpeg xdotool
+sudo apt install zip xclip ffmpeg xdotool tree
 ```
 
 ## applets
