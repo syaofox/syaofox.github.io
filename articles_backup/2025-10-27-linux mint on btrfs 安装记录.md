@@ -1,7 +1,7 @@
 ---
 title: "linux mint on btrfs 安装记录"
 created_at: "2025-10-27 04:23:12"
-updated_at: "2025-10-29 10:07:44"
+updated_at: "2025-10-29 10:08:28"
 issue_number: 51
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/51
@@ -197,6 +197,9 @@ dconf dump /org/cinnamon/desktop/keybindings/custom-keybindings/
 
 
 ## 开发环境
+
+**git***
+参考其他文章
 
 **python 环境**
 
