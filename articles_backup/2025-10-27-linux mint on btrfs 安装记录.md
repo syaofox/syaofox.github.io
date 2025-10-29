@@ -1,7 +1,7 @@
 ---
 title: "linux mint on btrfs 安装记录"
 created_at: "2025-10-27 04:23:12"
-updated_at: "2025-10-27 11:54:53"
+updated_at: "2025-10-29 10:07:44"
 issue_number: 51
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/51
@@ -136,6 +136,7 @@ bash -c "rofi -show drun -config $HOME/.dotfiles/rofi/rofi.rasi"
 *  **xfce4-clipman**: 剪贴板管理,绑定快捷键 win+v  xfce4-clipman-history
 * **bottles**: 跑windows程序 [地址](https://usebottles.com/)
 * **btop**:现代且多彩的命令行资源监视器，显示使用情况和统计数据 [地址](https://usebottles.com/)
+* **gpik**:屏幕取色器 [地址](http://www.gpick.org/)
 
 ## nemo插件
 
@@ -164,12 +165,36 @@ sudo apt install zip xclip ffmpeg xdotool
 
 ## applets
 
-- **Color Picker** 屏幕取色器
 - **Simplified System Monitor** 显示温度占用
 
 ## extensions
 
 - **Workspace Scroller** 鼠标滚动切换工作区
+
+
+## 快捷键绑定
+
+导出工具:
+```bash
+sudo apt install dconf-cli
+```
+常用操作
+```bash
+# 备份快捷键到文本文件（仅自定义）
+dconf dump /org/cinnamon/desktop/keybindings/ > ~/cinnamon-shortcuts.conf
+
+# 恢复/导入
+dconf load /org/cinnamon/desktop/keybindings/ < ~/cinnamon-shortcuts.conf
+
+# 重置所有到默认
+dconf reset -f /org/cinnamon/desktop/keybindings/
+
+# 查看自定义绑定
+dconf dump /org/cinnamon/desktop/keybindings/custom-keybindings/
+```
+附件
+[cinnamon-shortcuts.conf.zip](https://github.com/user-attachments/files/23207182/cinnamon-shortcuts.conf.zip)
+
 
 ## 开发环境
 
