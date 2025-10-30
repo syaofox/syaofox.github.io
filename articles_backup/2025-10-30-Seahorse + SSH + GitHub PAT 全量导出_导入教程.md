@@ -1,7 +1,7 @@
 ---
 title: "Seahorse + SSH + GitHub PAT 全量导出/导入教程"
 created_at: "2025-10-30 08:46:17"
-updated_at: "2025-10-30 08:51:04"
+updated_at: "2025-10-30 08:54:17"
 issue_number: 58
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/58
@@ -169,6 +169,8 @@ echo "重启终端或系统后，所有凭证自动生效！"
 ---
 
 ## 使用方法
+
+[backup&restore-seahorse.tar.gz](https://github.com/user-attachments/files/23229348/backup.restore-seahorse.tar.gz)
 
 ### 第一步：旧系统备份
 
