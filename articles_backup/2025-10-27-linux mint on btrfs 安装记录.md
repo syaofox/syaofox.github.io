@@ -1,7 +1,7 @@
 ---
 title: "linux mint on btrfs 安装记录"
 created_at: "2025-10-27 04:23:12"
-updated_at: "2025-10-29 12:38:26"
+updated_at: "2025-10-30 07:34:32"
 issue_number: 51
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/51
@@ -58,6 +58,7 @@ sudo apt install fcitx5 fcitx5-chinese-addons fcitx5-frontend-gtk3 fcitx5-fronte
 依赖
 ```bash
 sudo apt update && sudo apt install nfs-common
+sudo mkdir -p /mnt/dnas
 ```
 
 编辑`/etc/fstab`加入挂载信息
