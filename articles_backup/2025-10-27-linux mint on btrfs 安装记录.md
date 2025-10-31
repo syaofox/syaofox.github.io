@@ -1,7 +1,7 @@
 ---
 title: "linux mint on btrfs 安装记录"
 created_at: "2025-10-27 04:23:12"
-updated_at: "2025-10-31 08:10:22"
+updated_at: "2025-10-31 08:26:33"
 issue_number: 51
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/51
@@ -117,7 +117,9 @@ bash -c "rofi -show drun -config $HOME/.dotfiles/rofi/rofi.rasi"
 
 
 
+## 恢复密码
 
+[Seahorse + SSH + GitHub PAT 全量导出/导入教程](https://syaofox.github.io/articles/tips/2025-10-30-SeahorseSSHGitHubPAT%E5%85%A8%E9%87%8F%E5%AF%BC%E5%87%BA%E5%AF%BC%E5%85%A5%E6%95%99%E7%A8%8B.html)
 
 
 ## 必备软件
