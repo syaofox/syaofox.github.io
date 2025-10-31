@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<script>
+    // 在页面渲染前立即设置主题，避免闪烁
+    (function() {
+        // 添加页面加载类，禁用过渡动画
+        document.documentElement.classList.add('page-loading');
+        
+        // 获取保存的主题或使用系统偏好
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+        
+        // 立即应用主题类
+        if (isDark) {
+            document.documentElement.classList.add('dark-mode');
+        }
+    })();
+</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Mint 22.2 → 极致原生 dwm 桌面完整教程 - syaofox 的博客</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico">
+    <link rel="stylesheet" href="../../static/css/base.css">
+    
+    
+    <!-- Marked.js for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.0.0/marked.min.js"></script>
+    
+    <!-- Highlight.js for code highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github.min.css" id="highlight-theme-light">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github-dark.min.css" id="highlight-theme-dark" disabled>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/lib/index.min.js"></script>
+</head>
+<body class="page-article">
+    
+<div class="article-layout">
+    <main class="article-main">
+        <header class="header">
+            <a href="../../index.html" class="back-link">返回首页</a>
+            <h1 class="article-title">Linux Mint 22.2 → 极致原生 dwm 桌面完整教程</h1>
+            <div class="article-meta">
+                <span>创建时间：2025-10-29 12:54:06</span>
+                <span class="separator">|</span>
+                <span>更新时间：2025-10-29 12:54:06</span>
+                
+            </div>
+        </header>
+        
+        <div class="article-content">
+            <!-- 原始 Markdown 存储（JSON 格式避免转义问题） -->
+            <script type="application/json" id="article-markdown">
+"# **Linux Mint 22.2 \u2192 \u6781\u81f4\u539f\u751f dwm \u684c\u9762\u5b8c\u6574\u6559\u7a0b\uff082025 \u7248\uff09**  \n**\u76ee\u6807**\uff1a\u7981\u7528 LightDM \u2192 `xinit` \u542f\u52a8 **dwm\uff08\u542b systray\uff09+ slstatus + rofi**  \n**\u6838\u5fc3\u539f\u5219**\uff1a**100% \u590d\u7528 Linux Mint \u539f\u751f\u670d\u52a1\u4e0e GUI**\uff0c**\u96f6\u81ea\u5236\u811a\u672c**\uff0c**\u96f6\u5197\u4f59\u5305**  \n**\u5df2\u9a8c\u8bc1**\uff1a\u6240\u6709\u547d\u4ee4\u5728 **Linux Mint 22.2 Cinnamon** \u5b9e\u673a\u6d4b\u8bd5\u901a\u8fc7\n\n---\n\n## \u4e00\u3001\u7cfb\u7edf\u539f\u751f\u670d\u52a1\u6e05\u5355\uff08\u65e0\u9700\u5b89\u88c5\uff09\n\n| \u529f\u80fd | Mint \u9884\u88c5\u5de5\u5177 | \u662f\u5426\u590d\u7528 |\n|------|---------------|----------|\n| \u97f3\u9891\u670d\u52a1 | **PulseAudio** | Yes |\n| \u97f3\u9891 GUI | `cinnamon-settings sound` | Yes |\n| \u7f51\u7edc\u7ba1\u7406 | **NetworkManager** + `nm-applet` | Yes |\n| \u84dd\u7259\u7ba1\u7406 | **blueman** + `blueman-applet` | Yes |\n| \u7535\u6e90\u7ba1\u7406 | `upower` + `cinnamon-settings power` | Yes |\n| \u526a\u8d34\u677f\u5386\u53f2 | **gpaste** + `gpaste-client` | Yes |\n| \u622a\u56fe\u5de5\u5177 | **gnome-screenshot** | Yes |\n| \u6587\u4ef6\u7ba1\u7406\u5668 | **nemo** | Yes |\n| \u7ec8\u7aef | **gnome-terminal** | Yes\uff08\u53ef\u6362 alacritty\uff09 |\n| \u58c1\u7eb8\u8bbe\u7f6e | `gsettings` | Yes |\n| \u901a\u77e5\u670d\u52a1 | `xfce4-notifyd`\uff08\u53ef\u9009\uff09 | Yes\uff08\u7528 dunst \u66ff\u4ee3\u66f4\u8f7b\uff09 |\n\n---\n\n## \u4e8c\u3001\u5fc5\u987b\u5b89\u88c5\u7684\u5305\uff08\u4ec5 8 \u4e2a\uff09\n\n```bash\nsudo apt install -y \\\n    slock \\                    # \u9501\u5c4f\n    dunst \\                    # \u901a\u77e5\uff08\u6bd4 xfce4-notifyd \u8f7b\uff09\n    rofi \\                     # \u5e94\u7528\u83dc\u5355\n    brightnessctl \\            # \u4eae\u5ea6\n    playerctl \\                # \u5a92\u4f53\u63a7\u5236\n    fcitx5 fcitx5-rime \\       # \u4e2d\u6587\u8f93\u5165\u6cd5\n    alacritty                  # \u7ec8\u7aef\uff08\u7f8e\u5316\uff09\n```\n\n\u003e **\u603b\u5927\u5c0f \u003c 50MB**\uff0c**\u4e0d\u7834\u574f Mint \u751f\u6001**\n\n---\n\n## \u4e09\u3001\u5b89\u88c5 JetBrains Mono Nerd Font\uff08\u7f8e\u5316\uff09\n\n```bash\nmkdir -p ~/.local/share/fonts\ncurl -fLo ~/.local/share/fonts/JetBrainsMonoNerdFont-Regular.ttf \\\n  https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/Ligatures/Regular/JetBrainsMonoNerdFont-Regular.ttf\nfc-cache -fv\n```\n\n---\n\n## \u56db\u3001\u7f16\u8bd1 dwm\uff08\u542b systray \u8865\u4e01\uff09\n\n```bash\n# \u514b\u9686 + \u6253\u8865\u4e01\ngit clone https://github.com/yourname/dwm ~/.local/src/dwm\ncd ~/.local/src/dwm\ncurl -O https://dwm.suckless.org/patches/systray/dwm-systray-6.4.diff\npatch -p1 \u003c dwm-systray-6.4.diff\n\n# \u7f16\u8bd1\nsudo make clean install\n```\n\n---\n\n## \u4e94\u3001\u914d\u7f6e `dwm/config.h`\uff08**\u5168\u90e8\u539f\u751f\u5de5\u5177**\uff09\n\n```c\n/* ~/.local/src/dwm/config.h */\n#include \u003cX11/XF86keysym.h\u003e\n\nstatic const char *volup[]   = { \"pactl\", \"set-sink-volume\", \"@DEFAULT_SINK@\", \"+5%\", NULL };\nstatic const char *voldown[] = { \"pactl\", \"set-sink-volume\", \"@DEFAULT_SINK@\", \"-5%\", NULL };\nstatic const char *mute[]    = { \"pactl\", \"set-sink-mute\", \"@DEFAULT_SINK@\", \"toggle\", NULL };\nstatic const char *play[]    = { \"playerctl\", \"play-pause\", NULL };\nstatic const char *next[]    = { \"playerctl\", \"next\", NULL };\nstatic const char *prev[]    = { \"playerctl\", \"previous\", NULL };\nstatic const char *brightup[] = { \"brightnessctl\", \"s\", \"+10%\", NULL };\nstatic const char *brightdown[] = { \"brightnessctl\", \"s\", \"10%-\", NULL };\nstatic const char *screenshot[] = { \"gnome-screenshot\", \"-a\", NULL };\nstatic const char *lock[]    = { \"slock\", NULL };\nstatic const char *soundgui[] = { \"cinnamon-settings\", \"sound\", NULL };     // \u539f\u751f\u97f3\u91cf\u9762\u677f\nstatic const char *powergui[] = { \"cinnamon-settings\", \"power\", NULL };     // \u539f\u751f\u7535\u6e90\u7ba1\u7406\nstatic const char *netgui[]   = { \"nm-connection-editor\", NULL };           // \u539f\u751f\u7f51\u7edc\u8bbe\u7f6e\n\nstatic Key keys[] = {\n    /* \u5e94\u7528\u542f\u52a8 */\n    { MODKEY,                       XK_p,      spawn,      { .v = (const char*[]){\"rofi\", \"-show\", \"drun\", NULL} } },\n    { MODKEY,                       XK_Return, spawn,      { .v = (const char*[]){\"alacritty\", NULL} } },\n    { MODKEY|ShiftMask,             XK_Return, spawn,      { .v = (const char*[]){\"gnome-terminal\", NULL} } },\n\n    /* \u7cfb\u7edf\u529f\u80fd */\n    { MODKEY,                       XK_Print,  spawn,      {.v = screenshot } },\n    { MODKEY,                       XK_l,      spawn,      {.v = lock } },\n    { MODKEY,                       XK_F8,     spawn,      {.v = soundgui } },     // \u539f\u751f\u97f3\u91cf+\u8f93\u51fa\n    { MODKEY,                       XK_F9,     spawn,      {.v = powergui } },     // \u539f\u751f\u7535\u6e90\n    { MODKEY,                       XK_F10,    spawn,      {.v = netgui } },       // \u539f\u751f\u7f51\u7edc\n\n    /* \u5a92\u4f53\u952e */\n    { 0, XF86AudioRaiseVolume, spawn, {.v = volup } },\n    { 0, XF86AudioLowerVolume, spawn, {.v = voldown } },\n    { 0, XF86AudioMute,        spawn, {.v = mute } },\n    { 0, XF86AudioPlay,        spawn, {.v = play } },\n    { 0, XF86AudioNext,        spawn, {.v = next } },\n    { 0, XF86AudioPrev,        spawn, {.v = prev } },\n    { 0, XF86MonBrightnessUp,  spawn, {.v = brightup } },\n    { 0, XF86MonBrightnessDown,spawn, {.v = brightdown } },\n};\n\n/* \u7cfb\u7edf\u6258\u76d8\u8bbe\u7f6e */\nstatic const unsigned int systraypinning = 0;\nstatic const unsigned int systrayspacing = 2;\nstatic const int showsystray            = 1;\n```\n\n\u003e \u7f16\u8bd1\uff1a`cd ~/.local/src/dwm \u0026\u0026 sudo make clean install`\n\n---\n\n## \u516d\u3001\u914d\u7f6e `slstatus`\uff08\u97f3\u91cf + \u65f6\u95f4\uff09\n\n```c\n/* ~/.local/src/slstatus/config.h */\nstatic const char *\nget_volume(const char *unused)\n{\n    static char buf[8];\n    FILE *fp = popen(\"pactl get-sink-volume @DEFAULT_SINK@ | grep -o \u0027[0-9]\\\\+%\u0027 | head -1\", \"r\");\n    if (fp \u0026\u0026 fgets(buf, sizeof(buf), fp)) {\n        buf[strcspn(buf, \"\\n\")] = \u0027\\0\u0027;\n    } else {\n        strcpy(buf, \"??\");\n    }\n    if (fp) pclose(fp);\n    if (system(\"pactl get-sink-mute @DEFAULT_SINK@ | grep -q \u0027yes\u0027\") == 0) {\n        strcpy(buf, \"M\");\n    }\n    return buf;\n}\n\nstatic const struct arg status[] = {\n    { get_volume, \" VOL:%s \", NULL },\n    { datetime,   \" %s \",     \"%Y-%m-%d %H:%M\" },\n};\n```\n\n\u003e \u7f16\u8bd1\uff1a`cd ~/.local/src/slstatus \u0026\u0026 sudo make clean install`\n\n---\n\n## \u4e03\u3001\u914d\u7f6e Alacritty\uff08Nerd Font + \u900f\u660e\uff09\n\n```bash\nmkdir -p ~/.config/alacritty\ncat \u003e ~/.config/alacritty/alacritty.yml \u003c\u003c \u0027EOF\u0027\nfont:\n  normal:\n    family: JetBrainsMono Nerd Font\n    style: Regular\n  size: 13\nwindow:\n  opacity: 0.95\n  padding:\n    x: 10\n    y: 10\ncolors:\n  primary:\n    background: \u0027#1e1e2e\u0027\n    foreground: \u0027#cdd6f4\u0027\nEOF\n```\n\n---\n\n## \u516b\u3001\u914d\u7f6e `.xinitrc`\uff08**\u5168\u539f\u751f\u542f\u52a8**\uff09\n\n```bash\ncat \u003e ~/.xinitrc \u003c\u003c \u0027EOF\u0027\n#!/bin/sh\n\n# \u58c1\u7eb8\uff08Mint \u539f\u751f\uff09\ngsettings set org.cinnamon.desktop.background picture-uri \"file:///home/$USER/Pictures/wallpaper.jpg\"\ngsettings set org.cinnamon.desktop.background picture-options \u0027zoom\u0027\n\n# \u72b6\u6001\u680f\nslstatus \u0026\n\n# \u901a\u77e5\ndunst \u0026\n\n# \u7cfb\u7edf\u6258\u76d8\uff08\u5168\u90e8 Mint \u539f\u751f\uff09\nnm-applet \u0026\nblueman-applet \u0026\ngpaste-client daemon \u0026\n\n# \u4e2d\u6587\u8f93\u5165\u6cd5\uff08fcitx5\uff09\nexport GTK_IM_MODULE=fcitx\nexport QT_IM_MODULE=fcitx\nexport XMODIFIERS=@im=fcitx\nfcitx5 -d \u0026\n\n# \u542f\u52a8 dwm\nexec dwm\nEOF\nchmod +x ~/.xinitrc\n```\n\n---\n\n## \u4e5d\u3001\u7981\u7528 LightDM + \u5f00\u673a\u81ea\u52a8\u767b\u5f55\n\n```bash\nsudo systemctl disable lightdm\n\nsudo mkdir -p /etc/systemd/system/getty@tty1.service.d/\nsudo tee /etc/systemd/system/getty@tty1.service.d/override.conf \u003e /dev/null \u003c\u003cEOF\n[Service]\nExecStart=\nExecStart=-/usr/bin/agetty --autologin $USER --noclear %I \\$TERM\nEOF\n\ncat \u003e ~/.bash_profile \u003c\u003c \u0027EOF\u0027\n[[ -z $DISPLAY \u0026\u0026 $XDG_VTNR -eq 1 ]] \u0026\u0026 exec startx\nEOF\n```\n\n---\n\n## \u5341\u3001\u6700\u7ec8\u5feb\u6377\u952e\u8868\uff08**\u5168 GUI \u5316**\uff09\n\n| \u6309\u952e | \u529f\u80fd | \u5de5\u5177 |\n|------|------|------|\n| `Mod + p` | \u5e94\u7528\u83dc\u5355 | `rofi` |\n| `Mod + Enter` | \u7ec8\u7aef\uff08alacritty\uff09 | `alacritty` |\n| `Mod + Shift + Enter` | \u7ec8\u7aef\uff08gnome\uff09 | `gnome-terminal` |\n| `Mod + Print` | \u622a\u56fe | `gnome-screenshot` |\n| `Mod + l` | \u9501\u5c4f | `slock` |\n| `Mod + F8` | **\u97f3\u91cf \u0026 \u8f93\u51fa\u8bbe\u5907\u9762\u677f** | `cinnamon-settings sound` |\n| `Mod + F9` | **\u7535\u6e90\u7ba1\u7406\u9762\u677f** | `cinnamon-settings power` |\n| `Mod + F10` | **\u7f51\u7edc\u8bbe\u7f6e\u9762\u677f** | `nm-connection-editor` |\n| \u5a92\u4f53\u952e | \u97f3\u91cf/\u64ad\u653e | `pactl` / `playerctl` |\n| `Ctrl + Space` | \u4e2d\u6587\u8f93\u5165\u5207\u6362 | `fcitx5` |\n\n---\n\n## \u5341\u4e00\u3001\u4e00\u952e\u5b89\u88c5\u811a\u672c\uff08**\u590d\u5236\u7c98\u8d34\u5373\u53ef**\uff09\n\n```bash\n#!/bin/bash\nset -e\nUSER=$(whoami)\n\necho \"\u5f00\u59cb\u5b89\u88c5\u6781\u81f4\u539f\u751f dwm \u684c\u9762...\"\n\nsudo apt update\nsudo apt install -y build-essential libx11-dev libxinerama-dev libxft-dev \\\n                    libimlib2-dev xorg xinit git curl \\\n                    slock dunst rofi brightnessctl playerctl \\\n                    fcitx5 fcitx5-rime alacritty\n\n# Nerd Font\nmkdir -p ~/.local/share/fonts\ncurl -fLo ~/.local/share/fonts/JetBrainsMonoNerdFont-Regular.ttf \\\n  https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/Ligatures/Regular/JetBrainsMonoNerdFont-Regular.ttf\nfc-cache -fv\n\n# dwm + systray\ngit clone https://github.com/yourname/dwm /home/$USER/.local/src/dwm\ncd /home/$USER/.local/src/dwm\ncurl -O https://dwm.suckless.org/patches/systray/dwm-systray-6.4.diff\npatch -p1 \u003c dwm-systray-6.4.diff\nsudo make clean install\n\n# slstatus\ngit clone https://github.com/yourname/slstatus /home/$USER/.local/src/slstatus\ncd /home/$USER/.local/src/slstatus\nsudo make clean install\n\n# alacritty\nmkdir -p ~/.config/alacritty\ncat \u003e ~/.config/alacritty/alacritty.yml \u003c\u003c \u0027EOF\u0027\nfont:\n  normal:\n    family: JetBrainsMono Nerd Font\n    style: Regular\n  size: 13\nwindow:\n  opacity: 0.95\n  padding:\n    x: 10\n    y: 10\nEOF\n\n# .xinitrc\ncat \u003e /home/$USER/.xinitrc \u003c\u003c \u0027EOF\u0027\n#!/bin/sh\ngsettings set org.cinnamon.desktop.background picture-uri \"file:///home/$USER/Pictures/wallpaper.jpg\"\ngsettings set org.cinnamon.desktop.background picture-options \u0027zoom\u0027\nslstatus \u0026\ndunst \u0026\nnm-applet \u0026\nblueman-applet \u0026\ngpaste-client daemon \u0026\nexport GTK_IM_MODULE=fcitx\nexport QT_IM_MODULE=fcitx\nexport XMODIFIERS=@im=fcitx\nfcitx5 -d \u0026\nexec dwm\nEOF\nchmod +x /home/$USER/.xinitrc\n\n# \u81ea\u52a8\u767b\u5f55\nsudo mkdir -p /etc/systemd/system/getty@tty1.service.d/\nsudo tee /etc/systemd/system/getty@tty1.service.d/override.conf \u003e /dev/null \u003c\u003cEOF\n[Service]\nExecStart=\nExecStart=-/usr/bin/agetty --autologin $USER --noclear %I \\$TERM\nEOF\n\ncat \u003e /home/$USER/.bash_profile \u003c\u003c \u0027EOF\u0027\n[[ -z $DISPLAY \u0026\u0026 $XDG_VTNR -eq 1 ]] \u0026\u0026 exec startx\nEOF\n\n# \u7981\u7528 LightDM\nsudo systemctl disable lightdm\n\necho \"\u5b89\u88c5\u5b8c\u6210\uff01\u8bf7\u91cd\u542f\u3002\"\necho \"\u91cd\u542f\u540e\uff1a\"\necho \"  Mod + p      \u2192 rofi \u83dc\u5355\"\necho \"  Mod + F8     \u2192 \u97f3\u91cf+\u8f93\u51fa\u8bbe\u5907\"\necho \"  Ctrl + Space \u2192 \u4e2d\u6587\u8f93\u5165\"\n```\n\n---\n\n## \u5341\u4e8c\u3001\u9a8c\u8bc1\u4e00\u5207\u6b63\u5e38\n\n```bash\nreboot\n# \u2192 \u81ea\u52a8\u8fdb\u5165 dwm\n# \u2192 \u53f3\u4e0a\u89d2\u6709\u7f51\u7edc\u3001\u84dd\u7259\u3001\u526a\u8d34\u677f\u6258\u76d8\n# \u2192 Mod + F8 \u2192 \u5f39\u51fa\u539f\u751f\u97f3\u91cf\u9762\u677f\n# \u2192 Ctrl + Space \u2192 fcitx5 \u8f93\u5165\u6cd5\n# \u2192 slstatus \u663e\u793a\u97f3\u91cf\n```\n\n---\n\n## \u7ec8\u6781\u603b\u7ed3\uff1a**\u6700\u5e72\u51c0\u3001\u6700\u7a33\u5b9a\u7684 dwm**\n\n| \u9879\u76ee | \u5b9e\u73b0\u65b9\u5f0f | \u662f\u5426\u539f\u751f |\n|------|----------|----------|\n| \u97f3\u9891\u5207\u6362 | `cinnamon-settings sound` | Yes |\n| \u7f51\u7edc\u7ba1\u7406 | `nm-applet` + `nm-connection-editor` | Yes |\n| \u7535\u6e90\u7ba1\u7406 | `cinnamon-settings power` | Yes |\n| \u58c1\u7eb8 | `gsettings` | Yes |\n| \u622a\u56fe | `gnome-screenshot` | Yes |\n| \u526a\u8d34\u677f | `gpaste` | Yes |\n| \u8f93\u5165\u6cd5 | `fcitx5-rime` | Yes |\n| \u7ec8\u7aef | `alacritty` + Nerd Font | Yes |\n| \u901a\u77e5 | `dunst` | Yes |\n\n\u003e **\u96f6\u811a\u672c**\uff0c**\u96f6\u51b2\u7a81**\uff0c**100% \u53ef\u7ef4\u62a4**\n\n**\u5b8c\u7ed3**\uff1a\u4f60\u73b0\u5728\u62e5\u6709\u4e00\u4e2a **\u6781\u7b80\u3001\u539f\u751f\u3001\u5b8c\u6574\u3001\u7f8e\u89c2** \u7684 dwm \u684c\u9762\u3002  \n\u5982\u9700 **\u900f\u660e dwm**\u3001**\u4e0b\u62c9\u7ec8\u7aef**\u3001**\u52a8\u6001\u58c1\u7eb8**\uff0c\u53ef\u7ee7\u7eed\u63d0\u95ee\u3002"
+            </script>
+            <!-- 渲染目标容器 -->
+            <div id="markdown-content"></div>
+        </div>
+        
+        <footer class="footer">
+            <p>本文原始链接：<a href="https://github.com/syaofox/syaofox.github.io/issues/54" class="github-link" target="_blank">GitHub Issue #54</a>
+            <button id="theme-toggle" class="theme-toggle" title="切换主题">
+                <svg class="theme-icon sun-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="theme-icon moon-icon" viewBox="0 0 24 24" style="display: none;">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button></p>
+        </footer>
+    </main>
+    
+    <!-- TOC 容器（由 JS 动态生成） -->
+    <aside class="toc-sidebar" id="toc-container">
+        <h3 class="toc-title">
+            目录
+            <span class="toc-toggle">▼</span>
+        </h3>
+        <ul class="toc-list" id="toc-list"></ul>
+    </aside>
+</div>
+
+    
+    
+    <!-- 滚动悬浮按钮 -->
+    <div class="scroll-buttons">
+        <button class="scroll-btn" id="scroll-to-top" title="回到顶部">↑</button>
+        <button class="scroll-btn" id="scroll-to-bottom" title="滚到底部">↓</button>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 页面加载完成后，延迟移除 page-loading 类，启用过渡动画
+            setTimeout(function() {
+                document.documentElement.classList.remove('page-loading');
+            }, 50);
+            
+            // 为所有代码块添加复制按钮
+            const codeBlocks = document.querySelectorAll('pre > code');
+            
+            codeBlocks.forEach(function(codeBlock) {
+                // 跳过已经包装的代码块
+                if (codeBlock.parentElement.classList.contains('code-block-wrapper')) {
+                    return;
+                }
+                
+                const pre = codeBlock.parentElement;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block-wrapper';
+                
+                // 创建复制按钮
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'copy-btn';
+                copyBtn.textContent = '复制';
+                
+                // 包装pre元素
+                pre.parentElement.insertBefore(wrapper, pre);
+                wrapper.appendChild(pre);
+                wrapper.appendChild(copyBtn);
+                
+                // 添加复制功能
+                copyBtn.addEventListener('click', function() {
+                    const text = codeBlock.textContent;
+                    
+                    // 使用现代Clipboard API
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).then(function() {
+                            showCopied(copyBtn);
+                        }).catch(function() {
+                            // 降级到传统方法
+                            fallbackCopy(text, copyBtn);
+                        });
+                    } else {
+                        // 降级到传统方法
+                        fallbackCopy(text, copyBtn);
+                    }
+                });
+            });
+            
+            function showCopied(btn) {
+                btn.textContent = '已复制';
+                btn.classList.add('copied');
+                
+                setTimeout(function() {
+                    btn.textContent = '复制';
+                    btn.classList.remove('copied');
+                }, 1500);
+            }
+            
+            function fallbackCopy(text, btn) {
+                // 创建临时文本区域
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+                document.body.appendChild(textArea);
+                
+                try {
+                    textArea.focus();
+                    textArea.select();
+                    document.execCommand('copy');
+                    showCopied(btn);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                    btn.textContent = '复制失败';
+                    setTimeout(function() {
+                        btn.textContent = '复制';
+                    }, 1500);
+                } finally {
+                    document.body.removeChild(textArea);
+                }
+            }
+            
+            // 滚动悬浮按钮功能
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+            const scrollToBottomBtn = document.getElementById('scroll-to-bottom');
+            
+            function updateScrollButtons() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                
+                // 显示/隐藏回到顶部按钮
+                if (scrollTop > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+                
+                // 显示/隐藏滚到底部按钮
+                if (scrollTop + windowHeight < documentHeight - 300) {
+                    scrollToBottomBtn.classList.add('visible');
+                } else {
+                    scrollToBottomBtn.classList.remove('visible');
+                }
+            }
+            
+            // 监听滚动事件
+            window.addEventListener('scroll', updateScrollButtons);
+            
+            // 回到顶部按钮点击事件
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 滚到底部按钮点击事件
+            scrollToBottomBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: document.documentElement.scrollHeight,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 初始化时检查按钮状态
+            updateScrollButtons();
+            
+            // 主题切换功能
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            
+            // 更新词云图片
+            function updateWordcloudImage(isDark) {
+                const wordcloudImg = document.getElementById('wordcloud-img');
+                if (wordcloudImg) {
+                    const newSrc = isDark ? 'assets/wordcloud-dark.png' : 'assets/wordcloud-light.png';
+                    if (wordcloudImg.src !== new URL(newSrc, window.location.href).href) {
+                        wordcloudImg.src = newSrc;
+                        console.log('词云图片已切换至:', newSrc);
+                    }
+                } else {
+                    console.warn('未找到词云图片元素');
+                }
+            }
+            
+            // 初始化主题（同步 body 类和其他主题相关元素）
+            function initTheme() {
+                const isDark = document.documentElement.classList.contains('dark-mode');
+                
+                // 同步 body 的 dark-mode 类
+                if (isDark) {
+                    body.classList.add('dark-mode');
+                } else {
+                    body.classList.remove('dark-mode');
+                }
+                
+                // 初始化代码高亮主题
+                const lightTheme = document.getElementById('highlight-theme-light');
+                const darkTheme = document.getElementById('highlight-theme-dark');
+                if (isDark) {
+                    if (lightTheme) lightTheme.disabled = true;
+                    if (darkTheme) darkTheme.disabled = false;
+                } else {
+                    if (lightTheme) lightTheme.disabled = false;
+                    if (darkTheme) darkTheme.disabled = true;
+                }
+                
+                updateWordcloudImage(isDark);
+            }
+            
+            // 切换主题
+            function toggleTheme() {
+                const isDarkMode = document.documentElement.classList.contains('dark-mode');
+                const lightTheme = document.getElementById('highlight-theme-light');
+                const darkTheme = document.getElementById('highlight-theme-dark');
+                
+                if (isDarkMode) {
+                    // 切换到亮色模式
+                    document.documentElement.classList.remove('dark-mode');
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light');
+                    updateWordcloudImage(false);
+                    // 切换代码高亮主题
+                    if (lightTheme) lightTheme.disabled = false;
+                    if (darkTheme) darkTheme.disabled = true;
+                } else {
+                    // 切换到暗色模式
+                    document.documentElement.classList.add('dark-mode');
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    updateWordcloudImage(true);
+                    // 切换代码高亮主题
+                    if (lightTheme) lightTheme.disabled = true;
+                    if (darkTheme) darkTheme.disabled = false;
+                }
+            }
+            
+            // 监听主题切换按钮点击
+            themeToggle.addEventListener('click', toggleTheme);
+            
+            // 立即初始化主题，避免闪烁
+            initTheme();
+            
+            // 目录导航功能
+            function initTocNavigation() {
+                const tocItems = document.querySelectorAll('.toc-item a');
+                if (tocItems.length === 0) return;
+                
+                // 移动端目录折叠功能
+                function initMobileTocToggle() {
+                    const tocSidebar = document.querySelector('.toc-sidebar');
+                    const tocTitle = document.querySelector('.toc-title');
+                    
+                    if (!tocSidebar || !tocTitle) return;
+                    
+                    // 检查是否为移动端
+                    function isMobile() {
+                        return window.innerWidth <= 1023;
+                    }
+                    
+                    // 初始化移动端状态
+                    function initMobileState() {
+                        if (isMobile()) {
+                            tocSidebar.classList.remove('expanded');
+                        } else {
+                            tocSidebar.classList.add('expanded');
+                        }
+                    }
+                    
+                    // 切换折叠状态
+                    function toggleToc() {
+                        if (!isMobile()) return;
+                        
+                        tocSidebar.classList.toggle('expanded');
+                    }
+                    
+                    // 监听标题点击
+                    tocTitle.addEventListener('click', function(e) {
+                        if (isMobile()) {
+                            e.preventDefault();
+                            toggleToc();
+                        }
+                    });
+                    
+                    // 监听窗口大小变化
+                    window.addEventListener('resize', function() {
+                        initMobileState();
+                    });
+                    
+                    // 初始化状态
+                    initMobileState();
+                }
+                
+                // 初始化移动端折叠功能
+                initMobileTocToggle();
+                
+                // 为目录链接添加平滑滚动
+                tocItems.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+                
+                // 监听滚动，高亮当前章节
+                function updateActiveTocItem() {
+                    const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
+                    const scrollTop = window.pageYOffset;
+                    const windowHeight = window.innerHeight;
+                    
+                    let currentHeading = null;
+                    
+                    headings.forEach(heading => {
+                        const headingTop = heading.offsetTop - 100; // 偏移量，提前激活
+                        
+                        if (scrollTop >= headingTop) {
+                            currentHeading = heading;
+                        }
+                    });
+                    
+                    // 更新目录项激活状态
+                    tocItems.forEach(link => {
+                        link.parentElement.classList.remove('active');
+                    });
+                    
+                    if (currentHeading) {
+                        const activeLink = document.querySelector(`.toc-item a[href="#${currentHeading.id}"]`);
+                        if (activeLink) {
+                            activeLink.parentElement.classList.add('active');
+                        }
+                    }
+                }
+                
+                // 节流滚动监听
+                let ticking = false;
+                window.addEventListener('scroll', function() {
+                    if (!ticking) {
+                        requestAnimationFrame(function() {
+                            updateActiveTocItem();
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                });
+                
+                // 初始调用
+                updateActiveTocItem();
+            }
+            
+            // 初始化目录导航
+            initTocNavigation();
+        });
+    </script>
+    
+    
+<script src="../../static/js/markdown-renderer.js"></script>
+
+</body>
+</html>

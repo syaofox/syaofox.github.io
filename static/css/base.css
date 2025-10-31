@@ -1,0 +1,610 @@
+:root {
+    --bg-color: #f5f5f5;
+    --text-color: #333333;
+    --border-color: #e8e8e8;
+    --card-bg: #ffffff;
+    --card-header-bg: #fafafa;
+    --link-color: #1890ff;
+    --muted-color: #999999;
+    --search-bg: #ffffff;
+    --search-border: #e8e8e8;
+    --scroll-btn-bg: rgba(42, 122, 226, 0.7);
+    --scroll-btn-bg-hover: rgba(42, 122, 226, 1);
+}
+
+body.dark-mode {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --border-color: #333;
+    --card-bg: #2a2a2a;
+    --card-header-bg: #333;
+    --link-color: #4a9eff;
+    --muted-color: #999;
+    --search-bg: #2a2a2a;
+    --search-border: #333;
+    --scroll-btn-bg: rgba(129, 182, 250, 0.7);
+    --scroll-btn-bg-hover: rgb(129, 182, 250,1);
+}
+
+/* 禁用页面加载时的过渡效果，避免主题切换闪烁 */
+html.page-loading,
+html.page-loading *,
+html.page-loading *::before,
+html.page-loading *::after {
+    transition: none !important;
+    animation-duration: 0s !important;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 16px;
+    line-height: 1.8;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background: var(--card-bg);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    transition: border-color 0.3s ease;
+}
+
+.back-link {
+    display: inline-block;
+    background: var(--card-header-bg);
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: var(--link-color);
+    text-decoration: none;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    background: var(--border-color);
+    color:var(--link-color);
+    text-decoration: none;
+}
+
+.article-title {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.article-meta {
+    color: var(--muted-color);
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.article-meta .separator {
+    color: var(--muted-color);
+    opacity: 0.6;
+    margin: 0 4px;
+}
+
+.article-meta span {
+    white-space: nowrap;
+}
+
+.labels {
+    margin-top: 10px;
+}
+
+.label {
+    display: inline-block;
+    background: var(--card-header-bg);
+    color: var(--text-color);
+    padding: 4px 8px;
+    font-size: 0.8em;
+    margin-right: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.article-content {
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4,
+.article-content h5,
+.article-content h6 {
+    color: var(--text-color);
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.article-content h1 {
+    font-size: 1.6em;
+    font-weight: 700;
+}
+
+.article-content h2 {
+    font-size: 1.4em;
+    font-weight: 700;
+}
+
+.article-content h3 {
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.article-content p {
+    margin-bottom: 15px;
+}
+
+.article-content img {
+    max-width: 100%;
+    height: auto;
+    margin: 15px 0;
+}
+
+.article-content pre {
+    background: var(--card-header-bg);
+    padding: 15px;
+    overflow-x: auto;
+    margin: 15px 0;
+    transition: background-color 0.3s ease;
+}
+
+.article-content code {
+    background: var(--card-header-bg);
+    padding: 2px 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.article-content pre code {
+    background: none;
+    padding: 0;
+}
+
+.article-content blockquote {
+    border-left: 4px solid var(--link-color);
+    margin: 15px 0;
+    padding: 10px 20px;
+    background: var(--card-header-bg);
+    transition: background-color 0.3s ease;
+}
+
+.article-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+.article-content th,
+.article-content td {
+    padding: 10px;
+    text-align: left;
+}
+
+.article-content th {
+    background: var(--card-header-bg);
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.article-content ul,
+.article-content ol {
+    margin: 15px 0;
+    padding-left: 30px;
+}
+
+.article-content li {
+    margin-bottom: 5px;
+}
+
+.footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    text-align: center;
+    color: var(--muted-color);
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+
+.github-link {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.github-link:hover {
+    text-decoration: underline;
+}
+
+/* 响应式设计 */
+@media (max-width: 767px) {
+    .container {
+        margin: 10px;
+        padding: 15px;
+    }
+    
+    .article-title {
+        font-size: 1.5em;
+    }
+    
+    .article-content {
+        font-size: 0.9em;
+    }
+    
+    .article-meta {
+        font-size: 0.85em;
+        gap: 6px;
+    }
+    
+    .article-meta .separator {
+        margin: 0 2px;
+    }
+}
+
+/* 代码块复制按钮样式 */
+.code-block-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--card-header-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    border-radius: 3px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.copy-btn:hover {
+    opacity: 1;
+    background: var(--border-color);
+}
+
+.copy-btn.copied {
+    background: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+
+.article-content pre:hover .copy-btn {
+    opacity: 1;
+}
+
+/* 有目录时，限制内容宽度以提高可读性 */
+@media (min-width: 1024px) {
+    .article-layout:has(.toc-sidebar) .article-content {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+}
+
+/* 滚动悬浮按钮样式 */
+.scroll-buttons {
+    position: fixed;
+    right: -20px;
+    bottom: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* 首页定位 - 基于 .container */
+body.page-home .scroll-buttons {
+    right: calc(50% - 400px - 60px); 
+}
+
+/* 无目录文章页定位 - 基于 .article-layout 但没有 .toc-sidebar */
+body.page-article-no-toc .scroll-buttons {
+    right: calc(50% - 400px - 30px); 
+}
+
+/* 有目录文章页定位 - 基于 .article-layout 且有 .toc-sidebar */
+body.page-article-with-toc .scroll-buttons {
+    right: calc(50% - 400px + 140px - 20px); /* 基于 容器：(800/2) + 目录 (280/2) + 20 */
+}
+
+.scroll-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 2%;
+    background: var(--scroll-btn-bg);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-btn:hover {
+    background: var(--scroll-btn-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-btn.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-btn:active {
+    transform: translateY(0);
+}
+
+
+/* 移动端适配 */
+@media (max-width: 767px) {
+    .scroll-buttons {
+        right: 15px;
+        bottom: 15px;
+    }
+    
+    .scroll-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+}
+
+/* 中等屏幕适配 */
+@media (max-width: 1023px) {
+    .scroll-buttons {
+        right: 20px;
+        bottom: 20px;
+    }
+}
+
+/* 主题切换按钮样式 */
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.theme-toggle:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: scale(1.05);
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+.theme-icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    transition: all 0.3s ease;
+}
+
+.theme-icon.moon-icon {
+    display: none;
+}
+
+body.dark-mode .theme-icon.sun-icon {
+    display: none;
+}
+
+body.dark-mode .theme-icon.moon-icon {
+    display: block;
+}
+
+/* 移动端适配主题按钮 */
+@media (max-width: 767px) {
+    .theme-toggle {
+        width: 20px;
+        height: 20px;
+        margin-left: 6px;
+    }
+    
+    .theme-icon {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+/* 文章布局样式 */
+.article-layout {
+    display: flex;
+    gap: 30px;
+    max-width: 1100px; /* 有目录时的宽度 */
+    margin: 0 auto;
+    padding: 30px;
+}
+
+/* 当没有目录侧边栏时，使用与首页一致的宽度 */
+.article-layout:not(.has-toc) {
+    max-width: 800px;
+}
+
+.article-main {
+    flex: 1;
+    min-width: 0;
+    background: var(--card-bg);
+    padding: 30px;
+    transition: background-color 0.3s ease;
+}
+
+/* 没有目录时，主内容区占满整个容器 */
+.article-layout:not(:has(.toc-sidebar)) .article-main {
+    max-width: 100%;
+}
+
+.toc-sidebar {
+    width: 280px;
+    position: sticky;
+    top: 30px;
+    height: fit-content;
+    background: var(--card-bg);
+    padding: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.toc-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-item {
+    margin: 0;
+}
+
+.toc-item a {
+    display: block;
+    color: var(--muted-color);
+    text-decoration: none;
+    padding: 4px 0;
+    font-size: 13px;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+    border-left: 2px solid transparent;
+    padding-left: 8px;
+    margin-left: 0;
+}
+
+.toc-item a:hover {
+    color: var(--link-color);
+}
+
+.toc-item.active a {
+    color: var(--link-color);
+    border-left-color: var(--link-color);
+}
+
+.toc-item.level-2 a {
+    margin-left: 12px;
+}
+
+.toc-item.level-3 a {
+    margin-left: 24px;
+}
+
+.toc-item.level-4 a {
+    margin-left: 36px;
+}
+
+/* 响应式设计 */
+@media (max-width: 1023px) {
+    .article-layout {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .toc-sidebar {
+        width: 100%;
+        position: static;
+        order: -1;
+        margin-bottom: 20px;
+    }
+    
+    .article-main {
+        padding: 20px;
+    }
+    
+    /* 移动端目录折叠功能 */
+    .toc-title {
+        cursor: pointer;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+    }
+    
+    .toc-toggle {
+        font-size: 14px;
+        color: var(--muted-color);
+        transition: transform 0.3s ease;
+        margin-left: 8px;
+    }
+    
+    .toc-list {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    
+    .toc-sidebar.expanded .toc-list {
+        max-height: 500px;
+    }
+    
+    .toc-sidebar.expanded .toc-toggle {
+        transform: rotate(180deg);
+    }
+}
+
+@media (max-width: 767px) {
+    .toc-sidebar {
+        padding: 15px;
+    }
+    
+    .article-main {
+        padding: 15px;
+    }
+    
+    .toc-item a {
+        font-size: 12px;
+    }
+}
