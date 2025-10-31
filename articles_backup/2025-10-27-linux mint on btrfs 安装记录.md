@@ -1,7 +1,7 @@
 ---
 title: "linux mint on btrfs 安装记录"
 created_at: "2025-10-27 04:23:12"
-updated_at: "2025-10-31 08:06:53"
+updated_at: "2025-10-31 08:10:22"
 issue_number: 51
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/51
@@ -48,6 +48,8 @@ sudo ./configure_btrfs.sh
 ```bash
 sudo apt install fcitx5 fcitx5-chinese-addons fcitx5-frontend-gtk3 fcitx5-frontend-gtk4 fcitx5-frontend-qt5  fcitx5-rime
 ```
+
+皮肤:[fcitx skins collection](https://github.com/winjeg/fcitx-skinsl)
 
 打开【系统设置】【输入法】，输入法框架选择fcitx5，然后注销用户重新登录或重启电脑。
 
