@@ -1,7 +1,7 @@
 ---
 title: "linux mint on btrfs 安装记录"
 created_at: "2025-10-27 04:23:12"
-updated_at: "2025-10-30 07:34:32"
+updated_at: "2025-10-31 08:06:53"
 issue_number: 51
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/51
@@ -138,6 +138,7 @@ bash -c "rofi -show drun -config $HOME/.dotfiles/rofi/rofi.rasi"
 * **bottles**: 跑windows程序 [地址](https://usebottles.com/)
 * **btop**:现代且多彩的命令行资源监视器，显示使用情况和统计数据 [地址](https://usebottles.com/)
 * **gpik**:屏幕取色器 [地址](http://www.gpick.org/)
+* **diodon**:Cinnamon 桌面无缝集成，支持无限历史（通过 Zeitgeist）、同步主剪贴板和 Ctrl+C/V、Ubuntu 风格指示器。支持文本和图片。
 
 ## nemo插件
 
@@ -194,7 +195,7 @@ dconf reset -f /org/cinnamon/desktop/keybindings/
 dconf dump /org/cinnamon/desktop/keybindings/custom-keybindings/
 ```
 附件
-[cinnamon-shortcuts.conf.zip](https://github.com/user-attachments/files/23207182/cinnamon-shortcuts.conf.zip)
+[cinnamon-shortcuts.conf.tar.gz](https://github.com/user-attachments/files/23254812/cinnamon-shortcuts.conf.tar.gz)
 
 
 ## 开发环境
