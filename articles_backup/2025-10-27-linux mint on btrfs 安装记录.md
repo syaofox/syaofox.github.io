@@ -1,7 +1,7 @@
 ---
 title: "linux mint on btrfs 安装记录"
 created_at: "2025-10-27 04:23:12"
-updated_at: "2025-11-03 02:35:31"
+updated_at: "2025-11-03 08:21:44"
 issue_number: 51
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/51
@@ -54,14 +54,22 @@ lsattr -d /var/lib/libvirt/images
 chattr -VR +c /var/lib/libvirt/images
 ```
 
-下载自动化脚本 [configure_btrfs_adv.sh](https://raw.githubusercontent.com/syaofox/dotfiles/refs/heads/master/linuxmint-on-btrfs/configure_btrfs_adv.sh)
+下载自动化脚本
 
-[configure_btrfs_adv-v2.sh](https://github.com/user-attachments/files/23294553/configure_btrfs_adv-v2.sh)
+[0-configure_btrfs_adv.sh](https://github.com/user-attachments/files/23298129/0-configure_btrfs_adv.sh)
 
 ```bash
 chmod +x configure_btrfs.sh
 sudo ./configure_btrfs.sh
 ```
+
+## 重启
+
+## 开启zram
+
+[1-enable_zram.sh](https://github.com/user-attachments/files/23298144/1-enable_zram.sh)
+
+
 ## 字体
 
 [Google Inter](https://fonts.google.com/?query=inter)
