@@ -1,7 +1,7 @@
 ---
 title: "linux mint on btrfs 安装记录"
 created_at: "2025-10-27 04:23:12"
-updated_at: "2025-10-31 08:26:33"
+updated_at: "2025-11-03 02:16:27"
 issue_number: 51
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/51
@@ -30,7 +30,33 @@ url: https://github.com/syaofox/syaofox.github.io/issues/51
 
 ## 配置 Btrfs 子卷和交换文件
 
+```
+/                          @root
+/home                      @home
+/var/spool                 @spool
+/var/lib/libvirt/images    @images
+/opt                       @opt
+/srv                       @srv
+/var/tmp                   @vartmp
+/var/log                   @log
+/tmp                       @tmp                                        
+/var/cache                 @cache
+/swap                      @swap
+
+
+
+```
+
+如果有安装kvm虚拟机,禁用kvm虚拟机写时复制
+
+```bash
+lsattr -d /var/lib/libvirt/images
+chattr -VR +c /var/lib/libvirt/images
+```
+
 下载自动化脚本 [configure_btrfs_adv.sh](https://raw.githubusercontent.com/syaofox/dotfiles/refs/heads/master/linuxmint-on-btrfs/configure_btrfs_adv.sh)
+
+[configure_btrfs_adv-v2.sh.sh](https://github.com/user-attachments/files/23294434/configure_btrfs_adv-v2.sh.sh)
 
 ```bash
 chmod +x configure_btrfs.sh
