@@ -1,7 +1,7 @@
 ---
 title: "linux mint on btrfs 安装记录"
 created_at: "2025-10-27 04:23:12"
-updated_at: "2025-11-03 08:21:44"
+updated_at: "2025-11-06 04:14:59"
 issue_number: 51
 labels: ['tips']
 url: https://github.com/syaofox/syaofox.github.io/issues/51
@@ -100,7 +100,7 @@ sudo mkdir -p /mnt/dnas
 编辑`/etc/fstab`加入挂载信息
 
 ```bash
-10.10.10.2:/fs/1000/nfs /mnt/dnas nfs _netdev,auto 0 0
+10.10.10.2:/fs/1000/nfs /mnt/dnas nfs rw,hard,intr,timeo=300,retrans=3,nosymfollow,noatime,nodiratime,_netdev,auto 0 0
 ```
 测试
 
