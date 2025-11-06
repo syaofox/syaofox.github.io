@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<script>
+    // 在页面渲染前立即设置主题，避免闪烁
+    (function() {
+        // 添加页面加载类，禁用过渡动画
+        document.documentElement.classList.add('page-loading');
+        
+        // 获取保存的主题或使用系统偏好
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+        
+        // 立即应用主题类
+        if (isDark) {
+            document.documentElement.classList.add('dark-mode');
+        }
+    })();
+</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Mint 22.2 完整 NVIDIA CUDA Toolkit + cuDNN 多版本共存(官方仓库) - syaofox 的博客</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico">
+    <link rel="stylesheet" href="../../static/css/base.css">
+    
+    
+    <!-- Marked.js for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.0.0/marked.min.js"></script>
+    
+    <!-- Highlight.js for code highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github.min.css" id="highlight-theme-light">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github-dark.min.css" id="highlight-theme-dark" disabled>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/lib/index.min.js"></script>
+</head>
+<body class="page-article">
+    
+<div class="article-layout">
+    <main class="article-main">
+        <header class="header">
+            <a href="../../index.html" class="back-link">返回首页</a>
+            <h1 class="article-title">Linux Mint 22.2 完整 NVIDIA CUDA Toolkit + cuDNN 多版本共存(官方仓库)</h1>
+            <div class="article-meta">
+                <span>创建时间：2025-10-29 14:58:30</span>
+                <span class="separator">|</span>
+                <span>更新时间：2025-10-29 14:58:30</span>
+                
+                <span class="separator">|</span>
+                <span>分类：tips</span>
+                
+            </div>
+        </header>
+        
+        <div class="article-content">
+            <!-- 原始 Markdown 存储（JSON 格式避免转义问题） -->
+            <script type="application/json" id="article-markdown">
+"# **Linux Mint 22.2 \u5b8c\u6574 NVIDIA CUDA Toolkit + cuDNN \u591a\u7248\u672c\u5171\u5b58\u6559\u7a0b**  \n**\u4f7f\u7528 NVIDIA \u5b98\u65b9\u4ed3\u5e93 | \u9a71\u52a8\u4f7f\u7528 Mint \u81ea\u5e26 580.95.05 | \u5b8c\u5168\u9501\u5b9a\u9632\u8986\u76d6 | X11 \u73af\u5883**\n\n\u003e **\u76ee\u6807**\uff1a  \n\u003e - \u9a71\u52a8\uff1a**Mint \u81ea\u5e26 `nvidia-driver-580`**\uff08\u5df2\u5b89\u88c5\uff09\u2192 **\u6c38\u4e0d\u88ab\u8986\u76d6**  \n\u003e - CUDA\uff1a**\u5b98\u65b9\u4ed3\u5e93\u5b89\u88c5\u591a\u4e2a\u7248\u672c**\uff0812.1\u300112.6 \u7b49\uff09  \n\u003e - cuDNN\uff1a**\u5b98\u65b9\u4ed3\u5e93 `apt` \u5b89\u88c5**\uff08\u81ea\u52a8\u5339\u914d\u8def\u5f84\uff09  \n\u003e - \u591a\u7248\u672c\u5171\u5b58\uff1a**`environment-modules` \u52a8\u6001\u5207\u6362**  \n\u003e - \u5b89\u5168\u673a\u5236\uff1a`apt-mark hold` + `apt pinning` + **\u4e0d\u5b89\u88c5 `cuda` \u5143\u5305**\n\n---\n\n## **\u7cfb\u7edf\u4fe1\u606f\uff08\u8bf7\u786e\u8ba4\uff09**\n\n```bash\n# \u663e\u5361\n01:00.0 VGA compatible controller: NVIDIA Corporation GA106 [GeForce RTX 3060 Lite Hash Rate] (rev a1)\n\n# \u5f53\u524d\u9a71\u52a8\nNVIDIA-SMI 580.95.05   Driver Version: 580.95.05   CUDA Version: 12.6\n```\n\n---\n\n## **\u7b2c 1 \u6b65\uff1a\u9501\u5b9a Mint \u81ea\u5e26\u9a71\u52a8\uff08\u7ec8\u6781\u9632\u8986\u76d6\uff09**\n\n```bash\n# 1. \u5217\u51fa\u6240\u6709\u5df2\u5b89\u88c5\u7684 nvidia \u5305\nsudo dpkg -l | grep \u0027^ii\u0027 | grep -E \"nvidia|libnvidia\" | awk \u0027{print $2}\u0027 \u003e /tmp/nvidia_lock.txt\n\n# 2. \u9501\u5b9a\u5b83\u4eec\nsudo apt-mark hold $(cat /tmp/nvidia_lock.txt)\n\n# 3. \u989d\u5916\u9501\u5b9a\u5e38\u89c1\u9a71\u52a8\u5305\nsudo apt-mark hold nvidia-driver-580 nvidia-utils-580 nvidia-settings libnvidia-gl-580\n\n# 4. \u9a8c\u8bc1\u9501\u5b9a\napt-mark showhold | grep nvidia\n```\n\n\u003e **\u6548\u679c**\uff1a\u5373\u4f7f\u6dfb\u52a0 NVIDIA \u5b98\u65b9\u4ed3\u5e93\uff0c`apt upgrade` \u4e5f**\u4e0d\u4f1a\u52a8\u9a71\u52a8**\u3002\n\n---\n\n## **\u7b2c 2 \u6b65\uff1a\u6dfb\u52a0 NVIDIA \u5b98\u65b9 CUDA \u4ed3\u5e93\uff08Ubuntu 24.04\uff09**\n\n```bash\n# \u4e0b\u8f7d\u5e76\u5b89\u88c5 keyring\uff08\u5b98\u65b9\u63a8\u8350\uff09\nwget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb\nsudo dpkg -i cuda-keyring_1.1-1_all.deb\n\n# \u66f4\u65b0\u5305\u7d22\u5f15\nsudo apt update\n```\n\n\u003e \u4ed3\u5e93\u5730\u5740\uff1a`https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/`\n\n---\n\n## **\u7b2c 3 \u6b65\uff1a\u5b89\u88c5\u591a\u4e2a CUDA Toolkit\uff08\u4e0d\u5e26\u9a71\u52a8\uff09**\n\n```bash\n# \u5b89\u88c5 CUDA 12.1\nsudo apt install cuda-toolkit-12-1 -y\n\n# \u5b89\u88c5 CUDA 12.6\nsudo apt install cuda-toolkit-12-6 -y\n\n# \u5982\u9700\u66f4\u591a\u7248\u672c\uff08\u4efb\u9009\uff09\n# sudo apt install cuda-toolkit-12-2 cuda-toolkit-12-3 cuda-toolkit-12-4 cuda-toolkit-12-5 -y\n```\n\n\u003e \u5b89\u88c5\u8def\u5f84\uff1a  \n\u003e - `/usr/local/cuda-12.1/`  \n\u003e - `/usr/local/cuda-12.6/`\n\n---\n\n## **\u7b2c 4 \u6b65\uff1a\u4ece\u5b98\u65b9\u4ed3\u5e93\u5b89\u88c5 cuDNN\uff08\u81ea\u52a8\u5339\u914d\u8def\u5f84\uff09**\n\n```bash\n# \u67e5\u770b\u53ef\u7528 cuDNN \u5305\napt search libcudnn | grep -E \"libcudnn8|libcudnn9\"\n\n# \u5b89\u88c5 cuDNN 8.9.7 for CUDA 12.1\nsudo apt install libcudnn8=8.9.7.29-1+cuda12.1 -y\n\n# \u5b89\u88c5 cuDNN 8.9.7 for CUDA 12.6\nsudo apt install libcudnn8=8.9.7.29-1+cuda12.6 -y\n\n# \u5982\u9700 cuDNN 9\uff08\u5b9e\u9a8c\u6027\uff0c\u9700 CUDA 12.4+\uff09\n# sudo apt install libcudnn9=9.8.0.87-1+cuda12.6 -y\n```\n\n\u003e **\u81ea\u52a8\u5b89\u88c5\u8def\u5f84**\uff1a  \n\u003e - `/usr/local/cuda-12.1/lib/libcudnn*`  \n\u003e - `/usr/local/cuda-12.6/lib/libcudnn*`  \n\u003e - \u81ea\u52a8\u521b\u5efa\u8f6f\u94fe\u63a5\uff1a`/usr/lib/x86_64-linux-gnu/libcudnn.so.8`\n\n---\n\n## **\u7b2c 5 \u6b65\uff1a\u5b89\u88c5 `environment-modules`\uff08\u591a\u7248\u672c\u5207\u6362\uff09**\n\n```bash\nsudo apt install environment-modules -y\nsource /etc/profile.d/modules.sh\n```\n\n---\n\n## **\u7b2c 6 \u6b65\uff1a\u521b\u5efa Modulefiles\uff08\u81ea\u52a8\u5207\u6362\u73af\u5883\uff09**\n\n```bash\nsudo mkdir -p /usr/share/modules/modulefiles/cuda\n```\n\n### **\u521b\u5efa `cuda/12.1` \u6a21\u5757**\n\n```bash\nsudo tee /usr/share/modules/modulefiles/cuda/12.1 \u003e /dev/null \u003c\u003c \u0027EOF\u0027\n#%Module1.0\nproc ModulesHelp { } {\n    puts stderr \"CUDA 12.1 + cuDNN 8.9.7 - Driver 580.95.05\"\n}\nmodule-whatis \"CUDA 12.1 with cuDNN 8.9.7\"\n\n# \u81ea\u52a8\u5378\u8f7d\u5176\u4ed6\u7248\u672c\nforeach ver {12.2 12.3 12.4 12.5 12.6} {\n    if { [is-loaded cuda/$ver] } {\n        module unload cuda/$ver\n    }\n}\n\nsetenv CUDA_HOME /usr/local/cuda-12.1\nprepend-path PATH /usr/local/cuda-12.1/bin\nprepend-path LD_LIBRARY_PATH /usr/local/cuda-12.1/lib\nprepend-path LD_LIBRARY_PATH /usr/local/cuda-12.1/extras/CUPTI/lib\nconflict cuda\nEOF\n```\n\n### **\u521b\u5efa `cuda/12.6` \u6a21\u5757**\n\n```bash\nsudo cp /usr/share/modules/modulefiles/cuda/12.1 /usr/share/modules/modulefiles/cuda/12.6\nsudo sed -i \u0027s/12.1/12.6/g\u0027 /usr/share/modules/modulefiles/cuda/12.6\nsudo sed -i \u0027s/cuDNN 8.9.7/cuDNN 8.9.7/g\u0027 /usr/share/modules/modulefiles/cuda/12.6\n```\n\n\u003e \u5982\u9700\u66f4\u591a\u7248\u672c\uff0c\u590d\u5236\u5e76\u4fee\u6539 `12.X`\n\n---\n\n## **\u7b2c 7 \u6b65\uff1a\u8bbe\u7f6e\u9ed8\u8ba4\u7248\u672c + \u6301\u4e45\u5316**\n\n```bash\n# \u8bbe\u7f6e\u9ed8\u8ba4\u7248\u672c\u4e3a 12.1\nsudo tee /usr/share/modules/modulefiles/cuda/.version \u003e /dev/null \u003c\u003c \u0027EOF\u0027\n#%Module\nset ModulesVersion \"12.1\"\nEOF\n\n# \u6bcf\u6b21\u767b\u5f55\u81ea\u52a8\u52a0\u8f7d\u9ed8\u8ba4 CUDA\necho \"module load cuda\" \u003e\u003e ~/.bashrc\n```\n\n---\n\n## **\u7b2c 8 \u6b65\uff1aAPT Pinning\uff08\u7ec8\u6781\u4fdd\u9669\uff0c\u9632\u8bef\u88c5 `cuda` \u5143\u5305\uff09**\n\n```bash\nsudo tee /etc/apt/preferences.d/cuda-no-driver \u003e /dev/null \u003c\u003c \u0027EOF\u0027\n# \u7981\u6b62\u5b89\u88c5 cuda \u5143\u5305\uff08\u4f1a\u62c9\u9a71\u52a8\uff09\nPackage: cuda\nPin: version *\nPin-Priority: -1\n\n# \u4f18\u5148\u4f7f\u7528 Mint \u9a71\u52a8\nPackage: nvidia-driver-*\nPin: origin \"\"\nPin-Priority: 1001\nEOF\n```\n\n\u003e \u5373\u4f7f\u8fd0\u884c `sudo apt install cuda`\uff0c\u4e5f\u4f1a\u88ab **\u4f18\u5148\u7ea7 -1 \u62d2\u7edd**\n\n---\n\n## **\u7b2c 9 \u6b65\uff1a\u9a8c\u8bc1\u5b89\u88c5**\n\n```bash\n# \u91cd\u65b0\u52a0\u8f7d\u6a21\u5757\u73af\u5883\nsource /etc/profile.d/modules.sh\n\n# \u67e5\u770b\u53ef\u7528\u6a21\u5757\nmodule avail\n\n# \u52a0\u8f7d 12.1\nmodule load cuda/12.1\n\n# \u9a8c\u8bc1 CUDA\nnvcc --version\n# \u8f93\u51fa\uff1aCuda compilation tools, release 12.1, ...\n\n# \u9a8c\u8bc1 cuDNN\nls /usr/local/cuda-12.1/lib/libcudnn*\n# \u8f93\u51fa\uff1alibcudnn.so.8  libcudnn.so.8.9.7  ...\n\n# \u9a8c\u8bc1\u9a71\u52a8\u672a\u53d8\nnvidia-smi\n# \u8f93\u51fa\uff1aDriver Version: 580.95.05\n\n# \u6d4b\u8bd5 PyTorch\uff08\u53ef\u9009\uff09\npython3 -c \"import torch; print(\u0027CUDA:\u0027, torch.cuda.is_available()); print(\u0027cuDNN:\u0027, torch.backends.cudnn.version())\"\n# \u8f93\u51fa\uff1aCUDA: True, cuDNN: 89729\n```\n\n---\n\n## **\u5207\u6362\u7248\u672c\u793a\u4f8b**\n\n```bash\n# \u5207\u6362\u5230 12.6\nmodule switch cuda/12.1 cuda/12.6\n\n# \u9a8c\u8bc1\nnvcc --version  # 12.6\nls /usr/local/cuda-12.6/lib/libcudnn*  # \u6709\u6587\u4ef6\n```\n\n---\n\n## **\u5347\u7ea7 / \u5378\u8f7d**\n\n```bash\n# \u5347\u7ea7 cuDNN\uff08\u4ed3\u5e93\u66f4\u65b0\u540e\uff09\nsudo apt update\nsudo apt upgrade libcudnn8 -y\n\n# \u5378\u8f7d CUDA 12.1\nsudo apt purge cuda-toolkit-12-1 libcudnn8=8.9.7.29-1+cuda12.1 -y\n\n# \u5378\u8f7d\u6240\u6709 CUDA\nsudo apt purge \u0027cuda-toolkit-*\u0027 \u0027libcudnn*\u0027 -y\nsudo rm -rf /usr/local/cuda-*\nsudo rm -rf /usr/share/modules/modulefiles/cuda\n\n# \u89e3\u9501\u9a71\u52a8\uff08\u672a\u6765\u9700\u66f4\u65b0\u9a71\u52a8\u65f6\uff09\nsudo apt-mark unhold $(apt-mark showhold | grep nvidia)\n```\n\n---\n\n## **\u4e00\u952e\u5b89\u88c5\u811a\u672c\uff08\u590d\u5236\u7c98\u8d34\u5373\u53ef\uff09**\n\n```bash\n#!/bin/bash\nset -e\n\necho \"=== Linux Mint 22.2 CUDA + cuDNN \u591a\u7248\u672c\u5b89\u88c5\u811a\u672c ===\"\n\n# 1. \u9501\u5b9a\u9a71\u52a8\necho \"\u9501\u5b9a Mint \u81ea\u5e26\u9a71\u52a8...\"\nsudo dpkg -l | grep \u0027^ii\u0027 | grep -E \"nvidia|libnvidia\" | awk \u0027{print $2}\u0027 | xargs sudo apt-mark hold\nsudo apt-mark hold nvidia-driver-580 nvidia-utils-580 nvidia-settings libnvidia-gl-580\n\n# 2. \u6dfb\u52a0\u5b98\u65b9\u4ed3\u5e93\necho \"\u6dfb\u52a0 NVIDIA \u5b98\u65b9 CUDA \u4ed3\u5e93...\"\nwget -qO- https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb | sudo dpkg -i -\nsudo apt update\n\n# 3. \u5b89\u88c5 CUDA Toolkit\necho \"\u5b89\u88c5 CUDA 12.1 \u548c 12.6...\"\nsudo apt install -y cuda-toolkit-12-1 cuda-toolkit-12-6\n\n# 4. \u5b89\u88c5 cuDNN\necho \"\u5b89\u88c5 cuDNN 8.9.7...\"\nsudo apt install -y \\\n    libcudnn8=8.9.7.29-1+cuda12.1 \\\n    libcudnn8=8.9.7.29-1+cuda12.6\n\n# 5. \u5b89\u88c5 modules\necho \"\u5b89\u88c5 environment-modules...\"\nsudo apt install -y environment-modules\nsource /etc/profile.d/modules.sh\n\n# 6. \u521b\u5efa modulefiles\necho \"\u521b\u5efa modulefiles...\"\nsudo mkdir -p /usr/share/modules/modulefiles/cuda\n\nsudo tee /usr/share/modules/modulefiles/cuda/12.1 \u003e /dev/null \u003c\u003c \u0027EOF\u0027\n#%Module1.0\nproc ModulesHelp { } { puts stderr \"CUDA 12.1 + cuDNN 8.9.7\" }\nmodule-whatis \"CUDA 12.1\"\nforeach ver {12.2 12.3 12.4 12.5 12.6} { if {[is-loaded cuda/$ver]} { module unload cuda/$ver } }\nsetenv CUDA_HOME /usr/local/cuda-12.1\nprepend-path PATH /usr/local/cuda-12.1/bin\nprepend-path LD_LIBRARY_PATH /usr/local/cuda-12.1/lib\nprepend-path LD_LIBRARY_PATH /usr/local/cuda-12.1/extras/CUPTI/lib\nconflict cuda\nEOF\n\nsudo cp /usr/share/modules/modulefiles/cuda/12.1 /usr/share/modules/modulefiles/cuda/12.6\nsudo sed -i \u0027s/12.1/12.6/g\u0027 /usr/share/modules/modulefiles/cuda/12.6\n\n# 7. \u8bbe\u7f6e\u9ed8\u8ba4 + \u6301\u4e45\u5316\nsudo tee /usr/share/modules/modulefiles/cuda/.version \u003e /dev/null \u003c\u003c \u0027EOF\u0027\n#%Module\nset ModulesVersion \"12.1\"\nEOF\necho \"module load cuda\" \u003e\u003e ~/.bashrc\n\n# 8. APT Pinning\nsudo tee /etc/apt/preferences.d/cuda-no-driver \u003e /dev/null \u003c\u003c \u0027EOF\u0027\nPackage: cuda\nPin: version *\nPin-Priority: -1\nPackage: nvidia-driver-*\nPin: origin \"\"\nPin-Priority: 1001\nEOF\n\necho \"\u5b89\u88c5\u5b8c\u6210\uff01\"\necho \"\u4f7f\u7528\u65b9\u6cd5\uff1a\"\necho \"  module avail          # \u67e5\u770b\u7248\u672c\"\necho \"  module load cuda/12.1 # \u52a0\u8f7d 12.1\"\necho \"  module switch cuda/12.1 cuda/12.6  # \u5207\u6362\"\n```\n\n**\u4fdd\u5b58\u4e3a `install-cuda.sh`\uff0c\u7136\u540e\uff1a**\n\n```bash\nchmod +x install-cuda.sh\nsudo ./install-cuda.sh\n```\n\n---\n\n## **\u6700\u7ec8\u72b6\u6001**\n\n| \u9879\u76ee | \u72b6\u6001 |\n|------|------|\n| \u9a71\u52a8 | `580.95.05` **\u9501\u5b9a** |\n| CUDA \u4ed3\u5e93 | \u5b98\u65b9 `cuda-keyring` |\n| CUDA \u7248\u672c | `12.1`, `12.6` \u5171\u5b58 |\n| cuDNN | `8.9.7` **apt \u5b89\u88c5** |\n| \u5207\u6362\u65b9\u5f0f | `module load cuda/12.X` |\n| \u5b89\u5168 | `hold` + `pin` + \u65e0 `cuda` \u5143\u5305 |\n\n---\n\n**\u5b8c\u7ed3\u3002**  \n\u4f60\u73b0\u5728\u62e5\u6709 **\u6700\u5e72\u51c0\u3001\u6700\u5b89\u5168\u3001\u6700\u6613\u7ef4\u62a4** \u7684\u591a\u7248\u672c CUDA \u73af\u5883\uff0c**\u9a71\u52a8\u6c38\u4e0d\u88ab\u8986\u76d6**\uff0c**cuDNN \u81ea\u52a8\u66f4\u65b0**\u3002\n\n\u5982\u9700\u6dfb\u52a0 `12.2`\u3001`12.3` \u7b49\u7248\u672c\uff0c\u53ea\u9700\uff1a\n\n```bash\nsudo apt install cuda-toolkit-12-2 libcudnn8=8.9.7.29-1+cuda12.2 -y\n```\n\n\u5e76\u590d\u5236 modulefile \u5373\u53ef\u3002"
+            </script>
+            <!-- 渲染目标容器 -->
+            <div id="markdown-content"></div>
+        </div>
+        
+        <footer class="footer">
+            <p>本文原始链接：<a href="https://github.com/syaofox/syaofox.github.io/issues/55" class="github-link" target="_blank">GitHub Issue #55</a>
+            <button id="theme-toggle" class="theme-toggle" title="切换主题">
+                <svg class="theme-icon sun-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="theme-icon moon-icon" viewBox="0 0 24 24" style="display: none;">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button></p>
+        </footer>
+    </main>
+    
+    <!-- TOC 容器（由 JS 动态生成） -->
+    <aside class="toc-sidebar" id="toc-container">
+        <h3 class="toc-title">
+            目录
+            <span class="toc-toggle">▼</span>
+        </h3>
+        <ul class="toc-list" id="toc-list"></ul>
+    </aside>
+</div>
+
+    
+    
+    <!-- 滚动悬浮按钮 -->
+    <div class="scroll-buttons">
+        <button class="scroll-btn" id="scroll-to-top" title="回到顶部">↑</button>
+        <button class="scroll-btn" id="scroll-to-bottom" title="滚到底部">↓</button>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 页面加载完成后，延迟移除 page-loading 类，启用过渡动画
+            setTimeout(function() {
+                document.documentElement.classList.remove('page-loading');
+            }, 50);
+            
+            // 为所有代码块添加复制按钮
+            const codeBlocks = document.querySelectorAll('pre > code');
+            
+            codeBlocks.forEach(function(codeBlock) {
+                // 跳过已经包装的代码块
+                if (codeBlock.parentElement.classList.contains('code-block-wrapper')) {
+                    return;
+                }
+                
+                const pre = codeBlock.parentElement;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block-wrapper';
+                
+                // 创建复制按钮
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'copy-btn';
+                copyBtn.textContent = '复制';
+                
+                // 包装pre元素
+                pre.parentElement.insertBefore(wrapper, pre);
+                wrapper.appendChild(pre);
+                wrapper.appendChild(copyBtn);
+                
+                // 添加复制功能
+                copyBtn.addEventListener('click', function() {
+                    const text = codeBlock.textContent;
+                    
+                    // 使用现代Clipboard API
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).then(function() {
+                            showCopied(copyBtn);
+                        }).catch(function() {
+                            // 降级到传统方法
+                            fallbackCopy(text, copyBtn);
+                        });
+                    } else {
+                        // 降级到传统方法
+                        fallbackCopy(text, copyBtn);
+                    }
+                });
+            });
+            
+            function showCopied(btn) {
+                btn.textContent = '已复制';
+                btn.classList.add('copied');
+                
+                setTimeout(function() {
+                    btn.textContent = '复制';
+                    btn.classList.remove('copied');
+                }, 1500);
+            }
+            
+            function fallbackCopy(text, btn) {
+                // 创建临时文本区域
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+                document.body.appendChild(textArea);
+                
+                try {
+                    textArea.focus();
+                    textArea.select();
+                    document.execCommand('copy');
+                    showCopied(btn);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                    btn.textContent = '复制失败';
+                    setTimeout(function() {
+                        btn.textContent = '复制';
+                    }, 1500);
+                } finally {
+                    document.body.removeChild(textArea);
+                }
+            }
+            
+            // 滚动悬浮按钮功能
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+            const scrollToBottomBtn = document.getElementById('scroll-to-bottom');
+            
+            function updateScrollButtons() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                
+                // 显示/隐藏回到顶部按钮
+                if (scrollTop > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+                
+                // 显示/隐藏滚到底部按钮
+                if (scrollTop + windowHeight < documentHeight - 300) {
+                    scrollToBottomBtn.classList.add('visible');
+                } else {
+                    scrollToBottomBtn.classList.remove('visible');
+                }
+            }
+            
+            // 监听滚动事件
+            window.addEventListener('scroll', updateScrollButtons);
+            
+            // 回到顶部按钮点击事件
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 滚到底部按钮点击事件
+            scrollToBottomBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: document.documentElement.scrollHeight,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 初始化时检查按钮状态
+            updateScrollButtons();
+            
+            // 主题切换功能
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            
+            // 更新词云图片
+            function updateWordcloudImage(isDark) {
+                const wordcloudImg = document.getElementById('wordcloud-img');
+                if (wordcloudImg) {
+                    const newSrc = isDark ? 'assets/wordcloud-dark.png' : 'assets/wordcloud-light.png';
+                    if (wordcloudImg.src !== new URL(newSrc, window.location.href).href) {
+                        wordcloudImg.src = newSrc;
+                        console.log('词云图片已切换至:', newSrc);
+                    }
+                } else {
+                    console.warn('未找到词云图片元素');
+                }
+            }
+            
+            // 初始化主题（同步 body 类和其他主题相关元素）
+            function initTheme() {
+                const isDark = document.documentElement.classList.contains('dark-mode');
+                
+                // 同步 body 的 dark-mode 类
+                if (isDark) {
+                    body.classList.add('dark-mode');
+                } else {
+                    body.classList.remove('dark-mode');
+                }
+                
+                // 初始化代码高亮主题
+                const lightTheme = document.getElementById('highlight-theme-light');
+                const darkTheme = document.getElementById('highlight-theme-dark');
+                if (isDark) {
+                    if (lightTheme) lightTheme.disabled = true;
+                    if (darkTheme) darkTheme.disabled = false;
+                } else {
+                    if (lightTheme) lightTheme.disabled = false;
+                    if (darkTheme) darkTheme.disabled = true;
+                }
+                
+                updateWordcloudImage(isDark);
+            }
+            
+            // 切换主题
+            function toggleTheme() {
+                const isDarkMode = document.documentElement.classList.contains('dark-mode');
+                const lightTheme = document.getElementById('highlight-theme-light');
+                const darkTheme = document.getElementById('highlight-theme-dark');
+                
+                if (isDarkMode) {
+                    // 切换到亮色模式
+                    document.documentElement.classList.remove('dark-mode');
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light');
+                    updateWordcloudImage(false);
+                    // 切换代码高亮主题
+                    if (lightTheme) lightTheme.disabled = false;
+                    if (darkTheme) darkTheme.disabled = true;
+                } else {
+                    // 切换到暗色模式
+                    document.documentElement.classList.add('dark-mode');
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    updateWordcloudImage(true);
+                    // 切换代码高亮主题
+                    if (lightTheme) lightTheme.disabled = true;
+                    if (darkTheme) darkTheme.disabled = false;
+                }
+            }
+            
+            // 监听主题切换按钮点击
+            themeToggle.addEventListener('click', toggleTheme);
+            
+            // 立即初始化主题，避免闪烁
+            initTheme();
+            
+            // 目录导航功能
+            function initTocNavigation() {
+                const tocItems = document.querySelectorAll('.toc-item a');
+                if (tocItems.length === 0) return;
+                
+                // 移动端目录折叠功能
+                function initMobileTocToggle() {
+                    const tocSidebar = document.querySelector('.toc-sidebar');
+                    const tocTitle = document.querySelector('.toc-title');
+                    
+                    if (!tocSidebar || !tocTitle) return;
+                    
+                    // 检查是否为移动端
+                    function isMobile() {
+                        return window.innerWidth <= 1023;
+                    }
+                    
+                    // 初始化移动端状态
+                    function initMobileState() {
+                        if (isMobile()) {
+                            tocSidebar.classList.remove('expanded');
+                        } else {
+                            tocSidebar.classList.add('expanded');
+                        }
+                    }
+                    
+                    // 切换折叠状态
+                    function toggleToc() {
+                        if (!isMobile()) return;
+                        
+                        tocSidebar.classList.toggle('expanded');
+                    }
+                    
+                    // 监听标题点击
+                    tocTitle.addEventListener('click', function(e) {
+                        if (isMobile()) {
+                            e.preventDefault();
+                            toggleToc();
+                        }
+                    });
+                    
+                    // 监听窗口大小变化
+                    window.addEventListener('resize', function() {
+                        initMobileState();
+                    });
+                    
+                    // 初始化状态
+                    initMobileState();
+                }
+                
+                // 初始化移动端折叠功能
+                initMobileTocToggle();
+                
+                // 为目录链接添加平滑滚动
+                tocItems.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+                
+                // 监听滚动，高亮当前章节
+                function updateActiveTocItem() {
+                    const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
+                    const scrollTop = window.pageYOffset;
+                    const windowHeight = window.innerHeight;
+                    
+                    let currentHeading = null;
+                    
+                    headings.forEach(heading => {
+                        const headingTop = heading.offsetTop - 100; // 偏移量，提前激活
+                        
+                        if (scrollTop >= headingTop) {
+                            currentHeading = heading;
+                        }
+                    });
+                    
+                    // 更新目录项激活状态
+                    tocItems.forEach(link => {
+                        link.parentElement.classList.remove('active');
+                    });
+                    
+                    if (currentHeading) {
+                        const activeLink = document.querySelector(`.toc-item a[href="#${currentHeading.id}"]`);
+                        if (activeLink) {
+                            activeLink.parentElement.classList.add('active');
+                        }
+                    }
+                }
+                
+                // 节流滚动监听
+                let ticking = false;
+                window.addEventListener('scroll', function() {
+                    if (!ticking) {
+                        requestAnimationFrame(function() {
+                            updateActiveTocItem();
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                });
+                
+                // 初始调用
+                updateActiveTocItem();
+            }
+            
+            // 初始化目录导航
+            initTocNavigation();
+        });
+    </script>
+    
+    
+<script src="../../static/js/markdown-renderer.js"></script>
+
+</body>
+</html>

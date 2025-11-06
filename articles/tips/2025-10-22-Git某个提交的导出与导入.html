@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<script>
+    // 在页面渲染前立即设置主题，避免闪烁
+    (function() {
+        // 添加页面加载类，禁用过渡动画
+        document.documentElement.classList.add('page-loading');
+        
+        // 获取保存的主题或使用系统偏好
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+        
+        // 立即应用主题类
+        if (isDark) {
+            document.documentElement.classList.add('dark-mode');
+        }
+    })();
+</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git 某个提交的导出与导入 - syaofox 的博客</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico">
+    <link rel="stylesheet" href="../../static/css/base.css">
+    
+    
+    <!-- Marked.js for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.0.0/marked.min.js"></script>
+    
+    <!-- Highlight.js for code highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github.min.css" id="highlight-theme-light">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github-dark.min.css" id="highlight-theme-dark" disabled>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/lib/index.min.js"></script>
+</head>
+<body class="page-article">
+    
+<div class="article-layout">
+    <main class="article-main">
+        <header class="header">
+            <a href="../../index.html" class="back-link">返回首页</a>
+            <h1 class="article-title">Git 某个提交的导出与导入</h1>
+            <div class="article-meta">
+                <span>创建时间：2025-10-22 02:47:52</span>
+                <span class="separator">|</span>
+                <span>更新时间：2025-10-22 02:47:52</span>
+                
+                <span class="separator">|</span>
+                <span>分类：tips</span>
+                
+            </div>
+        </header>
+        
+        <div class="article-content">
+            <!-- 原始 Markdown 存储（JSON 格式避免转义问题） -->
+            <script type="application/json" id="article-markdown">
+"## \u65b9\u6cd51 \u4f7f\u7528 `git format-patch` \u548c `git am`\n\n\u4f7f\u7528 **`git format-patch`** \u548c **`git am`** \u6765\u8fc1\u79fb\u5b8c\u6574\u7684\u63d0\u4ea4\u5386\u53f2\n\n-----\n\n### \u6b65\u9aa4\u4e00\uff1a\u5728\u6e90\u4ed3\u5e93\u4e2d\u751f\u6210\u8865\u4e01\u6587\u4ef6\n\n\u5728\u5305\u542b\u4f60\u60f3\u8981\u8fc1\u79fb\u7684\u63d0\u4ea4\u7684**\u6e90\u4ed3\u5e93**\u4e2d\u6267\u884c\u4ee5\u4e0b\u64cd\u4f5c\u3002\n\n#### 1\\. \u786e\u5b9a\u8981\u5bfc\u51fa\u7684\u63d0\u4ea4\n\n\u4f60\u9700\u8981\u77e5\u9053\u4f60\u60f3\u751f\u6210 diff \u7684\u63d0\u4ea4\u7684\u8303\u56f4\u3002\u5e38\u89c1\u7684\u573a\u666f\u6709\u4e24\u79cd\uff1a\n\n  * **\u53ea\u5bfc\u51fa\u67d0\u4e2a** **`COMMIT_HASH`** **\u7684\u4fee\u6539\uff1a**\n    \u4f7f\u7528 `COMMIT_HASH^..COMMIT_HASH`\u3002\n  * **\u5bfc\u51fa\u4e00\u4e2a\u5206\u652f** **`FEATURE_BRANCH`** **\u4e0a\uff0c\u81ea** **`master`** **\u5206\u652f\u5206\u53c9\u4ee5\u6765** **\u6240\u6709** **\u7684\u4fee\u6539\uff1a**\n    \u4f7f\u7528 `master..FEATURE_BRANCH`\u3002\n\n#### 2\\. \u751f\u6210\u8865\u4e01\u6587\u4ef6\n\n\u4f7f\u7528 **`git format-patch`** \u547d\u4ee4\u751f\u6210\u8865\u4e01\u6587\u4ef6\u3002\u8fd9\u4e2a\u547d\u4ee4\u4f1a\u4e3a\u8303\u56f4\u5185\u7684**\u6bcf\u4e2a**\u63d0\u4ea4\u751f\u6210\u4e00\u4e2a\u72ec\u7acb\u7684 `.patch` \u6587\u4ef6\uff0c\u5e76\u5305\u542b\u4f5c\u8005\u4fe1\u606f\u3001\u63d0\u4ea4\u4fe1\u606f\u548c\u5b9e\u9645\u7684 diff \u5185\u5bb9\u3002\n\n**\u793a\u4f8b\uff08\u5bfc\u51fa\u5355\u4e2a\u63d0\u4ea4\uff09\uff1a**\n\n```bash\ngit format-patch -1 COMMIT_HASH\n```\n\n*\uff08`-1` \u8868\u793a\u53ea\u751f\u6210\u4e00\u4e2a\u8865\u4e01\u6587\u4ef6\uff0c\u5373\u6307\u5b9a `COMMIT_HASH` \u7684\u90a3\u4e2a\u63d0\u4ea4\u3002\uff09*\n\n**\u793a\u4f8b\uff08\u5bfc\u51fa\u4e24\u4e2a\u5206\u652f\u4e4b\u95f4\u7684\u6240\u6709\u63d0\u4ea4\uff09\uff1a**\n\n```bash\ngit format-patch master..FEATURE_BRANCH\n```\n\n**\u547d\u4ee4\u6267\u884c\u540e\uff1a**\n\n\u4f60\u4f1a\u5728\u5f53\u524d\u76ee\u5f55\u4e0b\u770b\u5230\u7c7b\u4f3c\u8fd9\u6837\u7684\u6587\u4ef6\uff1a\n\n```\n0001-Commit-Message-of-the-first-commit.patch\n0002-Another-commit-message.patch\n...\n```\n\n#### 3\\. \u4f20\u8f93\u8865\u4e01\u6587\u4ef6\n\n\u5c06\u8fd9\u4e9b\u751f\u6210\u7684 `.patch` \u6587\u4ef6\uff08\u4f8b\u5982\uff0c\u901a\u8fc7\u590d\u5236\u3001\u90ae\u4ef6\u3001U\u76d8\u6216\u7f51\u7edc\u4f20\u8f93\uff09\u79fb\u52a8\u5230**\u76ee\u6807\u4ed3\u5e93**\u6240\u5728\u7684\u673a\u5668\u6216\u76ee\u5f55\u3002\n\n-----\n\n## \u6b65\u9aa4\u4e8c\uff1a\u5728\u76ee\u6807\u4ed3\u5e93\u4e2d\u5e94\u7528\u8865\u4e01\u6587\u4ef6\n\n\u5728\u4f60\u8981\u5bfc\u5165\u4fee\u6539\u7684**\u76ee\u6807\u4ed3\u5e93**\u4e2d\u6267\u884c\u4ee5\u4e0b\u64cd\u4f5c\u3002\n\n### 1\\. \u5207\u6362\u5230\u76ee\u6807\u5206\u652f\n\n\u8fdb\u5165\u76ee\u6807\u4ed3\u5e93\u76ee\u5f55\uff0c\u5e76\u786e\u4fdd\u4f60\u5904\u4e8e\u8981\u5e94\u7528\u8fd9\u4e9b\u4fee\u6539\u7684\u5206\u652f\u4e0a\uff08\u4f8b\u5982 `master` \u6216 `develop`\uff09\uff1a\n\n```bash\ncd /path/to/target/repo\ngit checkout target_branch\n```\n\n#### 2\\. \u5e94\u7528\u8865\u4e01\u6587\u4ef6\n\n\u4f7f\u7528 **`git am`**\uff08Apply Mailbox\uff09\u547d\u4ee4\u6765\u5e94\u7528\u8865\u4e01\u3002\u5b83\u4e0d\u4ec5\u4f1a\u5e94\u7528\u4ee3\u7801\u4fee\u6539\uff0c\u8fd8\u4f1a\u5c1d\u8bd5**\u4fdd\u7559\u539f\u59cb\u63d0\u4ea4\u7684\u4f5c\u8005\u3001\u63d0\u4ea4\u4fe1\u606f\u548c\u63d0\u4ea4\u65f6\u95f4**\u3002\n\n**\u5e94\u7528\u5355\u4e2a\u8865\u4e01\uff1a**\n\n```bash\ngit am 0001-Commit-Message-of-the-commit.patch\n```\n\n**\u5e94\u7528\u6240\u6709\u8865\u4e01\uff08\u63a8\u8350\uff09\uff1a**\n\n```bash\ngit am *.patch\n```\n\n*\uff08\u8fd9\u4f1a\u6309\u7167\u7f16\u53f7\u987a\u5e8f\u4f9d\u6b21\u5e94\u7528\u6240\u6709\u627e\u5230\u7684\u8865\u4e01\u6587\u4ef6\u3002\uff09*\n\n#### 3\\. \u89e3\u51b3\u51b2\u7a81\uff08\u5982\u679c\u53d1\u751f\uff09\n\n\u5982\u679c\u5728\u5e94\u7528\u8fc7\u7a0b\u4e2d\u53d1\u751f**\u51b2\u7a81**\uff0c`git am` \u4f1a\u6682\u505c\u3002\u4f60\u9700\u8981\uff1a\n\n1.  \u624b\u52a8\u7f16\u8f91\u51b2\u7a81\u6587\u4ef6\uff0c\u89e3\u51b3\u51b2\u7a81\u3002\n2.  \u4f7f\u7528 `git add \u003cfile\u003e` \u6807\u8bb0\u6587\u4ef6\u4e3a\u5df2\u89e3\u51b3\u3002\n3.  \u4f7f\u7528 `git am --continue` \u7ee7\u7eed\u5e94\u7528\u8865\u4e01\u3002\n\n\u5982\u679c\u60f3\u4e2d\u6b62\u6574\u4e2a\u5e94\u7528\u8fc7\u7a0b\uff0c\u53ef\u4ee5\u4f7f\u7528 `git am --abort`\u3002\n\n#### 4\\. \u5bfc\u5165\u5b8c\u6210\n\n\u4e00\u65e6 `git am` \u6210\u529f\u5b8c\u6210\uff0c\u8fd9\u4e9b\u63d0\u4ea4\u5c31\u4f1a\u5e26\u7740**\u5b8c\u6574\u7684\u5386\u53f2\u4fe1\u606f**\uff08\u5305\u62ec\u4f5c\u8005\u3001\u65f6\u95f4\u6233\u3001\u63d0\u4ea4\u4fe1\u606f\uff09\u4f5c\u4e3a\u65b0\u7684\u63d0\u4ea4\u6dfb\u52a0\u5230\u4f60\u7684\u76ee\u6807\u4ed3\u5e93\u4e2d\u3002\n\n**\u603b\u7ed3\u6d41\u7a0b\uff1a**\n\n1.  **\u6e90\u4ed3\u5e93\uff1a** `git format-patch \u003crange\u003e`\n2.  **\u4f20\u8f93\uff1a** \u590d\u5236 `.patch` \u6587\u4ef6\n3.  **\u76ee\u6807\u4ed3\u5e93\uff1a** `git am *.patch`\n\n\n## \u65b9\u6cd52 `git diff` \u548c `git apply`\n\n\n\u8fd9\u79cd\u65b9\u6cd5\u9002\u7528\u4e8e\u4f60\u53ea\u60f3\u5c06\u4ee3\u7801\u7684\u6700\u7ec8\u72b6\u6001\u5dee\u5f02\u5e94\u7528\u8fc7\u53bb\uff0c**\u4e0d\u5173\u5fc3**\u4fdd\u7559\u539f\u59cb\u7684\u4f5c\u8005\u3001\u65f6\u95f4\u6233\u6216\u63d0\u4ea4\u5386\u53f2\u7684\u60c5\u51b5\u3002\n\n-----\n\n### \u4f7f\u7528 `git diff` \u548c `git apply` \u5bfc\u5165\u4fee\u6539\n\n#### \u6b65\u9aa4\u4e00\uff1a\u5728\u6e90\u4ed3\u5e93\u4e2d\u751f\u6210\u7eaf diff \u6587\u4ef6\n\n\u5728\u5305\u542b\u4f60\u60f3\u8981\u8fc1\u79fb\u7684\u4fee\u6539\u7684**\u6e90\u4ed3\u5e93**\u4e2d\u6267\u884c\u4ee5\u4e0b\u64cd\u4f5c\u3002\n\n##### 1\\. \u786e\u5b9a\u5e76\u751f\u6210 diff \u6587\u4ef6\n\n\u4f7f\u7528 `git diff` \u547d\u4ee4\u6765\u6bd4\u8f83\u4e24\u4e2a\u5f15\u7528\uff08\u4f8b\u5982\u5206\u652f\u3001\u63d0\u4ea4\u54c8\u5e0c\u6216\u6807\u7b7e\uff09\u4e4b\u95f4\u7684\u5dee\u5f02\uff0c\u5e76\u5c06\u8f93\u51fa\u91cd\u5b9a\u5411\u5230\u4e00\u4e2a\u6587\u4ef6\u3002\n\n**\u573a\u666f\u4e00\uff1a\u751f\u6210\u4e00\u4e2a\u5206\u652f\uff08`feature_branch`\uff09\u76f8\u5bf9\u4e8e\u53e6\u4e00\u4e2a\u5206\u652f\uff08`master`\uff09\u7684\u6240\u6709\u5dee\u5f02**\n\n\u8fd9\u662f\u6700\u5e38\u89c1\u7684\u505a\u6cd5\uff0c\u5b83\u5c06\u6240\u6709\u63d0\u4ea4\u7684\u4ee3\u7801\u4fee\u6539**\u5408\u5e76**\u6210\u4e00\u4e2a\u5355\u4e00\u7684\u5dee\u5f02\u6587\u4ef6\u3002\n\n```bash\n# \u683c\u5f0f\uff1a git diff [\u57fa\u7840\u5f15\u7528]..[\u76ee\u6807\u5f15\u7528] \u003e [\u6587\u4ef6\u540d].diff\ngit diff master..feature_branch \u003e combined_changes.diff\n```\n\n**\u573a\u666f\u4e8c\uff1a\u53ea\u751f\u6210\u67d0\u4e2a\u63d0\u4ea4\uff08`COMMIT_HASH`\uff09\u7684\u4ee3\u7801\u5dee\u5f02**\n\n```bash\ngit diff COMMIT_HASH^! \u003e single_commit_change.diff\n# \u6216\u8005\u4f7f\u7528\uff1agit show COMMIT_HASH \u003e single_commit_change.diff\n```\n\n##### 2\\. \u4f20\u8f93 diff \u6587\u4ef6\n\n\u5c06\u751f\u6210\u7684 `.diff` \u6587\u4ef6\uff08\u4f8b\u5982 `combined_changes.diff`\uff09\u4f20\u8f93\u5230**\u76ee\u6807\u4ed3\u5e93**\u6240\u5728\u7684\u76ee\u5f55\u3002\n\n-----\n\n#### \u6b65\u9aa4\u4e8c\uff1a\u5728\u76ee\u6807\u4ed3\u5e93\u4e2d\u5e94\u7528 diff \u6587\u4ef6\n\n\u5728\u4f60\u8981\u5bfc\u5165\u4fee\u6539\u7684**\u76ee\u6807\u4ed3\u5e93**\u4e2d\u6267\u884c\u4ee5\u4e0b\u64cd\u4f5c\u3002\n\n##### 1\\. \u5207\u6362\u5230\u76ee\u6807\u5206\u652f\n\n\u786e\u4fdd\u4f60\u5904\u4e8e\u8981\u5e94\u7528\u8fd9\u4e9b\u4fee\u6539\u7684\u5206\u652f\u4e0a\uff1a\n\n```bash\ncd /path/to/target/repo\ngit checkout target_branch\n```\n\n##### 2\\. \u5e94\u7528 diff \u6587\u4ef6\n\n\u4f7f\u7528 **`git apply`** \u547d\u4ee4\u6765\u5e94\u7528 diff \u6587\u4ef6\u3002\n\n```bash\ngit apply combined_changes.diff\n```\n\n**\u6ce8\u610f\u70b9\uff1a**\n\n  * `git apply` **\u53ea\u4f1a\u4fee\u6539\u4f60\u7684\u5de5\u4f5c\u533a**\uff08Working Directory\uff09\u548c**\u6682\u5b58\u533a**\uff08Staging Area\uff09\u3002\n  * \u5b83**\u4e0d\u4f1a**\u81ea\u52a8\u521b\u5efa\u63d0\u4ea4\uff08Commit\uff09\u3002\n\n##### 3\\. \u68c0\u67e5\u548c\u63d0\u4ea4\n\n\u5e94\u7528\u5b8c\u6210\u540e\uff0c\u6240\u6709\u7684\u4ee3\u7801\u4fee\u6539\u5df2\u7ecf\u53cd\u6620\u5728\u4f60\u7684\u5de5\u4f5c\u533a\u4e2d\u3002\n\n1.  \u4f7f\u7528 `git status` \u68c0\u67e5\u54ea\u4e9b\u6587\u4ef6\u88ab\u4fee\u6539\u4e86\u3002\n2.  \u89e3\u51b3\u53ef\u80fd\u51fa\u73b0\u7684\u51b2\u7a81\uff08\u5982\u679c `git apply` \u5931\u8d25\uff0c\u5b83\u4f1a\u63d0\u793a\u4f60\u624b\u52a8\u89e3\u51b3\uff09\u3002\n3.  \u5f53\u4f60\u5bf9\u4fee\u6539\u6ee1\u610f\u540e\uff0c\u624b\u52a8\u521b\u5efa**\u4e00\u4e2a**\u65b0\u7684\u63d0\u4ea4\u3002\n\n\u003c!-- end list --\u003e\n\n```bash\ngit add .\ngit commit -m \"Imported changes from the source repository via diff\"\n```\n\n## \u603b\u7ed3\uff1a`diff`/`apply` \u65b9\u5f0f\u7684\u7279\u70b9\n\n| \u4f18\u70b9 | \u7f3a\u70b9 |\n| :--- | :--- |\n| **\u7b80\u5355\u5feb\u6377\uff1a** \u53ea\u751f\u6210\u4e00\u4e2a\u6587\u4ef6\uff0c\u64cd\u4f5c\u6b65\u9aa4\u5c11\u3002 | **\u4e22\u5931\u5386\u53f2\uff1a** \u6240\u6709\u7684\u4fee\u6539\u4f1a\u88ab\u5408\u5e76\u6210\u76ee\u6807\u4ed3\u5e93\u4e2d\u7684\u4e00\u4e2a\u65b0\u63d0\u4ea4\uff0c\u4e22\u5931\u4e86\u539f\u59cb\u7684\u63d0\u4ea4\u7c92\u5ea6\u3001\u4f5c\u8005\u548c\u65f6\u95f4\u6233\u4fe1\u606f\u3002 |\n| **\u7eaf\u7cb9\u4ee3\u7801\uff1a** \u53ea\u5173\u6ce8\u4ee3\u7801\u7684\u589e\u5220\u6539\uff0c\u4e0d\u6d89\u53ca\u5143\u6570\u636e\u3002 | **\u624b\u52a8\u63d0\u4ea4\uff1a** \u4f60\u9700\u8981\u624b\u52a8\u7f16\u5199\u63d0\u4ea4\u4fe1\u606f\uff0c\u4e14\u65b0\u63d0\u4ea4\u7684\u4f5c\u8005\u548c\u65f6\u95f4\u6233\u662f\u4f60\uff08\u64cd\u4f5c\u8005\uff09\u7684\u3002 |\n| **\u7075\u6d3b\u5e94\u7528\uff1a** \u53ef\u4ee5\u5e94\u7528\u4e8e\u5de5\u4f5c\u533a\uff0c\u8ba9\u4f60\u5728\u63d0\u4ea4\u524d\u66f4\u5bb9\u6613\u5ba1\u67e5\u548c\u4fee\u6539\u3002 | **\u5bb9\u6613\u51fa\u9519\uff1a** \u5bf9\u4e8e\u590d\u6742\u7684\u5386\u53f2\u8fc1\u79fb\uff0c\u96be\u4ee5\u8ffd\u8e2a\u539f\u59cb\u7684\u63d0\u4ea4\u8fb9\u754c\u3002 |\n\n\u5982\u679c\u4f60\u9700\u8981\u4fdd\u7559\u5386\u53f2\uff0c\u8bf7\u4f7f\u7528 **`git format-patch`** \u548c **`git am`**\uff1b\u5982\u679c\u4f60\u53ea\u9700\u8981\u8fc1\u79fb\u4ee3\u7801\u5185\u5bb9\uff0c\u4e14\u4e0d\u4ecb\u610f\u4e22\u5931\u5386\u53f2\uff0c\u53ef\u4ee5\u4f7f\u7528 **`git diff`** \u548c **`git apply`**\u3002"
+            </script>
+            <!-- 渲染目标容器 -->
+            <div id="markdown-content"></div>
+        </div>
+        
+        <footer class="footer">
+            <p>本文原始链接：<a href="https://github.com/syaofox/syaofox.github.io/issues/45" class="github-link" target="_blank">GitHub Issue #45</a>
+            <button id="theme-toggle" class="theme-toggle" title="切换主题">
+                <svg class="theme-icon sun-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="theme-icon moon-icon" viewBox="0 0 24 24" style="display: none;">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button></p>
+        </footer>
+    </main>
+    
+    <!-- TOC 容器（由 JS 动态生成） -->
+    <aside class="toc-sidebar" id="toc-container">
+        <h3 class="toc-title">
+            目录
+            <span class="toc-toggle">▼</span>
+        </h3>
+        <ul class="toc-list" id="toc-list"></ul>
+    </aside>
+</div>
+
+    
+    
+    <!-- 滚动悬浮按钮 -->
+    <div class="scroll-buttons">
+        <button class="scroll-btn" id="scroll-to-top" title="回到顶部">↑</button>
+        <button class="scroll-btn" id="scroll-to-bottom" title="滚到底部">↓</button>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 页面加载完成后，延迟移除 page-loading 类，启用过渡动画
+            setTimeout(function() {
+                document.documentElement.classList.remove('page-loading');
+            }, 50);
+            
+            // 为所有代码块添加复制按钮
+            const codeBlocks = document.querySelectorAll('pre > code');
+            
+            codeBlocks.forEach(function(codeBlock) {
+                // 跳过已经包装的代码块
+                if (codeBlock.parentElement.classList.contains('code-block-wrapper')) {
+                    return;
+                }
+                
+                const pre = codeBlock.parentElement;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block-wrapper';
+                
+                // 创建复制按钮
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'copy-btn';
+                copyBtn.textContent = '复制';
+                
+                // 包装pre元素
+                pre.parentElement.insertBefore(wrapper, pre);
+                wrapper.appendChild(pre);
+                wrapper.appendChild(copyBtn);
+                
+                // 添加复制功能
+                copyBtn.addEventListener('click', function() {
+                    const text = codeBlock.textContent;
+                    
+                    // 使用现代Clipboard API
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).then(function() {
+                            showCopied(copyBtn);
+                        }).catch(function() {
+                            // 降级到传统方法
+                            fallbackCopy(text, copyBtn);
+                        });
+                    } else {
+                        // 降级到传统方法
+                        fallbackCopy(text, copyBtn);
+                    }
+                });
+            });
+            
+            function showCopied(btn) {
+                btn.textContent = '已复制';
+                btn.classList.add('copied');
+                
+                setTimeout(function() {
+                    btn.textContent = '复制';
+                    btn.classList.remove('copied');
+                }, 1500);
+            }
+            
+            function fallbackCopy(text, btn) {
+                // 创建临时文本区域
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+                document.body.appendChild(textArea);
+                
+                try {
+                    textArea.focus();
+                    textArea.select();
+                    document.execCommand('copy');
+                    showCopied(btn);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                    btn.textContent = '复制失败';
+                    setTimeout(function() {
+                        btn.textContent = '复制';
+                    }, 1500);
+                } finally {
+                    document.body.removeChild(textArea);
+                }
+            }
+            
+            // 滚动悬浮按钮功能
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+            const scrollToBottomBtn = document.getElementById('scroll-to-bottom');
+            
+            function updateScrollButtons() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                
+                // 显示/隐藏回到顶部按钮
+                if (scrollTop > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+                
+                // 显示/隐藏滚到底部按钮
+                if (scrollTop + windowHeight < documentHeight - 300) {
+                    scrollToBottomBtn.classList.add('visible');
+                } else {
+                    scrollToBottomBtn.classList.remove('visible');
+                }
+            }
+            
+            // 监听滚动事件
+            window.addEventListener('scroll', updateScrollButtons);
+            
+            // 回到顶部按钮点击事件
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 滚到底部按钮点击事件
+            scrollToBottomBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: document.documentElement.scrollHeight,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 初始化时检查按钮状态
+            updateScrollButtons();
+            
+            // 主题切换功能
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            
+            // 更新词云图片
+            function updateWordcloudImage(isDark) {
+                const wordcloudImg = document.getElementById('wordcloud-img');
+                if (wordcloudImg) {
+                    const newSrc = isDark ? 'assets/wordcloud-dark.png' : 'assets/wordcloud-light.png';
+                    if (wordcloudImg.src !== new URL(newSrc, window.location.href).href) {
+                        wordcloudImg.src = newSrc;
+                        console.log('词云图片已切换至:', newSrc);
+                    }
+                } else {
+                    console.warn('未找到词云图片元素');
+                }
+            }
+            
+            // 初始化主题（同步 body 类和其他主题相关元素）
+            function initTheme() {
+                const isDark = document.documentElement.classList.contains('dark-mode');
+                
+                // 同步 body 的 dark-mode 类
+                if (isDark) {
+                    body.classList.add('dark-mode');
+                } else {
+                    body.classList.remove('dark-mode');
+                }
+                
+                // 初始化代码高亮主题
+                const lightTheme = document.getElementById('highlight-theme-light');
+                const darkTheme = document.getElementById('highlight-theme-dark');
+                if (isDark) {
+                    if (lightTheme) lightTheme.disabled = true;
+                    if (darkTheme) darkTheme.disabled = false;
+                } else {
+                    if (lightTheme) lightTheme.disabled = false;
+                    if (darkTheme) darkTheme.disabled = true;
+                }
+                
+                updateWordcloudImage(isDark);
+            }
+            
+            // 切换主题
+            function toggleTheme() {
+                const isDarkMode = document.documentElement.classList.contains('dark-mode');
+                const lightTheme = document.getElementById('highlight-theme-light');
+                const darkTheme = document.getElementById('highlight-theme-dark');
+                
+                if (isDarkMode) {
+                    // 切换到亮色模式
+                    document.documentElement.classList.remove('dark-mode');
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light');
+                    updateWordcloudImage(false);
+                    // 切换代码高亮主题
+                    if (lightTheme) lightTheme.disabled = false;
+                    if (darkTheme) darkTheme.disabled = true;
+                } else {
+                    // 切换到暗色模式
+                    document.documentElement.classList.add('dark-mode');
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    updateWordcloudImage(true);
+                    // 切换代码高亮主题
+                    if (lightTheme) lightTheme.disabled = true;
+                    if (darkTheme) darkTheme.disabled = false;
+                }
+            }
+            
+            // 监听主题切换按钮点击
+            themeToggle.addEventListener('click', toggleTheme);
+            
+            // 立即初始化主题，避免闪烁
+            initTheme();
+            
+            // 目录导航功能
+            function initTocNavigation() {
+                const tocItems = document.querySelectorAll('.toc-item a');
+                if (tocItems.length === 0) return;
+                
+                // 移动端目录折叠功能
+                function initMobileTocToggle() {
+                    const tocSidebar = document.querySelector('.toc-sidebar');
+                    const tocTitle = document.querySelector('.toc-title');
+                    
+                    if (!tocSidebar || !tocTitle) return;
+                    
+                    // 检查是否为移动端
+                    function isMobile() {
+                        return window.innerWidth <= 1023;
+                    }
+                    
+                    // 初始化移动端状态
+                    function initMobileState() {
+                        if (isMobile()) {
+                            tocSidebar.classList.remove('expanded');
+                        } else {
+                            tocSidebar.classList.add('expanded');
+                        }
+                    }
+                    
+                    // 切换折叠状态
+                    function toggleToc() {
+                        if (!isMobile()) return;
+                        
+                        tocSidebar.classList.toggle('expanded');
+                    }
+                    
+                    // 监听标题点击
+                    tocTitle.addEventListener('click', function(e) {
+                        if (isMobile()) {
+                            e.preventDefault();
+                            toggleToc();
+                        }
+                    });
+                    
+                    // 监听窗口大小变化
+                    window.addEventListener('resize', function() {
+                        initMobileState();
+                    });
+                    
+                    // 初始化状态
+                    initMobileState();
+                }
+                
+                // 初始化移动端折叠功能
+                initMobileTocToggle();
+                
+                // 为目录链接添加平滑滚动
+                tocItems.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+                
+                // 监听滚动，高亮当前章节
+                function updateActiveTocItem() {
+                    const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
+                    const scrollTop = window.pageYOffset;
+                    const windowHeight = window.innerHeight;
+                    
+                    let currentHeading = null;
+                    
+                    headings.forEach(heading => {
+                        const headingTop = heading.offsetTop - 100; // 偏移量，提前激活
+                        
+                        if (scrollTop >= headingTop) {
+                            currentHeading = heading;
+                        }
+                    });
+                    
+                    // 更新目录项激活状态
+                    tocItems.forEach(link => {
+                        link.parentElement.classList.remove('active');
+                    });
+                    
+                    if (currentHeading) {
+                        const activeLink = document.querySelector(`.toc-item a[href="#${currentHeading.id}"]`);
+                        if (activeLink) {
+                            activeLink.parentElement.classList.add('active');
+                        }
+                    }
+                }
+                
+                // 节流滚动监听
+                let ticking = false;
+                window.addEventListener('scroll', function() {
+                    if (!ticking) {
+                        requestAnimationFrame(function() {
+                            updateActiveTocItem();
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                });
+                
+                // 初始调用
+                updateActiveTocItem();
+            }
+            
+            // 初始化目录导航
+            initTocNavigation();
+        });
+    </script>
+    
+    
+<script src="../../static/js/markdown-renderer.js"></script>
+
+</body>
+</html>
