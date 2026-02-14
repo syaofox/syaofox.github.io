@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<script>
+    // 在页面渲染前立即设置主题，避免闪烁
+    (function() {
+        // 添加页面加载类，禁用过渡动画
+        document.documentElement.classList.add('page-loading');
+        
+        // 获取保存的主题或使用系统偏好
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+        
+        // 立即应用主题类
+        if (isDark) {
+            document.documentElement.classList.add('dark-mode');
+        }
+    })();
+</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>如何在 Linux Mint 22 上安装 VirtualBox（分步指南） - syaofox 的博客</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico">
+    <link rel="stylesheet" href="../../static/css/base.css">
+    
+    
+    <!-- Marked.js for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.0.0/marked.min.js"></script>
+    
+    <!-- Highlight.js for code highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github.min.css" id="highlight-theme-light">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github-dark.min.css" id="highlight-theme-dark" disabled>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/lib/index.min.js"></script>
+</head>
+<body class="page-article">
+    
+<div class="article-layout">
+    <main class="article-main">
+        <header class="header">
+            <a href="../../index.html" class="back-link">返回首页</a>
+            <h1 class="article-title">如何在 Linux Mint 22 上安装 VirtualBox（分步指南）</h1>
+            <div class="article-meta">
+                <span>创建时间：2025-10-11 11:51:02</span>
+                <span class="separator">|</span>
+                <span>更新时间：2025-10-12 01:12:29</span>
+                
+                <span class="separator">|</span>
+                <span>分类：tips</span>
+                
+            </div>
+        </header>
+        
+        <div class="article-content">
+            <!-- 原始 Markdown 存储（JSON 格式避免转义问题） -->
+            <script type="application/json" id="article-markdown">
+"# \u5982\u4f55\u5728 Linux Mint 22 \u4e0a\u5b89\u88c5 VirtualBox\uff08\u5206\u6b65\u6307\u5357\uff09\n\n\u60a8\u53ef\u4ee5\u901a\u8fc7\u4ee5\u4e0b\u6b65\u9aa4\u5728 Linux Mint 22 \u4e0a\u5b89\u88c5\u6700\u65b0\u7248\u672c\u7684 Oracle VirtualBox\uff1a\n\n## \u7b2c 1 \u6b65\uff1a\u5728\u5b89\u88c5\u524d\u79fb\u9664\u4efb\u4f55\u51b2\u7a81\u7684 VirtualBox \u7248\u672c\n\n\u5982\u679c\u60a8\u662f\u4ece Linux Mint \u7684\u9ed8\u8ba4\u4ed3\u5e93\u5b89\u88c5\u7684 VirtualBox\uff0c\u8bf7\u5148\u5c06\u5176\u5378\u8f7d\u3002\u8be5\u4ed3\u5e93\u4e2d\u7684\u7248\u672c\u901a\u5e38\u4e0d\u662f\u6700\u65b0\u7684\u3002\u6211\u4eec\u5c06\u4ece virtualbox.org \u5b89\u88c5\u6700\u65b0\u7248\u672c\u3002\n\n```bash\nsudo apt purge virtualbox\n```\n\n## \u7b2c 2 \u6b65\uff1a\u5b89\u88c5\u4f9d\u8d56\u9879\n\n\u63a5\u4e0b\u6765\uff0c\u8fd0\u884c\u4ee5\u4e0b\u547d\u4ee4\u5b89\u88c5 VirtualBox \u6240\u9700\u7684\u4f9d\u8d56\u9879\uff1a\n\n```bash\nsudo apt update\nsudo apt install -y dkms build-essential linux-headers-$(uname -r)\n```\n\n\n## \u7b2c 3 \u6b65\uff1a\u4e0b\u8f7d\u9002\u7528\u4e8e Linux Mint 22 \u7684 VirtualBox\n\n\u8981\u4e0b\u8f7d\u9002\u7528\u4e8e Linux Mint \u7684 VirtualBox\uff0c\u5148\u67e5\u770b\u7cfb\u7edf\u62a5\u544a\u786e\u5b9aubuntu\u5185\u6838\u7248\u672c\uff0c\u7136\u540e\u8bbf\u95ee [VirtualBox Linux \u4e0b\u8f7d\u9875\u9762](https://www.virtualbox.org/wiki/Downloads)](https://www.virtualbox.org/wiki/Downloads) \u5e76\u4e0b\u8f7d\u6807\u8bb0\u4e3a **Ubuntu 24.04** \u7684\u8f6f\u4ef6\u5305\u3002\n\n## \u7b2c 4 \u6b65\uff1aapt \u5b89\u88c5 \u4e0b\u8f7d\u7684deb\u5305\n\n\u5c06\u6587\u4ef6\u79fb\u52a8\u5230 /tmp \u76ee\u5f55,\u907f\u514datp\u6743\u9650\u9519\u8bef\n\n```bash\nmv ~/Downloads/virtualbox-7.2_7.2.2-170484~Ubuntu~noble_amd64.deb /tmp/\n```\n\n\u7136\u540e\u5c1d\u8bd5\u5b89\u88c5\n\n```bash\nsudo apt install /tmp/virtualbox-7.2_7.2.2-170484~Ubuntu~noble_amd64.deb\n```\n\n## \u7b2c 5 \u6b65\uff1a\u5c06\u60a8\u7684\u7528\u6237\u5e10\u6237\u6dfb\u52a0\u5230 `vboxusers` \u7ec4\n\n\u63a5\u4e0b\u6765\uff0c\u60a8\u9700\u8981\u5c06\u60a8\u7684 Linux \u7528\u6237\u5e10\u6237\u6dfb\u52a0\u5230 `vboxusers` \u7ec4\u2014\u2014\u4efb\u4f55\u4f7f\u7528 VirtualBox \u7684\u7528\u6237\u90fd\u9700\u8981\u5728\u8fd9\u4e2a\u7ec4\u4e2d\u3002\n\n```bash\nsudo usermod -aG vboxusers $USER\n```\n\n\u4e4b\u540e\uff0c\u60a8\u9700\u8981**\u91cd\u542f\u60a8\u7684\u7cfb\u7edf**\u624d\u80fd\u4f7f\u66f4\u6539\u751f\u6548\u3002\n\n## \u7b2c 6 \u6b65\uff1a\u5b89\u88c5 VirtualBox \u6269\u5c55\u5305 (Extension Pack)\n\n\u6211\u4eec\u6700\u540e\u4e00\u6b65\u662f\u5b89\u88c5 VirtualBox \u6269\u5c55\u5305\uff0c\u4ee5\u542f\u7528\u9644\u52a0\u529f\u80fd\uff0c\u5982 USB 2.0/3.0 \u8bbe\u5907\u3001RDP\uff08\u8fdc\u7a0b\u684c\u9762\u534f\u8bae\uff09\u3001\u78c1\u76d8\u52a0\u5bc6\u7b49\u3002\n\n\u9996\u5148\uff0c\u8bbf\u95ee [[VirtualBox \u4e0b\u8f7d\u9875\u9762](https://www.virtualbox.org/wiki/Downloads)](https://www.virtualbox.org/wiki/Downloads) \u5e76\u4e0b\u8f7d VirtualBox \u6269\u5c55\u5305\u2014\u2014**\u8bf7\u786e\u4fdd\u7248\u672c\u4e0e\u60a8\u5b89\u88c5\u7684 VirtualBox \u7248\u672c\u5339\u914d**\u3002\n\n\u4e0b\u8f7d\u6269\u5c55\u5305\u540e\uff0c\u53cc\u51fb\u8be5\u6587\u4ef6\u8fdb\u884c\u5b89\u88c5\u3002\n\n## \u5982\u4f55\u66f4\u65b0 VirtualBox \u5230\u6700\u65b0\u7248\u672c\n\n\u8981\u66f4\u65b0 VirtualBox \u5230\u6700\u65b0\u7248\u672c\uff0c\u8bf7\u9075\u5faa\u4e0e\u5b89\u88c5\u65f6\u76f8\u540c\u7684\u6b65\u9aa4\uff1a\n\n1.  \u4ece VirtualBox Linux \u4e0b\u8f7d\u9875\u9762\u4e0b\u8f7d\u6700\u65b0\u7684 `.deb` \u8f6f\u4ef6\u5305\u3002\n2.  \u4f7f\u7528 `gdebi` \u547d\u4ee4\u5b89\u88c5\u5b83\u3002\n3.  **\u91cd\u8981\u63d0\u793a\uff1a** \u540c\u65f6\u4e0b\u8f7d\u5e76\u5b89\u88c5\u6700\u65b0\u7684**\u6269\u5c55\u5305**\u2014\u2014\u5b83\u5fc5\u987b\u4e0e\u60a8\u66f4\u65b0\u540e\u7684 VirtualBox \u7248\u672c\u5339\u914d\u3002\n\n\u8fd9\u5c06\u628a VirtualBox \u66f4\u65b0\u5230\u6700\u65b0\u7248\u672c\uff0c\u800c\u4e0d\u4f1a\u5220\u9664\u60a8\u4efb\u4f55\u73b0\u6709\u7684\u865a\u62df\u673a\u3002\n\n## VirtualBox \u5df2\u53ef\u4f7f\u7528\n\n\u8fd9\u5c31\u662f\u60a8\u9700\u8981\u505a\u7684\u5168\u90e8\u3002\u60a8\u73b0\u5728\u53ef\u4ee5\u4f7f\u7528 VirtualBox \u5728\u60a8\u7684 Linux Mint \u684c\u9762\u73af\u5883\u4e0a\u8fd0\u884c\u865a\u62df\u673a\u4e86\u3002\n\n\n\n## \u62a5\u9519\u65e0\u6cd5\u542f\u52a8\u865a\u62df\u673a\u7684\u89e3\u51b3\u65b9\u6cd5\n\n\u5982\u4e0b\u62a5\u9519\n\n```bash\nVT-x is being used by another hypervisor (VERR_VMX_IN_VMX_ROOT_MODE).\n\nVirtualBox can\u0027t operate in VMX root mode. Please disable the KVM kernel extension, recompile your kernel and reboot (VERR_VMX_IN_VMX_ROOT_MODE).\n```\n\n\n\u8fd9\u662f\u81f4\u547d\u7684\u542f\u52a8\u9519\u8bef\uff0c\u5b83\u660e\u786e\u5730\u544a\u8bc9\u60a8\uff1aVirtualBox \u65e0\u6cd5\u542f\u52a8\uff0c\u56e0\u4e3a\u5b83\u9700\u8981\u7684 \u786c\u4ef6\u865a\u62df\u5316 \u529f\u80fd\uff08VT-x\uff0c\u5728 Intel CPU \u4e0a\uff09\u5df2\u7ecf\u88ab\u4e3b\u673a\u7cfb\u7edf\u4e0a\u7684 \u53e6\u4e00\u4e2a hypervisor (\u865a\u62df\u673a\u7ba1\u7406\u5668) \u5360\u7528\u4e86\u3002\u60a8\u9700\u8981\u786e\u4fdd KVM \u6a21\u5757\uff08Linux \u7684\u539f\u751f\u865a\u62df\u5316\u6a21\u5757\uff09\u6ca1\u6709\u88ab\u52a0\u8f7d\u6216\u4f7f\u7528\u3002\n\n### \u4e34\u65f6\u89e3\u51b3\u65b9\u6848\n\n\u5c1d\u8bd5\u547d\u4ee4\uff1a`sudo modprobe -r kvm_intel` \u6216 `sudo modprobe -r kvm_amd`\uff08\u53d6\u51b3\u4e8e CPU \u7c7b\u578b\uff09\u3002\n\n\n### \u6c38\u4e45\u89e3\u51b3\u65b9\u6848\n\n##### \u65b9\u6cd5\u4e00\uff1a\u521b\u5efa Blacklist \u6587\u4ef6\uff08\u63a8\u8350\uff09\n\n\u8fd9\u662f\u6700\u6807\u51c6\u548c\u63a8\u8350\u7684\u65b9\u6cd5\uff0c\u7528\u4e8e\u963b\u6b62\u7279\u5b9a\u5185\u6838\u6a21\u5757\u7684\u81ea\u52a8\u52a0\u8f7d\u3002\n\n1.  **\u521b\u5efa\u914d\u7f6e\u6587\u4ef6:** \u6253\u5f00\u7ec8\u7aef\u5e76\u4f7f\u7528\u6587\u672c\u7f16\u8f91\u5668\uff08\u5982 `nano` \u6216 `vim`\uff09\u521b\u5efa\u4e00\u4e2a\u65b0\u7684 `.conf` \u6587\u4ef6\u3002\n\n    ```bash\n    sudo nano /etc/modprobe.d/blacklist-kvm.conf\n    ```\n\n2.  **\u6dfb\u52a0\u7981\u7528\u6307\u4ee4:** \u5728\u6587\u4ef6\u4e2d\u6dfb\u52a0\u4ee5\u4e0b\u4e24\u884c\u5185\u5bb9\uff0c\u5c06 `kvm_intel` \u548c `kvm` \u672c\u8eab\u90fd\u5217\u5165\u9ed1\u540d\u5355\uff1a\n\n    ```conf\n    # \u963b\u6b62 KVM \u6a21\u5757\u81ea\u52a8\u52a0\u8f7d\uff0c\u907f\u514d\u4e0e VirtualBox \u51b2\u7a81\n    blacklist kvm_intel\n    blacklist kvm\n    ```\n\n    *\uff08\u5982\u679c\u4f60\u662f AMD CPU\uff0c\u5219\u5e94\u6dfb\u52a0 `blacklist kvm_amd`\uff09*\n\n3.  **\u4fdd\u5b58\u5e76\u9000\u51fa:**\n\n      * \u5982\u679c\u4f60\u4f7f\u7528\u7684\u662f `nano`\uff1a\u6309 $\\text{Ctrl+O}$ \u5199\u5165\uff0c\u7136\u540e\u6309 $\\text{Enter}$ \u786e\u8ba4\uff0c\u6700\u540e\u6309 $\\text{Ctrl+X}$ \u9000\u51fa\u3002\n\n4.  **\u66f4\u65b0 Initramfs (\u91cd\u8981\u6b65\u9aa4):** \u6709\u4e9b Linux \u53d1\u884c\u7248\uff08\u5982 Ubuntu/Debian\uff09\u9700\u8981\u66f4\u65b0\u542f\u52a8\u65f6\u7684\u521d\u59cb\u5185\u5b58\u6587\u4ef6\u7cfb\u7edf\uff0c\u624d\u80fd\u4f7f\u9ed1\u540d\u5355\u751f\u6548\uff1a\n\n    ```bash\n    sudo update-initramfs -u\n    ```\n\n5.  **\u91cd\u542f\u7cfb\u7edf:**\n\n    ```bash\n    sudo reboot\n    ```\n\n##### \u65b9\u6cd5\u4e8c\uff1a\u901a\u8fc7 GRUB \u542f\u52a8\u53c2\u6570\u7981\u7528\uff08\u5907\u7528\uff09\n\n\u4f60\u53ef\u4ee5\u4fee\u6539 GRUB \u914d\u7f6e\u6587\u4ef6\uff0c\u5728\u5185\u6838\u542f\u52a8\u65f6\u5c31\u6307\u5b9a\u4e0d\u52a0\u8f7d KVM \u6a21\u5757\u3002\n\n1.  **\u7f16\u8f91 GRUB \u914d\u7f6e\u6587\u4ef6:**\n\n    ```bash\n    sudo nano /etc/default/grub\n    ```\n\n2.  **\u4fee\u6539 GRUB\\_CMDLINE\\_LINUX\\_DEFAULT:**\n    \u5728\u8fd9\u4e00\u884c\u4e2d\uff0c\u6dfb\u52a0 `modprobe.blacklist=kvm,kvm_intel` \u5230\u73b0\u6709\u53c2\u6570\u7684**\u5f15\u53f7\u5185**\u3002\n\n    **\u4fee\u6539\u524d\u793a\u4f8b\uff1a**\n\n    ```conf\n    GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash\"\n    ```\n\n    **\u4fee\u6539\u540e\u793a\u4f8b\uff1a**\n\n    ```conf\n    GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash modprobe.blacklist=kvm,kvm_intel\"\n    ```\n\n    *\uff08AMD \u7528\u6237\u5c06 `kvm_intel` \u66ff\u6362\u4e3a `kvm_amd`\u3002\uff09*\n\n3.  **\u4fdd\u5b58\u5e76\u9000\u51fa:** (\u540c\u4e0a)\n\n4.  **\u66f4\u65b0 GRUB \u914d\u7f6e:**\n\n    ```bash\n    sudo update-grub\n    ```\n\n5.  **\u91cd\u542f\u7cfb\u7edf:**\n\n    ```bash\n    sudo reboot\n    ```\n\n-----\n\n**\u91cd\u542f\u540e\u9a8c\u8bc1:**\n\n\u7cfb\u7edf\u91cd\u542f\u540e\uff0c\u4f60\u53ef\u4ee5\u518d\u6b21\u8fd0\u884c\u4ee5\u4e0b\u547d\u4ee4\u6765\u786e\u8ba4 `kvm_intel` \u662f\u5426\u5df2\u7ecf\u88ab\u7981\u7528\u4e86\uff1a\n\n```bash\nlsmod | grep kvm\n```\n\n\u5982\u679c\u8fd9\u6761\u547d\u4ee4\u6ca1\u6709\u8f93\u51fa\u4efb\u4f55\u7ed3\u679c\uff0c\u8bf4\u660e `kvm` \u6a21\u5757\u6ca1\u6709\u88ab\u52a0\u8f7d\uff0c\u6b64\u65f6\u4f60\u5e94\u8be5\u80fd\u591f\u987a\u5229\u542f\u52a8\u4f60\u7684 VirtualBox \u865a\u62df\u673a\u4e86\u3002"
+            </script>
+            <!-- 渲染目标容器 -->
+            <div id="markdown-content"></div>
+        </div>
+        
+        <footer class="footer">
+            <p>本文原始链接：<a href="https://github.com/syaofox/syaofox.github.io/issues/20" class="github-link" target="_blank">GitHub Issue #20</a>
+            <button id="theme-toggle" class="theme-toggle" title="切换主题">
+                <svg class="theme-icon sun-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="theme-icon moon-icon" viewBox="0 0 24 24" style="display: none;">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button></p>
+        </footer>
+    </main>
+    
+    <!-- TOC 容器（由 JS 动态生成） -->
+    <aside class="toc-sidebar" id="toc-container">
+        <h3 class="toc-title">
+            目录
+            <span class="toc-toggle">▼</span>
+        </h3>
+        <ul class="toc-list" id="toc-list"></ul>
+    </aside>
+</div>
+
+    
+    
+    <!-- 滚动悬浮按钮 -->
+    <div class="scroll-buttons">
+        <button class="scroll-btn" id="scroll-to-top" title="回到顶部">↑</button>
+        <button class="scroll-btn" id="scroll-to-bottom" title="滚到底部">↓</button>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 页面加载完成后，延迟移除 page-loading 类，启用过渡动画
+            setTimeout(function() {
+                document.documentElement.classList.remove('page-loading');
+            }, 50);
+            
+            // 为所有代码块添加复制按钮
+            const codeBlocks = document.querySelectorAll('pre > code');
+            
+            codeBlocks.forEach(function(codeBlock) {
+                // 跳过已经包装的代码块
+                if (codeBlock.parentElement.classList.contains('code-block-wrapper')) {
+                    return;
+                }
+                
+                const pre = codeBlock.parentElement;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block-wrapper';
+                
+                // 创建复制按钮
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'copy-btn';
+                copyBtn.textContent = '复制';
+                
+                // 包装pre元素
+                pre.parentElement.insertBefore(wrapper, pre);
+                wrapper.appendChild(pre);
+                wrapper.appendChild(copyBtn);
+                
+                // 添加复制功能
+                copyBtn.addEventListener('click', function() {
+                    const text = codeBlock.textContent;
+                    
+                    // 使用现代Clipboard API
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).then(function() {
+                            showCopied(copyBtn);
+                        }).catch(function() {
+                            // 降级到传统方法
+                            fallbackCopy(text, copyBtn);
+                        });
+                    } else {
+                        // 降级到传统方法
+                        fallbackCopy(text, copyBtn);
+                    }
+                });
+            });
+            
+            function showCopied(btn) {
+                btn.textContent = '已复制';
+                btn.classList.add('copied');
+                
+                setTimeout(function() {
+                    btn.textContent = '复制';
+                    btn.classList.remove('copied');
+                }, 1500);
+            }
+            
+            function fallbackCopy(text, btn) {
+                // 创建临时文本区域
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+                document.body.appendChild(textArea);
+                
+                try {
+                    textArea.focus();
+                    textArea.select();
+                    document.execCommand('copy');
+                    showCopied(btn);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                    btn.textContent = '复制失败';
+                    setTimeout(function() {
+                        btn.textContent = '复制';
+                    }, 1500);
+                } finally {
+                    document.body.removeChild(textArea);
+                }
+            }
+            
+            // 滚动悬浮按钮功能
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+            const scrollToBottomBtn = document.getElementById('scroll-to-bottom');
+            
+            function updateScrollButtons() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                
+                // 显示/隐藏回到顶部按钮
+                if (scrollTop > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+                
+                // 显示/隐藏滚到底部按钮
+                if (scrollTop + windowHeight < documentHeight - 300) {
+                    scrollToBottomBtn.classList.add('visible');
+                } else {
+                    scrollToBottomBtn.classList.remove('visible');
+                }
+            }
+            
+            // 监听滚动事件
+            window.addEventListener('scroll', updateScrollButtons);
+            
+            // 回到顶部按钮点击事件
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 滚到底部按钮点击事件
+            scrollToBottomBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: document.documentElement.scrollHeight,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 初始化时检查按钮状态
+            updateScrollButtons();
+            
+            // 主题切换功能
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            
+            // 更新词云图片
+            function updateWordcloudImage(isDark) {
+                const wordcloudImg = document.getElementById('wordcloud-img');
+                if (wordcloudImg) {
+                    const newSrc = isDark ? 'assets/wordcloud-dark.png' : 'assets/wordcloud-light.png';
+                    if (wordcloudImg.src !== new URL(newSrc, window.location.href).href) {
+                        wordcloudImg.src = newSrc;
+                        console.log('词云图片已切换至:', newSrc);
+                    }
+                } else {
+                    console.warn('未找到词云图片元素');
+                }
+            }
+            
+            // 初始化主题（同步 body 类和其他主题相关元素）
+            function initTheme() {
+                const isDark = document.documentElement.classList.contains('dark-mode');
+                
+                // 同步 body 的 dark-mode 类
+                if (isDark) {
+                    body.classList.add('dark-mode');
+                } else {
+                    body.classList.remove('dark-mode');
+                }
+                
+                // 初始化代码高亮主题
+                const lightTheme = document.getElementById('highlight-theme-light');
+                const darkTheme = document.getElementById('highlight-theme-dark');
+                if (isDark) {
+                    if (lightTheme) lightTheme.disabled = true;
+                    if (darkTheme) darkTheme.disabled = false;
+                } else {
+                    if (lightTheme) lightTheme.disabled = false;
+                    if (darkTheme) darkTheme.disabled = true;
+                }
+                
+                updateWordcloudImage(isDark);
+            }
+            
+            // 切换主题
+            function toggleTheme() {
+                const isDarkMode = document.documentElement.classList.contains('dark-mode');
+                const lightTheme = document.getElementById('highlight-theme-light');
+                const darkTheme = document.getElementById('highlight-theme-dark');
+                
+                if (isDarkMode) {
+                    // 切换到亮色模式
+                    document.documentElement.classList.remove('dark-mode');
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light');
+                    updateWordcloudImage(false);
+                    // 切换代码高亮主题
+                    if (lightTheme) lightTheme.disabled = false;
+                    if (darkTheme) darkTheme.disabled = true;
+                } else {
+                    // 切换到暗色模式
+                    document.documentElement.classList.add('dark-mode');
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    updateWordcloudImage(true);
+                    // 切换代码高亮主题
+                    if (lightTheme) lightTheme.disabled = true;
+                    if (darkTheme) darkTheme.disabled = false;
+                }
+            }
+            
+            // 监听主题切换按钮点击
+            themeToggle.addEventListener('click', toggleTheme);
+            
+            // 立即初始化主题，避免闪烁
+            initTheme();
+            
+            // 目录导航功能
+            function initTocNavigation() {
+                const tocItems = document.querySelectorAll('.toc-item a');
+                if (tocItems.length === 0) return;
+                
+                // 移动端目录折叠功能
+                function initMobileTocToggle() {
+                    const tocSidebar = document.querySelector('.toc-sidebar');
+                    const tocTitle = document.querySelector('.toc-title');
+                    
+                    if (!tocSidebar || !tocTitle) return;
+                    
+                    // 检查是否为移动端
+                    function isMobile() {
+                        return window.innerWidth <= 1023;
+                    }
+                    
+                    // 初始化移动端状态
+                    function initMobileState() {
+                        if (isMobile()) {
+                            tocSidebar.classList.remove('expanded');
+                        } else {
+                            tocSidebar.classList.add('expanded');
+                        }
+                    }
+                    
+                    // 切换折叠状态
+                    function toggleToc() {
+                        if (!isMobile()) return;
+                        
+                        tocSidebar.classList.toggle('expanded');
+                    }
+                    
+                    // 监听标题点击
+                    tocTitle.addEventListener('click', function(e) {
+                        if (isMobile()) {
+                            e.preventDefault();
+                            toggleToc();
+                        }
+                    });
+                    
+                    // 监听窗口大小变化
+                    window.addEventListener('resize', function() {
+                        initMobileState();
+                    });
+                    
+                    // 初始化状态
+                    initMobileState();
+                }
+                
+                // 初始化移动端折叠功能
+                initMobileTocToggle();
+                
+                // 为目录链接添加平滑滚动
+                tocItems.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+                
+                // 监听滚动，高亮当前章节
+                function updateActiveTocItem() {
+                    const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
+                    const scrollTop = window.pageYOffset;
+                    const windowHeight = window.innerHeight;
+                    
+                    let currentHeading = null;
+                    
+                    headings.forEach(heading => {
+                        const headingTop = heading.offsetTop - 100; // 偏移量，提前激活
+                        
+                        if (scrollTop >= headingTop) {
+                            currentHeading = heading;
+                        }
+                    });
+                    
+                    // 更新目录项激活状态
+                    tocItems.forEach(link => {
+                        link.parentElement.classList.remove('active');
+                    });
+                    
+                    if (currentHeading) {
+                        const activeLink = document.querySelector(`.toc-item a[href="#${currentHeading.id}"]`);
+                        if (activeLink) {
+                            activeLink.parentElement.classList.add('active');
+                        }
+                    }
+                }
+                
+                // 节流滚动监听
+                let ticking = false;
+                window.addEventListener('scroll', function() {
+                    if (!ticking) {
+                        requestAnimationFrame(function() {
+                            updateActiveTocItem();
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                });
+                
+                // 初始调用
+                updateActiveTocItem();
+            }
+            
+            // 初始化目录导航
+            initTocNavigation();
+        });
+    </script>
+    
+    
+<script src="../../static/js/markdown-renderer.js"></script>
+
+</body>
+</html>

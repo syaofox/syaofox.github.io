@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<script>
+    // 在页面渲染前立即设置主题，避免闪烁
+    (function() {
+        // 添加页面加载类，禁用过渡动画
+        document.documentElement.classList.add('page-loading');
+        
+        // 获取保存的主题或使用系统偏好
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+        
+        // 立即应用主题类
+        if (isDark) {
+            document.documentElement.classList.add('dark-mode');
+        }
+    })();
+</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flakes + Home-Manager（独立用户配置） - syaofox 的博客</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico">
+    <link rel="stylesheet" href="../../static/css/base.css">
+    
+    
+    <!-- Marked.js for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.0.0/marked.min.js"></script>
+    
+    <!-- Highlight.js for code highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github.min.css" id="highlight-theme-light">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github-dark.min.css" id="highlight-theme-dark" disabled>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/lib/index.min.js"></script>
+</head>
+<body class="page-article">
+    
+<div class="article-layout">
+    <main class="article-main">
+        <header class="header">
+            <a href="../../index.html" class="back-link">返回首页</a>
+            <h1 class="article-title">Flakes + Home-Manager（独立用户配置）</h1>
+            <div class="article-meta">
+                <span>创建时间：2025-10-28 11:38:57</span>
+                <span class="separator">|</span>
+                <span>更新时间：2025-10-28 11:38:57</span>
+                
+                <span class="separator">|</span>
+                <span>分类：tips</span>
+                
+            </div>
+        </header>
+        
+        <div class="article-content">
+            <!-- 原始 Markdown 存储（JSON 格式避免转义问题） -->
+            <script type="application/json" id="article-markdown">
+"**\u4ece\u56fe\u5f62\u5316\u5b89\u88c5\u7684 `configuration.nix` \u2192 Flakes + Home-Manager\uff08\u72ec\u7acb\u7528\u6237\u914d\u7f6e\uff09**  \n\n\u003e \u76ee\u6807\uff1a  \n\u003e 1. \u7cfb\u7edf\u914d\u7f6e\u7528 **Flake** \u7ba1\u7406\uff08`flake.nix` + `configuration.nix`\uff09  \n\u003e 2. \u7528\u6237\u914d\u7f6e\uff08\u684c\u9762\u8f6f\u4ef6\u3001dotfiles\u3001shell\uff09\u7528 **Home-Manager** \u7ba1\u7406  \n\u003e 3. \u4fdd\u7559\u4f60\u73b0\u5728\u7684 Cinnamon\u3001\u8f93\u5165\u6cd5\u3001SPICE \u7b49\u5168\u90e8\u529f\u80fd  \n\u003e 4. \u4ee5\u540e `nixos-rebuild switch --flake .#hostname` \u4e00\u952e\u5347\u7ea7  \n\n---\n\n## 1. \u76ee\u5f55\u7ed3\u6784\uff08\u5efa\u8bae\uff09\n\n```bash\n/nixos-config/               # \u9879\u76ee\u6839\u76ee\u5f55\n\u251c\u2500\u2500 flake.nix\n\u251c\u2500\u2500 flake.lock\n\u251c\u2500\u2500 configuration.nix        # \u7cfb\u7edf\u7ea7\uff08\u4fdd\u6301\u4f60\u539f\u6765\u7684\uff09\n\u251c\u2500\u2500 home.nix                 # \u7528\u6237\u7ea7\uff08Home-Manager\uff09\n\u2514\u2500\u2500 hardware-configuration.nix  # \u4fdd\u6301\u4e0d\u53d8\n```\n\n\u003e \u628a\u4f60\u73b0\u5728\u7684 `/etc/nixos/` \u5185\u5bb9 **\u6574\u4e2a\u590d\u5236** \u5230 `/nixos-config/`\uff0c\u7136\u540e\u6309\u4e0b\u9762\u6b65\u9aa4\u6539\u3002\n\n---\n\n## 2. \u542f\u7528 Flakes\uff08\u53ea\u9700\u4e00\u6b21\uff09\n\n```bash\nsudo nix-channel --add https://github.com/nixos/nixpkgs/archive/nixos-unstable.tar.gz nixpkgs\nsudo nix-channel --update\nsudo nix flake init -t templates#simple   # \u53ef\u9009\uff0c\u751f\u6210\u6a21\u677f\n```\n\n\u003e \u6216\u8005\u76f4\u63a5\u624b\u52a8\u521b\u5efa `flake.nix`\n\n---\n\n## 3. `flake.nix`\uff08\u6838\u5fc3\uff09\n\n```nix\n{\n  description = \"NixOS + Home-Manager with Flakes\";\n\n  inputs = {\n    nixpkgs.url = \"github:nixos/nixpkgs/nixos-unstable\";\n    home-manager = {\n      url = \"github:nix-community/home-manager\";\n      inputs.nixpkgs.follows = \"nixpkgs\";\n    };\n    # \u53ef\u9009\uff1a\u9501\u5b9a\u7248\u672c\n    # flake-utils.url = \"github:numtide/flake-utils\";\n  };\n\n  outputs = { self, nixpkgs, home-manager, ... }@inputs:\n    let\n      system = \"x86_64-linux\";\n      pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };\n      username = \"syaofox\";\n      hostname = \"nixos\";\n    in {\n      nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {\n        inherit system;\n        modules = [\n          ./configuration.nix\n          ./hardware-configuration.nix\n\n          home-manager.nixosModules.home-manager\n          {\n            home-manager.useGlobalPkgs = true;\n            home-manager.useUserPackages = true;\n            home-manager.users.${username} = import ./home.nix;\n\n            # \u4f20\u9012 username \u7ed9 home.nix\uff08\u53ef\u9009\uff09\n            home-manager.extraSpecialArgs = { inherit username; };\n          }\n        ];\n      };\n    };\n}\n```\n\n---\n\n## 4. `home.nix`\uff08\u7528\u6237\u914d\u7f6e\uff0c\u66ff\u4ee3 `users.users.syaofox.packages`\uff09\n\n```nix\n{ config, pkgs, username, ... }:\n\n{\n  # Home Manager \u7248\u672c\n  home.stateVersion = \"25.05\";\n\n  # ---------- \u7528\u6237\u8f6f\u4ef6 ----------\n  home.packages = with pkgs; [\n    firefox\n    # thunderbird\n    # \u5176\u4ed6\u4f60\u60f3\u88c5\u7684\n  ];\n\n  # ---------- \u684c\u9762\u73af\u5883 ----------\n  programs.bash.enable = true;  # \u542f\u7528 bash \u8865\u5168\u7b49\n\n  # \uff08\u53ef\u9009\uff09git \u914d\u7f6e\n  programs.git = {\n    enable = true;\n    userName = \"syaofox\";\n    userEmail = \"syaofox@example.com\";\n  };\n\n  # \uff08\u53ef\u9009\uff09zsh + oh-my-zsh\n  # programs.zsh.enable = true;\n  # programs.zsh.oh-my-zsh.enable = true;\n\n  # ---------- \u684c\u9762\u6587\u4ef6\u3001\u4e3b\u9898\u7b49 ----------\n  # gtk \u4e3b\u9898\u3001\u56fe\u6807\u3001\u9f20\u6807\n  gtk = {\n    enable = true;\n    theme.package = pkgs.gnome-themes-extra;\n    theme.name = \"Adwaita\";\n    iconTheme.package = pkgs.papirus-icon-theme;\n    iconTheme.name = \"Papirus\";\n  };\n\n  # ---------- fcitx5 \u73af\u5883\u53d8\u91cf\uff08\u7cfb\u7edf\u5df2\u8bbe\uff0c\u8fd9\u91cc\u53ef\u91cd\u590d\u4fdd\u9669\uff09----------\n  home.sessionVariables = {\n    GTK_IM_MODULE = \"fcitx\";\n    QT_IM_MODULE  = \"fcitx\";\n    XMODIFIERS    = \"@im=fcitx\";\n  };\n\n  # ---------- \u542f\u52a8 fcitx5 ----------\n  systemd.user.services.fcitx5 = {\n    description = \"Fcitx5 input method\";\n    wantedBy = [ \"default.target\" ];\n    serviceConfig = {\n      ExecStart = \"${pkgs.fcitx5}/bin/fcitx5 -d\";\n      Restart = \"always\";\n    };\n  };\n}\n```\n\n\u003e \u4f60\u539f\u6765\u7684 `environment.systemPackages` \u91cc fcitx5 \u76f8\u5173\u5305 **\u4fdd\u7559\u5728\u7cfb\u7edf**\uff0c\u8fd9\u91cc\u53ea\u7ba1\u7528\u6237\u7ea7\u53d8\u91cf\u3002\n\n---\n\n## 5. \u4fee\u6539 `configuration.nix`\uff08\u5220\u6389\u7528\u6237\u5305\uff0c\u6539\u7528 HM\uff09\n\n```diff\n-  users.users.syaofox = {\n-    isNormalUser = true;\n-    description = \"syaofox\";\n-    extraGroups = [ \"networkmanager\" \"wheel\" ];\n-    packages = with pkgs; [\n-    #  thunderbird\n-    ];\n-  };\n+  users.users.syaofox = {\n+    isNormalUser = true;\n+    description = \"syaofox\";\n+    extraGroups = [ \"networkmanager\" \"wheel\" ];\n+    # packages \u79fb\u5230 home.nix\n+  };\n```\n\n\u003e \u5176\u5b83\u6240\u6709\u7cfb\u7edf\u914d\u7f6e **\u5b8c\u5168\u4e0d\u52a8**\uff08\u5185\u6838\u3001Cinnamon\u3001SPICE\u3001fcitx5 \u6846\u67b6\u7b49\uff09\n\n---\n\n## 6. \u7b2c\u4e00\u6b21\u6784\u5efa\n\n```bash\ncd /nixos-config\nsudo nixos-rebuild switch --flake .#nixos\n```\n\n\u003e \u6210\u529f\u540e\uff0c\u4f60\u4f1a\u770b\u5230 Home-Manager \u4e5f\u4e00\u8d77\u6fc0\u6d3b\u4e86\n\n---\n\n## 7. \u4ee5\u540e\u600e\u4e48\u7528\uff1f\n\n```bash\n# \u4fee\u6539\u7cfb\u7edf\u914d\u7f6e \u2192 \u7f16\u8f91 configuration.nix\n# \u4fee\u6539\u7528\u6237\u914d\u7f6e \u2192 \u7f16\u8f91 home.nix\nsudo nixos-rebuild switch --flake .#nixos\n```\n\n\u003e \u60f3\u52a0\u65b0\u8f6f\u4ef6\uff1f  \n\u003e - \u7cfb\u7edf\u7ea7 \u2192 `environment.systemPackages`  \n\u003e - \u7528\u6237\u7ea7 \u2192 `home.packages`\uff08\u63a8\u8350\uff09\n\n---\n\n## 8. \u989d\u5916\u6280\u5de7\n\n### 8.1 \u591a\u4e2a\u4e3b\u673a\uff1f\u7528 `hosts/hostname/`\n\n```\nhosts/\n\u251c\u2500\u2500 laptop/\n\u2502   \u251c\u2500\u2500 flake.nix\n\u2502   \u251c\u2500\u2500 configuration.nix\n\u2502   \u2514\u2500\u2500 home.nix\n\u251c\u2500\u2500 vm/\n\u2502   \u2514\u2500\u2500 ...\n```\n\n### 8.2 \u9501\u5b9a\u7248\u672c\uff08\u63a8\u8350\u751f\u4ea7\uff09\n\n```nix\ninputs.nixpkgs.url = \"github:nixos/nixpkgs/nixos-25.05\";\n```\n\n### 8.3 \u5783\u573e\u56de\u6536\n\n```bash\nsudo nix-collect-garbage -d\nsudo nix store optimise\n```\n\n---\n\n## \u603b\u7ed3\uff1a\u4f60\u53ea\u9700\u8981\n\n1. \u521b\u5efa `flake.nix` + `home.nix`\n2. \u628a `users.users.syaofox.packages` \u79fb\u5230 `home.nix`\n3. `sudo nixos-rebuild switch --flake .#nixos`\n\n---\n\n**\u4e00\u952e\u590d\u5236\u7c98\u8d34\u7248**\uff08\u76f4\u63a5\u7528\uff09\n\n```bash\nsudo mkdir -p /nixos-config\nsudo cp -r /etc/nixos/* /nixos-config/\ncd /nixos-config\n```\n\n\u7136\u540e\u8d34\u5165\u4e0a\u9762 `flake.nix` \u548c `home.nix`\uff0c\u4fee\u6539 `configuration.nix` \u5220\u6389 `packages`\uff0c\u6700\u540e\uff1a\n\n```bash\nsudo nixos-rebuild switch --flake .#nixos\n```\n\n---\n\n\u641e\u5b9a\uff01\u4ee5\u540e\u4f60\u5c31\u662f **Flakes + Home-Manager** \u4e13\u4e1a\u9009\u624b\u4e86  \n"
+            </script>
+            <!-- 渲染目标容器 -->
+            <div id="markdown-content"></div>
+        </div>
+        
+        <footer class="footer">
+            <p>本文原始链接：<a href="https://github.com/syaofox/syaofox.github.io/issues/53" class="github-link" target="_blank">GitHub Issue #53</a>
+            <button id="theme-toggle" class="theme-toggle" title="切换主题">
+                <svg class="theme-icon sun-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="theme-icon moon-icon" viewBox="0 0 24 24" style="display: none;">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button></p>
+        </footer>
+    </main>
+    
+    <!-- TOC 容器（由 JS 动态生成） -->
+    <aside class="toc-sidebar" id="toc-container">
+        <h3 class="toc-title">
+            目录
+            <span class="toc-toggle">▼</span>
+        </h3>
+        <ul class="toc-list" id="toc-list"></ul>
+    </aside>
+</div>
+
+    
+    
+    <!-- 滚动悬浮按钮 -->
+    <div class="scroll-buttons">
+        <button class="scroll-btn" id="scroll-to-top" title="回到顶部">↑</button>
+        <button class="scroll-btn" id="scroll-to-bottom" title="滚到底部">↓</button>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 页面加载完成后，延迟移除 page-loading 类，启用过渡动画
+            setTimeout(function() {
+                document.documentElement.classList.remove('page-loading');
+            }, 50);
+            
+            // 为所有代码块添加复制按钮
+            const codeBlocks = document.querySelectorAll('pre > code');
+            
+            codeBlocks.forEach(function(codeBlock) {
+                // 跳过已经包装的代码块
+                if (codeBlock.parentElement.classList.contains('code-block-wrapper')) {
+                    return;
+                }
+                
+                const pre = codeBlock.parentElement;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block-wrapper';
+                
+                // 创建复制按钮
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'copy-btn';
+                copyBtn.textContent = '复制';
+                
+                // 包装pre元素
+                pre.parentElement.insertBefore(wrapper, pre);
+                wrapper.appendChild(pre);
+                wrapper.appendChild(copyBtn);
+                
+                // 添加复制功能
+                copyBtn.addEventListener('click', function() {
+                    const text = codeBlock.textContent;
+                    
+                    // 使用现代Clipboard API
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).then(function() {
+                            showCopied(copyBtn);
+                        }).catch(function() {
+                            // 降级到传统方法
+                            fallbackCopy(text, copyBtn);
+                        });
+                    } else {
+                        // 降级到传统方法
+                        fallbackCopy(text, copyBtn);
+                    }
+                });
+            });
+            
+            function showCopied(btn) {
+                btn.textContent = '已复制';
+                btn.classList.add('copied');
+                
+                setTimeout(function() {
+                    btn.textContent = '复制';
+                    btn.classList.remove('copied');
+                }, 1500);
+            }
+            
+            function fallbackCopy(text, btn) {
+                // 创建临时文本区域
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+                document.body.appendChild(textArea);
+                
+                try {
+                    textArea.focus();
+                    textArea.select();
+                    document.execCommand('copy');
+                    showCopied(btn);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                    btn.textContent = '复制失败';
+                    setTimeout(function() {
+                        btn.textContent = '复制';
+                    }, 1500);
+                } finally {
+                    document.body.removeChild(textArea);
+                }
+            }
+            
+            // 滚动悬浮按钮功能
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+            const scrollToBottomBtn = document.getElementById('scroll-to-bottom');
+            
+            function updateScrollButtons() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                
+                // 显示/隐藏回到顶部按钮
+                if (scrollTop > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+                
+                // 显示/隐藏滚到底部按钮
+                if (scrollTop + windowHeight < documentHeight - 300) {
+                    scrollToBottomBtn.classList.add('visible');
+                } else {
+                    scrollToBottomBtn.classList.remove('visible');
+                }
+            }
+            
+            // 监听滚动事件
+            window.addEventListener('scroll', updateScrollButtons);
+            
+            // 回到顶部按钮点击事件
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 滚到底部按钮点击事件
+            scrollToBottomBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: document.documentElement.scrollHeight,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 初始化时检查按钮状态
+            updateScrollButtons();
+            
+            // 主题切换功能
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            
+            // 更新词云图片
+            function updateWordcloudImage(isDark) {
+                const wordcloudImg = document.getElementById('wordcloud-img');
+                if (wordcloudImg) {
+                    const newSrc = isDark ? 'assets/wordcloud-dark.png' : 'assets/wordcloud-light.png';
+                    if (wordcloudImg.src !== new URL(newSrc, window.location.href).href) {
+                        wordcloudImg.src = newSrc;
+                        console.log('词云图片已切换至:', newSrc);
+                    }
+                } else {
+                    console.warn('未找到词云图片元素');
+                }
+            }
+            
+            // 初始化主题（同步 body 类和其他主题相关元素）
+            function initTheme() {
+                const isDark = document.documentElement.classList.contains('dark-mode');
+                
+                // 同步 body 的 dark-mode 类
+                if (isDark) {
+                    body.classList.add('dark-mode');
+                } else {
+                    body.classList.remove('dark-mode');
+                }
+                
+                // 初始化代码高亮主题
+                const lightTheme = document.getElementById('highlight-theme-light');
+                const darkTheme = document.getElementById('highlight-theme-dark');
+                if (isDark) {
+                    if (lightTheme) lightTheme.disabled = true;
+                    if (darkTheme) darkTheme.disabled = false;
+                } else {
+                    if (lightTheme) lightTheme.disabled = false;
+                    if (darkTheme) darkTheme.disabled = true;
+                }
+                
+                updateWordcloudImage(isDark);
+            }
+            
+            // 切换主题
+            function toggleTheme() {
+                const isDarkMode = document.documentElement.classList.contains('dark-mode');
+                const lightTheme = document.getElementById('highlight-theme-light');
+                const darkTheme = document.getElementById('highlight-theme-dark');
+                
+                if (isDarkMode) {
+                    // 切换到亮色模式
+                    document.documentElement.classList.remove('dark-mode');
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light');
+                    updateWordcloudImage(false);
+                    // 切换代码高亮主题
+                    if (lightTheme) lightTheme.disabled = false;
+                    if (darkTheme) darkTheme.disabled = true;
+                } else {
+                    // 切换到暗色模式
+                    document.documentElement.classList.add('dark-mode');
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    updateWordcloudImage(true);
+                    // 切换代码高亮主题
+                    if (lightTheme) lightTheme.disabled = true;
+                    if (darkTheme) darkTheme.disabled = false;
+                }
+            }
+            
+            // 监听主题切换按钮点击
+            themeToggle.addEventListener('click', toggleTheme);
+            
+            // 立即初始化主题，避免闪烁
+            initTheme();
+            
+            // 目录导航功能
+            function initTocNavigation() {
+                const tocItems = document.querySelectorAll('.toc-item a');
+                if (tocItems.length === 0) return;
+                
+                // 移动端目录折叠功能
+                function initMobileTocToggle() {
+                    const tocSidebar = document.querySelector('.toc-sidebar');
+                    const tocTitle = document.querySelector('.toc-title');
+                    
+                    if (!tocSidebar || !tocTitle) return;
+                    
+                    // 检查是否为移动端
+                    function isMobile() {
+                        return window.innerWidth <= 1023;
+                    }
+                    
+                    // 初始化移动端状态
+                    function initMobileState() {
+                        if (isMobile()) {
+                            tocSidebar.classList.remove('expanded');
+                        } else {
+                            tocSidebar.classList.add('expanded');
+                        }
+                    }
+                    
+                    // 切换折叠状态
+                    function toggleToc() {
+                        if (!isMobile()) return;
+                        
+                        tocSidebar.classList.toggle('expanded');
+                    }
+                    
+                    // 监听标题点击
+                    tocTitle.addEventListener('click', function(e) {
+                        if (isMobile()) {
+                            e.preventDefault();
+                            toggleToc();
+                        }
+                    });
+                    
+                    // 监听窗口大小变化
+                    window.addEventListener('resize', function() {
+                        initMobileState();
+                    });
+                    
+                    // 初始化状态
+                    initMobileState();
+                }
+                
+                // 初始化移动端折叠功能
+                initMobileTocToggle();
+                
+                // 为目录链接添加平滑滚动
+                tocItems.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+                
+                // 监听滚动，高亮当前章节
+                function updateActiveTocItem() {
+                    const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
+                    const scrollTop = window.pageYOffset;
+                    const windowHeight = window.innerHeight;
+                    
+                    let currentHeading = null;
+                    
+                    headings.forEach(heading => {
+                        const headingTop = heading.offsetTop - 100; // 偏移量，提前激活
+                        
+                        if (scrollTop >= headingTop) {
+                            currentHeading = heading;
+                        }
+                    });
+                    
+                    // 更新目录项激活状态
+                    tocItems.forEach(link => {
+                        link.parentElement.classList.remove('active');
+                    });
+                    
+                    if (currentHeading) {
+                        const activeLink = document.querySelector(`.toc-item a[href="#${currentHeading.id}"]`);
+                        if (activeLink) {
+                            activeLink.parentElement.classList.add('active');
+                        }
+                    }
+                }
+                
+                // 节流滚动监听
+                let ticking = false;
+                window.addEventListener('scroll', function() {
+                    if (!ticking) {
+                        requestAnimationFrame(function() {
+                            updateActiveTocItem();
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                });
+                
+                // 初始调用
+                updateActiveTocItem();
+            }
+            
+            // 初始化目录导航
+            initTocNavigation();
+        });
+    </script>
+    
+    
+<script src="../../static/js/markdown-renderer.js"></script>
+
+</body>
+</html>

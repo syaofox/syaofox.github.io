@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<script>
+    // 在页面渲染前立即设置主题，避免闪烁
+    (function() {
+        // 添加页面加载类，禁用过渡动画
+        document.documentElement.classList.add('page-loading');
+        
+        // 获取保存的主题或使用系统偏好
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+        
+        // 立即应用主题类
+        if (isDark) {
+            document.documentElement.classList.add('dark-mode');
+        }
+    })();
+</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Mint 22.2 Btrfs + 交换文件 全新安装流程 - syaofox 的博客</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico">
+    <link rel="stylesheet" href="../../static/css/base.css">
+    
+    
+    <!-- Marked.js for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.0.0/marked.min.js"></script>
+    
+    <!-- Highlight.js for code highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github.min.css" id="highlight-theme-light">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github-dark.min.css" id="highlight-theme-dark" disabled>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/lib/index.min.js"></script>
+</head>
+<body class="page-article">
+    
+<div class="article-layout">
+    <main class="article-main">
+        <header class="header">
+            <a href="../../index.html" class="back-link">返回首页</a>
+            <h1 class="article-title">Linux Mint 22.2 Btrfs + 交换文件 全新安装流程</h1>
+            <div class="article-meta">
+                <span>创建时间：2025-10-15 09:27:55</span>
+                <span class="separator">|</span>
+                <span>更新时间：2025-10-18 02:35:59</span>
+                
+                <span class="separator">|</span>
+                <span>分类：tips</span>
+                
+            </div>
+        </header>
+        
+        <div class="article-content">
+            <!-- 原始 Markdown 存储（JSON 格式避免转义问题） -->
+            <script type="application/json" id="article-markdown">
+"\u672c\u6d41\u7a0b\u57fa\u4e8e Linux Mint 22.2 \u5b89\u88c5\u7a0b\u5e8f**\u81ea\u52a8\u521b\u5efa `@` \u548c `@home` \u5b50\u5377**\u7684\u7279\u6027\u8fdb\u884c\u5b9a\u5236\u3002\u5b83\u901a\u8fc7\u589e\u52a0 `@swap`, `@cache`, \u548c `@log` \u4e09\u4e2a\u5b50\u5377\uff0c\u786e\u4fdd\u4e86 Btrfs \u4e0a\u7684 Timeshift \u5feb\u7167\u6392\u9664\u4f18\u5316\uff0c\u4ee5\u53ca\u4ea4\u6362\u6587\u4ef6\u7684\u6700\u4f73\u6027\u80fd\u914d\u7f6e\u3002\n\n- - -\n\n### **\u7b2c\u4e00\u90e8\u5206\uff1a\u5b89\u88c5\u524d\u7684\u51c6\u5907\u548c\u5206\u533a**\n\n1.  **\u51c6\u5907\u5b89\u88c5\u4ecb\u8d28\uff1a** \u4e0b\u8f7d Linux Mint 22.2 ISO \u6587\u4ef6\uff0c\u5e76\u4f7f\u7528 Rufus \u6216 Ventoy \u7b49\u5de5\u5177\u5236\u4f5c\u4e00\u4e2a\u53ef\u542f\u52a8\u7684 USB \u9a71\u52a8\u5668\u3002\n    \n2.  **\u542f\u52a8 Live Session\uff1a** \u4ece USB \u9a71\u52a8\u5668\u542f\u52a8\u7535\u8111\uff0c\u9009\u62e9\u8fdb\u5165 **Linux Mint Live** \u73af\u5883\u3002\n    \n3.  **\u8fd0\u884c\u5206\u533a\u5de5\u5177\uff08GParted\uff09\uff1a** \u6253\u5f00 GParted\uff0c\u5bf9\u76ee\u6807\u786c\u76d8\u8fdb\u884c\u5206\u533a\u3002\n    \n\n| \u5206\u533a\u7c7b\u578b | \u5927\u5c0f\uff08\u5efa\u8bae\uff09 | \u6587\u4ef6\u7cfb\u7edf | \u6807\u5fd7 (Flags) | \u6302\u8f7d\u70b9\uff08\u7528\u4e8e\u5b89\u88c5\u7a0b\u5e8f\uff09 | \u4f5c\u7528 |\n| -- | -- | -- | -- | -- | -- |\n| EFI \u7cfb\u7edf\u5206\u533a (ESP) | 512MB ~ 1GB | FAT32 | boot, esp | /boot/efi | UEFI \u542f\u52a8\u6240\u9700 |\n| Btrfs \u4e3b\u5206\u533a | \u5269\u4f59\u6240\u6709\u7a7a\u95f4 | btrfs | \u65e0 | / | \u7cfb\u7edf\u548c\u6240\u6709\u7528\u6237\u6570\u636e |\n\n\u003e **\u63d0\u793a\uff1a** \u8fd9\u4e00\u6b65**\u4e0d\u9700\u8981**\u521b\u5efa\u72ec\u7acb\u7684\u4ea4\u6362\u5206\u533a\uff08Swap Partition\uff09\u3002\n\n- - -\n\n### **\u7b2c\u4e8c\u90e8\u5206\uff1a\u8fd0\u884c Linux Mint \u5b89\u88c5\u7a0b\u5e8f**\n\n1.  **\u542f\u52a8\u5b89\u88c5\u7a0b\u5e8f\uff1a** \u53cc\u51fb\u684c\u9762\u4e0a\u7684 **Install Linux Mint** \u56fe\u6807\u3002\n    \n2.  **\u9009\u62e9\u8bed\u8a00\u3001\u952e\u76d8\u5e03\u5c40\u3001\u662f\u5426\u5b89\u88c5\u591a\u5a92\u4f53\u89e3\u7801\u5668**\uff0c\u7136\u540e\u7ee7\u7eed\u3002\n    \n3.  **\u9009\u62e9\u5b89\u88c5\u7c7b\u578b\uff1a** \u5728\u5206\u533a\u6b65\u9aa4\uff0c\u9009\u62e9 **Something else**\uff08\u5176\u4ed6\u9009\u9879\uff09\u8fdb\u884c\u624b\u52a8\u914d\u7f6e\u3002\n    \n4.  **\u914d\u7f6e\u5206\u533a\u6302\u8f7d\u70b9\uff1a**\n    \n    *   \u627e\u5230\u60a8\u521b\u5efa\u7684 **FAT32 \u5206\u533a**\uff1a\u53cc\u51fb\u5b83\uff0c\u9009\u62e9 **Use as:** `EFI System Partition`\uff0c\u6302\u8f7d\u70b9\u4e3a **`/boot/efi`**\u3002\n        \n    *   \u627e\u5230\u60a8\u521b\u5efa\u7684 **Btrfs \u5206\u533a**\uff1a\u53cc\u51fb\u5b83\uff0c\u9009\u62e9 **Use as:** `Btrfs journaling file system`\uff0c**\u52fe\u9009 Format**\uff0c\u6302\u8f7d\u70b9\u4e3a **`/`** (\u6839\u76ee\u5f55)\u3002\n        \n5.  **\u5f00\u59cb\u5b89\u88c5\uff1a** \u68c0\u67e5\u5f15\u5bfc\u52a0\u8f7d\u7a0b\u5e8f\u5b89\u88c5\u4f4d\u7f6e\u662f\u5426\u6b63\u786e\uff0c\u7136\u540e\u70b9\u51fb **Install Now**\u3002\n    \n6.  \u5b8c\u6210\u7528\u6237\u3001\u5bc6\u7801\u3001\u65f6\u533a\u7b49\u8bbe\u7f6e\uff0c\u7b49\u5f85\u5b89\u88c5\u5b8c\u6210\u3002**\u5b89\u88c5\u5b8c\u6210\u540e\uff0c\u9009\u62e9** **Continue Testing**\uff08\u7ee7\u7eed\u6d4b\u8bd5\uff09\uff0c**\u4e0d\u8981\u91cd\u542f**\u3002\n    \n\n- - -\n\n### **\u7b2c\u4e09\u90e8\u5206\uff1a\u9ad8\u7ea7 Btrfs \u5b50\u5377\u548c\u4ea4\u6362\u6587\u4ef6\u914d\u7f6e\uff08\u5173\u952e\u6b65\u9aa4\uff09**\n\n\u5b89\u88c5\u5b8c\u6210\u540e\uff0c\u4fdd\u6301\u5728 Live Session \u73af\u5883\u4e2d\uff0c\u6253\u5f00**\u7ec8\u7aef**\uff0c\u5f00\u59cb\u914d\u7f6e\u65b0\u5b50\u5377\u548c\u4ea4\u6362\u6587\u4ef6\u3002\n\n#### **1\\. \u68c0\u67e5\u548c\u51c6\u5907\u5de5\u4f5c\uff08\u5b9a\u4e49\u53d8\u91cf\uff0c\u6302\u8f7d\u9876\u5c42\uff09**\n\n\u9996\u5148\uff0c\u5b9a\u4e49\u60a8\u7684 Btrfs \u5206\u533a\uff08\u4f8b\u5982 `/dev/nvme0n1p2`\uff09\uff0c\u7136\u540e\u6302\u8f7d Btrfs **\u9876\u5c42**\u3002\n\n```bash\n# 1. \u5b9a\u4e49 Btrfs \u5206\u533a\u53d8\u91cf\uff08\u8bf7\u6839\u636e\u60a8\u7684\u5b9e\u9645\u5206\u533a\u8c03\u6574\uff01\uff09\nBTRFS_DEV=/dev/nvme0n1p2\n\n# 2. \u786e\u4fdd\u6240\u6709\u6302\u8f7d\u70b9\u5df2\u5378\u8f7d\u5e76\u521b\u5efa /mnt \u76ee\u5f55\ncd ~\nsudo umount -R /mnt 2\u003e/dev/null\nsudo mkdir -p /mnt\n\n# 3. \u6302\u8f7d Btrfs \u9876\u5c42\u5230 /mnt\nsudo mount $BTRFS_DEV /mnt\n\n# 4. \u83b7\u53d6 Btrfs UUID (\u540e\u9762 fstab \u5fc5\u9700)\nBTRFS_UUID=$(lsblk -no UUID $BTRFS_DEV)\necho \"\u8bf7\u8bb0\u4f4f\u60a8\u7684 Btrfs UUID: $BTRFS_UUID\"\n\n# 5. \u521b\u5efa\u6240\u6709\u65b0\u7684\u5b50\u5377\nsudo btrfs subvolume create /mnt/@swap\nsudo btrfs subvolume create /mnt/@cache\nsudo btrfs subvolume create /mnt/@log\n\n# 6. \u5378\u8f7d\u9876\u5c42\u6302\u8f7d\u70b9 (\u4e3a\u4e0b\u4e00\u6b65\u64cd\u4f5c\u505a\u51c6\u5907)\nsudo umount /mnt\n```\n\n- - -\n\n#### **2\\. \u6570\u636e\u8fc1\u79fb\u4e0e\u6302\u8f7d\u70b9\u4fee\u6b63**\n\n\u5c06\u5df2\u5b89\u88c5\u7cfb\u7edf\uff08\u4f4d\u4e8e `@` \u5b50\u5377\uff09\u4e2d\u7684\u65e5\u5fd7\u548c\u7f13\u5b58\u6570\u636e\u8fc1\u79fb\u5230\u65b0\u521b\u5efa\u7684\u4e13\u7528\u5b50\u5377\u4e2d\u3002\n\n```bash\n# 1. \u6302\u8f7d @ \u5b50\u5377\u4f5c\u4e3a\u6839 (\u5df2\u5b89\u88c5\u7cfb\u7edf\u6240\u5728)\nsudo mount -o subvol=@ $BTRFS_DEV /mnt\n\n# 2. \u521b\u5efa\u6240\u6709\u5b50\u5377\u7684\u4e34\u65f6\u6302\u8f7d\u70b9\nsudo mkdir -p /mnt_log /mnt_cache \n\n# 3. \u6302\u8f7d @log, @cache \u5b50\u5377\uff0c\u51c6\u5907\u8fc1\u79fb\u6570\u636e\nsudo mount -o subvol=@log $BTRFS_DEV /mnt_log\nsudo mount -o subvol=@cache $BTRFS_DEV /mnt_cache\n\n# 4. \u8fc1\u79fb\u65e5\u5fd7\u548c\u7f13\u5b58\u6570\u636e\n# \u65e5\u5fd7\u548c\u7f13\u5b58\u7684\u539f\u59cb\u4f4d\u7f6e\u5728 /mnt/var/log \u548c /mnt/var/cache\n# \u26a0\ufe0f \u6b64\u5904\u786e\u4fdd\u76ee\u5f55\u5b58\u5728\u4e14\u6709\u5185\u5bb9\u518d\u79fb\u52a8\uff0c\u9632\u6b62\u51fa\u9519\nif [ -d /mnt/var/log ] \u0026\u0026 [ \"$(ls -A /mnt/var/log)\" ]; then\n    sudo mv /mnt/var/log/* /mnt_log/\n    sudo rmdir /mnt/var/log\nfi\n\nif [ -d /mnt/var/cache ] \u0026\u0026 [ \"$(ls -A /mnt/var/cache)\" ]; then\n    sudo mv /mnt/var/cache/* /mnt_cache/\n    sudo rmdir /mnt/var/cache\nfi\n\n# 5. \u5378\u8f7d\u4e34\u65f6\u8fc1\u79fb\u76ee\u5f55\nsudo umount /mnt_log\nsudo umount /mnt_cache\nsudo rm -rf /mnt_log /mnt_cache\n```\n\n- - -\n\n#### **3\\. \u914d\u7f6e\u4ea4\u6362\u6587\u4ef6\u4e0e\u6c38\u4e45\u6302\u8f7d\u70b9**\n\n\u521b\u5efa\u6240\u6709\u6c38\u4e45\u6302\u8f7d\u70b9\u76ee\u5f55\uff0c\u5e76\u8bbe\u7f6e\u4ea4\u6362\u6587\u4ef6\u3002\n\n```bash\n# 1. \u786e\u4fdd\u6240\u6709\u6c38\u4e45\u6302\u8f7d\u70b9\u76ee\u5f55\u5728 @ \u5b50\u5377\u5185\u521b\u5efa\n# Linux Mint \u5b89\u88c5\u7a0b\u5e8f\u5df2\u521b\u5efa @home\uff0c\u6b64\u5904\u4ec5\u9700\u521b\u5efa\u7f3a\u5931\u7684\u76ee\u5f55\nsudo mkdir -p /mnt/{var/log,var/cache,swap}\n\n# 2. \u6302\u8f7d\u6240\u6709\u7f3a\u5931\u7684\u5b50\u5377\u5230 @ \u5b50\u5377\u7684\u5bf9\u5e94\u76ee\u5f55\u4e2d\n# \u6ce8\u610f\uff1a@home \u5b50\u5377\u7684\u6302\u8f7d\u70b9\u662f /mnt/home (Live Session \u6302\u8f7d\u7684 @ \u5b50\u5377\u4e0b\u7684 /home \u76ee\u5f55)\n# Linux Mint \u5b89\u88c5\u7a0b\u5e8f\u901a\u5e38\u5df2\u7ecf\u6302\u8f7d\u4e86 @home\uff0c\u6b64\u5904\u9700\u786e\u8ba4\u6216\u91cd\u65b0\u6302\u8f7d\nsudo mount -o subvol=@home $BTRFS_DEV /mnt/home 2\u003e/dev/null \nsudo mount -o subvol=@log $BTRFS_DEV /mnt/var/log\nsudo mount -o subvol=@cache $BTRFS_DEV /mnt/var/cache\nsudo mount -o subvol=@swap $BTRFS_DEV /mnt/swap\n\n# 3. \u521b\u5efa\u5e76\u521d\u59cb\u5316 8GB \u4ea4\u6362\u6587\u4ef6\n# \u26a0\ufe0f \u8def\u5f84\u662f /mnt/swap/swapfile\n# \u60a8\u53ef\u4ee5\u6839\u636e\u5185\u5b58\u5927\u5c0f\u8c03\u6574 8G \u7684\u503c\nsudo btrfs filesystem mkswapfile --size 8G /mnt/swap/swapfile\n\n# 4. \u542f\u7528\u4ea4\u6362\u6587\u4ef6\nsudo swapon /mnt/swap/swapfile\n\n# 5. \u9a8c\u8bc1\u4ea4\u6362\u6587\u4ef6\u662f\u5426\u6210\u529f\u542f\u7528\nswapon --show\n# \u9884\u671f\u7ed3\u679c\uff1a\u5e94\u663e\u793a /mnt/swap/swapfile \u4e14\u5927\u5c0f\u4e3a 8G\u3002\n```\n\n- - -\n\n#### **4\\. \u66f4\u65b0 `/etc/fstab` \u6587\u4ef6**\n\n\u7f16\u8f91\u65b0\u7684\u7cfb\u7edf\u6839\u76ee\u5f55\u4e0b\u7684 `fstab` \u6587\u4ef6\uff0c\u786e\u4fdd\u6240\u6709\u5b50\u5377\u548c\u4ea4\u6362\u6587\u4ef6\u5728\u91cd\u542f\u540e\u81ea\u52a8\u6302\u8f7d\u548c\u542f\u7528\u3002\n\n```bash\n# 1. \u7f16\u8f91 fstab \u6587\u4ef6\nsudo nano /mnt/etc/fstab\n```\n\n2.  **\u66ff\u6362\u548c\u65b0\u589e `fstab` \u5185\u5bb9\uff1a**\n    \n    *   **\u91cd\u8981\uff1a** \u5c06\u6587\u4ef6\u4e2d\u539f\u6709\u7684 Btrfs \u6302\u8f7d\u884c\uff08`/` \u548c `/home`\uff09\u4f7f\u7528\u60a8\u83b7\u53d6\u7684 `$BTRFS_UUID` **\u66ff\u6362**\u5e76**\u4fee\u6539**\u4e3a\u4ee5\u4e0b\u683c\u5f0f\uff0c\u786e\u4fdd\u4f7f\u7528 `relatime,compress=no` \u9009\u9879\u3002\n        \n    *   \u5728\u6587\u4ef6**\u672b\u5c3e**\u6dfb\u52a0\u65b0\u5b50\u5377\u7684\u6302\u8f7d\u70b9\u548c\u4ea4\u6362\u6587\u4ef6\u914d\u7f6e\u3002\n        \n    \n    **\u8bf7\u5c06\u4e0b\u9762\u6240\u6709 `a94861b2-e36a-405f-9175-982750cea431` \u66ff\u6362\u4e3a\u60a8\u5728\u7b2c 1 \u6b65\u4e2d\u83b7\u53d6\u7684\u5b9e\u9645 UUID**\u3002\n    \n    ```fstab\n    # / (Root Subvolume)\n    UUID=$BTRFS_UUID /               btrfs   subvol=@,defaults,relatime,compress=no 0 0\n    \n    # /boot/efi (\u4fdd\u6301\u4e0d\u53d8)\n    UUID=78C6-1B05  /boot/efi       vfat    umask=0077      0 1\n    \n    # /home (Home Subvolume)\n    UUID=$BTRFS_UUID /home           btrfs   subvol=@home,defaults,relatime,compress=no 0 0\n    \n    # --- Timeshift \u6392\u9664\u5b50\u5377 ---\n    # /var/log Subvolume\n    UUID=$BTRFS_UUID /var/log        btrfs   subvol=@log,defaults,relatime,compress=no 0 0\n    \n    # /var/cache Subvolume\n    UUID=$BTRFS_UUID /var/cache      btrfs   subvol=@cache,defaults,relatime,compress=no 0 0\n    \n    # /swap Subvolume\n    UUID=$BTRFS_UUID /swap           btrfs   subvol=@swap,defaults,noatime,compress=no 0 0\n    \n    # Swap File\n    /swap/swapfile none swap defaults 0 0\n    ```\n    \n    \u003e **\u6ce8\u610f\uff1a** `@swap` \u5b50\u5377\u901a\u5e38\u5efa\u8bae\u4f7f\u7528 `noatime` \u548c `compress=no` \u6765\u4fdd\u8bc1\u4ea4\u6362\u6587\u4ef6\u6027\u80fd\u3002\n    \n3.  \u4fdd\u5b58\u5e76\u5173\u95ed\u6587\u4ef6\uff08\u5728 `nano` \u4e2d\u6309 `Ctrl+O` \u4fdd\u5b58\uff0c`Ctrl+X` \u9000\u51fa\uff09\u3002\n    \n\n- - -\n\n### **\u7b2c\u56db\u90e8\u5206\uff1a\u5b8c\u6210\u548c\u9996\u6b21\u542f\u52a8**\n\n1.  **\u5378\u8f7d\u6240\u6709\u6302\u8f7d\u70b9\uff1a**\n    \n    ```bash\n    cd ~\n    sudo umount -R /mnt\n    ```\n    \n2.  **\u91cd\u542f\u7cfb\u7edf\uff1a**\n    \n    ```bash\n    reboot\n    ```\n    \n3.  **\u9996\u6b21\u542f\u52a8\u540e\u9a8c\u8bc1\uff1a** \u8fdb\u5165\u65b0\u5b89\u88c5\u7684 Linux Mint \u7cfb\u7edf\uff0c\u6253\u5f00\u7ec8\u7aef\uff0c\u8fd0\u884c `free -h`\u3002\u786e\u8ba4 **Swap** \u884c\u663e\u793a\u4e3a\u60a8\u8bbe\u7f6e\u7684\u4ea4\u6362\u6587\u4ef6\u5927\u5c0f\uff088G\uff09\uff0c\u5373\u8868\u793a\u914d\u7f6e\u6210\u529f\u3002\n    \n4.  **Timeshift \u9a8c\u8bc1\uff1a** \u8fd0\u884c Timeshift\uff0c\u786e\u8ba4 `/home`, `/var/log`, \u548c `/var/cache` \u5b50\u5377\u5df2\u88ab\u6b63\u786e\u8bc6\u522b\u5e76\u6392\u9664\u5728\u5feb\u7167\u8303\u56f4\u4e4b\u5916\u3002\n    \n\n#### \u5b89\u88c5\u811a\u672c\n\n\u4ee5\u4e0b\u662f\u4e00\u4e2a\u6574\u5408\u4e86\u6539\u8fdb\u5efa\u8bae\u7684 shell \u811a\u672c\uff0c\u7528\u4e8e\u5728 Linux Mint 22.2 \u4e0a\u914d\u7f6e Btrfs \u5b50\u5377\uff08@\u3001@home\u3001@swap\u3001@cache\u3001@log\uff09\u548c\u4ea4\u6362\u6587\u4ef6\u3002\u811a\u672c\u5047\u8bbe\u5728 Live Session \u73af\u5883\u4e2d\u8fd0\u884c\uff0c\u4e14\u5df2\u5b8c\u6210 Linux Mint \u5b89\u88c5\u548c\u5206\u533a\u6b65\u9aa4\uff08EFI \u5206\u533a\u548c Btrfs \u4e3b\u5206\u533a\uff09\u3002\n\n[configure_btrfs.sh](../../../assets/images/LinuxMint222Btrfs\u4ea4\u6362\u6587\u4ef6\u5168\u65b0\u5b89\u88c5\u6d41\u7a0b/22981636-configure_btrfs.sh)"
+            </script>
+            <!-- 渲染目标容器 -->
+            <div id="markdown-content"></div>
+        </div>
+        
+        <footer class="footer">
+            <p>本文原始链接：<a href="https://github.com/syaofox/syaofox.github.io/issues/27" class="github-link" target="_blank">GitHub Issue #27</a>
+            <button id="theme-toggle" class="theme-toggle" title="切换主题">
+                <svg class="theme-icon sun-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="theme-icon moon-icon" viewBox="0 0 24 24" style="display: none;">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button></p>
+        </footer>
+    </main>
+    
+    <!-- TOC 容器（由 JS 动态生成） -->
+    <aside class="toc-sidebar" id="toc-container">
+        <h3 class="toc-title">
+            目录
+            <span class="toc-toggle">▼</span>
+        </h3>
+        <ul class="toc-list" id="toc-list"></ul>
+    </aside>
+</div>
+
+    
+    
+    <!-- 滚动悬浮按钮 -->
+    <div class="scroll-buttons">
+        <button class="scroll-btn" id="scroll-to-top" title="回到顶部">↑</button>
+        <button class="scroll-btn" id="scroll-to-bottom" title="滚到底部">↓</button>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 页面加载完成后，延迟移除 page-loading 类，启用过渡动画
+            setTimeout(function() {
+                document.documentElement.classList.remove('page-loading');
+            }, 50);
+            
+            // 为所有代码块添加复制按钮
+            const codeBlocks = document.querySelectorAll('pre > code');
+            
+            codeBlocks.forEach(function(codeBlock) {
+                // 跳过已经包装的代码块
+                if (codeBlock.parentElement.classList.contains('code-block-wrapper')) {
+                    return;
+                }
+                
+                const pre = codeBlock.parentElement;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block-wrapper';
+                
+                // 创建复制按钮
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'copy-btn';
+                copyBtn.textContent = '复制';
+                
+                // 包装pre元素
+                pre.parentElement.insertBefore(wrapper, pre);
+                wrapper.appendChild(pre);
+                wrapper.appendChild(copyBtn);
+                
+                // 添加复制功能
+                copyBtn.addEventListener('click', function() {
+                    const text = codeBlock.textContent;
+                    
+                    // 使用现代Clipboard API
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).then(function() {
+                            showCopied(copyBtn);
+                        }).catch(function() {
+                            // 降级到传统方法
+                            fallbackCopy(text, copyBtn);
+                        });
+                    } else {
+                        // 降级到传统方法
+                        fallbackCopy(text, copyBtn);
+                    }
+                });
+            });
+            
+            function showCopied(btn) {
+                btn.textContent = '已复制';
+                btn.classList.add('copied');
+                
+                setTimeout(function() {
+                    btn.textContent = '复制';
+                    btn.classList.remove('copied');
+                }, 1500);
+            }
+            
+            function fallbackCopy(text, btn) {
+                // 创建临时文本区域
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+                document.body.appendChild(textArea);
+                
+                try {
+                    textArea.focus();
+                    textArea.select();
+                    document.execCommand('copy');
+                    showCopied(btn);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                    btn.textContent = '复制失败';
+                    setTimeout(function() {
+                        btn.textContent = '复制';
+                    }, 1500);
+                } finally {
+                    document.body.removeChild(textArea);
+                }
+            }
+            
+            // 滚动悬浮按钮功能
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+            const scrollToBottomBtn = document.getElementById('scroll-to-bottom');
+            
+            function updateScrollButtons() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                
+                // 显示/隐藏回到顶部按钮
+                if (scrollTop > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+                
+                // 显示/隐藏滚到底部按钮
+                if (scrollTop + windowHeight < documentHeight - 300) {
+                    scrollToBottomBtn.classList.add('visible');
+                } else {
+                    scrollToBottomBtn.classList.remove('visible');
+                }
+            }
+            
+            // 监听滚动事件
+            window.addEventListener('scroll', updateScrollButtons);
+            
+            // 回到顶部按钮点击事件
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 滚到底部按钮点击事件
+            scrollToBottomBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: document.documentElement.scrollHeight,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 初始化时检查按钮状态
+            updateScrollButtons();
+            
+            // 主题切换功能
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            
+            // 更新词云图片
+            function updateWordcloudImage(isDark) {
+                const wordcloudImg = document.getElementById('wordcloud-img');
+                if (wordcloudImg) {
+                    const newSrc = isDark ? 'assets/wordcloud-dark.png' : 'assets/wordcloud-light.png';
+                    if (wordcloudImg.src !== new URL(newSrc, window.location.href).href) {
+                        wordcloudImg.src = newSrc;
+                        console.log('词云图片已切换至:', newSrc);
+                    }
+                } else {
+                    console.warn('未找到词云图片元素');
+                }
+            }
+            
+            // 初始化主题（同步 body 类和其他主题相关元素）
+            function initTheme() {
+                const isDark = document.documentElement.classList.contains('dark-mode');
+                
+                // 同步 body 的 dark-mode 类
+                if (isDark) {
+                    body.classList.add('dark-mode');
+                } else {
+                    body.classList.remove('dark-mode');
+                }
+                
+                // 初始化代码高亮主题
+                const lightTheme = document.getElementById('highlight-theme-light');
+                const darkTheme = document.getElementById('highlight-theme-dark');
+                if (isDark) {
+                    if (lightTheme) lightTheme.disabled = true;
+                    if (darkTheme) darkTheme.disabled = false;
+                } else {
+                    if (lightTheme) lightTheme.disabled = false;
+                    if (darkTheme) darkTheme.disabled = true;
+                }
+                
+                updateWordcloudImage(isDark);
+            }
+            
+            // 切换主题
+            function toggleTheme() {
+                const isDarkMode = document.documentElement.classList.contains('dark-mode');
+                const lightTheme = document.getElementById('highlight-theme-light');
+                const darkTheme = document.getElementById('highlight-theme-dark');
+                
+                if (isDarkMode) {
+                    // 切换到亮色模式
+                    document.documentElement.classList.remove('dark-mode');
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light');
+                    updateWordcloudImage(false);
+                    // 切换代码高亮主题
+                    if (lightTheme) lightTheme.disabled = false;
+                    if (darkTheme) darkTheme.disabled = true;
+                } else {
+                    // 切换到暗色模式
+                    document.documentElement.classList.add('dark-mode');
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    updateWordcloudImage(true);
+                    // 切换代码高亮主题
+                    if (lightTheme) lightTheme.disabled = true;
+                    if (darkTheme) darkTheme.disabled = false;
+                }
+            }
+            
+            // 监听主题切换按钮点击
+            themeToggle.addEventListener('click', toggleTheme);
+            
+            // 立即初始化主题，避免闪烁
+            initTheme();
+            
+            // 目录导航功能
+            function initTocNavigation() {
+                const tocItems = document.querySelectorAll('.toc-item a');
+                if (tocItems.length === 0) return;
+                
+                // 移动端目录折叠功能
+                function initMobileTocToggle() {
+                    const tocSidebar = document.querySelector('.toc-sidebar');
+                    const tocTitle = document.querySelector('.toc-title');
+                    
+                    if (!tocSidebar || !tocTitle) return;
+                    
+                    // 检查是否为移动端
+                    function isMobile() {
+                        return window.innerWidth <= 1023;
+                    }
+                    
+                    // 初始化移动端状态
+                    function initMobileState() {
+                        if (isMobile()) {
+                            tocSidebar.classList.remove('expanded');
+                        } else {
+                            tocSidebar.classList.add('expanded');
+                        }
+                    }
+                    
+                    // 切换折叠状态
+                    function toggleToc() {
+                        if (!isMobile()) return;
+                        
+                        tocSidebar.classList.toggle('expanded');
+                    }
+                    
+                    // 监听标题点击
+                    tocTitle.addEventListener('click', function(e) {
+                        if (isMobile()) {
+                            e.preventDefault();
+                            toggleToc();
+                        }
+                    });
+                    
+                    // 监听窗口大小变化
+                    window.addEventListener('resize', function() {
+                        initMobileState();
+                    });
+                    
+                    // 初始化状态
+                    initMobileState();
+                }
+                
+                // 初始化移动端折叠功能
+                initMobileTocToggle();
+                
+                // 为目录链接添加平滑滚动
+                tocItems.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+                
+                // 监听滚动，高亮当前章节
+                function updateActiveTocItem() {
+                    const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
+                    const scrollTop = window.pageYOffset;
+                    const windowHeight = window.innerHeight;
+                    
+                    let currentHeading = null;
+                    
+                    headings.forEach(heading => {
+                        const headingTop = heading.offsetTop - 100; // 偏移量，提前激活
+                        
+                        if (scrollTop >= headingTop) {
+                            currentHeading = heading;
+                        }
+                    });
+                    
+                    // 更新目录项激活状态
+                    tocItems.forEach(link => {
+                        link.parentElement.classList.remove('active');
+                    });
+                    
+                    if (currentHeading) {
+                        const activeLink = document.querySelector(`.toc-item a[href="#${currentHeading.id}"]`);
+                        if (activeLink) {
+                            activeLink.parentElement.classList.add('active');
+                        }
+                    }
+                }
+                
+                // 节流滚动监听
+                let ticking = false;
+                window.addEventListener('scroll', function() {
+                    if (!ticking) {
+                        requestAnimationFrame(function() {
+                            updateActiveTocItem();
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                });
+                
+                // 初始调用
+                updateActiveTocItem();
+            }
+            
+            // 初始化目录导航
+            initTocNavigation();
+        });
+    </script>
+    
+    
+<script src="../../static/js/markdown-renderer.js"></script>
+
+</body>
+</html>

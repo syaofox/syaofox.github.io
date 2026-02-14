@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<script>
+    // 在页面渲染前立即设置主题，避免闪烁
+    (function() {
+        // 添加页面加载类，禁用过渡动画
+        document.documentElement.classList.add('page-loading');
+        
+        // 获取保存的主题或使用系统偏好
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+        
+        // 立即应用主题类
+        if (isDark) {
+            document.documentElement.classList.add('dark-mode');
+        }
+    })();
+</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>syaofox 的博客</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="static/css/base.css">
+    
+<link rel="stylesheet" href="static/css/index.css">
+
+    
+    <!-- Marked.js for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.0.0/marked.min.js"></script>
+    
+    <!-- Highlight.js for code highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github.min.css" id="highlight-theme-light">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github-dark.min.css" id="highlight-theme-dark" disabled>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/lib/index.min.js"></script>
+</head>
+<body class="page-home">
+    
+<div class="container">
+    <main>
+        <div class="badges">
+            <img src="https://badgen.net/github/issues/syaofox/syaofox.github.io" alt="Issues"/>
+            <img src="https://badgen.net/badge/last-commit/2026-02-14 11:58:05" alt="Last Commit"/>
+            <img src="https://badgen.net/github/forks/syaofox/syaofox.github.io" alt="Forks"/>
+            <img src="https://badgen.net/github/stars/syaofox/syaofox.github.io" alt="Stars"/>
+            <img src="https://badgen.net/github/watchers/syaofox/syaofox.github.io" alt="Watchers"/>
+        </div>
+        
+        <div class="wordcloud-banner">
+            <a href="https://syaofox.github.io/syaofox.github.io/">
+                <img id="wordcloud-img" src="assets/wordcloud-light.png" title="心似白云常自在，意如流水任东西。" alt="syaofox的博客标签云" class="wordcloud-img">
+            </a>
+        </div>
+        
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="搜索文章标题...">
+                <button type="button" id="clearButton" class="clear-button" style="display: none;">×</button>
+            </div>
+        </div>
+        
+        <section class="categories-grid">
+            
+            <div class="category-card">
+                <div class="category-header">
+                    <h3 class="category-title">tips</h3>
+                    <span class="category-count">[25篇]</span>
+                </div>
+                <div class="issues-list">
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-11-05 13:07:32</span>
+                        <a href="articles/tips/2025-11-05-archonbtrfs.html" class="issue-link">arch on btrfs</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-11-04 09:13:38</span>
+                        <a href="articles/tips/2025-11-04-迁移Docker默认存储位置.html" class="issue-link">迁移 Docker 默认存储位置</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-30 08:46:17</span>
+                        <a href="articles/tips/2025-10-30-SeahorseSSHGitHubPAT全量导出导入教程.html" class="issue-link">Seahorse + SSH + GitHub PAT 全量导出/导入教程</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-30 08:25:39</span>
+                        <a href="articles/tips/2025-10-30-配置Git使用GNOMEKeyring存储GitHubPAT.html" class="issue-link">配置 Git 使用 GNOME Keyring 存储 GitHub PAT</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-29 14:58:30</span>
+                        <a href="articles/tips/2025-10-29-LinuxMint222完整NVIDIACUDAToolkitcuDNN多版本共存官方仓库.html" class="issue-link">Linux Mint 22.2 完整 NVIDIA CUDA Toolkit + cuDNN 多版本共存(官方仓库)</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-28 11:38:57</span>
+                        <a href="articles/tips/2025-10-28-FlakesHome-Manager独立用户配置.html" class="issue-link">Flakes + Home-Manager（独立用户配置）</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-28 02:22:40</span>
+                        <a href="articles/tips/2025-10-28-LinuxMint222CUDAcuDNN安装与版本管理教程.html" class="issue-link">Linux Mint 22.2 CUDA + cuDNN 安装与版本管理教程</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-27 04:23:12</span>
+                        <a href="articles/tips/2025-10-27-linuxmintonbtrfs安装记录.html" class="issue-link">linux mint on btrfs 安装记录</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-24 02:34:55</span>
+                        <a href="articles/tips/2025-10-24-KVM和QEMU.html" class="issue-link">KVM 和 QEMU</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-23 10:17:49</span>
+                        <a href="articles/tips/2025-10-23-LinuxMintCinnamon解除SuperSpace的系统绑定.html" class="issue-link">Linux Mint Cinnamon 解除 Super + Space 的系统绑定</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-22 07:17:47</span>
+                        <a href="articles/tips/2025-10-22-Git子模块添加与管理.html" class="issue-link">Git 子模块添加与管理</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-22 02:47:52</span>
+                        <a href="articles/tips/2025-10-22-Git某个提交的导出与导入.html" class="issue-link">Git 某个提交的导出与导入</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-21 07:43:18</span>
+                        <a href="articles/tips/2025-10-21-安装Nerd字体.html" class="issue-link">安装 Nerd 字体</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-18 09:06:52</span>
+                        <a href="articles/tips/2025-10-18-一些自定义NemoActions.html" class="issue-link">一些自定义 Nemo Actions</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-15 14:48:00</span>
+                        <a href="articles/tips/2025-10-15-安装第三方deb包的风险与规避.html" class="issue-link">安装第三方deb包的风险与规避</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-15 09:27:55</span>
+                        <a href="articles/tips/2025-10-15-LinuxMint222Btrfs交换文件全新安装流程.html" class="issue-link">Linux Mint 22.2 Btrfs + 交换文件 全新安装流程</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-14 09:54:15</span>
+                        <a href="articles/tips/2025-10-14-GitTag的理解和使用方法.html" class="issue-link">Git Tag 的理解和使用方法</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-11 11:51:02</span>
+                        <a href="articles/tips/2025-10-11-如何在LinuxMint22上安装VirtualBox分步指南.html" class="issue-link">如何在 Linux Mint 22 上安装 VirtualBox（分步指南）</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-07 00:00:35</span>
+                        <a href="articles/tips/2025-10-07-查看当前linuxmint基于ubuntu哪个版本.html" class="issue-link">查看当前linux mint 基于ubuntu哪个版本</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 10:20:51</span>
+                        <a href="articles/tips/2025-10-03-软路由科学上网白名单模式.html" class="issue-link">软路由科学上网白名单模式</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 08:29:27</span>
+                        <a href="articles/tips/2025-10-03-istoreos旁路由科学上网后无法上内网的解决办法.html" class="issue-link">istoreos旁路由科学上网后，无法上内网的解决办法</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 07:21:17</span>
+                        <a href="articles/tips/2025-10-03-Linux调整Swap文件大小指南.html" class="issue-link">Linux 调整 Swap 文件大小指南</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 07:10:19</span>
+                        <a href="articles/tips/2025-10-03-设置ssh-key-免密登录github.html" class="issue-link">设置ssh-key-免密登录github</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 05:22:28</span>
+                        <a href="articles/tips/2025-10-03-linuxmintnfs挂载.html" class="issue-link">linux mint nfs挂载</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 05:21:56</span>
+                        <a href="articles/tips/2025-10-03-linuxmintsamba挂载.html" class="issue-link">linux mint samba挂载</a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-header">
+                    <h3 class="category-title">ACG</h3>
+                    <span class="category-count">[19篇]</span>
+                </div>
+                <div class="issues-list">
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-18 10:36:13</span>
+                        <a href="articles/ACG/2025-10-18-圣斗士幕后的故事城户光政的一盘惊天大棋.html" class="issue-link">圣斗士幕后的故事——城户光政的一盘惊天大棋</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-18 10:16:14</span>
+                        <a href="articles/ACG/2025-10-18-龙珠z中格罗博士为何不让启动人造人16号.html" class="issue-link">《龙珠z》中格罗博士为何不让启动人造人16号？</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-18 09:46:37</span>
+                        <a href="articles/ACG/2025-10-18-进击的巨人到底是个什么故事吗通俗易懂.html" class="issue-link">《进击的巨人》到底是个什么故事吗？（通俗易懂）</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-18 09:37:56</span>
+                        <a href="articles/ACG/2025-10-18-杀人犯的父母们扎心大反转.html" class="issue-link">《杀人犯的父母们》——扎心大反转</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-18 09:31:10</span>
+                        <a href="articles/ACG/2025-10-18-新快乐人生人言可畏.html" class="issue-link">《新快乐人生》——人言可畏</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-16 07:31:52</span>
+                        <a href="articles/ACG/2025-10-16-TVB经典创世纪的二十场商战全记录.html" class="issue-link">TVB经典《创世纪》的二十场商战全记录</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-16 04:24:28</span>
+                        <a href="articles/ACG/2025-10-16-脑洞大又好笑的短篇漫画瞬间移动.html" class="issue-link">脑洞大又好笑的短篇漫画《瞬间移动》</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-16 03:31:38</span>
+                        <a href="articles/ACG/2025-10-16-以父之丑换我之美漫画恐惧症丑相.html" class="issue-link">以父之“丑”，换我之“美”，漫画《恐惧症——丑相》</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-16 03:26:59</span>
+                        <a href="articles/ACG/2025-10-16-号称伊藤润二最感人的小短篇漫长的告别.html" class="issue-link">号称伊藤润二最感人的小短篇——《漫长的告别》</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-16 03:07:16</span>
+                        <a href="articles/ACG/2025-10-16-如何评价漫画亲爱的我饱含杀意.html" class="issue-link">如何评价漫画《亲爱的我饱含杀意》？</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-16 02:47:40</span>
+                        <a href="articles/ACG/2025-10-16-为什么沙加挨了ae没死.html" class="issue-link">为什么沙加挨了ae没死？</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-14 14:30:01</span>
+                        <a href="articles/ACG/2025-10-14-进击的巨人到底讲了一个怎么样的故事.html" class="issue-link">《进击的巨人》到底讲了一个怎么样的故事？</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 08:13:07</span>
+                        <a href="articles/ACG/2025-10-03-三国战纪2群雄争霸详细攻略.html" class="issue-link">三国战纪2：群雄争霸详细攻略</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 08:11:30</span>
+                        <a href="articles/ACG/2025-10-03-拳皇系列的各代剧情都在讲什么.html" class="issue-link">拳皇系列的各代剧情都在讲什么</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 08:07:30</span>
+                        <a href="articles/ACG/2025-10-03-圣斗士星矢黄金传说完结篇攻略.html" class="issue-link">圣斗士星矢~黄金传说完结篇攻略</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 08:06:48</span>
+                        <a href="articles/ACG/2025-10-03-我是谁龙骑士4攻略.html" class="issue-link">我是谁~龙骑士4攻略</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 08:05:55</span>
+                        <a href="articles/ACG/2025-10-03-迷走都市完美结局.html" class="issue-link">迷走都市~完美结局</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 08:04:25</span>
+                        <a href="articles/ACG/2025-10-03-成人版大富翁华丽人生2.html" class="issue-link">成人版大富翁~华丽人生2</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 07:53:07</span>
+                        <a href="articles/ACG/2025-10-03-夏日的回忆同级生2.html" class="issue-link">夏日的回忆~同级生2</a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-header">
+                    <h3 class="category-title">apps</h3>
+                    <span class="category-count">[6篇]</span>
+                </div>
+                <div class="issues-list">
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-12-05 00:42:23</span>
+                        <a href="articles/apps/2025-12-05-distroboxmint.html" class="issue-link">distrobox(mint)</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-20 03:43:58</span>
+                        <a href="articles/apps/2025-10-20-Aria2Chrome下载接管教程LinuxMint.html" class="issue-link">Aria2 + Chrome 下载接管教程 (Linux Mint)</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-19 00:29:46</span>
+                        <a href="articles/apps/2025-10-19-Fcitx4升级到Fcitx5.html" class="issue-link">Fcitx 4 升级到 Fcitx 5</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-11 14:32:31</span>
+                        <a href="articles/apps/2025-10-11-我使用的mpv配置文件.html" class="issue-link">我使用的mpv配置文件</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 05:25:51</span>
+                        <a href="articles/apps/2025-10-03-linux常用软件存档.html" class="issue-link">linux 常用软件存档</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 05:12:57</span>
+                        <a href="articles/apps/2025-10-03-Timeshift的备份选项.html" class="issue-link">Timeshift 的备份选项</a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-header">
+                    <h3 class="category-title">docker</h3>
+                    <span class="category-count">[5篇]</span>
+                </div>
+                <div class="issues-list">
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-17 00:58:00</span>
+                        <a href="articles/docker/2025-10-17-Docker安装指南.html" class="issue-link">Docker 安装指南</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-15 03:57:29</span>
+                        <a href="articles/docker/2025-10-15-Docker的日常使用.html" class="issue-link">Docker的日常使用</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-14 10:00:31</span>
+                        <a href="articles/docker/2025-10-14-GitHubActions托管Docker镜像.html" class="issue-link">GitHub Actions 托管 Docker 镜像</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 07:27:17</span>
+                        <a href="articles/docker/2025-10-03-导出本地Docker镜像并在另一台机器上导入.html" class="issue-link">导出本地 Docker 镜像并在另一台机器上导入</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-03 07:25:14</span>
+                        <a href="articles/docker/2025-10-03-docker构建项目并推送到dockerhub.html" class="issue-link">docker构建项目，并推送到dockerhub</a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-header">
+                    <h3 class="category-title">uncategorized</h3>
+                    <span class="category-count">[2篇]</span>
+                </div>
+                <div class="issues-list">
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-29 15:23:52</span>
+                        <a href="articles/uncategorized/2025-10-29-LinuxMint222CUDAcuDNNdocker方案.html" class="issue-link">Linux Mint 22.2  CUDA/cuDNN docker方案</a>
+                    </div>
+                    
+                    <div class="issue-item">
+                        <span class="issue-date">2025-10-29 12:54:06</span>
+                        <a href="articles/uncategorized/2025-10-29-LinuxMint222极致原生dwm桌面完整教程.html" class="issue-link">Linux Mint 22.2 → 极致原生 dwm 桌面完整教程</a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <p>最后更新：2026-02-14 11:58:05
+        <button id="theme-toggle" class="theme-toggle" title="切换主题">
+            <svg class="theme-icon sun-icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg class="theme-icon moon-icon" viewBox="0 0 24 24" style="display: none;">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+        </button></p>
+    </footer>
+</div>
+
+    
+    
+    <!-- 滚动悬浮按钮 -->
+    <div class="scroll-buttons">
+        <button class="scroll-btn" id="scroll-to-top" title="回到顶部">↑</button>
+        <button class="scroll-btn" id="scroll-to-bottom" title="滚到底部">↓</button>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 页面加载完成后，延迟移除 page-loading 类，启用过渡动画
+            setTimeout(function() {
+                document.documentElement.classList.remove('page-loading');
+            }, 50);
+            
+            // 为所有代码块添加复制按钮
+            const codeBlocks = document.querySelectorAll('pre > code');
+            
+            codeBlocks.forEach(function(codeBlock) {
+                // 跳过已经包装的代码块
+                if (codeBlock.parentElement.classList.contains('code-block-wrapper')) {
+                    return;
+                }
+                
+                const pre = codeBlock.parentElement;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block-wrapper';
+                
+                // 创建复制按钮
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'copy-btn';
+                copyBtn.textContent = '复制';
+                
+                // 包装pre元素
+                pre.parentElement.insertBefore(wrapper, pre);
+                wrapper.appendChild(pre);
+                wrapper.appendChild(copyBtn);
+                
+                // 添加复制功能
+                copyBtn.addEventListener('click', function() {
+                    const text = codeBlock.textContent;
+                    
+                    // 使用现代Clipboard API
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).then(function() {
+                            showCopied(copyBtn);
+                        }).catch(function() {
+                            // 降级到传统方法
+                            fallbackCopy(text, copyBtn);
+                        });
+                    } else {
+                        // 降级到传统方法
+                        fallbackCopy(text, copyBtn);
+                    }
+                });
+            });
+            
+            function showCopied(btn) {
+                btn.textContent = '已复制';
+                btn.classList.add('copied');
+                
+                setTimeout(function() {
+                    btn.textContent = '复制';
+                    btn.classList.remove('copied');
+                }, 1500);
+            }
+            
+            function fallbackCopy(text, btn) {
+                // 创建临时文本区域
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+                document.body.appendChild(textArea);
+                
+                try {
+                    textArea.focus();
+                    textArea.select();
+                    document.execCommand('copy');
+                    showCopied(btn);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                    btn.textContent = '复制失败';
+                    setTimeout(function() {
+                        btn.textContent = '复制';
+                    }, 1500);
+                } finally {
+                    document.body.removeChild(textArea);
+                }
+            }
+            
+            // 滚动悬浮按钮功能
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+            const scrollToBottomBtn = document.getElementById('scroll-to-bottom');
+            
+            function updateScrollButtons() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                
+                // 显示/隐藏回到顶部按钮
+                if (scrollTop > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+                
+                // 显示/隐藏滚到底部按钮
+                if (scrollTop + windowHeight < documentHeight - 300) {
+                    scrollToBottomBtn.classList.add('visible');
+                } else {
+                    scrollToBottomBtn.classList.remove('visible');
+                }
+            }
+            
+            // 监听滚动事件
+            window.addEventListener('scroll', updateScrollButtons);
+            
+            // 回到顶部按钮点击事件
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 滚到底部按钮点击事件
+            scrollToBottomBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: document.documentElement.scrollHeight,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 初始化时检查按钮状态
+            updateScrollButtons();
+            
+            // 主题切换功能
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            
+            // 更新词云图片
+            function updateWordcloudImage(isDark) {
+                const wordcloudImg = document.getElementById('wordcloud-img');
+                if (wordcloudImg) {
+                    const newSrc = isDark ? 'assets/wordcloud-dark.png' : 'assets/wordcloud-light.png';
+                    if (wordcloudImg.src !== new URL(newSrc, window.location.href).href) {
+                        wordcloudImg.src = newSrc;
+                        console.log('词云图片已切换至:', newSrc);
+                    }
+                } else {
+                    console.warn('未找到词云图片元素');
+                }
+            }
+            
+            // 初始化主题（同步 body 类和其他主题相关元素）
+            function initTheme() {
+                const isDark = document.documentElement.classList.contains('dark-mode');
+                
+                // 同步 body 的 dark-mode 类
+                if (isDark) {
+                    body.classList.add('dark-mode');
+                } else {
+                    body.classList.remove('dark-mode');
+                }
+                
+                // 初始化代码高亮主题
+                const lightTheme = document.getElementById('highlight-theme-light');
+                const darkTheme = document.getElementById('highlight-theme-dark');
+                if (isDark) {
+                    if (lightTheme) lightTheme.disabled = true;
+                    if (darkTheme) darkTheme.disabled = false;
+                } else {
+                    if (lightTheme) lightTheme.disabled = false;
+                    if (darkTheme) darkTheme.disabled = true;
+                }
+                
+                updateWordcloudImage(isDark);
+            }
+            
+            // 切换主题
+            function toggleTheme() {
+                const isDarkMode = document.documentElement.classList.contains('dark-mode');
+                const lightTheme = document.getElementById('highlight-theme-light');
+                const darkTheme = document.getElementById('highlight-theme-dark');
+                
+                if (isDarkMode) {
+                    // 切换到亮色模式
+                    document.documentElement.classList.remove('dark-mode');
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light');
+                    updateWordcloudImage(false);
+                    // 切换代码高亮主题
+                    if (lightTheme) lightTheme.disabled = false;
+                    if (darkTheme) darkTheme.disabled = true;
+                } else {
+                    // 切换到暗色模式
+                    document.documentElement.classList.add('dark-mode');
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    updateWordcloudImage(true);
+                    // 切换代码高亮主题
+                    if (lightTheme) lightTheme.disabled = true;
+                    if (darkTheme) darkTheme.disabled = false;
+                }
+            }
+            
+            // 监听主题切换按钮点击
+            themeToggle.addEventListener('click', toggleTheme);
+            
+            // 立即初始化主题，避免闪烁
+            initTheme();
+            
+            // 目录导航功能
+            function initTocNavigation() {
+                const tocItems = document.querySelectorAll('.toc-item a');
+                if (tocItems.length === 0) return;
+                
+                // 移动端目录折叠功能
+                function initMobileTocToggle() {
+                    const tocSidebar = document.querySelector('.toc-sidebar');
+                    const tocTitle = document.querySelector('.toc-title');
+                    
+                    if (!tocSidebar || !tocTitle) return;
+                    
+                    // 检查是否为移动端
+                    function isMobile() {
+                        return window.innerWidth <= 1023;
+                    }
+                    
+                    // 初始化移动端状态
+                    function initMobileState() {
+                        if (isMobile()) {
+                            tocSidebar.classList.remove('expanded');
+                        } else {
+                            tocSidebar.classList.add('expanded');
+                        }
+                    }
+                    
+                    // 切换折叠状态
+                    function toggleToc() {
+                        if (!isMobile()) return;
+                        
+                        tocSidebar.classList.toggle('expanded');
+                    }
+                    
+                    // 监听标题点击
+                    tocTitle.addEventListener('click', function(e) {
+                        if (isMobile()) {
+                            e.preventDefault();
+                            toggleToc();
+                        }
+                    });
+                    
+                    // 监听窗口大小变化
+                    window.addEventListener('resize', function() {
+                        initMobileState();
+                    });
+                    
+                    // 初始化状态
+                    initMobileState();
+                }
+                
+                // 初始化移动端折叠功能
+                initMobileTocToggle();
+                
+                // 为目录链接添加平滑滚动
+                tocItems.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+                
+                // 监听滚动，高亮当前章节
+                function updateActiveTocItem() {
+                    const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
+                    const scrollTop = window.pageYOffset;
+                    const windowHeight = window.innerHeight;
+                    
+                    let currentHeading = null;
+                    
+                    headings.forEach(heading => {
+                        const headingTop = heading.offsetTop - 100; // 偏移量，提前激活
+                        
+                        if (scrollTop >= headingTop) {
+                            currentHeading = heading;
+                        }
+                    });
+                    
+                    // 更新目录项激活状态
+                    tocItems.forEach(link => {
+                        link.parentElement.classList.remove('active');
+                    });
+                    
+                    if (currentHeading) {
+                        const activeLink = document.querySelector(`.toc-item a[href="#${currentHeading.id}"]`);
+                        if (activeLink) {
+                            activeLink.parentElement.classList.add('active');
+                        }
+                    }
+                }
+                
+                // 节流滚动监听
+                let ticking = false;
+                window.addEventListener('scroll', function() {
+                    if (!ticking) {
+                        requestAnimationFrame(function() {
+                            updateActiveTocItem();
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                });
+                
+                // 初始调用
+                updateActiveTocItem();
+            }
+            
+            // 初始化目录导航
+            initTocNavigation();
+        });
+    </script>
+    
+    
+<script>
+const searchInput = document.getElementById('searchInput');
+const clearButton = document.getElementById('clearButton');
+const categoryCards = document.querySelectorAll('.category-card');
+
+function toggleClearButton() {
+    if (searchInput.value.trim() !== '') {
+        clearButton.style.display = 'flex';
+    } else {
+        clearButton.style.display = 'none';
+    }
+}
+
+function performSearch() {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    
+    categoryCards.forEach(card => {
+        const issueItems = card.querySelectorAll('.issue-item');
+        let hasVisibleItems = false;
+        
+        issueItems.forEach(item => {
+            const title = item.querySelector('.issue-link').textContent.toLowerCase();
+            if (searchTerm === '' || title.includes(searchTerm)) {
+                item.classList.remove('hidden');
+                hasVisibleItems = true;
+            } else {
+                item.classList.add('hidden');
+            }
+        });
+        
+        // 隐藏没有匹配项的分类卡片
+        if (hasVisibleItems) {
+            card.classList.remove('hidden');
+        } else {
+            card.classList.add('hidden');
+        }
+    });
+}
+
+searchInput.addEventListener('input', function() {
+    toggleClearButton();
+    performSearch();
+});
+
+clearButton.addEventListener('click', function() {
+    searchInput.value = '';
+    searchInput.focus();
+    toggleClearButton();
+    performSearch();
+});
+
+// 初始化时检查是否需要显示清空按钮
+toggleClearButton();
+</script>
+
+</body>
+</html>
