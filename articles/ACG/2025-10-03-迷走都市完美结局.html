@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<script>
+    // 在页面渲染前立即设置主题，避免闪烁
+    (function() {
+        // 添加页面加载类，禁用过渡动画
+        document.documentElement.classList.add('page-loading');
+        
+        // 获取保存的主题或使用系统偏好
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+        
+        // 立即应用主题类
+        if (isDark) {
+            document.documentElement.classList.add('dark-mode');
+        }
+    })();
+</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>迷走都市~完美结局 - syaofox 的博客</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico">
+    <link rel="stylesheet" href="../../static/css/base.css">
+    
+    
+    <!-- Marked.js for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.0.0/marked.min.js"></script>
+    
+    <!-- Highlight.js for code highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github.min.css" id="highlight-theme-light">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github-dark.min.css" id="highlight-theme-dark" disabled>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/lib/index.min.js"></script>
+</head>
+<body class="page-article">
+    
+<div class="article-layout">
+    <main class="article-main">
+        <header class="header">
+            <a href="../../index.html" class="back-link">返回首页</a>
+            <h1 class="article-title">迷走都市~完美结局</h1>
+            <div class="article-meta">
+                <span>创建时间：2025-10-03 08:05:55</span>
+                <span class="separator">|</span>
+                <span>更新时间：2025-10-03 09:47:25</span>
+                
+                <span class="separator">|</span>
+                <span>分类：ACG</span>
+                
+            </div>
+        </header>
+        
+        <div class="article-content">
+            <!-- 原始 Markdown 存储（JSON 格式避免转义问题） -->
+            <script type="application/json" id="article-markdown">
+"## \u6e38\u620f\u4ecb\u7ecd\n\n\u300a\u8ff7\u8d70\u90fd\u5e02\u300b\u662f\u4e00\u6b3e\u7ecf\u5178\u7684PC98 AVG\u6e38\u620f\uff0c\u66fe\u88ab\u79fb\u690d\u5230DOS\uff0c\u6709\u7e41\u4f53\u4e2d\u6587\u7248\u548c\u82f1\u6587\u7248\uff0c\u540e\u6765\u8fd8\u51fa\u4e86WINDOWS\u7684\u82f1\u6587\u590d\u5236\u7248\uff0c\u97f3\u4e50\u548cCG\u5168\u9762\u52a0\u5f3a\u3002\u56e0\u6b64\u5bf9\u4e8e\u4e00\u4e2aAVG\u6e38\u620f\u6765\u8bf4\uff0c\u8fd9\u8db3\u4ee5\u8bc1\u660e\u5b83\u7684\u5730\u4f4d\u3002\n\n![](../../../assets/images/\u8ff7\u8d70\u90fd\u5e02\u5b8c\u7f8e\u7ed3\u5c40/gJe2KSI.jpg)\n\n\u300a\u8ff7\u8d70\u90fd\u5e02\u300b\u662f\u4e00\u4e2a\u5f88\u4f18\u79c0\u7684AVG\u6e38\u620f\uff0c\u5404\u79cd\u7c7b\u578b\u7684\u5973\u5b69\u5b50\u90fd\u5728\u6e38\u620f\u4e2d\u51fa\u73b0\uff0c\u841d\u8389\u3001\u719f\u5973\u3001\u5fa1\u59d0\u3001\u75f4\u5973\u3001SM\u3001\u7537\u4eba\u5a46\u751a\u81f3\u8fd8\u6709\u4eba\u5996\u3002\u4f5c\u4e3a\u4e00\u4e2a\u53e4\u8463\u7ea7\u7684\u6e38\u620f\uff0c\u300a\u8ff7\u8d70\u90fd\u5e02\u300b\u65e0\u7591\u662f\u76f8\u5f53\u8d85\u524d\u7684\u3002\u6e38\u620f\u7684\u753b\u9762\u4e5f\u975e\u5e38\u7eda\u4e3d\u548c\u6f02\u4eae\uff0c\u4eba\u7269\u7684\u98ce\u683c\u4e5f\u6bd4\u8f83\u552f\u7f8e\uff0c\u7cbe\u96d5\u7ec6\u7422\u3002\n\u53e6\u5916\uff0c\u300a\u8ff7\u8d70\u90fd\u5e02\u300b\u5e76\u975e\u662f\u4e00\u4e2a\u5f88\u7eaf\u7cb9\u7684AVG\u6e38\u620f\uff0c\u5982\u679c\u4f60\u53ea\u4e3a\u770b\u4e00\u4e9b\u56fe\u7247\uff0c\u90a3\u5b9e\u5728\u662f\u7cdf\u8e4b\u4e86\u5b83\u3002\u300a\u8ff7\u8d70\u90fd\u5e02\u300b\u662f\u4e00\u4e2a\u975e\u5e38\u597d\u7684\u542f\u8499\u6e38\u620f\uff0c\u5b83\u5bf9\u4e8e\u4eba\u751f\u548c\u793e\u4f1a\u7684\u523b\u753b\u662f\u6bd4\u8f83\u6df1\u523b\u7684\uff0c\u5e74\u8f7b\u4eba\u7a76\u7adf\u5e94\u8be5\u600e\u6837\u51b3\u5b9a\u81ea\u5df1\u7684\u672a\u6765\uff0c\u5982\u4f55\u53bb\u9762\u5bf9\u548c\u5904\u7406\u4eb2\u60c5\u3001\u53cb\u60c5\u3001\u7231\u60c5\uff0c\u5728\u6e38\u620f\u4e2d\u90fd\u4f1a\u627e\u5230\u7b54\u6848\u3002\u800c\u4e14\u7531\u4e8e\u65e5\u672c\u7684\u53d1\u5c55\u6bd4\u4e2d\u56fd\u65e9\uff0c\u56e0\u6b64\u6e38\u620f\u4e2d\u7684\u65f6\u4ee3\u548c\u4e2d\u56fd\u76ee\u524d\u7684\u72b6\u6001\u5f88\u63a5\u8fd1\uff0c\u5f88\u6709\u53c2\u8003\u7684\u610f\u4e49\u3002\n\n![](../../../assets/images/\u8ff7\u8d70\u90fd\u5e02\u5b8c\u7f8e\u7ed3\u5c40/pxnrgAK.jpg)\n![](../../../assets/images/\u8ff7\u8d70\u90fd\u5e02\u5b8c\u7f8e\u7ed3\u5c40/L0XUb1K.jpg)\n\n## Happy Ending\n\n\u524d\u9762\u53ea\u8981\u6309\u5267\u60c5\u8d70\u5c31\u53ef\u4ee5\u4e86\uff0c\u5230\u540e\u671f\n\n- \u5bf9\u4e07\u91cc\u5b50\u8981\u9009\u201c\u6211\u5c31\u662f\u8981\u6210\u4e3a\u4eba\u7c7b\u7684\u6307\u5bfc\u8005\u201d\uff0c  \n- \u5bf9\u535a\u58eb\u8981\u9009\u201c\u65e2\u7136\u4ed6\u80fd\u4f7f\u72af\u7f6a\u8005\u6539\u8fc7\u5411\u5584\uff0c\u8fd9\u79cd\u529b\u91cf\u662f\u8db3\u591f\u4e3a\u8fd9\u4e16\u754c\u505a\u4e00\u70b9\u4e8b\u7684\u5427\u201d \n- \u5bf9\u5c0f\u68a6\u59d0\u59b9\u662f\u5355\u7ebf\u4e0b\u53bb\n- \u6700\u540e\u5bf9\u523a\u5ba2\u963f\u96ea\u8981\u9009\u201c\u4fb5\u72af\u201d-\u201c\u653e\u5f03\u201d-\u201c\u4fb5\u72af\u201d-\u201c\u653e\u5f03\n- \u518d\u9009\u201c\u6551\u52a9\u201d3\u6b21\u5c31\u8fbe\u6210Happy Ending\u4e86\n\n\u8bb0\u4f4f\u7edd\u5bf9\u4e0d\u80fd\u9009\u62e9\u201c\u4f7f\u7528\u80fd\u529b\u201d\uff01  \n\n\u770b\u89c1\u4e0d\u4e8c\u5b50\u7684\u65f6\u5019\n\n- \u7edd\u5bf9\u4e0d\u80fd\u9009\"\u770b\"\n- \u8981\u601d\u8003\u601d\u8003\u518d\u601d\u8003\n\n\u6700\u540e\u5c31\u8f6c\u5230\u4e07\u91cc\u5b50\uff0c\u4e07\u91cc\u5b50\u7684\u65f6\u5019\u9009\n- \"\u6709\"\u548c\"\u8ba4\u540c\"\n\n\u5230\u535a\u58eb\u90a3\u91cc\u9009\u7684\u662f\n\n- \"\u9519\u8bef\"\n- \u4e0d\u80fd\"\u770b\u60c5\u51b5\"\u70b9\u592a\u591a,\u8981\u4e0d\u7136\u4e5f\u5b8c\u86cb\u7684\n- \u5dee\u4e0d\u591a\u5c31\u8981\"\u51fa\u573a\"\n\n\u5f69\u4f73\u573a\u666f\n- \"\u72af\u9519\" ,\"\u653e\u5f03\",\"\u884c\u4e0d\u901a\"\n\nH\u4e24\u59d0\u59b9\u7684\u65f6\u5019\u591a\u9009\u7f62\u624b,\u5173\u952e\u662f\u52302\u4eba\u6267\u884c\u7684\u65f6\u5019\u7edd\u5bf9\u4e0d\u80fd\u8ba9\u6267\u884c\u4eba\u52a8,\u51fa\u9009\u9879\u8981\u9a6c\u4e0a\u9009\u62e9\"\u7f62\u624b\"\u8ba9\u523a\u5ba2\u51fa\u6765.\u5426\u5219\u540e\u9762\u662f\u65e0\u6cd5\u6551\u52a9\u7684!\n\n\u6210\u529f\u7684\u60c5\u51b5\u4e0b\u6293\u4f4f\u523a\u5ba2\u540e\u95ee\u8bdd\u7684\u8bdd,\u5979\u662f\u4f1a\u56de\u7b54\u524d\u51e0\u53e5\u7684,\u8fd9\u6837\u5728\u8131\u4e86\u540e\n\u201c\u4fb5\u72af\u201d-\u201c\u653e\u5f03\u201d-\u201c\u4fb5\u72af\u201d-\u201c\u653e\u5f03\u201d-\u518d\u9009\u201c\u6551\u52a9\u201d*3\u5c31\u6210\u529f\u4e86!\n\nOVER"
+            </script>
+            <!-- 渲染目标容器 -->
+            <div id="markdown-content"></div>
+        </div>
+        
+        <footer class="footer">
+            <p>本文原始链接：<a href="https://github.com/syaofox/syaofox.github.io/issues/12" class="github-link" target="_blank">GitHub Issue #12</a>
+            <button id="theme-toggle" class="theme-toggle" title="切换主题">
+                <svg class="theme-icon sun-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="theme-icon moon-icon" viewBox="0 0 24 24" style="display: none;">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button></p>
+        </footer>
+    </main>
+    
+    <!-- TOC 容器（由 JS 动态生成） -->
+    <aside class="toc-sidebar" id="toc-container">
+        <h3 class="toc-title">
+            目录
+            <span class="toc-toggle">▼</span>
+        </h3>
+        <ul class="toc-list" id="toc-list"></ul>
+    </aside>
+</div>
+
+    
+    
+    <!-- 滚动悬浮按钮 -->
+    <div class="scroll-buttons">
+        <button class="scroll-btn" id="scroll-to-top" title="回到顶部">↑</button>
+        <button class="scroll-btn" id="scroll-to-bottom" title="滚到底部">↓</button>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 页面加载完成后，延迟移除 page-loading 类，启用过渡动画
+            setTimeout(function() {
+                document.documentElement.classList.remove('page-loading');
+            }, 50);
+            
+            // 为所有代码块添加复制按钮
+            const codeBlocks = document.querySelectorAll('pre > code');
+            
+            codeBlocks.forEach(function(codeBlock) {
+                // 跳过已经包装的代码块
+                if (codeBlock.parentElement.classList.contains('code-block-wrapper')) {
+                    return;
+                }
+                
+                const pre = codeBlock.parentElement;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-block-wrapper';
+                
+                // 创建复制按钮
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'copy-btn';
+                copyBtn.textContent = '复制';
+                
+                // 包装pre元素
+                pre.parentElement.insertBefore(wrapper, pre);
+                wrapper.appendChild(pre);
+                wrapper.appendChild(copyBtn);
+                
+                // 添加复制功能
+                copyBtn.addEventListener('click', function() {
+                    const text = codeBlock.textContent;
+                    
+                    // 使用现代Clipboard API
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).then(function() {
+                            showCopied(copyBtn);
+                        }).catch(function() {
+                            // 降级到传统方法
+                            fallbackCopy(text, copyBtn);
+                        });
+                    } else {
+                        // 降级到传统方法
+                        fallbackCopy(text, copyBtn);
+                    }
+                });
+            });
+            
+            function showCopied(btn) {
+                btn.textContent = '已复制';
+                btn.classList.add('copied');
+                
+                setTimeout(function() {
+                    btn.textContent = '复制';
+                    btn.classList.remove('copied');
+                }, 1500);
+            }
+            
+            function fallbackCopy(text, btn) {
+                // 创建临时文本区域
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+                document.body.appendChild(textArea);
+                
+                try {
+                    textArea.focus();
+                    textArea.select();
+                    document.execCommand('copy');
+                    showCopied(btn);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                    btn.textContent = '复制失败';
+                    setTimeout(function() {
+                        btn.textContent = '复制';
+                    }, 1500);
+                } finally {
+                    document.body.removeChild(textArea);
+                }
+            }
+            
+            // 滚动悬浮按钮功能
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+            const scrollToBottomBtn = document.getElementById('scroll-to-bottom');
+            
+            function updateScrollButtons() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                
+                // 显示/隐藏回到顶部按钮
+                if (scrollTop > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+                
+                // 显示/隐藏滚到底部按钮
+                if (scrollTop + windowHeight < documentHeight - 300) {
+                    scrollToBottomBtn.classList.add('visible');
+                } else {
+                    scrollToBottomBtn.classList.remove('visible');
+                }
+            }
+            
+            // 监听滚动事件
+            window.addEventListener('scroll', updateScrollButtons);
+            
+            // 回到顶部按钮点击事件
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 滚到底部按钮点击事件
+            scrollToBottomBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: document.documentElement.scrollHeight,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 初始化时检查按钮状态
+            updateScrollButtons();
+            
+            // 主题切换功能
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            
+            // 更新词云图片
+            function updateWordcloudImage(isDark) {
+                const wordcloudImg = document.getElementById('wordcloud-img');
+                if (wordcloudImg) {
+                    const newSrc = isDark ? 'assets/wordcloud-dark.png' : 'assets/wordcloud-light.png';
+                    if (wordcloudImg.src !== new URL(newSrc, window.location.href).href) {
+                        wordcloudImg.src = newSrc;
+                        console.log('词云图片已切换至:', newSrc);
+                    }
+                } else {
+                    console.warn('未找到词云图片元素');
+                }
+            }
+            
+            // 初始化主题（同步 body 类和其他主题相关元素）
+            function initTheme() {
+                const isDark = document.documentElement.classList.contains('dark-mode');
+                
+                // 同步 body 的 dark-mode 类
+                if (isDark) {
+                    body.classList.add('dark-mode');
+                } else {
+                    body.classList.remove('dark-mode');
+                }
+                
+                // 初始化代码高亮主题
+                const lightTheme = document.getElementById('highlight-theme-light');
+                const darkTheme = document.getElementById('highlight-theme-dark');
+                if (isDark) {
+                    if (lightTheme) lightTheme.disabled = true;
+                    if (darkTheme) darkTheme.disabled = false;
+                } else {
+                    if (lightTheme) lightTheme.disabled = false;
+                    if (darkTheme) darkTheme.disabled = true;
+                }
+                
+                updateWordcloudImage(isDark);
+            }
+            
+            // 切换主题
+            function toggleTheme() {
+                const isDarkMode = document.documentElement.classList.contains('dark-mode');
+                const lightTheme = document.getElementById('highlight-theme-light');
+                const darkTheme = document.getElementById('highlight-theme-dark');
+                
+                if (isDarkMode) {
+                    // 切换到亮色模式
+                    document.documentElement.classList.remove('dark-mode');
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light');
+                    updateWordcloudImage(false);
+                    // 切换代码高亮主题
+                    if (lightTheme) lightTheme.disabled = false;
+                    if (darkTheme) darkTheme.disabled = true;
+                } else {
+                    // 切换到暗色模式
+                    document.documentElement.classList.add('dark-mode');
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    updateWordcloudImage(true);
+                    // 切换代码高亮主题
+                    if (lightTheme) lightTheme.disabled = true;
+                    if (darkTheme) darkTheme.disabled = false;
+                }
+            }
+            
+            // 监听主题切换按钮点击
+            themeToggle.addEventListener('click', toggleTheme);
+            
+            // 立即初始化主题，避免闪烁
+            initTheme();
+            
+            // 目录导航功能
+            function initTocNavigation() {
+                const tocItems = document.querySelectorAll('.toc-item a');
+                if (tocItems.length === 0) return;
+                
+                // 移动端目录折叠功能
+                function initMobileTocToggle() {
+                    const tocSidebar = document.querySelector('.toc-sidebar');
+                    const tocTitle = document.querySelector('.toc-title');
+                    
+                    if (!tocSidebar || !tocTitle) return;
+                    
+                    // 检查是否为移动端
+                    function isMobile() {
+                        return window.innerWidth <= 1023;
+                    }
+                    
+                    // 初始化移动端状态
+                    function initMobileState() {
+                        if (isMobile()) {
+                            tocSidebar.classList.remove('expanded');
+                        } else {
+                            tocSidebar.classList.add('expanded');
+                        }
+                    }
+                    
+                    // 切换折叠状态
+                    function toggleToc() {
+                        if (!isMobile()) return;
+                        
+                        tocSidebar.classList.toggle('expanded');
+                    }
+                    
+                    // 监听标题点击
+                    tocTitle.addEventListener('click', function(e) {
+                        if (isMobile()) {
+                            e.preventDefault();
+                            toggleToc();
+                        }
+                    });
+                    
+                    // 监听窗口大小变化
+                    window.addEventListener('resize', function() {
+                        initMobileState();
+                    });
+                    
+                    // 初始化状态
+                    initMobileState();
+                }
+                
+                // 初始化移动端折叠功能
+                initMobileTocToggle();
+                
+                // 为目录链接添加平滑滚动
+                tocItems.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+                
+                // 监听滚动，高亮当前章节
+                function updateActiveTocItem() {
+                    const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
+                    const scrollTop = window.pageYOffset;
+                    const windowHeight = window.innerHeight;
+                    
+                    let currentHeading = null;
+                    
+                    headings.forEach(heading => {
+                        const headingTop = heading.offsetTop - 100; // 偏移量，提前激活
+                        
+                        if (scrollTop >= headingTop) {
+                            currentHeading = heading;
+                        }
+                    });
+                    
+                    // 更新目录项激活状态
+                    tocItems.forEach(link => {
+                        link.parentElement.classList.remove('active');
+                    });
+                    
+                    if (currentHeading) {
+                        const activeLink = document.querySelector(`.toc-item a[href="#${currentHeading.id}"]`);
+                        if (activeLink) {
+                            activeLink.parentElement.classList.add('active');
+                        }
+                    }
+                }
+                
+                // 节流滚动监听
+                let ticking = false;
+                window.addEventListener('scroll', function() {
+                    if (!ticking) {
+                        requestAnimationFrame(function() {
+                            updateActiveTocItem();
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                });
+                
+                // 初始调用
+                updateActiveTocItem();
+            }
+            
+            // 初始化目录导航
+            initTocNavigation();
+        });
+    </script>
+    
+    
+<script src="../../static/js/markdown-renderer.js"></script>
+
+</body>
+</html>
